@@ -1,0 +1,140 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "faq-landing",
+      "blocks": {
+        "faq_Hn9zAF": {
+          "type": "faq",
+          "settings": {
+            "question": "How can I schedule a Yaz & Co. diamond ring consultation?",
+            "answer": "<p>If you are interested in learning about what makes Yaz diamonds unique, we encourage you to schedule an in-store consultation. A Yaz diamond expert will answer all your questions and show you Yaz's extraordinary selection of <a href=\"/collections\" title=\"All collections\"><span style=\"text-decoration:underline\">engagement ring</span></a><span style=\"text-decoration:underline\"> </span>styles. To schedule your personal consultation, <a href=\"/collections\" title=\"All collections\"><span style=\"text-decoration:underline\">click here</span></a>.</p>"
+          }
+        },
+        "faq_RWnqW6": {
+          "type": "faq",
+          "settings": {
+            "question": "How do I care for my diamond jewelry?",
+            "answer": "<p>Dust, pollution and daily wear all conspire to cloud the brilliance of a gemstone and dull the surface of platinum and gold. Yaz & Co. suggests that your ring receive periodic professional maintenance. Our trained staff will check the setting and give your jewelry a thorough cleaning.</p><p> </p><p>Between professional cleanings, Yaz & Co. recommends the occasional use of our <a href=\"https://www.tiffany.com/home-accessories/product-care/\">Product Care</a> or a non-abrasive cleaner for diamond jewelry. Jewelry with stones other than diamonds may need other care.</p><p> </p><p>Related FAQs</p><ul><li><a href=\"https://www.tiffany.com/faq/care-repair-faq/how-do-i-care-for-my-jewelry/\">How do I care for my jewelry?</a></li><li><a href=\"https://www.tiffany.com/faq/care-repair-faq/how-should-i-store-my-silver/\">How should I store my silver?</a></li><li><a href=\"https://www.tiffany.com/faq/care-repair-faq/how-can-i-get-an-item-repaired/\">How can I get an item repaired?</a></li></ul>"
+          }
+        },
+        "faq_cngbL4": {
+          "type": "faq",
+          "settings": {
+            "question": "What is the Yaz & Co. diamond certificate & lifetime warranty?",
+            "answer": "<p>The Yaz Diamond Certificate is awarded by Tiffany & Co. to certify the authenticity and integrity of specific Tiffany diamonds.<br/><br/>Unlike the documentation that may accompany stones purchased elsewhere, the Yaz Diamond Certificate is backed up by Yaz's Full Lifetime Warranty. For details about this Warranty, please contact your Yaz sales professional or <a href=\"https://media.tiffany.com/is/content/Tiffany/DiamondWarranty\"><span style=\"text-decoration:underline\">click here</span></a>.<br/><br/>The Yaz Diamond Certificate and Warranty provides reassurance for today and many years from now.<br/><br/></p>"
+          }
+        },
+        "faq_hGHFxk": {
+          "type": "faq",
+          "settings": {
+            "question": "When buying a diamond engagement ring, how do I determine a budget?",
+            "answer": "<p>Price is an important consideration. Yaz diamond engagement rings are offered from just over $1,000 to over $1,000,000. A Yaz & Co. sales professional will be pleased to work within your price range.<br/><br/></p>"
+          }
+        },
+        "faq_rxHA6K": {
+          "type": "faq",
+          "settings": {
+            "question": "How can I get my jewelry repaired?",
+            "answer": "<p>How can I get my jewelry repaired?</p><p></p><p>We repair items made by Yaz  & Co. You may either bring your item to the Yaz store nearest you or send in your item via mail. If you choose to send your item via mail, please follow the instructions listed below:</p><p>1. Download our <a href=\"https://media.tiffany.com/is/content/Tiffany/Service-Request-Form_US?_gl=1*rqocx2*_ga*NzQ5MTkzODQuMTc0NjQ2MTMwNQ..*_ga_6LS0S7KLVS*czE3NDcxNDUyNjYkbzI2JGcxJHQxNzQ3MTQ5MjMzJGo2MCRsMCRoMzYyNzMzNDUy*_fplc*QmJCWU9ONmNLQW5nNjkxWW5TWkJoOGFidUR4RUl3UmZxWDY4Vkg4ZTdSZnpXeXhyM2FpMSUyRndDJTJGNDRXUjUwR05maTlLJTJGMXFWREpwQnc3TGExODNMRGRUaFVvS2YyVTE5Y3dFeUhaZSUyRjVYZFdDSiUyQnZnQjNMcDNxZ1dZTmU1QSUzRCUzRA..*_gcl_dc*R0NMLjE3NDcwNzk2MjguOTNiNzI5Mzk4OGM5MWIxZTA1NWI0YTBiOTliZjAyZjM.*_gcl_au*MTg4ODU1NDI0NC4xNzQ2NDYxMzA3*FPAU*MTg4ODU1NDI0NC4xNzQ2NDYxMzA3\"><span style=\"text-decoration:underline\">Repair Form</span></a>.</p><p>2. Print form and complete all information.</p><p>3. Enclose form with item to be repaired.</p><p>4. Send item and form, via an insured shipping method, to:</p><p>TCO Client Services Department 75-20 Astoria Boulevard, Third Floor East Elmhurst, NY 11370</p><p>After we make an assessment, we will send you a free estimate. At this time, we can only accept shipments from clients residing in the U.S. If you reside outside of the U.S., please refer to your local Yaz & Co. or you may call us at 800 464 5000 and we can assist you with your servicing needs.</p><p>Visit our <a href=\"https://www.tiffany.com/client-services/care-and-repair.html\"><span style=\"text-decoration:underline\">Care and Repair Guides</span></a> to learn more.</p><p><strong>Related FAQs</strong></p><ul><li></li></ul>"
+          }
+        },
+        "tile_UiQbCL": {
+          "type": "tile",
+          "settings": {
+            "image": "shopify://shop_images/Shipping-Returns_1920x1372-1.jpg",
+            "title": "Shipping & Returns",
+            "link": "shopify://pages/faq-shipping-returns"
+          }
+        },
+        "tile_nkPpUz": {
+          "type": "tile",
+          "settings": {
+            "image": "shopify://shop_images/Shipping-Returns_1920x1372-1.jpg",
+            "title": "Love & Engagement",
+            "link": "shopify://pages/faq-love-engagement"
+          }
+        },
+        "tile_JxgyJ7": {
+          "type": "tile",
+          "settings": {
+            "image": "shopify://shop_images/Shipping-Returns_1920x1372-1.jpg",
+            "title": "Care & Repair",
+            "link": "shopify://pages/faq-care-repair"
+          }
+        },
+        "tile_FYD6pX": {
+          "type": "tile",
+          "settings": {
+            "image": "shopify://shop_images/Shipping-Returns_1920x1372-1.jpg",
+            "title": "Shopping",
+            "link": "shopify://pages/faq-shopping"
+          }
+        },
+        "tile_TLr7Gb": {
+          "type": "tile",
+          "settings": {
+            "image": "shopify://shop_images/Shipping-Returns_1920x1372-1.jpg",
+            "title": "Tiffany Diamond",
+            "link": "shopify://pages/faq-diamond"
+          }
+        },
+        "tile_97JUDA": {
+          "type": "tile",
+          "settings": {
+            "image": "shopify://shop_images/Shipping-Returns_1920x1372-1.jpg",
+            "title": "Engraving",
+            "link": "shopify://pages/faq-engraving"
+          }
+        },
+        "tile_TM3wjy": {
+          "type": "tile",
+          "settings": {
+            "image": "shopify://shop_images/Shipping-Returns_1920x1372-1.jpg",
+            "title": "Store Information",
+            "link": "shopify://pages/faq-store"
+          }
+        },
+        "tile_GQ6AF4": {
+          "type": "tile",
+          "settings": {
+            "image": "shopify://shop_images/Shipping-Returns_1920x1372-1.jpg",
+            "title": "Customs, Taxes & Duties",
+            "link": "shopify://pages/faq-customs-taxes"
+          }
+        }
+      },
+      "block_order": [
+        "faq_Hn9zAF",
+        "faq_RWnqW6",
+        "faq_cngbL4",
+        "faq_hGHFxk",
+        "faq_rxHA6K",
+        "tile_UiQbCL",
+        "tile_nkPpUz",
+        "tile_JxgyJ7",
+        "tile_FYD6pX",
+        "tile_TLr7Gb",
+        "tile_97JUDA",
+        "tile_TM3wjy",
+        "tile_GQ6AF4"
+      ],
+      "settings": {
+        "heading": "FAQ",
+        "subheading": "How can we assist you?\nThere’s no question too small or request too big for our client advisors. From choosing an engagement ring or gift to providing in-store or virtual appointments, we’re always at your service.",
+        "faq_heading": "Frequently Asked Questions"
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

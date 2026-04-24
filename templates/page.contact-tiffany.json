@@ -1,0 +1,101 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "contact-tiffany",
+      "custom_css": [],
+      "settings": {
+        "heading": "Contact Us",
+        "intro": "There’s no question too small or request too big for our YAZ & Co client advisors. From choosing an engagement ring or gift to providing in-store or virtual appointments, we’re always at your service.",
+        "phone_display": "+971 56 888 7552",
+        "phone_raw": "+971568887552",
+        "whatsapp_display": "+971 56 888 7552",
+        "whatsapp_raw": "+971568887552",
+        "appointment_url": "",
+        "email": "info@yazandco.com",
+        "image": "shopify://shop_images/WhatsApp_Image_2026-03-27_at_21.13.23.jpg"
+      }
+    },
+    "rich_text_7QxnDi": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_bCHPB9": {
+          "type": "heading",
+          "settings": {
+            "heading": "Hours of Operation",
+            "heading_size": "h1"
+          }
+        },
+        "subheading_9fVkLW": {
+          "type": "subheading",
+          "disabled": true,
+          "settings": {
+            "subheading": "Valentine's Day Extended Hours: Valid from February 2nd through February 14th."
+          }
+        },
+        "text_ULMheE": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Monday – Saturday: 8:00AM – 10:00PM</p><p></p><p>Sunday: 08:00AM - 05:00PM<br/><br/></p><p>WhatsApp Us At  <a href=\"https://wa.me/9710568887552\" target=\"_blank\" title=\"https://wa.me/9710568887552\">+971568887552</a></p><p>Email us at  <a href=\"mailto:info@yazandco.com\" title=\"mailto:info@yazandco.com\">info@yazandco.com</a></p><p></p>"
+          }
+        },
+        "button_eKQJwD": {
+          "type": "button",
+          "disabled": true,
+          "settings": {
+            "button_label": "Email us at",
+            "button_link": "mailto:clientcare.us@tiffany.com",
+            "button_style": "simple"
+          }
+        }
+      },
+      "block_order": [
+        "heading_bCHPB9",
+        "subheading_9fVkLW",
+        "text_ULMheE",
+        "button_eKQJwD"
+      ],
+      "custom_css": [
+        "@media screen and (min-width: 990px) {.rich-text__heading {font-size: 44px; line-height: 1.1; } .rich-text__text, .rich-text__text p, .rich-text__text a {font-size: 18px; line-height: 1.9; }}"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "alignment": "center",
+        "width": "medium",
+        "margin_top": "m",
+        "margin_bottom": "m"
+      }
+    },
+    "1772014670e0c895a9": {
+      "type": "apps",
+      "blocks": {
+        "cowlendar_booking_app_section_x3PAgJ": {
+          "type": "shopify://apps/cowlendar-booking/blocks/app-section/6d8b8f6a-9b3c-42b8-b2e6-a758c38d45bf",
+          "settings": {
+            "section_title": "My services list",
+            "section_number": "services-list-1"
+          }
+        }
+      },
+      "block_order": [
+        "cowlendar_booking_app_section_x3PAgJ"
+      ],
+      "settings": {
+        "include_margins": true
+      }
+    }
+  },
+  "order": [
+    "main",
+    "rich_text_7QxnDi",
+    "1772014670e0c895a9"
+  ]
+}

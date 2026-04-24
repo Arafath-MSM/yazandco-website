@@ -1,0 +1,95 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "type": "footer",
+  "name": "t:sections.footer.settings.footer-group.label",
+  "sections": {
+    "footer": {
+      "type": "footer",
+      "blocks": {
+        "footer-1": {
+          "type": "link_list",
+          "settings": {
+            "subheading": "CUSTOMER SERVICES",
+            "menu": "footer",
+            "default_open": true
+          }
+        },
+        "footer-2": {
+          "type": "link_list",
+          "settings": {
+            "subheading": "OUR COMPANY",
+            "menu": "footer-company",
+            "default_open": true
+          }
+        },
+        "footer-3": {
+          "type": "link_list",
+          "settings": {
+            "subheading": "HELP",
+            "menu": "footer-contact",
+            "default_open": true
+          }
+        },
+        "footer-4": {
+          "type": "link_list",
+          "disabled": true,
+          "settings": {
+            "subheading": "Socials",
+            "menu": "footer",
+            "default_open": false
+          }
+        },
+        "footer-5": {
+          "type": "link_list",
+          "disabled": true,
+          "settings": {
+            "subheading": "Legal",
+            "menu": "footer",
+            "default_open": false
+          }
+        }
+      },
+      "block_order": [
+        "footer-1",
+        "footer-2",
+        "footer-3",
+        "footer-4",
+        "footer-5"
+      ],
+      "settings": {
+        "color_scheme": "background-1",
+        "show_border": true,
+        "logo": "shopify://shop_images/RGBMono_-_YAZ_Puple.png",
+        "logo_2": "shopify://shop_images/RGBMono_-_White_margins.png",
+        "logo_width": 80,
+        "logo_layout": "left",
+        "description": "",
+        "language_button_type": "icon",
+        "region_button_type": "icon",
+        "enable_subscribe": true,
+        "subscribe_heading": "JOIN OUR NEWSLETTER",
+        "subscribe_text": "Be the first to know about new designs, events,store openings and much more.",
+        "enable_country_selector": true,
+        "enable_language_selector": true,
+        "payment_enable": true,
+        "enable_follow_on_shop": true,
+        "copyright_bottom": true,
+        "enable_copyright_date": true,
+        "enable_copyright_shopname": true,
+        "padding_top": "m",
+        "padding_bottom": "xs"
+      }
+    }
+  },
+  "order": [
+    "footer"
+  ]
+}

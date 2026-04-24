@@ -1,0 +1,71 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "type": "header",
+  "name": "t:sections.header.settings.header-group.label",
+  "sections": {
+    "countdown-timer-bar": {
+      "type": "countdown-timer-bar",
+      "settings": {
+        "height": 40,
+        "height_mobile": 65,
+        "color_scheme": "",
+        "promo_text": "Display a limited time offer",
+        "enable_mock_timer": false,
+        "mock_date_picker_day": 2,
+        "mock_date_picker_hours": 3,
+        "date_picker": "2025-06-01",
+        "time_picker": "00:00",
+        "countdown_block_font": "h2",
+        "completed_countdown": "show_text",
+        "countdown_heading": "Time Is Running Out",
+        "button_label": "Shop now",
+        "button_link": "shopify://collections/all",
+        "overlay_mobile_link": true
+      }
+    },
+    "header": {
+      "type": "header",
+      "settings": {
+        "enable_border": false,
+        "header_type": "center-logo",
+        "logo": "shopify://shop_images/RGBLogo_-_YAZ_Purple.png",
+        "logo_2": "shopify://shop_images/RGBLogo_-_White.png",
+        "logo_width": 120,
+        "menu": "main-menu",
+        "sticky_header_type": "always",
+        "header_animation_type": "fade",
+        "enable_country_selector": false,
+        "enable_language_selector": true,
+        "enable_search": true,
+        "scheme_position": "right",
+        "dm_button_type": "icon",
+        "search_button_type": "icon",
+        "search_mobile_button_type": "icon",
+        "cart_button_type": "icon",
+        "cart_mobile_button_type": "icon",
+        "account_button_type": "icon",
+        "language_button_type": "text",
+        "region_button_type": "text"
+      }
+    },
+    "1775213798c4c1d71b": {
+      "type": "apps",
+      "settings": {
+        "include_margins": true
+      }
+    }
+  },
+  "order": [
+    "countdown-timer-bar",
+    "header",
+    "1775213798c4c1d71b"
+  ]
+}

@@ -1,0 +1,123 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "faq-detail",
+      "blocks": {
+        "faq_T9z4xy": {
+          "type": "faq",
+          "disabled": true,
+          "settings": {
+            "category_key": "shipping",
+            "question": "Holiday Puchases",
+            "answer": "<p>Valentine's Day Purchases</p><p>Week of January 25, 2026: The effects of Winter Storm have extended order processing and shipping estimates. We recommend placing your order as soon as possible for any time-sensitive purchases. You may see your order’s status at any time using the <a href=\"https://www.tiffany.com/order-tracker/\">Track Your Order</a> page.<br/><br/><strong>Valentine’s Day Shipping:</strong> To ensure Valentine's Day delivery prior to February 14 we recommend placing your order before 12:00 p.m. EST on Thursday, February 12 with express delivery.<br/><br/>If you need assistance with personalization options, details on extended store hours, or guidance for the perfect present, please visit our <a href=\"https://www.tiffany.com/contact-us.html\">Contact Us</a> page.</p>"
+          }
+        },
+        "faq_NTG9rd": {
+          "type": "faq",
+          "disabled": true,
+          "settings": {
+            "category_key": "shipping",
+            "question": "Will my items be gift wrapped?",
+            "answer": "<p>All Tiffany.com purchases arrive in the signature Tiffany Blue Box, tied with a white satin ribbon. At the checkout process you will have the option of writing a gift message for each item in your order which will arrive with your gift package, enclosed in a white envelope. If you choose not to write a gift message, one blank card per recipient will be included in your order.</p><p> </p><p><strong>Related FAQs:</strong></p><ul><li><a href=\"https://www.tiffany.com/faq-folder/shipping-returns-faq/what-shipping-options-are-available-online/what-shipping-options-are-available-online.html\"><span style=\"text-decoration:underline\">What shipping options are available on Tiffany.com?</span></a></li><li><a href=\"https://www.tiffany.com/faq-folder/shipping-returns-faq/what-is-the-tiffany-return-exchange-policy/what-is-the-tiffany-return-exchange-policy.html\"><span style=\"text-decoration:underline\">How can I make returns or exchanges?</span></a></li></ul>"
+          }
+        },
+        "faq_QNafiQ": {
+          "type": "faq",
+          "disabled": true,
+          "settings": {
+            "category_key": "shipping",
+            "question": "Can I ship my order to an international location?",
+            "answer": "<p>No, currently we are only able to accept online orders to shipping addresses within the United States.</p><p>Tiffany & Co. also offers e-commerce services to Canada, Japan and Australia. In Europe, we offer e-commerce services to the UK, Austria, Belgium, France, Germany, Ireland, Italy, the Netherlands and Spain. To find your country’s website, please visit <a href=\"https://www.international.tiffany.com/\"><span style=\"text-decoration:underline\">Tiffany.com/International</span></a>.</p><p>To inquire about shipments to U.S. territories, APO or FPO addresses, please contact Client Care at <strong>800 843 3269</strong>.</p><p><a href=\"https://www.tiffany.com/faq-accordion-clp/customer-services/customer-service.html\"><span style=\"text-decoration:underline\">View Client Care Hours</span></a></p><p><strong>Related FAQs</strong></p><ul><li><a href=\"https://www.tiffany.com/faq-folder/shipping-returns-faq/what-shipping-options-are-available-online/what-shipping-options-are-available-online.html\"><span style=\"text-decoration:underline\">What shipping options are available on Tiffany.com?</span></a></li><li><a href=\"https://www.tiffany.com/faq-folder/shipping-returns-faq/what-is-the-tiffany-return-exchange-policy/what-is-the-tiffany-return-exchange-policy.html\"><span style=\"text-decoration:underline\">How can I make returns or exchanges?</span></a></li><li><a href=\"https://www.tiffany.com/faq-folder/shipping-returns-faq/how-do-i-track-my-online-order/how-do-i-track-my-online-order.html\"><span style=\"text-decoration:underline\">Can I track my online order?</span></a></li></ul>"
+          }
+        },
+        "faq_XPwBEw": {
+          "type": "faq",
+          "disabled": true,
+          "settings": {
+            "category_key": "shipping",
+            "question": "What shipping options are available?",
+            "answer": "<p>Add your answer here.</p>"
+          }
+        },
+        "faq_jX3i4x": {
+          "type": "faq",
+          "disabled": true,
+          "settings": {
+            "category_key": "shipping",
+            "question": "Are Tiffany & Co. products insured when shipped?",
+            "answer": "<p>Tiffany & Co. is responsible for orders until the package is delivered to the customer. If the package goes missing, Tiffany & Co. may choose to open an investigation with the carrier to determine the responsible party. Please <a href=\"https://www.tiffany.com/contact-us.html\"><span style=\"text-decoration:underline\">Contact Us</span></a> if your order details indicate the package has been delivered but nothing was received.</p><p><strong>Related FAQs</strong></p><ul><li><a href=\"https://www.tiffany.com/faq-folder/shipping-returns-faq/what-shipping-options-are-available-online/what-shipping-options-are-available-online.html\"><span style=\"text-decoration:underline\">What shipping options are available on Tiffany.com?</span></a></li><li><a href=\"https://www.tiffany.com/faq-folder/shipping-returns-faq/what-is-the-tiffany-return-exchange-policy/what-is-the-tiffany-return-exchange-policy.html\"><span style=\"text-decoration:underline\">How can I make returns or exchanges?</span></a></li><li><a href=\"https://www.tiffany.com/faq-folder/shipping-returns-faq/how-do-i-track-my-online-order/how-do-i-track-my-online-order.html\"><span style=\"text-decoration:underline\">Can I track my online order?</span></a></li><li><a href=\"https://www.tiffany.com/faq-folder/shipping-returns-faq/will-my-items-be-gift-wrapped/will-my-items-be-gift-wrapped.html\"><span style=\"text-decoration:underline\">Will my Tiffany.com purchase arrive gift-wrapped?</span></a></li><li><a href=\"https://www.tiffany.com/faq-folder/shipping-returns-faq/can-i-ship-my-order-to-an-international-location/can-i-ship-my-order-to-an-international-location.html\"><span style=\"text-decoration:underline\">Can I ship my order to an international location?</span></a></li></ul>"
+          }
+        },
+        "faq_gYJ6HD": {
+          "type": "faq",
+          "settings": {
+            "category_key": "shipping",
+            "question": "What shipping options are available?",
+            "answer": "<p>Add your answer here.</p>"
+          }
+        },
+        "faq_DyayWe": {
+          "type": "faq",
+          "settings": {
+            "category_key": "shipping",
+            "question": "What is the Tiffany & Co. Return/Exchange Policy?",
+            "answer": "<p><strong>Holiday Return Policy</strong></p><p>Our 30 day return policy for purchases made between November 1st and December 15th, 2025 is extended to January 15th, 2026.</p><p> </p><p>Products are accepted for credit or exchange in the U.S. within 30 days of purchase.</p><p>All merchandise must be in perfect saleable condition, with the sales receipt. Exclusions apply, please note:</p><ul><li>Merchandise under $75,000 will be accepted for return or exchange within 30 days of purchase.</li><li>Merchandise $75,000 or more will be eligible for exchange within 30 days of purchase. No refunds will be issued for purchases above $75,000.</li><li>Merchandise must be accompanied by all original packaging for a refund. Including jewelry boxes and pouches.</li><li>Watches must be returned with the same number of links presented at purchase and accompanied by the warranty card.</li><li>Fragrance must be returned in its original packaging (including water seal stickers) and in saleable condition.</li><li>Personalized, altered, or engraved items are not eligible for return or exchange.</li><li>Refunds and exchanges are only eligible within the original country of purchase.</li><li>Certain limited edition and collaboration merchandise may be ineligible for a refund.</li></ul><p> </p><p><strong>How do I return an online purchase?</strong></p><p>Tiffany & Co. offers complimentary shipping for eligible returns, you may do so through any of the following:</p><ul><li>Simply visit <a href=\"https://returns.narvar.com/tiffany/returns?locale=en_US\"> <span style=\"text-decoration:underline\">this page</span></a>  to print a return label. Then drop off your package at the nearest UPS location. Additionally, you may also schedule an at-home pickup.</li><li><a href=\"https://www.tiffany.com/contact-us.html\"><span style=\"text-decoration:underline\">Contact us</span></a> and one of our client advisors will assist you.</li><li>You may also return your item at any of our Tiffany & Co. stores in the U.S. To locate the store nearest you, <a href=\"https://www.tiffany.com/stores/\"><span style=\"text-decoration:underline\">click here</span></a>. Please bring your original form of payment and sales receipt.</li></ul><p> </p><p><strong>What will my refund look like?</strong></p><p><strong>For online/phone purchases:</strong> Credit or charge card purchases will receive a credit to the original cardholder’s account on which the purchase was made. If a credit or charge card has been used to make this purchase, the terms and conditions in the agreement between the cardholder and the issuer of that credit card shall also apply. Gift recipients are only entitled to an exchange or non-refundable merchandise credit redeemable only on www.tiffany.com or at Tiffany & Co. U.S. locations, or through our client advisors.</p><p><strong>For in-store purchases:</strong> Refunds will be made to the original form of payment. Refunds will be provided only for purchases by cash or check to the original purchaser; credit or charge card purchases will receive a credit to the original cardholder’s account on which the purchase was made. If a credit or charge card has been used to make this purchase, the terms and conditions in the agreement between the cardholder and the issue of that credit card shall also apply. Refunds for purchases by check will be issued by company mail check upon presentation of the sales receipt and only if the funds have been received by Tiffany & Co. Cash purchases over $200 will be refunded by mail check. Gift recipients are entitled to an exchange or non-refundable merchandise credit redeemable only at Tiffany & Co. U.S. locations, on www.tiffany.com, or through our digital client advisors. Client’s failure to properly declare the merchandise and/or pay appropriate taxes and duties in any jurisdiction outside of the U.S. may prevent Tiffany & Co. from providing after-sales service on such merchandise.</p><p> </p><p><strong>What if I wanted an exchange instead?</strong></p><p>Tiffany & Co. offers complimentary shipping for eligible exchanges, you may do so through any of the following:</p><ul><li>Simply visit <a href=\"https://returns.narvar.com/tiffany/returns?locale=en_US\"> <span style=\"text-decoration:underline\">this page</span></a>  to print a return label. Then drop off your package at the nearest UPS location. Additionally, you may also schedule an at-home pickup.</li><li><a href=\"https://www.tiffany.com/contact-us.html\"><span style=\"text-decoration:underline\">Contact us</span></a> and one of our client advisors will assist you.</li><li>You may also exchange your item at any of our Tiffany & Co. stores in the U.S. To locate the store nearest you, <a href=\"https://www.tiffany.com/stores/\"><span style=\"text-decoration:underline\">click here</span></a>. Please bring your sales receipt along with your item for exchange.</li></ul><p> </p><p><strong>How can I change or cancel my order?</strong></p><p>Please note that we cannot guarantee that your order may be adjusted once it has been submitted.</p><p> </p><p><strong>Related FAQs</strong></p><ul><li><a href=\"https://www.tiffany.com/faq/shipping-returns-faq/what-shipping-options-are-available-online/\"><span style=\"text-decoration:underline\">What shipping options are available online?</span></a></li><li><a href=\"https://www.tiffany.com/faq/shipping-returns-faq/can-i-ship-my-order-to-an-international-location/\"><span style=\"text-decoration:underline\">Can I ship my order to an international location?</span></a></li><li><a href=\"https://www.tiffany.com/faq/shipping-returns-faq/how-do-i-track-my-online-order/\">Can I track my online order?</a></li></ul>"
+          }
+        },
+        "faq_HidXbN": {
+          "type": "faq",
+          "settings": {
+            "category_key": "shipping",
+            "question": " Shipping & Returns Information",
+            "answer": "<p>Explore commonly asked questions and detailed answers about Tiffany's shipping options and returns policy. Learn about tracking orders, international reshipping, exchanges, order modifications and more.<br/><br/></p>"
+          }
+        },
+        "faq_KbxQxY": {
+          "type": "faq",
+          "settings": {
+            "category_key": "shipping",
+            "question": "What shipping options are available on Tiffany.com?",
+            "answer": "<p>For each address within the United States, the following charges apply:</p><p> </p><p><strong>Standard Shipping: $0</strong></p><p>Available on all orders under $1,000. Please allow 3-5 business days to receive your items. Items ordered together may not always ship together.</p><p>Tiffany & Co. is proud to support the UPS® carbon neutral program on 100% of U.S. ground shipments. <a href=\"https://press.tiffany.com/tiffany-co-becomes-the-first-luxury-jeweler-to-receive-sbti-approval-on-net-zero-emissions-target/\"><span style=\"text-decoration:underline\">Click here</span></a> to learn more about Tiffany & Co.’s 2040 net-zero target.</p><p> </p><p><strong>Express Shipping: $15 (complimentary for orders above $1,000)</strong></p><p>Available on all orders, however, orders above $1,000 require a signature upon delivery. Please allow 1-2 business days to receive your items. Items ordered together may not always ship together.</p><p> </p><p><strong>Next-day delivery: $25 (complimentary for orders above $3,000)</strong></p><ul><li>Orders placed before 3:00PM EST Monday through Friday will be delivered on the following day.</li><li>Orders placed on Saturday before 1:00PM EST will be delivered Monday.</li><li>Sunday and holiday delivery are not available. Next-day delivery is not offered for watches or personalized items.</li></ul><p>Please note that all orders above $1,000 require a signature.</p><p> </p><p><strong>Buy Online, Pick Up in Store: USD $0</strong></p><p>In-store pickup is currently available at all Tiffany & Co. stores in the United States, with the exception of Hawaii locations. <a href=\"https://www.tiffany.com/faq/store-information-faq/\"><span style=\"text-decoration:underline\">Learn more</span></a>.</p><p> </p><p><strong>Engraving Schedule</strong></p><p>Please allow an additional 1-2 days for delivery of standard engraved items and additional 3-4 days for delivery of monogrammed and hand-engraved items.</p><p>Currently, we are only able to accept online orders to shipping addresses within the United States and do not ship internationally. To ensure the secure delivery of your order, Tiffany & Co. does not ship orders to post office boxes. Tiffany & Co. is able to accept post office box addresses for your billing needs.</p><p>To inquire about shipments within the U.S. APO or FPO addresses, please get in touch with our Client Contact Center at 800 843 3269.</p><p><a href=\"https://www.tiffany.com/contact-us.html\"><span style=\"text-decoration:underline\">View Customer Service Hours</span></a></p><p> </p><p><strong>More Information on Complimentary Shipping:</strong></p><ul><li>Sales tax & engraving fees do not count toward the total amount.</li><li>Complimentary shipping is only available for orders placed on the U.S. Website for domestic delivery.</li><li>In-store pickup is available at select store locations. <a href=\"https://www.tiffany.com/faq/store-information-faq/\"><span style=\"text-decoration:underline\">Learn more</span></a>.</li></ul>"
+          }
+        },
+        "faq_Wb7CkP": {
+          "type": "faq",
+          "settings": {
+            "category_key": "shipping",
+            "question": "How do I track my online order?",
+            "answer": "<p>A shipping notification with tracking details will be sent via email after your order has shipped. You will receive multiple email acknowledgements if your order results in more than one shipment.</p><p><span style=\"text-decoration:underline\"><strong>How can I change or cancel my order?</strong></span></p><p>Please note that we cannot guarantee that your order may be adjusted once it has been submitted.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "faq_T9z4xy",
+        "faq_NTG9rd",
+        "faq_QNafiQ",
+        "faq_XPwBEw",
+        "faq_jX3i4x",
+        "faq_gYJ6HD",
+        "faq_DyayWe",
+        "faq_HidXbN",
+        "faq_KbxQxY",
+        "faq_Wb7CkP"
+      ],
+      "settings": {
+        "heading": "Shipping & Returns Information",
+        "intro": "Explore commonly asked questions and detailed answers about shipping options and returns policy. Learn about tracking orders, international reshipping, exchanges, order modifications and more.",
+        "sidebar_title": "Shipping & Returns Information"
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

@@ -1,0 +1,306 @@
+{%- comment -%}
+  FAQ Detail (Tiffany style) - UPDATED
+  ✅ Different content per page using page metafield: page.metafields.custom.faq_category
+  ✅ Left click updates RIGHT panel (NO accordion popup)
+  ✅ Default shows first item automatically (like SS3)
+{%- endcomment -%}
+
+{%- assign scope_id = section.id -%}
+
+{%- assign page_cat = page.metafields.custom.faq_category.value | default: page.metafields.custom.faq_category -%}
+{%- assign page_heading = page.metafields.custom.faq_heading.value | default: page.metafields.custom.faq_heading | default: section.settings.heading -%}
+{%- assign page_intro = page.metafields.custom.faq_intro.value | default: page.metafields.custom.faq_intro | default: section.settings.intro -%}
+{%- assign page_sidebar = page.metafields.custom.faq_sidebar_title.value | default: page.metafields.custom.faq_sidebar_title | default: section.settings.sidebar_title -%}
+
+{%- assign has_items = false -%}
+
+<section id="faq-detail-{{ scope_id }}" class="faq-detail" data-page-cat="{{ page_cat | escape }}">
+  <div class="faq-detail__inner">
+    <div class="faq-detail__layout">
+
+      <!-- LEFT -->
+      <aside class="faq-detail__sidebar" aria-label="FAQ navigation">
+        <div class="faq-detail__sidebar-inner">
+          <div class="faq-detail__side-title">{{ page_sidebar }}</div>
+          <div class="faq-detail__side-line"></div>
+
+          <nav class="faq-detail__nav" data-faq-nav>
+            {%- for block in section.blocks -%}
+              {%- if block.type == 'faq' -%}
+                {%- assign bcat = block.settings.category_key | strip | downcase -%}
+                {%- assign pcat = page_cat | strip | downcase -%}
+
+                {%- if pcat == blank or bcat == pcat -%}
+                  {%- assign has_items = true -%}
+                  <button
+                    type="button"
+                    class="faq-detail__nav-q"
+                    data-faq-btn
+                    data-target="faq-item-{{ scope_id }}-{{ block.id }}"
+                    {{ block.shopify_attributes }}>
+                    <span class="faq-detail__dot" aria-hidden="true"></span>
+                    <span class="faq-detail__nav-text">{{ block.settings.question }}</span>
+                  </button>
+                {%- endif -%}
+              {%- endif -%}
+            {%- endfor -%}
+          </nav>
+        </div>
+      </aside>
+
+      <!-- RIGHT -->
+      <div class="faq-detail__content">
+        <header class="faq-detail__header">
+          <h1 class="faq-detail__title">{{ page_heading }}</h1>
+          {%- if page_intro != blank -%}
+            <p class="faq-detail__intro">{{ page_intro }}</p>
+          {%- endif -%}
+        </header>
+
+        {%- if has_items -%}
+          <!-- Hidden templates for answers -->
+          <div class="faq-detail__templates" hidden>
+            {%- for block in section.blocks -%}
+              {%- if block.type == 'faq' -%}
+                {%- assign bcat = block.settings.category_key | strip | downcase -%}
+                {%- assign pcat = page_cat | strip | downcase -%}
+                {%- if pcat == blank or bcat == pcat -%}
+                  <template id="faq-item-{{ scope_id }}-{{ block.id }}">
+                    <div class="faq-detail__panel-q">{{ block.settings.question }}</div>
+                    <div class="faq-detail__panel-a">
+                      {{ block.settings.answer }}
+                    </div>
+                  </template>
+                {%- endif -%}
+              {%- endif -%}
+            {%- endfor -%}
+          </div>
+
+          <!-- Active panel -->
+          <div class="faq-detail__panel" data-faq-panel>
+            <div class="faq-detail__panel-q" data-faq-q></div>
+            <div class="faq-detail__panel-a" data-faq-a></div>
+          </div>
+        {%- else -%}
+          <div class="faq-detail__empty">
+            No FAQ items found for this page category.
+          </div>
+        {%- endif -%}
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+(function(){
+  const root = document.getElementById('faq-detail-{{ scope_id }}');
+  if(!root) return;
+
+  const btns = Array.from(root.querySelectorAll('[data-faq-btn]'));
+  const panel = root.querySelector('[data-faq-panel]');
+  const qEl = root.querySelector('[data-faq-q]');
+  const aEl = root.querySelector('[data-faq-a]');
+
+  if(!btns.length || !panel || !qEl || !aEl) return;
+
+  function loadTemplate(tplId){
+    const tpl = document.getElementById(tplId);
+    if(!tpl) return;
+
+    const frag = tpl.content.cloneNode(true);
+    const q = frag.querySelector('.faq-detail__panel-q');
+    const a = frag.querySelector('.faq-detail__panel-a');
+
+    qEl.textContent = q ? q.textContent : '';
+    aEl.innerHTML = a ? a.innerHTML : '';
+  }
+
+  function setActive(btn){
+    btns.forEach(b => b.classList.toggle('is-active', b === btn));
+    const tplId = btn.getAttribute('data-target');
+    loadTemplate(tplId);
+  }
+
+  // Click handling
+  btns.forEach(btn => {
+    btn.addEventListener('click', () => setActive(btn));
+  });
+
+  // Default: first item auto open
+  setActive(btns[0]);
+})();
+</script>
+
+<style>
+  /* ===== FAQ Detail (scoped) ===== */
+  #faq-detail-{{ scope_id }}{
+    padding: clamp(24px, 3vw, 48px) 0 clamp(44px, 6vw, 90px);
+  }
+  #faq-detail-{{ scope_id }} .faq-detail__inner{
+    width: min(1320px, calc(100% - 48px));
+    margin: 0 auto;
+  }
+
+  #faq-detail-{{ scope_id }} .faq-detail__layout{
+    display: grid;
+    grid-template-columns: 360px 1fr;
+    gap: clamp(28px, 3vw, 56px);
+    align-items: start;
+  }
+
+  /* LEFT */
+  #faq-detail-{{ scope_id }} .faq-detail__sidebar-inner{
+    position: sticky;
+    top: 110px;
+  }
+
+  #faq-detail-{{ scope_id }} .faq-detail__side-title{
+    font-size: 22px;
+    font-weight: 500;
+    line-height: 1.25;
+  }
+  #faq-detail-{{ scope_id }} .faq-detail__side-line{
+    height: 1px;
+    background: rgba(0,0,0,.14);
+    margin: 18px 0;
+  }
+
+  #faq-detail-{{ scope_id }} .faq-detail__nav{
+    display: grid;
+    gap: 22px;
+  }
+
+  #faq-detail-{{ scope_id }} .faq-detail__nav-q{
+    display: grid;
+    grid-template-columns: 14px 1fr;
+    gap: 14px;
+    align-items: start;
+    text-align: left;
+    border: 0;
+    background: transparent;
+    padding: 0;
+    cursor: pointer;
+
+    color: inherit;
+    font-size: 16px;
+    line-height: 1.65;
+    opacity: .88;
+  }
+
+  #faq-detail-{{ scope_id }} .faq-detail__dot{
+    width: 8px;
+    height: 8px;
+    border-radius: 999px;
+    background: transparent;
+    margin-top: 9px;
+    border: 1px solid transparent;
+  }
+
+  #faq-detail-{{ scope_id }} .faq-detail__nav-q:hover{
+    opacity: 1;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+
+  #faq-detail-{{ scope_id }} .faq-detail__nav-q.is-active{
+    opacity: 1;
+    text-decoration: none;
+  }
+  #faq-detail-{{ scope_id }} .faq-detail__nav-q.is-active .faq-detail__dot{
+    background: #0b7f7b;
+    border-color: #0b7f7b;
+  }
+  #faq-detail-{{ scope_id }} .faq-detail__nav-q.is-active .faq-detail__nav-text{
+    font-weight: 500;
+  }
+
+  /* RIGHT HEADER */
+  #faq-detail-{{ scope_id }} .faq-detail__header{
+    padding: 6px 0 18px;
+  }
+  #faq-detail-{{ scope_id }} .faq-detail__title{
+    font-size: clamp(28px, 3.6vw, 46px);
+    line-height: 1.15;
+    margin: 0;
+    font-weight: 500;
+    letter-spacing: .3px;
+  }
+  #faq-detail-{{ scope_id }} .faq-detail__intro{
+    margin: 14px 0 0;
+    font-size: 15px;
+    line-height: 1.9;
+    opacity: .9;
+    max-width: 980px;
+  }
+
+  /* PANEL (no accordion) */
+  #faq-detail-{{ scope_id }} .faq-detail__panel{
+    border-top: 1px solid rgba(0,0,0,.14);
+    padding-top: 22px;
+  }
+
+  #faq-detail-{{ scope_id }} .faq-detail__panel-q{
+    font-size: 22px;
+    line-height: 1.35;
+    font-weight: 500;
+    margin-bottom: 14px;
+  }
+
+  #faq-detail-{{ scope_id }} .faq-detail__panel-a{
+    font-size: 15px;
+    line-height: 1.95;
+    opacity: .92;
+    max-width: 980px;
+  }
+  #faq-detail-{{ scope_id }} .faq-detail__panel-a p{ margin: 0 0 14px; }
+  #faq-detail-{{ scope_id }} .faq-detail__panel-a p:last-child{ margin-bottom: 0; }
+  #faq-detail-{{ scope_id }} .faq-detail__panel-a a{ text-decoration: underline; text-underline-offset: 3px; }
+
+  #faq-detail-{{ scope_id }} .faq-detail__empty{
+    padding: 20px 0;
+    opacity: .75;
+  }
+
+  @media (max-width: 1024px){
+    #faq-detail-{{ scope_id }} .faq-detail__layout{
+      grid-template-columns: 1fr;
+    }
+    #faq-detail-{{ scope_id }} .faq-detail__sidebar-inner{
+      position: relative;
+      top: auto;
+    }
+  }
+
+  @media (max-width: 540px){
+    #faq-detail-{{ scope_id }} .faq-detail__inner{
+      width: min(1320px, calc(100% - 28px));
+    }
+    #faq-detail-{{ scope_id }} .faq-detail__panel-q{
+      font-size: 18px;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "FAQ Detail",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Fallback Page title", "default": "Shipping & Returns Information" },
+    { "type": "textarea", "id": "intro", "label": "Fallback Intro text", "default": "Explore commonly asked questions and detailed answers about shipping options and returns policy." },
+    { "type": "text", "id": "sidebar_title", "label": "Fallback Sidebar title", "default": "Shipping & Returns Information" }
+  ],
+  "blocks": [
+    {
+      "type": "faq",
+      "name": "FAQ Item",
+      "settings": [
+        { "type": "text", "id": "category_key", "label": "Category key (match page metafield faq_category)", "default": "shipping" },
+        { "type": "text", "id": "question", "label": "Question", "default": "What shipping options are available?" },
+        { "type": "richtext", "id": "answer", "label": "Answer", "default": "<p>Add your answer here.</p>" }
+      ]
+    }
+  ],
+  "presets": [{ "name": "FAQ Detail" }]
+}
+{% endschema %}

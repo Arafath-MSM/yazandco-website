@@ -1,0 +1,511 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "rich-text",
+      "blocks": {
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "heading": "Our Story",
+            "heading_size": "h2"
+          }
+        }
+      },
+      "block_order": [
+        "heading"
+      ],
+      "disabled": true,
+      "settings": {
+        "alignment": "left",
+        "width": "medium",
+        "margin_top": "xs",
+        "margin_bottom": "xs"
+      }
+    },
+    "banner": {
+      "type": "image-banner",
+      "settings": {
+        "full_width": true,
+        "color_scheme": "",
+        "info_position": "inside",
+        "image": "shopify://shop_images/Untitled_design_39.jpg",
+        "image_ratio": "1/1",
+        "opacity_overlay": 0.2,
+        "heading": "About us",
+        "heading_size": "h1",
+        "text_information": "",
+        "text_align": "center",
+        "text_width": "full",
+        "additional_text": "",
+        "button_label": "",
+        "button_style": "tertiary",
+        "button_link": "",
+        "button_label2": "",
+        "button_style2": "tertiary",
+        "button_link2": "",
+        "margin_top": "no-indent",
+        "margin_bottom": "no-indent"
+      }
+    },
+    "steps": {
+      "type": "steps",
+      "blocks": {
+        "steps-item": {
+          "type": "steps-item",
+          "settings": {
+            "date": "2025",
+            "heading": "Here can be your story title",
+            "description": "<p>Use this space to highlight a significant milestone,</p><p>such as expansion, product launch, or industry recognition.</p>"
+          }
+        },
+        "steps-item1": {
+          "type": "steps-item",
+          "settings": {
+            "date": "2025",
+            "heading": "Here can be your story title",
+            "description": "<p>Use this space to highlight a significant milestone,</p><p>such as expansion, product launch, or industry recognition.</p>"
+          }
+        },
+        "steps-item2": {
+          "type": "steps-item",
+          "settings": {
+            "date": "2025",
+            "heading": "Here can be your story title",
+            "description": "<p>Use this space to highlight a significant milestone,</p><p>such as expansion, product launch, or industry recognition.</p>"
+          }
+        },
+        "steps-item3": {
+          "type": "steps-item",
+          "settings": {
+            "date": "2025",
+            "heading": "Here can be your story title",
+            "description": "<p>Use this space to highlight a significant milestone,</p><p>such as expansion, product launch, or industry recognition.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "steps-item",
+        "steps-item1",
+        "steps-item2",
+        "steps-item3"
+      ],
+      "disabled": true,
+      "settings": {
+        "image_ratio": "portrait",
+        "heading_size": "h2",
+        "sticky": false,
+        "margin_top": "no-indent",
+        "margin_bottom": "no-indent"
+      }
+    },
+    "rich_text_QEj9aw": {
+      "type": "rich-text",
+      "blocks": {
+        "subheading_t7PQfj": {
+          "type": "subheading",
+          "disabled": true,
+          "settings": {
+            "subheading": "Here can be a brief introduction"
+          }
+        },
+        "heading_KAMtUW": {
+          "type": "heading",
+          "settings": {
+            "heading": "YAZ & Co is a visionary jewelry brand redefining  luxury with meaning,  elegance,  craftsmanship, and sustainability.",
+            "heading_size": "h1"
+          }
+        },
+        "text_pNAGr6": {
+          "type": "text",
+          "disabled": true,
+          "settings": {
+            "text": "<p>Here can be a detailed paragraph that expands on the heading, providing insights, background information, or key details.</p>"
+          }
+        },
+        "button_qEXLir": {
+          "type": "button",
+          "disabled": true,
+          "settings": {
+            "button_label": "Write CTA",
+            "button_link": "",
+            "button_style": "simple"
+          }
+        }
+      },
+      "block_order": [
+        "subheading_t7PQfj",
+        "heading_KAMtUW",
+        "text_pNAGr6",
+        "button_qEXLir"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "alignment": "center",
+        "width": "medium",
+        "margin_top": "m",
+        "margin_bottom": "m"
+      }
+    },
+    "image_with_text_E4Ca86": {
+      "type": "image-with-text",
+      "name": "t:sections.image-with-text.presets.name",
+      "settings": {
+        "aspect_ratio": "medium",
+        "heading_position": "center",
+        "text_width": "small",
+        "subheading": "",
+        "heading": "YAZ was born from the desire to create jewelry that does  more than adorn.",
+        "heading_size": "h1",
+        "text": "<p>It lives within time, becoming part of people’s<br/>stories and cherished memories. Created to bring<br/>clarity to a jewelry market crowded with noise and<br/>trends, YAZ rejects the notion that true luxury<br/>should be reserved for a select few or defined by<br/>excess. Instead, each piece is designed with<br/>restraint and responsibility, chosen thoughtfully<br/>rather than to impress through abundance.      <br/><br/><br/><br/><br/><br/></p>",
+        "enable_animation": true,
+        "button_label": "",
+        "button_link": "",
+        "button_style": "simple",
+        "image": "shopify://shop_images/Asset-5.jpg",
+        "image_width": "large",
+        "height": "portrait",
+        "layout": "image_right",
+        "margin_top": "no-indent",
+        "margin_bottom": "no-indent"
+      }
+    },
+    "image_with_text_Xbjq4p": {
+      "type": "image-with-text",
+      "name": "t:sections.image-with-text.presets.name",
+      "settings": {
+        "aspect_ratio": "medium",
+        "heading_position": "center",
+        "text_width": "small",
+        "subheading": "",
+        "heading": "The brand exists to make every woman feel seen, valued, and elevated.",
+        "heading_size": "h1",
+        "text": "<p><br/>YAZ intertwine the value of its creations with the<br/>value of those who wear them to allow each woman<br/>to see herself through a lens of confidence,<br/>strength, and radiant beauty. <br/><br/>Crafted with care to be accessible and sustainable,<br/>every piece is held to the highest standard: the<br/>name YAZ is treated as a signature and a<br/>guarantee—no piece is presented unless it truly<br/>deserves to carry it.<br/><br/><br/></p>",
+        "enable_animation": true,
+        "button_label": "",
+        "button_link": "",
+        "button_style": "simple",
+        "image": "shopify://shop_images/Z2603_YAZ_07_551_srgb_WEB.jpg",
+        "image_width": "large",
+        "height": "adapt",
+        "layout": "image_left",
+        "margin_top": "no-indent",
+        "margin_bottom": "no-indent"
+      }
+    },
+    "rich_text_ccyRWq": {
+      "type": "rich-text",
+      "blocks": {
+        "subheading_GG9k3t": {
+          "type": "subheading",
+          "disabled": true,
+          "settings": {
+            "subheading": "Here can be a brief introduction"
+          }
+        },
+        "heading_kNzcBA": {
+          "type": "heading",
+          "settings": {
+            "heading": "Lab-grown diamonds were selected because they embody accessible luxury, sustainable beauty, and an honest brilliance that lasts.",
+            "heading_size": "h1"
+          }
+        },
+        "text_UD7rU8": {
+          "type": "text",
+          "disabled": true,
+          "settings": {
+            "text": "<p>Here can be a detailed paragraph that expands on the heading, providing insights, background information, or key details.</p>"
+          }
+        },
+        "button_9ijDdx": {
+          "type": "button",
+          "disabled": true,
+          "settings": {
+            "button_label": "Write CTA",
+            "button_link": "",
+            "button_style": "simple"
+          }
+        }
+      },
+      "block_order": [
+        "subheading_GG9k3t",
+        "heading_kNzcBA",
+        "text_UD7rU8",
+        "button_9ijDdx"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "alignment": "center",
+        "width": "medium",
+        "margin_top": "m",
+        "margin_bottom": "m"
+      }
+    },
+    "multicolumn_YhkQyf": {
+      "type": "multicolumn",
+      "blocks": {
+        "column_UmDabJ": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/WhatsApp_Image_2026-04-16_at_10.06.40_AM_1.jpg",
+            "overlay_opacity": 0.2,
+            "subheading": "",
+            "heading": "High Jewellery Ring",
+            "description": "",
+            "button_label": "",
+            "button_link": ""
+          }
+        },
+        "column_YzXPyc": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/WhatsApp_Image_2026-04-16_at_10.06.41_AM.jpg",
+            "overlay_opacity": 0.2,
+            "subheading": "",
+            "heading": "Signature Ring and Ananda Earrings",
+            "description": "",
+            "button_label": "",
+            "button_link": ""
+          }
+        },
+        "column_RyJWxG": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/WhatsApp_Image_2026-04-16_at_10.06.41_AM_1.jpg",
+            "overlay_opacity": 0.2,
+            "subheading": "",
+            "heading": "Engagement Rings",
+            "description": "",
+            "button_label": "",
+            "button_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "column_UmDabJ",
+        "column_YzXPyc",
+        "column_RyJWxG"
+      ],
+      "name": "t:sections.multicolumn.name",
+      "settings": {
+        "color_scheme": "",
+        "subheading": "",
+        "heading": "",
+        "heading_size": "h1",
+        "description": "",
+        "enable_full_screen": false,
+        "swiper": false,
+        "stop_autoplay": true,
+        "navigation": false,
+        "slideshow_speed": 20,
+        "layout_type": "overlay",
+        "content_position": "img-top",
+        "always_visible_text": true,
+        "on_hover": "show_text",
+        "multicolumn_to_show": 3,
+        "image_ratio": "portrait",
+        "object_fit": "cover",
+        "card_heading_size": "h2",
+        "button_label": "",
+        "button_style": "simple",
+        "button_link": "",
+        "margin_top": "no-indent",
+        "margin_bottom": "s"
+      }
+    },
+    "rich_text_RYeGf8": {
+      "type": "rich-text",
+      "blocks": {
+        "subheading_cxQ8dV": {
+          "type": "subheading",
+          "disabled": true,
+          "settings": {
+            "subheading": "Here can be a brief introduction"
+          }
+        },
+        "heading_BPr9QA": {
+          "type": "heading",
+          "settings": {
+            "heading": "YAZ’s core idea is to transform jewelry into a living expression of personal radiance - a celebration of individuality and the meaningful moments that define each woman’s journey.",
+            "heading_size": "h1"
+          }
+        },
+        "text_kxHMVJ": {
+          "type": "text",
+          "disabled": true,
+          "settings": {
+            "text": "<p>Here can be a detailed paragraph that expands on the heading, providing insights, background information, or key details.</p>"
+          }
+        },
+        "button_yc9Mdw": {
+          "type": "button",
+          "disabled": true,
+          "settings": {
+            "button_label": "Write CTA",
+            "button_link": "",
+            "button_style": "simple"
+          }
+        }
+      },
+      "block_order": [
+        "subheading_cxQ8dV",
+        "heading_BPr9QA",
+        "text_kxHMVJ",
+        "button_yc9Mdw"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "alignment": "center",
+        "width": "medium",
+        "margin_top": "xs",
+        "margin_bottom": "s"
+      }
+    },
+    "image_with_text_Ljbr8P": {
+      "type": "image-with-text",
+      "name": "t:sections.image-with-text.presets.name",
+      "settings": {
+        "aspect_ratio": "medium",
+        "heading_position": "center",
+        "text_width": "small",
+        "subheading": "",
+        "heading": "Each piece is conceived as a vessel for self-expression,empowerment, and shared light.",
+        "heading_size": "h1",
+        "text": "<p>Inspired by the dream of owning something<br/>precious—and the memory of once feeling that<br/>such beauty was out of reach - YAZ is built on the<br/>promise to bring luxury closer to every woman<br/>who deserves it.</p>",
+        "enable_animation": true,
+        "button_label": "",
+        "button_link": "",
+        "button_style": "simple",
+        "image": "shopify://shop_images/Asset-3.jpg",
+        "image_width": "large",
+        "height": "portrait",
+        "layout": "image_right",
+        "margin_top": "no-indent",
+        "margin_bottom": "no-indent"
+      }
+    },
+    "image_with_text_3w4yYG": {
+      "type": "image-with-text",
+      "name": "t:sections.image-with-text.presets.name",
+      "settings": {
+        "aspect_ratio": "medium",
+        "heading_position": "center",
+        "text_width": "small",
+        "subheading": "",
+        "heading": "YAZ is a brand built on confidence.",
+        "heading_size": "h1",
+        "text": "<p>Its radiance emerges from clarity, selection, and<br/>responsibility. The light of YAZ comes from<br/>within: a brilliance rooted in decision, not display.<br/>Through thoughtful design, responsible<br/>innovation, and the artistry of human touch, YAZ<br/>reimagines jewelry as a way for women to honor<br/>their stories, elevate everyday experiences, and<br/>inspire authentic connection.</p>",
+        "enable_animation": true,
+        "button_label": "",
+        "button_link": "",
+        "button_style": "simple",
+        "image": "shopify://shop_images/Asset-2.jpg",
+        "image_width": "large",
+        "height": "portrait",
+        "layout": "image_left",
+        "margin_top": "no-indent",
+        "margin_bottom": "no-indent"
+      }
+    },
+    "rich_text_yNcN9P": {
+      "type": "rich-text",
+      "blocks": {
+        "subheading_jC6kkx": {
+          "type": "subheading",
+          "disabled": true,
+          "settings": {
+            "subheading": "Here can be a brief introduction"
+          }
+        },
+        "heading_JymkHQ": {
+          "type": "heading",
+          "settings": {
+            "heading": "With uncompromising quality, every YAZ creation is crafted to be a heirloom that can be passed down through generations.",
+            "heading_size": "h1"
+          }
+        },
+        "text_R9Nq6F": {
+          "type": "text",
+          "disabled": true,
+          "settings": {
+            "text": "<p>Here can be a detailed paragraph that expands on the heading, providing insights, background information, or key details.</p>"
+          }
+        },
+        "button_THK6zY": {
+          "type": "button",
+          "disabled": true,
+          "settings": {
+            "button_label": "Write CTA",
+            "button_link": "",
+            "button_style": "simple"
+          }
+        }
+      },
+      "block_order": [
+        "subheading_jC6kkx",
+        "heading_JymkHQ",
+        "text_R9Nq6F",
+        "button_THK6zY"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "alignment": "center",
+        "width": "medium",
+        "margin_top": "m",
+        "margin_bottom": "m"
+      }
+    },
+    "17759116280ca668d1": {
+      "type": "apps",
+      "blocks": {
+        "instafeed_app_block_zLYQaY": {
+          "type": "shopify://apps/instafeed/blocks/app-block/c447db20-095d-4a10-9725-b5977662c9d5",
+          "settings": {
+            "title": "FOLLOW US ON INSTAGRAM",
+            "title_color": "",
+            "title_size_v2": 0,
+            "alignment": "center",
+            "instafeed_margin_top": 0,
+            "instafeed_margin_bottom": 0,
+            "instafeed_margin_sides": 0,
+            "show_instagram_link": true,
+            "link_alignment": "center",
+            "link_color": "#000000",
+            "background_color": "",
+            "feed_id": "@yazandco",
+            "html_area": ""
+          }
+        }
+      },
+      "block_order": [
+        "instafeed_app_block_zLYQaY"
+      ],
+      "settings": {
+        "include_margins": true
+      }
+    }
+  },
+  "order": [
+    "main",
+    "banner",
+    "steps",
+    "rich_text_QEj9aw",
+    "image_with_text_E4Ca86",
+    "image_with_text_Xbjq4p",
+    "rich_text_ccyRWq",
+    "multicolumn_YhkQyf",
+    "rich_text_RYeGf8",
+    "image_with_text_Ljbr8P",
+    "image_with_text_3w4yYG",
+    "rich_text_yNcN9P",
+    "17759116280ca668d1"
+  ]
+}

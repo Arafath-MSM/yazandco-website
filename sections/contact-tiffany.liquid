@@ -1,0 +1,107 @@
+<section class="yz-contact-tiffany">
+  <div class="yz-contact-tiffany__wrap">
+    <div class="yz-contact-tiffany__left">
+      <h1 class="yz-contact-tiffany__title">{{ section.settings.heading }}</h1>
+
+      <p class="yz-contact-tiffany__intro">
+        {{ section.settings.intro }}
+      </p>
+
+      <div class="yz-contact-tiffany__list">
+        <a class="yz-contact-tiffany__item" href="tel:{{ section.settings.phone_raw }}">
+          <span class="yz-contact-tiffany__icon">☎</span>
+          <span class="yz-contact-tiffany__label">CALL US ({{ section.settings.phone_display }})</span>
+          <span class="yz-contact-tiffany__chev">›</span>
+        </a>
+
+        <a
+          class="yz-contact-tiffany__item"
+          href="https://wa.me/{{ section.settings.whatsapp_raw }}"
+          target="_blank"
+          rel="noopener"
+        >
+          <span class="yz-contact-tiffany__icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="20" height="20" fill="#25D366">
+              <path d="M16 .396C7.164.396 0 7.56 0 16.396c0 2.893.757 5.72 2.196 8.213L0 32l7.615-2.16a15.93 15.93 0 0 0 8.385 2.306h.006c8.835 0 16-7.164 16-16S24.84.396 16.005.396H16zm0 29.248a13.19 13.19 0 0 1-6.716-1.83l-.482-.286-4.517 1.28 1.206-4.404-.314-.506a13.18 13.18 0 0 1-2.028-7.002c0-7.293 5.935-13.228 13.228-13.228 3.533 0 6.854 1.375 9.355 3.877a13.16 13.16 0 0 1 3.873 9.351c-.003 7.293-5.938 13.228-13.231 13.228zm7.28-9.865c-.397-.199-2.35-1.158-2.714-1.29-.364-.133-.63-.199-.896.199-.265.397-1.029 1.29-1.262 1.555-.232.265-.464.298-.86.099-.397-.199-1.676-.617-3.193-1.967-1.18-1.053-1.977-2.352-2.21-2.749-.232-.397-.025-.612.175-.81.18-.179.397-.464.596-.695.199-.232.265-.397.397-.662.133-.265.066-.497-.033-.695-.099-.199-.896-2.158-1.227-2.957-.322-.774-.649-.669-.896-.682l-.761-.013c-.265 0-.695.099-1.059.497-.364.397-1.39 1.359-1.39 3.311s1.423 3.842 1.621 4.107c.199.265 2.802 4.28 6.789 6.003.948.41 1.687.655 2.264.839.951.303 1.817.261 2.502.158.763-.114 2.35-.96 2.681-1.888.331-.927.331-1.721.232-1.888-.099-.166-.364-.265-.761-.463z"/>
+            </svg>
+          </span>
+          <span class="yz-contact-tiffany__label">WHATSAPP US ({{ section.settings.whatsapp_display }})</span>
+          <span class="yz-contact-tiffany__chev">›</span>
+        </a>
+
+        {% comment %} <a
+          class="yz-contact-tiffany__item yz-book-trigger"
+          href="javascript:void(0);"
+        >
+          <span class="yz-contact-tiffany__icon">📅</span>
+          <span class="yz-contact-tiffany__label">BOOK AN APPOINTMENT</span>
+          <span class="yz-contact-tiffany__chev">›</span>
+        </a> {% endcomment %}
+
+        <a class="yz-contact-tiffany__item" href="mailto:{{ section.settings.email }}">
+          <span class="yz-contact-tiffany__icon">✉</span>
+          <span class="yz-contact-tiffany__label">EMAIL US</span>
+          <span class="yz-contact-tiffany__chev">›</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="yz-contact-tiffany__right">
+      {% if section.settings.image != blank %}
+        {{ section.settings.image | image_url: width: 1200 | image_tag: loading: 'lazy', alt: 'Contact image' }}
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const trigger = document.querySelector('.yz-book-trigger');
+    if (!trigger) return;
+
+    trigger.addEventListener('click', function (e) {
+      e.preventDefault();
+
+      let tries = 0;
+
+      const timer = setInterval(function () {
+        const cowBtn = document.querySelector('.cowlendar-section-wrapper .book-button');
+
+        if (cowBtn) {
+          cowBtn.click();
+          clearInterval(timer);
+        }
+
+        tries++;
+        if (tries > 20) clearInterval(timer);
+      }, 300);
+    });
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Contact Tiffany",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Contact Us" },
+    {
+      "type": "textarea",
+      "id": "intro",
+      "label": "Intro text",
+      "default": "There’s no question too small or request too big for our YAZ & Co client advisors. From choosing an engagement ring or gift to providing in-store or virtual appointments, we’re always at your service."
+    },
+
+    { "type": "text", "id": "phone_display", "label": "Phone (display)", "default": "+971 XX XXX XXXX" },
+    { "type": "text", "id": "phone_raw", "label": "Phone (raw for tel:)", "default": "+971XXXXXXXXX" },
+
+    { "type": "text", "id": "whatsapp_display", "label": "WhatsApp (display)", "default": "+971 XX XXX XXXX" },
+    { "type": "text", "id": "whatsapp_raw", "label": "WhatsApp (raw for wa.me)", "default": "971XXXXXXXXX" },
+
+    { "type": "url", "id": "appointment_url", "label": "Appointment page link" },
+    { "type": "text", "id": "email", "label": "Email", "default": "care@yazandco.com" },
+
+    { "type": "image_picker", "id": "image", "label": "Right image" }
+  ],
+  "presets": [{ "name": "Contact Tiffany" }]
+}
+{% endschema %}
