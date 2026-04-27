@@ -19,9 +19,16 @@
   else 
     assign image = 0
   endif 
+
+  assign is_about_mobile_text_first = false
+  if template.name == 'page' and template.suffix == 'about' and section.id != blank
+    if section.id contains 'image_with_text_Xbjq4p' or section.id contains 'image_with_text_3w4yYG'
+      assign is_about_mobile_text_first = true
+    endif
+  endif
 %}
 
-<div class="image-with-text section-{{ section.id }} background color-background-1{% if template.name == 'page' and template.suffix == 'about' %} image-with-text--about-page{% endif %}">
+<div class="image-with-text section-{{ section.id }} background color-background-1{% if template.name == 'page' and template.suffix == 'about' %} image-with-text--about-page{% endif %}{% if is_about_mobile_text_first %} image-with-text--mobile-text-first{% endif %}">
   <div class="container">
     <div class="image-with-text__container image-with-text__container--{{ section.settings.aspect_ratio }}">
 			{% assign heading_pos = section.settings.heading_position %}

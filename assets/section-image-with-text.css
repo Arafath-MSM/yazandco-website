@@ -456,6 +456,12 @@
     padding-bottom: 1.2rem;
   }
 
+  .image-with-text--about-page.image-with-text--mobile-text-first .image-with-text__grid,
+  .image-with-text--about-page[class*="image_with_text_Xbjq4p"] .image-with-text__grid,
+  .image-with-text--about-page[class*="image_with_text_3w4yYG"] .image-with-text__grid {
+    flex-direction: column-reverse !important;
+  }
+
   .image-with-text--about-page .image-with-text__grid {
     align-items: center;
   }
