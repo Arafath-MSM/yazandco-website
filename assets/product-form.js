@@ -31,19 +31,65 @@ if (!customElements.get('product-form')) {
 
       const config = fetchConfig('javascript');
       config.headers['X-Requested-With'] = 'XMLHttpRequest';
-      delete config.headers['Content-Type'];
 
       const formData = new FormData(this.form);
       if (!this.form) {
         formData.append('id', this.querySelector('[name=id]').value);
       }
-      
+
+      const certificateVariantId = this.dataset.certificateVariantId;
+      const certificateCheckbox = this.form?.querySelector('[name="properties[Certificate Included]"]');
+      const certificateSelected = Boolean(certificateVariantId && certificateCheckbox?.checked);
+
       if (this.cart) {
-        formData.append('sections', this.cart.getSectionsToRender().map((section) => section.id));
-        formData.append('sections_url', window.location.pathname);
         this.cart.setActiveElement(document.activeElement);
       }
-      config.body = formData;
+
+      if (certificateSelected) {
+        config.headers['Content-Type'] = 'application/json';
+        const properties = {};
+        formData.forEach((value, key) => {
+          if (key.startsWith('properties[') && key.endsWith(']') && value !== '') {
+            properties[key.slice(11, -1)] = value;
+          }
+        });
+
+        const mainItem = {
+          id: formData.get('id'),
+          quantity: Number(formData.get('quantity') || 1),
+        };
+
+        if (Object.keys(properties).length) {
+          mainItem.properties = properties;
+        }
+
+        const payload = {
+          items: [
+            mainItem,
+            {
+              id: Number(certificateVariantId),
+              quantity: mainItem.quantity,
+              properties: {
+                '_Certificate for': this.dataset.productTitle || 'Product',
+              },
+            },
+          ],
+        };
+
+        if (this.cart) {
+          payload.sections = this.cart.getSectionsToRender().map((section) => section.id);
+          payload.sections_url = window.location.pathname;
+        }
+
+        config.body = JSON.stringify(payload);
+      } else {
+        delete config.headers['Content-Type'];
+        if (this.cart) {
+          formData.append('sections', this.cart.getSectionsToRender().map((section) => section.id));
+          formData.append('sections_url', window.location.pathname);
+        }
+        config.body = formData;
+      }
 
       fetch(`${routes.cart_add_url}`, config)
         .then((response) => response.json())

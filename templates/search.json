@@ -11,7 +11,33 @@
   "sections": {
     "main": {
       "type": "main-search",
-      "settings": {}
+      "custom_css": [
+        ".card-information .price {font-weight: 400 !important;}"
+      ],
+      "settings": {
+        "image_ratio": "square",
+        "image_fit": "cover",
+        "show_vendor": false,
+        "show_color_count": true,
+        "show_size_count": false,
+        "show_collection": false,
+        "show_desc": false,
+        "show_image": true,
+        "article_show_tags": true,
+        "article_show_date": true,
+        "article_show_author": true,
+        "article_show_desc": false,
+        "article_image_ratio": "square",
+        "enable_filtering": false,
+        "filter_type": "vertical",
+        "enable_sorting": false,
+        "image_filter_ratio": "1/1",
+        "image_filter_fit": "cover",
+        "image_filter_columns": 4,
+        "columns_mobile": "2",
+        "margin_top": "m",
+        "margin_bottom": "m"
+      }
     }
   },
   "order": [

@@ -37,7 +37,8 @@
         "full_width": true,
         "color_scheme": "",
         "info_position": "inside",
-        "image": "shopify://shop_images/Untitled_design_39.jpg",
+        "image": "shopify://shop_images/Untitled_design_68.jpg",
+        "mobile_image": "shopify://shop_images/sample_8.jpg",
         "image_ratio": "1/1",
         "opacity_overlay": 0.2,
         "heading": "About us",
@@ -170,7 +171,7 @@
         "button_label": "",
         "button_link": "",
         "button_style": "simple",
-        "image": "shopify://shop_images/Asset-5.jpg",
+        "image": "shopify://shop_images/F84E72BF-3A76-49DD-B7CF-48780E7B0E7E.jpg",
         "image_width": "large",
         "height": "portrait",
         "layout": "image_right",
@@ -287,12 +288,25 @@
             "button_label": "",
             "button_link": ""
           }
+        },
+        "column_GfdiaT": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/Z2603_YAZ_15_1163_srgb_WEB.jpg",
+            "overlay_opacity": 0.2,
+            "subheading": "",
+            "heading": "Royale Eternity Ring",
+            "description": "",
+            "button_label": "",
+            "button_link": ""
+          }
         }
       },
       "block_order": [
         "column_UmDabJ",
         "column_YzXPyc",
-        "column_RyJWxG"
+        "column_RyJWxG",
+        "column_GfdiaT"
       ],
       "name": "t:sections.multicolumn.name",
       "settings": {
@@ -302,10 +316,10 @@
         "heading_size": "h1",
         "description": "",
         "enable_full_screen": false,
-        "swiper": false,
+        "swiper": true,
         "stop_autoplay": true,
         "navigation": false,
-        "slideshow_speed": 20,
+        "slideshow_speed": 5,
         "layout_type": "overlay",
         "content_position": "img-top",
         "always_visible_text": true,

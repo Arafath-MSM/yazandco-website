@@ -15,9 +15,9 @@
       "type": "countdown-timer-bar",
       "settings": {
         "height": 40,
-        "height_mobile": 65,
+        "height_mobile": 40,
         "color_scheme": "",
-        "promo_text": "Display a limited time offer",
+        "promo_text": "Jewellery that lives with you",
         "enable_mock_timer": false,
         "mock_date_picker_day": 2,
         "mock_date_picker_hours": 3,
@@ -25,7 +25,7 @@
         "time_picker": "00:00",
         "countdown_block_font": "h2",
         "completed_countdown": "show_text",
-        "countdown_heading": "Time Is Running Out",
+        "countdown_heading": "",
         "button_label": "Shop now",
         "button_link": "shopify://collections/all",
         "overlay_mobile_link": true

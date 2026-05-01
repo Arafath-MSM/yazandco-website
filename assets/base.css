@@ -2103,7 +2103,7 @@ details > * {
   letter-spacing: calc(var(--font-subtitle-letter-spacing) * 0.1);
   text-transform: var(--font-subtitle-text-transform);
   color: rgb(var(--color-foreground-secondary));
-  font-size: calc(var(--font-subtitle-scale) * 0.9rem);
+  font-size: calc(var(--font-subtitle-scale) * 0.7rem);
   line-height: 130%;
   margin-bottom: 0.8rem;
 }
@@ -7031,7 +7031,7 @@ h1, h2, h3, h4, h5, h6,
   /* Collection title (NECKLACES etc) → 11px */
   #shopify-section-template--17053721723086__categories_list_dE7AnG 
   .collections-grid__title.h2 {
-    font-size: 11px !important;
+    font-size: 14px !important;
   }
 
 }
@@ -7881,7 +7881,9 @@ h1, h2, h3, h4, h5, h6,
 }
 
 
-
+/* .certificate-field {
+  margin-bottom: 20px;
+} */
 
 
 
@@ -8001,3 +8003,69 @@ h1, h2, h3, h4, h5, h6,
 
 
 
+/* our story */
+/* heading */
+@media (max-width: 767px) {
+  #shopify-section-template--17053721788622__rich_text_QEj9aw 
+  .rich-text__heading.title--section.h1 {
+    font-size: 20px !important;
+    line-height: 1.4 !important;
+  }
+}
+
+@media (max-width: 767px) {
+  #shopify-section-template--17053721788622__rich_text_ccyRWq
+  .rich-text__heading.title--section.h1 {
+    font-size: 20px !important;
+    line-height: 1.4 !important;
+  }
+}
+
+@media (max-width: 767px) {
+  #shopify-section-template--17053721788622__rich_text_RYeGf8
+  .rich-text__heading.title--section.h1 {
+    font-size: 20px !important;
+    line-height: 1.4 !important;
+  }
+}
+
+@media (max-width: 767px) {
+  #shopify-section-template--17053721788622__rich_text_yNcN9P
+  .rich-text__heading.title--section.h1 {
+    font-size: 20px !important;
+    line-height: 1.4 !important;
+  }
+}
+
+/* sub heading */
+@media (max-width: 767px) {
+  #shopify-section-template--17053721788622__image_with_text_E4Ca86 
+  .image-with-text__heading.title--section.h1 {
+    font-size: 18px !important;
+    line-height: 1.4 !important;
+  }
+}
+
+@media (max-width: 767px) {
+  #shopify-section-template--17053721788622__image_with_text_Xbjq4p 
+  .image-with-text__heading.title--section.h1 {
+    font-size: 18px !important;
+    line-height: 1.4 !important;
+  }
+}
+
+@media (max-width: 767px) {
+  #shopify-section-template--17053721788622__image_with_text_Ljbr8P 
+  .image-with-text__heading.title--section.h1 {
+    font-size: 18px !important;
+    line-height: 1.4 !important;
+  }
+} 
+
+@media (max-width: 767px) {
+  #shopify-section-template--17053721788622__image_with_text_3w4yYG 
+  .image-with-text__heading.title--section.h1 {
+    font-size: 18px !important;
+    line-height: 1.4 !important;
+  }
+}

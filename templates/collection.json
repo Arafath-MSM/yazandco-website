@@ -35,6 +35,9 @@
       "block_order": [
         "image_fYCHCW"
       ],
+      "custom_css": [
+        ".card-information .price {font-weight: 400 !important;}"
+      ],
       "settings": {
         "products_per_page": 32,
         "grid_space": "standard",

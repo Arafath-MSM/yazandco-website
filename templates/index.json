@@ -261,7 +261,7 @@
           "type": "product_slide",
           "settings": {
             "product": "tennis-necklace",
-            "image": "shopify://shop_images/tennis_banner.jpg",
+            "image": "shopify://shop_images/Z2603_YAZ_17_1267_srgb_WEB.jpg",
             "color_scheme": "",
             "overlay_opacity": 0.1,
             "description": "Timeless Classics, reinvented"
@@ -271,7 +271,7 @@
           "type": "product_slide",
           "settings": {
             "product": "aurora-bracelet-3-mm",
-            "image": "shopify://shop_images/Z2603_YAZ_18_1363.jpg",
+            "image": "shopify://shop_images/Z2603_YAZ_18_1313_srgb_WEB.jpg",
             "color_scheme": "",
             "overlay_opacity": 0.1,
             "description": ""
@@ -281,7 +281,7 @@
           "type": "product_slide",
           "settings": {
             "product": "aurora-bracelet-2-5-mm",
-            "image": "shopify://shop_images/Z2603_YAZ_20_1421.jpg",
+            "image": "shopify://shop_images/Z2603_YAZ_20_1421_srgb_WEB_1.jpg",
             "color_scheme": "",
             "overlay_opacity": 0.1,
             "description": ""
@@ -298,7 +298,8 @@
         ".section-heading__button span {font-size: 13px !important;}",
         ".product-slider_info {font-size: 20px !important;}",
         ".card__title .full-unstyled-link {font-size: 30px !important;}",
-        ".card__description {font-size: 13px !important;}"
+        ".card__description {font-size: 13px !important;}",
+        ".card-information .price {font-weight: 400 !important;}"
       ],
       "settings": {
         "image_size": "large",
@@ -499,6 +500,9 @@
     },
     "popular-products1": {
       "type": "popular-products",
+      "custom_css": [
+        ".card-information .price {font-weight: 400 !important;}"
+      ],
       "settings": {
         "subheading": "",
         "heading": "BEST SELLERS",
@@ -766,7 +770,7 @@
           "type": "product_slide",
           "settings": {
             "product": "essence-glow-ring",
-            "image": "shopify://shop_images/everyday_radiance_banner.jpg",
+            "image": "shopify://shop_images/everyday_banner.jpg",
             "color_scheme": "",
             "overlay_opacity": 0.1,
             "description": "Everyday radiance is not meant to be hidden"
@@ -776,7 +780,7 @@
           "type": "product_slide",
           "settings": {
             "product": "radiance-ring",
-            "image": "shopify://shop_images/Z2603_YAZ_07_563.jpg",
+            "image": "shopify://shop_images/Z2603_YAZ_07_563_srgb_WEB.jpg",
             "color_scheme": "",
             "overlay_opacity": 0.1,
             "description": ""

@@ -137,6 +137,14 @@ details[open] > .menu-drawer__submenu {
   height: 1.6rem;
 }
 
+@media screen and (max-width: 749px) {
+  .menu-drawer__navigation > .menu-drawer__menu > li > .menu-drawer__menu-item,
+  .menu-drawer__navigation > .menu-drawer__menu > li > details > summary.menu-drawer__menu-item,
+  .menu-drawer__navigation > .menu-drawer__menu > li > details > summary .menu-drawer__menu-link {
+    font-size: 16px;
+  }
+}
+
 .js .menu-drawer__submenu {
   width: 100%;
   background-color: rgb(var(--color-background));

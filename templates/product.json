@@ -135,7 +135,8 @@
         "enable_full_screen": true,
         "header_overlay": false,
         "enable_sticky_button": false,
-        "variant_media_display": "show_all"
+        "variant_media_display": "show_all",
+        "certificate_variant_id": "43509266645198"
       }
     },
     "product-slider": {
