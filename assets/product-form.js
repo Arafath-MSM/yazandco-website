@@ -19,6 +19,25 @@ if (!customElements.get('product-form')) {
       this.hideErrors = this.dataset.hideErrors === 'true';
     }
 
+    getSectionIdsToRender() {
+      return this.cart ? this.cart.getSectionsToRender().map((section) => section.id) : [];
+    }
+
+    async getRenderedCartSections() {
+      if (!this.cart) return null;
+
+      const sectionIds = this.getSectionIdsToRender();
+      if (!sectionIds.length) return null;
+
+      const response = await fetch(`${routes.cart_url}?sections=${sectionIds.join(',')}`, {
+        method: 'GET',
+        headers: {
+          'Cache-Control': 'no-cache',
+        },
+      });
+      return response.json();
+    }
+
     onSubmitHandler(evt) {
       evt.preventDefault();
       if (this.submitButton.getAttribute('aria-disabled') === 'true') return;
@@ -93,7 +112,7 @@ if (!customElements.get('product-form')) {
 
       fetch(`${routes.cart_add_url}`, config)
         .then((response) => response.json())
-        .then((response) => {
+        .then(async (response) => {
           if (response.status) {
             // CART ERROR EVENT
             document.dispatchEvent(
@@ -149,6 +168,13 @@ if (!customElements.get('product-form')) {
           }
 
           this.error = false;
+          if (this.cart && certificateSelected) {
+            const renderedSections = await this.getRenderedCartSections();
+            if (renderedSections) {
+              response.sections = renderedSections;
+              response.id = formData.get('id');
+            }
+          }
           const quickAddModal = this.closest('quick-add-modal');
           if (quickAddModal) {
             document.body.addEventListener('modalClosed', () => {

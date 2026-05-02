@@ -27,6 +27,28 @@
   margin-bottom: 0;
   align-items: center;
 }
+.product-properties-list {
+  margin: 0.5rem 0 0;
+}
+.product-property-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.4rem;
+  margin: 0;
+}
+.product-property-row + .product-property-row {
+  margin-top: 0.2rem;
+}
+.product-property-row dt,
+.product-property-row dd {
+  margin: 0;
+}
+.product-property-row dt {
+  flex: 0 0 auto;
+}
+.product-property-row dd {
+  min-width: 0;
+}
 
 .drawer {
   position: fixed;
