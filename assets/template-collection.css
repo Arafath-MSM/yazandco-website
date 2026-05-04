@@ -374,8 +374,9 @@
     margin-top: 0.4rem;
   }
   .collection-product-list--2-mobile .collection-product-card .card-information__top {
-    gap: 0.2rem 0.2rem;
-    flex-wrap: wrap;
+    gap: 0.2rem 0.6rem;
+    flex-wrap: nowrap;
+    align-items: center;
   }
   .collection-product-list--2-mobile .collection-product-card .badge {
     font-size: 1.1rem;
@@ -388,7 +389,19 @@
     padding: 0.6rem 0;
   }
   .collection-product-list--2-mobile .collection-product-card .price {
-    font-size: 1rem;
+    flex: 0 0 auto;
+    font-size: 0.9rem;
+    white-space: nowrap;
+  }
+  .collection-product-list--2-mobile .collection-product-card .card__title {
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+  .collection-product-list--2-mobile .collection-product-card .card__title a {
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
   .collection-product-list--2-mobile .collection-product-card .price--on-sale .price__sale {
     flex-direction: row;
