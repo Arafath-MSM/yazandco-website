@@ -501,7 +501,8 @@
     "popular-products1": {
       "type": "popular-products",
       "custom_css": [
-        ".card-information .price {font-weight: 400 !important;}"
+        ".card-information .price {font-weight: 400 !important; font-family: Sterling, serif;}",
+        ".product_color-count {font-weight: 400 !important;}"
       ],
       "settings": {
         "subheading": "",
@@ -842,7 +843,7 @@
           "type": "media_slide",
           "settings": {
             "color_scheme": "background-2",
-            "image": "shopify://shop_images/banner_resized.jpg",
+            "image": "shopify://shop_images/c42c88c3-5dfa-47c2-9e4f-fce02b856026.png",
             "mobile_image": "shopify://shop_images/Untitled_design_47.jpg",
             "overlay_opacity": 0,
             "enable_hover": true,

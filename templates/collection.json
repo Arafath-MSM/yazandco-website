@@ -36,7 +36,7 @@
         "image_fYCHCW"
       ],
       "custom_css": [
-        ".card-information .price {font-weight: 400 !important;}"
+        ".card-information .price {font-weight: 400 !important; font-family: Sterling, serif;}"
       ],
       "settings": {
         "products_per_page": 32,

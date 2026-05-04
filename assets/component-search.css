@@ -534,7 +534,7 @@ input::-webkit-search-decoration {
     position: absolute;
     left: 0;
     right: 0;
-    bottom: 6.2rem;
+    bottom: 12.2rem;
     margin-top: 0;
     background-color: rgb(var(--color-background));
     z-index: 2;
