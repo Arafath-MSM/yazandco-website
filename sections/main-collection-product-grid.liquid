@@ -326,20 +326,23 @@
 										{% endif %}
 									</li>
 								{% endif %}
-								<li class='collection-product-card {% if settings.on_hover == "hover" %}quickview--hover{% endif %}'>
-									{% render 'product-card',
-										product_card_product: product,
-										media_size: section.settings.image_ratio,
-										media_fit: section.settings.image_fit,
-										show_vendor: section.settings.show_vendor,
-										show_color_count: section.settings.show_color_count,
-										show_size_count: section.settings.show_size_count,
-										show_collection: section.settings.show_collection,
-										show_desc: section.settings.show_desc,
-										section_id: section.id,
-										add_id: forloop.index
-									%}
-								</li>
+								{%- assign product_title_downcase = product.title | downcase -%}
+								{%- unless product.handle contains 'certificate' or product_title_downcase == 'certificate' -%}
+									<li class='collection-product-card {% if settings.on_hover == "hover" %}quickview--hover{% endif %}'>
+										{% render 'product-card',
+											product_card_product: product,
+											media_size: section.settings.image_ratio,
+											media_fit: section.settings.image_fit,
+											show_vendor: section.settings.show_vendor,
+											show_color_count: section.settings.show_color_count,
+											show_size_count: section.settings.show_size_count,
+											show_collection: section.settings.show_collection,
+											show_desc: section.settings.show_desc,
+											section_id: section.id,
+											add_id: forloop.index
+										%}
+									</li>
+								{%- endunless -%}
 							{%- endfor -%}
 						</ul>
 
