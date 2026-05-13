@@ -11,6 +11,28 @@
   "sections": {
     "main": {
       "type": "faq-detail",
+      "blocks": {
+        "faq_JwFe3U": {
+          "type": "faq",
+          "settings": {
+            "category_key": "shipping",
+            "question": "Who is responsible for international shipping risks?",
+            "answer": "<p>Responsibility transfers once the shipment is<br/>handed to the courier. </p>"
+          }
+        },
+        "faq_t6tLen": {
+          "type": "faq",
+          "settings": {
+            "category_key": "shipping",
+            "question": "Will I pay customs duties?",
+            "answer": "<p>Customers are responsible for customs duties,<br/>taxes, and import requirements. </p>"
+          }
+        }
+      },
+      "block_order": [
+        "faq_JwFe3U",
+        "faq_t6tLen"
+      ],
       "settings": {
         "heading": "",
         "intro": "",
@@ -18,5 +40,7 @@
       }
     }
   },
-  "order": ["main"]
+  "order": [
+    "main"
+  ]
 }

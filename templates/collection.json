@@ -36,7 +36,8 @@
         "image_fYCHCW"
       ],
       "custom_css": [
-        ".card-information .price {font-weight: 400 !important; font-family: Sterling, serif;}"
+        ".card-information .price {font-weight: 400 !important; font-family: Sterling, serif;}",
+        "@media screen and (max-width: 575px) {.collection-product-list {gap: 2rem .6rem; }}"
       ],
       "settings": {
         "products_per_page": 32,

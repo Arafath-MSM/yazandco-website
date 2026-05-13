@@ -363,7 +363,7 @@
     font-size: 1rem;
   }
   .collection-product-list--2-mobile .collection-product-card .card__title {
-    font-size: calc(var(--font-heading-card-scale) * 1rem);
+    font-size: calc(var(--font-heading-card-scale) * 1.2rem);
     /* font-weight: 600 */
   }
   .collection-product-list--2-mobile .collection-product-card .card__description {
@@ -390,7 +390,7 @@
   }
   .collection-product-list--2-mobile .collection-product-card .price {
     flex: 0 0 auto;
-    font-size: 0.9rem;
+    font-size: 1.1rem;
     white-space: nowrap;
   }
   .collection-product-list--2-mobile .collection-product-card .card__title {

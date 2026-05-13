@@ -11,6 +11,46 @@
   "sections": {
     "main": {
       "type": "faq-detail",
+      "blocks": {
+        "faq_4hMatw": {
+          "type": "faq",
+          "settings": {
+            "category_key": "shipping",
+            "question": "Can your policies change?",
+            "answer": "<p>Yes. Terms & Conditions may be updated at<br/>any time. </p>"
+          }
+        },
+        "faq_X6wDia": {
+          "type": "faq",
+          "settings": {
+            "category_key": "shipping",
+            "question": "How is my personal data used?",
+            "answer": "<p>Customer data is used only for order<br/>processing and communication. </p>"
+          }
+        },
+        "faq_wwqQNA": {
+          "type": "faq",
+          "settings": {
+            "category_key": "shipping",
+            "question": "Do you offer buyback?",
+            "answer": "<p>YAZ & Co does not offer buyback or resale<br/>services. </p>"
+          }
+        },
+        "faq_jaB77x": {
+          "type": "faq",
+          "settings": {
+            "category_key": "shipping",
+            "question": "Is jewellery an investment?",
+            "answer": "<p>Jewellery is sold for personal use only. No<br/>future value or resale is guaranteed.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "faq_4hMatw",
+        "faq_X6wDia",
+        "faq_wwqQNA",
+        "faq_jaB77x"
+      ],
       "settings": {
         "heading": "",
         "intro": "",
@@ -18,5 +58,7 @@
       }
     }
   },
-  "order": ["main"]
+  "order": [
+    "main"
+  ]
 }

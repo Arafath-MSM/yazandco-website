@@ -12,26 +12,116 @@
     "main": {
       "type": "faq-detail",
       "blocks": {
-        "faq_GYn7Yt": {
+        "faq_GUT9gY": {
           "type": "faq",
           "settings": {
             "category_key": "shipping",
-            "question": "What shipping options are available?",
-            "answer": "<p>Add your answer here.</p>"
+            "question": "What is the YAZ & Co Repair Policy?",
+            "answer": "<p>Repair and servicing requests are subject to<br/>inspection, approval, and applicable service charges. Repair timelines vary<br/>depending on the jewellery type and required work.</p><p>YAZ & Co reserves the right to determine<br/>whether a jewellery item is eligible for repair, restoration, resizing, or<br/>replacement services.</p>"
           }
         },
-        "faq_nCeePJ": {
+        "faq_XgfLam": {
           "type": "faq",
           "settings": {
             "category_key": "shipping",
-            "question": "What shipping options are available?",
-            "answer": "<p>Add your answer here.</p>"
+            "question": "The chain of my jewellery broke. Can I have itrepaired?",
+            "answer": "<p>Selected chain and clasp repair services may<br/>be available depending on the jewellery design and condition. Service<br/>availability and pricing are determined after inspection.</p>"
+          }
+        },
+        "faq_64VpKm": {
+          "type": "faq",
+          "settings": {
+            "category_key": "shipping",
+            "question": "How much does it cost to repair my YAZ &Co jewellery?",
+            "answer": "<p>Repair pricing depends on the jewellery<br/>design, condition, materials, and required servicing. All repair requests are<br/>subject to evaluation before pricing confirmation.</p>"
+          }
+        },
+        "faq_LCBD4R": {
+          "type": "faq",
+          "settings": {
+            "category_key": "shipping",
+            "question": "How long does it take to get my jewellery repaired?",
+            "answer": "<p>Repair timelines vary depending on the<br/>jewellery type, required service, and assessment results. Customers will be<br/>informed regarding estimated completion timelines after inspection.</p>"
+          }
+        },
+        "faq_BbPjRY": {
+          "type": "faq",
+          "settings": {
+            "category_key": "shipping",
+            "question": "Can I replace missing pieces from my jewellery set?",
+            "answer": "<p>Replacement of selected jewellery components<br/>or matching pieces may be possible depending on product availability and design<br/>continuity. Availability cannot be guaranteed.</p>"
+          }
+        },
+        "faq_bhJjU7": {
+          "type": "faq",
+          "settings": {
+            "category_key": "shipping",
+            "question": "How do I know the status of my repair?",
+            "answer": "<p>Customers may contact YAZ & Co customer<br/>service for updates regarding jewellery servicing or repair status.</p>"
+          }
+        },
+        "faq_VFxF3k": {
+          "type": "faq",
+          "settings": {
+            "category_key": "shipping",
+            "question": "How can I get an item repaired?",
+            "answer": "<p>Customers may contact YAZ & Co regarding<br/>repair or servicing requests for eligible diamond jewellery pieces. All repair<br/>requests are subject to inspection and approval.</p><p>Repair timelines and charges may vary<br/>depending on the required service and jewellery condition.</p>"
+          }
+        },
+        "faq_X3waLt": {
+          "type": "faq",
+          "settings": {
+            "category_key": "shipping",
+            "question": "Does YAZ & Co offer merchandise appraisals?",
+            "answer": "<p>YAZ & Co does not provide official<br/>appraisal services. However, selected documentation related to purchased<br/>jewellery may be provided upon request where applicable.</p>"
+          }
+        },
+        "faq_VPbyny": {
+          "type": "faq",
+          "settings": {
+            "category_key": "shipping",
+            "question": "Can I resize my YAZ & Co jewellery?",
+            "answer": "<p>Resizing services may be available for<br/>selected YAZ & Co diamond rings and jewellery styles. Availability depends<br/>on the design, setting, and structure of the piece.</p><p>Please note that resized or altered jewellery<br/>may not be eligible for return or exchange.</p>"
+          }
+        },
+        "faq_pxGDA3": {
+          "type": "faq",
+          "settings": {
+            "category_key": "shipping",
+            "question": "Can my necklace be lengthened or shortened?",
+            "answer": "<p>Selected YAZ & Co diamond necklaces and<br/>bracelets may be eligible for length adjustments depending on the design and<br/>construction of the piece. Additional charges and service timelines may apply.</p>"
+          }
+        },
+        "faq_Mhne9a": {
+          "type": "faq",
+          "settings": {
+            "category_key": "shipping",
+            "question": "Can I replace a lost earring back?",
+            "answer": "<p>Replacement earring backs may be available for<br/>selected YAZ & Co diamond jewellery styles, subject to availability and<br/>assessment.</p>"
+          }
+        },
+        "faq_PU3cCF": {
+          "type": "faq",
+          "settings": {
+            "category_key": "shipping",
+            "question": "Can I replace a lost diamond from my ring?",
+            "answer": "<p>YAZ & Co may offer diamond replacement<br/>services depending on the design, availability, and condition of the jewellery<br/>piece. For further information regarding assessment, pricing, and timelines,<br/>please contact YAZ & Co customer service.</p>"
           }
         }
       },
       "block_order": [
-        "faq_GYn7Yt",
-        "faq_nCeePJ"
+        "faq_GUT9gY",
+        "faq_XgfLam",
+        "faq_64VpKm",
+        "faq_LCBD4R",
+        "faq_BbPjRY",
+        "faq_bhJjU7",
+        "faq_VFxF3k",
+        "faq_X3waLt",
+        "faq_VPbyny",
+        "faq_pxGDA3",
+        "faq_Mhne9a",
+        "faq_PU3cCF"
       ],
       "settings": {
         "heading": "",

@@ -65,6 +65,23 @@
   {% endstyle %}
 {%- endif -%}
 
+{% if section.settings.opacity_overlay == 0 %}
+  {% style %}
+      [data-scheme='dark'] {
+    	#Banner-{{ section.id }} .banner__overlay {
+    		background-color: rgba(var(--color-overlay), 0.4);
+    	}
+    }
+      @media (prefers-color-scheme: dark) {
+        [data-scheme='auto'] {
+    		#Banner-{{ section.id }} .banner__overlay {
+    			background-color: rgba(var(--color-overlay), 0.4);
+    		}
+    	}
+      }
+  {% endstyle %}
+{% endif %}
+
 {% style %}
    {% render 'section-margin' %}
   	#Banner-{{ section.id }} .banner__overlay {

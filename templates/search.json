@@ -12,12 +12,13 @@
     "main": {
       "type": "main-search",
       "custom_css": [
-        ".card-information .price {font-weight: 400 !important; font-size: 9px; font-family: Sterling, serif;}",
-        ".template-search .collection-product-card .product-parameters .product_color-count {font-weight: 400;}"
+        ".card-information .price {font-weight: 400 !important; font-size: 11px; font-family: Sterling, serif;}",
+        ".template-search .collection-product-card .product-parameters .product_color-count {font-weight: 400;}",
+        "@media screen and (max-width: 575px) {.template-search__results ul {gap: 2rem 0.6rem; }}"
       ],
       "settings": {
-        "image_ratio": "square",
-        "image_fit": "contain",
+        "image_ratio": "portrait",
+        "image_fit": "cover",
         "show_vendor": false,
         "show_color_count": true,
         "show_size_count": false,
@@ -34,7 +35,7 @@
         "enable_sorting": true,
         "image_filter_ratio": "1/1",
         "image_filter_fit": "contain",
-        "image_filter_columns": 4,
+        "image_filter_columns": 5,
         "columns_mobile": "2",
         "margin_top": "m",
         "margin_bottom": "m"

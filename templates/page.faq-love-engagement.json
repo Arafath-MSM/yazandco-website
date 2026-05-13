@@ -12,32 +12,140 @@
     "main": {
       "type": "faq-detail",
       "blocks": {
+        "faq_NDUc4h": {
+          "type": "faq",
+          "settings": {
+            "category_key": "shipping",
+            "question": "What is YAZ &Co doing with my information to comply with privacy and data protection regulations?",
+            "answer": "<p>YAZ & Co is committed to<br/>protecting customer privacy and handling personal information responsibly.<br/>Customer data is used solely for order processing, communication, and related<br/>services in accordance with our Privacy Policy. Personal information is not<br/>sold or rented to third parties.</p>"
+          }
+        },
+        "faq_MthCaE": {
+          "type": "faq",
+          "settings": {
+            "category_key": "shipping",
+            "question": "What payment methods does YAZ & Co accept?",
+            "answer": "<p>YAZ & Co accepts approved payment<br/>methods available at checkout, which may include:</p><ul><li>Apple Pay </li><li>Google Pay </li><li>Visa </li><li>Mastercard </li></ul><p>Available payment methods may vary<br/>depending on location and platform.</p>"
+          }
+        },
+        "faq_kQQiiH": {
+          "type": "faq",
+          "settings": {
+            "category_key": "shipping",
+            "question": "What is Verified by Visa?",
+            "answer": "<p>Verified by Visa is a security feature designed<br/>to help protect Visa cardholders during online transactions. Additional<br/>verification may be requested by the card issuer during payment processing.</p>"
+          }
+        },
+        "faq_YKnCra": {
+          "type": "faq",
+          "settings": {
+            "category_key": "shipping",
+            "question": "What is Mastercard® SecureCode™?",
+            "answer": "<p>Mastercard® SecureCode™ is a security<br/>service provided by Mastercard and participating card issuers to help protect<br/>online purchases from unauthorized use. Customers may be required to complete<br/>additional identity verification during checkout.</p>"
+          }
+        },
+        "faq_Db7rMm": {
+          "type": "faq",
+          "settings": {
+            "category_key": "shipping",
+            "question": "Discover New Ways to Shop",
+            "answer": "<p>Customers may contact YAZ & Co for<br/>private consultations, online assistance, product inquiries, and personalized<br/>support. Appointments may also be arranged for private visits subject to<br/>availability and confirmation.</p>"
+          }
+        },
+        "faq_Y4QYq7": {
+          "type": "faq",
+          "settings": {
+            "category_key": "shipping",
+            "question": "Is the YAZ &Co Box available for purchase?",
+            "answer": "<p>The YAZ & Co presentation box is<br/>provided exclusively with the purchase of YAZ & Co jewellery and is not<br/>sold separately.</p>"
+          }
+        },
+        "faq_ajTbVj": {
+          "type": "faq",
+          "settings": {
+            "category_key": "shipping",
+            "question": "Is there VAT charged online, and can I claim it back?",
+            "answer": "<p>VAT is charged in accordance with UAE<br/>laws and regulations. Tax refund eligibility, where applicable, is subject to<br/>UAE government regulations and approved tax refund procedures.</p>"
+          }
+        },
+        "faq_eJmQ8y": {
+          "type": "faq",
+          "settings": {
+            "category_key": "shipping",
+            "question": "Is the packaging of my YAZ & Co online purchase discreet?",
+            "answer": "<p>Orders are securely packed for safe<br/>delivery. Outer packaging may vary depending on courier and shipping<br/>requirements.</p>"
+          }
+        },
+        "faq_BUc8mw": {
+          "type": "faq",
+          "settings": {
+            "category_key": "shipping",
+            "question": "Is it safe to order on YAZ & Co?",
+            "answer": "<p>Yes. Payments on the YAZ & Co<br/>website are processed through secure encrypted payment systems and approved<br/>third-party payment providers to help protect customer information and<br/>transactions.</p>"
+          }
+        },
+        "faq_aQBW9m": {
+          "type": "faq",
+          "settings": {
+            "category_key": "shipping",
+            "question": "How is my YAZ& Co item packaged?",
+            "answer": "<p>Each YAZ & Co piece arrives in a<br/>signature YAZ & Co presentation box and is carefully packed to ensure safe<br/>delivery. Orders may also include a branded shopping bag, authenticator card,<br/>and protective packaging.</p>"
+          }
+        },
+        "faq_baw96z": {
+          "type": "faq",
+          "settings": {
+            "category_key": "shipping",
+            "question": "How do I order on YAZ & Co?",
+            "answer": "<p>Customers may place orders directly<br/>through the official YAZ & Co website by selecting their preferred items<br/>and completing checkout using an approved payment method. Orders are confirmed<br/>once full payment has been successfully received and verified.</p>"
+          }
+        },
+        "faq_qTmPwd": {
+          "type": "faq",
+          "settings": {
+            "category_key": "shipping",
+            "question": "Does YAZ & Co have a ring size conversion chart?",
+            "answer": "<p>Yes. YAZ & Co provides a ring size<br/>guide and conversion chart to assist customers in selecting the correct size<br/>before purchase.</p>"
+          }
+        },
         "faq_f7cdy4": {
           "type": "faq",
           "settings": {
             "category_key": "shipping",
-            "question": "What shipping options are available?",
-            "answer": "<p>Add your answer here.</p>"
+            "question": "Does YAZ & Co have jewelry for children?",
+            "answer": "<p>While YAZ & Co jewellery is primarily<br/>designed for adults and everyday fine jewellery wear, selected pieces may also<br/>be suitable for gifting purposes.<br/><br/><br/><br/></p>"
           }
         },
         "faq_zGChjH": {
           "type": "faq",
           "settings": {
             "category_key": "shipping",
-            "question": "What shipping options are available?",
-            "answer": "<p>Add your answer here.</p>"
+            "question": "Can you insure YAZ & Co jewelry?",
+            "answer": "<p>Fine jewellery is often insured. While<br/>YAZ & Co does not provide insurance services, customers may use their<br/>purchase invoice, authenticator card, or applicable certification documents for<br/>insurance purposes. Additional documentation may be provided upon request,<br/>subject to approval.</p>"
           }
         },
         "faq_zN36Rf": {
           "type": "faq",
           "settings": {
             "category_key": "shipping",
-            "question": "What shipping options are available?",
-            "answer": "<p>Add your answer here.</p>"
+            "question": "Can you buy YAZ& Co jewelry in UAE?",
+            "answer": "<p>Yes, you can purchase YAZ & Co<br/>jewellery in the United Arab Emirates through the official YAZ & Co website<br/>and authorized sales channels.</p>"
           }
         }
       },
       "block_order": [
+        "faq_NDUc4h",
+        "faq_MthCaE",
+        "faq_kQQiiH",
+        "faq_YKnCra",
+        "faq_Db7rMm",
+        "faq_Y4QYq7",
+        "faq_ajTbVj",
+        "faq_eJmQ8y",
+        "faq_BUc8mw",
+        "faq_aQBW9m",
+        "faq_baw96z",
+        "faq_qTmPwd",
         "faq_f7cdy4",
         "faq_zGChjH",
         "faq_zN36Rf"

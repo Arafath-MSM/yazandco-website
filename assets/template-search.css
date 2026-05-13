@@ -316,7 +316,7 @@ predictive-search:not([open=true]) .search__input--icon-clear {
 @media screen and (max-width: 575px) {
 
   .collection-results--2-mobile .template-search__item.collection-product-card .card__title {
-    font-size: calc(var(--font-heading-card-scale) * 1rem);
+    font-size: calc(var(--font-heading-card-scale) * 1.2rem);
     /* font-weight: 600; */
   }
   .collection-results--2-mobile .template-search__item.collection-product-card .card__title a {

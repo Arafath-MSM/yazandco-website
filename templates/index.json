@@ -15,9 +15,9 @@
         "slideshow-item": {
           "type": "slideshow-item",
           "settings": {
-            "image": "shopify://shop_images/BANNER_1_PT1_1.jpg",
             "overlay_opacity": 0,
-            "show_video": false,
+            "show_video": true,
+            "video": "shopify://files/videos/main_horizontal.MOV",
             "video_url": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
             "description_video": "",
             "heading": "The Extraordinary Ordinary",
@@ -54,7 +54,7 @@
           "settings": {
             "overlay_opacity": 0.1,
             "show_video": true,
-            "mobile_video": "shopify://files/videos/love.MOV",
+            "video": "shopify://files/videos/main_horizontal.MOV",
             "video_url": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
             "description_video": "",
             "heading": "",
@@ -84,7 +84,7 @@
         "is_autoplay": false,
         "is_hover_stop_autoplay": false,
         "slideshow_speed": 1,
-        "slideshow_delay": 3,
+        "slideshow_delay": 5,
         "slide_effects": "slide",
         "margin_top": "no-indent",
         "margin_bottom": "no-indent"
@@ -153,7 +153,7 @@
           "type": "collection_item",
           "settings": {
             "collection": "bracelets",
-            "image": "shopify://shop_images/jewellery-04_1.jpg",
+            "image": "shopify://shop_images/NECKLACE.png",
             "button_label": "Shop Collection",
             "button_link": "",
             "overlay_opacity": 0.2
@@ -163,7 +163,7 @@
           "type": "collection_item",
           "settings": {
             "collection": "earrings",
-            "image": "shopify://shop_images/jewellery-05_1.jpg",
+            "image": "shopify://shop_images/EARRINGS.png",
             "button_label": "Shop Collection",
             "button_link": "",
             "overlay_opacity": 0.2
@@ -173,7 +173,7 @@
           "type": "collection_item",
           "settings": {
             "collection": "rings",
-            "image": "shopify://shop_images/jewellery-06_1.jpg",
+            "image": "shopify://shop_images/RING.png",
             "button_label": "Shop Collection",
             "button_link": "",
             "overlay_opacity": 0.2
@@ -183,7 +183,7 @@
           "type": "collection_item",
           "settings": {
             "collection": "rings-1",
-            "image": "shopify://shop_images/jewellery-07_1.jpg",
+            "image": "shopify://shop_images/BRACELET.png",
             "button_label": "Shop Collection",
             "button_link": "",
             "overlay_opacity": 0.2
@@ -261,7 +261,7 @@
           "type": "product_slide",
           "settings": {
             "product": "tennis-necklace",
-            "image": "shopify://shop_images/Z2603_YAZ_17_1267_srgb_WEB.jpg",
+            "image": "shopify://shop_images/Image_May_5_2026_11_19_23_AM.png",
             "color_scheme": "",
             "overlay_opacity": 0.1,
             "description": "Timeless Classics, reinvented"
@@ -319,8 +319,8 @@
         "is_sync_slide": true,
         "enable_main_image_link": false,
         "enable_animation": true,
-        "image_ratio": "square",
-        "image_fit": "contain",
+        "image_ratio": "portrait",
+        "image_fit": "cover",
         "show_vendor": false,
         "show_color_count": false,
         "show_size_count": false,
@@ -502,7 +502,8 @@
       "type": "popular-products",
       "custom_css": [
         ".card-information .price {font-weight: 400 !important; font-family: Sterling, serif;}",
-        ".product_color-count {font-weight: 400 !important;}"
+        ".product_color-count {font-weight: 400 !important;}",
+        "@media screen and (max-width: 575px) {.popular-products__wrapper {gap: 2rem 1rem; }}"
       ],
       "settings": {
         "subheading": "",
@@ -843,7 +844,7 @@
           "type": "media_slide",
           "settings": {
             "color_scheme": "background-2",
-            "image": "shopify://shop_images/c42c88c3-5dfa-47c2-9e4f-fce02b856026.png",
+            "image": "shopify://shop_images/FINAL_3.jpg",
             "mobile_image": "shopify://shop_images/Untitled_design_47.jpg",
             "overlay_opacity": 0,
             "enable_hover": true,
