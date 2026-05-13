@@ -1,0 +1,170 @@
+{% capture email_title %}Your email address has been changed{% endcapture %}
+{% capture email_body %}The email address associated with your account has been changed.{% endcapture %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <title>{{ email_title }}</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width">
+  <link rel="stylesheet" type="text/css" href="/assets/notifications/styles.css">
+  <style>
+    .button__cell { background: {{ shop.email_accent_color }}; }
+    .actions-buttons .button__cell--primary { background-color: {{ shop.email_accent_color }}; }
+    a, a:hover, a:active, a:visited { color: {{ shop.email_accent_color }}; }
+      body, table, td, p, a, span, div {
+      font-family: 'Brandon', 'Brandon Grotesque', Arial, Helvetica, sans-serif !important;
+    }
+    h1, h2, h3, h4, h5, h6,
+    .order-number__text,
+    .po-number__text,
+    .shop-name__text,
+    .subtotal-line__title,
+    .order-list__item-title {
+      font-family: 'Sterling', Georgia, 'Times New Roman', serif !important;
+    }
+    .content__cell p,
+    .content__cell strong,
+    .content__cell b,
+    .disclaimer__subtext,
+    .disclaimer__subtext a {
+      font-family: 'Brandon', 'Brandon Grotesque', Arial, Helvetica, sans-serif !important;
+      font-weight: 400 !important;
+      font-style: normal !important;
+    }
+    h2 {
+      margin-top: 12px !important;
+    }
+  </style>
+</head>
+
+  <style>
+    body {
+      color: #212529;
+      background-color: #ffffff;
+    }
+    
+    p, td, th, div, span {
+      color: #212529;
+    }
+    
+    strong, b {
+      color: #000000;
+      font-weight: 400 !important;
+    }
+    
+    a {
+      color: #0056b3;
+      text-decoration: none;
+    }
+    
+    a:hover,
+    a:focus {
+      color: #004085;
+      text-decoration: underline;
+    }
+      body, table, td, p, a, span, div {
+      font-family: 'Brandon', 'Brandon Grotesque', Arial, Helvetica, sans-serif !important;
+    }
+    h1, h2, h3, h4, h5, h6,
+    .order-number__text,
+    .po-number__text,
+    .shop-name__text,
+    .subtotal-line__title,
+    .order-list__item-title {
+      font-family: 'Sterling', Georgia, 'Times New Roman', serif !important;
+    }
+    h2 {
+      margin-top: 12px !important;
+    }
+  </style>
+  <body>
+    <table class="body" width="100%" cellpadding="0" cellspacing="0" border="0" style="width: 100% !important; margin: 0; padding: 0;">
+      <tr>
+        <td style="margin: 0; padding: 0;">
+          <table class="header row" width="100%" cellpadding="0" cellspacing="0" border="0" style="width: 100% !important; margin: 0; padding: 0;">
+  <tr>
+    <td class="header__cell" style="margin: 0; padding: 0;">
+      <center>
+
+        <table class="container" width="100%" cellpadding="0" cellspacing="0" border="0" style="width: 100% !important; max-width: 100% !important; min-width: 100% !important; margin: 0; padding: 0;">
+          <tr>
+            <td style="margin: 0; padding: 0;">
+              <table class="row" width="100%" cellpadding="0" cellspacing="0" border="0" style="width: 100% !important; margin: 0; padding: 0;">
+                <tr>
+                  <td class="shop-name__cell" width="100%" style="width: 100% !important; padding: 0; margin: 0; text-align: center;">
+                    {%- if shop.email_logo_url %}
+                      <img
+                        src="{{shop.email_logo_url}}"
+                        alt="{{ shop.name }}"
+                        width="100%"
+                        style="display: block; width: 100% !important; min-width: 100% !important; max-width: 100% !important; height: auto !important; margin: 0; padding: 0; border: 0;"
+                      >
+                    {%- else %}
+                      <h1 class="shop-name__text">
+                        <a href="{{shop.url}}">{{ shop.name }}</a>
+                      </h1>
+                    {%- endif %}
+                  </td>
+
+                </tr>
+              </table>
+
+            </td>
+          </tr>
+        </table>
+
+      </center>
+    </td>
+  </tr>
+</table>
+
+          <table class="row content">
+  <tr>
+    <td class="content__cell">
+      <center>
+        <table class="container">
+          <tr>
+            <td>
+              
+            <p>{{ email_body }}</p>
+          <p><strong>Previous email address:</strong> {{ previous_email }}</p>
+          <p><strong>New email address:</strong> {{ new_email }}</p>
+          <p>If you did not make these changes, please <a href="mailto:{{ email }}">contact us</a> immediately.</p>
+
+            </td>
+          </tr>
+        </table>
+      </center>
+    </td>
+  </tr>
+</table>
+          <table class="row footer">
+  <tr>
+    <td class="footer__cell">
+      <center>
+        <table class="container">
+          <tr>
+            <td>
+              
+              <p class="disclaimer__subtext">If you have any questions, reply to this email or contact us at <a href="mailto:{{ shop.email }}">{{ shop.email }}</a></p>
+            </td>
+          </tr>
+        </table>
+      </center>
+    </td>
+  </tr>
+</table>
+
+<img src="{{ 'notifications/spacer.png' | shopify_asset_url }}" class="spacer" height="1" />
+
+        </td>
+      </tr>
+    </table>
+  </body>
+</html>
+
+
+
+
+
