@@ -48,13 +48,19 @@
         <div class="faq-landing__accordion" data-faq-accordion>
           {%- for block in section.blocks -%}
             {%- if block.type == 'faq' -%}
+              {%- capture faq_answer_html -%}{{ block.settings.answer }}{%- endcapture -%}
+              {%- assign faq_answer_html = faq_answer_html
+                | replace: '<br />', ' '
+                | replace: '<br/>', ' '
+                | replace: '<br>', ' '
+              -%}
               <details class="faq-acc__item" {{ block.shopify_attributes }}>
                 <summary class="faq-acc__q">
                   <span class="faq-acc__qText">{{ block.settings.question }}</span>
                   <span class="faq-acc__chev" aria-hidden="true"></span>
                 </summary>
                 <div class="faq-acc__a">
-                  {{ block.settings.answer }}
+                  {{ faq_answer_html }}
                 </div>
               </details>
             {%- endif -%}
@@ -187,7 +193,21 @@
     font-size: 16px;
     line-height: 1.9;
     opacity: .9;
-    max-width: 980px;
+    max-width: none;
+    width: 100%;
+  }
+  #faq-landing-{{ section.id }} .faq-acc__a > *{
+    max-width: none !important;
+  }
+  #faq-landing-{{ section.id }} .faq-acc__a p{ margin: 0 0 14px; }
+  #faq-landing-{{ section.id }} .faq-acc__a p:last-child{ margin-bottom: 0; }
+  #faq-landing-{{ section.id }} .faq-acc__a ul,
+  #faq-landing-{{ section.id }} .faq-acc__a ol{
+    margin: 0 0 14px 22px;
+    padding: 0;
+  }
+  #faq-landing-{{ section.id }} .faq-acc__a li{
+    margin-bottom: 8px;
   }
 
   @media (max-width: 1024px){
@@ -196,11 +216,16 @@
     }
   }
   @media (max-width: 540px){
-    #faq-landing-{{ section.id }} .faq-landing__grid{
-      grid-template-columns: 1fr;
-    }
     #faq-landing-{{ section.id }} .faq-landing__inner{
       width: min(1200px, calc(100% - 28px));
+    }
+    #faq-landing-{{ section.id }} .faq-landing__grid{
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px 14px;
+    }
+    #faq-landing-{{ section.id }} .faq-landing__tile-title{
+      font-size: 15px;
+      margin-top: 12px;
     }
     #faq-landing-{{ section.id }} .faq-acc__q{
       font-size: 18px;

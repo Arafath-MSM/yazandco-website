@@ -21,7 +21,9 @@
       <!-- LEFT -->
       <aside class="faq-detail__sidebar" aria-label="FAQ navigation">
         <div class="faq-detail__sidebar-inner">
-          <div class="faq-detail__side-title">{{ page_sidebar }}</div>
+          {%- if page_sidebar != blank -%}
+            <div class="faq-detail__side-title">{{ page_sidebar }}</div>
+          {%- endif -%}
           <div class="faq-detail__side-line"></div>
 
           <nav class="faq-detail__nav" data-faq-nav>
@@ -50,12 +52,16 @@
 
       <!-- RIGHT -->
       <div class="faq-detail__content">
-        <header class="faq-detail__header">
-          <h1 class="faq-detail__title">{{ page_heading }}</h1>
-          {%- if page_intro != blank -%}
-            <p class="faq-detail__intro">{{ page_intro }}</p>
-          {%- endif -%}
-        </header>
+        {%- if page_heading != blank or page_intro != blank -%}
+          <header class="faq-detail__header">
+            {%- if page_heading != blank -%}
+              <h1 class="faq-detail__title">{{ page_heading }}</h1>
+            {%- endif -%}
+            {%- if page_intro != blank -%}
+              <p class="faq-detail__intro">{{ page_intro }}</p>
+            {%- endif -%}
+          </header>
+        {%- endif -%}
 
         {%- if has_items -%}
           <!-- Hidden templates for answers -->
@@ -65,10 +71,16 @@
                 {%- assign bcat = block.settings.category_key | strip | downcase -%}
                 {%- assign pcat = page_cat | strip | downcase -%}
                 {%- if pcat == blank or bcat == pcat -%}
+                  {%- capture faq_answer_html -%}{{ block.settings.answer }}{%- endcapture -%}
+                  {%- assign faq_answer_html = faq_answer_html
+                    | replace: '<br />', ' '
+                    | replace: '<br/>', ' '
+                    | replace: '<br>', ' '
+                  -%}
                   <template id="faq-item-{{ scope_id }}-{{ block.id }}">
                     <div class="faq-detail__panel-q">{{ block.settings.question }}</div>
                     <div class="faq-detail__panel-a">
-                      {{ block.settings.answer }}
+                      {{ faq_answer_html }}
                     </div>
                   </template>
                 {%- endif -%}
@@ -138,15 +150,20 @@
     padding: clamp(24px, 3vw, 48px) 0 clamp(44px, 6vw, 90px);
   }
   #faq-detail-{{ scope_id }} .faq-detail__inner{
-    width: min(1320px, calc(100% - 48px));
+    width: min(1440px, calc(100% - 48px));
     margin: 0 auto;
   }
 
   #faq-detail-{{ scope_id }} .faq-detail__layout{
     display: grid;
-    grid-template-columns: 360px 1fr;
-    gap: clamp(28px, 3vw, 56px);
+    grid-template-columns: minmax(260px, 340px) minmax(0, 1fr);
+    gap: clamp(32px, 4vw, 72px);
     align-items: start;
+  }
+
+  #faq-detail-{{ scope_id }} .faq-detail__content{
+    min-width: 0;
+    width: 100%;
   }
 
   /* LEFT */
@@ -231,7 +248,7 @@
     font-size: 15px;
     line-height: 1.9;
     opacity: .9;
-    max-width: 980px;
+    max-width: none;
   }
 
   /* PANEL (no accordion) */
@@ -251,10 +268,22 @@
     font-size: 15px;
     line-height: 1.95;
     opacity: .92;
-    max-width: 980px;
+    max-width: none;
+    width: 100%;
+  }
+  #faq-detail-{{ scope_id }} .faq-detail__panel-a > *{
+    max-width: none !important;
   }
   #faq-detail-{{ scope_id }} .faq-detail__panel-a p{ margin: 0 0 14px; }
   #faq-detail-{{ scope_id }} .faq-detail__panel-a p:last-child{ margin-bottom: 0; }
+  #faq-detail-{{ scope_id }} .faq-detail__panel-a ul,
+  #faq-detail-{{ scope_id }} .faq-detail__panel-a ol{
+    margin: 0 0 14px 22px;
+    padding: 0;
+  }
+  #faq-detail-{{ scope_id }} .faq-detail__panel-a li{
+    margin-bottom: 8px;
+  }
   #faq-detail-{{ scope_id }} .faq-detail__panel-a a{ text-decoration: underline; text-underline-offset: 3px; }
 
   #faq-detail-{{ scope_id }} .faq-detail__empty{
@@ -274,7 +303,7 @@
 
   @media (max-width: 540px){
     #faq-detail-{{ scope_id }} .faq-detail__inner{
-      width: min(1320px, calc(100% - 28px));
+      width: min(1440px, calc(100% - 28px));
     }
     #faq-detail-{{ scope_id }} .faq-detail__panel-q{
       font-size: 18px;
