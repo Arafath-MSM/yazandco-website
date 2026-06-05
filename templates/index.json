@@ -17,7 +17,7 @@
           "settings": {
             "overlay_opacity": 0,
             "show_video": true,
-            "video": "shopify://files/videos/main_horizontal.MOV",
+            "video": "",
             "video_url": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
             "description_video": "",
             "heading": "The Extraordinary Ordinary",
@@ -35,7 +35,7 @@
           "settings": {
             "overlay_opacity": 0.1,
             "show_video": true,
-            "mobile_video": "shopify://files/videos/couplle.MOV",
+            "mobile_video": "",
             "video_url": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
             "description_video": "",
             "heading": "The Extraordinary Ordinary",
@@ -54,7 +54,7 @@
           "settings": {
             "overlay_opacity": 0.1,
             "show_video": true,
-            "video": "shopify://files/videos/main_horizontal.MOV",
+            "video": "",
             "video_url": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
             "description_video": "",
             "heading": "",
