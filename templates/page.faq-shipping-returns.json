@@ -12,76 +12,12 @@
     "main": {
       "type": "faq-detail",
       "blocks": {
-        "faq_pfWMiL": {
+        "faq_khUnbQ": {
           "type": "faq",
           "settings": {
             "category_key": "shipping",
-            "question": "How do I request a tax refund as a tourist?",
-            "answer": "<p>Tax refund eligibility is subject to<br/>UAE regulations and approved tax refund procedures. Customers may contact the<br/>relevant authorized tax refund provider for further guidance and requirements.</p>"
-          }
-        },
-        "faq_xJ7Utz": {
-          "type": "faq",
-          "settings": {
-            "category_key": "shipping",
-            "question": "How can I return or exchange an online exclusive item?",
-            "answer": "<p>Online purchases follow the same YAZ<br/>& Co return policy and are subject to approval based on the conditions<br/>outlined in our Terms & Conditions.</p><p>Returns may only be considered for:</p><ul><li>Proven manufacturing defects </li><li>Incorrect items delivered </li><li>Items not matching agreed specifications </li></ul><p>Products must be returned unused, in<br/>original condition, and accompanied by the original invoice, packaging, and<br/>certificates where applicable.</p><p>Custom-made, engraved, or personalized<br/>items are not eligible for return or exchange.</p>"
-          }
-        },
-        "faq_akmBCC": {
-          "type": "faq",
-          "settings": {
-            "category_key": "shipping",
-            "question": "What are the delivery times and shipping rates?",
-            "answer": "<p><strong>Within the UAE</strong></p><ul><li>Estimated delivery: 3–5 business days<br/>     after dispatch </li><li>Shipping fee: AED 30 </li></ul><p><strong>International<br/>Shipping</strong></p><ul><li>Estimated delivery: 7–10 business days<br/>     after dispatch </li><li>Shipping fee: AED 150 </li></ul><p>Orders are prepared within 25–30<br/>business days from payment confirmation. Delivery timelines are estimates and<br/>may vary depending on courier operations, customs procedures, or circumstances<br/>beyond the Company’s control.</p>"
-          }
-        },
-        "faq_x9NRtk": {
-          "type": "faq",
-          "settings": {
-            "category_key": "shipping",
-            "question": "How long does ittake for my refund to be issued?",
-            "answer": "<p>Approved refunds are processed through<br/>the original payment method within approximately 15–20 business days after the<br/>returned item has been received and inspected.</p><p>Processing timelines may vary<br/>depending on the payment provider or banking institution.</p>"
-          }
-        },
-        "faq_8EGBDz": {
-          "type": "faq",
-          "settings": {
-            "category_key": "shipping",
-            "question": "How do I track myonline order?",
-            "answer": "<p>Once your order has been dispatched,<br/>tracking details will be shared through the contact information provided during<br/>purchase.</p><p>Customers may also contact YAZ &<br/>Co for shipment updates and delivery assistance.</p>"
-          }
-        },
-        "faq_ktTggT": {
-          "type": "faq",
-          "settings": {
-            "category_key": "shipping",
-            "question": "How do I know if my return has been received?",
-            "answer": "<p>Once the returned item has been<br/>received and inspected by the YAZ & Co team, a confirmation update will be<br/>provided to the customer regarding approval status and refund eligibility, if<br/>applicable.</p>"
-          }
-        },
-        "faq_tzqVDC": {
-          "type": "faq",
-          "settings": {
-            "category_key": "shipping",
-            "question": "How can I returnor exchange merchandise purchased online?",
-            "answer": "<p>Returns may only be accepted in cases<br/>of proven manufacturing defects or if the delivered item does not match the<br/>agreed specifications.</p><p>Any issue must be reported within 48<br/>hours of receiving the order. Items must remain unused, unworn, and in original<br/>condition with all accompanying documentation.</p><p>Once the request is reviewed and<br/>approved, our team will provide further return instructions. Refunds, where<br/>applicable, are issued through the original payment method within the<br/>applicable processing period.</p><p>Please note that shipping fees are<br/>non-refundable.</p>"
-          }
-        },
-        "faq_RhMHyE": {
-          "type": "faq",
-          "settings": {
-            "category_key": "shipping",
-            "question": "How can I makereturns or exchanges without a receipt?",
-            "answer": "<p>YAZ & Co does not accept returns<br/>or exchanges without valid proof of purchase, including the original invoice or<br/>receipt.</p><p>All approved returns must be<br/>accompanied by the original packaging, certificates, and documentation where<br/>applicable.</p>"
-          }
-        },
-        "faq_XEEHQU": {
-          "type": "faq",
-          "settings": {
-            "category_key": "shipping",
-            "question": "Can I ship myorder outside of the UAE?",
-            "answer": "<p>Yes. YAZ & Co offers international<br/>shipping to selected countries in accordance with applicable regulations.</p><p>Please note that customs duties,<br/>taxes, clearance fees, and import requirements are the responsibility of the<br/>customer. YAZ & Co is not responsible for customs delays or shipment<br/>restrictions imposed by foreign authorities.</p>"
+            "question": "Are YAZ & Co products insured when shipped?",
+            "answer": "<p>YAZ & Co remains responsible for<br/>orders until the package is confirmed as delivered to the customer. If an issue<br/>occurs during shipment, our team may coordinate with the courier provider to<br/>review the case. Once delivery has been confirmed by the courier,<br/>responsibility transfers to the customer in accordance with our Terms &<br/>Conditions.</p><p>For assistance, please contact the YAZ<br/>& Co team through our official communication channels.</p>"
           }
         },
         "faq_AijA6V": {
@@ -92,27 +28,91 @@
             "answer": "<p>Custom-made, personalised, engraved,<br/>or made-to-order items are non-refundable, non-exchangeable, and<br/>non-cancellable once the final design and specifications have been approved by<br/>the customer.</p><p>For further assistance, please contact<br/>the YAZ & Co team.</p>"
           }
         },
-        "faq_khUnbQ": {
+        "faq_XEEHQU": {
           "type": "faq",
           "settings": {
             "category_key": "shipping",
-            "question": "Are YAZ & Co products insured when shipped?",
-            "answer": "<p>YAZ & Co remains responsible for<br/>orders until the package is confirmed as delivered to the customer. If an issue<br/>occurs during shipment, our team may coordinate with the courier provider to<br/>review the case. Once delivery has been confirmed by the courier,<br/>responsibility transfers to the customer in accordance with our Terms &<br/>Conditions.</p><p>For assistance, please contact the YAZ<br/>& Co team through our official communication channels.</p>"
+            "question": "Can I ship my order outside of the UAE?",
+            "answer": "<p>Yes. YAZ & Co offers international<br/>shipping to selected countries in accordance with applicable regulations.</p><p>Please note that customs duties,<br/>taxes, clearance fees, and import requirements are the responsibility of the<br/>customer. YAZ & Co is not responsible for customs delays or shipment<br/>restrictions imposed by foreign authorities.</p>"
+          }
+        },
+        "faq_RhMHyE": {
+          "type": "faq",
+          "settings": {
+            "category_key": "shipping",
+            "question": "How can I make returns or exchanges without a receipt?",
+            "answer": "<p>YAZ & Co does not accept returns<br/>or exchanges without valid proof of purchase, including the original invoice or<br/>receipt.</p><p>All approved returns must be<br/>accompanied by the original packaging, certificates, and documentation where<br/>applicable.</p>"
+          }
+        },
+        "faq_tzqVDC": {
+          "type": "faq",
+          "settings": {
+            "category_key": "shipping",
+            "question": "How can I return or exchange merchandise purchased online?",
+            "answer": "<p>Returns may only be accepted in cases<br/>of proven manufacturing defects or if the delivered item does not match the<br/>agreed specifications.</p><p>Any issue must be reported within 48<br/>hours of receiving the order. Items must remain unused, unworn, and in original<br/>condition with all accompanying documentation.</p><p>Once the request is reviewed and<br/>approved, our team will provide further return instructions. Refunds, where<br/>applicable, are issued through the original payment method within the<br/>applicable processing period.</p><p>Please note that shipping fees are<br/>non-refundable.</p>"
+          }
+        },
+        "faq_ktTggT": {
+          "type": "faq",
+          "settings": {
+            "category_key": "shipping",
+            "question": "How do I know if my return has been received?",
+            "answer": "<p>Once the returned item has been<br/>received and inspected by the YAZ & Co team, a confirmation update will be<br/>provided to the customer regarding approval status and refund eligibility, if<br/>applicable.</p>"
+          }
+        },
+        "faq_8EGBDz": {
+          "type": "faq",
+          "settings": {
+            "category_key": "shipping",
+            "question": "How do I track my online order?",
+            "answer": "<p>Once your order has been dispatched,<br/>tracking details will be shared through the contact information provided during<br/>purchase.</p><p>Customers may also contact YAZ &<br/>Co for shipment updates and delivery assistance.</p>"
+          }
+        },
+        "faq_x9NRtk": {
+          "type": "faq",
+          "settings": {
+            "category_key": "shipping",
+            "question": "How long does it take for my refund to be issued?",
+            "answer": "<p>Approved refunds are processed through<br/>the original payment method within approximately 15–20 business days after the<br/>returned item has been received and inspected.</p><p>Processing timelines may vary<br/>depending on the payment provider or banking institution.</p>"
+          }
+        },
+        "faq_akmBCC": {
+          "type": "faq",
+          "settings": {
+            "category_key": "shipping",
+            "question": "What are the delivery times and shipping rates?",
+            "answer": "<p><strong>Within the UAE</strong></p><ul><li>Estimated delivery: 3–5 business days<br/>     after dispatch </li><li>Shipping fee: AED 30 </li></ul><p><strong>International<br/>Shipping</strong></p><ul><li>Estimated delivery: 7–10 business days<br/>     after dispatch </li><li>Shipping fee: AED 150 </li></ul><p>Orders are prepared within 25–30<br/>business days from payment confirmation. Delivery timelines are estimates and<br/>may vary depending on courier operations, customs procedures, or circumstances<br/>beyond the Company’s control.</p>"
+          }
+        },
+        "faq_xJ7Utz": {
+          "type": "faq",
+          "settings": {
+            "category_key": "shipping",
+            "question": "How can I return or exchange an online exclusive item?",
+            "answer": "<p>Online purchases follow the same YAZ<br/>& Co return policy and are subject to approval based on the conditions<br/>outlined in our Terms & Conditions.</p><p>Returns may only be considered for:</p><ul><li>Proven manufacturing defects </li><li>Incorrect items delivered </li><li>Items not matching agreed specifications </li></ul><p>Products must be returned unused, in<br/>original condition, and accompanied by the original invoice, packaging, and<br/>certificates where applicable.</p><p>Custom-made, engraved, or personalized<br/>items are not eligible for return or exchange.</p>"
+          }
+        },
+        "faq_pfWMiL": {
+          "type": "faq",
+          "settings": {
+            "category_key": "shipping",
+            "question": "How do I request a tax refund as a tourist?",
+            "answer": "<p>Tax refund eligibility is subject to<br/>UAE regulations and approved tax refund procedures. Customers may contact the<br/>relevant authorized tax refund provider for further guidance and requirements.</p>"
           }
         }
       },
       "block_order": [
-        "faq_pfWMiL",
-        "faq_xJ7Utz",
-        "faq_akmBCC",
-        "faq_x9NRtk",
-        "faq_8EGBDz",
-        "faq_ktTggT",
-        "faq_tzqVDC",
-        "faq_RhMHyE",
-        "faq_XEEHQU",
+        "faq_khUnbQ",
         "faq_AijA6V",
-        "faq_khUnbQ"
+        "faq_XEEHQU",
+        "faq_RhMHyE",
+        "faq_tzqVDC",
+        "faq_ktTggT",
+        "faq_8EGBDz",
+        "faq_x9NRtk",
+        "faq_akmBCC",
+        "faq_xJ7Utz",
+        "faq_pfWMiL"
       ],
       "settings": {
         "heading": "",

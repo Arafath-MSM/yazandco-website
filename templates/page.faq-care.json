@@ -11,8 +11,136 @@
   "sections": {
     "main": {
       "type": "faq-detail",
-      "blocks": {},
-      "block_order": [],
+      "blocks": {
+        "faq_CJFTet": {
+          "type": "faq",
+          "settings": {
+            "category_key": "shipping",
+            "question": "Can my YAZ &Co jewelry get wet?",
+            "answer": "<p>While YAZ & Co diamond jewellery<br/>can tolerate occasional exposure to water, we recommend removing your jewellery<br/>before activities that may affect its brilliance, finish, or longevity.</p><p>This includes:</p><ul><li>Showering, bathing, or swimming </li><li>Using perfumes, lotions, or cosmetics </li><li>Exercising or contact sports </li><li>Household cleaning or outdoor work </li><li>Exposure to chlorine, salt water, or<br/>     harsh chemicals </li></ul>"
+          }
+        },
+        "faq_XeK88Q": {
+          "type": "faq",
+          "settings": {
+            "category_key": "shipping",
+            "question": "Does gold tarnish?",
+            "answer": "<p>18k gold jewellery may naturally<br/>develop minor scratches or changes in surface appearance over time due to daily<br/>wear. To preserve the brilliance and finish of your YAZ & Co diamond<br/>jewellery, avoid exposure to chemicals, bleach, perfumes, cleaning products,<br/>and excessive moisture.</p><p>When not being worn, store your<br/>jewellery safely in its original YAZ & Co box or protective pouch.</p>"
+          }
+        },
+        "faq_PeQP8t": {
+          "type": "faq",
+          "settings": {
+            "category_key": "shipping",
+            "question": "Does YAZ & Co offer a jewellery cleaning service? Can I get my YAZ & Co jewellery cleaned?",
+            "answer": "<p>Selected cleaning and maintenance<br/>services may be available upon evaluation by YAZ & Co. Service availability<br/>depends on the jewellery condition and design.</p><p>Customers may contact YAZ & Co<br/>customer service regarding jewellery care and servicing requests.</p>"
+          }
+        },
+        "faq_GtyNAy": {
+          "type": "faq",
+          "settings": {
+            "category_key": "shipping",
+            "question": "Does YAZ & Co offer free jewellery cleaning services?",
+            "answer": "<p>Basic cleaning services may be<br/>provided for selected YAZ & Co diamond jewellery pieces at the discretion<br/>of the company. Additional polishing, repair, resizing, or maintenance services<br/>may involve service charges depending on the required work.</p>"
+          }
+        },
+        "faq_mVeEQi": {
+          "type": "faq",
+          "settings": {
+            "category_key": "shipping",
+            "question": "How do I care for my diamond jewellery?",
+            "answer": "<p>To preserve the brilliance of your<br/>diamond jewellery, avoid direct contact with chemicals, perfumes, cosmetics,<br/>lotions, and abrasive surfaces. Jewellery should be cleaned gently using a soft<br/>cloth and stored separately to avoid scratches or damage.</p><p>We recommend periodic professional<br/>inspection and maintenance for jewellery worn frequently.</p>"
+          }
+        },
+        "faq_HmiWKn": {
+          "type": "faq",
+          "settings": {
+            "category_key": "shipping",
+            "question": "How do I care for my gold and diamond jewellery?",
+            "answer": "<p>Gold and diamond jewellery should be<br/>handled carefully to preserve their finish and structure. Avoid exposure to<br/>harsh chemicals, cleaning agents, perfumes, chlorine, and abrasive surfaces.</p><p>Minor scratches and signs of wear may<br/>naturally develop over time due to regular use. When not worn, store jewellery<br/>safely in its original YAZ & Co packaging or a soft protective pouch.</p>"
+          }
+        },
+        "faq_gwDLPW": {
+          "type": "faq",
+          "settings": {
+            "category_key": "shipping",
+            "question": "How often should I get my jewellery cleaned?",
+            "answer": "<p>Diamond jewellery worn frequently<br/>should be inspected and cleaned periodically to maintain its brilliance and<br/>ensure settings, clasps, and components remain secure.</p>"
+          }
+        },
+        "faq_B9Hq3U": {
+          "type": "faq",
+          "settings": {
+            "category_key": "shipping",
+            "question": "How should I clean my diamond ring?",
+            "answer": "<p>Diamond jewellery may be cleaned<br/>gently using lukewarm water, mild soap, and a soft brush or cloth. Avoid<br/>abrasive cleaning products or harsh chemicals. Ensure the jewellery is fully<br/>dried before storage.</p>"
+          }
+        },
+        "faq_783Q98": {
+          "type": "faq",
+          "settings": {
+            "category_key": "shipping",
+            "question": "How should I store & organize my jewellery?",
+            "answer": "<p>Diamond jewellery should be stored<br/>separately to avoid scratches, tangling, or damage between pieces. We recommend<br/>using protective boxes, pouches, or compartments and keeping jewellery away<br/>from moisture, heat, direct sunlight, and chemicals.</p><p>When travelling, jewellery should be<br/>securely packed and protected individually. Valuable pieces should remain with<br/>the owner whenever possible.</p>"
+          }
+        },
+        "faq_zGhKxN": {
+          "type": "faq",
+          "settings": {
+            "category_key": "shipping",
+            "question": "How do I care for my gemstone jewellery?",
+            "answer": "<p>YAZ & Co jewellery is crafted<br/>using lab-grown diamonds and fine materials that require careful handling to<br/>preserve their brilliance and condition. Avoid impact against hard surfaces,<br/>exposure to chemicals, perfumes, cosmetics, ultrasonic cleaning, and extreme<br/>temperatures.</p>"
+          }
+        },
+        "faq_jWA86y": {
+          "type": "faq",
+          "settings": {
+            "category_key": "shipping",
+            "question": "How to polish gold and diamond jewellery?",
+            "answer": "<p>Gold jewellery polishing should only<br/>be performed by qualified professionals to avoid unnecessary metal wear or<br/>surface damage.</p>"
+          }
+        },
+        "faq_EhECG7": {
+          "type": "faq",
+          "settings": {
+            "category_key": "shipping",
+            "question": "How to remove scratches from gold jewellery?",
+            "answer": "<p>Minor scratches naturally develop over<br/>time through regular wear. Professional polishing may help reduce the<br/>appearance of scratches; however, excessive polishing is not recommended as it<br/>gradually removes metal from the jewellery surface.</p>"
+          }
+        },
+        "faq_tGUYJR": {
+          "type": "faq",
+          "settings": {
+            "category_key": "shipping",
+            "question": "What cleaning and care services does YAZ & Co offer?",
+            "answer": "<p>YAZ & Co may provide selected<br/>after-sales care and maintenance services depending on the jewellery type and<br/>condition, including:</p><ul><li>Jewellery cleaning </li><li>Polishing </li><li>Repair services </li><li>Ring resizing </li><li>Jewellery inspection </li><li>Maintenance evaluations </li></ul><p>All services remain subject to<br/>inspection, approval, and applicable service charges where required.</p>"
+          }
+        },
+        "faq_iWYENz": {
+          "type": "faq",
+          "settings": {
+            "category_key": "shipping",
+            "question": "Where can I get my YAZ & Co jewellery cleaned?",
+            "answer": "<p>Customers may contact YAZ & Co<br/>customer service regarding jewellery cleaning, maintenance, or repair requests.<br/>Service availability depends on the condition and design of the piece.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "faq_CJFTet",
+        "faq_XeK88Q",
+        "faq_PeQP8t",
+        "faq_GtyNAy",
+        "faq_mVeEQi",
+        "faq_HmiWKn",
+        "faq_gwDLPW",
+        "faq_B9Hq3U",
+        "faq_783Q98",
+        "faq_zGhKxN",
+        "faq_jWA86y",
+        "faq_EhECG7",
+        "faq_tGUYJR",
+        "faq_iWYENz"
+      ],
       "settings": {
         "heading": "",
         "intro": "",

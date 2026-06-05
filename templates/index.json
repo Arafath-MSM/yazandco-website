@@ -17,7 +17,7 @@
           "settings": {
             "overlay_opacity": 0,
             "show_video": true,
-            "video": "",
+            "video": "shopify://files/videos/main_horizontal.MOV",
             "video_url": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
             "description_video": "",
             "heading": "The Extraordinary Ordinary",
@@ -35,7 +35,7 @@
           "settings": {
             "overlay_opacity": 0.1,
             "show_video": true,
-            "mobile_video": "",
+            "mobile_video": "shopify://files/videos/couplle.MOV",
             "video_url": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
             "description_video": "",
             "heading": "The Extraordinary Ordinary",
@@ -54,7 +54,7 @@
           "settings": {
             "overlay_opacity": 0.1,
             "show_video": true,
-            "video": "",
+            "video": "shopify://files/videos/main_horizontal.MOV",
             "video_url": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
             "description_video": "",
             "heading": "",
@@ -260,7 +260,7 @@
         "product_slide": {
           "type": "product_slide",
           "settings": {
-            "product": "tennis-necklace",
+            "product": "classic-tennis-bracelet",
             "image": "shopify://shop_images/Image_May_5_2026_11_19_23_AM.png",
             "color_scheme": "",
             "overlay_opacity": 0.1,
@@ -270,7 +270,7 @@
         "product_slide1": {
           "type": "product_slide",
           "settings": {
-            "product": "aurora-bracelet-3-mm",
+            "product": "everyday-tennis-bracelet",
             "image": "shopify://shop_images/Z2603_YAZ_18_1313_srgb_WEB.jpg",
             "color_scheme": "",
             "overlay_opacity": 0.1,
@@ -280,7 +280,7 @@
         "product_slide2": {
           "type": "product_slide",
           "settings": {
-            "product": "aurora-bracelet-2-5-mm",
+            "product": "luminous-tennis-bracelet",
             "image": "shopify://shop_images/Z2603_YAZ_20_1421_srgb_WEB_1.jpg",
             "color_scheme": "",
             "overlay_opacity": 0.1,
@@ -297,7 +297,7 @@
         ".section-heading__heading.h1 {font-size: 36px !important;}",
         ".section-heading__button span {font-size: 13px !important;}",
         ".product-slider_info {font-size: 20px !important;}",
-        ".card__title .full-unstyled-link {font-size: 30px !important;}",
+        ".card__title .full-unstyled-link {font-size: 20px !important;}",
         ".card__description {font-size: 13px !important;}",
         ".card-information .price {font-weight: 400 !important;}"
       ],
@@ -781,7 +781,7 @@
         "product_slide_iy9Fp7": {
           "type": "product_slide",
           "settings": {
-            "product": "radiance-ring",
+            "product": "althea-ring",
             "image": "shopify://shop_images/Z2603_YAZ_07_563_srgb_WEB.jpg",
             "color_scheme": "",
             "overlay_opacity": 0.1,

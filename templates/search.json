@@ -17,8 +17,8 @@
         "@media screen and (max-width: 575px) {.template-search__results ul {gap: 2rem 0.6rem; }}"
       ],
       "settings": {
-        "image_ratio": "portrait",
-        "image_fit": "cover",
+        "image_ratio": "square",
+        "image_fit": "contain",
         "show_vendor": false,
         "show_color_count": true,
         "show_size_count": false,

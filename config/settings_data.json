@@ -27,7 +27,7 @@
     "product_color_option_display": "count",
     "type_color_swatch": "custom",
     "swatch_type": "variant_image",
-    "favicon": "shopify://shop_images/RGBMono_-_YAZ_Puple.png",
+    "favicon": "shopify://shop_images/shared_image.png",
     "add_to_cart_enabled": true,
     "show_collection_card": true,
     "search_image": "shopify://shop_images/shopify_upload_ready.jpg",
@@ -49,7 +49,6 @@
         "disabled": false,
         "settings": {
           "widget_style": "floating",
-          "display_mode": "floating",
           "position": "bottom-right",
           "position_mobile": "bottom-right",
           "vertical_offset": 65,
@@ -80,7 +79,7 @@
       },
       "3886181796285292942": {
         "type": "shopify://apps/cowlendar-booking/blocks/app-embed/6d8b8f6a-9b3c-42b8-b2e6-a758c38d45bf",
-        "disabled": true,
+        "disabled": false,
         "settings": {}
       }
     },

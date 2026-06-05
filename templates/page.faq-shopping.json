@@ -12,28 +12,12 @@
     "main": {
       "type": "faq-detail",
       "blocks": {
-        "faq_Mbj6cg": {
+        "faq_pGrPj6": {
           "type": "faq",
           "settings": {
             "category_key": "shipping",
-            "question": "Who is responsible after approving the design?",
-            "answer": "<p>The customer bears full responsibility once<br/>the final design and specifications are approved. </p>"
-          }
-        },
-        "faq_YrU9Mj": {
-          "type": "faq",
-          "settings": {
-            "category_key": "shipping",
-            "question": "Can I return or exchange a custom item?",
-            "answer": "<p>No. Custom-made or made-to-order items are<br/>non-refundable and non-exchangeable.</p>"
-          }
-        },
-        "faq_836pbp": {
-          "type": "faq",
-          "settings": {
-            "category_key": "shipping",
-            "question": "Can I cancel my custom order?",
-            "answer": "<p>Custom-made or made-to-order items cannot be<br/>cancelled once confirmed. </p>"
+            "question": "Do you offer custom-made jewellery?",
+            "answer": "<p>Yes. Custom-made or made-to-order jewellery may<br/>be created based on approved designs and specifications. </p>"
           }
         },
         "faq_9eekJw": {
@@ -44,21 +28,37 @@
             "answer": "<p>No. Once the final design and specifications<br/>are approved, the order cannot be modified. </p>"
           }
         },
-        "faq_pGrPj6": {
+        "faq_836pbp": {
           "type": "faq",
           "settings": {
             "category_key": "shipping",
-            "question": "Do you offer custom-made jewellery?",
-            "answer": "<p>Yes. Custom-made or made-to-order jewellery may<br/>be created based on approved designs and specifications. </p>"
+            "question": "Can I cancel my custom order?",
+            "answer": "<p>Custom-made or made-to-order items cannot be<br/>cancelled once confirmed. </p>"
+          }
+        },
+        "faq_YrU9Mj": {
+          "type": "faq",
+          "settings": {
+            "category_key": "shipping",
+            "question": "Can I return or exchange a custom item?",
+            "answer": "<p>No. Custom-made or made-to-order items are<br/>non-refundable and non-exchangeable.</p>"
+          }
+        },
+        "faq_Mbj6cg": {
+          "type": "faq",
+          "settings": {
+            "category_key": "shipping",
+            "question": "Who is responsible after approving the design?",
+            "answer": "<p>The customer bears full responsibility once<br/>the final design and specifications are approved. </p>"
           }
         }
       },
       "block_order": [
-        "faq_Mbj6cg",
-        "faq_YrU9Mj",
-        "faq_836pbp",
+        "faq_pGrPj6",
         "faq_9eekJw",
-        "faq_pGrPj6"
+        "faq_836pbp",
+        "faq_YrU9Mj",
+        "faq_Mbj6cg"
       ],
       "settings": {
         "heading": "",

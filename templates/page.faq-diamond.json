@@ -12,84 +12,12 @@
     "main": {
       "type": "faq-detail",
       "blocks": {
-        "faq_LfnQDE": {
+        "faq_YxcdBX": {
           "type": "faq",
           "settings": {
             "category_key": "shipping",
-            "question": "Will I get a certificate with my engagement ring?",
-            "answer": "<p>Selected YAZ & Co engagement rings<br/>and certified diamond jewellery may include a diamond grading or certification<br/>document issued by an independent gemological laboratory, depending on the<br/>centre stone specifications and product category.</p>"
-          }
-        },
-        "faq_wnFcC9": {
-          "type": "faq",
-          "settings": {
-            "category_key": "shipping",
-            "question": "Which “C” is the most important?",
-            "answer": "<p>The 4Cs — cut, clarity, colour, and<br/>carat weight — are internationally recognized standards used to evaluate<br/>diamond quality.</p><p>While all factors are important,<br/>diamond cut plays a significant role in determining brilliance, sparkle, and<br/>overall visual appearance.</p>"
-          }
-        },
-        "faq_YKGKLV": {
-          "type": "faq",
-          "settings": {
-            "category_key": "shipping",
-            "question": "What should I consider when purchasing diamonds?",
-            "answer": "<p>When purchasing diamond jewellery,<br/>customers may consider factors such as cut, clarity, colour, carat weight,<br/>craftsmanship, certification, and overall design preference.</p>"
-          }
-        },
-        "faq_JzUg79": {
-          "type": "faq",
-          "settings": {
-            "category_key": "shipping",
-            "question": "What is YAZ &Co doing to protect the environment?",
-            "answer": "<p>YAZ & Co supports responsible<br/>sourcing practices and works with suppliers committed to ethical business<br/>conduct, environmental awareness, and industry compliance standards.</p>"
-          }
-        },
-        "faq_YUrHgr": {
-          "type": "faq",
-          "settings": {
-            "category_key": "shipping",
-            "question": "What is diamondprovenance?",
-            "answer": "<p>Diamond provenance refers to the sourcing<br/>background and origin information associated with a diamond, including<br/>available details regarding where the stone was mined, processed, or certified.</p>"
-          }
-        },
-        "faq_yHbYVm": {
-          "type": "faq",
-          "settings": {
-            "category_key": "shipping",
-            "question": "Is YAZ & Co discontinuing sourcing diamonds from specific countries?",
-            "answer": "<p>YAZ & Co reserves the right to<br/>review and update sourcing partnerships and procurement practices in accordance<br/>with international regulations, ethical sourcing standards, and internal<br/>compliance requirements.</p>"
-          }
-        },
-        "faq_gAWPgK": {
-          "type": "faq",
-          "settings": {
-            "category_key": "shipping",
-            "question": "How do I know the provenance of my individually registered diamond?",
-            "answer": "<p>Selected certified diamonds may<br/>include documentation or grading reports containing details regarding diamond<br/>characteristics and available sourcing information.</p>"
-          }
-        },
-        "faq_qk8AHU": {
-          "type": "faq",
-          "settings": {
-            "category_key": "shipping",
-            "question": "How does YAZ& Co define responsibly sourced diamonds?",
-            "answer": "<p>YAZ & Co works with suppliers who<br/>follow internationally recognized ethical sourcing standards and responsible<br/>diamond trading practices.</p>"
-          }
-        },
-        "faq_Yd3Xij": {
-          "type": "faq",
-          "settings": {
-            "category_key": "shipping",
-            "question": "How can I schedule a diamond ring consultation?",
-            "answer": "<p>YAZ & Co offers diamond jewellery<br/>consultation services for customers seeking assistance with engagement rings,<br/>wedding bands, or fine diamond jewellery selections. Consultation availability<br/>may vary depending on scheduling and service requests.</p>"
-          }
-        },
-        "faq_zxp6Jk": {
-          "type": "faq",
-          "settings": {
-            "category_key": "shipping",
-            "question": "How can I learn more about the provenance of my YAZ & Co diamond?",
-            "answer": "<p>Customers may contact YAZ & Co<br/>customer service for additional information regarding diamond sourcing,<br/>certification, and available provenance details related to their purchased<br/>jewellery.</p>"
+            "question": "Am I able to choose whether or not my YAZ & Co diamond originates from a specific country?",
+            "answer": "<p>YAZ & Co is committed to<br/>responsible sourcing practices for all diamond jewellery. While origin<br/>selection may not be available for every piece, additional information<br/>regarding diamond sourcing may be provided for selected items upon request.</p>"
           }
         },
         "faq_JRVUAy": {
@@ -100,28 +28,100 @@
             "answer": "<p>Selected YAZ & Co diamonds may<br/>include sourcing and certification information depending on the supplier and<br/>product category. Availability of traceability details may vary by jewellery<br/>piece.</p>"
           }
         },
-        "faq_YxcdBX": {
+        "faq_zxp6Jk": {
           "type": "faq",
           "settings": {
             "category_key": "shipping",
-            "question": "Am I able to choose whether or not my YAZ & Co diamond originates from a specific country?",
-            "answer": "<p>YAZ & Co is committed to<br/>responsible sourcing practices for all diamond jewellery. While origin<br/>selection may not be available for every piece, additional information<br/>regarding diamond sourcing may be provided for selected items upon request.</p>"
+            "question": "How can I learn more about the provenance of my YAZ & Co diamond?",
+            "answer": "<p>Customers may contact YAZ & Co<br/>customer service for additional information regarding diamond sourcing,<br/>certification, and available provenance details related to their purchased<br/>jewellery.</p>"
+          }
+        },
+        "faq_Yd3Xij": {
+          "type": "faq",
+          "settings": {
+            "category_key": "shipping",
+            "question": "How can I schedule a diamond ring consultation?",
+            "answer": "<p>YAZ & Co offers diamond jewellery<br/>consultation services for customers seeking assistance with engagement rings,<br/>wedding bands, or fine diamond jewellery selections. Consultation availability<br/>may vary depending on scheduling and service requests.</p>"
+          }
+        },
+        "faq_qk8AHU": {
+          "type": "faq",
+          "settings": {
+            "category_key": "shipping",
+            "question": "How does YAZ& Co define responsibly sourced diamonds?",
+            "answer": "<p>YAZ & Co works with suppliers who<br/>follow internationally recognized ethical sourcing standards and responsible<br/>diamond trading practices.</p>"
+          }
+        },
+        "faq_gAWPgK": {
+          "type": "faq",
+          "settings": {
+            "category_key": "shipping",
+            "question": "How do I know the provenance of my individually registered diamond?",
+            "answer": "<p>Selected certified diamonds may<br/>include documentation or grading reports containing details regarding diamond<br/>characteristics and available sourcing information.</p>"
+          }
+        },
+        "faq_yHbYVm": {
+          "type": "faq",
+          "settings": {
+            "category_key": "shipping",
+            "question": "Is YAZ & Co discontinuing sourcing diamonds from specific countries?",
+            "answer": "<p>YAZ & Co reserves the right to<br/>review and update sourcing partnerships and procurement practices in accordance<br/>with international regulations, ethical sourcing standards, and internal<br/>compliance requirements.</p>"
+          }
+        },
+        "faq_YUrHgr": {
+          "type": "faq",
+          "settings": {
+            "category_key": "shipping",
+            "question": "What is diamond provenance?",
+            "answer": "<p>Diamond provenance refers to the sourcing<br/>background and origin information associated with a diamond, including<br/>available details regarding where the stone was mined, processed, or certified.</p>"
+          }
+        },
+        "faq_JzUg79": {
+          "type": "faq",
+          "settings": {
+            "category_key": "shipping",
+            "question": "What is YAZ & Co doing to protect the environment?",
+            "answer": "<p>YAZ & Co supports responsible<br/>sourcing practices and works with suppliers committed to ethical business<br/>conduct, environmental awareness, and industry compliance standards.</p>"
+          }
+        },
+        "faq_YKGKLV": {
+          "type": "faq",
+          "settings": {
+            "category_key": "shipping",
+            "question": "What should I consider when purchasing diamonds?",
+            "answer": "<p>When purchasing diamond jewellery,<br/>customers may consider factors such as cut, clarity, colour, carat weight,<br/>craftsmanship, certification, and overall design preference.</p>"
+          }
+        },
+        "faq_wnFcC9": {
+          "type": "faq",
+          "settings": {
+            "category_key": "shipping",
+            "question": "Which “C” is the most important?",
+            "answer": "<p>The 4Cs — cut, clarity, colour, and<br/>carat weight — are internationally recognized standards used to evaluate<br/>diamond quality.</p><p>While all factors are important,<br/>diamond cut plays a significant role in determining brilliance, sparkle, and<br/>overall visual appearance.</p>"
+          }
+        },
+        "faq_LfnQDE": {
+          "type": "faq",
+          "settings": {
+            "category_key": "shipping",
+            "question": "Will I get a certificate with my engagement ring?",
+            "answer": "<p>Selected YAZ & Co engagement rings<br/>and certified diamond jewellery may include a diamond grading or certification<br/>document issued by an independent gemological laboratory, depending on the<br/>centre stone specifications and product category.</p>"
           }
         }
       },
       "block_order": [
-        "faq_LfnQDE",
-        "faq_wnFcC9",
-        "faq_YKGKLV",
-        "faq_JzUg79",
-        "faq_YUrHgr",
-        "faq_yHbYVm",
-        "faq_gAWPgK",
-        "faq_qk8AHU",
-        "faq_Yd3Xij",
-        "faq_zxp6Jk",
+        "faq_YxcdBX",
         "faq_JRVUAy",
-        "faq_YxcdBX"
+        "faq_zxp6Jk",
+        "faq_Yd3Xij",
+        "faq_qk8AHU",
+        "faq_gAWPgK",
+        "faq_yHbYVm",
+        "faq_YUrHgr",
+        "faq_JzUg79",
+        "faq_YKGKLV",
+        "faq_wnFcC9",
+        "faq_LfnQDE"
       ],
       "settings": {
         "heading": "",

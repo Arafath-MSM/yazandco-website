@@ -11,10 +11,32 @@
   "sections": {
     "main": {
       "type": "main-page",
-      "settings": {}
+      "settings": {
+        "margin_top": "no-indent",
+        "margin_bottom": "m"
+      }
+    },
+    "1780564201df8ea86b": {
+      "type": "apps",
+      "blocks": {
+        "cowlendar_booking_app_section_T8pMdE": {
+          "type": "shopify://apps/cowlendar-booking/blocks/app-section/6d8b8f6a-9b3c-42b8-b2e6-a758c38d45bf",
+          "settings": {
+            "section_title": "My services list",
+            "section_number": "services-list-1"
+          }
+        }
+      },
+      "block_order": [
+        "cowlendar_booking_app_section_T8pMdE"
+      ],
+      "settings": {
+        "include_margins": true
+      }
     }
   },
   "order": [
-    "main"
+    "main",
+    "1780564201df8ea86b"
   ]
 }

@@ -12,14 +12,6 @@
     "main": {
       "type": "faq-detail",
       "blocks": {
-        "faq_UFdP4n": {
-          "type": "faq",
-          "settings": {
-            "category_key": "shipping",
-            "question": "Are your designs protected?",
-            "answer": "<p>All designs and brand elements are protected<br/>under intellectual property laws.</p>"
-          }
-        },
         "faq_XLrGMp": {
           "type": "faq",
           "settings": {
@@ -27,11 +19,19 @@
             "question": "How can I verify authenticity?",
             "answer": "<p>Each piece includes an official YAZ & Co<br/>authenticator and quality inspection. </p>"
           }
+        },
+        "faq_UFdP4n": {
+          "type": "faq",
+          "settings": {
+            "category_key": "shipping",
+            "question": "Are your designs protected?",
+            "answer": "<p>All designs and brand elements are protected<br/>under intellectual property laws.</p>"
+          }
         }
       },
       "block_order": [
-        "faq_UFdP4n",
-        "faq_XLrGMp"
+        "faq_XLrGMp",
+        "faq_UFdP4n"
       ],
       "settings": {
         "heading": "",

@@ -12,23 +12,15 @@
     "main": {
       "type": "faq-detail",
       "blocks": {
-        "faq_4hMatw": {
+        "faq_eMcXkr": {
           "type": "faq",
           "settings": {
             "category_key": "shipping",
-            "question": "Can your policies change?",
-            "answer": "<p>Yes. Terms & Conditions may be updated at<br/>any time. </p>"
+            "question": "Is jewellery an investment?",
+            "answer": "<p>Jewellery is sold for personal use only. No<br/>future value or resale is guaranteed. </p>"
           }
         },
-        "faq_X6wDia": {
-          "type": "faq",
-          "settings": {
-            "category_key": "shipping",
-            "question": "How is my personal data used?",
-            "answer": "<p>Customer data is used only for order<br/>processing and communication. </p>"
-          }
-        },
-        "faq_wwqQNA": {
+        "faq_ngtmNn": {
           "type": "faq",
           "settings": {
             "category_key": "shipping",
@@ -36,20 +28,28 @@
             "answer": "<p>YAZ & Co does not offer buyback or resale<br/>services. </p>"
           }
         },
-        "faq_jaB77x": {
+        "faq_VLc7P7": {
           "type": "faq",
           "settings": {
             "category_key": "shipping",
-            "question": "Is jewellery an investment?",
-            "answer": "<p>Jewellery is sold for personal use only. No<br/>future value or resale is guaranteed.</p>"
+            "question": "How is my personal data used?",
+            "answer": "<p>Customer data is used only for order processing<br/>and communication. </p>"
+          }
+        },
+        "faq_LdkTVx": {
+          "type": "faq",
+          "settings": {
+            "category_key": "shipping",
+            "question": "Can your policies change?",
+            "answer": "<p>Yes. Terms & Conditions may be updated at<br/>any time. </p>"
           }
         }
       },
       "block_order": [
-        "faq_4hMatw",
-        "faq_X6wDia",
-        "faq_wwqQNA",
-        "faq_jaB77x"
+        "faq_eMcXkr",
+        "faq_ngtmNn",
+        "faq_VLc7P7",
+        "faq_LdkTVx"
       ],
       "settings": {
         "heading": "",
