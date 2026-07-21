@@ -39,6 +39,18 @@
             "page": "size-guide"
           }
         },
+        "tabby_pay_later_pdp_final_GPKdWV": {
+          "type": "shopify://apps/tabby-pay-later/blocks/pdp-final/b31c2495-41fc-4b20-9fc7-8cb2e9dd9a95",
+          "settings": {
+            "no_price_display": true
+          }
+        },
+        "tabby_pay_later_cart_no_rerender_tRLVmW": {
+          "type": "shopify://apps/tabby-pay-later/blocks/cart-no-rerender/b31c2495-41fc-4b20-9fc7-8cb2e9dd9a95",
+          "settings": {
+            "no_price_display": true
+          }
+        },
         "buy_buttons": {
           "type": "buy_buttons",
           "settings": {
@@ -54,6 +66,13 @@
             "description_2": "We suggest you check out similar products, maybe you will find something suitable for you.",
             "button_label_2": "View Similar Products",
             "button_link_2": ""
+          }
+        },
+        "trustyy_reviews_app_tra_star_rating_BQbn7t": {
+          "type": "shopify://apps/trustyy-reviews-app/blocks/tra_star_rating/cbb46e83-c02e-4abe-abb2-055aebf5d478",
+          "settings": {
+            "product": "",
+            "colour": "#ff0000"
           }
         },
         "description_J3BppF": {
@@ -113,7 +132,10 @@
         "price",
         "inventory",
         "variant_picker",
+        "tabby_pay_later_pdp_final_GPKdWV",
+        "tabby_pay_later_cart_no_rerender_tRLVmW",
         "buy_buttons",
+        "trustyy_reviews_app_tra_star_rating_BQbn7t",
         "description_J3BppF",
         "popup_KKFQyV",
         "popup_yX9T7z",
@@ -135,8 +157,7 @@
         "enable_full_screen": true,
         "header_overlay": false,
         "enable_sticky_button": false,
-        "variant_media_display": "show_all",
-        "certificate_variant_id": "43509266645198"
+        "variant_media_display": "show_all"
       }
     },
     "product-slider": {
@@ -240,6 +261,24 @@
         "margin_bottom": "m"
       }
     },
+    "1781700443178d6983": {
+      "type": "apps",
+      "blocks": {
+        "trustyy_reviews_app_tra_review_form_hz6YzC": {
+          "type": "shopify://apps/trustyy-reviews-app/blocks/tra_review_form/cbb46e83-c02e-4abe-abb2-055aebf5d478",
+          "settings": {
+            "product": "",
+            "colour": "#ff0000"
+          }
+        }
+      },
+      "block_order": [
+        "trustyy_reviews_app_tra_review_form_hz6YzC"
+      ],
+      "settings": {
+        "include_margins": true
+      }
+    },
     "product-recommendations": {
       "type": "product-recommendations",
       "settings": {
@@ -258,7 +297,7 @@
         "show_desc": false,
         "columns_mobile": "1",
         "button_label": "",
-        "button_link": "shopify://collections/rings-1",
+        "button_link": "shopify://collections/bracelets",
         "button_style": "simple",
         "margin_top": "no-indent",
         "margin_bottom": "m"
@@ -275,6 +314,7 @@
     "main",
     "product-slider",
     "banner-with-popup",
+    "1781700443178d6983",
     "product-recommendations",
     "17712297384d210ddf"
   ]

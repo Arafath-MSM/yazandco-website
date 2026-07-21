@@ -161,7 +161,7 @@
         "collection_item_VigLAV": {
           "type": "collection_item",
           "settings": {
-            "collection": "bracelets",
+            "collection": "necklaces",
             "image": "shopify://shop_images/NECKLACE.png",
             "button_label": "Shop Collection",
             "button_link": "",
@@ -191,7 +191,7 @@
         "collection_item_TFwJPc": {
           "type": "collection_item",
           "settings": {
-            "collection": "rings-1",
+            "collection": "bracelets",
             "image": "shopify://shop_images/BRACELET.png",
             "button_label": "Shop Collection",
             "button_link": "",

@@ -27,7 +27,7 @@
     "product_color_option_display": "count",
     "type_color_swatch": "custom",
     "swatch_type": "variant_image",
-    "favicon": "shopify://shop_images/shared_image.png",
+    "favicon": "shopify://shop_images/Image_Jul_20_2026_02_40_32_PM.png",
     "add_to_cart_enabled": true,
     "show_collection_card": true,
     "search_image": "shopify://shop_images/shopify_upload_ready.jpg",
@@ -79,6 +79,21 @@
       },
       "3886181796285292942": {
         "type": "shopify://apps/cowlendar-booking/blocks/app-embed/6d8b8f6a-9b3c-42b8-b2e6-a758c38d45bf",
+        "disabled": false,
+        "settings": {}
+      },
+      "1423561312689662386": {
+        "type": "shopify://apps/trustyy-reviews-app/blocks/tra_collection_star_rating/cbb46e83-c02e-4abe-abb2-055aebf5d478",
+        "disabled": false,
+        "settings": {}
+      },
+      "2567389343055140935": {
+        "type": "shopify://apps/microsoft-clarity/blocks/clarity_js/31c3d126-8116-4b4a-8ba1-baeda7c4aeea",
+        "disabled": false,
+        "settings": {}
+      },
+      "2200952712151285029": {
+        "type": "shopify://apps/microsoft-clarity/blocks/brandAgents_js/31c3d126-8116-4b4a-8ba1-baeda7c4aeea",
         "disabled": false,
         "settings": {}
       }

@@ -7134,7 +7134,7 @@ h1, h2, h3, h4, h5, h6,
     width:100%;
     margin:0 auto;
     font-family:'Brandon', Arial, sans-serif !important;
-    font-size:16px !important;
+    font-size:16px !important; 
     letter-spacing:1px;
 }
 
@@ -8083,4 +8083,19 @@ h1, h2, h3, h4, h5, h6,
     font-size: 18px !important;
     line-height: 1.4 !important;
   }
+}
+
+
+
+.image-wrapper {
+pointer-events: none;
+}
+.content > a {
+pointer-events: none;
+}
+
+.cowlendar-section-wrapper {
+max-width: 850px;
+margin: 0 auto !important;
+padding: 10px;
 }
