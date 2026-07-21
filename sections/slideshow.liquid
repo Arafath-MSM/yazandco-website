@@ -337,18 +337,35 @@
                   {{ block.settings.description }}
                 </div>
               {% endif %}
-              {% if block.settings.button_label != blank %}
-                <a
-                  {% if block.settings.button_link.url != blank %}
-                    href="{{ block.settings.button_link }}"
+              {% if block.settings.button_label != blank or block.settings.button_label2 != blank %}
+                <div class="slideshow__buttons slide-up-animated">
+                  {% if block.settings.button_label != blank %}
+                    <a
+                      {% if block.settings.button_link.url != blank %}
+                        href="{{ block.settings.button_link }}"
+                      {% endif %}
+                      {% if block.settings.button_link.url == blank %}
+                        aria-disabled="true"
+                      {% endif %}
+                      class="button button--{{ block.settings.button_style }} focus-inset slideshow__button"
+                    >
+                      <span>{{ block.settings.button_label }}</span>
+                    </a>
                   {% endif %}
-                  {% if block.settings.button_link.url == blank %}
-                    aria-disabled="true"
+                  {% if block.settings.button_label2 != blank %}
+                    <a
+                      {% if block.settings.button_link2.url != blank %}
+                        href="{{ block.settings.button_link2 }}"
+                      {% endif %}
+                      {% if block.settings.button_link2.url == blank %}
+                        aria-disabled="true"
+                      {% endif %}
+                      class="button button--{{ block.settings.button_style2 }} focus-inset slideshow__button"
+                    >
+                      <span>{{ block.settings.button_label2 }}</span>
+                    </a>
                   {% endif %}
-                  class="button button--{{ block.settings.button_style }} focus-inset slideshow__button slide-up-animated"
-                >
-                  <span>{{ block.settings.button_label }}</span>
-                </a>
+                </div>
               {% endif %}
             </div>
           </div>
@@ -725,6 +742,40 @@
         {
           "type": "select",
           "id": "button_style",
+          "options": [
+            {
+              "value": "primary",
+              "label": "t:sections.all.button.button_style.options__1.label"
+            },
+            {
+              "value": "secondary",
+              "label": "t:sections.all.button.button_style.options__2.label"
+            },
+            {
+              "value": "tertiary",
+              "label": "t:sections.all.button.button_style.options__3.label"
+            },
+            {
+              "value": "simple",
+              "label": "t:sections.all.button.button_style.options__4.label"
+            }
+          ],
+          "default": "tertiary",
+          "label": "t:sections.all.button.button_style.label"
+        },
+        {
+          "type": "text",
+          "id": "button_label2",
+          "label": "t:sections.all.button.button_label2.label"
+        },
+        {
+          "type": "url",
+          "id": "button_link2",
+          "label": "t:sections.all.button.button_link2.label"
+        },
+        {
+          "type": "select",
+          "id": "button_style2",
           "options": [
             {
               "value": "primary",

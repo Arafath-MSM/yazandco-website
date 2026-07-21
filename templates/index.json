@@ -27,6 +27,9 @@
             "button_label": "DISCOVER OUR STORY",
             "button_link": "shopify://pages/our-story",
             "button_style": "tertiary",
+            "button_label2": "SHOP NOW",
+            "button_link2": "shopify://collections/all",
+            "button_style2": "tertiary",
             "enable_fullscreen_link": true
           }
         },
@@ -45,6 +48,9 @@
             "button_label": "DISCOVER OUR STORY",
             "button_link": "shopify://pages/our-story",
             "button_style": "tertiary",
+            "button_label2": "SHOP NOW",
+            "button_link2": "shopify://collections/all",
+            "button_style2": "tertiary",
             "enable_fullscreen_link": true
           }
         },
@@ -64,6 +70,9 @@
             "button_label": "",
             "button_link": "",
             "button_style": "tertiary",
+            "button_label2": "",
+            "button_link2": "",
+            "button_style2": "tertiary",
             "enable_fullscreen_link": true
           }
         }

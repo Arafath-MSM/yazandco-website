@@ -197,6 +197,11 @@
   bottom: 2rem;
   transition: opacity var(--duration-default);
 }
+@media screen and (max-width: 989px) {
+  .card-wrapper .product-pagination {
+    bottom: 0.8rem;
+  }
+}
 @media screen and (min-width: 990px) {
   .card-wrapper .product-pagination {
     opacity: 0;

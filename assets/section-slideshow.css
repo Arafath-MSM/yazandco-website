@@ -218,10 +218,20 @@ section:first-child .section--has-overlay.slideshow--layout_4 .slideshow__info, 
 .slideshow__description > *:last-child {
   margin-bottom: 0;
 }
+.slideshow__buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.2rem;
+  margin-top: 1.6rem;
+}
 .slideshow__button {
   display: inline-flex !important;
   margin-top: 1.6rem;
   width: 18.7rem;
+}
+.slideshow__buttons .slideshow__button {
+  margin-top: 0;
 }
 @media screen and (min-width: 576px) {
   .slideshow__button {
@@ -229,6 +239,10 @@ section:first-child .section--has-overlay.slideshow--layout_4 .slideshow__info, 
   }
 }
 @media screen and (max-width: 575px) {
+  .slideshow__buttons {
+    flex-direction: column;
+    align-items: center;
+  }
   .slideshow__button.button--simple {
     width: auto;
   }
