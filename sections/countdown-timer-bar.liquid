@@ -56,8 +56,37 @@
     data-enable-mock-timer="{{ section.settings.enable_mock_timer | default: false }}"
     data-enable-mock-picker-day="{{ section.settings.mock_date_picker_day | default: 2 }}"
     data-enable-mock-picker-hours="{{ section.settings.mock_date_picker_hours | default: 3 }}"
+    data-rotation-speed="{{ section.settings.rotation_speed | times: 1000 }}"
   >
-    <div class="countdown-timer-bar__wrapper container{% if section.settings.promo_text == blank %} no-promo-text{% endif %}">
+    <div class="countdown-timer-bar__wrapper container{% if section.settings.promo_text == blank %} no-promo-text{% endif %}{% if section.blocks.size > 0 %} has-announcement-slider{% endif %}">
+			{% if section.blocks.size > 0 %}
+				<div class="countdown-timer-bar__announcements" aria-live="polite">
+					{% for block in section.blocks %}
+						<div
+							class="countdown-timer-bar__announcement{% if forloop.first %} is-active{% endif %}"
+							style="--announcement-background: {{ block.settings.background_color }}; --announcement-text: {{ block.settings.text_color }};"
+							data-announcement-slide
+							{% unless forloop.first %}hidden{% endunless %}
+							{{ block.shopify_attributes }}
+						>
+							<div class="countdown-timer-bar__announcement-content">
+								<span>{{ block.settings.text }}</span>
+								{% if block.settings.link_label != blank %}
+									<a
+										class="countdown-timer-bar__announcement-link focus-inset"
+										{% if block.settings.link != blank %}href="{{ block.settings.link }}"{% else %}aria-disabled="true"{% endif %}
+									>
+										{{ block.settings.link_label | escape }}
+									</a>
+								{% endif %}
+							</div>
+							{% if block.settings.link != blank and block.settings.link_label == blank %}
+								<a class="countdown-timer-bar__announcement-overlay" href="{{ block.settings.link }}" aria-label="{{ block.settings.text | strip_html | escape }}"></a>
+							{% endif %}
+						</div>
+					{% endfor %}
+				</div>
+			{% else %}
 			{% if section.settings.date_picker != blank %}
 				<div class="countdown-timer-bar__main">
 					{% liquid
@@ -199,8 +228,9 @@
 					</span>
 				</a>
 			{%- endif -%}
+			{% endif %}
     </div>
-    {% if section.settings.overlay_mobile_link and section.settings.button_link != blank %}
+    {% if section.blocks.size == 0 and section.settings.overlay_mobile_link and section.settings.button_link != blank %}
       <a
         href="{{ section.settings.button_link }}"
         class="countdown-timer-bar__link--overlay"
@@ -244,6 +274,16 @@
       "id": "color_scheme",
       "default": "background-3",
       "label": "t:sections.all.color_scheme.label"
+    },
+    {
+      "type": "range",
+      "id": "rotation_speed",
+      "min": 3,
+      "max": 12,
+      "step": 1,
+      "unit": "s",
+      "default": 5,
+      "label": "Announcement rotation speed"
     },
     {
       "type": "inline_richtext",
@@ -360,9 +400,68 @@
       "info": "t:sections.countdown-timer-bar.settings.overlay_mobile_link.info"
     }
   ],
+  "blocks": [
+    {
+      "type": "announcement",
+      "name": "Announcement",
+      "limit": 6,
+      "settings": [
+        {
+          "type": "inline_richtext",
+          "id": "text",
+          "default": "Announcement text",
+          "label": "Text"
+        },
+        {
+          "type": "text",
+          "id": "link_label",
+          "label": "Link label"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        },
+        {
+          "type": "color",
+          "id": "background_color",
+          "default": "#ffffff",
+          "label": "Background color"
+        },
+        {
+          "type": "color",
+          "id": "text_color",
+          "default": "#000000",
+          "label": "Text color"
+        }
+      ]
+    }
+  ],
   "presets": [
 		{
-			"name": "t:sections.countdown-timer-bar.name"
+			"name": "t:sections.countdown-timer-bar.name",
+			"blocks": [
+				{
+					"type": "announcement",
+					"settings": {
+						"text": "Jewellery that lives with you",
+						"link_label": "Shop now",
+						"link": "shopify://collections/all"
+					}
+				},
+				{
+					"type": "announcement",
+					"settings": {
+						"text": "SPARKLE NOW, PAY LATER WITH TABBY"
+					}
+				},
+				{
+					"type": "announcement",
+					"settings": {
+						"text": "RECEIVE 10% OFF YOUR FIRST PURCHASE WITH CODE WELCOME10"
+					}
+				}
+			]
 		}
 	]
 }

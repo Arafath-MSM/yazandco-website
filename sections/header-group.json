@@ -13,10 +13,48 @@
   "sections": {
     "countdown-timer-bar": {
       "type": "countdown-timer-bar",
+      "blocks": {
+        "announcement_jewellery": {
+          "type": "announcement",
+          "settings": {
+            "text": "Jewellery that lives with you",
+            "link_label": "Shop now",
+            "link": "shopify://collections/all",
+            "background_color": "#ffffff",
+            "text_color": "#000000"
+          }
+        },
+        "announcement_tabby": {
+          "type": "announcement",
+          "settings": {
+            "text": "SPARKLE NOW, PAY LATER WITH TABBY",
+            "link_label": "",
+            "link": "",
+            "background_color": "#d8d3b8",
+            "text_color": "#000000"
+          }
+        },
+        "announcement_welcome": {
+          "type": "announcement",
+          "settings": {
+            "text": "RECEIVE 10% OFF YOUR FIRST PURCHASE WITH CODE WELCOME10",
+            "link_label": "",
+            "link": "",
+            "background_color": "#fffdf0",
+            "text_color": "#000000"
+          }
+        }
+      },
+      "block_order": [
+        "announcement_jewellery",
+        "announcement_tabby",
+        "announcement_welcome"
+      ],
       "settings": {
         "height": 40,
         "height_mobile": 40,
         "color_scheme": "",
+        "rotation_speed": 5,
         "promo_text": "Jewellery that lives with you",
         "enable_mock_timer": false,
         "mock_date_picker_day": 2,

@@ -356,6 +356,8 @@
     <script src="{{ 'swiper-bundle.min.js' | asset_url }}" defer="defer"></script>
     <script src="{{ 'product-card.js' | asset_url }}" defer="defer"></script>
     <script src="{{ 'popup.js' | asset_url }}" defer="defer"></script>
+    {% comment %}Temporary: mobile height override for the Welcome Bonus Shopify Form.{% endcomment %}
+    <script src="{{ 'shopify-forms-mobile-override.js' | asset_url }}" defer="defer"></script>
     {% if settings.home_page_slider and template.name == "index" %} 
       <script src="{{ 'slider-demo.js' | asset_url }}" defer="defer"></script> 
     {% endif %}

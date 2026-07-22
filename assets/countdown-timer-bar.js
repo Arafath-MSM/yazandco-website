@@ -32,7 +32,43 @@ if (!customElements.get('countdown-timer-bar')) {
 
       this.interval;
       this.setInterval(this.userDate, this.userTime);
+      this.initAnnouncements();
       this.calcHeight();
+    }
+
+    initAnnouncements() {
+      this.slides = Array.from(this.querySelectorAll('[data-announcement-slide]'));
+      if (this.slides.length < 2) return;
+
+      this.currentSlide = Math.max(this.slides.findIndex((slide) => slide.classList.contains('is-active')), 0);
+      this.rotationSpeed = Number(this.dataset.rotationSpeed) || 5000;
+      this.startAnnouncementRotation();
+
+      this.addEventListener('mouseenter', () => this.stopAnnouncementRotation());
+      this.addEventListener('mouseleave', () => this.startAnnouncementRotation());
+      this.addEventListener('focusin', () => this.stopAnnouncementRotation());
+      this.addEventListener('focusout', () => this.startAnnouncementRotation());
+    }
+
+    showAnnouncement(index) {
+      this.slides.forEach((slide, slideIndex) => {
+        const isActive = slideIndex === index;
+        slide.hidden = !isActive;
+        slide.classList.toggle('is-active', isActive);
+      });
+      this.currentSlide = index;
+    }
+
+    startAnnouncementRotation() {
+      if (!this.slides || this.slides.length < 2 || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      this.stopAnnouncementRotation();
+      this.announcementInterval = window.setInterval(() => {
+        this.showAnnouncement((this.currentSlide + 1) % this.slides.length);
+      }, this.rotationSpeed);
+    }
+
+    stopAnnouncementRotation() {
+      window.clearInterval(this.announcementInterval);
     }
   
     onInit(userDate, userTime) {

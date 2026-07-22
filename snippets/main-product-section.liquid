@@ -943,12 +943,7 @@
                     </div>
                   {% endif %}
 
-                  <product-form
-                    class="product-form"
-                    data-hide-errors="{{ gift_card_recipient_feature_active }}"
-                    data-certificate-variant-id="43509266645198"
-                    data-product-title="{{ product.title | escape }}"
-                  >
+                  <product-form class="product-form" data-hide-errors="{{ gift_card_recipient_feature_active }}">
                     <div class="product-form__error-message-wrapper" role="alert" hidden>
                       <svg
                         aria-hidden="true"
@@ -980,27 +975,6 @@
                           placeholder="Add your note here..."
                           rows="1"
                         ></textarea>
-                      </div>
-                      <div class="field field--checkbox certificate-field">
-                        <input
-                          type="checkbox"
-                          id="certificate-included-{{ section.id }}"
-                          name="properties[Certificate Included]"
-                          value="Yes"
-                        >
-                        <label for="certificate-included-{{ section.id }}">
-                          <svg
-                            class="icon icon-checkmark"
-                            width="8"
-                            height="7"
-                            viewBox="0 0 8 7"
-                            fill="none"
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <path d="M7 1L3 5L1 3" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
-                          </svg>
-                          <span>Certificate included</span>
-                        </label>
                       </div>
                       <input
                         type="hidden"
