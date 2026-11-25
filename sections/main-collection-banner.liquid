@@ -1,8 +1,8 @@
-{{ 'component-collection-hero.css' | asset_url | stylesheet_tag }}
+{% comment %} {% comment %} {% comment %} {{ 'component-collection-hero.css' | asset_url | stylesheet_tag }}
 
 {%- style -%}
   {% render 'section-margin' %}
-{%- endstyle -%}
+{%- endstyle -%}  
 
 <div class="collection-hero">
   <div class="collection-hero__wrapper ">
@@ -133,6 +133,5194 @@
       ],
       "default": "no-indent",
       "label": "t:sections.all.section-margin.margin_bottom.label"
+    }
+  ]
+}
+{% endschema %} {% endcomment %}
+
+
+
+{% comment %}
+  AJAX Collection Hero
+  - Title + description layout
+  - Collection tabs via blocks
+  - AJAX collection switching
+  - Mobile horizontal scroll
+  - Fully customizable through schema
+{% endcomment %}
+
+{%- liquid
+  assign description_text = collection.description
+
+  if section.settings.description_source == 'custom'
+    assign description_text = section.settings.custom_description
+  endif
+-%}
+
+<section
+  id="AjaxCollectionHero-{{ section.id }}"
+  class="ajax-collection-hero{% if section.settings.background_image != blank %} has-background-image{% endif %}"
+  data-section-id="{{ section.id }}"
+  data-update-url="{{ section.settings.update_url }}"
+  style="
+    --hero-bg: {{ section.settings.background_color }};
+    {%- if section.settings.background_image != blank -%}
+      --hero-bg-image: url('{{ section.settings.background_image | image_url: width: 2000 }}');
+    {%- endif -%}
+    --hero-bg-position: {{ section.settings.background_image_position }};
+    --hero-overlay-color: {{ section.settings.overlay_color }};
+    --hero-overlay-opacity: {{ section.settings.overlay_opacity | divided_by: 100.0 }};
+    --hero-text: {{ section.settings.text_color }};
+    --hero-border: {{ section.settings.divider_color }};
+    --tab-text: {{ section.settings.tab_text_color }};
+    --tab-border: {{ section.settings.tab_border_color }};
+    --tab-bg: {{ section.settings.tab_background_color }};
+    --tab-active-text: {{ section.settings.tab_active_text_color }};
+    --tab-active-bg: {{ section.settings.tab_active_background_color }};
+    --tab-active-border: {{ section.settings.tab_active_border_color }};
+
+    --hero-max-width: {{ section.settings.max_width }}px;
+    --hero-desktop-gap: {{ section.settings.desktop_column_gap }}px;
+
+    --hero-padding-top-desktop: {{ section.settings.padding_top_desktop }}px;
+    --hero-padding-bottom-desktop: {{ section.settings.padding_bottom_desktop }}px;
+    --hero-padding-x-desktop: {{ section.settings.padding_horizontal_desktop }}px;
+
+    --hero-padding-top-mobile: {{ section.settings.padding_top_mobile }}px;
+    --hero-padding-bottom-mobile: {{ section.settings.padding_bottom_mobile }}px;
+    --hero-padding-x-mobile: {{ section.settings.padding_horizontal_mobile }}px;
+
+    --title-size-desktop: {{ section.settings.title_size_desktop }}px;
+    --title-size-mobile: {{ section.settings.title_size_mobile }}px;
+    --title-line-height: {{ section.settings.title_line_height | divided_by: 100.0 }};
+
+    --desc-size-desktop: {{ section.settings.description_size_desktop }}px;
+    --desc-size-mobile: {{ section.settings.description_size_mobile }}px;
+    --desc-line-height: {{ section.settings.description_line_height | divided_by: 100.0 }};
+
+    --tabs-margin-top-desktop: {{ section.settings.tabs_margin_top_desktop }}px;
+    --tabs-margin-top-mobile: {{ section.settings.tabs_margin_top_mobile }}px;
+    --tabs-gap: {{ section.settings.tabs_gap }}px;
+
+    --tab-padding-y: {{ section.settings.tab_padding_vertical }}px;
+    --tab-padding-x: {{ section.settings.tab_padding_horizontal }}px;
+    --tab-font-size: {{ section.settings.tab_font_size }}px;
+    --tab-border-width: {{ section.settings.tab_border_width }}px;
+    --tab-radius: {{ section.settings.tab_border_radius }}px;
+  "
+>
+  <div class="ajax-collection-hero__container">
+
+    <div class="ajax-collection-hero__top">
+      <div class="ajax-collection-hero__heading">
+        <h1 class="ajax-collection-hero__title">
+          {{ collection.title | escape }}
+        </h1>
+      </div>
+
+      {%- if section.settings.show_description and description_text != blank -%}
+        <div class="ajax-collection-hero__description">
+          <div
+            class="ajax-collection-hero__description-content rte{% if section.settings.enable_read_more %} is-collapsed{% endif %}"
+            data-description
+          >
+            {{ description_text }}
+          </div>
+
+          {%- if section.settings.enable_read_more -%}
+            <button
+              type="button"
+              class="ajax-collection-hero__read-more"
+              data-read-more
+              aria-expanded="false"
+            >
+              <span data-read-more-text>
+                {{ section.settings.read_more_label | escape }}
+              </span>
+
+              <span
+                data-read-less-text
+                hidden
+              >
+                {{ section.settings.read_less_label | escape }}
+              </span>
+            </button>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+    </div>
+
+    {%- if section.blocks.size > 0 -%}
+      <div class="ajax-collection-hero__tabs-wrap">
+        <div
+          class="ajax-collection-hero__tabs"
+          role="navigation"
+          aria-label="{{ section.settings.tabs_aria_label | escape }}"
+        >
+          {%- for block in section.blocks -%}
+            {%- liquid
+              assign tab_collection = block.settings.collection
+              assign tab_label = block.settings.custom_label
+
+              if tab_label == blank and tab_collection != blank
+                assign tab_label = tab_collection.title
+              endif
+
+              assign tab_url = block.settings.custom_url
+
+              if tab_url == blank and tab_collection != blank
+                assign tab_url = tab_collection.url
+              endif
+
+              assign is_active = false
+
+              if tab_collection != blank and tab_collection.handle == collection.handle
+                assign is_active = true
+              endif
+            -%}
+
+            {%- if tab_url != blank and tab_label != blank -%}
+              <a
+                href="{{ tab_url }}"
+                class="ajax-collection-hero__tab{% if is_active %} is-active{% endif %}"
+                data-collection-tab
+                {% if tab_collection != blank %}
+                  data-collection-handle="{{ tab_collection.handle }}"
+                {% endif %}
+                {% if is_active %}
+                  aria-current="page"
+                {% endif %}
+                {{ block.shopify_attributes }}
+              >
+                {{ tab_label | escape }}
+              </a>
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+      </div>
+    {%- endif -%}
+
+  </div>
+
+  {%- if section.settings.show_loading_overlay -%}
+    <div
+      class="ajax-collection-hero__loader"
+      data-collection-loader
+      aria-hidden="true"
+    >
+      <span class="ajax-collection-hero__spinner"></span>
+    </div>
+  {%- endif -%}
+</section>
+
+
+<style>
+  #AjaxCollectionHero-{{ section.id }} {
+    position: relative;
+    width: 100%;
+    background: var(--hero-bg);
+    background-image: var(--hero-bg-image, none);
+    background-size: cover;
+    background-position: var(--hero-bg-position);
+    background-repeat: no-repeat;
+    color: var(--hero-text);
+    border-bottom: 1px solid var(--hero-border);
+  }
+
+  #AjaxCollectionHero-{{ section.id }}.has-background-image::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background: var(--hero-overlay-color);
+    opacity: var(--hero-overlay-opacity);
+    pointer-events: none;
+  }
+
+  #AjaxCollectionHero-{{ section.id }}.has-background-image .ajax-collection-hero__container {
+    position: relative;
+    z-index: 1;
+  }
+
+  #AjaxCollectionHero-{{ section.id }} *,
+  #AjaxCollectionHero-{{ section.id }} *::before,
+  #AjaxCollectionHero-{{ section.id }} *::after {
+    box-sizing: border-box;
+  }
+
+  #AjaxCollectionHero-{{ section.id }} .ajax-collection-hero__container {
+    width: 100%;
+    max-width: var(--hero-max-width);
+    margin: 0 auto;
+    padding:
+      var(--hero-padding-top-desktop)
+      var(--hero-padding-x-desktop)
+      var(--hero-padding-bottom-desktop);
+  }
+
+  /* =========================
+     TOP DESKTOP LAYOUT
+  ========================== */
+
+  #AjaxCollectionHero-{{ section.id }} .ajax-collection-hero__top {
+    display: grid;
+    grid-template-columns:
+      minmax(240px, {{ section.settings.title_column_width }}%)
+      minmax(0, 1fr);
+    column-gap: var(--hero-desktop-gap);
+    align-items: start;
+  }
+
+  #AjaxCollectionHero-{{ section.id }} .ajax-collection-hero__heading,
+  #AjaxCollectionHero-{{ section.id }} .ajax-collection-hero__description {
+    min-width: 0;
+  }
+
+  #AjaxCollectionHero-{{ section.id }} .ajax-collection-hero__title {
+    margin: 0;
+    padding: 0;
+    color: var(--hero-text);
+    font-size: var(--title-size-desktop);
+    line-height: var(--title-line-height);
+    font-weight: {{ section.settings.title_font_weight }};
+    letter-spacing: {{ section.settings.title_letter_spacing | divided_by: 100.0 }}px;
+    text-transform: {{ section.settings.title_transform }};
+  }
+
+  #AjaxCollectionHero-{{ section.id }} .ajax-collection-hero__description {
+    color: var(--hero-text);
+    font-size: var(--desc-size-desktop);
+    line-height: var(--desc-line-height);
+    font-weight: {{ section.settings.description_font_weight }};
+  }
+
+  #AjaxCollectionHero-{{ section.id }} .ajax-collection-hero__description-content {
+    position: relative;
+    overflow: hidden;
+    transition: max-height 0.35s ease;
+  }
+
+  #AjaxCollectionHero-{{ section.id }} .ajax-collection-hero__description-content > *:first-child {
+    margin-top: 0;
+  }
+
+  #AjaxCollectionHero-{{ section.id }} .ajax-collection-hero__description-content > *:last-child {
+    margin-bottom: 0;
+  }
+
+  #AjaxCollectionHero-{{ section.id }} .ajax-collection-hero__description-content p {
+    font-size: inherit;
+    line-height: inherit;
+    color: inherit;
+  }
+
+  #AjaxCollectionHero-{{ section.id }} .ajax-collection-hero__description-content.is-collapsed {
+    max-height: {{ section.settings.description_collapsed_height_desktop }}px;
+  }
+
+  #AjaxCollectionHero-{{ section.id }} .ajax-collection-hero__description-content.is-expanded {
+    max-height: 2000px;
+  }
+
+  #AjaxCollectionHero-{{ section.id }} .ajax-collection-hero__read-more {
+    appearance: none;
+    -webkit-appearance: none;
+    display: inline-block;
+    margin: {{ section.settings.read_more_margin_top }}px 0 0;
+    padding: 0;
+    border: 0;
+    border-bottom: {{ section.settings.read_more_underline_width }}px solid currentColor;
+    border-radius: 0;
+    background: transparent;
+    color: var(--hero-text);
+    font: inherit;
+    font-size: {{ section.settings.read_more_font_size }}px;
+    line-height: 1.3;
+    cursor: pointer;
+  }
+
+  #AjaxCollectionHero-{{ section.id }} .ajax-collection-hero__read-more:hover {
+    opacity: 0.65;
+  }
+
+  /* =========================
+     TABS
+  ========================== */
+
+  #AjaxCollectionHero-{{ section.id }} .ajax-collection-hero__tabs-wrap {
+    margin-top: var(--tabs-margin-top-desktop);
+  }
+
+  #AjaxCollectionHero-{{ section.id }} .ajax-collection-hero__tabs {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--tabs-gap);
+  }
+
+  #AjaxCollectionHero-{{ section.id }} .ajax-collection-hero__tab {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 auto;
+    min-height: {{ section.settings.tab_min_height }}px;
+    padding: var(--tab-padding-y) var(--tab-padding-x);
+
+    border:
+      var(--tab-border-width)
+      solid
+      var(--tab-border);
+
+    border-radius: var(--tab-radius);
+
+    background: var(--tab-bg);
+    color: var(--tab-text);
+
+    font-size: var(--tab-font-size);
+    line-height: 1.2;
+    font-weight: {{ section.settings.tab_font_weight }};
+    letter-spacing: {{ section.settings.tab_letter_spacing | divided_by: 100.0 }}px;
+    text-transform: {{ section.settings.tab_text_transform }};
+    text-decoration: none;
+    white-space: nowrap;
+
+    transition:
+      background-color 0.2s ease,
+      color 0.2s ease,
+      border-color 0.2s ease,
+      opacity 0.2s ease;
+  }
+
+  #AjaxCollectionHero-{{ section.id }} .ajax-collection-hero__tab:hover {
+    opacity: 0.72;
+  }
+
+  #AjaxCollectionHero-{{ section.id }} .ajax-collection-hero__tab.is-active {
+    background: var(--tab-active-bg);
+    color: var(--tab-active-text);
+    border-color: var(--tab-active-border);
+  }
+
+  /* =========================
+     AJAX LOADER
+  ========================== */
+
+  #AjaxCollectionHero-{{ section.id }} .ajax-collection-hero__loader {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    pointer-events: none;
+    opacity: 0;
+    visibility: hidden;
+    background: rgba(255,255,255,0.25);
+    transition:
+      opacity 0.2s ease,
+      visibility 0.2s ease;
+  }
+
+  #AjaxCollectionHero-{{ section.id }}.is-loading .ajax-collection-hero__loader {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  #AjaxCollectionHero-{{ section.id }} .ajax-collection-hero__spinner {
+    width: 36px;
+    height: 36px;
+    border: 2px solid rgba(0,0,0,0.15);
+    border-top-color: currentColor;
+    border-radius: 50%;
+    animation: ajaxCollectionSpinner 0.7s linear infinite;
+  }
+
+  @keyframes ajaxCollectionSpinner {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  /* =========================
+     MOBILE
+  ========================== */
+
+  @media screen and (max-width: 749px) {
+    #AjaxCollectionHero-{{ section.id }} .ajax-collection-hero__container {
+      padding:
+        var(--hero-padding-top-mobile)
+        var(--hero-padding-x-mobile)
+        var(--hero-padding-bottom-mobile);
+    }
+
+    #AjaxCollectionHero-{{ section.id }} .ajax-collection-hero__top {
+      display: flex;
+      flex-direction: column;
+      gap: {{ section.settings.mobile_content_gap }}px;
+    }
+
+    #AjaxCollectionHero-{{ section.id }} .ajax-collection-hero__title {
+      font-size: var(--title-size-mobile);
+    }
+
+    #AjaxCollectionHero-{{ section.id }} .ajax-collection-hero__description {
+      width: 100%;
+      font-size: var(--desc-size-mobile);
+    }
+
+    #AjaxCollectionHero-{{ section.id }} .ajax-collection-hero__description-content.is-collapsed {
+      max-height: {{ section.settings.description_collapsed_height_mobile }}px;
+    }
+
+    #AjaxCollectionHero-{{ section.id }} .ajax-collection-hero__tabs-wrap {
+      width: calc(100% + var(--hero-padding-x-mobile));
+      margin-top: var(--tabs-margin-top-mobile);
+      overflow: hidden;
+    }
+
+    #AjaxCollectionHero-{{ section.id }} .ajax-collection-hero__tabs {
+      display: flex;
+      flex-wrap: nowrap;
+      gap: var(--tabs-gap);
+      width: 100%;
+      overflow-x: auto;
+      overflow-y: hidden;
+      padding-right: var(--hero-padding-x-mobile);
+      padding-bottom: 4px;
+
+      scroll-behavior: smooth;
+      scroll-snap-type: x proximity;
+      scrollbar-width: none;
+
+      -webkit-overflow-scrolling: touch;
+    }
+
+    #AjaxCollectionHero-{{ section.id }} .ajax-collection-hero__tabs::-webkit-scrollbar {
+      display: none;
+    }
+
+    #AjaxCollectionHero-{{ section.id }} .ajax-collection-hero__tab {
+      flex: 0 0 auto;
+      scroll-snap-align: start;
+    }
+  }
+</style>
+
+
+<script>
+  (() => {
+    const sectionId = 'AjaxCollectionHero-{{ section.id }}';
+
+    function initAjaxCollectionHero() {
+      const section = document.getElementById(sectionId);
+
+      if (!section || section.dataset.initialized === 'true') return;
+
+      section.dataset.initialized = 'true';
+
+      const tabs = section.querySelectorAll('[data-collection-tab]');
+      const readMoreButton = section.querySelector('[data-read-more]');
+
+      /* ============================
+         READ MORE
+      ============================ */
+
+      if (readMoreButton) {
+        readMoreButton.addEventListener('click', function () {
+          const description = section.querySelector('[data-description]');
+          const moreText = this.querySelector('[data-read-more-text]');
+          const lessText = this.querySelector('[data-read-less-text]');
+
+          if (!description) return;
+
+          const expanded = this.getAttribute('aria-expanded') === 'true';
+
+          if (expanded) {
+            description.classList.remove('is-expanded');
+            description.classList.add('is-collapsed');
+
+            this.setAttribute('aria-expanded', 'false');
+
+            if (moreText) moreText.hidden = false;
+            if (lessText) lessText.hidden = true;
+          } else {
+            description.classList.remove('is-collapsed');
+            description.classList.add('is-expanded');
+
+            this.setAttribute('aria-expanded', 'true');
+
+            if (moreText) moreText.hidden = true;
+            if (lessText) lessText.hidden = false;
+          }
+        });
+      }
+
+      /* ============================
+         COLLECTION AJAX
+      ============================ */
+
+      tabs.forEach((tab) => {
+        tab.addEventListener('click', async function (event) {
+          if (
+            event.ctrlKey ||
+            event.metaKey ||
+            event.shiftKey ||
+            event.altKey
+          ) {
+            return;
+          }
+
+          event.preventDefault();
+
+          const url = this.href;
+
+          if (!url || this.classList.contains('is-active')) {
+            scrollActiveTab(this);
+            return;
+          }
+
+          await loadCollection(url, this);
+        });
+      });
+
+      /* Mobile: active tab visible automatically */
+      const activeTab = section.querySelector(
+        '[data-collection-tab].is-active'
+      );
+
+      if (activeTab) {
+        setTimeout(() => {
+          scrollActiveTab(activeTab, false);
+        }, 150);
+      }
+    }
+
+
+    async function loadCollection(url, clickedTab, pushState = true) {
+      const section = document.getElementById(sectionId);
+
+      if (!section || section.classList.contains('is-loading')) return;
+
+      section.classList.add('is-loading');
+      section.setAttribute('aria-busy', 'true');
+
+      try {
+        const response = await fetch(url, {
+          method: 'GET',
+          headers: {
+            'X-Requested-With': 'XMLHttpRequest'
+          }
+        });
+
+        if (!response.ok) {
+          throw new Error('Collection AJAX request failed');
+        }
+
+        const html = await response.text();
+
+        const parser = new DOMParser();
+        const newDocument = parser.parseFromString(html, 'text/html');
+
+        /*
+          Product grid selectors.
+
+          #ProductGridContainer = Dawn / many Shopify themes
+          .product-grid-container = common Shopify structure
+          [data-product-grid] = custom themes
+          .collection-product-list = some premium themes
+        */
+
+        const currentGrid =
+          document.querySelector('#ProductGridContainer') ||
+          document.querySelector('[data-product-grid]') ||
+          document.querySelector('.product-grid-container') ||
+          document.querySelector('.collection-product-list');
+
+        const newGrid =
+          newDocument.querySelector('#ProductGridContainer') ||
+          newDocument.querySelector('[data-product-grid]') ||
+          newDocument.querySelector('.product-grid-container') ||
+          newDocument.querySelector('.collection-product-list');
+
+        if (!currentGrid || !newGrid) {
+          /*
+            Fallback:
+            Agar theme ka product grid selector different ho,
+            user ko broken page dikhane ke bajaye normal URL open hoga.
+          */
+          window.location.href = url;
+          return;
+        }
+
+        /* Replace products / filters / pagination */
+        currentGrid.innerHTML = newGrid.innerHTML;
+
+        /* Update collection title */
+        const currentTitle = section.querySelector(
+          '.ajax-collection-hero__title'
+        );
+
+        const newTitle = newDocument.querySelector(
+          '.ajax-collection-hero__title'
+        );
+
+        if (currentTitle && newTitle) {
+          currentTitle.innerHTML = newTitle.innerHTML;
+        }
+
+        /* Update description */
+        const currentDescription = section.querySelector(
+          '[data-description]'
+        );
+
+        const newDescription = newDocument.querySelector(
+          '[data-description]'
+        );
+
+        if (currentDescription && newDescription) {
+          currentDescription.innerHTML = newDescription.innerHTML;
+
+          currentDescription.classList.remove('is-expanded');
+
+          {% if section.settings.enable_read_more %}
+            currentDescription.classList.add('is-collapsed');
+          {% else %}
+            currentDescription.classList.remove('is-collapsed');
+          {% endif %}
+        }
+
+        /* Reset read more button */
+        const readMore = section.querySelector('[data-read-more]');
+
+        if (readMore) {
+          const moreText = readMore.querySelector(
+            '[data-read-more-text]'
+          );
+
+          const lessText = readMore.querySelector(
+            '[data-read-less-text]'
+          );
+
+          readMore.setAttribute('aria-expanded', 'false');
+
+          if (moreText) moreText.hidden = false;
+          if (lessText) lessText.hidden = true;
+        }
+
+        /* Active tab */
+        section
+          .querySelectorAll('[data-collection-tab]')
+          .forEach((tab) => {
+            tab.classList.remove('is-active');
+            tab.removeAttribute('aria-current');
+          });
+
+        if (clickedTab) {
+          clickedTab.classList.add('is-active');
+          clickedTab.setAttribute('aria-current', 'page');
+
+          scrollActiveTab(clickedTab);
+        }
+
+        /* Update URL without refresh */
+        if (
+          pushState &&
+          section.dataset.updateUrl !== 'false'
+        ) {
+          window.history.pushState(
+            {
+              ajaxCollection: true,
+              url: url
+            },
+            '',
+            url
+          );
+        }
+
+        /*
+          Re-run common Shopify events.
+          Useful for product cards, quick add, swatches etc.
+        */
+        document.dispatchEvent(
+          new CustomEvent('collection:ajax:loaded', {
+            detail: {
+              url: url,
+              container: currentGrid
+            }
+          })
+        );
+
+        window.dispatchEvent(new Event('resize'));
+
+        {% if section.settings.scroll_to_products %}
+          const productTop =
+            currentGrid.getBoundingClientRect().top +
+            window.pageYOffset -
+            {{ section.settings.scroll_offset }};
+
+          window.scrollTo({
+            top: productTop,
+            behavior: 'smooth'
+          });
+        {% endif %}
+      } catch (error) {
+        console.error(error);
+
+        /*
+          Safe fallback if fetch fails.
+        */
+        window.location.href = url;
+      } finally {
+        const currentSection =
+          document.getElementById(sectionId);
+
+        if (currentSection) {
+          currentSection.classList.remove('is-loading');
+          currentSection.removeAttribute('aria-busy');
+        }
+      }
+    }
+
+
+    function scrollActiveTab(tab, smooth = true) {
+      if (!tab) return;
+
+      const tabsContainer = tab.closest(
+        '.ajax-collection-hero__tabs'
+      );
+
+      if (!tabsContainer) return;
+
+      if (window.innerWidth <= 749) {
+        tab.scrollIntoView({
+          behavior: smooth ? 'smooth' : 'auto',
+          inline: 'center',
+          block: 'nearest'
+        });
+      }
+    }
+
+
+    /* Browser back / forward */
+    window.addEventListener('popstate', function () {
+      const section =
+        document.getElementById(sectionId);
+
+      if (!section) return;
+
+      const currentPath =
+        window.location.pathname.replace(/\/$/, '');
+
+      const matchingTab = Array.from(
+        section.querySelectorAll('[data-collection-tab]')
+      ).find((tab) => {
+        try {
+          return (
+            new URL(tab.href).pathname.replace(/\/$/, '') ===
+            currentPath
+          );
+        } catch (e) {
+          return false;
+        }
+      });
+
+      if (matchingTab) {
+        loadCollection(
+          window.location.href,
+          matchingTab,
+          false
+        );
+      } else {
+        window.location.reload();
+      }
+    });
+
+
+    /* Initial load */
+    if (document.readyState === 'loading') {
+      document.addEventListener(
+        'DOMContentLoaded',
+        initAjaxCollectionHero
+      );
+    } else {
+      initAjaxCollectionHero();
+    }
+
+    /* Shopify Theme Editor */
+    document.addEventListener(
+      'shopify:section:load',
+      function (event) {
+        if (
+          event.target &&
+          event.target.querySelector &&
+          (
+            event.target.id === sectionId ||
+            event.target.querySelector(
+              '#' + sectionId
+            )
+          )
+        ) {
+          const section =
+            document.getElementById(sectionId);
+
+          if (section) {
+            delete section.dataset.initialized;
+          }
+
+          initAjaxCollectionHero();
+        }
+      }
+    );
+  })();
+</script>
+
+
+{% schema %}
+{
+  "name": "AJAX Collection Hero",
+  "tag": "section",
+  "class": "section-ajax-collection-hero",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_description",
+      "label": "Show collection description",
+      "default": true
+    },
+    {
+      "type": "select",
+      "id": "description_source",
+      "label": "Description source",
+      "default": "collection",
+      "options": [
+        {
+          "value": "collection",
+          "label": "Collection description"
+        },
+        {
+          "value": "custom",
+          "label": "Custom description"
+        }
+      ]
+    },
+    {
+      "type": "richtext",
+      "id": "custom_description",
+      "label": "Custom description",
+      "default": "<p>In the perfect combination of form and function, this range of versatile styles will take you seamlessly from day to night.</p>"
+    },
+
+    {
+      "type": "header",
+      "content": "Read more"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_read_more",
+      "label": "Enable Read More",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "read_more_label",
+      "label": "Read more text",
+      "default": "Read More"
+    },
+    {
+      "type": "text",
+      "id": "read_less_label",
+      "label": "Read less text",
+      "default": "Read Less"
+    },
+    {
+      "type": "range",
+      "id": "description_collapsed_height_desktop",
+      "min": 20,
+      "max": 200,
+      "step": 5,
+      "unit": "px",
+      "label": "Desktop collapsed description height",
+      "default": 25
+    },
+    {
+      "type": "range",
+      "id": "description_collapsed_height_mobile",
+      "min": 20,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Mobile collapsed description height",
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "read_more_margin_top",
+      "min": 0,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "label": "Read More top spacing",
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "read_more_font_size",
+      "min": 10,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "label": "Read More font size",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "read_more_underline_width",
+      "min": 0,
+      "max": 3,
+      "step": 1,
+      "unit": "px",
+      "label": "Read More underline",
+      "default": 1
+    },
+
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "max_width",
+      "min": 1000,
+      "max": 2000,
+      "step": 20,
+      "unit": "px",
+      "label": "Content max width",
+      "default": 1600
+    },
+    {
+      "type": "range",
+      "id": "title_column_width",
+      "min": 20,
+      "max": 50,
+      "step": 1,
+      "unit": "%",
+      "label": "Desktop title column width",
+      "default": 34
+    },
+    {
+      "type": "range",
+      "id": "desktop_column_gap",
+      "min": 10,
+      "max": 120,
+      "step": 2,
+      "unit": "px",
+      "label": "Desktop title / description gap",
+      "default": 30
+    },
+    {
+      "type": "range",
+      "id": "mobile_content_gap",
+      "min": 5,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "label": "Mobile title / description gap",
+      "default": 24
+    },
+
+    {
+      "type": "header",
+      "content": "Title typography"
+    },
+    {
+      "type": "range",
+      "id": "title_size_desktop",
+      "min": 24,
+      "max": 90,
+      "step": 1,
+      "unit": "px",
+      "label": "Desktop title size",
+      "default": 46
+    },
+    {
+      "type": "range",
+      "id": "title_size_mobile",
+      "min": 24,
+      "max": 64,
+      "step": 1,
+      "unit": "px",
+      "label": "Mobile title size",
+      "default": 44
+    },
+    {
+      "type": "select",
+      "id": "title_font_weight",
+      "label": "Title font weight",
+      "default": "400",
+      "options": [
+        {
+          "value": "300",
+          "label": "Light"
+        },
+        {
+          "value": "400",
+          "label": "Regular"
+        },
+        {
+          "value": "500",
+          "label": "Medium"
+        },
+        {
+          "value": "600",
+          "label": "Semi bold"
+        },
+        {
+          "value": "700",
+          "label": "Bold"
+        }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "title_line_height",
+      "min": 80,
+      "max": 160,
+      "step": 5,
+      "unit": "%",
+      "label": "Title line height",
+      "default": 105
+    },
+    {
+      "type": "range",
+      "id": "title_letter_spacing",
+      "min": -50,
+      "max": 100,
+      "step": 5,
+      "label": "Title letter spacing",
+      "default": 0,
+      "info": "Value is divided by 100 to create px spacing."
+    },
+    {
+      "type": "select",
+      "id": "title_transform",
+      "label": "Title capitalization",
+      "default": "none",
+      "options": [
+        {
+          "value": "none",
+          "label": "Normal"
+        },
+        {
+          "value": "uppercase",
+          "label": "Uppercase"
+        },
+        {
+          "value": "capitalize",
+          "label": "Capitalize"
+        }
+      ]
+    },
+
+    {
+      "type": "header",
+      "content": "Description typography"
+    },
+    {
+      "type": "range",
+      "id": "description_size_desktop",
+      "min": 12,
+      "max": 32,
+      "step": 1,
+      "unit": "px",
+      "label": "Desktop description size",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "description_size_mobile",
+      "min": 12,
+      "max": 28,
+      "step": 1,
+      "unit": "px",
+      "label": "Mobile description size",
+      "default": 17
+    },
+    {
+      "type": "select",
+      "id": "description_font_weight",
+      "label": "Description font weight",
+      "default": "400",
+      "options": [
+        {
+          "value": "300",
+          "label": "Light"
+        },
+        {
+          "value": "400",
+          "label": "Regular"
+        },
+        {
+          "value": "500",
+          "label": "Medium"
+        },
+        {
+          "value": "600",
+          "label": "Semi bold"
+        }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "description_line_height",
+      "min": 100,
+      "max": 220,
+      "step": 5,
+      "unit": "%",
+      "label": "Description line height",
+      "default": 150
+    },
+
+    {
+      "type": "header",
+      "content": "Collection tabs"
+    },
+    {
+      "type": "text",
+      "id": "tabs_aria_label",
+      "label": "Tabs accessibility label",
+      "default": "Collection navigation"
+    },
+    {
+      "type": "range",
+      "id": "tabs_margin_top_desktop",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "Desktop tabs top spacing",
+      "default": 42
+    },
+    {
+      "type": "range",
+      "id": "tabs_margin_top_mobile",
+      "min": 0,
+      "max": 80,
+      "step": 2,
+      "unit": "px",
+      "label": "Mobile tabs top spacing",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "tabs_gap",
+      "min": 4,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "label": "Gap between tabs",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "tab_padding_horizontal",
+      "min": 10,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "label": "Tab horizontal padding",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "tab_padding_vertical",
+      "min": 5,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "label": "Tab vertical padding",
+      "default": 11
+    },
+    {
+      "type": "range",
+      "id": "tab_min_height",
+      "min": 30,
+      "max": 80,
+      "step": 1,
+      "unit": "px",
+      "label": "Tab minimum height",
+      "default": 42
+    },
+    {
+      "type": "range",
+      "id": "tab_font_size",
+      "min": 10,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Tab font size",
+      "default": 14
+    },
+    {
+      "type": "select",
+      "id": "tab_font_weight",
+      "label": "Tab font weight",
+      "default": "400",
+      "options": [
+        {
+          "value": "400",
+          "label": "Regular"
+        },
+        {
+          "value": "500",
+          "label": "Medium"
+        },
+        {
+          "value": "600",
+          "label": "Semi bold"
+        },
+        {
+          "value": "700",
+          "label": "Bold"
+        }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "tab_letter_spacing",
+      "min": 0,
+      "max": 200,
+      "step": 5,
+      "label": "Tab letter spacing",
+      "default": 0,
+      "info": "Value is divided by 100 to create px spacing."
+    },
+    {
+      "type": "select",
+      "id": "tab_text_transform",
+      "label": "Tab text style",
+      "default": "uppercase",
+      "options": [
+        {
+          "value": "none",
+          "label": "Normal"
+        },
+        {
+          "value": "uppercase",
+          "label": "Uppercase"
+        },
+        {
+          "value": "capitalize",
+          "label": "Capitalize"
+        }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "tab_border_width",
+      "min": 0,
+      "max": 4,
+      "step": 1,
+      "unit": "px",
+      "label": "Tab border width",
+      "default": 1
+    },
+    {
+      "type": "range",
+      "id": "tab_border_radius",
+      "min": 0,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "label": "Tab border radius",
+      "default": 0
+    },
+
+    {
+      "type": "header",
+      "content": "Background image"
+    },
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "Background image",
+      "info": "Leave blank to use the background color instead."
+    },
+    {
+      "type": "select",
+      "id": "background_image_position",
+      "label": "Image position",
+      "default": "center center",
+      "options": [
+        { "value": "center center", "label": "Center" },
+        { "value": "top center", "label": "Top" },
+        { "value": "bottom center", "label": "Bottom" },
+        { "value": "left center", "label": "Left" },
+        { "value": "right center", "label": "Right" }
+      ]
+    },
+    {
+      "type": "color",
+      "id": "overlay_color",
+      "label": "Overlay color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "overlay_opacity",
+      "min": 0,
+      "max": 90,
+      "step": 5,
+      "unit": "%",
+      "label": "Overlay opacity",
+      "default": 0
+    },
+
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text",
+      "default": "#111111"
+    },
+    {
+      "type": "color",
+      "id": "divider_color",
+      "label": "Bottom divider",
+      "default": "#d8d8d5"
+    },
+    {
+      "type": "color",
+      "id": "tab_background_color",
+      "label": "Tab background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "tab_text_color",
+      "label": "Tab text",
+      "default": "#111111"
+    },
+    {
+      "type": "color",
+      "id": "tab_border_color",
+      "label": "Tab border",
+      "default": "#55554c"
+    },
+    {
+      "type": "color",
+      "id": "tab_active_background_color",
+      "label": "Active tab background",
+      "default": "#111111"
+    },
+    {
+      "type": "color",
+      "id": "tab_active_text_color",
+      "label": "Active tab text",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "tab_active_border_color",
+      "label": "Active tab border",
+      "default": "#111111"
+    },
+
+    {
+      "type": "header",
+      "content": "Desktop spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_desktop",
+      "min": 0,
+      "max": 120,
+      "step": 2,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 42
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_desktop",
+      "min": 0,
+      "max": 120,
+      "step": 2,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_horizontal_desktop",
+      "min": 10,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "Left / right padding",
+      "default": 42
+    },
+
+    {
+      "type": "header",
+      "content": "Mobile spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "padding_horizontal_mobile",
+      "min": 10,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "label": "Left / right padding",
+      "default": 27
+    },
+
+    {
+      "type": "header",
+      "content": "AJAX behaviour"
+    },
+    {
+      "type": "checkbox",
+      "id": "update_url",
+      "label": "Update browser URL",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_loading_overlay",
+      "label": "Show loading spinner",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "scroll_to_products",
+      "label": "Scroll to products after tab click",
+      "default": false
+    },
+    {
+      "type": "range",
+      "id": "scroll_offset",
+      "min": 0,
+      "max": 250,
+      "step": 5,
+      "unit": "px",
+      "label": "Product scroll offset",
+      "default": 100
+    }
+  ],
+
+  "blocks": [
+    {
+      "type": "collection_tab",
+      "name": "Collection tab",
+      "settings": [
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Collection"
+        },
+        {
+          "type": "text",
+          "id": "custom_label",
+          "label": "Custom label",
+          "info": "Leave blank to use collection title."
+        },
+        {
+          "type": "url",
+          "id": "custom_url",
+          "label": "Custom URL",
+          "info": "Optional. Leave blank to use selected collection URL."
+        }
+      ]
+    }
+  ],
+
+  "presets": [
+    {
+      "name": "AJAX Collection Hero",
+      "blocks": [
+        {
+          "type": "collection_tab"
+        },
+        {
+          "type": "collection_tab"
+        },
+        {
+          "type": "collection_tab"
+        },
+        {
+          "type": "collection_tab"
+        },
+        {
+          "type": "collection_tab"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %} {% endcomment %}
+
+
+
+
+
+{% comment %} {{ 'component-collection-hero.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  {% render 'section-margin' %}
+{%- endstyle -%}  
+
+<div class="collection-hero">
+  <div class="collection-hero__wrapper ">
+    <div class="collection-hero__inner">
+      {%- liquid
+        assign collection_image = collection.image
+
+        if collection_image == blank and collection.id == blank
+          assign collection_image = section.settings.image_products
+        endif
+      -%}
+      {%- if section.settings.show_collection_image and collection_image -%}
+        {% capture sizes %}
+          (min-width: 1100px) calc(100vw + 200px), 
+          calc(100vw + 60px)
+        {% endcapture %}
+        <div class="collection-hero__image-wrapper">
+          <div class="collection-hero__image-container media">
+            {{
+              collection_image
+              | image_url: width: collection_image.width
+              | image_tag:
+                loading: 'lazy',
+                widths: '360, 535, 720, 940, 1100, 1200, 1440, 1600, 1800, 2000, 2100, 2200, 2880, 3200, 3600, 4000, 4200, 4400',
+                sizes: sizes
+            }}
+          </div>
+        </div>
+      {%- endif -%}
+      <div class="container">
+        <div class="collection-hero__text-wrapper">
+          <h1 class="collection-hero__title title--page h2">
+            <span class="visually-hidden">{{ 'sections.collection_template.title' | t }}: </span>
+            {{- collection.title | escape -}}
+          </h1>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "t:sections.main-collection-banner.name",
+  "class": "collection-banner-section spaced-section--full-width section-template--overlay",
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "t:sections.main-collection-banner.settings.paragraph.content"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_collection_image",
+      "default": true,
+      "label": "t:sections.main-collection-banner.settings.show_collection_image.label",
+      "info": "t:sections.main-collection-banner.settings.show_collection_image.info"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_products",
+      "label": "t:sections.main-collection-banner.settings.image_products.label",
+      "info": "t:sections.main-collection-banner.settings.image_products.info"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.section-margin.header.content"
+    },
+    {
+      "type": "select",
+      "id": "margin_top",
+      "options": [
+        {
+          "value": "no-indent",
+          "label": "t:sections.all.section-margin.options__1.label"
+        },
+        {
+          "value": "xs",
+          "label": "t:sections.all.section-margin.options__2.label"
+        },
+        {
+          "value": "s",
+          "label": "t:sections.all.section-margin.options__3.label"
+        },
+        {
+          "value": "m",
+          "label": "t:sections.all.section-margin.options__4.label"
+        },
+        {
+          "value": "l",
+          "label": "t:sections.all.section-margin.options__5.label"
+        },
+        {
+          "value": "xl",
+          "label": "t:sections.all.section-margin.options__6.label"
+        }
+      ],
+      "default": "no-indent",
+      "label": "t:sections.all.section-margin.margin_top.label"
+    },
+    {
+      "type": "select",
+      "id": "margin_bottom",
+      "options": [
+        {
+          "value": "no-indent",
+          "label": "t:sections.all.section-margin.options__1.label"
+        },
+        {
+          "value": "xs",
+          "label": "t:sections.all.section-margin.options__2.label"
+        },
+        {
+          "value": "s",
+          "label": "t:sections.all.section-margin.options__3.label"
+        },
+        {
+          "value": "m",
+          "label": "t:sections.all.section-margin.options__4.label"
+        },
+        {
+          "value": "l",
+          "label": "t:sections.all.section-margin.options__5.label"
+        },
+        {
+          "value": "xl",
+          "label": "t:sections.all.section-margin.options__6.label"
+        }
+      ],
+      "default": "no-indent",
+      "label": "t:sections.all.section-margin.margin_bottom.label"
+    }
+  ]
+}
+{% endschema %} {% endcomment %}
+
+
+
+{% comment %}
+  AJAX Collection Hero
+  - Title + description layout
+  - Collection tabs via blocks
+  - AJAX collection switching
+  - Mobile horizontal scroll
+  - Fully customizable through schema
+{% endcomment %}
+
+{%- liquid
+  assign description_text = collection.description
+
+  if section.settings.description_source == 'custom'
+    assign description_text = section.settings.custom_description
+  endif
+-%}
+
+<section
+  id="AjaxCollectionHero-{{ section.id }}"
+  class="ajax-collection-hero{% if section.settings.background_image != blank %} has-background-image{% endif %}"
+  data-section-id="{{ section.id }}"
+  data-update-url="{{ section.settings.update_url }}"
+  style="
+    --hero-bg: {{ section.settings.background_color }};
+    --hero-image-position: {{ section.settings.background_image_position }};
+    --hero-overlay-color: {{ section.settings.overlay_color }};
+    --hero-overlay-opacity: {{ section.settings.overlay_opacity | divided_by: 100.0 }};
+    --hero-image-height-desktop: {{ section.settings.banner_image_height_desktop }}px;
+    --hero-image-height-mobile: {{ section.settings.banner_image_height_mobile }}px;
+    --hero-image-text: {{ section.settings.banner_image_text_color }};
+    --hero-text: {{ section.settings.text_color }};
+    --hero-border: {{ section.settings.divider_color }};
+    --tab-text: {{ section.settings.tab_text_color }};
+    --tab-border: {{ section.settings.tab_border_color }};
+    --tab-bg: {{ section.settings.tab_background_color }};
+    --tab-active-text: {{ section.settings.tab_active_text_color }};
+    --tab-active-bg: {{ section.settings.tab_active_background_color }};
+    --tab-active-border: {{ section.settings.tab_active_border_color }};
+
+    --hero-max-width: {{ section.settings.max_width }}px;
+    --hero-desktop-gap: {{ section.settings.desktop_column_gap }}px;
+
+    --hero-padding-top-desktop: {{ section.settings.padding_top_desktop }}px;
+    --hero-padding-bottom-desktop: {{ section.settings.padding_bottom_desktop }}px;
+    --hero-padding-x-desktop: {{ section.settings.padding_horizontal_desktop }}px;
+
+    --hero-padding-top-mobile: {{ section.settings.padding_top_mobile }}px;
+    --hero-padding-bottom-mobile: {{ section.settings.padding_bottom_mobile }}px;
+    --hero-padding-x-mobile: {{ section.settings.padding_horizontal_mobile }}px;
+
+    --title-size-desktop: {{ section.settings.title_size_desktop }}px;
+    --title-size-mobile: {{ section.settings.title_size_mobile }}px;
+    --title-line-height: {{ section.settings.title_line_height | divided_by: 100.0 }};
+
+    --desc-size-desktop: {{ section.settings.description_size_desktop }}px;
+    --desc-size-mobile: {{ section.settings.description_size_mobile }}px;
+    --desc-line-height: {{ section.settings.description_line_height | divided_by: 100.0 }};
+
+    --tabs-margin-top-desktop: {{ section.settings.tabs_margin_top_desktop }}px;
+    --tabs-margin-top-mobile: {{ section.settings.tabs_margin_top_mobile }}px;
+    --tabs-gap: {{ section.settings.tabs_gap }}px;
+
+    --tab-padding-y: {{ section.settings.tab_padding_vertical }}px;
+    --tab-padding-x: {{ section.settings.tab_padding_horizontal }}px;
+    --tab-font-size: {{ section.settings.tab_font_size }}px;
+    --tab-border-width: {{ section.settings.tab_border_width }}px;
+    --tab-radius: {{ section.settings.tab_border_radius }}px;
+  "
+>
+  {%- capture hero_top_content -%}
+    <div class="ajax-collection-hero__top">
+      <div class="ajax-collection-hero__heading">
+        <h1 class="ajax-collection-hero__title">
+          {{ collection.title | escape }}
+        </h1>
+      </div>
+
+      {%- if section.settings.show_description and description_text != blank -%}
+        <div class="ajax-collection-hero__description">
+          <div
+            class="ajax-collection-hero__description-content rte{% if section.settings.enable_read_more %} is-collapsed{% endif %}"
+            data-description
+          >
+            {{ description_text }}
+          </div>
+
+          {%- if section.settings.enable_read_more -%}
+            <button
+              type="button"
+              class="ajax-collection-hero__read-more"
+              data-read-more
+              aria-expanded="false"
+            >
+              <span data-read-more-text>
+                {{ section.settings.read_more_label | escape }}
+              </span>
+
+              <span
+                data-read-less-text
+                hidden
+              >
+                {{ section.settings.read_less_label | escape }}
+              </span>
+            </button>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+    </div>
+  {%- endcapture -%}
+
+  {%- if section.settings.background_image != blank -%}
+    <div class="ajax-collection-hero__image">
+      {{
+        section.settings.background_image
+        | image_url: width: 2000
+        | image_tag:
+          loading: 'lazy',
+          widths: '480, 750, 1000, 1400, 1800, 2000, 2400, 2800, 3200',
+          sizes: '100vw'
+      }}
+      {%- if section.settings.overlay_opacity > 0 -%}
+        <div class="ajax-collection-hero__image-overlay"></div>
+      {%- endif -%}
+      <div class="ajax-collection-hero__image-content">
+        {{ hero_top_content }}
+      </div>
+    </div>
+  {%- endif -%}
+
+  <div class="ajax-collection-hero__container">
+
+    {%- unless section.settings.background_image != blank -%}
+      {{ hero_top_content }}
+    {%- endunless -%}
+
+    {%- if section.blocks.size > 0 -%}
+      <div class="ajax-collection-hero__tabs-wrap">
+        <div
+          class="ajax-collection-hero__tabs"
+          role="navigation"
+          aria-label="{{ section.settings.tabs_aria_label | escape }}"
+        >
+          {%- for block in section.blocks -%}
+            {%- liquid
+              assign tab_collection = block.settings.collection
+              assign tab_label = block.settings.custom_label
+
+              if tab_label == blank and tab_collection != blank
+                assign tab_label = tab_collection.title
+              endif
+
+              assign tab_url = block.settings.custom_url
+
+              if tab_url == blank and tab_collection != blank
+                assign tab_url = tab_collection.url
+              endif
+
+              assign is_active = false
+
+              if tab_collection != blank and tab_collection.handle == collection.handle
+                assign is_active = true
+              endif
+            -%}
+
+            {%- if tab_url != blank and tab_label != blank -%}
+              <a
+                href="{{ tab_url }}"
+                class="ajax-collection-hero__tab{% if is_active %} is-active{% endif %}"
+                data-collection-tab
+                {% if tab_collection != blank %}
+                  data-collection-handle="{{ tab_collection.handle }}"
+                {% endif %}
+                {% if is_active %}
+                  aria-current="page"
+                {% endif %}
+                {{ block.shopify_attributes }}
+              >
+                {{ tab_label | escape }}
+              </a>
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+      </div>
+    {%- endif -%}
+
+  </div>
+
+  {%- if section.settings.show_loading_overlay -%}
+    <div
+      class="ajax-collection-hero__loader"
+      data-collection-loader
+      aria-hidden="true"
+    >
+      <span class="ajax-collection-hero__spinner"></span>
+    </div>
+  {%- endif -%}
+</section>
+
+
+<style>
+  #AjaxCollectionHero-{{ section.id }} {
+    position: relative;
+    width: 100%;
+    background: var(--hero-bg);
+    color: var(--hero-text);
+    border-bottom: 1px solid var(--hero-border);
+  }
+
+  #AjaxCollectionHero-{{ section.id }} .ajax-collection-hero__image {
+    position: relative;
+    width: 100%;
+    min-height: var(--hero-image-height-mobile);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+  }
+
+  #AjaxCollectionHero-{{ section.id }} .ajax-collection-hero__image img {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: var(--hero-image-position);
+    display: block;
+  }
+
+  #AjaxCollectionHero-{{ section.id }} .ajax-collection-hero__image-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background: var(--hero-overlay-color);
+    opacity: var(--hero-overlay-opacity);
+    pointer-events: none;
+  }
+
+  #AjaxCollectionHero-{{ section.id }} .ajax-collection-hero__image-content {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: var(--hero-max-width);
+    margin: 0 auto;
+    padding: 24px var(--hero-padding-x-mobile);
+    color: var(--hero-image-text, #ffffff);
+  }
+
+  #AjaxCollectionHero-{{ section.id }} .ajax-collection-hero__image-content .ajax-collection-hero__top,
+  #AjaxCollectionHero-{{ section.id }} .ajax-collection-hero__image-content .ajax-collection-hero__title,
+  #AjaxCollectionHero-{{ section.id }} .ajax-collection-hero__image-content .ajax-collection-hero__description,
+  #AjaxCollectionHero-{{ section.id }} .ajax-collection-hero__image-content .ajax-collection-hero__read-more {
+    color: inherit;
+    width: 100%;
+  }
+
+  #AjaxCollectionHero-{{ section.id }}.has-background-image .ajax-collection-hero__container {
+    padding-top: 0;
+  }
+
+  @media screen and (min-width: 750px) {
+    #AjaxCollectionHero-{{ section.id }} .ajax-collection-hero__image {
+      min-height: var(--hero-image-height-desktop);
+    }
+
+    #AjaxCollectionHero-{{ section.id }} .ajax-collection-hero__image-content {
+      padding: 40px var(--hero-padding-x-desktop);
+    }
+  }
+
+  #AjaxCollectionHero-{{ section.id }} *,
+  #AjaxCollectionHero-{{ section.id }} *::before,
+  #AjaxCollectionHero-{{ section.id }} *::after {
+    box-sizing: border-box;
+  }
+
+  #AjaxCollectionHero-{{ section.id }} .ajax-collection-hero__container {
+    width: 100%;
+    max-width: var(--hero-max-width);
+    margin: 0 auto;
+    padding:
+      var(--hero-padding-top-desktop)
+      var(--hero-padding-x-desktop)
+      var(--hero-padding-bottom-desktop);
+  }
+
+  /* =========================
+     TOP DESKTOP LAYOUT
+  ========================== */
+
+  #AjaxCollectionHero-{{ section.id }} .ajax-collection-hero__top {
+    display: grid;
+    grid-template-columns:
+      minmax(240px, {{ section.settings.title_column_width }}%)
+      minmax(0, 1fr);
+    column-gap: var(--hero-desktop-gap);
+    align-items: start;
+  }
+
+  #AjaxCollectionHero-{{ section.id }} .ajax-collection-hero__heading,
+  #AjaxCollectionHero-{{ section.id }} .ajax-collection-hero__description {
+    min-width: 0;
+  }
+
+  #AjaxCollectionHero-{{ section.id }} .ajax-collection-hero__title {
+    margin: 0;
+    padding: 0;
+    color: var(--hero-text);
+    font-size: var(--title-size-desktop);
+    line-height: var(--title-line-height);
+    font-weight: {{ section.settings.title_font_weight }};
+    letter-spacing: {{ section.settings.title_letter_spacing | divided_by: 100.0 }}px;
+    text-transform: {{ section.settings.title_transform }};
+  }
+
+  #AjaxCollectionHero-{{ section.id }} .ajax-collection-hero__description {
+    color: var(--hero-text);
+    font-size: var(--desc-size-desktop);
+    line-height: var(--desc-line-height);
+    font-weight: {{ section.settings.description_font_weight }};
+  }
+
+  #AjaxCollectionHero-{{ section.id }} .ajax-collection-hero__description-content {
+    position: relative;
+    overflow: hidden;
+    transition: max-height 0.35s ease;
+  }
+
+  #AjaxCollectionHero-{{ section.id }} .ajax-collection-hero__description-content > *:first-child {
+    margin-top: 0;
+  }
+
+  #AjaxCollectionHero-{{ section.id }} .ajax-collection-hero__description-content > *:last-child {
+    margin-bottom: 0;
+  }
+
+  #AjaxCollectionHero-{{ section.id }} .ajax-collection-hero__description-content p {
+    font-size: inherit;
+    line-height: inherit;
+    color: inherit;
+  }
+
+  #AjaxCollectionHero-{{ section.id }} .ajax-collection-hero__description-content.is-collapsed {
+    max-height: {{ section.settings.description_collapsed_height_desktop }}px;
+  }
+
+  #AjaxCollectionHero-{{ section.id }} .ajax-collection-hero__description-content.is-expanded {
+    max-height: 2000px;
+  }
+
+  #AjaxCollectionHero-{{ section.id }} .ajax-collection-hero__read-more {
+    appearance: none;
+    -webkit-appearance: none;
+    display: inline-block;
+    margin: {{ section.settings.read_more_margin_top }}px 0 0;
+    padding: 0;
+    border: 0;
+    border-bottom: {{ section.settings.read_more_underline_width }}px solid currentColor;
+    border-radius: 0;
+    background: transparent;
+    color: var(--hero-text);
+    font: inherit;
+    font-size: {{ section.settings.read_more_font_size }}px;
+    line-height: 1.3;
+    cursor: pointer;
+  }
+
+  #AjaxCollectionHero-{{ section.id }} .ajax-collection-hero__read-more:hover {
+    opacity: 0.65;
+  }
+
+  /* =========================
+     TABS
+  ========================== */
+
+  #AjaxCollectionHero-{{ section.id }} .ajax-collection-hero__tabs-wrap {
+    margin-top: var(--tabs-margin-top-desktop);
+  }
+
+  #AjaxCollectionHero-{{ section.id }} .ajax-collection-hero__tabs {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--tabs-gap);
+  }
+
+  #AjaxCollectionHero-{{ section.id }} .ajax-collection-hero__tab {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 auto;
+    min-height: {{ section.settings.tab_min_height }}px;
+    padding: var(--tab-padding-y) var(--tab-padding-x);
+
+    border:
+      var(--tab-border-width)
+      solid
+      var(--tab-border);
+
+    border-radius: var(--tab-radius);
+
+    background: var(--tab-bg);
+    color: var(--tab-text);
+
+    font-size: var(--tab-font-size);
+    line-height: 1.2;
+    font-weight: {{ section.settings.tab_font_weight }};
+    letter-spacing: {{ section.settings.tab_letter_spacing | divided_by: 100.0 }}px;
+    text-transform: {{ section.settings.tab_text_transform }};
+    text-decoration: none;
+    white-space: nowrap;
+
+    transition:
+      background-color 0.2s ease,
+      color 0.2s ease,
+      border-color 0.2s ease,
+      opacity 0.2s ease;
+  }
+
+  #AjaxCollectionHero-{{ section.id }} .ajax-collection-hero__tab:hover {
+    opacity: 0.72;
+  }
+
+  #AjaxCollectionHero-{{ section.id }} .ajax-collection-hero__tab.is-active {
+    background: var(--tab-active-bg);
+    color: var(--tab-active-text);
+    border-color: var(--tab-active-border);
+  }
+
+  /* =========================
+     AJAX LOADER
+  ========================== */
+
+  #AjaxCollectionHero-{{ section.id }} .ajax-collection-hero__loader {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    pointer-events: none;
+    opacity: 0;
+    visibility: hidden;
+    background: rgba(255,255,255,0.25);
+    transition:
+      opacity 0.2s ease,
+      visibility 0.2s ease;
+  }
+
+  #AjaxCollectionHero-{{ section.id }}.is-loading .ajax-collection-hero__loader {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  #AjaxCollectionHero-{{ section.id }} .ajax-collection-hero__spinner {
+    width: 36px;
+    height: 36px;
+    border: 2px solid rgba(0,0,0,0.15);
+    border-top-color: currentColor;
+    border-radius: 50%;
+    animation: ajaxCollectionSpinner 0.7s linear infinite;
+  }
+
+  @keyframes ajaxCollectionSpinner {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  /* =========================
+     MOBILE
+  ========================== */
+
+  @media screen and (max-width: 749px) {
+    #AjaxCollectionHero-{{ section.id }} .ajax-collection-hero__container {
+      padding:
+        var(--hero-padding-top-mobile)
+        var(--hero-padding-x-mobile)
+        var(--hero-padding-bottom-mobile);
+    }
+
+    #AjaxCollectionHero-{{ section.id }} .ajax-collection-hero__top {
+      display: flex;
+      flex-direction: column;
+      gap: {{ section.settings.mobile_content_gap }}px;
+    }
+
+    #AjaxCollectionHero-{{ section.id }} .ajax-collection-hero__title {
+      font-size: var(--title-size-mobile);
+    }
+
+    #AjaxCollectionHero-{{ section.id }} .ajax-collection-hero__description {
+      width: 100%;
+      font-size: var(--desc-size-mobile);
+    }
+
+    #AjaxCollectionHero-{{ section.id }} .ajax-collection-hero__description-content.is-collapsed {
+      max-height: {{ section.settings.description_collapsed_height_mobile }}px;
+    }
+
+    #AjaxCollectionHero-{{ section.id }} .ajax-collection-hero__tabs-wrap {
+      width: calc(100% + var(--hero-padding-x-mobile));
+      margin-top: var(--tabs-margin-top-mobile);
+      overflow: hidden;
+    }
+
+    #AjaxCollectionHero-{{ section.id }} .ajax-collection-hero__tabs {
+      display: flex;
+      flex-wrap: nowrap;
+      gap: var(--tabs-gap);
+      width: 100%;
+      overflow-x: auto;
+      overflow-y: hidden;
+      padding-right: var(--hero-padding-x-mobile);
+      padding-bottom: 4px;
+
+      scroll-behavior: smooth;
+      scroll-snap-type: x proximity;
+      scrollbar-width: none;
+
+      -webkit-overflow-scrolling: touch;
+    }
+
+    #AjaxCollectionHero-{{ section.id }} .ajax-collection-hero__tabs::-webkit-scrollbar {
+      display: none;
+    }
+
+    #AjaxCollectionHero-{{ section.id }} .ajax-collection-hero__tab {
+      flex: 0 0 auto;
+      scroll-snap-align: start;
+    }
+  }
+</style>
+
+
+<script>
+  (() => {
+    const sectionId = 'AjaxCollectionHero-{{ section.id }}';
+
+    function initAjaxCollectionHero() {
+      const section = document.getElementById(sectionId);
+
+      if (!section || section.dataset.initialized === 'true') return;
+
+      section.dataset.initialized = 'true';
+
+      const tabs = section.querySelectorAll('[data-collection-tab]');
+      const readMoreButton = section.querySelector('[data-read-more]');
+
+      /* ============================
+         READ MORE
+      ============================ */
+
+      if (readMoreButton) {
+        readMoreButton.addEventListener('click', function () {
+          const description = section.querySelector('[data-description]');
+          const moreText = this.querySelector('[data-read-more-text]');
+          const lessText = this.querySelector('[data-read-less-text]');
+
+          if (!description) return;
+
+          const expanded = this.getAttribute('aria-expanded') === 'true';
+
+          if (expanded) {
+            description.classList.remove('is-expanded');
+            description.classList.add('is-collapsed');
+
+            this.setAttribute('aria-expanded', 'false');
+
+            if (moreText) moreText.hidden = false;
+            if (lessText) lessText.hidden = true;
+          } else {
+            description.classList.remove('is-collapsed');
+            description.classList.add('is-expanded');
+
+            this.setAttribute('aria-expanded', 'true');
+
+            if (moreText) moreText.hidden = true;
+            if (lessText) lessText.hidden = false;
+          }
+        });
+      }
+
+      /* ============================
+         COLLECTION AJAX
+      ============================ */
+
+      tabs.forEach((tab) => {
+        tab.addEventListener('click', async function (event) {
+          if (
+            event.ctrlKey ||
+            event.metaKey ||
+            event.shiftKey ||
+            event.altKey
+          ) {
+            return;
+          }
+
+          event.preventDefault();
+
+          const url = this.href;
+
+          if (!url || this.classList.contains('is-active')) {
+            scrollActiveTab(this);
+            return;
+          }
+
+          await loadCollection(url, this);
+        });
+      });
+
+      /* Mobile: active tab visible automatically */
+      const activeTab = section.querySelector(
+        '[data-collection-tab].is-active'
+      );
+
+      if (activeTab) {
+        setTimeout(() => {
+          scrollActiveTab(activeTab, false);
+        }, 150);
+      }
+    }
+
+
+    async function loadCollection(url, clickedTab, pushState = true) {
+      const section = document.getElementById(sectionId);
+
+      if (!section || section.classList.contains('is-loading')) return;
+
+      section.classList.add('is-loading');
+      section.setAttribute('aria-busy', 'true');
+
+      try {
+        const response = await fetch(url, {
+          method: 'GET',
+          headers: {
+            'X-Requested-With': 'XMLHttpRequest'
+          }
+        });
+
+        if (!response.ok) {
+          throw new Error('Collection AJAX request failed');
+        }
+
+        const html = await response.text();
+
+        const parser = new DOMParser();
+        const newDocument = parser.parseFromString(html, 'text/html');
+
+        /*
+          Product grid selectors.
+
+          #ProductGridContainer = Dawn / many Shopify themes
+          .product-grid-container = common Shopify structure
+          [data-product-grid] = custom themes
+          .collection-product-list = some premium themes
+        */
+
+        const currentGrid =
+          document.querySelector('#ProductGridContainer') ||
+          document.querySelector('[data-product-grid]') ||
+          document.querySelector('.product-grid-container') ||
+          document.querySelector('.collection-product-list');
+
+        const newGrid =
+          newDocument.querySelector('#ProductGridContainer') ||
+          newDocument.querySelector('[data-product-grid]') ||
+          newDocument.querySelector('.product-grid-container') ||
+          newDocument.querySelector('.collection-product-list');
+
+        if (!currentGrid || !newGrid) {
+          /*
+            Fallback:
+            Agar theme ka product grid selector different ho,
+            user ko broken page dikhane ke bajaye normal URL open hoga.
+          */
+          window.location.href = url;
+          return;
+        }
+
+        /* Replace products / filters / pagination */
+        currentGrid.innerHTML = newGrid.innerHTML;
+
+        /* Update collection title */
+        const currentTitle = section.querySelector(
+          '.ajax-collection-hero__title'
+        );
+
+        const newTitle = newDocument.querySelector(
+          '.ajax-collection-hero__title'
+        );
+
+        if (currentTitle && newTitle) {
+          currentTitle.innerHTML = newTitle.innerHTML;
+        }
+
+        /* Update description */
+        const currentDescription = section.querySelector(
+          '[data-description]'
+        );
+
+        const newDescription = newDocument.querySelector(
+          '[data-description]'
+        );
+
+        if (currentDescription && newDescription) {
+          currentDescription.innerHTML = newDescription.innerHTML;
+
+          currentDescription.classList.remove('is-expanded');
+
+          {% if section.settings.enable_read_more %}
+            currentDescription.classList.add('is-collapsed');
+          {% else %}
+            currentDescription.classList.remove('is-collapsed');
+          {% endif %}
+        }
+
+        /* Reset read more button */
+        const readMore = section.querySelector('[data-read-more]');
+
+        if (readMore) {
+          const moreText = readMore.querySelector(
+            '[data-read-more-text]'
+          );
+
+          const lessText = readMore.querySelector(
+            '[data-read-less-text]'
+          );
+
+          readMore.setAttribute('aria-expanded', 'false');
+
+          if (moreText) moreText.hidden = false;
+          if (lessText) lessText.hidden = true;
+        }
+
+        /* Active tab */
+        section
+          .querySelectorAll('[data-collection-tab]')
+          .forEach((tab) => {
+            tab.classList.remove('is-active');
+            tab.removeAttribute('aria-current');
+          });
+
+        if (clickedTab) {
+          clickedTab.classList.add('is-active');
+          clickedTab.setAttribute('aria-current', 'page');
+
+          scrollActiveTab(clickedTab);
+        }
+
+        /* Update URL without refresh */
+        if (
+          pushState &&
+          section.dataset.updateUrl !== 'false'
+        ) {
+          window.history.pushState(
+            {
+              ajaxCollection: true,
+              url: url
+            },
+            '',
+            url
+          );
+        }
+
+        /*
+          Re-run common Shopify events.
+          Useful for product cards, quick add, swatches etc.
+        */
+        document.dispatchEvent(
+          new CustomEvent('collection:ajax:loaded', {
+            detail: {
+              url: url,
+              container: currentGrid
+            }
+          })
+        );
+
+        window.dispatchEvent(new Event('resize'));
+
+        {% if section.settings.scroll_to_products %}
+          const productTop =
+            currentGrid.getBoundingClientRect().top +
+            window.pageYOffset -
+            {{ section.settings.scroll_offset }};
+
+          window.scrollTo({
+            top: productTop,
+            behavior: 'smooth'
+          });
+        {% endif %}
+      } catch (error) {
+        console.error(error);
+
+        /*
+          Safe fallback if fetch fails.
+        */
+        window.location.href = url;
+      } finally {
+        const currentSection =
+          document.getElementById(sectionId);
+
+        if (currentSection) {
+          currentSection.classList.remove('is-loading');
+          currentSection.removeAttribute('aria-busy');
+        }
+      }
+    }
+
+
+    function scrollActiveTab(tab, smooth = true) {
+      if (!tab) return;
+
+      const tabsContainer = tab.closest(
+        '.ajax-collection-hero__tabs'
+      );
+
+      if (!tabsContainer) return;
+
+      if (window.innerWidth <= 749) {
+        tab.scrollIntoView({
+          behavior: smooth ? 'smooth' : 'auto',
+          inline: 'center',
+          block: 'nearest'
+        });
+      }
+    }
+
+
+    /* Browser back / forward */
+    window.addEventListener('popstate', function () {
+      const section =
+        document.getElementById(sectionId);
+
+      if (!section) return;
+
+      const currentPath =
+        window.location.pathname.replace(/\/$/, '');
+
+      const matchingTab = Array.from(
+        section.querySelectorAll('[data-collection-tab]')
+      ).find((tab) => {
+        try {
+          return (
+            new URL(tab.href).pathname.replace(/\/$/, '') ===
+            currentPath
+          );
+        } catch (e) {
+          return false;
+        }
+      });
+
+      if (matchingTab) {
+        loadCollection(
+          window.location.href,
+          matchingTab,
+          false
+        );
+      } else {
+        window.location.reload();
+      }
+    });
+
+
+    /* Initial load */
+    if (document.readyState === 'loading') {
+      document.addEventListener(
+        'DOMContentLoaded',
+        initAjaxCollectionHero
+      );
+    } else {
+      initAjaxCollectionHero();
+    }
+
+    /* Shopify Theme Editor */
+    document.addEventListener(
+      'shopify:section:load',
+      function (event) {
+        if (
+          event.target &&
+          event.target.querySelector &&
+          (
+            event.target.id === sectionId ||
+            event.target.querySelector(
+              '#' + sectionId
+            )
+          )
+        ) {
+          const section =
+            document.getElementById(sectionId);
+
+          if (section) {
+            delete section.dataset.initialized;
+          }
+
+          initAjaxCollectionHero();
+        }
+      }
+    );
+  })();
+</script>
+
+
+{% schema %}
+{
+  "name": "AJAX Collection Hero",
+  "tag": "section",
+  "class": "section-ajax-collection-hero",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_description",
+      "label": "Show collection description",
+      "default": true
+    },
+    {
+      "type": "select",
+      "id": "description_source",
+      "label": "Description source",
+      "default": "collection",
+      "options": [
+        {
+          "value": "collection",
+          "label": "Collection description"
+        },
+        {
+          "value": "custom",
+          "label": "Custom description"
+        }
+      ]
+    },
+    {
+      "type": "richtext",
+      "id": "custom_description",
+      "label": "Custom description",
+      "default": "<p>In the perfect combination of form and function, this range of versatile styles will take you seamlessly from day to night.</p>"
+    },
+
+    {
+      "type": "header",
+      "content": "Read more"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_read_more",
+      "label": "Enable Read More",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "read_more_label",
+      "label": "Read more text",
+      "default": "Read More"
+    },
+    {
+      "type": "text",
+      "id": "read_less_label",
+      "label": "Read less text",
+      "default": "Read Less"
+    },
+    {
+      "type": "range",
+      "id": "description_collapsed_height_desktop",
+      "min": 20,
+      "max": 200,
+      "step": 5,
+      "unit": "px",
+      "label": "Desktop collapsed description height",
+      "default": 25
+    },
+    {
+      "type": "range",
+      "id": "description_collapsed_height_mobile",
+      "min": 20,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Mobile collapsed description height",
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "read_more_margin_top",
+      "min": 0,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "label": "Read More top spacing",
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "read_more_font_size",
+      "min": 10,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "label": "Read More font size",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "read_more_underline_width",
+      "min": 0,
+      "max": 3,
+      "step": 1,
+      "unit": "px",
+      "label": "Read More underline",
+      "default": 1
+    },
+
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "max_width",
+      "min": 1000,
+      "max": 2000,
+      "step": 20,
+      "unit": "px",
+      "label": "Content max width",
+      "default": 1600
+    },
+    {
+      "type": "range",
+      "id": "title_column_width",
+      "min": 20,
+      "max": 50,
+      "step": 1,
+      "unit": "%",
+      "label": "Desktop title column width",
+      "default": 34
+    },
+    {
+      "type": "range",
+      "id": "desktop_column_gap",
+      "min": 10,
+      "max": 120,
+      "step": 2,
+      "unit": "px",
+      "label": "Desktop title / description gap",
+      "default": 30
+    },
+    {
+      "type": "range",
+      "id": "mobile_content_gap",
+      "min": 5,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "label": "Mobile title / description gap",
+      "default": 24
+    },
+
+    {
+      "type": "header",
+      "content": "Title typography"
+    },
+    {
+      "type": "range",
+      "id": "title_size_desktop",
+      "min": 24,
+      "max": 90,
+      "step": 1,
+      "unit": "px",
+      "label": "Desktop title size",
+      "default": 46
+    },
+    {
+      "type": "range",
+      "id": "title_size_mobile",
+      "min": 24,
+      "max": 64,
+      "step": 1,
+      "unit": "px",
+      "label": "Mobile title size",
+      "default": 44
+    },
+    {
+      "type": "select",
+      "id": "title_font_weight",
+      "label": "Title font weight",
+      "default": "400",
+      "options": [
+        {
+          "value": "300",
+          "label": "Light"
+        },
+        {
+          "value": "400",
+          "label": "Regular"
+        },
+        {
+          "value": "500",
+          "label": "Medium"
+        },
+        {
+          "value": "600",
+          "label": "Semi bold"
+        },
+        {
+          "value": "700",
+          "label": "Bold"
+        }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "title_line_height",
+      "min": 80,
+      "max": 160,
+      "step": 5,
+      "unit": "%",
+      "label": "Title line height",
+      "default": 105
+    },
+    {
+      "type": "range",
+      "id": "title_letter_spacing",
+      "min": -50,
+      "max": 100,
+      "step": 5,
+      "label": "Title letter spacing",
+      "default": 0,
+      "info": "Value is divided by 100 to create px spacing."
+    },
+    {
+      "type": "select",
+      "id": "title_transform",
+      "label": "Title capitalization",
+      "default": "none",
+      "options": [
+        {
+          "value": "none",
+          "label": "Normal"
+        },
+        {
+          "value": "uppercase",
+          "label": "Uppercase"
+        },
+        {
+          "value": "capitalize",
+          "label": "Capitalize"
+        }
+      ]
+    },
+
+    {
+      "type": "header",
+      "content": "Description typography"
+    },
+    {
+      "type": "range",
+      "id": "description_size_desktop",
+      "min": 12,
+      "max": 32,
+      "step": 1,
+      "unit": "px",
+      "label": "Desktop description size",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "description_size_mobile",
+      "min": 12,
+      "max": 28,
+      "step": 1,
+      "unit": "px",
+      "label": "Mobile description size",
+      "default": 17
+    },
+    {
+      "type": "select",
+      "id": "description_font_weight",
+      "label": "Description font weight",
+      "default": "400",
+      "options": [
+        {
+          "value": "300",
+          "label": "Light"
+        },
+        {
+          "value": "400",
+          "label": "Regular"
+        },
+        {
+          "value": "500",
+          "label": "Medium"
+        },
+        {
+          "value": "600",
+          "label": "Semi bold"
+        }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "description_line_height",
+      "min": 100,
+      "max": 220,
+      "step": 5,
+      "unit": "%",
+      "label": "Description line height",
+      "default": 150
+    },
+
+    {
+      "type": "header",
+      "content": "Collection tabs"
+    },
+    {
+      "type": "text",
+      "id": "tabs_aria_label",
+      "label": "Tabs accessibility label",
+      "default": "Collection navigation"
+    },
+    {
+      "type": "range",
+      "id": "tabs_margin_top_desktop",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "Desktop tabs top spacing",
+      "default": 42
+    },
+    {
+      "type": "range",
+      "id": "tabs_margin_top_mobile",
+      "min": 0,
+      "max": 80,
+      "step": 2,
+      "unit": "px",
+      "label": "Mobile tabs top spacing",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "tabs_gap",
+      "min": 4,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "label": "Gap between tabs",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "tab_padding_horizontal",
+      "min": 10,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "label": "Tab horizontal padding",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "tab_padding_vertical",
+      "min": 5,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "label": "Tab vertical padding",
+      "default": 11
+    },
+    {
+      "type": "range",
+      "id": "tab_min_height",
+      "min": 30,
+      "max": 80,
+      "step": 1,
+      "unit": "px",
+      "label": "Tab minimum height",
+      "default": 42
+    },
+    {
+      "type": "range",
+      "id": "tab_font_size",
+      "min": 10,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Tab font size",
+      "default": 14
+    },
+    {
+      "type": "select",
+      "id": "tab_font_weight",
+      "label": "Tab font weight",
+      "default": "400",
+      "options": [
+        {
+          "value": "400",
+          "label": "Regular"
+        },
+        {
+          "value": "500",
+          "label": "Medium"
+        },
+        {
+          "value": "600",
+          "label": "Semi bold"
+        },
+        {
+          "value": "700",
+          "label": "Bold"
+        }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "tab_letter_spacing",
+      "min": 0,
+      "max": 200,
+      "step": 5,
+      "label": "Tab letter spacing",
+      "default": 0,
+      "info": "Value is divided by 100 to create px spacing."
+    },
+    {
+      "type": "select",
+      "id": "tab_text_transform",
+      "label": "Tab text style",
+      "default": "uppercase",
+      "options": [
+        {
+          "value": "none",
+          "label": "Normal"
+        },
+        {
+          "value": "uppercase",
+          "label": "Uppercase"
+        },
+        {
+          "value": "capitalize",
+          "label": "Capitalize"
+        }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "tab_border_width",
+      "min": 0,
+      "max": 4,
+      "step": 1,
+      "unit": "px",
+      "label": "Tab border width",
+      "default": 1
+    },
+    {
+      "type": "range",
+      "id": "tab_border_radius",
+      "min": 0,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "label": "Tab border radius",
+      "default": 0
+    },
+
+    {
+      "type": "header",
+      "content": "Background image"
+    },
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "Banner image",
+      "info": "Shown above the heading, description and tabs. Leave blank to hide."
+    },
+    {
+      "type": "select",
+      "id": "background_image_position",
+      "label": "Image position",
+      "default": "center center",
+      "options": [
+        { "value": "center center", "label": "Center" },
+        { "value": "top center", "label": "Top" },
+        { "value": "bottom center", "label": "Bottom" },
+        { "value": "left center", "label": "Left" },
+        { "value": "right center", "label": "Right" }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "banner_image_height_desktop",
+      "min": 150,
+      "max": 700,
+      "step": 10,
+      "unit": "px",
+      "label": "Image height (desktop)",
+      "default": 420
+    },
+    {
+      "type": "range",
+      "id": "banner_image_height_mobile",
+      "min": 100,
+      "max": 500,
+      "step": 10,
+      "unit": "px",
+      "label": "Image height (mobile)",
+      "default": 260
+    },
+    {
+      "type": "color",
+      "id": "banner_image_text_color",
+      "label": "Heading / text color on image",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "overlay_color",
+      "label": "Overlay color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "overlay_opacity",
+      "min": 0,
+      "max": 90,
+      "step": 5,
+      "unit": "%",
+      "label": "Image overlay opacity",
+      "info": "Darkens the banner image only.",
+      "default": 0
+    },
+
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text",
+      "default": "#111111"
+    },
+    {
+      "type": "color",
+      "id": "divider_color",
+      "label": "Bottom divider",
+      "default": "#d8d8d5"
+    },
+    {
+      "type": "color",
+      "id": "tab_background_color",
+      "label": "Tab background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "tab_text_color",
+      "label": "Tab text",
+      "default": "#111111"
+    },
+    {
+      "type": "color",
+      "id": "tab_border_color",
+      "label": "Tab border",
+      "default": "#55554c"
+    },
+    {
+      "type": "color",
+      "id": "tab_active_background_color",
+      "label": "Active tab background",
+      "default": "#111111"
+    },
+    {
+      "type": "color",
+      "id": "tab_active_text_color",
+      "label": "Active tab text",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "tab_active_border_color",
+      "label": "Active tab border",
+      "default": "#111111"
+    },
+
+    {
+      "type": "header",
+      "content": "Desktop spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_desktop",
+      "min": 0,
+      "max": 120,
+      "step": 2,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 42
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_desktop",
+      "min": 0,
+      "max": 120,
+      "step": 2,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_horizontal_desktop",
+      "min": 10,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "Left / right padding",
+      "default": 42
+    },
+
+    {
+      "type": "header",
+      "content": "Mobile spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "padding_horizontal_mobile",
+      "min": 10,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "label": "Left / right padding",
+      "default": 27
+    },
+
+    {
+      "type": "header",
+      "content": "AJAX behaviour"
+    },
+    {
+      "type": "checkbox",
+      "id": "update_url",
+      "label": "Update browser URL",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_loading_overlay",
+      "label": "Show loading spinner",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "scroll_to_products",
+      "label": "Scroll to products after tab click",
+      "default": false
+    },
+    {
+      "type": "range",
+      "id": "scroll_offset",
+      "min": 0,
+      "max": 250,
+      "step": 5,
+      "unit": "px",
+      "label": "Product scroll offset",
+      "default": 100
+    }
+  ],
+
+  "blocks": [
+    {
+      "type": "collection_tab",
+      "name": "Collection tab",
+      "settings": [
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Collection"
+        },
+        {
+          "type": "text",
+          "id": "custom_label",
+          "label": "Custom label",
+          "info": "Leave blank to use collection title."
+        },
+        {
+          "type": "url",
+          "id": "custom_url",
+          "label": "Custom URL",
+          "info": "Optional. Leave blank to use selected collection URL."
+        }
+      ]
+    }
+  ],
+
+  "presets": [
+    {
+      "name": "AJAX Collection Hero",
+      "blocks": [
+        {
+          "type": "collection_tab"
+        },
+        {
+          "type": "collection_tab"
+        },
+        {
+          "type": "collection_tab"
+        },
+        {
+          "type": "collection_tab"
+        },
+        {
+          "type": "collection_tab"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %} {% endcomment %}
+
+
+
+
+
+{% comment %} {{ 'component-collection-hero.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  {% render 'section-margin' %}
+{%- endstyle -%}  
+
+<div class="collection-hero">
+  <div class="collection-hero__wrapper ">
+    <div class="collection-hero__inner">
+      {%- liquid
+        assign collection_image = collection.image
+
+        if collection_image == blank and collection.id == blank
+          assign collection_image = section.settings.image_products
+        endif
+      -%}
+      {%- if section.settings.show_collection_image and collection_image -%}
+        {% capture sizes %}
+          (min-width: 1100px) calc(100vw + 200px), 
+          calc(100vw + 60px)
+        {% endcapture %}
+        <div class="collection-hero__image-wrapper">
+          <div class="collection-hero__image-container media">
+            {{
+              collection_image
+              | image_url: width: collection_image.width
+              | image_tag:
+                loading: 'lazy',
+                widths: '360, 535, 720, 940, 1100, 1200, 1440, 1600, 1800, 2000, 2100, 2200, 2880, 3200, 3600, 4000, 4200, 4400',
+                sizes: sizes
+            }}
+          </div>
+        </div>
+      {%- endif -%}
+      <div class="container">
+        <div class="collection-hero__text-wrapper">
+          <h1 class="collection-hero__title title--page h2">
+            <span class="visually-hidden">{{ 'sections.collection_template.title' | t }}: </span>
+            {{- collection.title | escape -}}
+          </h1>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "t:sections.main-collection-banner.name",
+  "class": "collection-banner-section spaced-section--full-width section-template--overlay",
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "t:sections.main-collection-banner.settings.paragraph.content"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_collection_image",
+      "default": true,
+      "label": "t:sections.main-collection-banner.settings.show_collection_image.label",
+      "info": "t:sections.main-collection-banner.settings.show_collection_image.info"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_products",
+      "label": "t:sections.main-collection-banner.settings.image_products.label",
+      "info": "t:sections.main-collection-banner.settings.image_products.info"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.section-margin.header.content"
+    },
+    {
+      "type": "select",
+      "id": "margin_top",
+      "options": [
+        {
+          "value": "no-indent",
+          "label": "t:sections.all.section-margin.options__1.label"
+        },
+        {
+          "value": "xs",
+          "label": "t:sections.all.section-margin.options__2.label"
+        },
+        {
+          "value": "s",
+          "label": "t:sections.all.section-margin.options__3.label"
+        },
+        {
+          "value": "m",
+          "label": "t:sections.all.section-margin.options__4.label"
+        },
+        {
+          "value": "l",
+          "label": "t:sections.all.section-margin.options__5.label"
+        },
+        {
+          "value": "xl",
+          "label": "t:sections.all.section-margin.options__6.label"
+        }
+      ],
+      "default": "no-indent",
+      "label": "t:sections.all.section-margin.margin_top.label"
+    },
+    {
+      "type": "select",
+      "id": "margin_bottom",
+      "options": [
+        {
+          "value": "no-indent",
+          "label": "t:sections.all.section-margin.options__1.label"
+        },
+        {
+          "value": "xs",
+          "label": "t:sections.all.section-margin.options__2.label"
+        },
+        {
+          "value": "s",
+          "label": "t:sections.all.section-margin.options__3.label"
+        },
+        {
+          "value": "m",
+          "label": "t:sections.all.section-margin.options__4.label"
+        },
+        {
+          "value": "l",
+          "label": "t:sections.all.section-margin.options__5.label"
+        },
+        {
+          "value": "xl",
+          "label": "t:sections.all.section-margin.options__6.label"
+        }
+      ],
+      "default": "no-indent",
+      "label": "t:sections.all.section-margin.margin_bottom.label"
+    }
+  ]
+}
+{% endschema %} {% endcomment %}
+
+
+
+{% comment %}
+  AJAX Collection Hero
+  - Title + description layout
+  - Collection tabs via blocks
+  - AJAX collection switching
+  - Mobile horizontal scroll
+  - Fully customizable through schema
+{% endcomment %}
+
+{%- liquid
+  assign hero_background_image = section.settings.background_image
+  assign dar_banner_url = blank
+  if collection.handle == 'dar-collection'
+    assign hero_background_image = section.settings.dar_background_image
+    if hero_background_image == blank
+      assign dar_banner_url = 'https://cdn.shopify.com/s/files/1/0662/1095/5470/files/WhatsApp_Image_2026-11-16_at_16.44.34.jpg?v=1794833440'
+    endif
+  endif
+  assign has_hero_image = false
+  if hero_background_image != blank or dar_banner_url != blank
+    assign has_hero_image = true
+  endif
+  assign description_text = collection.description
+
+  if section.settings.description_source == 'custom'
+    assign description_text = section.settings.custom_description
+  elsif description_text == blank
+    assign description_text = section.settings.custom_description
+  endif
+-%}
+
+<section
+  id="AjaxCollectionHero-{{ section.id }}"
+  class="ajax-collection-hero{% if has_hero_image %} has-background-image{% endif %}"
+  data-section-id="{{ section.id }}"
+  data-update-url="{{ section.settings.update_url }}"
+  style="
+    --hero-bg: {{ section.settings.background_color }};
+    --hero-image-position: {{ section.settings.background_image_position }};
+    --hero-overlay-color: {{ section.settings.overlay_color }};
+    --hero-overlay-opacity: {{ section.settings.overlay_opacity | divided_by: 100.0 }};
+    --hero-image-height-desktop: {{ section.settings.banner_image_height_desktop }}px;
+    --hero-image-height-mobile: {{ section.settings.banner_image_height_mobile }}px;
+    --hero-image-text: {{ section.settings.banner_image_text_color }};
+    --hero-text: {{ section.settings.text_color }};
+    --hero-border: {{ section.settings.divider_color }};
+    --tab-text: {{ section.settings.tab_text_color }};
+    --tab-border: {{ section.settings.tab_border_color }};
+    --tab-bg: {{ section.settings.tab_background_color }};
+    --tab-active-text: {{ section.settings.tab_active_text_color }};
+    --tab-active-bg: {{ section.settings.tab_active_background_color }};
+    --tab-active-border: {{ section.settings.tab_active_border_color }};
+
+    --hero-max-width: {{ section.settings.max_width }}px;
+    --hero-desktop-gap: {{ section.settings.desktop_column_gap }}px;
+
+    --hero-padding-top-desktop: {{ section.settings.padding_top_desktop }}px;
+    --hero-padding-bottom-desktop: {{ section.settings.padding_bottom_desktop }}px;
+    --hero-padding-x-desktop: {{ section.settings.padding_horizontal_desktop }}px;
+
+    --hero-padding-top-mobile: {{ section.settings.padding_top_mobile }}px;
+    --hero-padding-bottom-mobile: {{ section.settings.padding_bottom_mobile }}px;
+    --hero-padding-x-mobile: {{ section.settings.padding_horizontal_mobile }}px;
+
+    --title-size-desktop: {{ section.settings.title_size_desktop }}px;
+    --title-size-mobile: {{ section.settings.title_size_mobile }}px;
+    --title-line-height: {{ section.settings.title_line_height | divided_by: 100.0 }};
+
+    --desc-size-desktop: {{ section.settings.description_size_desktop }}px;
+    --desc-size-mobile: {{ section.settings.description_size_mobile }}px;
+    --desc-line-height: {{ section.settings.description_line_height | divided_by: 100.0 }};
+
+    --tabs-margin-top-desktop: {{ section.settings.tabs_margin_top_desktop }}px;
+    --tabs-margin-top-mobile: {{ section.settings.tabs_margin_top_mobile }}px;
+    --tabs-gap: {{ section.settings.tabs_gap }}px;
+
+    --tab-padding-y: {{ section.settings.tab_padding_vertical }}px;
+    --tab-padding-x: {{ section.settings.tab_padding_horizontal }}px;
+    --tab-font-size: {{ section.settings.tab_font_size }}px;
+    --tab-border-width: {{ section.settings.tab_border_width }}px;
+    --tab-radius: {{ section.settings.tab_border_radius }}px;
+  "
+>
+  {%- capture hero_top_content -%}
+    <div class="ajax-collection-hero__top">
+      <div class="ajax-collection-hero__heading">
+        <h1 class="ajax-collection-hero__title">
+          {{ collection.title | escape }}
+        </h1>
+      </div>
+
+      {%- if section.settings.show_description and description_text != blank -%}
+        <div class="ajax-collection-hero__description">
+          <div
+            class="ajax-collection-hero__description-content rte{% if section.settings.enable_read_more %} is-collapsed{% endif %}"
+            data-description
+          >
+            {{ description_text }}
+          </div>
+
+          {%- if section.settings.enable_read_more -%}
+            <button
+              type="button"
+              class="ajax-collection-hero__read-more"
+              data-read-more
+              aria-expanded="false"
+            >
+              <span data-read-more-text>
+                {{ section.settings.read_more_label | escape }}
+              </span>
+
+              <span
+                data-read-less-text
+                hidden
+              >
+                {{ section.settings.read_less_label | escape }}
+              </span>
+            </button>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+    </div>
+  {%- endcapture -%}
+
+  {%- if has_hero_image -%}
+    <div class="ajax-collection-hero__image"{% if collection.handle == 'dar-collection' %} data-dar-banner{% endif %}>
+      {%- if dar_banner_url != blank -%}
+        <img src="{{ dar_banner_url | escape }}" alt="{{ collection.title | escape }}" loading="eager" fetchpriority="high">
+      {%- else -%}
+      {{
+        hero_background_image
+        | image_url: width: 2000
+        | image_tag:
+          loading: 'lazy',
+          widths: '480, 750, 1000, 1400, 1800, 2000, 2400, 2800, 3200',
+          sizes: '100vw'
+      }}
+      {%- endif -%}
+      {%- if section.settings.overlay_opacity > 0 -%}
+        <div class="ajax-collection-hero__image-overlay"></div>
+      {%- endif -%}
+      <div class="ajax-collection-hero__image-content">
+        {{ hero_top_content }}
+      </div>
+    </div>
+  {%- endif -%}
+
+  <div class="ajax-collection-hero__container">
+
+    {%- unless has_hero_image -%}
+      {{ hero_top_content }}
+    {%- endunless -%}
+
+    {%- if section.blocks.size > 0 -%}
+      <div class="ajax-collection-hero__tabs-wrap">
+        <div
+          class="ajax-collection-hero__tabs"
+          role="navigation"
+          aria-label="{{ section.settings.tabs_aria_label | escape }}"
+        >
+          {%- for block in section.blocks -%}
+            {%- liquid
+              assign tab_collection = block.settings.collection
+              assign tab_label = block.settings.custom_label
+
+              if tab_label == blank and tab_collection != blank
+                assign tab_label = tab_collection.title
+              endif
+
+              assign tab_url = block.settings.custom_url
+
+              if tab_url == blank and tab_collection != blank
+                assign tab_url = tab_collection.url
+              endif
+
+              assign is_active = false
+
+              if tab_collection != blank and tab_collection.handle == collection.handle
+                assign is_active = true
+              endif
+            -%}
+
+            {%- if tab_url != blank and tab_label != blank -%}
+              <a
+                href="{{ tab_url }}"
+                class="ajax-collection-hero__tab{% if is_active %} is-active{% endif %}"
+                data-collection-tab
+                {% if tab_collection != blank %}
+                  data-collection-handle="{{ tab_collection.handle }}"
+                {% endif %}
+                {% if is_active %}
+                  aria-current="page"
+                {% endif %}
+                {{ block.shopify_attributes }}
+              >
+                {{ tab_label | escape }}
+              </a>
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+      </div>
+    {%- endif -%}
+
+  </div>
+
+  {%- if section.settings.show_loading_overlay -%}
+    <div
+      class="ajax-collection-hero__loader"
+      data-collection-loader
+      aria-hidden="true"
+    >
+      <span class="ajax-collection-hero__spinner"></span>
+    </div>
+  {%- endif -%}
+</section>
+
+
+<style>
+  #AjaxCollectionHero-{{ section.id }} {
+    position: relative;
+    width: 100%;
+    background: var(--hero-bg);
+    color: var(--hero-text);
+    border-bottom: 1px solid var(--hero-border);
+  }
+
+  #AjaxCollectionHero-{{ section.id }} .ajax-collection-hero__image {
+    position: relative;
+    width: 100%;
+    height: var(--hero-image-height-mobile);
+    overflow: hidden;
+  }
+
+  #AjaxCollectionHero-{{ section.id }} .ajax-collection-hero__image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: var(--hero-image-position);
+    display: block;
+  }
+
+  /* Keep the DAR pendant in view on mobile; this marker travels with AJAX banners. */
+  @media screen and (max-width: 749px) {
+    #AjaxCollectionHero-{{ section.id }} [data-dar-banner] img {
+      object-position: right center;
+    }
+  }
+
+  #AjaxCollectionHero-{{ section.id }} .ajax-collection-hero__image-overlay {
+    position: absolute;
+    inset: 0;
+    background: var(--hero-overlay-color);
+    opacity: var(--hero-overlay-opacity);
+    pointer-events: none;
+  }
+
+  #AjaxCollectionHero-{{ section.id }} .ajax-collection-hero__image-content {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    padding: 0 var(--hero-padding-x-mobile);
+    color: var(--hero-image-text, #ffffff);
+  }
+
+  #AjaxCollectionHero-{{ section.id }} .ajax-collection-hero__image-content .ajax-collection-hero__top {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+    gap: 16px;
+    max-width: 560px;
+  }
+
+  #AjaxCollectionHero-{{ section.id }} .ajax-collection-hero__image-content .ajax-collection-hero__title,
+  #AjaxCollectionHero-{{ section.id }} .ajax-collection-hero__image-content .ajax-collection-hero__description,
+  #AjaxCollectionHero-{{ section.id }} .ajax-collection-hero__image-content .ajax-collection-hero__read-more {
+    color: inherit;
+  }
+
+  #AjaxCollectionHero-{{ section.id }}.has-background-image .ajax-collection-hero__container {
+    padding-top: 0;
+  }
+
+  @media screen and (min-width: 750px) {
+    #AjaxCollectionHero-{{ section.id }} .ajax-collection-hero__image {
+      height: var(--hero-image-height-desktop);
+    }
+
+    #AjaxCollectionHero-{{ section.id }} .ajax-collection-hero__image-content {
+      padding: 0 var(--hero-padding-x-desktop);
+    }
+  }
+
+  #AjaxCollectionHero-{{ section.id }} *,
+  #AjaxCollectionHero-{{ section.id }} *::before,
+  #AjaxCollectionHero-{{ section.id }} *::after {
+    box-sizing: border-box;
+  }
+
+  #AjaxCollectionHero-{{ section.id }} .ajax-collection-hero__container {
+    width: 100%;
+    max-width: var(--hero-max-width);
+    margin: 0 auto;
+    padding:
+      var(--hero-padding-top-desktop)
+      var(--hero-padding-x-desktop)
+      var(--hero-padding-bottom-desktop);
+  }
+
+  /* =========================
+     TOP DESKTOP LAYOUT
+  ========================== */
+
+  #AjaxCollectionHero-{{ section.id }} .ajax-collection-hero__top {
+    display: grid;
+    grid-template-columns:
+      minmax(240px, {{ section.settings.title_column_width }}%)
+      minmax(0, 1fr);
+    column-gap: var(--hero-desktop-gap);
+    align-items: start;
+  }
+
+  #AjaxCollectionHero-{{ section.id }} .ajax-collection-hero__heading,
+  #AjaxCollectionHero-{{ section.id }} .ajax-collection-hero__description {
+    min-width: 0;
+  }
+
+  #AjaxCollectionHero-{{ section.id }} .ajax-collection-hero__title {
+    margin: 0;
+    padding: 0;
+    color: var(--hero-text);
+    font-size: var(--title-size-desktop);
+    line-height: var(--title-line-height);
+    font-weight: {{ section.settings.title_font_weight }};
+    letter-spacing: {{ section.settings.title_letter_spacing | divided_by: 100.0 }}px;
+    text-transform: {{ section.settings.title_transform }};
+  }
+
+  #AjaxCollectionHero-{{ section.id }} .ajax-collection-hero__description {
+    color: var(--hero-text);
+    font-size: var(--desc-size-desktop);
+    line-height: var(--desc-line-height);
+    font-weight: {{ section.settings.description_font_weight }};
+  }
+
+  #AjaxCollectionHero-{{ section.id }} .ajax-collection-hero__description-content {
+    position: relative;
+    overflow: hidden;
+    transition: max-height 0.35s ease;
+  }
+
+  #AjaxCollectionHero-{{ section.id }} .ajax-collection-hero__description-content > *:first-child {
+    margin-top: 0;
+  }
+
+  #AjaxCollectionHero-{{ section.id }} .ajax-collection-hero__description-content > *:last-child {
+    margin-bottom: 0;
+  }
+
+  #AjaxCollectionHero-{{ section.id }} .ajax-collection-hero__description-content p {
+    font-size: inherit;
+    line-height: inherit;
+    color: inherit;
+  }
+
+  #AjaxCollectionHero-{{ section.id }} .ajax-collection-hero__description-content.is-collapsed {
+    max-height: {{ section.settings.description_collapsed_height_desktop }}px;
+  }
+
+  #AjaxCollectionHero-{{ section.id }} .ajax-collection-hero__description-content.is-expanded {
+    max-height: 2000px;
+  }
+
+  #AjaxCollectionHero-{{ section.id }} .ajax-collection-hero__read-more {
+    appearance: none;
+    -webkit-appearance: none;
+    display: inline-block;
+    margin: {{ section.settings.read_more_margin_top }}px 0 0;
+    padding: 0;
+    border: 0;
+    border-bottom: {{ section.settings.read_more_underline_width }}px solid currentColor;
+    border-radius: 0;
+    background: transparent;
+    color: var(--hero-text);
+    font: inherit;
+    font-size: {{ section.settings.read_more_font_size }}px;
+    line-height: 1.3;
+    cursor: pointer;
+  }
+
+  #AjaxCollectionHero-{{ section.id }} .ajax-collection-hero__read-more:hover {
+    opacity: 0.65;
+  }
+
+  /* =========================
+     TABS
+  ========================== */
+
+  #AjaxCollectionHero-{{ section.id }} .ajax-collection-hero__tabs-wrap {
+    margin-top: var(--tabs-margin-top-desktop);
+  }
+
+  #AjaxCollectionHero-{{ section.id }} .ajax-collection-hero__tabs {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--tabs-gap);
+  }
+
+  #AjaxCollectionHero-{{ section.id }} .ajax-collection-hero__tab {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 auto;
+    min-height: {{ section.settings.tab_min_height }}px;
+    padding: var(--tab-padding-y) var(--tab-padding-x);
+
+    border:
+      var(--tab-border-width)
+      solid
+      var(--tab-border);
+
+    border-radius: var(--tab-radius);
+
+    background: var(--tab-bg);
+    color: var(--tab-text);
+
+    font-size: var(--tab-font-size);
+    line-height: 1.2;
+    font-weight: {{ section.settings.tab_font_weight }};
+    letter-spacing: {{ section.settings.tab_letter_spacing | divided_by: 100.0 }}px;
+    text-transform: {{ section.settings.tab_text_transform }};
+    text-decoration: none;
+    white-space: nowrap;
+
+    transition:
+      background-color 0.2s ease,
+      color 0.2s ease,
+      border-color 0.2s ease,
+      opacity 0.2s ease;
+  }
+
+  #AjaxCollectionHero-{{ section.id }} .ajax-collection-hero__tab:hover {
+    opacity: 0.72;
+  }
+
+  #AjaxCollectionHero-{{ section.id }} .ajax-collection-hero__tab.is-active {
+    background: var(--tab-active-bg);
+    color: var(--tab-active-text);
+    border-color: var(--tab-active-border);
+  }
+
+  /* =========================
+     AJAX LOADER
+  ========================== */
+
+  #AjaxCollectionHero-{{ section.id }} .ajax-collection-hero__loader {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    pointer-events: none;
+    opacity: 0;
+    visibility: hidden;
+    background: rgba(255,255,255,0.25);
+    transition:
+      opacity 0.2s ease,
+      visibility 0.2s ease;
+  }
+
+  #AjaxCollectionHero-{{ section.id }}.is-loading .ajax-collection-hero__loader {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  #AjaxCollectionHero-{{ section.id }} .ajax-collection-hero__spinner {
+    width: 36px;
+    height: 36px;
+    border: 2px solid rgba(0,0,0,0.15);
+    border-top-color: currentColor;
+    border-radius: 50%;
+    animation: ajaxCollectionSpinner 0.7s linear infinite;
+  }
+
+  @keyframes ajaxCollectionSpinner {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  /* =========================
+     MOBILE
+  ========================== */
+
+  @media screen and (max-width: 749px) {
+    #AjaxCollectionHero-{{ section.id }} .ajax-collection-hero__container {
+      padding:
+        var(--hero-padding-top-mobile)
+        var(--hero-padding-x-mobile)
+        var(--hero-padding-bottom-mobile);
+    }
+
+    #AjaxCollectionHero-{{ section.id }} .ajax-collection-hero__top {
+      display: flex;
+      flex-direction: column;
+      gap: {{ section.settings.mobile_content_gap }}px;
+    }
+
+    #AjaxCollectionHero-{{ section.id }} .ajax-collection-hero__title {
+      font-size: var(--title-size-mobile);
+    }
+
+    #AjaxCollectionHero-{{ section.id }} .ajax-collection-hero__description {
+      width: 100%;
+      font-size: var(--desc-size-mobile);
+    }
+
+    #AjaxCollectionHero-{{ section.id }} .ajax-collection-hero__description-content.is-collapsed {
+      max-height: {{ section.settings.description_collapsed_height_mobile }}px;
+    }
+
+    #AjaxCollectionHero-{{ section.id }} .ajax-collection-hero__tabs-wrap {
+      width: calc(100% + var(--hero-padding-x-mobile));
+      margin-top: var(--tabs-margin-top-mobile);
+      overflow: hidden;
+    }
+
+    #AjaxCollectionHero-{{ section.id }} .ajax-collection-hero__tabs {
+      display: flex;
+      flex-wrap: nowrap;
+      gap: var(--tabs-gap);
+      width: 100%;
+      overflow-x: auto;
+      overflow-y: hidden;
+      padding-right: var(--hero-padding-x-mobile);
+      padding-bottom: 4px;
+
+      scroll-behavior: smooth;
+      scroll-snap-type: x proximity;
+      scrollbar-width: none;
+
+      -webkit-overflow-scrolling: touch;
+    }
+
+    #AjaxCollectionHero-{{ section.id }} .ajax-collection-hero__tabs::-webkit-scrollbar {
+      display: none;
+    }
+
+    #AjaxCollectionHero-{{ section.id }} .ajax-collection-hero__tab {
+      flex: 0 0 auto;
+      scroll-snap-align: start;
+    }
+  }
+</style>
+
+
+<script>
+  (() => {
+    const sectionId = 'AjaxCollectionHero-{{ section.id }}';
+
+    function initAjaxCollectionHero() {
+      const section = document.getElementById(sectionId);
+
+      if (!section || section.dataset.initialized === 'true') return;
+
+      section.dataset.initialized = 'true';
+
+      const tabs = section.querySelectorAll('[data-collection-tab]');
+      const readMoreButton = section.querySelector('[data-read-more]');
+
+      /* ============================
+         READ MORE
+      ============================ */
+
+      if (readMoreButton) {
+        readMoreButton.addEventListener('click', function () {
+          const description = section.querySelector('[data-description]');
+          const moreText = this.querySelector('[data-read-more-text]');
+          const lessText = this.querySelector('[data-read-less-text]');
+
+          if (!description) return;
+
+          const expanded = this.getAttribute('aria-expanded') === 'true';
+
+          if (expanded) {
+            description.classList.remove('is-expanded');
+            description.classList.add('is-collapsed');
+
+            this.setAttribute('aria-expanded', 'false');
+
+            if (moreText) moreText.hidden = false;
+            if (lessText) lessText.hidden = true;
+          } else {
+            description.classList.remove('is-collapsed');
+            description.classList.add('is-expanded');
+
+            this.setAttribute('aria-expanded', 'true');
+
+            if (moreText) moreText.hidden = true;
+            if (lessText) lessText.hidden = false;
+          }
+        });
+      }
+
+      /* ============================
+         COLLECTION AJAX
+      ============================ */
+
+      tabs.forEach((tab) => {
+        tab.addEventListener('click', async function (event) {
+          if (
+            event.ctrlKey ||
+            event.metaKey ||
+            event.shiftKey ||
+            event.altKey
+          ) {
+            return;
+          }
+
+          event.preventDefault();
+
+          const url = this.href;
+
+          if (!url || this.classList.contains('is-active')) {
+            scrollActiveTab(this);
+            return;
+          }
+
+          await loadCollection(url, this);
+        });
+      });
+
+      /* Mobile: active tab visible automatically */
+      const activeTab = section.querySelector(
+        '[data-collection-tab].is-active'
+      );
+
+      if (activeTab) {
+        setTimeout(() => {
+          scrollActiveTab(activeTab, false);
+        }, 150);
+      }
+    }
+
+
+    async function loadCollection(url, clickedTab, pushState = true) {
+      const section = document.getElementById(sectionId);
+
+      if (!section || section.classList.contains('is-loading')) return;
+
+      section.classList.add('is-loading');
+      section.setAttribute('aria-busy', 'true');
+
+      try {
+        const response = await fetch(url, {
+          method: 'GET',
+          headers: {
+            'X-Requested-With': 'XMLHttpRequest'
+          }
+        });
+
+        if (!response.ok) {
+          throw new Error('Collection AJAX request failed');
+        }
+
+        const html = await response.text();
+
+        const parser = new DOMParser();
+        const newDocument = parser.parseFromString(html, 'text/html');
+
+        // Different templates need a full load to apply their layout and scripts.
+        const newHero = newDocument.getElementById(sectionId);
+        if (!newHero || section.classList.contains('has-background-image') !== newHero.classList.contains('has-background-image')) {
+          window.location.href = url;
+          return;
+        }
+        const currentHeroImage = section.querySelector('.ajax-collection-hero__image');
+        const newHeroImage = newHero.querySelector('.ajax-collection-hero__image');
+
+
+        /*
+          Product grid selectors.
+
+          #ProductGridContainer = Dawn / many Shopify themes
+          .product-grid-container = common Shopify structure
+          [data-product-grid] = custom themes
+          .collection-product-list = some premium themes
+        */
+
+        const currentGrid =
+          document.querySelector('#ProductGridContainer') ||
+          document.querySelector('[data-product-grid]') ||
+          document.querySelector('.product-grid-container') ||
+          document.querySelector('.collection-product-list');
+
+        const newGrid =
+          newDocument.querySelector('#ProductGridContainer') ||
+          newDocument.querySelector('[data-product-grid]') ||
+          newDocument.querySelector('.product-grid-container') ||
+          newDocument.querySelector('.collection-product-list');
+
+        if (!currentGrid || !newGrid) {
+          /*
+            Fallback:
+            Agar theme ka product grid selector different ho,
+            user ko broken page dikhane ke bajaye normal URL open hoga.
+          */
+          window.location.href = url;
+          return;
+        }
+
+        // Refresh the banner when entering DAR or returning to another collection.
+        if (currentHeroImage && newHeroImage) {
+          currentHeroImage.replaceWith(newHeroImage.cloneNode(true));
+        }
+
+        /* Replace products / filters / pagination */
+        currentGrid.innerHTML = newGrid.innerHTML;
+
+        /* Update collection title */
+        const currentTitle = section.querySelector(
+          '.ajax-collection-hero__title'
+        );
+
+        const newTitle = newDocument.querySelector(
+          '.ajax-collection-hero__title'
+        );
+
+        if (currentTitle && newTitle) {
+          currentTitle.innerHTML = newTitle.innerHTML;
+        }
+
+        /* Update description */
+        const currentDescription = section.querySelector(
+          '[data-description]'
+        );
+
+        const newDescription = newDocument.querySelector(
+          '[data-description]'
+        );
+
+        if (currentDescription && newDescription) {
+          currentDescription.innerHTML = newDescription.innerHTML;
+
+          currentDescription.classList.remove('is-expanded');
+
+          {% if section.settings.enable_read_more %}
+            currentDescription.classList.add('is-collapsed');
+          {% else %}
+            currentDescription.classList.remove('is-collapsed');
+          {% endif %}
+        }
+
+        /* Reset read more button */
+        const readMore = section.querySelector('[data-read-more]');
+
+        if (readMore) {
+          const moreText = readMore.querySelector(
+            '[data-read-more-text]'
+          );
+
+          const lessText = readMore.querySelector(
+            '[data-read-less-text]'
+          );
+
+          readMore.setAttribute('aria-expanded', 'false');
+
+          if (moreText) moreText.hidden = false;
+          if (lessText) lessText.hidden = true;
+        }
+
+        /* Active tab */
+        section
+          .querySelectorAll('[data-collection-tab]')
+          .forEach((tab) => {
+            tab.classList.remove('is-active');
+            tab.removeAttribute('aria-current');
+          });
+
+        if (clickedTab) {
+          clickedTab.classList.add('is-active');
+          clickedTab.setAttribute('aria-current', 'page');
+
+          scrollActiveTab(clickedTab);
+        }
+
+        /* Update URL without refresh */
+        if (
+          pushState &&
+          section.dataset.updateUrl !== 'false'
+        ) {
+          window.history.pushState(
+            {
+              ajaxCollection: true,
+              url: url
+            },
+            '',
+            url
+          );
+        }
+
+        /*
+          Re-run common Shopify events.
+          Useful for product cards, quick add, swatches etc.
+        */
+        document.dispatchEvent(
+          new CustomEvent('collection:ajax:loaded', {
+            detail: {
+              url: url,
+              container: currentGrid
+            }
+          })
+        );
+
+        window.dispatchEvent(new Event('resize'));
+
+        {% if section.settings.scroll_to_products %}
+          const productTop =
+            currentGrid.getBoundingClientRect().top +
+            window.pageYOffset -
+            {{ section.settings.scroll_offset }};
+
+          window.scrollTo({
+            top: productTop,
+            behavior: 'smooth'
+          });
+        {% endif %}
+      } catch (error) {
+        console.error(error);
+
+        /*
+          Safe fallback if fetch fails.
+        */
+        window.location.href = url;
+      } finally {
+        const currentSection =
+          document.getElementById(sectionId);
+
+        if (currentSection) {
+          currentSection.classList.remove('is-loading');
+          currentSection.removeAttribute('aria-busy');
+        }
+      }
+    }
+
+
+    function scrollActiveTab(tab, smooth = true) {
+      if (!tab) return;
+
+      const tabsContainer = tab.closest(
+        '.ajax-collection-hero__tabs'
+      );
+
+      if (!tabsContainer) return;
+
+      if (window.innerWidth <= 749) {
+        tab.scrollIntoView({
+          behavior: smooth ? 'smooth' : 'auto',
+          inline: 'center',
+          block: 'nearest'
+        });
+      }
+    }
+
+
+    /* Browser back / forward */
+    window.addEventListener('popstate', function () {
+      const section =
+        document.getElementById(sectionId);
+
+      if (!section) return;
+
+      const currentPath =
+        window.location.pathname.replace(/\/$/, '');
+
+      const matchingTab = Array.from(
+        section.querySelectorAll('[data-collection-tab]')
+      ).find((tab) => {
+        try {
+          return (
+            new URL(tab.href).pathname.replace(/\/$/, '') ===
+            currentPath
+          );
+        } catch (e) {
+          return false;
+        }
+      });
+
+      if (matchingTab) {
+        loadCollection(
+          window.location.href,
+          matchingTab,
+          false
+        );
+      } else {
+        window.location.reload();
+      }
+    });
+
+
+    /* Initial load */
+    if (document.readyState === 'loading') {
+      document.addEventListener(
+        'DOMContentLoaded',
+        initAjaxCollectionHero
+      );
+    } else {
+      initAjaxCollectionHero();
+    }
+
+    /* Shopify Theme Editor */
+    document.addEventListener(
+      'shopify:section:load',
+      function (event) {
+        if (
+          event.target &&
+          event.target.querySelector &&
+          (
+            event.target.id === sectionId ||
+            event.target.querySelector(
+              '#' + sectionId
+            )
+          )
+        ) {
+          const section =
+            document.getElementById(sectionId);
+
+          if (section) {
+            delete section.dataset.initialized;
+          }
+
+          initAjaxCollectionHero();
+        }
+      }
+    );
+  })();
+</script>
+
+
+{% schema %}
+{
+  "name": "AJAX Collection Hero",
+  "tag": "section",
+  "class": "section-ajax-collection-hero",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_description",
+      "label": "Show collection description",
+      "default": true
+    },
+    {
+      "type": "select",
+      "id": "description_source",
+      "label": "Description source",
+      "default": "collection",
+      "options": [
+        {
+          "value": "collection",
+          "label": "Collection description"
+        },
+        {
+          "value": "custom",
+          "label": "Custom description"
+        }
+      ]
+    },
+    {
+      "type": "richtext",
+      "id": "custom_description",
+      "label": "Custom description",
+      "default": "<p>In the perfect combination of form and function, this range of versatile styles will take you seamlessly from day to night.</p>"
+    },
+
+    {
+      "type": "header",
+      "content": "Read more"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_read_more",
+      "label": "Enable Read More",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "read_more_label",
+      "label": "Read more text",
+      "default": "Read More"
+    },
+    {
+      "type": "text",
+      "id": "read_less_label",
+      "label": "Read less text",
+      "default": "Read Less"
+    },
+    {
+      "type": "range",
+      "id": "description_collapsed_height_desktop",
+      "min": 20,
+      "max": 200,
+      "step": 5,
+      "unit": "px",
+      "label": "Desktop collapsed description height",
+      "default": 25
+    },
+    {
+      "type": "range",
+      "id": "description_collapsed_height_mobile",
+      "min": 20,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Mobile collapsed description height",
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "read_more_margin_top",
+      "min": 0,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "label": "Read More top spacing",
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "read_more_font_size",
+      "min": 10,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "label": "Read More font size",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "read_more_underline_width",
+      "min": 0,
+      "max": 3,
+      "step": 1,
+      "unit": "px",
+      "label": "Read More underline",
+      "default": 1
+    },
+
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "max_width",
+      "min": 1000,
+      "max": 2000,
+      "step": 20,
+      "unit": "px",
+      "label": "Content max width",
+      "default": 1600
+    },
+    {
+      "type": "range",
+      "id": "title_column_width",
+      "min": 20,
+      "max": 50,
+      "step": 1,
+      "unit": "%",
+      "label": "Desktop title column width",
+      "default": 34
+    },
+    {
+      "type": "range",
+      "id": "desktop_column_gap",
+      "min": 10,
+      "max": 120,
+      "step": 2,
+      "unit": "px",
+      "label": "Desktop title / description gap",
+      "default": 30
+    },
+    {
+      "type": "range",
+      "id": "mobile_content_gap",
+      "min": 5,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "label": "Mobile title / description gap",
+      "default": 24
+    },
+
+    {
+      "type": "header",
+      "content": "Title typography"
+    },
+    {
+      "type": "range",
+      "id": "title_size_desktop",
+      "min": 24,
+      "max": 90,
+      "step": 1,
+      "unit": "px",
+      "label": "Desktop title size",
+      "default": 46
+    },
+    {
+      "type": "range",
+      "id": "title_size_mobile",
+      "min": 24,
+      "max": 64,
+      "step": 1,
+      "unit": "px",
+      "label": "Mobile title size",
+      "default": 44
+    },
+    {
+      "type": "select",
+      "id": "title_font_weight",
+      "label": "Title font weight",
+      "default": "400",
+      "options": [
+        {
+          "value": "300",
+          "label": "Light"
+        },
+        {
+          "value": "400",
+          "label": "Regular"
+        },
+        {
+          "value": "500",
+          "label": "Medium"
+        },
+        {
+          "value": "600",
+          "label": "Semi bold"
+        },
+        {
+          "value": "700",
+          "label": "Bold"
+        }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "title_line_height",
+      "min": 80,
+      "max": 160,
+      "step": 5,
+      "unit": "%",
+      "label": "Title line height",
+      "default": 105
+    },
+    {
+      "type": "range",
+      "id": "title_letter_spacing",
+      "min": -50,
+      "max": 100,
+      "step": 5,
+      "label": "Title letter spacing",
+      "default": 0,
+      "info": "Value is divided by 100 to create px spacing."
+    },
+    {
+      "type": "select",
+      "id": "title_transform",
+      "label": "Title capitalization",
+      "default": "none",
+      "options": [
+        {
+          "value": "none",
+          "label": "Normal"
+        },
+        {
+          "value": "uppercase",
+          "label": "Uppercase"
+        },
+        {
+          "value": "capitalize",
+          "label": "Capitalize"
+        }
+      ]
+    },
+
+    {
+      "type": "header",
+      "content": "Description typography"
+    },
+    {
+      "type": "range",
+      "id": "description_size_desktop",
+      "min": 12,
+      "max": 32,
+      "step": 1,
+      "unit": "px",
+      "label": "Desktop description size",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "description_size_mobile",
+      "min": 12,
+      "max": 28,
+      "step": 1,
+      "unit": "px",
+      "label": "Mobile description size",
+      "default": 17
+    },
+    {
+      "type": "select",
+      "id": "description_font_weight",
+      "label": "Description font weight",
+      "default": "400",
+      "options": [
+        {
+          "value": "300",
+          "label": "Light"
+        },
+        {
+          "value": "400",
+          "label": "Regular"
+        },
+        {
+          "value": "500",
+          "label": "Medium"
+        },
+        {
+          "value": "600",
+          "label": "Semi bold"
+        }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "description_line_height",
+      "min": 100,
+      "max": 220,
+      "step": 5,
+      "unit": "%",
+      "label": "Description line height",
+      "default": 150
+    },
+
+    {
+      "type": "header",
+      "content": "Collection tabs"
+    },
+    {
+      "type": "text",
+      "id": "tabs_aria_label",
+      "label": "Tabs accessibility label",
+      "default": "Collection navigation"
+    },
+    {
+      "type": "range",
+      "id": "tabs_margin_top_desktop",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "Desktop tabs top spacing",
+      "default": 42
+    },
+    {
+      "type": "range",
+      "id": "tabs_margin_top_mobile",
+      "min": 0,
+      "max": 80,
+      "step": 2,
+      "unit": "px",
+      "label": "Mobile tabs top spacing",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "tabs_gap",
+      "min": 4,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "label": "Gap between tabs",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "tab_padding_horizontal",
+      "min": 10,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "label": "Tab horizontal padding",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "tab_padding_vertical",
+      "min": 5,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "label": "Tab vertical padding",
+      "default": 11
+    },
+    {
+      "type": "range",
+      "id": "tab_min_height",
+      "min": 30,
+      "max": 80,
+      "step": 1,
+      "unit": "px",
+      "label": "Tab minimum height",
+      "default": 42
+    },
+    {
+      "type": "range",
+      "id": "tab_font_size",
+      "min": 10,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Tab font size",
+      "default": 14
+    },
+    {
+      "type": "select",
+      "id": "tab_font_weight",
+      "label": "Tab font weight",
+      "default": "400",
+      "options": [
+        {
+          "value": "400",
+          "label": "Regular"
+        },
+        {
+          "value": "500",
+          "label": "Medium"
+        },
+        {
+          "value": "600",
+          "label": "Semi bold"
+        },
+        {
+          "value": "700",
+          "label": "Bold"
+        }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "tab_letter_spacing",
+      "min": 0,
+      "max": 200,
+      "step": 5,
+      "label": "Tab letter spacing",
+      "default": 0,
+      "info": "Value is divided by 100 to create px spacing."
+    },
+    {
+      "type": "select",
+      "id": "tab_text_transform",
+      "label": "Tab text style",
+      "default": "uppercase",
+      "options": [
+        {
+          "value": "none",
+          "label": "Normal"
+        },
+        {
+          "value": "uppercase",
+          "label": "Uppercase"
+        },
+        {
+          "value": "capitalize",
+          "label": "Capitalize"
+        }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "tab_border_width",
+      "min": 0,
+      "max": 4,
+      "step": 1,
+      "unit": "px",
+      "label": "Tab border width",
+      "default": 1
+    },
+    {
+      "type": "range",
+      "id": "tab_border_radius",
+      "min": 0,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "label": "Tab border radius",
+      "default": 0
+    },
+
+    {
+      "type": "header",
+      "content": "Background image"
+    },
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "Banner image",
+      "info": "Shown above the heading, description and tabs. Leave blank to hide."
+    },
+    {
+      "type": "image_picker",
+      "id": "dar_background_image",
+      "label": "DAR collection banner image",
+      "info": "Only used for DAR Collection. Leave blank to use the supplied DAR campaign image."
+    },
+    {
+      "type": "select",
+      "id": "background_image_position",
+      "label": "Image position",
+      "default": "center center",
+      "options": [
+        { "value": "center center", "label": "Center" },
+        { "value": "top center", "label": "Top" },
+        { "value": "bottom center", "label": "Bottom" },
+        { "value": "left center", "label": "Left" },
+        { "value": "right center", "label": "Right" }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "banner_image_height_desktop",
+      "min": 150,
+      "max": 700,
+      "step": 10,
+      "unit": "px",
+      "label": "Image height (desktop)",
+      "default": 420
+    },
+    {
+      "type": "range",
+      "id": "banner_image_height_mobile",
+      "min": 100,
+      "max": 500,
+      "step": 10,
+      "unit": "px",
+      "label": "Image height (mobile)",
+      "default": 260
+    },
+    {
+      "type": "color",
+      "id": "banner_image_text_color",
+      "label": "Heading / text color on image",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "overlay_color",
+      "label": "Overlay color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "overlay_opacity",
+      "min": 0,
+      "max": 90,
+      "step": 5,
+      "unit": "%",
+      "label": "Image overlay opacity",
+      "info": "Darkens the banner image only.",
+      "default": 0
+    },
+
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text",
+      "default": "#111111"
+    },
+    {
+      "type": "color",
+      "id": "divider_color",
+      "label": "Bottom divider",
+      "default": "#d8d8d5"
+    },
+    {
+      "type": "color",
+      "id": "tab_background_color",
+      "label": "Tab background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "tab_text_color",
+      "label": "Tab text",
+      "default": "#111111"
+    },
+    {
+      "type": "color",
+      "id": "tab_border_color",
+      "label": "Tab border",
+      "default": "#55554c"
+    },
+    {
+      "type": "color",
+      "id": "tab_active_background_color",
+      "label": "Active tab background",
+      "default": "#111111"
+    },
+    {
+      "type": "color",
+      "id": "tab_active_text_color",
+      "label": "Active tab text",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "tab_active_border_color",
+      "label": "Active tab border",
+      "default": "#111111"
+    },
+
+    {
+      "type": "header",
+      "content": "Desktop spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_desktop",
+      "min": 0,
+      "max": 120,
+      "step": 2,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 42
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_desktop",
+      "min": 0,
+      "max": 120,
+      "step": 2,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_horizontal_desktop",
+      "min": 10,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "Left / right padding",
+      "default": 42
+    },
+
+    {
+      "type": "header",
+      "content": "Mobile spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "padding_horizontal_mobile",
+      "min": 10,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "label": "Left / right padding",
+      "default": 27
+    },
+
+    {
+      "type": "header",
+      "content": "AJAX behaviour"
+    },
+    {
+      "type": "checkbox",
+      "id": "update_url",
+      "label": "Update browser URL",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_loading_overlay",
+      "label": "Show loading spinner",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "scroll_to_products",
+      "label": "Scroll to products after tab click",
+      "default": false
+    },
+    {
+      "type": "range",
+      "id": "scroll_offset",
+      "min": 0,
+      "max": 250,
+      "step": 5,
+      "unit": "px",
+      "label": "Product scroll offset",
+      "default": 100
+    }
+  ],
+
+  "blocks": [
+    {
+      "type": "collection_tab",
+      "name": "Collection tab",
+      "settings": [
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Collection"
+        },
+        {
+          "type": "text",
+          "id": "custom_label",
+          "label": "Custom label",
+          "info": "Leave blank to use collection title."
+        },
+        {
+          "type": "url",
+          "id": "custom_url",
+          "label": "Custom URL",
+          "info": "Optional. Leave blank to use selected collection URL."
+        }
+      ]
+    }
+  ],
+
+  "presets": [
+    {
+      "name": "AJAX Collection Hero",
+      "blocks": [
+        {
+          "type": "collection_tab"
+        },
+        {
+          "type": "collection_tab"
+        },
+        {
+          "type": "collection_tab"
+        },
+        {
+          "type": "collection_tab"
+        },
+        {
+          "type": "collection_tab"
+        }
+      ]
     }
   ]
 }

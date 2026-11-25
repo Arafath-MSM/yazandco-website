@@ -1,0 +1,326 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "image_banner_qCa8zY": {
+      "type": "image-banner",
+      "custom_css": [
+        ".image-banner .banner {display: flex; position: relative; min-height: initial; max-height: 200px;}",
+        ".image-banner .banner:is([class*=\"bottom\"]) .image-banner__wrapper {padding-bottom: 2rem;}"
+      ],
+      "name": "t:sections.image-banner.presets.name",
+      "settings": {
+        "full_width": true,
+        "color_scheme": "",
+        "info_position": "inside",
+        "image": "shopify://shop_images/WhatsApp_Image_2026-09-09_at_6.23.25_PM_2.jpg",
+        "image_ratio": "21/9",
+        "opacity_overlay": 0.2,
+        "heading": "CONCIERGE",
+        "heading_size": "h1",
+        "enable_custom_heading_size": true,
+        "heading_font_size_desktop": 36,
+        "heading_font_size_mobile": 28,
+        "text_information": "",
+        "text_align": "bottom-left",
+        "text_width": "full",
+        "additional_text": "",
+        "button_label": "",
+        "button_style": "tertiary",
+        "button_link": "",
+        "button_label2": "",
+        "button_style2": "tertiary",
+        "button_link2": "",
+        "margin_top": "no-indent",
+        "margin_bottom": "no-indent"
+      }
+    },
+    "custom_process_accordion_gTURkA": {
+      "type": "custom-process-accordion",
+      "blocks": {
+        "step_AFQMqL": {
+          "type": "step",
+          "settings": {
+            "step_num": "01.",
+            "step_title": "Personal Styling",
+            "step_body": "Finding the right jewellery should feel effortless. Our personalised styling service helps you discover pieces that complement your individual style, wardrobe, occasion, and preferences. From subtle everyday elegance to statement pieces, we’ll help you find jewellery that feels distinctly yours."
+          }
+        },
+        "step_4n388X": {
+          "type": "step",
+          "settings": {
+            "step_num": "02.",
+            "step_title": "Gifting Guidance",
+            "step_body": "Make every gift meaningful. Tell us who you’re shopping for, the occasion, and your preferred budget, and our team will thoughtfully recommend pieces to help you find something they’ll treasure."
+          }
+        },
+        "step_3qf7df": {
+          "type": "step",
+          "settings": {
+            "step_num": "03.",
+            "step_title": "Bridal Consultations",
+            "step_body": "From engagement celebrations to the wedding day and beyond, our bridal consultations offer personalised guidance for brides, bridal parties, and wedding gifting. We’ll help you curate jewellery that complements your look and makes every moment feel exceptional."
+          }
+        },
+        "step_qHCxrA": {
+          "type": "step",
+          "settings": {
+            "step_num": "04.",
+            "step_title": "Private Appointments",
+            "step_body": "Enjoy dedicated time with a YAZ & Co jewellery specialist through a private appointment. Explore our collections, receive personalised recommendations, and discuss your requirements in a relaxed, one-to-one setting."
+          }
+        },
+        "step_CgpiXF": {
+          "type": "step",
+          "settings": {
+            "step_num": "05.",
+            "step_title": "Lab-Grown Diamond Expertise",
+            "step_body": "Explore our approach to lab-grown diamonds, from careful stone selection to clarity, proportion, brilliance, and craftsmanship. Our specialists are here to guide you in choosing the diamond that best suits your piece and your preferences."
+          }
+        }
+      },
+      "block_order": [
+        "step_AFQMqL",
+        "step_4n388X",
+        "step_3qf7df",
+        "step_qHCxrA",
+        "step_CgpiXF"
+      ],
+      "name": "Process Accordion Steps",
+      "settings": {
+        "section_bg": "#fafafa",
+        "container_max_w": 1600,
+        "pad_top_d": 60,
+        "pad_bottom_d": 60,
+        "pad_left_d": 40,
+        "pad_right_d": 40,
+        "pad_top_m": 40,
+        "pad_bottom_m": 40,
+        "pad_left_m": 20,
+        "pad_right_m": 20,
+        "image_position": "left",
+        "img_col_width": 50,
+        "grid_align": "center",
+        "gap_d": 60,
+        "gap_m": 30,
+        "image": "shopify://shop_images/IMG_9541.jpg",
+        "img_object_fit": "cover",
+        "img_max_h_d": 520,
+        "img_max_h_m": 370,
+        "img_radius_d": 0,
+        "img_radius_m": 0,
+        "num_color_active": "#111111",
+        "num_color_inactive": "#a0a0a0",
+        "num_size_d": 22,
+        "num_size_m": 18,
+        "num_weight": "400",
+        "num_title_gap_d": 20,
+        "num_title_gap_m": 12,
+        "title_color_active": "#111111",
+        "title_color_inactive": "#8e8e8e",
+        "title_size_d": 22,
+        "title_size_m": 18,
+        "title_weight": "400",
+        "title_lh": "1.3",
+        "body_color": "#4a4a4a",
+        "body_size_d": 16,
+        "body_size_m": 15,
+        "body_weight": "400",
+        "body_lh": "1.6",
+        "body_mt_d": 12,
+        "body_mt_m": 8,
+        "border_color": "#e2e2e2",
+        "border_w": 1,
+        "border_w_top": 0,
+        "item_pad_v_d": 20,
+        "item_pad_v_m": 16,
+        "open_first": true,
+        "close_others": true
+      }
+    },
+    "private_enquiry_form_rFpP8j": {
+      "type": "private-enquiry-form",
+      "name": "Private enquiry form",
+      "settings": {
+        "heading": "Private Enquiry",
+        "description": "<p>Tell us what you are looking for and our team will be happy to assist you.</p>",
+        "enquiry_type": "Private enquiry",
+        "success_message": "Thank you. Your enquiry has been submitted successfully.",
+        "show_name": true,
+        "name_required": true,
+        "name_label": "Name",
+        "name_placeholder": "Your name",
+        "email_label": "Email",
+        "email_placeholder": "Your email address",
+        "show_phone": true,
+        "phone_label": "Phone",
+        "phone_placeholder": "Your phone number",
+        "occasion_label": "Occasion",
+        "occasion_placeholder": "Select occasion",
+        "occasion_options": "Engagement\nWedding\nAnniversary\nBirthday\nGift\nOther",
+        "budget_label": "Budget",
+        "budget_placeholder": "Select budget",
+        "budget_options": "Under Dhs 5,000\nDhs 5,000–10,000\nDhs 10,000–25,000\nDhs 25,000–50,000\nDhs 50,000+",
+        "category_label": "Category",
+        "category_placeholder": "Select category",
+        "category_options": "Rings\nNecklaces\nBracelets\nEarrings\nBespoke piece\nOther",
+        "contact_method_label": "Preferred contact method",
+        "contact_method_placeholder": "Select contact method",
+        "contact_method_options": "Email\nPhone\nWhatsApp",
+        "show_message": true,
+        "message_label": "Message",
+        "message_placeholder": "Tell us a little more about what you are looking for",
+        "message_rows": 4,
+        "hidden_message": "Private enquiry submitted from website.",
+        "submit_text": "Submit Enquiry",
+        "submit_full_width": true,
+        "submit_height": 52,
+        "submit_font_size": 14,
+        "submit_weight": "500",
+        "submit_letter_spacing": 8,
+        "submit_background": "#111111",
+        "submit_color": "#ffffff",
+        "submit_border_color": "#111111",
+        "submit_border_width": 1,
+        "submit_radius": 0,
+        "submit_hover_background": "#ffffff",
+        "submit_hover_color": "#111111",
+        "submit_hover_border_color": "#111111",
+        "submit_horizontal_padding": 24,
+        "submit_top_space": 22,
+        "show_secondary_buttons": true,
+        "show_whatsapp": true,
+        "whatsapp_button_text": "Chat on WhatsApp",
+        "whatsapp_number": "+971568887552",
+        "whatsapp_message": "Hello, I would like to make a private enquiry.",
+        "whatsapp_background": "#ffffff",
+        "whatsapp_color": "#111111",
+        "whatsapp_border_color": "#111111",
+        "whatsapp_hover_background": "#f4f4f4",
+        "whatsapp_hover_color": "#111111",
+        "show_appointment": true,
+        "appointment_button_text": "Book a Private Appointment",
+        "appointment_link": "shopify://pages/book-an-appointment",
+        "appointment_new_tab": false,
+        "appointment_background": "#ffffff",
+        "appointment_color": "#111111",
+        "appointment_border_color": "#111111",
+        "appointment_hover_background": "#f4f4f4",
+        "appointment_hover_color": "#111111",
+        "secondary_columns": "2",
+        "secondary_stack_mobile": true,
+        "secondary_button_height": 50,
+        "secondary_font_size": 14,
+        "secondary_font_size_mobile": 14,
+        "secondary_weight": "500",
+        "secondary_border_width": 1,
+        "secondary_radius": 0,
+        "secondary_horizontal_padding": 20,
+        "secondary_top_space": 12,
+        "secondary_gap": 10,
+        "secondary_gap_mobile": 10,
+        "secondary_icon_size": 18,
+        "secondary_icon_gap": 8,
+        "desktop_columns": "2",
+        "field_height": 50,
+        "field_font_size": 14,
+        "field_font_size_mobile": 14,
+        "field_background": "#ffffff",
+        "field_text_color": "#111111",
+        "placeholder_color": "#777777",
+        "field_border_color": "#cfcfcf",
+        "field_focus_border_color": "#111111",
+        "field_border_width": 1,
+        "field_radius": 0,
+        "field_horizontal_padding": 14,
+        "field_vertical_padding": 12,
+        "textarea_min_height": 120,
+        "textarea_resize": "vertical",
+        "row_gap": 16,
+        "row_gap_mobile": 14,
+        "column_gap": 16,
+        "label_size": 13,
+        "label_weight": "500",
+        "label_color": "#111111",
+        "label_bottom_space": 7,
+        "max_width": 900,
+        "mobile_side_space": 20,
+        "text_alignment": "center",
+        "section_background": "#ffffff",
+        "box_background": "#ffffff",
+        "box_border_color": "#e5e5e5",
+        "box_border_width": 0,
+        "box_radius": 0,
+        "box_padding_vertical": 30,
+        "box_padding_horizontal": 30,
+        "box_padding_vertical_mobile": 20,
+        "box_padding_horizontal_mobile": 0,
+        "heading_size": 26,
+        "heading_size_mobile": 22,
+        "heading_weight": "500",
+        "heading_color": "#111111",
+        "heading_bottom_space": 10,
+        "description_size": 15,
+        "description_size_mobile": 14,
+        "description_line_height": 16,
+        "description_max_width": 640,
+        "description_bottom_space": 28,
+        "text_color": "#555555",
+        "section_padding_top": 20,
+        "section_padding_bottom": 24,
+        "section_padding_top_mobile": 40,
+        "section_padding_bottom_mobile": 40,
+        "message_font_size": 14,
+        "message_padding": 12,
+        "message_radius": 0,
+        "message_bottom_space": 20,
+        "success_background": "#f1f7f1",
+        "success_color": "#245b2a",
+        "error_background": "#fff1f1",
+        "error_color": "#a11a1a"
+      }
+    },
+    "17759116280ca668d1": {
+      "type": "apps",
+      "blocks": {
+        "instafeed_app_block_zLYQaY": {
+          "type": "shopify://apps/instafeed/blocks/app-block/c447db20-095d-4a10-9725-b5977662c9d5",
+          "settings": {
+            "title": "FOLLOW US ON INSTAGRAM",
+            "title_color": "",
+            "title_size_v2": 0,
+            "alignment": "center",
+            "instafeed_margin_top": 0,
+            "instafeed_margin_bottom": 0,
+            "instafeed_margin_sides": 0,
+            "show_instagram_link": true,
+            "link_alignment": "center",
+            "link_color": "#000000",
+            "background_color": "",
+            "feed_id": "@yazandco",
+            "html_area": ""
+          }
+        }
+      },
+      "block_order": [
+        "instafeed_app_block_zLYQaY"
+      ],
+      "settings": {
+        "include_margins": true
+      }
+    }
+  },
+  "order": [
+    "image_banner_qCa8zY",
+    "custom_process_accordion_gTURkA",
+    "private_enquiry_form_rFpP8j",
+    "17759116280ca668d1"
+  ]
+}

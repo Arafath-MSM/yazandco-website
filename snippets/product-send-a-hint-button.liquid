@@ -1,0 +1,156 @@
+{% comment %} {%- comment -%}
+  Send a Hint trigger button. Structural sizing (padding/font/radius/etc.) is always shared with the
+  Book a Consultation block so the two buttons line up; colors/icon follow `sync_style`.
+{%- endcomment -%}
+{%- liquid
+  assign struct = consult_block
+  if struct == nil
+    assign struct = block
+  endif
+
+  if sync_style
+    assign text_color = struct.settings.text_color
+    assign bg_color = struct.settings.bg_color
+    assign border_color = struct.settings.border_color
+    assign hover_text_color = struct.settings.hover_text_color
+    assign hover_bg_color = struct.settings.hover_bg_color
+    assign hover_border_color = struct.settings.hover_border_color
+    assign show_icon = struct.settings.show_icon
+    assign icon_position = struct.settings.icon_position
+  else
+    assign text_color = block.settings.text_color
+    assign bg_color = block.settings.bg_color
+    assign border_color = block.settings.border_color
+    assign hover_text_color = block.settings.hover_text_color
+    assign hover_bg_color = block.settings.hover_bg_color
+    assign hover_border_color = block.settings.border_color
+    assign show_icon = block.settings.show_icon
+    assign icon_position = block.settings.icon_position
+  endif
+-%}
+<modal-opener data-modal="#SendAHint-{{ section.id }}">
+  <button
+    type="button"
+    class="secondary-action-button secondary-action-button--hint"
+    id="SendAHintOpener-{{ section.id }}"
+    aria-haspopup="dialog"
+    style="
+      --sa-font-size-desktop: {{ struct.settings.font_size_desktop }}px;
+      --sa-font-size-mobile: {{ struct.settings.font_size_mobile }}px;
+      --sa-font-weight: {{ struct.settings.font_weight }};
+      --sa-letter-spacing: {{ struct.settings.letter_spacing }}px;
+      --sa-text-transform: {{ struct.settings.text_transform }};
+      --sa-text-color: {{ text_color }};
+      --sa-bg-color: {{ bg_color }};
+      --sa-border-color: {{ border_color }};
+      --sa-border-width: {{ struct.settings.border_width }}px;
+      --sa-border-radius: {{ struct.settings.border_radius }}px;
+      --sa-hover-text-color: {{ hover_text_color }};
+      --sa-hover-bg-color: {{ hover_bg_color }};
+      --sa-hover-border-color: {{ hover_border_color }};
+      --sa-padding-v: {{ struct.settings.padding_v }}px;
+      --sa-padding-h: {{ struct.settings.padding_h }}px;
+      --sa-min-height: {{ struct.settings.min_height }}px;
+      --sa-icon-gap: {{ struct.settings.icon_gap }}px;
+    "
+  >
+    {%- if show_icon and icon_position == 'left' -%}
+      <span class="secondary-action-button__icon" aria-hidden="true">{% render 'icon-envelope' %}</span>
+    {%- endif -%}
+    <span>{{ block.settings.button_label }}</span>
+    {%- if show_icon and icon_position == 'right' -%}
+      <span class="secondary-action-button__icon" aria-hidden="true">{% render 'icon-envelope' %}</span>
+    {%- endif -%}
+  </button>
+</modal-opener> {% endcomment %}
+
+
+
+{%- comment -%}
+  Send a Hint trigger button. Structural sizing (padding/font/radius/etc.) is always shared with the
+  Book a Consultation block so the two buttons line up; colors/icon follow `sync_style`.
+{%- endcomment -%}
+{%- liquid
+  assign struct = consult_block
+  if struct == nil
+    assign struct = block
+  endif
+
+  if sync_style
+    assign text_color = struct.settings.text_color
+    assign bg_color = struct.settings.bg_color
+    assign border_color = struct.settings.border_color
+    assign hover_text_color = struct.settings.hover_text_color
+    assign hover_bg_color = struct.settings.hover_bg_color
+    assign hover_border_color = struct.settings.hover_border_color
+    assign show_icon = struct.settings.show_icon
+    assign icon_position = struct.settings.icon_position
+  else
+    assign text_color = block.settings.text_color
+    assign bg_color = block.settings.bg_color
+    assign border_color = block.settings.border_color
+    assign hover_text_color = block.settings.hover_text_color
+    assign hover_bg_color = block.settings.hover_bg_color
+    assign hover_border_color = block.settings.border_color
+    assign show_icon = block.settings.show_icon
+    assign icon_position = block.settings.icon_position
+  endif
+-%}
+{%- capture button_style -%}
+  --sa-font-size-desktop: {{ struct.settings.font_size_desktop }}px;
+  --sa-font-size-mobile: {{ struct.settings.font_size_mobile }}px;
+  --sa-font-weight: {{ struct.settings.font_weight }};
+  --sa-letter-spacing: {{ struct.settings.letter_spacing }}px;
+  --sa-text-transform: {{ struct.settings.text_transform }};
+  --sa-text-color: {{ text_color }};
+  --sa-bg-color: {{ bg_color }};
+  --sa-border-color: {{ border_color }};
+  --sa-border-width: {{ struct.settings.border_width }}px;
+  --sa-border-radius: {{ struct.settings.border_radius }}px;
+  --sa-hover-text-color: {{ hover_text_color }};
+  --sa-hover-bg-color: {{ hover_bg_color }};
+  --sa-hover-border-color: {{ hover_border_color }};
+  --sa-padding-v: {{ struct.settings.padding_v }}px;
+  --sa-padding-h: {{ struct.settings.padding_h }}px;
+  --sa-min-height: {{ struct.settings.min_height }}px;
+  --sa-icon-gap: {{ struct.settings.icon_gap }}px;
+{%- endcapture -%}
+
+{%- if block.settings.custom_url != blank -%}
+  <a
+    href="{{ block.settings.custom_url }}"
+    class="secondary-action-button secondary-action-button--hint"
+    id="SendAHintOpener-{{ section.id }}"
+    style="{{ button_style | strip_newlines }}"
+    {%- if block.settings.custom_url_new_tab %}
+      target="_blank"
+      rel="noopener"
+    {%- endif %}
+  >
+    {%- if show_icon and icon_position == 'left' -%}
+      <span class="secondary-action-button__icon" aria-hidden="true">{% render 'icon-envelope' %}</span>
+    {%- endif -%}
+    <span>{{ block.settings.button_label }}</span>
+    {%- if show_icon and icon_position == 'right' -%}
+      <span class="secondary-action-button__icon" aria-hidden="true">{% render 'icon-envelope' %}</span>
+    {%- endif -%}
+  </a>
+{%- else -%}
+  <modal-opener data-modal="#SendAHint-{{ section.id }}">
+    <button
+      type="button"
+      class="secondary-action-button secondary-action-button--hint"
+      id="SendAHintOpener-{{ section.id }}"
+      aria-haspopup="dialog"
+      style="{{ button_style | strip_newlines }}"
+    >
+      {%- if show_icon and icon_position == 'left' -%}
+        <span class="secondary-action-button__icon" aria-hidden="true">{% render 'icon-envelope' %}</span>
+      {%- endif -%}
+      <span>{{ block.settings.button_label }}</span>
+      {%- if show_icon and icon_position == 'right' -%}
+        <span class="secondary-action-button__icon" aria-hidden="true">{% render 'icon-envelope' %}</span>
+      {%- endif -%}
+    </button>
+  </modal-opener>
+{%- endif -%}

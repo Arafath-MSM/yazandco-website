@@ -113,11 +113,11 @@
                   <div class="article-template__meta-right">
                     {%- if block.settings.blog_show_date -%}
                       <div class="article-template__date {% if section.settings.header_variant %} article-template__date_overlay {% endif %}">
-                        <span class="card__subtitle" itemprop="dateCreated pubdate datePublished">
+                        <span class="card__subtitle" itemprop="dateCreated datePublished">
                           <span>{{ article.published_at | date: "%d/%m/%Y" }}</span>
                         </span>
                         {% comment %} {% if article.updated_at != article.published_at %}
-                          <span class="card__subtitle" itemprop="dateCreated pubdate datePublished">
+                          <span class="card__subtitle" itemprop="dateCreated  datePublished">
                             {{- 'general.blog.update' | t | append: ':' }} 
                             <span>{{ article.updated_at | date: "%d/%m/%Y" }}</span>
                           </span>
@@ -215,7 +215,7 @@
   
                 {%- if block.settings.blog_show_date -%}
                   <div class="article-template__date">
-                    <span class="card__subtitle" itemprop="dateCreated pubdate datePublished">
+                    <span class="card__subtitle" itemprop="dateCreated datePublished">
                       <span>{{ article.published_at | date: "%d/%m/%Y" }}</span>
                     </span>
                     {% comment %} {% if article.updated_at != article.published_at %}

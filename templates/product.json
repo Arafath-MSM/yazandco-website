@@ -12,10 +12,74 @@
     "main": {
       "type": "main-product",
       "blocks": {
+        "judge_me_reviews_preview_badge_ri4qiE": {
+          "type": "shopify://apps/judge-me-reviews/blocks/preview_badge/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "disabled": true,
+          "settings": {}
+        },
+        "conditional_icon_text_fHQ3fL": {
+          "type": "conditional_icon_text",
+          "settings": {
+            "icon": "shopify://shop_images/diamond_3.png",
+            "svg_icon": "",
+            "icon_size": 18,
+            "icon_size_mobile": 18,
+            "icon_color": "#111111",
+            "icon_fit": "cover",
+            "text": "<p>LAB GROWN</p>",
+            "text_size": 12,
+            "text_size_mobile": 12,
+            "text_weight": "400",
+            "text_color": "#111111",
+            "line_height": 15,
+            "letter_spacing": 0,
+            "icon_gap": 10,
+            "vertical_alignment": "center",
+            "horizontal_alignment": "flex-start",
+            "background_color": "#ffffff",
+            "border_color": "#e5e5e5",
+            "border_width": 0,
+            "border_radius": 0,
+            "padding_vertical": 0,
+            "padding_horizontal": 0,
+            "padding_vertical_mobile": 0,
+            "padding_horizontal_mobile": 0,
+            "space_above": 10,
+            "space_below": 10
+          }
+        },
         "title": {
           "type": "title",
           "settings": {
-            "heading_size": "h3"
+            "heading_size": "h1",
+            "reviews_inline_desktop": true,
+            "reviews_above_mobile": true,
+            "desktop_title_review_align": "space-between",
+            "mobile_align": "flex-start",
+            "title_review_gap": 16,
+            "title_review_gap_mobile": 6,
+            "review_star_size": 14,
+            "review_star_size_mobile": 13,
+            "review_star_color": "#0e0e0e",
+            "review_text_color": "#4d4d4d",
+            "title_font_size_desktop": 32,
+            "title_font_size_mobile": 24,
+            "title_font_weight": "inherit",
+            "title_color": "",
+            "title_margin_top": 0,
+            "title_margin_bottom": 0
+          }
+        },
+        "short_description_DmQpQg": {
+          "type": "short_description",
+          "settings": {
+            "description": "{{ product.description }}",
+            "word_limit": 20,
+            "read_more_text": "Read more",
+            "font_size": 14,
+            "font_color": "#000000",
+            "read_more_color": "#000000",
+            "text_decoration": "underline"
           }
         },
         "price": {
@@ -34,21 +98,171 @@
             "pill_group": true,
             "show_size_guide": true,
             "size_guide_text": "Size Guide",
-            "size_guide_header": "Size Guide",
-            "size_guide_description": "<p>Use our size guide to choose the right size and shop with confidence.</p>",
-            "page": "size-guide"
+            "size_guide_header": "",
+            "size_guide_description": "",
+            "page": "{{ product.metafields.custom.size_chart_page.value }}"
           }
         },
         "tabby_pay_later_pdp_final_GPKdWV": {
           "type": "shopify://apps/tabby-pay-later/blocks/pdp-final/b31c2495-41fc-4b20-9fc7-8cb2e9dd9a95",
           "settings": {
+            "merchant_code": "",
+            "should_inherit_bg": false,
             "no_price_display": true
           }
         },
         "tabby_pay_later_cart_no_rerender_tRLVmW": {
           "type": "shopify://apps/tabby-pay-later/blocks/cart-no-rerender/b31c2495-41fc-4b20-9fc7-8cb2e9dd9a95",
           "settings": {
+            "merchant_code": "",
+            "should_inherit_bg": false,
             "no_price_display": true
+          }
+        },
+        "ready_to_ship_default": {
+          "type": "ready_to_ship",
+          "disabled": true,
+          "settings": {
+            "enable": true,
+            "prefix_text": "Ready to ship or collect by",
+            "show_icon": true,
+            "tooltip_text": "Estimated based on current production and shipping times.",
+            "use_business_days": true,
+            "enable_fallback": true,
+            "fallback_business_days": 30,
+            "font_size_desktop": 14,
+            "font_size_mobile": 13,
+            "font_weight": "400",
+            "date_font_weight": "600",
+            "text_align": "left",
+            "text_color": "#4d4d4d",
+            "date_color": "#0e0e0e",
+            "icon_color": "#4d4d4d",
+            "bg_color": "rgba(0,0,0,0)",
+            "border_color": "rgba(0,0,0,0)",
+            "border_width": 0,
+            "border_radius": 0,
+            "padding": 0,
+            "margin_top_desktop": 16,
+            "margin_bottom_desktop": 16,
+            "margin_top_mobile": 12,
+            "margin_bottom_mobile": 12
+          }
+        },
+        "shipping_delivery_JK8UVJ": {
+          "type": "shipping_delivery",
+          "settings": {
+            "uae_heading": "",
+            "uae_label": "Delivery time:",
+            "uae_min_days": 15,
+            "uae_max_days": 20,
+            "international_heading": "",
+            "international_label": "Estimated delivery date:",
+            "international_min_days": 15,
+            "international_max_days": 20,
+            "skip_saturday": true,
+            "skip_sunday": true,
+            "date_format": "long",
+            "heading_size": 16,
+            "heading_size_mobile": 15,
+            "heading_weight": "600",
+            "heading_color": "#111111",
+            "heading_bottom_space": 5,
+            "text_size": 14,
+            "text_size_mobile": 14,
+            "text_weight": "400",
+            "text_color": "#333333",
+            "text_gap": 4,
+            "line_height": 16,
+            "date_size": 14,
+            "date_size_mobile": 14,
+            "date_weight": "600",
+            "date_color": "#111111",
+            "background_color": "#ffffff",
+            "border_color": "#e5e5e5",
+            "border_width": 0,
+            "border_radius": 0,
+            "padding_vertical": 0,
+            "padding_horizontal": 0,
+            "padding_vertical_mobile": 0,
+            "padding_horizontal_mobile": 0,
+            "space_above": 12,
+            "space_below": 12
+          }
+        },
+        "complimentary_engraving_CjtPJT": {
+          "type": "complimentary_engraving",
+          "disabled": true,
+          "settings": {
+            "button_text": "Add Complimentary Engraving",
+            "label": "Engraving text",
+            "placeholder": "Enter engraving text",
+            "submit_text": "Submit",
+            "property_name": "Engraving",
+            "success_text": "Engraving saved",
+            "removed_text": "Engraving removed",
+            "max_characters": 30,
+            "show_character_count": true,
+            "show_icon": true,
+            "icon_size": 18,
+            "icon_gap": 12,
+            "button_height": 48,
+            "button_height_mobile": 46,
+            "button_font_size": 13,
+            "button_font_size_mobile": 12,
+            "button_font_weight": "400",
+            "letter_spacing": 9,
+            "button_background": "#ffffff",
+            "button_color": "#111111",
+            "button_hover_background": "#111111",
+            "button_hover_color": "#ffffff",
+            "border_color": "#111111",
+            "border_width": 1,
+            "border_radius": 0,
+            "button_padding_vertical": 10,
+            "button_padding_horizontal": 18,
+            "input_height": 46,
+            "input_height_mobile": 46,
+            "input_font_size": 14,
+            "input_font_size_mobile": 14,
+            "input_background": "#ffffff",
+            "input_color": "#111111",
+            "placeholder_color": "#777777",
+            "input_border_color": "#bbbbbb",
+            "input_focus_color": "#111111",
+            "input_border_width": 1,
+            "input_border_radius": 0,
+            "input_horizontal_padding": 12,
+            "submit_background": "#111111",
+            "submit_color": "#ffffff",
+            "submit_border_color": "#111111",
+            "submit_border_width": 1,
+            "submit_border_radius": 0,
+            "submit_font_size": 13,
+            "submit_font_weight": "500",
+            "submit_horizontal_padding": 18,
+            "panel_background": "#ffffff",
+            "panel_border_color": "#dddddd",
+            "panel_border_width": 1,
+            "panel_border_radius": 0,
+            "panel_gap": 8,
+            "panel_padding_vertical": 14,
+            "panel_padding_horizontal": 14,
+            "label_color": "#111111",
+            "label_font_size": 13,
+            "label_font_weight": "500",
+            "counter_color": "#777777",
+            "counter_font_size": 11,
+            "success_color": "#2f7d32",
+            "success_font_size": 11,
+            "field_gap": 8,
+            "label_gap": 8,
+            "footer_gap": 8,
+            "stack_mobile": true,
+            "show_saved_text_on_button": false,
+            "saved_button_prefix": "Engraving:",
+            "space_above": 12,
+            "space_below": 12
           }
         },
         "buy_buttons": {
@@ -68,24 +282,335 @@
             "button_link_2": ""
           }
         },
-        "trustyy_reviews_app_tra_star_rating_BQbn7t": {
-          "type": "shopify://apps/trustyy-reviews-app/blocks/tra_star_rating/cbb46e83-c02e-4abe-abb2-055aebf5d478",
+        "book_consultation_default": {
+          "type": "book_consultation",
           "settings": {
-            "product": "",
-            "colour": "#ff0000"
+            "enable": true,
+            "button_label": "Boutique Visit",
+            "target_id": "book-a-consultation",
+            "smooth_scroll": true,
+            "scroll_offset_desktop": 20,
+            "scroll_offset_mobile": 15,
+            "sync_secondary_button_style": true,
+            "row_layout_desktop": "side_by_side",
+            "row_layout_mobile": "side_by_side",
+            "row_gap": 12,
+            "font_size_desktop": 13,
+            "font_size_mobile": 12,
+            "font_weight": "500",
+            "letter_spacing": 0.4,
+            "text_transform": "uppercase",
+            "text_color": "#0e0e0e",
+            "bg_color": "rgba(0,0,0,0)",
+            "border_color": "#0e0e0e",
+            "border_width": 1,
+            "border_radius": 0,
+            "hover_text_color": "#ffffff",
+            "hover_bg_color": "#0e0e0e",
+            "hover_border_color": "#0e0e0e",
+            "padding_v": 10,
+            "padding_h": 16,
+            "min_height": 40,
+            "show_icon": false,
+            "icon_position": "left",
+            "icon_gap": 8
           }
         },
-        "description_J3BppF": {
-          "type": "description",
+        "send_a_hint_default": {
+          "type": "send_a_hint",
           "settings": {
-            "description": ""
+            "enable": true,
+            "button_label": "Virtual Booking",
+            "custom_url": "",
+            "custom_url_new_tab": false,
+            "use_own_style": false,
+            "text_color": "#0e0e0e",
+            "bg_color": "rgba(0,0,0,0)",
+            "border_color": "#0e0e0e",
+            "hover_text_color": "#ffffff",
+            "hover_bg_color": "#0e0e0e",
+            "show_icon": false,
+            "icon_position": "left",
+            "drawer_heading": "SEND A HINT",
+            "drawer_intro": "Share this piece with your partner or someone special.",
+            "label_recipient_name": "Recipient's Name",
+            "label_recipient_email": "Recipient's Email",
+            "label_sender_name": "Sender's Name",
+            "label_subject": "Subject",
+            "label_message": "Message",
+            "subject_template": "A hint from YAZ & Co – [product]",
+            "message_template": "Dear [recipient],\n\n[sender] wanted to share something special from YAZ & Co with you.\n\nTake a look at the [product] here:\n[url]",
+            "send_button_label": "Send",
+            "show_copy_link": true,
+            "copy_link_label": "OR COPY LINK",
+            "copy_link_button_label": "Copy product link",
+            "copy_success_text": "Link copied",
+            "success_message": "Your hint has been sent.",
+            "generic_error_message": "We couldn't send your hint. Please try again.",
+            "drawer_width_desktop": 440,
+            "drawer_width_tablet": 400,
+            "drawer_width_mobile": 100,
+            "drawer_bg": "#ffffff",
+            "drawer_text_color": "#0e0e0e",
+            "drawer_padding_desktop": 40,
+            "drawer_padding_mobile": 24,
+            "overlay_color": "#000000",
+            "overlay_opacity": 45,
+            "drawer_shadow": true,
+            "drawer_shadow_opacity": 20,
+            "animation_duration": 450,
+            "heading_size_desktop": 24,
+            "heading_size_mobile": 20,
+            "heading_letter_spacing": 1,
+            "intro_font_size": 14,
+            "intro_color": "#4d4d4d",
+            "heading_gap": 12,
+            "close_icon_color": "#0e0e0e",
+            "close_icon_hover_color": "#4d4d4d",
+            "close_icon_size": 18,
+            "field_gap": 16,
+            "input_height": 46,
+            "textarea_min_height": 140,
+            "input_font_size": 14,
+            "input_text_color": "#0e0e0e",
+            "input_placeholder_color": "#9a9a9a",
+            "input_bg": "#ffffff",
+            "input_border_color": "#cccccc",
+            "input_focus_border_color": "#0e0e0e",
+            "input_border_width": 1,
+            "input_border_radius": 0,
+            "input_padding_h": 14,
+            "gap_button_copylink": 20,
+            "send_button_text_color": "#ffffff",
+            "send_button_bg": "#0e0e0e",
+            "send_button_hover_bg": "#282828",
+            "send_button_disabled_bg": "#cccccc",
+            "send_button_radius": 0,
+            "copylink_text_color": "#0e0e0e",
+            "copylink_bg": "#ffffff",
+            "copylink_border_color": "#cccccc",
+            "copylink_icon_color": "#0e0e0e",
+            "copylink_radius": 0,
+            "copylink_font_size": 13,
+            "success_bg": "#eaf7ee",
+            "success_color": "#1e7a34",
+            "error_bg": "#fdecec",
+            "error_color": "#c0392b",
+            "api_endpoint": "",
+            "enable_honeypot": true
+          }
+        },
+        "trust_badges_XkBPQ4": {
+          "type": "trust_badges",
+          "disabled": true,
+          "settings": {
+            "show_block": true,
+            "image_1": "shopify://shop_images/download_-_2026-08-07T182759.132.png",
+            "icon_1": "warranty",
+            "label_1": "1-Year Warranty",
+            "image_2": "shopify://shop_images/download_-_2026-05-07T134444.519_1.avif",
+            "icon_2": "shipping",
+            "label_2": "Free Shipping",
+            "image_3": "shopify://shop_images/download_-_2026-05-07T134453.576.webp",
+            "icon_3": "return",
+            "label_3": "Free Return",
+            "icon_4": "secure",
+            "label_4": "",
+            "icon_5": "support",
+            "label_5": "",
+            "icon_6": "leaf",
+            "label_6": "",
+            "icon_color": "#0e0e0e",
+            "icon_size": 30,
+            "icon_size_mobile": 32,
+            "icon_stroke": 1,
+            "icon_gap": 12,
+            "icon_gap_mobile": 8,
+            "label_color": "#0e0e0e",
+            "label_size": 12,
+            "label_size_mobile": 12,
+            "label_weight": "400",
+            "label_tracking": "0",
+            "divider_color": "#dcdcdc",
+            "divider_width": 1,
+            "divider_height": 70,
+            "border_color": "#dcdcdc",
+            "border_width": 0,
+            "pad_v": 10,
+            "pad_v_mobile": 12,
+            "item_pad_v": 8,
+            "item_pad_h": 8,
+            "item_pad_v_mobile": 6,
+            "item_pad_h_mobile": 6,
+            "margin_top": 0,
+            "margin_bottom": 0,
+            "margin_top_mobile": 16,
+            "margin_bottom_mobile": 16
+          }
+        },
+        "trustyy_reviews_app_tra_star_rating_BQbn7t": {
+          "type": "shopify://apps/trustyy-reviews-app/blocks/tra_star_rating/cbb46e83-c02e-4abe-abb2-055aebf5d478",
+          "disabled": true,
+          "settings": {
+            "product": ""
+          }
+        },
+        "product_promise_qHTcpX": {
+          "type": "product_promise",
+          "settings": {
+            "heading": "Our Promise",
+            "heading_size": 19,
+            "heading_size_mobile": 18,
+            "heading_weight": "400",
+            "heading_line_height": 1.2,
+            "heading_letter_spacing": 0,
+            "heading_bottom_spacing": 30,
+            "show_item_1": true,
+            "icon_1": "shield",
+            "custom_icon_1": "shopify://shop_images/security_5.png",
+            "title_1": "YAZ & Co Authenticator",
+            "text_1": "<p>Every piece ships with its stone details, a unique serial number and full product information. IGI certificate included above one carat.</p>",
+            "link_label_1": "",
+            "link_1": "",
+            "show_item_2": true,
+            "icon_2": "star",
+            "custom_icon_2": "shopify://shop_images/mark.png",
+            "title_2": "Warranty & Aftercare&nbsp;",
+            "text_2": "<p>Every YAZ & Co piece is covered by a 5-year warranty against verified manufacturing defects in materials and workmanship.</p>",
+            "link_label_2": "See what is and isn't covered",
+            "link_2": "",
+            "show_item_3": true,
+            "icon_3": "truck",
+            "custom_icon_3": "shopify://shop_images/download_-_2026-05-07T134444.519_1.avif",
+            "title_3": "Arrives gift-ready, insured and tracked",
+            "text_3": "<p>Presented in the signature plum box with ribbon and your Authenticator, dispatched via DHL. Add a handwritten note at checkout.</p>",
+            "link_label_3": "",
+            "link_3": "",
+            "show_item_4": true,
+            "icon_4": "store",
+            "custom_icon_4": "shopify://shop_images/calendar_3.png",
+            "title_4": "Private boutique, by appointment",
+            "text_4": "<p>Try the piece, explore diamond shapes and gold colours, and confirm your size with our team in Abu Dhabi.</p>",
+            "link_label_4": "",
+            "link_4": "",
+            "title_size": 16,
+            "title_size_mobile": 14,
+            "title_weight": "600",
+            "title_line_height": 1.3,
+            "title_letter_spacing": 0,
+            "title_bottom_spacing": 8,
+            "text_size": 13,
+            "text_size_mobile": 13,
+            "text_line_height": 1.6,
+            "icon_size": 20,
+            "icon_size_mobile": 21,
+            "icon_gap": 15,
+            "icon_gap_mobile": 14,
+            "item_gap": 20,
+            "item_gap_mobile": 18,
+            "margin_top": 20,
+            "margin_bottom": 20,
+            "padding_top": 0,
+            "padding_bottom": 0,
+            "link_top_spacing": 4,
+            "link_border_width": 1,
+            "link_border_style": "solid",
+            "heading_color": "#171717",
+            "title_color": "#080808",
+            "text_color": "#5f5f5f",
+            "icon_color": "#67203c",
+            "link_color": "#4f4f4f"
+          }
+        },
+        "reviews_accordion_TFDUHW": {
+          "type": "reviews_accordion",
+          "settings": {
+            "heading": "Loved by thousands of clients",
+            "review_1_text": "Beautiful product and lovely packaging. Really happy with my order!",
+            "review_1_author": "Hessa Al Kaabi",
+            "review_1_location": "🇦🇪 UAE",
+            "review_2_text": "I'm so happy with my order! Beautiful quality and everything arrived perfectly.",
+            "review_2_author": "Reem Al Otaibi",
+            "review_2_location": "🇸🇦 Saudi Arabia",
+            "review_3_text": "Really impressed with my purchase. Beautiful item and excellent customer service.",
+            "review_3_author": "Jessica Miller",
+            "review_3_location": "🇺🇸 USA",
+            "review_4_text": "A wonderful experience from start to finish. The team was attentive, helpful, and made choosing the perfect piece incredibly easy.",
+            "review_4_author": "Isabella H",
+            "review_4_location": "",
+            "review_5_text": "🤍 وصلني طلبي والصراحة وايد عيبني، القطعة تهبل ووايد استانست عليها",
+            "review_5_author": "Latifa Al Dhaheri",
+            "review_5_location": "🇦🇪 UAE",
+            "review_6_text": "Loved everything about my order. The quality is excellent and the packaging was lovely.",
+            "review_6_author": "Sarah Al Kuwari",
+            "review_6_location": "🇶🇦 Qatar"
           }
         },
         "popup_KKFQyV": {
           "type": "popup",
           "settings": {
-            "label": "Care & Services",
-            "text": "<p>Each YAZ creation is crafted from refined and delicate materials.</p><p>With thoughtful care, its brilliance is preserved over time.</p><h2>Care</h2><ul><li>Avoid contact with chemicals and perfumes.</li><li>Store your piece separately to prevent scratches.</li><li>Clean gently to maintain its natural shine.</li></ul><p></p><h2>Services</h2><p>For any assistance, our team is available to guide you.</p>",
+            "label": "Description & Details",
+            "text": "{{ product.description }}",
+            "text_2": "",
+            "heading": "",
+            "img_text": ""
+          }
+        },
+        "popup_VMGetk": {
+          "type": "popup",
+          "settings": {
+            "label": "Diamonds & Materials",
+            "text": "<p>YAZ & Co works exclusively with lab-grown diamonds created in controlled environments using advanced technology. They share the same physical and chemical properties as natural diamonds, and their origin is always disclosed before purchase.</p><h4>Our selection standard</h4><ul><li><strong>Cut</strong> — Excellent, for optimal brilliance, proportion and balance</li><li><strong>Clarity</strong> — VS to VVS, where inclusions are not visible to the naked eye</li><li><strong>Colour</strong> — EF, a clean and refined white</li><li><strong>Light performance</strong> — assessed individually before a stone joins a collection</li></ul><p>All YAZ & Co jewellery is crafted in 18K gold and available in yellow, white and rose.</p><p><a href=\"/pages/faq-love-engagement\" title=\"faq-love-engagement\">Read the full diamond guide</a></p>",
+            "text_2": "",
+            "heading": "",
+            "img_text": ""
+          }
+        },
+        "popup_BWjahe": {
+          "type": "popup",
+          "settings": {
+            "label": "Size & Fit",
+            "text": "<p>Selecting the correct ring size helps ensure comfort, balance and security. You can find yours by measuring the internal diameter of a ring that already fits, or the circumference of your finger in millimetres. When your measurement falls between two sizes, choose the larger.</p><p>Selected designs are available in custom sizes on request. Complimentary sizing assistance is available at the boutique.</p><p><a href=\"/pages/size-guide-1\" title=\"Size Guide-new\">Open the full size chart</a></p>",
+            "text_2": "",
+            "heading": "",
+            "img_text": ""
+          }
+        },
+        "popup_pAxj44": {
+          "type": "popup",
+          "settings": {
+            "label": "Made to Order & Delivery",
+            "text": "<p>YAZ & Co does not hold ready-made stock. Every piece is crafted to your selected design, size, gold colour, diamond details and engraving after your order is confirmed.</p><p>Production:  <strong>15–20 business days from confirmed payment</strong><br/>UAE delivery: <strong>3–5 business days · 30 AED</strong><br/>International: <strong>7–10 business days · 200 AED </strong><br/>Courier: <strong>DHL or equivalent, fully tracked</strong></p><p>Timelines are estimates and may be affected by your location, courier delays, customs procedures and other circumstances beyond our control. For international orders, customs duties, taxes, clearance requirements and jewellery import regulations rest with the customer.</p>",
+            "text_2": "",
+            "heading": "",
+            "img_text": ""
+          }
+        },
+        "popup_W6zTHB": {
+          "type": "popup",
+          "settings": {
+            "label": "Returns & Exchanges",
+            "text": "<p>Returns are accepted within seven days of delivery where a manufacturing defect is proven, or the delivered item does not match the approved specifications. Any issue must be reported within 48 hours of receiving your order.</p><h4>The item must be</h4><ul><li>Unused and unworn, in its original condition</li><li>Returned with the original invoice</li><li>Returned with all packaging and certificates, where applicable</li></ul><p>Custom-made, made-to-order and engraved pieces cannot be returned, exchanged, cancelled or refunded once the final design and specifications are approved.</p>",
+            "text_2": "",
+            "heading": "",
+            "img_text": ""
+          }
+        },
+        "popup_Qxqh7X": {
+          "type": "popup",
+          "settings": {
+            "label": "Authentication & Certification",
+            "text": "<p>Every piece ships with its stone details, a unique serial number and full product information. An IGI certificate is included for diamonds above one carat.</p>",
+            "text_2": "",
+            "heading": "",
+            "img_text": ""
+          }
+        },
+        "popup_UHtzJG": {
+          "type": "popup",
+          "settings": {
+            "label": "Care & Servicing",
+            "text": "<p>Each YAZ & Co creation is made from refined and delicate materials. With thoughtful care, its brilliance is preserved over time.</p><ul><li>Keep your jewellery away from perfumes, cosmetics and harsh chemicals</li><li>Clean gently with a soft, clean cloth to maintain its shine</li><li>Store each piece separately in a soft pouch to prevent scratches</li><li>Remove before swimming, showering, contact with water or exercising</li></ul><p>Your maintenance service warranty covers professional servicing. It does not cover loss of stones, accidental damage, misuse, scratches, breakage, normal wear and tear, or work completed by a third party. Requests are subject to inspection by the YAZ & Co team.</p>",
             "text_2": "",
             "heading": "",
             "img_text": ""
@@ -93,6 +618,7 @@
         },
         "popup_yX9T7z": {
           "type": "popup",
+          "disabled": true,
           "settings": {
             "label": " Shipping & Returns",
             "text": "<p>Orders are prepared within 25–30 business days.</p><p>UAE<strong>:</strong> 3–5 business days (AED 30)<br/>International<strong>:</strong> 7–10 business days (AED 150)</p><p> </p><p>Returns<strong>:</strong> Accepted within 7 days of delivery<br/><br/>(Items must be unworn and in original condition)</p><p> </p><p>Please note<strong>:</strong></p><ul><li>Custom pieces and earrings are non-returnable</li><li>Ring resizing is available within 7 days (additional fees may apply)</li></ul>",
@@ -101,24 +627,13 @@
             "img_text": "<p>If you still have any questions, feel free to <a href=\"/pages/contact\" title=\"Customer Care\">contact us.</a></p>"
           }
         },
-        "floated_form": {
-          "type": "floated_form",
-          "settings": {
-            "show_dynamic_checkout": false,
-            "show_quantity": false
-          }
-        },
-        "pickup_availability_MNbMke": {
-          "type": "pickup_availability",
-          "settings": {}
-        },
         "complementary_MDe68y": {
           "type": "complementary",
           "settings": {
             "heading": "You May Also Like",
             "heading_size": "h3",
             "products_limit": 6,
-            "image_ratio": "portrait",
+            "image_ratio": "square",
             "image_fit": "cover",
             "show_vendor": false,
             "show_collection": false,
@@ -128,36 +643,822 @@
         }
       },
       "block_order": [
+        "judge_me_reviews_preview_badge_ri4qiE",
+        "conditional_icon_text_fHQ3fL",
         "title",
+        "short_description_DmQpQg",
         "price",
         "inventory",
         "variant_picker",
         "tabby_pay_later_pdp_final_GPKdWV",
         "tabby_pay_later_cart_no_rerender_tRLVmW",
+        "ready_to_ship_default",
+        "shipping_delivery_JK8UVJ",
+        "complimentary_engraving_CjtPJT",
         "buy_buttons",
+        "book_consultation_default",
+        "send_a_hint_default",
+        "trust_badges_XkBPQ4",
         "trustyy_reviews_app_tra_star_rating_BQbn7t",
-        "description_J3BppF",
+        "product_promise_qHTcpX",
+        "reviews_accordion_TFDUHW",
         "popup_KKFQyV",
+        "popup_VMGetk",
+        "popup_BWjahe",
+        "popup_pAxj44",
+        "popup_W6zTHB",
+        "popup_Qxqh7X",
+        "popup_UHtzJG",
         "popup_yX9T7z",
-        "floated_form",
-        "pickup_availability_MNbMke",
         "complementary_MDe68y"
       ],
       "custom_css": [
-        "@media (max-width: 768px) {.product__media-sublist-outer {margin-top: -70px !important; padding-top: 0px !important; }}"
+        "@media (max-width: 768px) {.product__media-sublist-outer {margin-top: -70px !important; padding-top: 0px !important; }}",
+        "span.accordion-heading {font-family: \"Sterling\";}",
+        ".product-form__buttons-row button span {font-size: 13px; font-family: \"Brandon\"; font-weight: 300;}",
+        ".product-form__submit {min-height: 4.5rem;}",
+        "summary.engraving-trigger span {text-transform: uppercase;}",
+        ".product__title__wrapper {align-items: flex-start;}",
+        ".conditional-icon-text__inner {width: 128px; background: #f4f4f4; padding: 7px;}",
+        ".sticky-atc {z-index: 4;}"
       ],
       "settings": {
-        "gallery_type": "thumbs_aside_horizontal",
-        "mobile_gallery_type": "synchronize",
+        "gallery_type": "thumbs_aside",
+        "mobile_gallery_type": "thumbs_aside_horizontal",
         "desktop_alignment": "right",
         "mobile_alignment": "before",
         "slider_direction": "horizontal",
-        "image_ratio": "portrait",
-        "image_fit": "contain",
-        "enable_full_screen": true,
+        "image_ratio": "square",
+        "image_fit": "cover",
+        "enable_full_screen": false,
         "header_overlay": false,
         "enable_sticky_button": false,
         "variant_media_display": "show_all"
+      }
+    },
+    "feature_guarantee_bar_yhfPaM": {
+      "type": "feature-guarantee-bar",
+      "blocks": {
+        "feature_rkHXpx": {
+          "type": "feature",
+          "settings": {
+            "icon_image": "shopify://shop_images/security_5.png",
+            "custom_svg": "",
+            "title": "CERTIFIED & SERIALISED",
+            "description": "IGI certified above 1 ct. Every piece carries its own serial number."
+          }
+        },
+        "feature_rhBWgQ": {
+          "type": "feature",
+          "settings": {
+            "icon_image": "shopify://shop_images/box_7.png",
+            "custom_svg": "",
+            "title": "MADE TO ORDER IN 18K GOLD",
+            "description": "Crafted in 18K gold with refined craftsmanship and attention to every detail."
+          }
+        },
+        "feature_PJCVYh": {
+          "type": "feature",
+          "settings": {
+            "icon_image": "shopify://shop_images/diamond_3.png",
+            "custom_svg": "",
+            "title": "EXCEPTIONAL LAB-GROWN DIAMONDS",
+            "description": "Carefully selected for exceptional quality, brilliance and beauty."
+          }
+        },
+        "feature_qd3yHY": {
+          "type": "feature",
+          "settings": {
+            "icon_image": "shopify://shop_images/mark.png",
+            "custom_svg": "",
+            "title": "COMPLIMENTARY JEWELLERY CARE",
+            "description": "Complimentary professional cleaning and inspection to keep your YAZ & Co jewellery at its best."
+          }
+        }
+      },
+      "block_order": [
+        "feature_rkHXpx",
+        "feature_rhBWgQ",
+        "feature_PJCVYh",
+        "feature_qd3yHY"
+      ],
+      "custom_css": [
+        "{margin-top: 50px;}"
+      ],
+      "name": "Feature / Guarantee Bar",
+      "settings": {
+        "bg_color": "#f5f5f5",
+        "container_max_w": 1800,
+        "border_color": "#e0e0e0",
+        "border_top_w": 0,
+        "border_bottom_w": 0,
+        "pad_top_d": 30,
+        "pad_bottom_d": 30,
+        "pad_left_d": 40,
+        "pad_right_d": 40,
+        "pad_top_m": 20,
+        "pad_bottom_m": 20,
+        "pad_left_m": 16,
+        "pad_right_m": 16,
+        "cols_d": 4,
+        "cols_m": 2,
+        "gap_d": 30,
+        "gap_m": 20,
+        "item_align": "flex-start",
+        "item_bg": "rgba(0,0,0,0)",
+        "item_border_color": "#eeeeee",
+        "item_border_w": 0,
+        "item_radius": 0,
+        "item_pad_v_d": 0,
+        "item_pad_h_d": 0,
+        "item_pad_v_m": 0,
+        "item_pad_h_m": 0,
+        "icon_color": "#3a1021",
+        "icon_size_d": 28,
+        "icon_size_m": 24,
+        "icon_gap_d": 14,
+        "icon_gap_m": 10,
+        "title_color": "#000000",
+        "title_size_d": 13,
+        "title_size_m": 12,
+        "title_weight": "600",
+        "title_transform": "uppercase",
+        "title_ls": 0.5,
+        "title_lh": "1.3",
+        "title_mb": 4,
+        "desc_color": "#555555",
+        "desc_size_d": 13,
+        "desc_size_m": 12,
+        "desc_weight": "400",
+        "desc_ls": 0,
+        "desc_lh": "1.4",
+        "text_align_d": "left",
+        "text_align_m": "left"
+      }
+    },
+    "craft_auto_slider_HCTWqL": {
+      "type": "Craft-Auto-Slider",
+      "blocks": {
+        "story_slide_FVBDdT": {
+          "type": "story_slide",
+          "settings": {
+            "title": "Why We Love It",
+            "content": "<p>Designed to feel special yet effortless, this YAZ & Co piece brings timeless elegance to every moment. Its refined silhouette, brilliant finish, and thoughtful detailing make it easy to wear on its own or pair beautifully with your favourite jewellery. A versatile piece created to be worn, loved, and treasured for years to come.</p>",
+            "media_type": "image",
+            "image": "shopify://shop_images/519A0174.jpg",
+            "video_url": "",
+            "button_label": "",
+            "button_url": ""
+          }
+        },
+        "story_slide_e4Vimj": {
+          "type": "story_slide",
+          "settings": {
+            "title": "Why We Love It",
+            "content": "<p>Designed to feel special yet effortless, this YAZ & Co piece brings timeless elegance to every moment. Its refined silhouette, brilliant finish, and thoughtful detailing make it easy to wear on its own or pair beautifully with your favourite jewellery. A versatile piece created to be worn, loved, and treasured for years to come.</p>",
+            "media_type": "image",
+            "image": "shopify://shop_images/519A0207.jpg",
+            "video_url": "",
+            "button_label": "",
+            "button_url": ""
+          }
+        },
+        "story_slide_rt9Eyr": {
+          "type": "story_slide",
+          "settings": {
+            "title": "Why We Love It",
+            "content": "<p>Designed to feel special yet effortless, this YAZ & Co piece brings timeless elegance to every moment. Its refined silhouette, brilliant finish, and thoughtful detailing make it easy to wear on its own or pair beautifully with your favourite jewellery. A versatile piece created to be worn, loved, and treasured for years to come.</p>",
+            "media_type": "image",
+            "image": "shopify://shop_images/Z2603_YAZ_04_317_srgb_WEB_1.jpg",
+            "video_url": "",
+            "button_label": "",
+            "button_url": ""
+          }
+        }
+      },
+      "block_order": [
+        "story_slide_FVBDdT",
+        "story_slide_e4Vimj",
+        "story_slide_rt9Eyr"
+      ],
+      "name": "Story Craft Auto-Slider",
+      "settings": {
+        "bg_color": "#ffffff",
+        "container_max_w": 1800,
+        "content_col_width_d": 45,
+        "vert_align": "center",
+        "enable_autoplay": true,
+        "autoplay_duration": 3,
+        "fade_speed": 500,
+        "pause_on_hover": true,
+        "text_align_d": "left",
+        "text_align_m": "center",
+        "desktop_swap": "media_right",
+        "mobile_swap": "media_top",
+        "gap_d": 70,
+        "gap_m": 30,
+        "pad_top_d": 80,
+        "pad_bottom_d": 25,
+        "pad_left_d": 40,
+        "pad_right_d": 40,
+        "pad_top_m": 40,
+        "pad_bottom_m": 40,
+        "pad_left_m": 20,
+        "pad_right_m": 20,
+        "heading_color": "#222222",
+        "heading_size_d": 26,
+        "heading_size_m": 22,
+        "heading_weight": "400",
+        "heading_lh": "1.25",
+        "heading_ls": 0,
+        "heading_mb_d": 24,
+        "heading_mb_m": 16,
+        "body_color": "#444444",
+        "body_size_d": 16,
+        "body_size_m": 14,
+        "body_weight": "400",
+        "body_lh": "1.6",
+        "p_gap_d": 16,
+        "p_gap_m": 12,
+        "media_height_d": 550,
+        "media_height_m": 320,
+        "media_fit": "cover",
+        "media_radius": 0,
+        "button_bg_color": "#222222",
+        "button_text_color": "#ffffff",
+        "button_border_color": "#222222",
+        "button_radius": 0,
+        "button_font_size": 14,
+        "button_pad_v": 12,
+        "button_pad_h": 28,
+        "button_mt_d": 24,
+        "button_mt_m": 16,
+        "nav_align": "center",
+        "nav_bar_max_w": 120,
+        "nav_bar_h": 2,
+        "nav_gap": 12,
+        "nav_bar_radius": 2,
+        "nav_bg_color": "#f0f0f0",
+        "nav_active_color": "#000000",
+        "nav_mt_d": 40,
+        "nav_mt_m": 25
+      }
+    },
+    "testimonials_slider_bFVrM3": {
+      "type": "testimonials-slider",
+      "blocks": {
+        "testimonial_Cka3ny": {
+          "type": "testimonial",
+          "settings": {
+            "image": "shopify://shop_images/IMG_6692.jpg",
+            "rating": 5,
+            "quote": "<p>The experience with YAZ & Co was truly exceptional. The jewellery is beautifully crafted, elegant, and even more stunning in person. The attention to detail and quality exceeded my expectations.</p>",
+            "author": "Hessa Al Kaabi",
+            "location": "🇦🇪 UAE"
+          }
+        },
+        "testimonial_TnPJVm": {
+          "type": "testimonial",
+          "settings": {
+            "image": "shopify://shop_images/519A0242.jpg",
+            "rating": 5,
+            "quote": "<p>From selecting the perfect piece to the final delivery, the entire process was seamless. The team was incredibly helpful, knowledgeable, and made finding something special feel effortless.</p>",
+            "author": "Latifa Al Dhaheri",
+            "location": "🇦🇪 UAE"
+          }
+        },
+        "testimonial_mA3bHX": {
+          "type": "testimonial",
+          "settings": {
+            "image": "shopify://shop_images/page_5_image_1.png",
+            "rating": 5,
+            "quote": "<p>My YAZ & Co piece is absolutely beautiful. The craftsmanship, design, and timeless elegance make it something I will treasure for years to come. A wonderful experience from start to finish.</p>",
+            "author": "Sarah Al Kuwari",
+            "location": "🇦🇪 UAE"
+          }
+        },
+        "testimonial_Aj4r3j": {
+          "type": "testimonial",
+          "settings": {
+            "image": "shopify://shop_images/IMG_6660.jpg",
+            "rating": 5,
+            "quote": "<p>Absolutely in love with my YAZ & Co jewellery. The piece is elegant, beautifully designed, and feels incredibly special to wear. The team provided such a personalised experience and helped me find something truly perfect.</p>",
+            "author": "Aisha Al Nuaimi",
+            "location": "🇦🇪 UAE"
+          }
+        }
+      },
+      "block_order": [
+        "testimonial_Cka3ny",
+        "testimonial_TnPJVm",
+        "testimonial_mA3bHX",
+        "testimonial_Aj4r3j"
+      ],
+      "name": "Testimonials Slider",
+      "settings": {
+        "media_position": "left",
+        "media_width_d": 60,
+        "media_width_m": 38,
+        "stack_on_mobile": true,
+        "media_ratio": 180,
+        "media_ratio_m": 110,
+        "media_fit": "cover",
+        "media_align": "flex-start",
+        "media_gap_d": 24,
+        "media_gap_m": 16,
+        "media_radius": 0,
+        "media_radius_m": 0,
+        "media_bg": "#efebe5",
+        "show_image_placeholder": false,
+        "heading": "Client Testimonials",
+        "heading_color": "#333333",
+        "heading_size_d": 26,
+        "heading_size_m": 22,
+        "heading_weight_d": "400",
+        "heading_weight_m": "400",
+        "heading_transform": "capitalize",
+        "heading_letter_spacing": 0,
+        "link_text": "",
+        "link_url": "",
+        "link_color": "#222222",
+        "link_size_d": 14,
+        "link_size_m": 12,
+        "link_weight_d": "400",
+        "link_weight_m": "400",
+        "header_mb_d": 32,
+        "header_mb_m": 20,
+        "header_direction_m": "row",
+        "header_align_m": "flex-start",
+        "columns_d": 3,
+        "card_width_m": 85,
+        "gap_d": 24,
+        "gap_m": 16,
+        "card_bg": "#f8f8f8",
+        "card_border_color": "rgba(0,0,0,0)",
+        "card_border_width": 0,
+        "card_radius": 0,
+        "card_shadow": "none",
+        "card_padding_top_d": 10,
+        "card_padding_bottom_d": 10,
+        "card_padding_left_d": 10,
+        "card_padding_right_d": 10,
+        "card_padding_top_m": 24,
+        "card_padding_bottom_m": 24,
+        "card_padding_left_m": 20,
+        "card_padding_right_m": 20,
+        "star_color": "#000000",
+        "star_size_d": 17,
+        "star_size_m": 16,
+        "stars_mb_d": 20,
+        "stars_mb_m": 16,
+        "quote_color": "#333333",
+        "quote_size_d": 16,
+        "quote_size_m": 15,
+        "quote_weight_d": "400",
+        "quote_weight_m": "400",
+        "quote_line_height": "1.5",
+        "quote_mb_d": 28,
+        "quote_mb_m": 20,
+        "author_color": "#000000",
+        "author_size_d": 15,
+        "author_size_m": 13,
+        "author_weight_d": "600",
+        "author_weight_m": "600",
+        "location_color": "#666666",
+        "location_size_d": 14,
+        "location_size_m": 11,
+        "location_weight_d": "400",
+        "location_weight_m": "400",
+        "location_mt": 4,
+        "footer_mt_d": 32,
+        "footer_mt_m": 24,
+        "show_dots": false,
+        "dot_size": 6,
+        "dot_color": "#cccccc",
+        "dot_active_color": "#000000",
+        "show_arrows": true,
+        "arrow_size": 32,
+        "arrow_gap": 12,
+        "arrow_radius": 50,
+        "arrow_bg": "#f8f8f8",
+        "arrow_color": "#333333",
+        "arrow_border_color": "rgba(0,0,0,0)",
+        "arrow_border_width": 0,
+        "arrow_bg_hover": "#efefef",
+        "arrow_color_hover": "#000000",
+        "bg_color": "#ffffff",
+        "max_width": 1600,
+        "padding_top_d": 64,
+        "padding_bottom_d": 0,
+        "padding_left_d": 40,
+        "padding_right_d": 40,
+        "padding_top_m": 40,
+        "padding_bottom_m": 40,
+        "padding_left_m": 20,
+        "padding_right_m": 20
+      }
+    },
+    "what_fits_J3UnHV": {
+      "type": "what-fits",
+      "blocks": {
+        "list_item_Qajwjx": {
+          "type": "list_item",
+          "settings": {
+            "text": "Thoughtful Design",
+            "link": ""
+          }
+        },
+        "list_item_Wnh7XR": {
+          "type": "list_item",
+          "settings": {
+            "text": "Quality Materials",
+            "link": ""
+          }
+        },
+        "list_item_pXTnAA": {
+          "type": "list_item",
+          "settings": {
+            "text": "Made to Last",
+            "link": ""
+          }
+        },
+        "list_item_hDJMCd": {
+          "type": "list_item",
+          "settings": {
+            "text": "Exceptional Detail",
+            "link": ""
+          }
+        },
+        "list_item_Gnc3D7": {
+          "type": "list_item",
+          "settings": {
+            "text": "Beautifully Presented",
+            "link": ""
+          }
+        },
+        "list_item_NwKEzn": {
+          "type": "list_item",
+          "settings": {
+            "text": "YAZ & Co Craftsmanship",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "list_item_Qajwjx",
+        "list_item_Wnh7XR",
+        "list_item_pXTnAA",
+        "list_item_hDJMCd",
+        "list_item_Gnc3D7",
+        "list_item_NwKEzn"
+      ],
+      "name": "What Fits",
+      "settings": {
+        "container_max_width": 1800,
+        "media_position": "left",
+        "media_width": 65,
+        "content_valign": "center",
+        "column_gap_desktop": 20,
+        "column_gap_mobile": 20,
+        "video": "shopify://files/videos/124bd5a7251b47bcb1bcbb546cd4afb6.HD-1080p-2.5Mbps-91398240 (online-video-cutter.com).mp4",
+        "video_url": "",
+        "media_aspect_desktop": "4/3",
+        "media_aspect_mobile": "1/1",
+        "media_radius": 0,
+        "eyebrow": "",
+        "heading": "Crafted for You",
+        "text": "<p>Every YAZ & Co piece is thoughtfully designed to bring together timeless elegance, refined craftsmanship, and lasting brilliance.</p>",
+        "button_text": "Check device sizes",
+        "button_link": "",
+        "heading_size_desktop": 26,
+        "heading_size_mobile": 22,
+        "heading_weight": "400",
+        "text_size_desktop": 15,
+        "text_size_mobile": 13,
+        "text_weight": "300",
+        "eyebrow_size": 12,
+        "eyebrow_weight": "400",
+        "button_size": 12,
+        "button_weight": "600",
+        "button_pad_v": 16,
+        "button_pad_h": 28,
+        "button_radius": 0,
+        "list_top_gap": 40,
+        "list_row_gap": 14,
+        "list_number_gap": 24,
+        "item_size_desktop": 16,
+        "item_size_mobile": 15,
+        "item_weight": "400",
+        "number_size_desktop": 16,
+        "number_size_mobile": 15,
+        "number_weight": "400",
+        "bg_color": "#ffffff",
+        "heading_color": "#121212",
+        "text_color": "#444444",
+        "number_color": "#000000",
+        "item_color": "#121212",
+        "item_link_color": "#121212",
+        "button_bg": "#ffffff",
+        "button_text_color": "#121212",
+        "button_border_color": "#121212",
+        "content_padding_desktop": 40,
+        "content_padding_mobile": 20,
+        "padding_top_desktop": 80,
+        "padding_bottom_desktop": 80,
+        "padding_top_mobile": 48,
+        "padding_bottom_mobile": 48
+      }
+    },
+    "shop_by_shape_qtBptn": {
+      "type": "shop-by-shape",
+      "blocks": {
+        "shape_item_gefENz": {
+          "type": "shape_item",
+          "settings": {
+            "image": "shopify://shop_images/oval.png",
+            "title": "Oval",
+            "link": "shopify://collections/oval"
+          }
+        },
+        "shape_item_8wa6Ka": {
+          "type": "shape_item",
+          "settings": {
+            "image": "shopify://shop_images/Round.png",
+            "title": "Round",
+            "link": "shopify://collections/round"
+          }
+        },
+        "shape_item_LNDpQx": {
+          "type": "shape_item",
+          "settings": {
+            "image": "shopify://shop_images/Emerald.png",
+            "title": "Emerald",
+            "link": "shopify://collections/emerald"
+          }
+        },
+        "shape_item_PKCFDH": {
+          "type": "shape_item",
+          "settings": {
+            "image": "shopify://shop_images/Marquise.png",
+            "title": "Marquise",
+            "link": "shopify://collections/marquise"
+          }
+        },
+        "shape_item_J6Bez3": {
+          "type": "shape_item",
+          "settings": {
+            "image": "shopify://shop_images/Radiant.png",
+            "title": "Radiant",
+            "link": "shopify://collections/radiant"
+          }
+        },
+        "shape_item_TKQmGm": {
+          "type": "shape_item",
+          "settings": {
+            "image": "shopify://shop_images/Pear.png",
+            "title": "Pear",
+            "link": "shopify://collections/pear"
+          }
+        },
+        "shape_item_XH7TFW": {
+          "type": "shape_item",
+          "settings": {
+            "image": "shopify://shop_images/Elongated_Cushion.png",
+            "title": "Elongated Cushion",
+            "link": "shopify://collections/elongated-cushion"
+          }
+        },
+        "shape_item_JQYhTr": {
+          "type": "shape_item",
+          "settings": {
+            "image": "shopify://shop_images/Cushion.png",
+            "title": "Cushion",
+            "link": "shopify://collections/cushion"
+          }
+        },
+        "shape_item_dwgcXh": {
+          "type": "shape_item",
+          "settings": {
+            "image": "shopify://shop_images/Princess.png",
+            "title": "Princess",
+            "link": "shopify://collections/princess"
+          }
+        },
+        "shape_item_h8aaWQ": {
+          "type": "shape_item",
+          "settings": {
+            "image": "shopify://shop_images/Asscher.png",
+            "title": "Asscher",
+            "link": "shopify://collections/asscher"
+          }
+        }
+      },
+      "block_order": [
+        "shape_item_gefENz",
+        "shape_item_8wa6Ka",
+        "shape_item_LNDpQx",
+        "shape_item_PKCFDH",
+        "shape_item_J6Bez3",
+        "shape_item_TKQmGm",
+        "shape_item_XH7TFW",
+        "shape_item_JQYhTr",
+        "shape_item_dwgcXh",
+        "shape_item_h8aaWQ"
+      ],
+      "name": "Shop Shapes (Scrollable)",
+      "settings": {
+        "heading": "Shop Diamonds by Shape",
+        "heading_align_d": "flex-start",
+        "heading_align_m": "center",
+        "heading_color": "#222222",
+        "heading_size_d": 26,
+        "heading_size_m": 22,
+        "heading_weight_d": "400",
+        "heading_weight_m": "400",
+        "heading_mb_d": 20,
+        "heading_mb_m": 16,
+        "featured_image": "shopify://shop_images/assets_2F9f2a69003c86470ea05deb9ecb9887be_2F1d87e34c333748cb99e90979500f438b.webp",
+        "featured_img_max_w": 240,
+        "hide_featured_mobile": true,
+        "max_width": 1300,
+        "featured_width_d": 28,
+        "items_per_row_d": 5,
+        "item_width_m": 90,
+        "layout_gap_d": 50,
+        "layout_gap_m": 20,
+        "grid_gap_d": 24,
+        "grid_gap_m": 16,
+        "icon_size_d": 90,
+        "icon_size_m": 75,
+        "card_bg": "rgba(0,0,0,0)",
+        "card_border_color": "rgba(0,0,0,0)",
+        "card_border_width": 0,
+        "card_radius": 8,
+        "card_padding": 8,
+        "item_title_mt_d": 12,
+        "item_title_mt_m": 8,
+        "text_color": "#333333",
+        "text_size_d": 13,
+        "text_size_m": 11,
+        "text_weight_d": "400",
+        "text_weight_m": "400",
+        "text_transform": "capitalize",
+        "letter_spacing": 0,
+        "bg_color": "#f9f9f9",
+        "padding_top_d": 48,
+        "padding_bottom_d": 48,
+        "padding_left_d": 40,
+        "padding_right_d": 40,
+        "padding_top_m": 32,
+        "padding_bottom_m": 32,
+        "padding_left_m": 20,
+        "padding_right_m": 20
+      }
+    },
+    "as_seen_on_marquee_EKxMED": {
+      "type": "as-seen-on-marquee",
+      "blocks": {
+        "image_HgerWK": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/IMG_9836.jpg",
+            "caption": "",
+            "size": "large",
+            "offset": 100
+          }
+        },
+        "image_DUCifB": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/519A0122.jpg",
+            "caption": "",
+            "size": "small",
+            "offset": -100
+          }
+        },
+        "image_V76zM9": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/WhatsApp_Image_2026-07-02_at_5.01.27_PM_2.jpg",
+            "caption": "",
+            "size": "large",
+            "offset": 100
+          }
+        },
+        "image_ydA3ax": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/WhatsApp_Image_2026-07-18_at_3.55.54_PM_1_1.jpg",
+            "caption": "",
+            "size": "small",
+            "offset": -70
+          }
+        },
+        "image_C4GJfT": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/519A0210-BW_2.jpg",
+            "caption": "",
+            "size": "large",
+            "offset": 100
+          }
+        },
+        "image_EzmrcU": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/WhatsApp_Image_2026-05-16_at_5.46.35_PM_5_1.jpg",
+            "caption": "",
+            "size": "small",
+            "offset": -70
+          }
+        },
+        "image_tdthRh": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/519A0242.jpg",
+            "caption": "",
+            "size": "large",
+            "offset": 100
+          }
+        },
+        "image_gFPrfU": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/IMG_6665.jpg",
+            "caption": "",
+            "size": "small",
+            "offset": -70
+          }
+        },
+        "image_R6mtFT": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/IMG_6709.jpg",
+            "caption": "",
+            "size": "large",
+            "offset": 100
+          }
+        },
+        "image_AEpjxt": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/IMG_6728.jpg",
+            "caption": "",
+            "size": "small",
+            "offset": -70
+          }
+        },
+        "image_CyFGFt": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/ChatGPT_Image_Jul_7_2026_09_46_39_AM.png",
+            "caption": "",
+            "size": "large",
+            "offset": 100
+          }
+        },
+        "image_eA6fRg": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/ChatGPT_Image_Jun_24_2026_06_06_58_PM.png",
+            "caption": "",
+            "size": "small",
+            "offset": -70
+          }
+        }
+      },
+      "block_order": [
+        "image_HgerWK",
+        "image_DUCifB",
+        "image_V76zM9",
+        "image_ydA3ax",
+        "image_C4GJfT",
+        "image_EzmrcU",
+        "image_tdthRh",
+        "image_gFPrfU",
+        "image_R6mtFT",
+        "image_AEpjxt",
+        "image_CyFGFt",
+        "image_eA6fRg"
+      ],
+      "custom_css": [
+        "h2.asn__title {font-size: 26px; font-weight: 400; font-family: \"Cormorant\"; text-transform: uppercase;}",
+        "@media screen and (max-width: 767px) {h2.asn__title {font-size: 24px; font-weight: 400; font-family: \"Cormorant\"; text-transform: uppercase; } .asn__media {height: 300px; transition: height 0.5s ease; }}",
+        "@media screen and (max-width: 749px) {.asn__head {margin-bottom: 80px; }}"
+      ],
+      "name": "As Seen On marquee",
+      "settings": {
+        "heading": "As Seen On",
+        "subheading": "See how our community is styling their favourite designs...",
+        "color_scheme": "",
+        "scroll_speed": 30,
+        "pause_on_hover": true,
+        "image_height": 320,
+        "item_gap": 22,
+        "item_overlap": 90,
+        "image_border_radius": 0,
+        "padding_top": 64,
+        "padding_bottom": 64
       }
     },
     "product-slider": {
@@ -264,16 +1565,18 @@
     "1781700443178d6983": {
       "type": "apps",
       "blocks": {
-        "trustyy_reviews_app_tra_review_form_hz6YzC": {
-          "type": "shopify://apps/trustyy-reviews-app/blocks/tra_review_form/cbb46e83-c02e-4abe-abb2-055aebf5d478",
+        "judge_me_reviews_review_widget_DntgYG": {
+          "type": "shopify://apps/judge-me-reviews/blocks/review_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
           "settings": {
-            "product": "",
-            "colour": "#ff0000"
+            "review_data": "sample_data",
+            "max_width": 1200,
+            "show_shop_reviews": false,
+            "empty_state": "empty_widget"
           }
         }
       },
       "block_order": [
-        "trustyy_reviews_app_tra_review_form_hz6YzC"
+        "judge_me_reviews_review_widget_DntgYG"
       ],
       "settings": {
         "include_margins": true
@@ -295,7 +1598,7 @@
         "show_size_count": false,
         "show_collection": false,
         "show_desc": false,
-        "columns_mobile": "1",
+        "columns_mobile": "2",
         "button_label": "",
         "button_link": "shopify://collections/bracelets",
         "button_style": "simple",
@@ -303,19 +1606,137 @@
         "margin_bottom": "m"
       }
     },
-    "17712297384d210ddf": {
-      "type": "apps",
+    "consultation_booking_pMhiJD": {
+      "type": "consultation-booking",
+      "blocks": {
+        "step_6tDDL3": {
+          "type": "step",
+          "settings": {
+            "number": "",
+            "text": "Book a private appointment with the YAZ & Co team"
+          }
+        },
+        "step_MXnMJV": {
+          "type": "step",
+          "settings": {
+            "number": "",
+            "text": "Review sample pieces and try them on"
+          }
+        },
+        "step_xRC4TD": {
+          "type": "step",
+          "settings": {
+            "number": "",
+            "text": "Choose your design, diamond details and 18K gold colour"
+          }
+        },
+        "step_HbPUxH": {
+          "type": "step",
+          "settings": {
+            "number": "",
+            "text": "Confirm your size and any engraving"
+          }
+        },
+        "step_7C6RNX": {
+          "type": "step",
+          "settings": {
+            "number": "",
+            "text": "Approve the final specifications, then we begin crafting"
+          }
+        }
+      },
+      "block_order": [
+        "step_6tDDL3",
+        "step_MXnMJV",
+        "step_xRC4TD",
+        "step_HbPUxH",
+        "step_7C6RNX"
+      ],
+      "custom_css": [
+        "a:hover {color: white;}"
+      ],
+      "name": "Consultation Booking",
       "settings": {
-        "include_margins": true
+        "anchor_id": "book-a-consultation",
+        "image": "shopify://shop_images/Z2603_YAZ_08_718_srgb_WEB_4.jpg",
+        "image_position": "left",
+        "image_radius": 0,
+        "eyebrow_text": "Appointment-only boutique · Abu Dhabi ",
+        "heading": "See it before you decide",
+        "description": "<p>Spend an hour with our team. Try sample pieces, compare diamond shapes and gold colours in daylight, and leave knowing your exact size — with no obligation to order.</p>",
+        "content_align_desktop": "left",
+        "content_align_mobile": "left",
+        "eyebrow_font_size_desktop": 12,
+        "eyebrow_font_size_mobile": 11,
+        "eyebrow_font_weight": "500",
+        "eyebrow_letter_spacing": 1,
+        "eyebrow_text_transform": "uppercase",
+        "heading_font_size_desktop": 26,
+        "heading_font_size_mobile": 22,
+        "heading_font_weight": "400",
+        "description_font_size_desktop": 16,
+        "description_font_size_mobile": 16,
+        "step_number_font_size": 15,
+        "step_number_font_weight": "600",
+        "step_text_font_size": 17,
+        "step_gap": 15,
+        "button_label": "Book a Private Appointment",
+        "button_link": "shopify://pages/book-an-appointment",
+        "whatsapp_label": "WhatsApp concierge",
+        "whatsapp_number": "",
+        "whatsapp_message": "",
+        "whatsapp_link": "shopify://pages/concierge",
+        "button_layout_desktop": "side_by_side",
+        "button_layout_mobile": "side_by_side",
+        "button_gap": 12,
+        "button_font_size_desktop": 13,
+        "button_font_size_mobile": 12,
+        "button_font_weight": "600",
+        "button_letter_spacing": 0.4,
+        "button_text_transform": "uppercase",
+        "button_border_width": 1,
+        "button_border_radius": 0,
+        "button_padding_v": 14,
+        "button_padding_h": 24,
+        "button_min_height": 48,
+        "primary_button_bg": "#0e0e0e",
+        "primary_button_text": "#ffffff",
+        "primary_button_hover_bg": "#282828",
+        "primary_button_hover_text": "#f0f0f0",
+        "secondary_button_bg": "#ffffff",
+        "secondary_button_text": "#0e0e0e",
+        "secondary_button_border": "#0e0e0e",
+        "secondary_button_hover_bg": "#0e0e0e",
+        "secondary_button_hover_text": "#ffffff",
+        "eyebrow_color": "#8a8a8a",
+        "heading_color": "#0e0e0e",
+        "text_color": "#2a2929",
+        "number_color": "#0e0e0e",
+        "full_width": true,
+        "content_max_width": 1800,
+        "side_padding": 0,
+        "side_padding_mobile": 16,
+        "column_gap": 48,
+        "column_gap_mobile": 32,
+        "padding_top": 40,
+        "padding_bottom": 80,
+        "padding_top_mobile": 48,
+        "padding_bottom_mobile": 48
       }
     }
   },
   "order": [
     "main",
+    "feature_guarantee_bar_yhfPaM",
+    "craft_auto_slider_HCTWqL",
+    "testimonials_slider_bFVrM3",
+    "what_fits_J3UnHV",
+    "shop_by_shape_qtBptn",
+    "as_seen_on_marquee_EKxMED",
     "product-slider",
     "banner-with-popup",
     "1781700443178d6983",
     "product-recommendations",
-    "17712297384d210ddf"
+    "consultation_booking_pMhiJD"
   ]
 }

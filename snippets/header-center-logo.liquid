@@ -113,6 +113,7 @@
 		{%- endif -%}
 
 		<div class='header__right--part'>
+			{% render 'header-extra-link' %}
 			{% render 'header-search-trigger', id: 'search-icon-open' %}
 
 			{%- if shop.customer_accounts_enabled -%}

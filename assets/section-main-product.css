@@ -70,6 +70,11 @@ main .shopify-section:first-child.not-margin .section--have-overlay:not(.article
   z-index: 10;
   background-color: rgb(var(--color-background));
   margin: 2.4rem 0;
+  /* margin-bottom: 1rem !important; */
+
+}
+.product__secondary-actions.product-secondary-actions--desktop-side_by_side.product-secondary-actions--mobile-side_by_side{
+  margin-top:10px !important;
 }
 .product .product__info-main__full--container {
   padding-right: 2rem;
@@ -134,7 +139,7 @@ main .shopify-section:first-child.not-margin .section--have-overlay:not(.article
 @media (min-width: 1100px) {
   .product__outer--static-multicolumns-aside .product__info-container .product__info-main, .product__outer--thumbs-aside .product__info-container .product__info-main, .product__outer--static-column-aside .product__info-container .product__info-main, .product__outer--two-column-aside .product__info-container .product__info-main {
     margin: auto;
-    max-width: 33rem;
+    max-width: 55rem;
   }
 }
 .product__outer--static-multicolumns-aside .product__info-container .product__info-main > *, .product__outer--thumbs-aside .product__info-container .product__info-main > *, .product__outer--static-column-aside .product__info-container .product__info-main > *, .product__outer--two-column-aside .product__info-container .product__info-main > * {
@@ -314,12 +319,12 @@ main .shopify-section:first-child.not-margin .section--have-overlay:not(.article
 }
 @media (min-width: 1100px) {
   .product__outer--thumbs-aside .product__media-list {
-    width: 57%;
+    width: 100%;
   }
 }
 @media (min-width: 990px) {
   .product__outer--thumbs-aside .product__info-container {
-    width: 30%;
+    width: 40%;
   }
 }
 @media (min-width: 576px) {
@@ -334,7 +339,7 @@ main .shopify-section:first-child.not-margin .section--have-overlay:not(.article
 }
 @media (min-width: 1100px) {
   .product__outer--thumbs-aside .product__main {
-    width: 70%;
+    width: 60%;
   }
 }
 .product__outer--thumbs-aside .product__media-list .deferred-media,
@@ -556,7 +561,7 @@ main .shopify-section:first-child.not-margin .section--have-overlay:not(.article
 }
 @media (min-width: 1100px) {
   .product__outer--two-column-aside .product__main {
-    width: 76%;
+    width: 70%;
   }
 }
 .product__outer--two-column-aside .product__info-container {
@@ -564,7 +569,7 @@ main .shopify-section:first-child.not-margin .section--have-overlay:not(.article
 }
 @media (min-width: 1100px) {
   .product__outer--two-column-aside .product__info-container {
-    width: 24%;
+    width: 30%;
     position: relative;
     top: 0;
     display: block;
@@ -698,7 +703,7 @@ main .shopify-section:first-child.not-margin .section--have-overlay:not(.article
   }
 }
 .product__popup {
-  display: none;
+  display: block;
   position: fixed;
   width: 100%;
   background: rgb(var(--color-background));
@@ -711,11 +716,6 @@ main .shopify-section:first-child.not-margin .section--have-overlay:not(.article
 .product__popup.active {
   transform: translateY(0);
   transition: transform 0.6s cubic-bezier(0.19, 1, 0.22, 1);
-}
-@media (min-width: 990px) {
-  .product__popup {
-    display: block;
-  }
 }
 .product__popup.no_dynamic_checkout .product-form__checkout {
   display: none;
@@ -1008,7 +1008,8 @@ main .shopify-section:first-child.not-margin .section--have-overlay:not(.article
 }
 @media (min-width: 576px) {
   .product__buy_buttons {
-    margin: 4rem 0;
+    margin: 1rem 0;
+    margin-bottom:0;
   }
 }
 .product .pickup-availability.available {
@@ -1114,7 +1115,7 @@ main .shopify-section:first-child.not-margin .section--have-overlay:not(.article
 }
 .product__media-sublist-outer {
   order: 1;
-  width: 5.2rem;
+  width: 9.2rem !important;
   position: relative;
   overflow: hidden;
 }
@@ -1166,7 +1167,7 @@ main .shopify-section:first-child.not-margin .section--have-overlay:not(.article
   display: flex;
   flex-direction: column;
   width: 100%;
-  max-width: 5.2rem;
+  /* max-width: 5.2rem; */
   height: 100%;
   max-height: 100%;
   margin: 0;
@@ -1324,7 +1325,7 @@ main .shopify-section:first-child.not-margin .section--have-overlay:not(.article
   flex-wrap: wrap;
   align-items: center;
   gap: 0 0.5rem;
-  margin-top: 0;
+  margin-top: 1rem;
   margin-bottom: 1.6rem;
 }
 .product .price-wrapper.visibility-hidden {
@@ -2700,6 +2701,30 @@ main .shopify-section:first-child.not-margin .section--have-overlay:not(.article
 }
 
 /* Color swathes */
+/* Stone size uses the existing variant radios with box-style labels. */
+.product-form__controls-group input + label.stone-size-swatch {
+  box-sizing: border-box;
+  width: 5rem;
+  height: 5rem;
+  padding: 0;
+  border: 1px solid transparent;
+  border-radius: 0;
+  background: #f7f7f7;
+  color: #222;
+  text-align: center;
+}
+.product-form__controls-group input + label.stone-size-swatch::after {
+  content: none;
+}
+.product-form__controls-group input + label.stone-size-swatch:hover,
+.product-form__controls-group input:checked + label.stone-size-swatch {
+  border-color: #222;
+}
+.product-form__controls-group input:focus-visible + label.stone-size-swatch {
+  outline: 2px solid #222;
+  outline-offset: 3px;
+}
+
 .product-form__controls-group label.color-swatch::before {
   content: "";
   width: 0.8rem;

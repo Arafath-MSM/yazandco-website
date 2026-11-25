@@ -231,13 +231,18 @@
   align-items: center;
   justify-content: center;
 }
+.card__subtext-pro.subtitle {
+    font-weight: 400 !important;
+    color: #292929 !important;
+}
 .card__information-top {
   position: absolute;
   top: 0;
   left: 0;
   display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
+  align-items: flex-end !important;
+  justify-content: flex-end;
+  
   column-gap: 1.6rem;
   width: 100%;
   padding: 1.2rem;
@@ -589,6 +594,15 @@
 .card__badge .badge.badge--custom {
   color: rgb(var(--color-badge-custom-text));
   background-color: rgb(var(--color-badge-custom-background));
+}
+.card__badge .badge.badge--design-for {
+  color: rgb(var(--color-badge-custom-text));
+  background-color: rgb(var(--color-badge-custom-background));
+}
+.card__subtext-pro {
+  color: rgba(var(--color-foreground), 0.7);
+  font-size: 1.2rem;
+  margin-top: 0.2rem;
 }
 .card__badge .badge.badge-transparent {
   background: transparent;

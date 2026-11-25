@@ -1,0 +1,454 @@
+{%- style -%}
+  /* ==========================================================================
+     1. SECTION CONTAINER & PADDINGS
+     ========================================================================== */
+  #loc-banner-{{ section.id }} {
+    background-color: {{ section.settings.section_bg }};
+    padding-top: {{ section.settings.pad_top_m }}px;
+    padding-bottom: {{ section.settings.pad_bottom_m }}px;
+    padding-left: {{ section.settings.pad_left_m }}px;
+    padding-right: {{ section.settings.pad_right_m }}px;
+  }
+
+  @media screen and (min-width: 990px) {
+    #loc-banner-{{ section.id }} {
+      padding-top: {{ section.settings.pad_top_d }}px;
+      padding-bottom: {{ section.settings.pad_bottom_d }}px;
+      padding-left: {{ section.settings.pad_left_d }}px;
+      padding-right: {{ section.settings.pad_right_d }}px;
+    }
+  }
+
+  .loc-banner-wrapper-{{ section.id }} {
+    max-width: {{ section.settings.container_max_w }}px;
+    margin: 0 auto;
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    border-radius: {{ section.settings.banner_radius }}px;
+  }
+
+  /* ==========================================================================
+     2. MEDIA / BACKGROUND IMAGE
+     ========================================================================== */
+  .loc-banner-media-{{ section.id }} {
+    position: relative;
+    width: 100%;
+    height: {{ section.settings.banner_height_m }}px;
+  }
+
+  @media screen and (min-width: 990px) {
+    .loc-banner-media-{{ section.id }} {
+      height: {{ section.settings.banner_height_d }}px;
+    }
+  }
+
+  .loc-banner-media-{{ section.id }} img,
+  .loc-banner-media-{{ section.id }} svg {
+    width: 100%;
+    height: 100%;
+    object-fit: {{ section.settings.img_fit }};
+    object-position: {{ section.settings.img_pos }};
+    display: block;
+  }
+
+  .loc-banner-overlay-{{ section.id }} {
+    position: absolute;
+    inset: 0;
+    background-color: {{ section.settings.img_overlay_color }};
+    opacity: {{ section.settings.img_overlay_opacity | divided_by: 100.0 }};
+    pointer-events: none;
+  }
+
+  /* ==========================================================================
+     3. OVERLAY CARD POSITIONING & GLASSMORPHISM
+     ========================================================================== */
+  .loc-banner-card-wrap-{{ section.id }} {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    padding-top: {{ section.settings.card_wrap_pad_top_m }}px;
+    padding-bottom: {{ section.settings.card_wrap_pad_bottom_m }}px;
+    padding-left: {{ section.settings.card_wrap_pad_left_m }}px;
+    padding-right: {{ section.settings.card_wrap_pad_right_m }}px;
+    align-items: {{ section.settings.card_align_v_m }};
+    justify-content: {{ section.settings.card_align_h_m }};
+  }
+
+  @media screen and (min-width: 990px) {
+    .loc-banner-card-wrap-{{ section.id }} {
+      padding-top: {{ section.settings.card_wrap_pad_top_d }}px;
+      padding-bottom: {{ section.settings.card_wrap_pad_bottom_d }}px;
+      padding-left: {{ section.settings.card_wrap_pad_left_d }}px;
+      padding-right: {{ section.settings.card_wrap_pad_right_d }}px;
+      align-items: {{ section.settings.card_align_v_d }};
+      justify-content: {{ section.settings.card_align_h_d }};
+    }
+  }
+
+  .loc-banner-card-{{ section.id }} {
+    width: 100%;
+    max-width: {{ section.settings.card_max_w_m }}px;
+    background-color: {{ section.settings.card_bg_color | color_modify: 'alpha', section.settings.card_bg_opacity }};
+    {% if section.settings.enable_blur %}
+      backdrop-filter: blur({{ section.settings.blur_amount }}px);
+      -webkit-backdrop-filter: blur({{ section.settings.blur_amount }}px);
+    {% endif %}
+    border-radius: {{ section.settings.card_radius }}px;
+    border: {{ section.settings.card_border_w }}px solid {{ section.settings.card_border_color }};
+    padding-top: {{ section.settings.card_pad_top_m }}px;
+    padding-bottom: {{ section.settings.card_pad_bottom_m }}px;
+    padding-left: {{ section.settings.card_pad_left_m }}px;
+    padding-right: {{ section.settings.card_pad_right_m }}px;
+    box-sizing: border-box;
+  }
+
+  @media screen and (min-width: 990px) {
+    .loc-banner-card-{{ section.id }} {
+      max-width: {{ section.settings.card_max_w_d }}px;
+      padding-top: {{ section.settings.card_pad_top_d }}px;
+      padding-bottom: {{ section.settings.card_pad_bottom_d }}px;
+      padding-left: {{ section.settings.card_pad_left_d }}px;
+      padding-right: {{ section.settings.card_pad_right_d }}px;
+    }
+  }
+
+  /* ==========================================================================
+     4. CARD TYPOGRAPHY & ELEMENTS
+     ========================================================================== */
+  .loc-banner-title-box-{{ section.id }} {
+    display: flex;
+    align-items: center;
+    gap: {{ section.settings.title_icon_gap }}px;
+    margin-bottom: {{ section.settings.title_mb_m }}px;
+  }
+
+  @media screen and (min-width: 990px) {
+    .loc-banner-title-box-{{ section.id }} {
+      margin-bottom: {{ section.settings.title_mb_d }}px;
+    }
+  }
+
+  .loc-banner-title-{{ section.id }} {
+    color: {{ section.settings.title_color }};
+    font-size: {{ section.settings.title_size_m }}px;
+    font-weight: {{ section.settings.title_weight }};
+    line-height: {{ section.settings.title_lh }};
+    letter-spacing: {{ section.settings.title_ls }}px;
+    margin: 0;
+  }
+
+  @media screen and (min-width: 990px) {
+    .loc-banner-title-{{ section.id }} {
+      font-size: {{ section.settings.title_size_d }}px;
+    }
+  }
+
+  .loc-banner-title-icon-{{ section.id }} {
+    display: inline-flex;
+    align-items: center;
+    color: {{ section.settings.title_color }};
+    text-decoration: none;
+  }
+
+  /* Address & Schedule Flex Grid */
+  .loc-banner-body-grid-{{ section.id }} {
+    display: flex;
+    flex-direction: {{ section.settings.body_flex_dir_m }};
+    gap: {{ section.settings.body_gap_m }}px;
+    margin-bottom: {{ section.settings.body_mb_m }}px;
+  }
+
+  @media screen and (min-width: 990px) {
+    .loc-banner-body-grid-{{ section.id }} {
+      flex-direction: {{ section.settings.body_flex_dir_d }};
+      gap: {{ section.settings.body_gap_d }}px;
+      margin-bottom: {{ section.settings.body_mb_d }}px;
+    }
+  }
+
+  .loc-banner-address-{{ section.id }} {
+    flex: 1;
+    color: {{ section.settings.body_color }};
+    font-size: {{ section.settings.body_size_m }}px;
+    font-weight: {{ section.settings.body_weight }};
+    line-height: {{ section.settings.body_lh }};
+  }
+
+  .loc-banner-schedule-{{ section.id }} {
+    white-space: nowrap;
+    color: {{ section.settings.body_color }};
+    font-size: {{ section.settings.body_size_m }}px;
+    font-weight: {{ section.settings.body_weight }};
+    line-height: {{ section.settings.body_lh }};
+  }
+
+  @media screen and (min-width: 990px) {
+    .loc-banner-address-{{ section.id }},
+    .loc-banner-schedule-{{ section.id }} {
+      font-size: {{ section.settings.body_size_d }}px;
+    }
+  }
+
+  /* CTA Button Link */
+  .loc-banner-cta-{{ section.id }} {
+    display: inline-flex;
+    align-items: center;
+    gap: {{ section.settings.cta_arrow_gap }}px;
+    color: {{ section.settings.cta_color }};
+    font-size: {{ section.settings.cta_size_m }}px;
+    font-weight: {{ section.settings.cta_weight }};
+    line-height: {{ section.settings.cta_lh }};
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+
+  .loc-banner-cta-{{ section.id }}:hover {
+    color: {{ section.settings.cta_hover_color }};
+  }
+
+  .loc-banner-cta-{{ section.id }} svg {
+    transition: transform 0.3s ease;
+  }
+
+  .loc-banner-cta-{{ section.id }}:hover svg {
+    transform: translateX(4px);
+  }
+
+  @media screen and (min-width: 990px) {
+    .loc-banner-cta-{{ section.id }} {
+      font-size: {{ section.settings.cta_size_d }}px;
+    }
+  }
+{%- endstyle -%}
+
+<section class="loc-banner-section" id="loc-banner-{{ section.id }}">
+  <div class="loc-banner-wrapper-{{ section.id }}">
+    
+    <!-- BACKGROUND MEDIA -->
+    <div class="loc-banner-media-{{ section.id }}">
+      {%- if section.settings.image != blank -%}
+        <img 
+          src="{{ section.settings.image | image_url: width: 2000 }}" 
+          alt="{{ section.settings.title | escape }}" 
+          loading="lazy" 
+          width="{{ section.settings.image.width }}" 
+          height="{{ section.settings.image.height }}">
+      {%- else -%}
+        {{ 'lifestyle-2' | placeholder_svg_tag: 'placeholder-svg' }}
+      {%- endif -%}
+
+      <div class="loc-banner-overlay-{{ section.id }}"></div>
+    </div>
+
+    <!-- FLOATING OVERLAY CARD -->
+    <div class="loc-banner-card-wrap-{{ section.id }}">
+      <div class="loc-banner-card-{{ section.id }}">
+        
+        <!-- TITLE + EXTERNAL ICON -->
+        {%- if section.settings.title != blank -%}
+          <div class="loc-banner-title-box-{{ section.id }}">
+            <{{ section.settings.title_tag }} class="loc-banner-title-{{ section.id }}">
+              {{ section.settings.title }}
+            </{{ section.settings.title_tag }}>
+
+            {%- if section.settings.show_external_icon -%}
+              <a href="{{ section.settings.title_url | default: '#' }}" class="loc-banner-title-icon-{{ section.id }}" aria-label="Open location map">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="7" y1="17" x2="17" y2="7"></line>
+                  <polyline points="7 7 17 7 17 17"></polyline>
+                </svg>
+              </a>
+            {%- endif -%}
+          </div>
+        {%- endif -%}
+
+        <!-- ADDRESS & TIMINGS -->
+        <div class="loc-banner-body-grid-{{ section.id }}">
+          {%- if section.settings.address != blank -%}
+            <div class="loc-banner-address-{{ section.id }}">
+              {{ section.settings.address }}
+            </div>
+          {%- endif -%}
+
+          {%- if section.settings.schedule != blank -%}
+            <div class="loc-banner-schedule-{{ section.id }}">
+              {{ section.settings.schedule }}
+            </div>
+          {%- endif -%}
+        </div>
+
+        <!-- CTA LINK -->
+        {%- if section.settings.cta_text != blank -%}
+          <a href="{{ section.settings.cta_url | default: '#' }}" class="loc-banner-cta-{{ section.id }}">
+            <span>{{ section.settings.cta_text }}</span>
+            {%- if section.settings.show_cta_arrow -%}
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            {%- endif -%}
+          </a>
+        {%- endif -%}
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Location Banner Overlay",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "1. SECTION & LAYOUT SETTINGS"
+    },
+    { "type": "color", "id": "section_bg", "label": "Section Background Color", "default": "transparent" },
+    { "type": "range", "id": "container_max_w", "min": 800, "max": 1920, "step": 20, "unit": "px", "label": "Container Max Width", "default": 1440 },
+    { "type": "range", "id": "banner_radius", "min": 0, "max": 40, "step": 1, "unit": "px", "label": "Banner Border Radius", "default": 0 },
+    { "type": "range", "id": "banner_height_d", "min": 300, "max": 900, "step": 20, "unit": "px", "label": "Desktop Height", "default": 560 },
+    { "type": "range", "id": "banner_height_m", "min": 250, "max": 700, "step": 10, "unit": "px", "label": "Mobile Height", "default": 420 },
+
+    {
+      "type": "header",
+      "content": "2. SECTION DESKTOP PADDINGS"
+    },
+    { "type": "range", "id": "pad_top_d", "min": 0, "max": 120, "step": 2, "unit": "px", "label": "Padding Top", "default": 0 },
+    { "type": "range", "id": "pad_bottom_d", "min": 0, "max": 120, "step": 2, "unit": "px", "label": "Padding Bottom", "default": 0 },
+    { "type": "range", "id": "pad_left_d", "min": 0, "max": 100, "step": 2, "unit": "px", "label": "Padding Left", "default": 0 },
+    { "type": "range", "id": "pad_right_d", "min": 0, "max": 100, "step": 2, "unit": "px", "label": "Padding Right", "default": 0 },
+
+    {
+      "type": "header",
+      "content": "3. SECTION MOBILE PADDINGS"
+    },
+    { "type": "range", "id": "pad_top_m", "min": 0, "max": 80, "step": 2, "unit": "px", "label": "Padding Top", "default": 0 },
+    { "type": "range", "id": "pad_bottom_m", "min": 0, "max": 80, "step": 2, "unit": "px", "label": "Padding Bottom", "default": 0 },
+    { "type": "range", "id": "pad_left_m", "min": 0, "max": 50, "step": 2, "unit": "px", "label": "Padding Left", "default": 0 },
+    { "type": "range", "id": "pad_right_m", "min": 0, "max": 50, "step": 2, "unit": "px", "label": "Padding Right", "default": 0 },
+
+    {
+      "type": "header",
+      "content": "4. BACKGROUND MEDIA SETTINGS"
+    },
+    { "type": "image_picker", "id": "image", "label": "Background Image" },
+    { "type": "select", "id": "img_fit", "label": "Image Object Fit", "options": [ { "value": "cover", "label": "Cover" }, { "value": "contain", "label": "Contain" } ], "default": "cover" },
+    { "type": "select", "id": "img_pos", "label": "Image Position", "options": [ { "value": "center center", "label": "Center" }, { "value": "left center", "label": "Left" }, { "value": "right center", "label": "Right" } ], "default": "center center" },
+    { "type": "color", "id": "img_overlay_color", "label": "Image Overlay Color", "default": "#000000" },
+    { "type": "range", "id": "img_overlay_opacity", "min": 0, "max": 90, "step": 5, "unit": "%", "label": "Overlay Opacity", "default": 10 },
+
+    {
+      "type": "header",
+      "content": "5. OVERLAY CARD POSITIONING"
+    },
+    { "type": "select", "id": "card_align_v_d", "label": "Desktop Vertical Position", "options": [ { "value": "flex-start", "label": "Top" }, { "value": "center", "label": "Center" }, { "value": "flex-end", "label": "Bottom" } ], "default": "flex-end" },
+    { "type": "select", "id": "card_align_h_d", "label": "Desktop Horizontal Position", "options": [ { "value": "flex-start", "label": "Left" }, { "value": "center", "label": "Center" }, { "value": "flex-end", "label": "Right" } ], "default": "flex-start" },
+    { "type": "select", "id": "card_align_v_m", "label": "Mobile Vertical Position", "options": [ { "value": "flex-start", "label": "Top" }, { "value": "center", "label": "Center" }, { "value": "flex-end", "label": "Bottom" } ], "default": "flex-end" },
+    { "type": "select", "id": "card_align_h_m", "label": "Mobile Horizontal Position", "options": [ { "value": "flex-start", "label": "Left" }, { "value": "center", "label": "Center" }, { "value": "flex-end", "label": "Right" } ], "default": "flex-start" },
+
+    {
+      "type": "header",
+      "content": "6. OVERLAY CARD WRAPPER PADDINGS"
+    },
+    { "type": "range", "id": "card_wrap_pad_top_d", "min": 0, "max": 100, "step": 5, "unit": "px", "label": "Desktop Wrap Top", "default": 40 },
+    { "type": "range", "id": "card_wrap_pad_bottom_d", "min": 0, "max": 100, "step": 5, "unit": "px", "label": "Desktop Wrap Bottom", "default": 40 },
+    { "type": "range", "id": "card_wrap_pad_left_d", "min": 0, "max": 100, "step": 5, "unit": "px", "label": "Desktop Wrap Left", "default": 40 },
+    { "type": "range", "id": "card_wrap_pad_right_d", "min": 0, "max": 100, "step": 5, "unit": "px", "label": "Desktop Wrap Right", "default": 40 },
+    { "type": "range", "id": "card_wrap_pad_top_m", "min": 0, "max": 60, "step": 2, "unit": "px", "label": "Mobile Wrap Top", "default": 20 },
+    { "type": "range", "id": "card_wrap_pad_bottom_m", "min": 0, "max": 60, "step": 2, "unit": "px", "label": "Mobile Wrap Bottom", "default": 20 },
+    { "type": "range", "id": "card_wrap_pad_left_m", "min": 0, "max": 50, "step": 2, "unit": "px", "label": "Mobile Wrap Left", "default": 16 },
+    { "type": "range", "id": "card_wrap_pad_right_m", "min": 0, "max": 50, "step": 2, "unit": "px", "label": "Mobile Wrap Right", "default": 16 },
+
+    {
+      "type": "header",
+      "content": "7. OVERLAY CARD STYLING & GLASS EFFECT"
+    },
+    { "type": "color", "id": "card_bg_color", "label": "Card Background Color", "default": "#2D2825" },
+    { "type": "range", "id": "card_bg_opacity", "min": 0.0, "max": 1.0, "step": 0.1, "label": "Card Opacity", "default": 0.70 },
+    { "type": "checkbox", "id": "enable_blur", "label": "Enable Glass Blur Effect", "default": true },
+    { "type": "range", "id": "blur_amount", "min": 0, "max": 30, "step": 1, "unit": "px", "label": "Blur Intensity", "default": 12 },
+    { "type": "range", "id": "card_max_w_d", "min": 280, "max": 800, "step": 10, "unit": "px", "label": "Desktop Max Width", "default": 460 },
+    { "type": "range", "id": "card_max_w_m", "min": 240, "max": 600, "step": 10, "unit": "px", "label": "Mobile Max Width", "default": 360 },
+    { "type": "range", "id": "card_radius", "min": 0, "max": 30, "step": 1, "unit": "px", "label": "Border Radius", "default": 0 },
+    { "type": "range", "id": "card_border_w", "min": 0, "max": 5, "step": 1, "unit": "px", "label": "Border Width", "default": 1 },
+    { "type": "color", "id": "card_border_color", "label": "Border Color", "default": "#4A433F" },
+
+    {
+      "type": "header",
+      "content": "8. OVERLAY CARD DESKTOP PADDINGS"
+    },
+    { "type": "range", "id": "card_pad_top_d", "min": 0, "max": 60, "step": 2, "unit": "px", "label": "Padding Top", "default": 24 },
+    { "type": "range", "id": "card_pad_bottom_d", "min": 0, "max": 60, "step": 2, "unit": "px", "label": "Padding Bottom", "default": 24 },
+    { "type": "range", "id": "card_pad_left_d", "min": 0, "max": 60, "step": 2, "unit": "px", "label": "Padding Left", "default": 24 },
+    { "type": "range", "id": "card_pad_right_d", "min": 0, "max": 60, "step": 2, "unit": "px", "label": "Padding Right", "default": 24 },
+
+    {
+      "type": "header",
+      "content": "9. OVERLAY CARD MOBILE PADDINGS"
+    },
+    { "type": "range", "id": "card_pad_top_m", "min": 0, "max": 50, "step": 2, "unit": "px", "label": "Padding Top", "default": 18 },
+    { "type": "range", "id": "card_pad_bottom_m", "min": 0, "max": 50, "step": 2, "unit": "px", "label": "Padding Bottom", "default": 18 },
+    { "type": "range", "id": "card_pad_left_m", "min": 0, "max": 50, "step": 2, "unit": "px", "label": "Padding Left", "default": 18 },
+    { "type": "range", "id": "card_pad_right_m", "min": 0, "max": 50, "step": 2, "unit": "px", "label": "Padding Right", "default": 18 },
+
+    {
+      "type": "header",
+      "content": "10. TITLE TYPOGRAPHY & ICON"
+    },
+    { "type": "text", "id": "title", "label": "Title", "default": "Westfield Mall" },
+    { "type": "select", "id": "title_tag", "label": "Title HTML Tag", "options": [ { "value": "h1", "label": "H1" }, { "value": "h2", "label": "H2" }, { "value": "h3", "label": "H3" } ], "default": "h3" },
+    { "type": "color", "id": "title_color", "label": "Title Color", "default": "#FFFFFF" },
+    { "type": "range", "id": "title_size_d", "min": 16, "max": 48, "step": 1, "unit": "px", "label": "Desktop Font Size", "default": 22 },
+    { "type": "range", "id": "title_size_m", "min": 14, "max": 36, "step": 1, "unit": "px", "label": "Mobile Font Size", "default": 18 },
+    { "type": "select", "id": "title_weight", "label": "Font Weight", "options": [ { "value": "300", "label": "Light" }, { "value": "400", "label": "Regular" }, { "value": "500", "label": "Medium" }, { "value": "600", "label": "SemiBold" }, { "value": "700", "label": "Bold" } ], "default": "400" },
+    { "type": "text", "id": "title_lh", "label": "Line Height", "default": "1.2" },
+    { "type": "range", "id": "title_ls", "min": 0, "max": 4, "step": 0.5, "unit": "px", "label": "Letter Spacing", "default": 0 },
+    { "type": "range", "id": "title_mb_d", "min": 0, "max": 30, "step": 2, "unit": "px", "label": "Desktop Bottom Margin", "default": 12 },
+    { "type": "range", "id": "title_mb_m", "min": 0, "max": 20, "step": 2, "unit": "px", "label": "Mobile Bottom Margin", "default": 10 },
+    { "type": "checkbox", "id": "show_external_icon", "label": "Show External Link Arrow", "default": true },
+    { "type": "url", "id": "title_url", "label": "Title Link URL" },
+    { "type": "range", "id": "title_icon_gap", "min": 2, "max": 20, "step": 1, "unit": "px", "label": "Title & Icon Gap", "default": 6 },
+
+    {
+      "type": "header",
+      "content": "11. ADDRESS & TIMINGS TYPOGRAPHY"
+    },
+    { "type": "textarea", "id": "address", "label": "Address Text", "default": "Westfield Mall of the Netherlands, Liguster 202, 2262 AC Leidschendam, Netherlands" },
+    { "type": "text", "id": "schedule", "label": "Schedule Text", "default": "MON-SUN 11-20" },
+    { "type": "color", "id": "body_color", "label": "Text Color", "default": "#D1CDCA" },
+    { "type": "range", "id": "body_size_d", "min": 10, "max": 22, "step": 1, "unit": "px", "label": "Desktop Font Size", "default": 13 },
+    { "type": "range", "id": "body_size_m", "min": 10, "max": 18, "step": 1, "unit": "px", "label": "Mobile Font Size", "default": 12 },
+    { "type": "select", "id": "body_weight", "label": "Font Weight", "options": [ { "value": "300", "label": "Light" }, { "value": "400", "label": "Regular" }, { "value": "500", "label": "Medium" } ], "default": "300" },
+    { "type": "text", "id": "body_lh", "label": "Line Height", "default": "1.4" },
+    { "type": "select", "id": "body_flex_dir_d", "label": "Desktop Flex Layout", "options": [ { "value": "row", "label": "Row (Side-by-side)" }, { "value": "column", "label": "Column (Stacked)" } ], "default": "row" },
+    { "type": "select", "id": "body_flex_dir_m", "label": "Mobile Flex Layout", "options": [ { "value": "row", "label": "Row (Side-by-side)" }, { "value": "column", "label": "Column (Stacked)" } ], "default": "column" },
+    { "type": "range", "id": "body_gap_d", "min": 5, "max": 50, "step": 5, "unit": "px", "label": "Desktop Content Gap", "default": 20 },
+    { "type": "range", "id": "body_gap_m", "min": 4, "max": 30, "step": 2, "unit": "px", "label": "Mobile Content Gap", "default": 10 },
+    { "type": "range", "id": "body_mb_d", "min": 0, "max": 40, "step": 2, "unit": "px", "label": "Desktop Bottom Margin", "default": 18 },
+    { "type": "range", "id": "body_mb_m", "min": 0, "max": 30, "step": 2, "unit": "px", "label": "Mobile Bottom Margin", "default": 14 },
+
+    {
+      "type": "header",
+      "content": "12. CTA LINK STYLING"
+    },
+    { "type": "text", "id": "cta_text", "label": "CTA Link Text", "default": "Book an Appointment" },
+    { "type": "url", "id": "cta_url", "label": "CTA Link URL" },
+    { "type": "color", "id": "cta_color", "label": "CTA Color", "default": "#FFFFFF" },
+    { "type": "color", "id": "cta_hover_color", "label": "CTA Hover Color", "default": "#E2DCD7" },
+    { "type": "range", "id": "cta_size_d", "min": 11, "max": 24, "step": 1, "unit": "px", "label": "Desktop Font Size", "default": 14 },
+    { "type": "range", "id": "cta_size_m", "min": 10, "max": 20, "step": 1, "unit": "px", "label": "Mobile Font Size", "default": 13 },
+    { "type": "select", "id": "cta_weight", "label": "Font Weight", "options": [ { "value": "300", "label": "Light" }, { "value": "400", "label": "Regular" }, { "value": "500", "label": "Medium" }, { "value": "600", "label": "SemiBold" } ], "default": "500" },
+    { "type": "text", "id": "cta_lh", "label": "Line Height", "default": "1.3" },
+    { "type": "checkbox", "id": "show_cta_arrow", "label": "Show Right Arrow Icon", "default": true },
+    { "type": "range", "id": "cta_arrow_gap", "min": 2, "max": 20, "step": 1, "unit": "px", "label": "Text to Arrow Gap", "default": 8 }
+  ],
+  "presets": [
+    {
+      "name": "Location Banner Overlay"
+    }
+  ]
+}
+{% endschema %}

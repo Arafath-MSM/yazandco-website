@@ -11,6 +11,10 @@
 	{% render 'product-card', show_vendor: section.settings.show_vendor %}
 {% endcomment %}
 
+{%- if request.page_type == 'index' -%}
+	{%- assign show_promotion = true -%}
+{%- endif -%}
+
 {%- if settings.quickview_show or settings.show_on_mobile -%}
 	{%- assign first_3d_model = product_card_product.media
 		| where: 'media_type', 'model'
@@ -126,7 +130,7 @@
 									<a
 										href="{{ product_card_product.url | default: '#' }}"
 										class="link link--overlay card-wrapper__link--overlay"
-										aria-label="{{ 'accessibility.product_link' | t }}"
+										aria-label="{{ product_card_product.title | escape }}"
 									></a>
 								</div>
 								{% for img in product_card_product.media offset: 1 %}
@@ -144,7 +148,7 @@
 										<a
 											href="{{ product_card_product.url | default: '#' }}"
 											class="link link--overlay card-wrapper__link--overlay"
-											aria-label="{{ 'accessibility.product_link' | t }}"
+											aria-label="{{ product_card_product.title | escape }}"
 										></a>
 									</div>
 								{% endfor %}
@@ -246,8 +250,17 @@
 				{%- if settings.badge_sale_show
 					or settings.badge_soldout_show
 					or settings.badge_custom_show
+					or product_card_product.metafields.custom.card_badge != blank
 				-%}
 					<div class="card__badge">
+						{%- if product_card_product.metafields.custom.card_badge != blank -%}
+							<span
+								class="subtitle badge badge--design-for {% if settings.badges_background %} badge-transparent {% endif %}"
+								aria-hidden="true"
+							>
+								{{ product_card_product.metafields.custom.card_badge | metafield_tag | strip_html }}
+							</span>
+						{%- endif -%}
 						{%- if product_card_product.available == false
 							and settings.badge_soldout_show
 						-%}
@@ -345,8 +358,13 @@
 							{{- product_card_product.title | escape -}}
 						</a>
 					</h3>
-					{% render 'price', product: product_card_product, price_class: '' %}
+					{% render 'price', product: product_card_product, price_class: '', show_promotion: show_promotion %}
 				</div>
+				{%- if product_card_product.metafields.custom.subtitle_product != blank -%}
+					<div class="card__subtext-pro subtitle">
+						{{ product_card_product.metafields.custom.subtitle_product| metafield_tag | strip_html }}
+					</div>
+				{%- endif -%}
 				{%- if show_desc and product_card_product.description != blank -%}
 					<div class="card__description">
 						{{ product_card_product.description | strip_html | truncate: 80 }}
@@ -656,7 +674,7 @@
 		<a
 			href="{{ product_card_product.url | default: '#' }}"
 			class="link link--overlay card-wrapper__link--overlay js-color-swatches-link"
-			aria-label="{{ 'accessibility.product_link' | t }}"
+			aria-label="{{ product_card_product.title | escape }}"
 		></a>
 	{% endif %}
 </div>

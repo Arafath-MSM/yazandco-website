@@ -11,17 +11,169 @@
   "sections": {
     "main": {
       "type": "contact-tiffany",
-      "custom_css": [],
+      "disabled": true,
+      "custom_css": [
+        ".yz-contact-tiffany__right img {width: 520px; max-width: 100%; aspect-ratio: 1 / 1; object-fit: cover; padding: 0px;}",
+        ".yz-contact-tiffany__wrap {max-width: 1380px;}",
+        "@media screen and (min-width: 990px) {h1 {text-align: left; }}"
+      ],
       "settings": {
         "heading": "Contact Us",
         "intro": "There’s no question too small or request too big for our YAZ & Co client advisors. From choosing an engagement ring or gift to providing in-store or virtual appointments, we’re always at your service.",
-        "phone_display": "+971 56 888 7552",
-        "phone_raw": "+971568887552",
-        "whatsapp_display": "+971 56 888 7552",
-        "whatsapp_raw": "+971568887552",
+        "phone_display": "+971 XX XXX XXXX",
+        "phone_raw": "+971XXXXXXXXX",
+        "whatsapp_display": "+971 XX XXX XXXX",
+        "whatsapp_raw": "971XXXXXXXXX",
         "appointment_url": "",
-        "email": "info@yazandco.com",
-        "image": "shopify://shop_images/Image_May_5_2026_02_03_14_PM.png"
+        "email": "care@yazandco.com",
+        "image": "shopify://shop_images/BRACELET.png"
+      }
+    },
+    "image_banner_M3XPqt": {
+      "type": "image-banner",
+      "custom_css": [
+        ".image-banner .banner {display: flex; position: relative; min-height: initial; max-height: 200px;}",
+        ".image-banner .banner:is([class*=\"bottom\"]) .image-banner__wrapper {padding-bottom: 2rem;}"
+      ],
+      "name": "t:sections.image-banner.presets.name",
+      "settings": {
+        "full_width": true,
+        "color_scheme": "",
+        "info_position": "inside",
+        "image": "shopify://shop_images/WhatsApp_Image_2026-09-09_at_6.23.25_PM_2.jpg",
+        "image_ratio": "21/9",
+        "opacity_overlay": 0.2,
+        "heading": "CONTACT US",
+        "heading_size": "h1",
+        "enable_custom_heading_size": true,
+        "heading_font_size_desktop": 36,
+        "heading_font_size_mobile": 28,
+        "text_information": "",
+        "text_align": "bottom-left",
+        "text_width": "full",
+        "additional_text": "",
+        "button_label": "",
+        "button_style": "tertiary",
+        "button_link": "",
+        "button_label2": "",
+        "button_style2": "tertiary",
+        "button_link2": "",
+        "margin_top": "no-indent",
+        "margin_bottom": "no-indent"
+      }
+    },
+    "help_links_grid_3cjfR7": {
+      "type": "help-links-grid",
+      "blocks": {
+        "card_Gta7i8": {
+          "type": "card",
+          "settings": {
+            "icon": "mail",
+            "heading": "Email Us",
+            "text": "Be guided by our experts.",
+            "button_label": "Email Us",
+            "button_link": "mailto:info@yazandco.com"
+          }
+        },
+        "card_qAzRVj": {
+          "type": "card",
+          "settings": {
+            "icon": "phone",
+            "heading": "Call Us",
+            "text": "For urgent support, give us a call.",
+            "button_label": "Call Us",
+            "button_link": "tel:+971568887552"
+          }
+        },
+        "card_xeDBLB": {
+          "type": "card",
+          "settings": {
+            "icon": "calendar",
+            "heading": "Book an Appointment",
+            "text": "Book a consultation with us, in-boutique or online.",
+            "button_label": "Bookings",
+            "button_link": "shopify://pages/book-an-appointment"
+          }
+        },
+        "card_Nzg4Jt": {
+          "type": "card",
+          "settings": {
+            "icon": "question",
+            "heading": "FAQs",
+            "text": "We're here to help your journey feel seamless.",
+            "button_label": "FAQs",
+            "button_link": "shopify://pages/faq"
+          }
+        },
+        "card_7AVFhX": {
+          "type": "card",
+          "settings": {
+            "icon": "heart",
+            "heading": "5 Year  Warranty",
+            "text": "Forever, and a day. Learn about our Lifetime Warranty.",
+            "button_label": "5 Year  Warranty",
+            "button_link": "shopify://pages/warranty"
+          }
+        },
+        "card_bDHXpp": {
+          "type": "card",
+          "settings": {
+            "icon": "pin",
+            "heading": "Our Showroom",
+            "text": "Step into our world and begin designing your dream piece.",
+            "button_label": "Our Showrooms",
+            "button_link": "shopify://pages/locations"
+          }
+        }
+      },
+      "block_order": [
+        "card_Gta7i8",
+        "card_qAzRVj",
+        "card_xeDBLB",
+        "card_Nzg4Jt",
+        "card_7AVFhX",
+        "card_bDHXpp"
+      ],
+      "name": "Help Links Grid",
+      "settings": {
+        "heading": "",
+        "full_width": true,
+        "content_max_width": 1400,
+        "side_padding": 32,
+        "side_padding_mobile": 16,
+        "columns_desktop": "3",
+        "columns_tablet": "2",
+        "columns_mobile": "1",
+        "grid_gap": 24,
+        "grid_gap_mobile": 16,
+        "card_bg": "#f8f8f8",
+        "card_border_color": "#d6d6d6",
+        "card_border_width": 1,
+        "card_border_radius": 0,
+        "card_padding": 48,
+        "icon_color": "#000000",
+        "icon_size": 32,
+        "card_heading_color": "#000000",
+        "card_heading_size": 18,
+        "card_heading_weight": "400",
+        "card_heading_letter_spacing": 1.5,
+        "card_heading_transform": "uppercase",
+        "card_text_color": "#4d4d4d",
+        "card_text_size": 14,
+        "button_bg": "#000000",
+        "button_text_color": "#ffffff",
+        "button_hover_bg": "#ffffff",
+        "button_hover_text_color": "#ffffff",
+        "button_border_radius": 0,
+        "button_font_size": 12,
+        "button_letter_spacing": 1,
+        "button_padding_v": 11,
+        "button_padding_h": 28,
+        "color_scheme": "background-1",
+        "padding_top": 80,
+        "padding_bottom": 80,
+        "padding_top_mobile": 48,
+        "padding_bottom_mobile": 48
       }
     },
     "rich_text_7QxnDi": {
@@ -63,8 +215,9 @@
         "text_ULMheE",
         "button_eKQJwD"
       ],
+      "disabled": true,
       "custom_css": [
-        "@media screen and (min-width: 990px) {.rich-text__heading {font-size: 44px; line-height: 1.1; } .rich-text__text, .rich-text__text p, .rich-text__text a {font-size: 18px; line-height: 1.9; }}"
+        "@media screen and (min-width: 990px) {.rich-text__heading {font-size: 36px; line-height: 1.1; } .rich-text__text, .rich-text__text p, .rich-text__text a {font-size: 18px; line-height: 1.9; }}"
       ],
       "name": "t:sections.rich-text.presets.name",
       "settings": {
@@ -88,6 +241,7 @@
       "block_order": [
         "cowlendar_booking_app_section_x3PAgJ"
       ],
+      "disabled": true,
       "settings": {
         "include_margins": true
       }
@@ -95,6 +249,8 @@
   },
   "order": [
     "main",
+    "image_banner_M3XPqt",
+    "help_links_grid_3cjfR7",
     "rich_text_7QxnDi",
     "1772014670e0c895a9"
   ]

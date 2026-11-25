@@ -110,6 +110,7 @@
 		{%- if section.settings.scheme_position == 'right' -%}
 			{% render 'color-scheme' %}
 		{%- endif -%}
+		{% render 'header-extra-link' %}
 		{% render 'header-search-trigger', id: 'search-icon-open' %}
 
 		{%- if shop.customer_accounts_enabled -%}

@@ -309,6 +309,25 @@
       <div class="product__info-main {% if gallery_type == 'full_horizontal_slider' %}product__info-main__full--container{% endif %}">
         <div class="product__info-main_content">
           {%- assign product_form_id = 'product-form-' | append: section.id -%}
+
+          {%- comment -%} Find the review app block (e.g. Judge.me) so it can be rendered beside the title instead of at its original block position. {%- endcomment -%}
+          {%- liquid
+            assign review_widget_block = nil
+            for review_scan_block in section.blocks
+              if review_scan_block.type contains 'judge-me' or review_scan_block.type contains 'reviews' or review_scan_block.type contains 'trustyy-reviews'
+                assign review_widget_block = review_scan_block
+              endif
+            endfor
+          -%}
+          {%- capture review_widget_html -%}
+            {%- if review_widget_block -%}
+              {% render review_widget_block %}
+            {%- endif -%}
+          {%- endcapture -%}
+
+          {%- comment -%} Book a Consultation + Send a Hint render together as one row, anchored at whichever block appears first. {%- endcomment -%}
+          {%- assign secondary_actions_rendered = false -%}
+
           {%- for block in section.blocks -%}
             {%- case block.type -%}
               {%- when 'text' -%}
@@ -336,14 +355,39 @@
               {%- when 'title' -%}
                 <div
                   class="
-                    product__title__wrapper
+                    product__title__wrapper product-title-review-row
                     {%- if product.available == false %} price--sold-out {% endif -%}
                     {%- if product.compare_at_price > product.price %} price--on-sale {% endif -%}
+                    {%- if block.settings.reviews_inline_desktop %} product-title-review-row--inline-desktop{% endif -%}
+                    {%- if block.settings.reviews_above_mobile %} product-title-review-row--reviews-first-mobile{% endif -%}
                   "
+                  data-block-id="{{ block.id }}"
+                  style="
+                    --title-review-justify: {{ block.settings.desktop_title_review_align }};
+                    --title-review-gap: {{ block.settings.title_review_gap }}px;
+                    --title-review-gap-mobile: {{ block.settings.title_review_gap_mobile }}px;
+                    --title-review-star-size: {{ block.settings.review_star_size }}px;
+                    --title-review-star-size-mobile: {{ block.settings.review_star_size_mobile }}px;
+                    --title-review-star-color: {{ block.settings.review_star_color }};
+                    --title-review-text-color: {{ block.settings.review_text_color }};
+                    --title-mobile-align: {{ block.settings.mobile_align }};
+                    --title-font-size-desktop: {{ block.settings.title_font_size_desktop }}px;
+                    --title-font-size-mobile: {{ block.settings.title_font_size_mobile }}px;
+                    --title-font-weight: {{ block.settings.title_font_weight }};
+                    {%- if block.settings.title_color != blank %}--title-color: {{ block.settings.title_color }};{% endif %}
+                    --title-margin-top: {{ block.settings.title_margin_top }}px;
+                    --title-margin-bottom: {{ block.settings.title_margin_bottom }}px;
+                  "
+                  {{ block.shopify_attributes }}
                 >
-                  <h1 class="product__title {{ block.settings.heading_size }}" {{ block.shopify_attributes }}>
+                  <h1 class="product__title {{ block.settings.heading_size }}">
                     {{ product.title | escape }}
                   </h1>
+                  {%- if review_widget_html != blank -%}
+                    <div class="product-title-review-row__reviews">
+                      {{ review_widget_html }}
+                    </div>
+                  {%- endif -%}
                 </div>
 
               {%- when 'custom_badges' -%}
@@ -379,6 +423,7 @@
                     product: product,
                     use_variant: true,
                     show_badges: true,
+                    show_promotion: true,
                     price_class: 'price--product'
                   -%}
                   {%- if settings.badge_sale_show -%}
@@ -476,12 +521,783 @@
                   </span>
                 </div>
 
+
+                {%- when 'short_description' -%}
+
+<div
+class="short-description-{{ block.id }}"
+{{ block.shopify_attributes }}
+>
+
+{% assign desc = block.settings.description | strip_html %}
+{% assign words = desc | split: ' ' %}
+{% assign limit = block.settings.word_limit %}
+
+
+<div class="short-text">
+
+{{ words | slice: 0, limit | join: ' ' }}
+
+{% if words.size > limit %}
+<span>...</span>
+
+<modal-opener class="no-js-hidden" data-modal="#ShortDescPopup-{{ block.id }}">
+<button type="button" class="read-more" aria-haspopup="dialog">
+{{ block.settings.read_more_text }}
+</button>
+</modal-opener>
+
+{% endif %}
+
+</div>
+
+
+</div>
+
+{% if words.size > limit %}
+
+<modal-dialog
+id="ShortDescPopup-{{ block.id }}"
+class="main-product-popup product-popup-modal"
+>
+<div
+role="dialog"
+aria-label="{{ block.settings.read_more_text | escape }}"
+aria-modal="true"
+class="product-popup-modal__content"
+tabindex="-1"
+>
+<div class="product-popup-modal__top">
+<h3 class="product-popup-modal__title">
+{{ product.title }}
+</h3>
+<button
+id="ModalClose-ShortDescPopup-{{ block.id }}"
+type="button"
+class="product-popup-modal__close modal-close-button focus-inset"
+aria-label="{{ 'accessibility.close' | t }}"
+>
+{% render 'icon-close' %}
+</button>
+</div>
+<div class="product-popup-modal__content-info">
+<div class="product-popup-modal__text">
+{{ block.settings.description }}
+</div>
+</div>
+</div>
+</modal-dialog>
+
+{% endif %}
+
+
+<style>
+
+.short-description-{{ block.id }}{
+
+font-size:{{ block.settings.font_size }}px;
+color:{{ block.settings.font_color }};
+
+}
+
+
+.short-description-{{ block.id }} .read-more{
+
+color:{{ block.settings.read_more_color }};
+text-decoration:{{ block.settings.text_decoration }};
+cursor:pointer;
+background:none;
+border:none;
+padding:0;
+font:inherit;
+
+}
+
+</style>
+
+{%- when 'accordion' -%}
+
+<details 
+class="product-accordion-{{ block.id }}"
+{{ block.shopify_attributes }}
+>
+
+<summary>
+
+<span class="accordion-heading">
+{{ block.settings.heading }}
+</span>
+
+
+<span class="accordion-icon">
++
+</span>
+
+</summary>
+
+
+<div class="accordion-content">
+
+{{ block.settings.content }}
+
+</div>
+
+
+</details>
+
+
+
+<style>
+
+.product-accordion-{{ block.id }} {
+
+border-top: {{ block.settings.border_width }}px solid {{ block.settings.border_color }};
+
+}
+
+
+
+.product-accordion-{{ block.id }} summary {
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+cursor:pointer;
+
+list-style:none;
+
+padding:{{ block.settings.padding }}px 0;
+
+font-size:{{ block.settings.heading_size }}px;
+
+color:{{ block.settings.heading_color }};
+
+letter-spacing:{{ block.settings.letter_spacing }}px;
+
+}
+
+
+.product-accordion-{{ block.id }} summary::-webkit-details-marker {
+
+display:none;
+
+}
+
+
+
+.product-accordion-{{ block.id }} .accordion-icon {
+
+font-size:{{ block.settings.icon_size }}px;
+
+transition:transform .3s ease;
+
+}
+
+
+
+.product-accordion-{{ block.id }}[open] .accordion-icon {
+
+transform:rotate(45deg);
+
+}
+
+
+
+.product-accordion-{{ block.id }} .accordion-content {
+
+padding-bottom:25px;
+
+font-size:{{ block.settings.content_size }}px;
+
+color:{{ block.settings.content_color }};
+
+line-height:{{ block.settings.line_height }};
+
+animation:accordion-open-{{ block.id }} .3s ease;
+
+}
+
+
+
+@keyframes accordion-open-{{ block.id }} {
+
+from {
+
+opacity:0;
+
+transform:translateY(-10px);
+
+}
+
+to {
+
+opacity:1;
+
+transform:translateY(0);
+
+}
+
+}
+
+
+</style>
+
+{% when 'trust_badges' %}
+     {% render 'trust-badges-block', block: block %}
+
+
+
+     {%- when 'complimentary_engraving' -%}
+
+  <div
+    class="pd-blk engraving-block engraving-block--{{ block.id }}"
+    style="margin: {{ block.settings.space_above }}px 0 {{ block.settings.space_below }}px;"
+    {{ block.shopify_attributes }}
+  >
+
+    <details
+      class="engraving-details"
+      id="EngravingDetails-{{ section.id }}-{{ block.id }}"
+    >
+      <summary class="engraving-trigger">
+        <span>{{ block.settings.button_text }}</span>
+
+      </summary>
+
+      <div class="engraving-panel">
+
+        {% if block.settings.label != blank %}
+          <label
+            class="engraving-label"
+            for="EngravingInput-{{ section.id }}-{{ block.id }}"
+          >
+            {{ block.settings.label }}
+          </label>
+        {% endif %}
+
+        <div class="engraving-field-row">
+
+          <input
+            id="EngravingInput-{{ section.id }}-{{ block.id }}"
+            class="engraving-input"
+            data-engraving-input="{{ block.id }}"
+            type="text"
+            maxlength="{{ block.settings.max_characters }}"
+            placeholder="{{ block.settings.placeholder | escape }}"
+            autocomplete="off"
+          >
+
+          <button
+            type="button"
+            class="engraving-save"
+            data-engraving-save="{{ block.id }}"
+          >
+            {{ block.settings.submit_text }}
+          </button>
+
+        </div>
+
+        <div class="engraving-footer">
+
+          {% if block.settings.show_character_count %}
+            <span class="engraving-counter">
+              <span data-engraving-count="{{ block.id }}">0</span>/{{ block.settings.max_characters }}
+            </span>
+          {% endif %}
+
+          <span
+            class="engraving-success"
+            data-engraving-success="{{ block.id }}"
+            hidden
+          >
+            {{ block.settings.success_text }}
+          </span>
+
+        </div>
+
+      </div>
+    </details>
+
+  </div>
+
+
+  <style>
+    .engraving-block--{{ block.id }} {
+      width: 100%;
+    }
+
+    .engraving-block--{{ block.id }} * {
+      box-sizing: border-box;
+    }
+
+    /* REMOVE DEFAULT DETAILS MARKER */
+    .engraving-block--{{ block.id }} summary {
+      list-style: none;
+    }
+
+    .engraving-block--{{ block.id }} summary::-webkit-details-marker {
+      display: none;
+    }
+
+    /* MAIN ENGRAVING BUTTON */
+    .engraving-block--{{ block.id }} .engraving-trigger {
+      width: 100%;
+      min-height: {{ block.settings.button_height }}px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+
+      padding: 12px 18px;
+
+      border:
+        {{ block.settings.border_width }}px
+        solid
+        {{ block.settings.border_color }};
+
+      border-radius: {{ block.settings.border_radius }}px;
+
+      background: {{ block.settings.button_background }};
+      color: {{ block.settings.button_color }};
+
+      font-size: {{ block.settings.button_font_size }}px;
+      font-weight: {{ block.settings.button_font_weight }};
+      letter-spacing: {{ block.settings.letter_spacing | divided_by: 100.0 }}em;
+      line-height: 1.3;
+
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .engraving-block--{{ block.id }} .engraving-trigger:hover {
+      background: {{ block.settings.button_hover_background }};
+      color: {{ block.settings.button_hover_color }};
+    }
+
+    .engraving-block--{{ block.id }} .engraving-trigger__icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      line-height: 1;
+    }
+
+    /* INPUT PANEL */
+    .engraving-block--{{ block.id }} .engraving-panel {
+      margin-top: {{ block.settings.panel_gap }}px;
+
+      padding:
+        {{ block.settings.panel_padding_vertical }}px
+        {{ block.settings.panel_padding_horizontal }}px;
+
+      border:
+        {{ block.settings.panel_border_width }}px
+        solid
+        {{ block.settings.panel_border_color }};
+
+      border-radius: {{ block.settings.panel_border_radius }}px;
+
+      background: {{ block.settings.panel_background }};
+    }
+
+    .engraving-block--{{ block.id }} .engraving-label {
+      display: block;
+
+      margin: 0 0 8px;
+
+      color: {{ block.settings.label_color }};
+      font-size: {{ block.settings.label_font_size }}px;
+      font-weight: {{ block.settings.label_font_weight }};
+    }
+
+    .engraving-block--{{ block.id }} .engraving-field-row {
+      display: flex;
+      align-items: stretch;
+      gap: 8px;
+    }
+
+    .engraving-block--{{ block.id }} .engraving-input {
+      flex: 1 1 auto;
+      min-width: 0;
+
+      height: {{ block.settings.input_height }}px;
+
+      padding: 0 14px;
+
+      border:
+        {{ block.settings.input_border_width }}px
+        solid
+        {{ block.settings.input_border_color }};
+
+      border-radius: {{ block.settings.input_border_radius }}px;
+
+      background: {{ block.settings.input_background }};
+      color: {{ block.settings.input_color }};
+
+      font: inherit;
+      font-size: {{ block.settings.input_font_size }}px;
+
+      outline: none;
+      box-shadow: none;
+    }
+
+    .engraving-block--{{ block.id }} .engraving-input:focus {
+      border-color: {{ block.settings.input_focus_color }};
+    }
+
+    .engraving-block--{{ block.id }} .engraving-save {
+      min-height: {{ block.settings.input_height }}px;
+
+      padding: 0 20px;
+
+      border:
+        {{ block.settings.submit_border_width }}px
+        solid
+        {{ block.settings.submit_border_color }};
+
+      border-radius: {{ block.settings.submit_border_radius }}px;
+
+      background: {{ block.settings.submit_background }};
+      color: {{ block.settings.submit_color }};
+
+      font: inherit;
+      font-size: {{ block.settings.submit_font_size }}px;
+      font-weight: {{ block.settings.submit_font_weight }};
+
+      cursor: pointer;
+    }
+
+    .engraving-block--{{ block.id }} .engraving-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      gap: 10px;
+
+      margin-top: 8px;
+
+      font-size: 12px;
+    }
+
+    .engraving-block--{{ block.id }} .engraving-counter {
+      color: {{ block.settings.counter_color }};
+    }
+
+    .engraving-block--{{ block.id }} .engraving-success {
+      color: {{ block.settings.success_color }};
+    }
+
+    @media screen and (max-width: 749px) {
+
+      .engraving-block--{{ block.id }} .engraving-trigger {
+        min-height: {{ block.settings.button_height_mobile }}px;
+        font-size: {{ block.settings.button_font_size_mobile }}px;
+      }
+
+      .engraving-block--{{ block.id }} .engraving-field-row {
+        flex-direction: column;
+      }
+
+      .engraving-block--{{ block.id }} .engraving-input {
+        height: {{ block.settings.input_height_mobile }}px;
+        font-size: {{ block.settings.input_font_size_mobile }}px;
+      }
+
+      .engraving-block--{{ block.id }} .engraving-save {
+        width: 100%;
+        min-height: {{ block.settings.input_height_mobile }}px;
+      }
+    }
+  </style>
+
+<script>
+(function () {
+
+  const sectionId = {{ section.id | json }};
+  const blockId = {{ block.id | json }};
+
+  {% comment %}
+    The product section is rendered twice (a desktop and a mobile copy), so this
+    script is emitted twice with the same ids and its document-level listeners
+    would be registered twice. Register them once.
+  {% endcomment %}
+  window.__engravingBlocksBound = window.__engravingBlocksBound || {};
+  if (window.__engravingBlocksBound[blockId]) return;
+  window.__engravingBlocksBound[blockId] = true;
+
+  function getBlock() {
+    return document.querySelector(
+      '.engraving-block--' + CSS.escape(blockId)
+    );
+  }
+
+  function getInput() {
+    const block = getBlock();
+    if (!block) return null;
+
+    return block.querySelector(
+      '[data-engraving-input]'
+    );
+  }
+
+  {% comment %}
+    Resolve the product form belonging to the SAME copy of the section as the
+    input the shopper actually typed into. Looking it up with getElementById
+    always returned the first (desktop) copy, so on mobile the engraving text was
+    written to a hidden form and never reached the cart.
+  {% endcomment %}
+  function getProductForm(input) {
+    if (input) {
+      const scope =
+        input.closest('.main-product-mobile-section-wrapper') ||
+        input.closest('.main-product-desktop-section-wrapper') ||
+        input.closest('[id^="MainProduct-"]');
+
+      if (scope) {
+        const scoped =
+          scope.querySelector('#product-form-' + CSS.escape(sectionId)) ||
+          scope.querySelector('form[action*="/cart/add"]');
+        if (scoped) return scoped;
+      }
+    }
+
+    return document.getElementById(
+      'product-form-' + sectionId
+    );
+  }
+
+  function getPropertyField(input) {
+    const form = getProductForm(input);
+
+    if (!form) {
+      return null;
+    }
+
+    let field = form.querySelector(
+      '[name="properties[Engraving]"]'
+    );
+
+    if (!field) {
+      field = document.createElement('input');
+      field.type = 'hidden';
+      field.name = 'properties[Engraving]';
+      form.appendChild(field);
+    }
+
+    return field;
+  }
+
+  function syncEngraving(inputEl) {
+    const input = inputEl || getInput();
+    if (!input) return '';
+
+    const value = input.value.trim();
+
+    // Keep every rendered copy of the form in step, so it does not matter which
+    // one the shopper ends up submitting.
+    const forms = document.querySelectorAll(
+      '#product-form-' + CSS.escape(sectionId)
+    );
+
+    if (forms.length) {
+      forms.forEach(function (form) {
+        let field = form.querySelector('[name="properties[Engraving]"]');
+        if (!field) {
+          field = document.createElement('input');
+          field.type = 'hidden';
+          field.name = 'properties[Engraving]';
+          form.appendChild(field);
+        }
+        field.value = value;
+      });
+    } else {
+      const property = getPropertyField(input);
+      if (!property) return '';
+      property.value = value;
+    }
+
+    return value;
+  }
+
+
+  /* LIVE INPUT */
+  document.addEventListener(
+    'input',
+    function(event) {
+
+      const input = event.target.closest(
+        '[data-engraving-input]'
+      );
+
+      if (!input) return;
+
+      const block = input.closest(
+        '.engraving-block'
+      );
+
+      if (!block) return;
+
+      const counter = block.querySelector(
+        '[data-engraving-count]'
+      );
+
+      if (counter) {
+        counter.textContent = input.value.length;
+      }
+
+      const success = block.querySelector(
+        '[data-engraving-success]'
+      );
+
+      if (success) {
+        success.hidden = true;
+      }
+
+      syncEngraving(input);
+    },
+    true
+  );
+
+
+  /* ENGRAVING SUBMIT BUTTON */
+  document.addEventListener(
+    'click',
+    function(event) {
+
+      const button = event.target.closest(
+        '[data-engraving-save]'
+      );
+
+      if (!button) return;
+
+      event.preventDefault();
+
+      const block0 = button.closest('.engraving-block');
+      const value = syncEngraving(
+        block0 ? block0.querySelector('[data-engraving-input]') : null
+      );
+
+      const block = button.closest(
+        '.engraving-block'
+      );
+
+      const success = block
+        ? block.querySelector(
+            '[data-engraving-success]'
+          )
+        : null;
+
+      if (success) {
+        success.textContent = value
+          ? 'Engraving saved'
+          : 'Engraving removed';
+
+        success.hidden = false;
+      }
+
+      console.log(
+        'Engraving:',
+        value
+      );
+    },
+    true
+  );
+
+
+  /* ENTER KEY */
+  document.addEventListener(
+    'keydown',
+    function(event) {
+
+      const input = event.target.closest(
+        '[data-engraving-input]'
+      );
+
+      if (!input) return;
+
+      if (event.key !== 'Enter') return;
+
+      event.preventDefault();
+
+      syncEngraving(input);
+
+      const block = input.closest(
+        '.engraving-block'
+      );
+
+      const success = block
+        ? block.querySelector(
+            '[data-engraving-success]'
+          )
+        : null;
+
+      if (success) {
+        success.textContent =
+          input.value.trim()
+            ? 'Engraving saved'
+            : 'Engraving removed';
+
+        success.hidden = false;
+      }
+    },
+    true
+  );
+
+
+  /*
+   * ADD TO CART CLICK:
+   * ONLY sync value.
+   *
+   * IMPORTANT:
+   * No preventDefault()
+   * No stopPropagation()
+   * No fetch()
+   *
+   * Theme ka original product-form
+   * cart drawer handle karega.
+   */
+  document.addEventListener(
+    'click',
+    function(event) {
+
+      const addButton = event.target.closest(
+        '#product-form-' +
+        CSS.escape(sectionId) +
+        ' button[name="add"]'
+      );
+
+      if (!addButton) return;
+
+      // Read the engraving from the copy of the section this button belongs to.
+      const scope =
+        addButton.closest('.main-product-mobile-section-wrapper') ||
+        addButton.closest('.main-product-desktop-section-wrapper') ||
+        addButton.closest('[id^="MainProduct-"]');
+
+      syncEngraving(
+        scope ? scope.querySelector('[data-engraving-input]') : null
+      );
+    },
+    true
+  );
+
+
+  /* INITIAL */
+  syncEngraving();
+
+})();
+</script>
+
             {%- when 'variant_picker' -%}
                 <div class="product-parameters {% if block.settings.picker_type == 'button' %}product-parameters-radius{% endif %}">
                   {% unless product.has_only_default_variant %}
                     {% if block.settings.picker_type == 'button' %}
                       <variant-radios
-                        id="variant-radios-{{ section.id }}"
+                        id="variant-radios-{{ section.id }}{{ variant_scope }}"
                         class="no-js-hidden variant-radios"
                         data-section="{{ section.id }}"
                         data-url="{{ product.url }}"
@@ -511,31 +1327,21 @@
                           {% if option_name == size_text %}
                             <fieldset
                               class="product-form__controls product-form__controls--dropdown"
-                              id="SingleOptionSelector-{{ forloop.index0 }}"
+                              id="SingleOptionSelector-{{ forloop.index0 }}{{ variant_scope }}"
                             >
                               <div class="select dropdown-select">
                                 <div class="select-label secondary_text">
                                   {{ option.name }}: <span>{{- option.selected_value -}}</span>
                                 </div>
                                 <ul class="product-form__controls-group">
-                                  {%
-                                    render 'product-variant-options',
-                                    product: product,
-                                    option: option,
-                                    dta-model:#popup:
-                                    block: block,
-                                    option_name_first: option_name_first,
-                                    option_name: option_name,
-                                    notify_me: notify_me,
-                                    force_dropdown: true
-                                  %}
+                                  {% render 'product-variant-options', product: product, option: option, dta-model: popup, block: block, option_name_first: option_name_first, option_name: option_name, notify_me: notify_me, variant_scope: variant_scope, force_dropdown: true %}
                                 </ul>
                                 {% render 'icon-caret' %}
                               </div>
                           {% else %}
                             <fieldset
                               class="product-form__controls product-form__controls--{% if settings.type_color_swatch == 'custom' and color_swatch %}colors{% endif %}"
-                              id="SingleOptionSelector-{{ forloop.index0 }}"
+                              id="SingleOptionSelector-{{ forloop.index0 }}{{ variant_scope }}"
                             >
                               {% if block.settings.pill_group %}
                                 <div class="product-form__group-name subtitle">
@@ -549,16 +1355,7 @@
                                 </div>
                               {% endif %}
                               <div class="product-form__controls-group">
-                                {%
-                                  render 'product-variant-options',
-                                  product: product,
-                                  option: option,
-                                  dta-model:#popup:
-                                  block: block,
-                                  option_name_first: option_name_first,
-                                  option_name: option_name,
-                                  notify_me: notify_me
-                                %}
+                                {% render 'product-variant-options', product: product, option: option, dta-model: popup, block: block, option_name_first: option_name_first, option_name: option_name, notify_me: notify_me, variant_scope: variant_scope %}
                               </div>
                           {% endif %}
 
@@ -620,8 +1417,24 @@
                                         }}
                                       </div>
                                     {% endif %}
-                                    {%- if block.settings.page.content != blank -%}
-                                      <div class="size_guide_content">
+                                    {%- if block.settings.page != blank -%}
+                                      {%- comment -%}
+                                        page.content only returns the page's plain
+                                        body field. A page built with a JSON
+                                        template (sections) has that field empty -
+                                        its real content lives in the template's
+                                        sections instead. The data-page-url below
+                                        lets JS fetch the page's actual rendered
+                                        output and swap it in, so this works for
+                                        both kinds of page. The inline
+                                        page.content output is just the instant,
+                                        no-JS-delay fallback for plain pages.
+                                      {%- endcomment -%}
+                                      <div
+                                        class="size_guide_content"
+                                        data-page-content
+                                        data-page-url="{{ block.settings.page.url }}"
+                                      >
                                         {{ block.settings.page.content }}
                                       </div>
                                     {%- endif -%}
@@ -638,7 +1451,7 @@
                       </variant-radios>
                     {% else %}
                       <variant-radios
-                        id="variant-radios-{{ section.id }}"
+                        id="variant-radios-{{ section.id }}{{ variant_scope }}"
                         class="no-js-hidden variant-selects"
                         data-section="{{ section.id }}"
                         data-url="{{ product.url }}"
@@ -675,7 +1488,8 @@
                                   product: product,
                                   option: option,
                                   block: block,
-                                  notify_me: notify_me
+                                  notify_me: notify_me,
+                                  variant_scope: variant_scope
                                 %}
                               </ul>
                               {% render 'icon-caret' %}
@@ -738,8 +1552,24 @@
                                         }}
                                       </div>
                                     {% endif %}
-                                    {%- if block.settings.page.content != blank -%}
-                                      <div class="size_guide_content">
+                                    {%- if block.settings.page != blank -%}
+                                      {%- comment -%}
+                                        page.content only returns the page's plain
+                                        body field. A page built with a JSON
+                                        template (sections) has that field empty -
+                                        its real content lives in the template's
+                                        sections instead. The data-page-url below
+                                        lets JS fetch the page's actual rendered
+                                        output and swap it in, so this works for
+                                        both kinds of page. The inline
+                                        page.content output is just the instant,
+                                        no-JS-delay fallback for plain pages.
+                                      {%- endcomment -%}
+                                      <div
+                                        class="size_guide_content"
+                                        data-page-content
+                                        data-page-url="{{ block.settings.page.url }}"
+                                      >
                                         {{ block.settings.page.content }}
                                       </div>
                                     {%- endif -%}
@@ -967,15 +1797,38 @@
                       data-type: 'add-to-cart-form'
                     -%}
                       <!-- 🔽 Engraving Field -->
+            <!-- 🔽 Engraving Field -->
+                  <!-- 🔽 Engraving Field -->
+                     <!-- 🔽 Engraving Field -->
                       <div class="custom-note-field">
-                        <label for="custom-note-{{ section.id }}">Engraving</label>
+                        <label for="custom-note-{{ section.id }}{{ variant_scope }}">Engraving</label>
+                        {%- if product.handle == 'dar-collection-1' -%}
+                          <select
+                            id="custom-note-{{ section.id }}{{ variant_scope }}"
+                            name="properties[Engraving]"
+                            style="display: block; width: 100%; min-height: 44px; margin-top: 6px; padding: 8px 12px; border: 1px solid #ccc; border-radius: 0; background-color: #fff; color: #111; font: inherit;"
+                          >
+                            <option value="">Select an emirate (optional)</option>
+                            <option value="Abu Dhabi">Abu Dhabi</option>
+                            <option value="Dubai">Dubai</option>
+                            <option value="Sharjah">Sharjah</option>
+                            <option value="Ajman">Ajman</option>
+                            <option value="Umm Al Quwain">Umm Al Quwain</option>
+                            <option value="Ras Al Khaimah">Ras Al Khaimah</option>
+                            <option value="Fujairah">Fujairah</option>
+                          </select>
+                        {%- else -%}
                         <textarea
-                          id="custom-note-{{ section.id }}"
+                          id="custom-note-{{ section.id }}{{ variant_scope }}"
                           name="properties[Engraving]"
                           placeholder="Add your note here..."
                           rows="1"
                         ></textarea>
+                        {%- endif -%}
                       </div>
+
+
+                   
                       <input
                         type="hidden"
                         name="id"
@@ -1011,7 +1864,7 @@
                                   class="quantity__input focus-inset"
                                   type="number"
                                   name="quantity"
-                                  id="Quantity-{{ section.id }}"
+                                  id="Quantity-{{ section.id }}{{ variant_scope }}"
                                   data-cart-quantity="{{ cart_qty }}"
                                   data-min="{{ product.selected_or_first_available_variant.quantity_rule.min }}"
                                   min="{{ product.selected_or_first_available_variant.quantity_rule.min }}"
@@ -1021,9 +1874,14 @@
                                   {% endif %}
                                   step="{{ product.selected_or_first_available_variant.quantity_rule.increment }}"
                                   value="{{ product.selected_or_first_available_variant.quantity_rule.min }}"
-                                  form="{{ product_form_id }}"
+                                  {% comment %}
+                                    No form="" attribute: this input already lives inside the
+                                    product form. The attribute re-resolved ownership by id, and
+                                    because the section renders twice both copies were owned by the
+                                    FIRST form - so a shopper on mobile submitted no quantity at all.
+                                  {% endcomment %}
                                 >
-                                <label class="visually-hidden" for="Quantity-{{ section.id }}">
+                                <label class="visually-hidden" for="Quantity-{{ section.id }}{{ variant_scope }}">
                                   {{ 'products.product.quantity.label' | t }}
                                 </label>
                                 <button class="quantity__button no-js-hidden focus-inset" name="plus" type="button">
@@ -1063,6 +1921,7 @@
                           {% endif %}
 
                           <button
+                            id="AddToCartButton-{{ section.id }}"
                             type="submit"
                             name="add"
                             class="product-form__submit button button--tertiary focus-inset"
@@ -1136,7 +1995,7 @@
                   {{ block.settings.custom_liquid }}
                 </div>
 
-              {%- when 'complementary' -%}
+              {% comment %} {%- when 'complementary' -%}
                 <product-recommendations
                   class="complementary-products product-recommendations"
                   data-url="{{ routes.product_recommendations_url }}?section_id={{ section.id }}&product_id={{ product.id }}&intent=complementary"
@@ -1191,7 +2050,139 @@
                       </div>
                     </div>
                   {% endif %}
+                </product-recommendations> {% endcomment %}
+
+
+                  {%- when 'reviews_accordion' -%}
+                <details class="reviews-accordion" open {{ block.shopify_attributes }}>
+                  <summary class="reviews-accordion__summary">
+                    <span>{{ block.settings.heading }}</span>
+                    <span class="reviews-accordion__icon" aria-hidden="true"></span>
+                  </summary>
+                  <div class="reviews-accordion__content">
+                    <div class="reviews-accordion__track" id="ReviewsTrack-{{ block.id }}">
+                      {%- for i in (1..6) -%}
+                        {%- assign text_key = 'review_' | append: i | append: '_text' -%}
+                        {%- assign review_text = block.settings[text_key] -%}
+                        {%- if review_text != blank -%}
+                          {%- assign author_key = 'review_' | append: i | append: '_author' -%}
+                          {%- assign location_key = 'review_' | append: i | append: '_location' -%}
+                          {%- assign review_author = block.settings[author_key] -%}
+                          {%- assign review_location = block.settings[location_key] -%}
+                          <div class="reviews-accordion__card">
+                            <div class="reviews-accordion__stars" aria-hidden="true">★★★★★</div>
+                            <p class="reviews-accordion__text">{{ review_text }}</p>
+                            {%- if review_author != blank or review_location != blank -%}
+                              <div class="reviews-accordion__author">
+                                {%- if review_author != blank -%}
+                                  <strong>{{ review_author }}</strong>
+                                {%- endif -%}
+                                {%- if review_location != blank -%}
+                                  <span>{{ review_location }}</span>
+                                {%- endif -%}
+                              </div>
+                            {%- endif -%}
+                          </div>
+                        {%- endif -%}
+                      {%- endfor -%}
+                    </div>
+                    <div class="reviews-accordi on__nav">
+                      <button
+                        type="button"
+                        class="reviews-accordion__arrow reviews-accordion__arrow--prev"
+                        aria-label="Previous reviews"
+                        data-reviews-prev="{{ block.id }}"
+                      >
+                        {% render 'icon-caret-left' %}
+                      </button>
+                      <button
+                        type="button"
+                        class="reviews-accordion__arrow reviews-accordion__arrow--next"
+                        aria-label="Next reviews"
+                        data-reviews-next="{{ block.id }}"
+                      >
+                        {% render 'icon-caret-right' %}
+                      </button>
+                    </div>
+                  </div>
+                </details>
+                <script>
+                  if (!window.__reviewsAccordionNavBound) {
+                    window.__reviewsAccordionNavBound = true;
+                    document.addEventListener('click', function (event) {
+                      var btn = event.target.closest('[data-reviews-prev], [data-reviews-next]');
+                      if (!btn) return;
+                      var blockId = btn.getAttribute('data-reviews-prev') || btn.getAttribute('data-reviews-next');
+                      var track = document.getElementById('ReviewsTrack-' + blockId);
+                      if (!track) return;
+                      var card = track.querySelector('.reviews-accordion__card');
+                      var amount = card ? card.getBoundingClientRect().width + 16 : track.clientWidth;
+                      track.scrollBy({
+                        left: btn.hasAttribute('data-reviews-prev') ? -amount : amount,
+                        behavior: 'smooth'
+                      });
+                    });
+                  }
+                </script>
+
+
+                 {%- when 'complementary' -%}
+                <product-recommendations
+                  class="complementary-products product-recommendations"
+                  data-url="{{ routes.product_recommendations_url }}?section_id={{ section.id }}&product_id={{ product.id }}&intent=related"
+                  {{ block.shopify_attributes }}
+                >
+                  {% if recommendations.performed and recommendations.products_count > 0 %}
+                    <div class="complementary-products__container">
+                      <div class="product-recommendations__item">
+                        {% if recommendations.performed and recommendations.products_count > 0 %}
+                          <div
+                            class="
+                              product-recommendations__list
+                              product-recommendations__list--{{ block.settings.columns_mobile }}-mobile
+                              js-recommendation-swiper swiper
+                            "
+                            data-mobile-layout="{{ block.settings.columns_mobile }}"
+                          >
+                            <div class="complementary-products-heading">
+                              {%- if block.settings.heading != blank -%}
+                                <h2 class="product-recommendations__heading title--section {{ block.settings.heading_size }}">
+                                  {{ block.settings.heading }}
+                                </h2>
+                              {% endif %}
+
+                              <div class="product-recommendations__slider-nav">
+                                <div class="swiper-button-prev">
+                                  {% render 'icon-caret-left' %}
+                                </div>
+                                <div class="swiper-button-next">
+                                  {% render 'icon-caret-right' %}
+                                </div>
+                              </div>
+                            </div>
+                            <div class="swiper-wrapper">
+                              {% for recommendation in recommendations.products limit: block.settings.products_limit %}
+                                <div class="swiper-slide collection-product-card product-recommendations__product quickview--hover">
+                                  {% render 'product-card',
+                                    product_card_product: recommendation,
+                                    media_size: block.settings.image_ratio,
+                                    media_fit: block.settings.image_fit,
+                                    show_vendor: block.settings.show_vendor,
+                                    show_collection: block.settings.show_collection,
+                                    show_desc: block.settings.show_desc,
+                                    show_slide: false,
+                                    section_id: block.id
+                                  %}
+                                </div>
+                              {% endfor %}
+                            </div>
+                          </div>
+                        {% endif %}
+                      </div>
+                    </div>
+                  {% endif %}
                 </product-recommendations>
+
 
               {%- when 'share' -%}
                 {%- if block.settings.show_share_facebook
@@ -1277,7 +2268,7 @@
                   </div>
                 {%- endif -%}
 
-              {%- when 'popup' -%}
+              {% comment %} {%- when 'popup' -%}
                 <div class="product-popup">
                   <modal-opener
                     class="no-js-hidden"
@@ -1369,10 +2360,1195 @@
                       </div>
                     </div>
                   </modal-dialog>
+                </div> {% endcomment %}
+
+
+                {%- when 'product_promise' -%}
+  <div
+    class="product-promise product-promise--{{ block.id }}"
+    {{ block.shopify_attributes }}
+  >
+    {% if block.settings.heading != blank %}
+      <h2 class="product-promise__heading">
+        {{ block.settings.heading }}
+      </h2>
+    {% endif %}
+
+    <div class="product-promise__items">
+      {% for i in (1..4) %}
+        {% liquid
+          assign show_key = 'show_item_' | append: i
+          assign icon_key = 'icon_' | append: i
+          assign custom_icon_key = 'custom_icon_' | append: i
+          assign title_key = 'title_' | append: i
+          assign text_key = 'text_' | append: i
+          assign link_label_key = 'link_label_' | append: i
+          assign link_key = 'link_' | append: i
+
+          assign show_item = block.settings[show_key]
+          assign icon_type = block.settings[icon_key]
+          assign custom_icon = block.settings[custom_icon_key]
+          assign item_title = block.settings[title_key]
+          assign item_text = block.settings[text_key]
+          assign link_label = block.settings[link_label_key]
+          assign item_link = block.settings[link_key]
+        %}
+
+        {% if show_item %}
+          <div class="product-promise__item">
+            <div class="product-promise__icon" aria-hidden="true">
+              {% if custom_icon != blank %}
+                {{
+                  custom_icon
+                  | image_url: width: 120
+                  | image_tag:
+                    loading: 'lazy',
+                    widths: '40, 60, 80, 120',
+                    class: 'product-promise__custom-icon'
+                }}
+              {% else %}
+                {% case icon_type %}
+                  {% when 'shield' %}
+                    <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M16 3L26 7V14C26 21 21.8 26.5 16 29C10.2 26.5 6 21 6 14V7L16 3Z" stroke="currentColor" stroke-width="1.7"/>
+                      <path d="M12 15.5L15 18.5L20.5 12.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+
+                  {% when 'star' %}
+                    <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M16 3.5L19.5 11.2L28 12.2L21.7 18L23.4 26.5L16 22.2L8.6 26.5L10.3 18L4 12.2L12.5 11.2L16 3.5Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+                    </svg>
+
+                  {% when 'truck' %}
+                    <svg viewBox="0 0 36 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M3 7H21V23H3V7Z" stroke="currentColor" stroke-width="1.7"/>
+                      <path d="M21 13H28L33 18V23H21V13Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+                      <circle cx="9" cy="24" r="3" stroke="currentColor" stroke-width="1.7"/>
+                      <circle cx="27" cy="24" r="3" stroke="currentColor" stroke-width="1.7"/>
+                    </svg>
+
+                  {% when 'store' %}
+                    <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M5 28V12L16 4L27 12V28" stroke="currentColor" stroke-width="1.7"/>
+                      <path d="M11 28V20H21V28" stroke="currentColor" stroke-width="1.7"/>
+                    </svg>
+
+                  {% when 'heart' %}
+                    <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M16 27S5 20.5 5 11.5C5 7.5 8 5 11.2 5C13.5 5 15.1 6.3 16 7.8C16.9 6.3 18.5 5 20.8 5C24 5 27 7.5 27 11.5C27 20.5 16 27 16 27Z" stroke="currentColor" stroke-width="1.7"/>
+                    </svg>
+
+                  {% when 'check' %}
+                    <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <circle cx="16" cy="16" r="12" stroke="currentColor" stroke-width="1.7"/>
+                      <path d="M10.5 16L14 19.5L21.5 12" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                {% endcase %}
+              {% endif %}
+            </div>
+
+            <div class="product-promise__content">
+              {% if item_title != blank %}
+                <h3 class="product-promise__title">
+                  {{ item_title }}
+                </h3>
+              {% endif %}
+
+              {% if item_text != blank %}
+                <div class="product-promise__text rte">
+                  {{ item_text }}
+                </div>
+              {% endif %}
+
+              {% if link_label != blank and item_link != blank %}
+                <a
+                  href="{{ item_link }}"
+                  class="product-promise__link"
+                >
+                  {{ link_label }}
+                </a>
+              {% endif %}
+            </div>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+
+  <style>
+    .product-promise--{{ block.id }} {
+      --promise-heading-color: {{ block.settings.heading_color }};
+      --promise-title-color: {{ block.settings.title_color }};
+      --promise-text-color: {{ block.settings.text_color }};
+      --promise-icon-color: {{ block.settings.icon_color }};
+      --promise-link-color: {{ block.settings.link_color }};
+      --promise-heading-size: {{ block.settings.heading_size }}px;
+      --promise-title-size: {{ block.settings.title_size }}px;
+      --promise-text-size: {{ block.settings.text_size }}px;
+      --promise-icon-size: {{ block.settings.icon_size }}px;
+      --promise-gap: {{ block.settings.item_gap }}px;
+      --promise-icon-gap: {{ block.settings.icon_gap }}px;
+
+      width: 100%;
+      margin-top: {{ block.settings.margin_top }}px;
+      margin-bottom: {{ block.settings.margin_bottom }}px;
+      padding-top: {{ block.settings.padding_top }}px;
+      padding-bottom: {{ block.settings.padding_bottom }}px;
+    }
+
+    .product-promise--{{ block.id }} .product-promise__heading {
+      margin: 0 0 {{ block.settings.heading_bottom_spacing }}px;
+      color: var(--promise-heading-color);
+      font-size: var(--promise-heading-size);
+      font-weight: {{ block.settings.heading_weight }};
+      line-height: {{ block.settings.heading_line_height }};
+      letter-spacing: {{ block.settings.heading_letter_spacing | divided_by: 100.0 }}em;
+    }
+
+    .product-promise--{{ block.id }} .product-promise__items {
+      display: flex;
+      flex-direction: column;
+      gap: var(--promise-gap);
+    }
+h2.product-promise__heading {
+    font-family: 'Red Rose' !IMPORTANT;
+}
+    .product-promise--{{ block.id }} .product-promise__item {
+      display: grid;
+      grid-template-columns: var(--promise-icon-size) minmax(0, 1fr);
+      column-gap: var(--promise-icon-gap);
+      align-items: start;
+    }
+
+    .product-promise--{{ block.id }} .product-promise__icon {
+      width: var(--promise-icon-size);
+      height: var(--promise-icon-size);
+      color: var(--promise-icon-color);
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+    }
+
+    .product-promise--{{ block.id }} .product-promise__icon svg,
+    .product-promise--{{ block.id }} .product-promise__custom-icon {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: contain;
+    }
+
+    .product-promise--{{ block.id }} .product-promise__content {
+      min-width: 0;
+    }
+
+    .product-promise--{{ block.id }} .product-promise__title {
+      margin: 0 0 {{ block.settings.title_bottom_spacing }}px;
+      padding: 0;
+      color: var(--promise-title-color);
+      font-size: var(--promise-title-size);
+      font-weight: {{ block.settings.title_weight }};
+      line-height: {{ block.settings.title_line_height }};
+      letter-spacing: {{ block.settings.title_letter_spacing | divided_by: 100.0 }}em;
+    }
+
+    .product-promise--{{ block.id }} .product-promise__text {
+      margin: 0;
+      color: var(--promise-text-color);
+      font-size: var(--promise-text-size);
+      line-height: {{ block.settings.text_line_height }};
+    }
+
+    .product-promise--{{ block.id }} .product-promise__text p {
+      margin: 0;
+    }
+
+    .product-promise--{{ block.id }} .product-promise__link {
+      display: inline-block;
+      margin-top: {{ block.settings.link_top_spacing }}px;
+      color: var(--promise-link-color);
+      font-size: var(--promise-text-size);
+      line-height: 1.4;
+      text-decoration: none;
+      border-bottom:
+        {{ block.settings.link_border_width }}px
+        {{ block.settings.link_border_style }}
+        currentColor;
+    }
+
+    @media screen and (max-width: 749px) {
+      .product-promise--{{ block.id }} {
+        --promise-heading-size: {{ block.settings.heading_size_mobile }}px;
+        --promise-title-size: {{ block.settings.title_size_mobile }}px;
+        --promise-text-size: {{ block.settings.text_size_mobile }}px;
+        --promise-icon-size: {{ block.settings.icon_size_mobile }}px;
+        --promise-gap: {{ block.settings.item_gap_mobile }}px;
+        --promise-icon-gap: {{ block.settings.icon_gap_mobile }}px;
+      }
+    }
+  </style>
+
+
+  {%- when 'conditional_icon_text' -%}
+
+  {%- assign lab_grown = product.metafields.custom.lab_grown.value -%}
+
+  {% if lab_grown == true %}
+
+    <div
+      class="pd-blk conditional-icon-text conditional-icon-text--{{ block.id }}"
+      style="
+        margin-top: {{ block.settings.space_above }}px;
+        margin-bottom: {{ block.settings.space_below }}px;
+      "
+      {{ block.shopify_attributes }}
+    >
+
+      <div class="conditional-icon-text__inner">
+
+        {% if block.settings.icon != blank %}
+
+          <div class="conditional-icon-text__icon">
+
+            {{
+              block.settings.icon
+              | image_url: width: 200
+              | image_tag:
+                loading: 'lazy',
+                class: 'conditional-icon-text__image'
+            }}
+
+          </div>
+
+        {% elsif block.settings.svg_icon != blank %}
+
+          <div class="conditional-icon-text__icon conditional-icon-text__svg">
+            {{ block.settings.svg_icon }}
+          </div>
+
+        {% endif %}
+
+
+        {% if block.settings.text != blank %}
+
+          <div class="conditional-icon-text__text">
+            {{ block.settings.text }}
+          </div>
+
+        {% endif %}
+
+      </div>
+
+    </div>
+
+
+    <style>
+
+      .conditional-icon-text--{{ block.id }} {
+        width: 100%;
+
+        padding:
+          {{ block.settings.padding_vertical }}px
+          {{ block.settings.padding_horizontal }}px;
+
+        background:
+          {{ block.settings.background_color }};
+
+        border:
+          {{ block.settings.border_width }}px
+          solid
+          {{ block.settings.border_color }};
+
+        border-radius:
+          {{ block.settings.border_radius }}px;
+
+        box-sizing: border-box;
+      }
+
+
+      .conditional-icon-text--{{ block.id }} * {
+        box-sizing: border-box;
+      }
+
+
+      .conditional-icon-text--{{ block.id }}
+      .conditional-icon-text__inner {
+
+        display: flex;
+        align-items: {{ block.settings.vertical_alignment }};
+
+        justify-content:
+          {{ block.settings.horizontal_alignment }};
+
+        gap:
+          {{ block.settings.icon_gap }}px;
+
+      }
+
+
+      /* ICON */
+
+      .conditional-icon-text--{{ block.id }}
+      .conditional-icon-text__icon {
+
+        width:
+          {{ block.settings.icon_size }}px;
+
+        min-width:
+          {{ block.settings.icon_size }}px;
+
+        height:
+          {{ block.settings.icon_size }}px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        color:
+          {{ block.settings.icon_color }};
+
+      }
+
+
+      .conditional-icon-text--{{ block.id }}
+      .conditional-icon-text__image {
+
+        display: block;
+
+        width: 100%;
+        height: 100%;
+
+        object-fit:
+          {{ block.settings.icon_fit }};
+
+      }
+
+
+      .conditional-icon-text--{{ block.id }}
+      .conditional-icon-text__svg svg {
+
+        display: block;
+
+        width: 100%;
+        height: 100%;
+
+        fill: currentColor;
+
+      }
+
+
+      .conditional-icon-text--{{ block.id }}
+      .conditional-icon-text__svg svg path {
+
+        fill: currentColor;
+
+      }
+
+
+      /* TEXT */
+
+      .conditional-icon-text--{{ block.id }}
+      .conditional-icon-text__text {
+
+        margin: 0;
+
+        color:
+          {{ block.settings.text_color }};
+
+        font-size:
+          {{ block.settings.text_size }}px;
+
+        font-weight:
+          {{ block.settings.text_weight }};
+
+        line-height:
+          {{ block.settings.line_height | divided_by: 10.0 }};
+
+        letter-spacing:
+          {{ block.settings.letter_spacing | divided_by: 100.0 }}em;
+
+      }
+
+
+      .conditional-icon-text--{{ block.id }}
+      .conditional-icon-text__text p {
+
+        margin: 0;
+
+      }
+
+
+      /* MOBILE */
+
+      @media screen and (max-width: 749px) {
+
+        .conditional-icon-text--{{ block.id }} {
+
+          padding:
+            {{ block.settings.padding_vertical_mobile }}px
+            {{ block.settings.padding_horizontal_mobile }}px;
+
+        }
+
+
+        .conditional-icon-text--{{ block.id }}
+        .conditional-icon-text__icon {
+
+          width:
+            {{ block.settings.icon_size_mobile }}px;
+
+          min-width:
+            {{ block.settings.icon_size_mobile }}px;
+
+          height:
+            {{ block.settings.icon_size_mobile }}px;
+
+        }
+
+
+        .conditional-icon-text--{{ block.id }}
+        .conditional-icon-text__text {
+
+          font-size:
+            {{ block.settings.text_size_mobile }}px;
+
+        }
+
+      }
+
+    </style>
+
+  {% endif %}
+
+  {%- when 'shipping_delivery' -%}
+
+  {%- liquid
+    assign customer_country = localization.country.iso_code
+    assign is_uae = false
+
+    if customer_country == 'AE'
+      assign is_uae = true
+    endif
+  -%}
+
+  <div
+    class="pd-blk shipping-delivery shipping-delivery--{{ block.id }}"
+    data-shipping-delivery="{{ block.id }}"
+    data-country="{{ customer_country }}"
+    data-uae-min="{{ block.settings.uae_min_days }}"
+    data-uae-max="{{ block.settings.uae_max_days }}"
+    data-int-min="{{ block.settings.international_min_days }}"
+    data-int-max="{{ block.settings.international_max_days }}"
+    data-skip-saturday="{{ block.settings.skip_saturday }}"
+    data-skip-sunday="{{ block.settings.skip_sunday }}"
+    data-date-format="{{ block.settings.date_format }}"
+    style="
+      margin-top: {{ block.settings.space_above }}px;
+      margin-bottom: {{ block.settings.space_below }}px;
+    "
+    {{ block.shopify_attributes }}
+  >
+
+    {% if is_uae %}
+
+      {% if block.settings.uae_heading != blank %}
+        <div class="shipping-delivery__heading">
+          {{ block.settings.uae_heading }}
+        </div>
+      {% endif %}
+
+      <div class="shipping-delivery__text">
+
+        {% if block.settings.uae_label != blank %}
+          <span class="shipping-delivery__label">
+            {{ block.settings.uae_label }}
+          </span>
+        {% endif %}
+
+        <strong
+          class="shipping-delivery__date"
+          data-delivery-date
+        >
+          Calculating...
+        </strong>
+
+      </div>
+
+    {% else %}
+
+      {% if block.settings.international_heading != blank %}
+        <div class="shipping-delivery__heading">
+          {{ block.settings.international_heading }}
+        </div>
+      {% endif %}
+
+      <div class="shipping-delivery__text">
+
+        {% if block.settings.international_label != blank %}
+          <span class="shipping-delivery__label">
+            {{ block.settings.international_label }}
+          </span>
+        {% endif %}
+
+        <strong
+          class="shipping-delivery__date"
+          data-delivery-date
+        >
+          Calculating...
+        </strong>
+
+      </div>
+
+    {% endif %}
+
+  </div>
+
+
+  <style>
+
+    .shipping-delivery--{{ block.id }} {
+      width: 100%;
+
+      padding:
+        {{ block.settings.padding_vertical }}px
+        {{ block.settings.padding_horizontal }}px;
+
+      background:
+        {{ block.settings.background_color }};
+
+      border:
+        {{ block.settings.border_width }}px
+        solid
+        {{ block.settings.border_color }};
+
+      border-radius:
+        {{ block.settings.border_radius }}px;
+
+      box-sizing: border-box;
+    }
+
+
+    .shipping-delivery--{{ block.id }} * {
+      box-sizing: border-box;
+    }
+
+
+    .shipping-delivery--{{ block.id }}
+    .shipping-delivery__heading {
+
+      margin:
+        0 0
+        {{ block.settings.heading_bottom_space }}px;
+
+      color:
+        {{ block.settings.heading_color }};
+
+      font-size:
+        {{ block.settings.heading_size }}px;
+
+      font-weight:
+        {{ block.settings.heading_weight }};
+
+      line-height: 1.3;
+    }
+
+
+    .shipping-delivery--{{ block.id }}
+    .shipping-delivery__text {
+
+      display: flex;
+      align-items: baseline;
+      flex-wrap: wrap;
+
+      gap:
+        {{ block.settings.text_gap }}px;
+
+      margin: 0;
+
+      color:
+        {{ block.settings.text_color }};
+
+      font-size:
+        {{ block.settings.text_size }}px;
+
+      font-weight:
+        {{ block.settings.text_weight }};
+
+      line-height:
+        {{ block.settings.line_height | divided_by: 10.0 }};
+    }
+
+
+    .shipping-delivery--{{ block.id }}
+    .shipping-delivery__label {
+      color:
+        {{ block.settings.text_color }};
+    }
+
+
+    .shipping-delivery--{{ block.id }}
+    .shipping-delivery__date {
+
+      color:
+        {{ block.settings.date_color }};
+
+      font-size:
+        {{ block.settings.date_size }}px;
+
+      font-weight:
+        {{ block.settings.date_weight }};
+    }
+
+
+    @media screen and (max-width: 749px) {
+
+      .shipping-delivery--{{ block.id }} {
+
+        padding:
+          {{ block.settings.padding_vertical_mobile }}px
+          {{ block.settings.padding_horizontal_mobile }}px;
+
+      }
+
+
+      .shipping-delivery--{{ block.id }}
+      .shipping-delivery__heading {
+
+        font-size:
+          {{ block.settings.heading_size_mobile }}px;
+
+      }
+
+
+      .shipping-delivery--{{ block.id }}
+      .shipping-delivery__text {
+
+        font-size:
+          {{ block.settings.text_size_mobile }}px;
+
+      }
+
+
+      .shipping-delivery--{{ block.id }}
+      .shipping-delivery__date {
+
+        font-size:
+          {{ block.settings.date_size_mobile }}px;
+
+      }
+
+    }
+
+  </style>
+
+
+  <script>
+    (function () {
+
+      const block = document.querySelector(
+        '[data-shipping-delivery="{{ block.id }}"]'
+      );
+
+      if (!block) return;
+
+
+      /*
+      =========================================
+      SETTINGS
+      =========================================
+      */
+
+      const country =
+        block.dataset.country || '';
+
+
+      const isUAE =
+        country.toUpperCase() === 'AE';
+
+
+      const uaeMin =
+        parseInt(block.dataset.uaeMin, 10) || 3;
+
+      const uaeMax =
+        parseInt(block.dataset.uaeMax, 10) || 5;
+
+
+      const internationalMin =
+        parseInt(block.dataset.intMin, 10) || 7;
+
+      const internationalMax =
+        parseInt(block.dataset.intMax, 10) || 10;
+
+
+      const skipSaturday =
+        block.dataset.skipSaturday === 'true';
+
+      const skipSunday =
+        block.dataset.skipSunday === 'true';
+
+
+      const dateFormat =
+        block.dataset.dateFormat || 'short';
+
+
+      /*
+      =========================================
+      GET TODAY
+      =========================================
+
+      Browser ki current date automatically
+      use hogi.
+
+      Isliye har din dates khud change hongi.
+      =========================================
+      */
+
+      function getToday() {
+
+        const now = new Date();
+
+        return new Date(
+          now.getFullYear(),
+          now.getMonth(),
+          now.getDate()
+        );
+
+      }
+
+
+      /*
+      =========================================
+      CHECK BUSINESS DAY
+      =========================================
+      */
+
+      function isBusinessDay(date) {
+
+        const day =
+          date.getDay();
+
+
+        /*
+        JavaScript:
+        Sunday   = 0
+        Saturday = 6
+        */
+
+
+        if (
+          skipSaturday &&
+          day === 6
+        ) {
+          return false;
+        }
+
+
+        if (
+          skipSunday &&
+          day === 0
+        ) {
+          return false;
+        }
+
+
+        return true;
+
+      }
+
+
+      /*
+      =========================================
+      ADD BUSINESS DAYS
+      =========================================
+      */
+
+      function addBusinessDays(
+        startDate,
+        numberOfDays
+      ) {
+
+        const result =
+          new Date(startDate);
+
+
+        let addedDays = 0;
+
+
+        while (
+          addedDays < numberOfDays
+        ) {
+
+          result.setDate(
+            result.getDate() + 1
+          );
+
+
+          if (
+            isBusinessDay(result)
+          ) {
+
+            addedDays++;
+
+          }
+
+        }
+
+
+        return result;
+
+      }
+
+
+      /*
+      =========================================
+      MONTH NAMES
+      =========================================
+
+      JS automatically correct month
+      calculate karega.
+      =========================================
+      */
+
+      function getMonthName(date) {
+
+        if (
+          dateFormat === 'long'
+        ) {
+
+          return date.toLocaleDateString(
+            'en-US',
+            {
+              month: 'long'
+            }
+          );
+
+        }
+
+
+        if (
+          dateFormat === 'short_month'
+        ) {
+
+          return date.toLocaleDateString(
+            'en-US',
+            {
+              month: 'short'
+            }
+          );
+
+        }
+
+
+        return date.toLocaleDateString(
+          'en-US',
+          {
+            month: 'long'
+          }
+        );
+
+      }
+
+
+      /*
+      =========================================
+      FORMAT RANGE
+      =========================================
+
+      Same month:
+      19–21 August
+
+      Different months:
+      29 August – 2 September
+
+      Different years:
+      30 December 2026 – 5 January 2027
+      =========================================
+      */
+
+      function formatDateRange(
+        startDate,
+        endDate
+      ) {
+
+        const startDay =
+          startDate.getDate();
+
+        const endDay =
+          endDate.getDate();
+
+
+        const startMonth =
+          getMonthName(startDate);
+
+        const endMonth =
+          getMonthName(endDate);
+
+
+        const startYear =
+          startDate.getFullYear();
+
+        const endYear =
+          endDate.getFullYear();
+
+
+        /*
+        -----------------------------
+        DIFFERENT YEARS
+        -----------------------------
+        */
+
+        if (
+          startYear !== endYear
+        ) {
+
+          return (
+            startDay +
+            ' ' +
+            startMonth +
+            ' ' +
+            startYear +
+            ' – ' +
+            endDay +
+            ' ' +
+            endMonth +
+            ' ' +
+            endYear
+          );
+
+        }
+
+
+        /*
+        -----------------------------
+        SAME YEAR + DIFFERENT MONTH
+        -----------------------------
+        */
+
+        if (
+          startDate.getMonth() !==
+          endDate.getMonth()
+        ) {
+
+          return (
+            startDay +
+            ' ' +
+            startMonth +
+            ' – ' +
+            endDay +
+            ' ' +
+            endMonth
+          );
+
+        }
+
+
+        /*
+        -----------------------------
+        SAME MONTH
+        -----------------------------
+        */
+
+        return (
+          startDay +
+          '–' +
+          endDay +
+          ' ' +
+          endMonth
+        );
+
+      }
+
+
+      /*
+      =========================================
+      CALCULATE DELIVERY
+      =========================================
+      */
+
+      function updateDeliveryDate() {
+
+        const today =
+          getToday();
+
+
+        let minDays;
+        let maxDays;
+
+
+        if (isUAE) {
+
+          minDays =
+            uaeMin;
+
+          maxDays =
+            uaeMax;
+
+        }
+
+        else {
+
+          minDays =
+            internationalMin;
+
+          maxDays =
+            internationalMax;
+
+        }
+
+
+        const startDate =
+          addBusinessDays(
+            today,
+            minDays
+          );
+
+
+        const endDate =
+          addBusinessDays(
+            today,
+            maxDays
+          );
+
+
+        const range =
+          formatDateRange(
+            startDate,
+            endDate
+          );
+
+
+        const output =
+          block.querySelector(
+            '[data-delivery-date]'
+          );
+
+
+        if (output) {
+
+          output.textContent =
+            range;
+
+        }
+
+      }
+
+
+      /*
+      =========================================
+      RUN
+      =========================================
+      */
+
+      updateDeliveryDate();
+
+    })();
+  </script>
+
+
+                {%- when 'popup' -%}
+                <div class="product-popup-collapse" {{ block.shopify_attributes }}>
+                  <modal-opener class="no-js-hidden" data-modal="#PopupModal-{{ block.id }}">
+                    <button
+                      id="ProductPopup-{{ block.id }}"
+                      type="button"
+                      class="product-popup-collapse__summary"
+                      aria-haspopup="dialog"
+                    >
+                      <span>{{ block.settings.label }}</span>
+                      <span class="product-popup-collapse__icon" aria-hidden="true"></span>
+                    </button>
+                  </modal-opener>
+
+                  <modal-dialog
+                    id="PopupModal-{{ block.id }}"
+                    class="main-product-popup product-popup-modal"
+                  >
+                    <div
+                      role="dialog"
+                      aria-label="{{ block.settings.label }}"
+                      aria-modal="true"
+                      class="product-popup-modal__content"
+                      tabindex="-1"
+                    >
+                      <div class="product-popup-modal__top">
+                        <h3 class="product-popup-modal__title">
+                          {{ block.settings.label }}
+                        </h3>
+                        <button
+                          id="ModalClose-{{ block.id }}"
+                          type="button"
+                          class="product-popup-modal__close modal-close-button focus-inset"
+                          aria-label="{{ 'accessibility.close' | t }}"
+                        >
+                          {% render 'icon-close' %}
+                        </button>
+                      </div>
+                      <div class="product-popup-modal__content-info">
+                        {% if block.settings.text != blank %}
+                          <div class="product-popup-modal__text">
+                            {{ block.settings.text }}
+                          </div>
+                        {% endif %}
+                        {% if block.settings.text_2 != blank %}
+                          <div class="product-popup-modal__text product-popup-modal__text_2">
+                            {{ block.settings.text_2 }}
+                          </div>
+                        {% endif %}
+                        {% if block.settings.heading != blank %}
+                          <h3 class="product-popup-modal__title">
+                            {{ block.settings.heading }}
+                          </h3>
+                        {% endif %}
+                        {% if block.settings.img_text != blank %}
+                          <div class="product-popup-modal__text_3">
+                            {{ block.settings.img_text }}
+                          </div>
+                        {% endif %}
+                        <div>
+                          {%- if block.settings.pupup_img != blank -%}
+                            {{
+                              block.settings.pupup_img
+                              | image_url: width: 1200
+                              | image_tag: loading: 'lazy', class: 'header__heading-logo', widths: '553, 895, 1200'
+                            }}
+                          {%- endif -%}
+                          {%- if block.settings.pupup_img_2 != blank -%}
+                            {{
+                              block.settings.pupup_img_2
+                              | image_url: width: 1200
+                              | image_tag:
+                                loading: 'lazy',
+                                class: 'header__heading-logo header__heading-logo--overlay',
+                                widths: '553, 895, 1200'
+                            }}
+                          {%- endif -%}
+                        </div>
+                      </div>
+                    </div>
+                  </modal-dialog>
                 </div>
 
               {%- when '@app' -%}
-                {% render block %}
+                {%- unless review_widget_block and block.id == review_widget_block.id -%}
+                  {% render block %}
+                {%- endunless -%}
+
+              {%- when 'ready_to_ship' -%}
+                {% render 'product-ready-to-ship', product: product, block: block %}
+
+              {%- when 'book_consultation', 'send_a_hint' -%}
+                {%- unless secondary_actions_rendered -%}
+                  {%- assign secondary_actions_rendered = true -%}
+                  {%- liquid
+                    assign consult_block = section.blocks | where: 'type', 'book_consultation' | first
+                    assign hint_block = section.blocks | where: 'type', 'send_a_hint' | first
+                  -%}
+                  {% render 'product-secondary-actions',
+                    product: product,
+                    section: section,
+                    consult_block: consult_block,
+                    hint_block: hint_block
+                  %}
+                {%- endunless -%}
             {%- endcase -%}
           {%- endfor -%}
         </div>
@@ -1447,6 +3623,139 @@
       </div>
   {% endcase %}
 {% endfor %}
+
+<div class="sticky-atc no-js-hidden" id="StickyATC-{{ section.id }}">
+  <div class="sticky-atc__inner">
+    <div class="sticky-atc__price" id="StickyATCPrice-{{ section.id }}">
+      {%- render 'price', product: product, use_variant: true, show_badges: false, price_class: 'price--product', show_promotion: true -%}
+    </div>
+    <button type="button" class="sticky-atc__button" id="StickyATCButton-{{ section.id }}">
+      <span>{{ 'products.product.add_to_cart' | t }}</span>
+    </button>
+  </div>
+</div>
+
+<style>
+  .sticky-atc {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 30;
+    background: rgb(var(--color-foreground));
+    color: rgb(var(--color-background));
+    transform: translateY(100%);
+    transition: transform .3s ease;
+  }
+  .sticky-atc.is-visible {
+    transform: translateY(0);
+  }
+  .sticky-atc__inner {
+    max-width: 1600px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 14px 20px;
+  }
+  .sticky-atc__price {
+    font-size: 13px;
+  }
+  .sticky-atc__price .price {
+    color: inherit;
+  }
+    .sticky-atc  span.price-item.price-item--regular{
+        font-size: 16px;
+  }
+  .sticky-atc__button {
+    background:black;
+    color: white;
+    border: none;
+    padding: 12px 28px;
+    font-size: 12px;
+    letter-spacing: .05em;
+    text-transform: uppercase;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+  {% comment %} @media screen and (max-width: 749px) {
+    .sticky-atc__inner {
+      padding: 12px 16px;
+    }
+    .sticky-atc__button {
+      padding: 10px 18px;
+    }
+  } {% endcomment %}
+</style>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    var sectionId = {{ section.id | json }};
+    // This snippet can render twice (desktop + mobile gallery wrappers), producing
+    // duplicate ids. Pair each instance up positionally instead of using
+    // getElementById, which would only ever resolve the first (desktop) copy.
+    var bars = document.querySelectorAll('[id="StickyATC-' + sectionId + '"]');
+    var targetBtns = document.querySelectorAll('[id="AddToCartButton-' + sectionId + '"]');
+    var stickyBtns = document.querySelectorAll('[id="StickyATCButton-' + sectionId + '"]');
+    var mainPriceWraps = document.querySelectorAll('[id="price-' + sectionId + '"]');
+    var stickyPriceWraps = document.querySelectorAll('[id="StickyATCPrice-' + sectionId + '"]');
+
+    var footerEl = document.querySelector("footer");
+    var footerVisible = false;
+
+    var footerObserver = null;
+    if (footerEl) {
+      footerObserver = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          footerVisible = entry.isIntersecting;
+        });
+        updateAllVisibility();
+      }, { threshold: 0 });
+      footerObserver.observe(footerEl);
+    }
+
+    var buttonPassedByIndex = [];
+
+    function updateAllVisibility() {
+      bars.forEach(function (bar, index) {
+        bar.classList.toggle("is-visible", !!buttonPassedByIndex[index] && !footerVisible);
+      });
+    }
+
+    bars.forEach(function (bar, index) {
+      var targetBtn = targetBtns[index];
+      var stickyBtn = stickyBtns[index];
+      var mainPriceWrap = mainPriceWraps[index];
+      var stickyPriceWrap = stickyPriceWraps[index];
+
+      if (!targetBtn) return;
+
+      var btnObserver = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          buttonPassedByIndex[index] = !entry.isIntersecting && entry.boundingClientRect.top < 0;
+          updateAllVisibility();
+        });
+      }, { threshold: 0 });
+      btnObserver.observe(targetBtn);
+
+      if (stickyBtn) {
+        stickyBtn.addEventListener("click", function () {
+          targetBtn.scrollIntoView({ behavior: "smooth", block: "center" });
+        });
+      }
+
+      if (mainPriceWrap && stickyPriceWrap) {
+        var syncPrice = function () {
+          stickyPriceWrap.innerHTML = mainPriceWrap.innerHTML;
+        };
+        syncPrice();
+        var priceObserver = new MutationObserver(syncPrice);
+        priceObserver.observe(mainPriceWrap, { childList: true, subtree: true, characterData: true });
+      }
+    });
+  });
+</script>
 
 <product-modal id="ProductModal-{{ section.id }}" class="product-media-modal">
   <div
@@ -1804,3 +4113,32 @@
     </div>
   {% endcomment %}
 </product-modal>
+{% comment %}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{%\r\n                                    render 'product-variant-options',\r\n
+    \                                   product: product,\r\n                                    option:
+    option,\r\n                                    dta-model:#popup:\r\n                                    block:
+    block,\r\n                                    option_name_first: option_name_first,\r\n
+    \                                   option_name: option_name,\r\n                                    notify_me:
+    notify_me,\r\n                                    variant_scope: variant_scope,\r\n
+    \                                   force_dropdown: true\r\n                                  %}"
+  to: "{% render 'product-variant-options', product: product, option: option, dta-model:
+    popup, block: block, option_name_first: option_name_first, option_name: option_name,
+    notify_me: notify_me, variant_scope: variant_scope, force_dropdown: true %}"
+  position: 49019..49261
+- from: "{%\r\n                                  render 'product-variant-options',\r\n
+    \                                 product: product,\r\n                                  option:
+    option,\r\n                                  dta-model:#popup:\r\n                                  block:
+    block,\r\n                                  option_name_first: option_name_first,\r\n
+    \                                 option_name: option_name,\r\n                                  notify_me:
+    notify_me,\r\n                                  variant_scope: variant_scope\r\n
+    \                               %}"
+  to: "{% render 'product-variant-options', product: product, option: option, dta-model:
+    popup, block: block, option_name_first: option_name_first, option_name: option_name,
+    notify_me: notify_me, variant_scope: variant_scope %}"
+  position: 50544..50764
+{% endcomment %}

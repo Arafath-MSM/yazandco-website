@@ -1,9 +1,10 @@
-{% comment %}theme-check-disable TemplateLength{% endcomment %}
+
 {{ 'section-main-product.css' | asset_url | stylesheet_tag }}
 {{ 'component-accordion.css' | asset_url | stylesheet_tag }}
 {{ 'component-badge.css' | asset_url | stylesheet_tag }}
 {{ 'component-price.css' | asset_url | stylesheet_tag }}
 {{ 'component-rte.css' | asset_url | stylesheet_tag }}
+{{ 'component-product-enhancements.css' | asset_url | stylesheet_tag }}
 
 <link rel="stylesheet" href="{{ 'component-deferred-media.css' | asset_url }}" media="all">
 <link rel="stylesheet" href="{{ 'component-card.css' | asset_url }}" media="print" onload="this.media='all'">
@@ -13,6 +14,7 @@
 <script src="{{ 'copy.js' | asset_url }}" defer="defer"></script>
 <script src="{{ 'update-slider.js' | asset_url }}" defer="defer"></script>
 <script src="{{ 'main-product.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'product-hint.js' | asset_url }}" defer="defer"></script>
 
 {%- assign first_3d_model = product.media | where: "media_type", "model" | first -%}
 
@@ -46,8 +48,13 @@
 	{%- endif -%}
 	{%- if section.settings.mobile_gallery_type != 'synchronize' and section.settings.gallery_type != section.settings.mobile_gallery_type %}
 			<div class="main-product-mobile-section-wrapper" data-mobile-gallery-type="{{ section.settings.mobile_gallery_type }}">
+				{% comment %}
+					variant_scope namespaces this second copy's variant radio ids/names so the
+					desktop and mobile copies do not merge into a single radio group.
+				{% endcomment %}
 				{% render 'main-product-section',
-					gallery_type: section.settings.mobile_gallery_type
+					gallery_type: section.settings.mobile_gallery_type,
+					variant_scope: '-m'
 				%}
 			</div>
 	{%- endif -%}
@@ -274,7 +281,56 @@ customElements.define('product-modal', ProductModal);
 					],
 					"default": "h3",
 					"label": "t:sections.all.heading_size.label"
-				}
+				},
+				{ "type": "header", "content": "Reviews layout" },
+				{ "type": "checkbox", "id": "reviews_inline_desktop", "label": "Show reviews beside title on desktop", "default": true },
+				{ "type": "checkbox", "id": "reviews_above_mobile", "label": "Show reviews above title on mobile", "default": true },
+				{
+					"type": "select",
+					"id": "desktop_title_review_align",
+					"label": "Desktop alignment",
+					"default": "space-between",
+					"options": [
+						{ "value": "space-between", "label": "Title left, reviews right" },
+						{ "value": "start", "label": "Title then reviews, grouped left" }
+					]
+				},
+				{
+					"type": "select",
+					"id": "mobile_align",
+					"label": "Mobile alignment",
+					"default": "flex-start",
+					"options": [
+						{ "value": "flex-start", "label": "Left" },
+						{ "value": "center", "label": "Center" }
+					]
+				},
+				{ "type": "range", "id": "title_review_gap", "label": "Gap between title and reviews (desktop, px)", "min": 4, "max": 60, "step": 2, "default": 16 },
+				{ "type": "range", "id": "title_review_gap_mobile", "label": "Gap between reviews and title (mobile, px)", "min": 2, "max": 30, "step": 1, "default": 6 },
+				{ "type": "range", "id": "review_star_size", "label": "Star size (desktop, px)", "min": 10, "max": 28, "step": 1, "default": 14 },
+				{ "type": "range", "id": "review_star_size_mobile", "label": "Star size (mobile, px)", "min": 10, "max": 24, "step": 1, "default": 13 },
+				{ "type": "color", "id": "review_star_color", "label": "Star / review icon color", "default": "#0e0e0e" },
+				{ "type": "color", "id": "review_text_color", "label": "Review count text color", "default": "#4d4d4d" },
+
+				{ "type": "header", "content": "Title typography" },
+				{ "type": "range", "id": "title_font_size_desktop", "label": "Title font size (desktop, px)", "min": 18, "max": 64, "step": 1, "default": 32 },
+				{ "type": "range", "id": "title_font_size_mobile", "label": "Title font size (mobile, px)", "min": 16, "max": 44, "step": 1, "default": 24 },
+				{
+					"type": "select",
+					"id": "title_font_weight",
+					"label": "Title font weight",
+					"default": "inherit",
+					"options": [
+						{ "value": "inherit", "label": "Theme default" },
+						{ "value": "400", "label": "Regular" },
+						{ "value": "500", "label": "Medium" },
+						{ "value": "600", "label": "Semi Bold" },
+						{ "value": "700", "label": "Bold" }
+					]
+				},
+				{ "type": "color", "id": "title_color", "label": "Title color", "info": "Leave default to inherit theme color" },
+				{ "type": "range", "id": "title_margin_top", "label": "Title margin top (desktop, px)", "min": 0, "max": 40, "step": 1, "default": 0 },
+				{ "type": "range", "id": "title_margin_bottom", "label": "Title margin bottom (desktop, px)", "min": 0, "max": 40, "step": 1, "default": 0 }
 			]
 		},
 		{
@@ -472,6 +528,276 @@ customElements.define('product-modal', ProductModal);
 			]
 		},
 		{
+			"type": "ready_to_ship",
+			"name": "Ready to Ship",
+			"limit": 1,
+			"settings": [
+				{ "type": "header", "content": "CONTENT" },
+				{ "type": "checkbox", "id": "enable", "label": "Enable block", "default": true },
+				{ "type": "text", "id": "prefix_text", "label": "Prefix text", "default": "Ready to ship or collect by" },
+				{ "type": "checkbox", "id": "show_icon", "label": "Show info icon", "default": true },
+				{ "type": "text", "id": "tooltip_text", "label": "Tooltip text (optional)", "default": "Estimated based on current production and shipping times." },
+
+				{ "type": "header", "content": "DATA SOURCE" },
+				{ "type": "checkbox", "id": "use_business_days", "label": "Count business days only (skip weekends)", "default": true },
+				{ "type": "checkbox", "id": "enable_fallback", "label": "Use fallback lead time when no metafield/tag is set", "default": true, "info": "Looks for product.metafields.custom.lead_time_days, the variant metafield of the same name, or a product tag formatted lead-time:NN before falling back to the value below." },
+				{ "type": "range", "id": "fallback_business_days", "label": "Fallback lead time (days)", "min": 1, "max": 90, "step": 1, "default": 30 },
+
+				{ "type": "header", "content": "TYPOGRAPHY" },
+				{ "type": "range", "id": "font_size_desktop", "label": "Font size (desktop, px)", "min": 10, "max": 22, "step": 1, "default": 14 },
+				{ "type": "range", "id": "font_size_mobile", "label": "Font size (mobile, px)", "min": 10, "max": 20, "step": 1, "default": 13 },
+				{
+					"type": "select",
+					"id": "font_weight",
+					"label": "Font weight",
+					"default": "400",
+					"options": [
+						{ "value": "400", "label": "Regular" },
+						{ "value": "500", "label": "Medium" },
+						{ "value": "600", "label": "Semi Bold" }
+					]
+				},
+				{
+					"type": "select",
+					"id": "date_font_weight",
+					"label": "Date font weight",
+					"default": "600",
+					"options": [
+						{ "value": "400", "label": "Regular" },
+						{ "value": "500", "label": "Medium" },
+						{ "value": "600", "label": "Semi Bold" },
+						{ "value": "700", "label": "Bold" }
+					]
+				},
+				{
+					"type": "select",
+					"id": "text_align",
+					"label": "Text alignment",
+					"default": "left",
+					"options": [
+						{ "value": "left", "label": "Left" },
+						{ "value": "center", "label": "Center" }
+					]
+				},
+
+				{ "type": "header", "content": "COLORS" },
+				{ "type": "color", "id": "text_color", "label": "Text color", "default": "#4d4d4d" },
+				{ "type": "color", "id": "date_color", "label": "Date color", "default": "#0e0e0e" },
+				{ "type": "color", "id": "icon_color", "label": "Icon color", "default": "#4d4d4d" },
+				{ "type": "color", "id": "bg_color", "label": "Container background", "default": "#00000000" },
+				{ "type": "color", "id": "border_color", "label": "Container border color", "default": "#00000000" },
+
+				{ "type": "header", "content": "SPACING & BORDER" },
+				{ "type": "range", "id": "border_width", "label": "Border width (px)", "min": 0, "max": 4, "step": 1, "default": 0 },
+				{ "type": "range", "id": "border_radius", "label": "Border radius (px)", "min": 0, "max": 24, "step": 1, "default": 0 },
+				{ "type": "range", "id": "padding", "label": "Container padding (px)", "min": 0, "max": 24, "step": 1, "default": 0 },
+				{ "type": "range", "id": "margin_top_desktop", "label": "Margin top (desktop, px)", "min": 0, "max": 40, "step": 1, "default": 16 },
+				{ "type": "range", "id": "margin_bottom_desktop", "label": "Margin bottom (desktop, px)", "min": 0, "max": 40, "step": 1, "default": 16 },
+				{ "type": "range", "id": "margin_top_mobile", "label": "Margin top (mobile, px)", "min": 0, "max": 32, "step": 1, "default": 12 },
+				{ "type": "range", "id": "margin_bottom_mobile", "label": "Margin bottom (mobile, px)", "min": 0, "max": 32, "step": 1, "default": 12 }
+			]
+		},
+		{
+			"type": "book_consultation",
+			"name": "Book a Consultation",
+			"limit": 1,
+			"settings": [
+				{ "type": "header", "content": "CONTENT" },
+				{ "type": "checkbox", "id": "enable", "label": "Enable button", "default": true },
+				{ "type": "text", "id": "button_label", "label": "Button label", "default": "Book A Consultation" },
+				{ "type": "text", "id": "target_id", "label": "Target section ID", "default": "book-a-consultation", "info": "The id= of the section this button scrolls to." },
+				{ "type": "checkbox", "id": "smooth_scroll", "label": "Enable smooth scroll", "default": true },
+				{ "type": "range", "id": "scroll_offset_desktop", "label": "Extra sticky-header offset (desktop, px)", "min": 0, "max": 200, "step": 5, "default": 20 },
+				{ "type": "range", "id": "scroll_offset_mobile", "label": "Extra sticky-header offset (mobile, px)", "min": 0, "max": 200, "step": 5, "default": 15 },
+
+				{ "type": "header", "content": "LAYOUT" },
+				{ "type": "checkbox", "id": "sync_secondary_button_style", "label": "Use shared secondary button style", "default": true, "info": "When enabled, Book a Consultation and Send a Hint share one style, defined below. Disable to style each button independently." },
+				{
+					"type": "select",
+					"id": "row_layout_desktop",
+					"label": "Desktop layout (with Send a Hint)",
+					"default": "side_by_side",
+					"options": [
+						{ "value": "side_by_side", "label": "Side by side" },
+						{ "value": "stacked", "label": "Stacked" }
+					]
+				},
+				{
+					"type": "select",
+					"id": "row_layout_mobile",
+					"label": "Mobile layout (with Send a Hint)",
+					"default": "side_by_side",
+					"options": [
+						{ "value": "side_by_side", "label": "Side by side" },
+						{ "value": "stacked", "label": "Stacked" }
+					]
+				},
+				{ "type": "range", "id": "row_gap", "label": "Gap between buttons (px)", "min": 4, "max": 32, "step": 1, "default": 12 },
+
+				{ "type": "header", "content": "BUTTON STYLE" },
+				{ "type": "range", "id": "font_size_desktop", "label": "Font size (desktop, px)", "min": 10, "max": 20, "step": 1, "default": 13 },
+				{ "type": "range", "id": "font_size_mobile", "label": "Font size (mobile, px)", "min": 10, "max": 18, "step": 1, "default": 12 },
+				{
+					"type": "select",
+					"id": "font_weight",
+					"label": "Font weight",
+					"default": "500",
+					"options": [
+						{ "value": "400", "label": "Regular" },
+						{ "value": "500", "label": "Medium" },
+						{ "value": "600", "label": "Semi Bold" },
+						{ "value": "700", "label": "Bold" }
+					]
+				},
+				{ "type": "range", "id": "letter_spacing", "label": "Letter spacing (px)", "min": 0, "max": 3, "step": 0.1, "default": 0.4 },
+				{
+					"type": "select",
+					"id": "text_transform",
+					"label": "Text transform",
+					"default": "uppercase",
+					"options": [
+						{ "value": "none", "label": "None" },
+						{ "value": "uppercase", "label": "Uppercase" },
+						{ "value": "capitalize", "label": "Capitalize" }
+					]
+				},
+				{ "type": "color", "id": "text_color", "label": "Text color", "default": "#0e0e0e" },
+				{ "type": "color", "id": "bg_color", "label": "Background color", "default": "#00000000" },
+				{ "type": "color", "id": "border_color", "label": "Border color", "default": "#0e0e0e" },
+				{ "type": "range", "id": "border_width", "label": "Border width (px)", "min": 0, "max": 4, "step": 1, "default": 1 },
+				{ "type": "range", "id": "border_radius", "label": "Border radius (px)", "min": 0, "max": 40, "step": 1, "default": 0 },
+				{ "type": "color", "id": "hover_text_color", "label": "Hover text color", "default": "#ffffff" },
+				{ "type": "color", "id": "hover_bg_color", "label": "Hover background", "default": "#0e0e0e" },
+				{ "type": "color", "id": "hover_border_color", "label": "Hover border color", "default": "#0e0e0e" },
+				{ "type": "range", "id": "padding_v", "label": "Padding vertical (px)", "min": 8, "max": 24, "step": 1, "default": 14 },
+				{ "type": "range", "id": "padding_h", "label": "Padding horizontal (px)", "min": 8, "max": 40, "step": 1, "default": 16 },
+				{ "type": "range", "id": "min_height", "label": "Minimum height (px)", "min": 40, "max": 64, "step": 1, "default": 48 },
+				{ "type": "checkbox", "id": "show_icon", "label": "Show icon", "default": true },
+				{
+					"type": "select",
+					"id": "icon_position",
+					"label": "Icon position",
+					"default": "left",
+					"options": [
+						{ "value": "left", "label": "Left" },
+						{ "value": "right", "label": "Right" }
+					]
+				},
+				{ "type": "range", "id": "icon_gap", "label": "Icon spacing (px)", "min": 2, "max": 16, "step": 1, "default": 8 }
+			]
+		},
+		{
+			"type": "send_a_hint",
+			"name": "Send a Hint",
+			"limit": 1,
+			"settings": [
+				{ "type": "header", "content": "TRIGGER BUTTON" },
+				{ "type": "checkbox", "id": "enable", "label": "Enable button", "default": true },
+				{ "type": "text", "id": "button_label", "label": "Button label", "default": "Send a Hint" },
+   { "type": "url", "id": "custom_url", "label": "Custom link", "info": "If set, the button links here instead of opening the Send a Hint form." },
+{ "type": "checkbox", "id": "custom_url_new_tab", "label": "Open custom link in new tab", "default": false },
+
+				{ "type": "checkbox", "id": "use_own_style", "label": "Style independently from Book a Consultation", "default": false, "info": "Only used when 'Use shared secondary button style' is off on the Book a Consultation block." },
+				{ "type": "color", "id": "text_color", "label": "Text color", "default": "#0e0e0e" },
+				{ "type": "color", "id": "bg_color", "label": "Background color", "default": "#00000000" },
+				{ "type": "color", "id": "border_color", "label": "Border color", "default": "#0e0e0e" },
+				{ "type": "color", "id": "hover_text_color", "label": "Hover text color", "default": "#ffffff" },
+				{ "type": "color", "id": "hover_bg_color", "label": "Hover background", "default": "#0e0e0e" },
+				{ "type": "checkbox", "id": "show_icon", "label": "Show icon", "default": true },
+				{
+					"type": "select",
+					"id": "icon_position",
+					"label": "Icon position",
+					"default": "left",
+					"options": [
+						{ "value": "left", "label": "Left" },
+						{ "value": "right", "label": "Right" }
+					]
+				},
+
+				{ "type": "header", "content": "DRAWER — CONTENT" },
+				{ "type": "text", "id": "drawer_heading", "label": "Drawer heading", "default": "SEND A HINT" },
+				{ "type": "textarea", "id": "drawer_intro", "label": "Intro text", "default": "Share this piece with your partner or someone special." },
+				{ "type": "text", "id": "label_recipient_name", "label": "Recipient's Name label", "default": "Recipient's Name" },
+				{ "type": "text", "id": "label_recipient_email", "label": "Recipient's Email label", "default": "Recipient's Email" },
+				{ "type": "text", "id": "label_sender_name", "label": "Sender's Name label", "default": "Sender's Name" },
+				{ "type": "text", "id": "label_subject", "label": "Subject label", "default": "Subject" },
+				{ "type": "text", "id": "label_message", "label": "Message label", "default": "Message" },
+				{ "type": "text", "id": "subject_template", "label": "Subject template", "default": "A hint from YAZ & Co – [product]", "info": "[product] is replaced with the product title." },
+				{ "type": "textarea", "id": "message_template", "label": "Message template", "default": "Dear [recipient],\n\n[sender] wanted to share something special from YAZ & Co with you.\n\nTake a look at the [product] here:\n[url]", "info": "[recipient], [sender], [product] and [url] are replaced automatically." },
+				{ "type": "text", "id": "send_button_label", "label": "Send button label", "default": "Send" },
+				{ "type": "checkbox", "id": "show_copy_link", "label": "Show 'Or copy link' area", "default": true },
+				{ "type": "text", "id": "copy_link_label", "label": "Copy link heading", "default": "OR COPY LINK" },
+				{ "type": "text", "id": "copy_link_button_label", "label": "Copy button accessible label", "default": "Copy product link" },
+				{ "type": "text", "id": "copy_success_text", "label": "Copy success feedback", "default": "Link copied" },
+				{ "type": "text", "id": "success_message", "label": "Success message", "default": "Your hint has been sent." },
+				{ "type": "text", "id": "generic_error_message", "label": "Generic error message", "default": "We couldn't send your hint. Please try again." },
+
+				{ "type": "header", "content": "DRAWER — DESIGN" },
+				{ "type": "range", "id": "drawer_width_desktop", "label": "Drawer width (desktop, px)", "min": 320, "max": 680, "step": 10, "default": 440 },
+				{ "type": "range", "id": "drawer_width_tablet", "label": "Drawer width (tablet, px)", "min": 300, "max": 600, "step": 10, "default": 400 },
+				{ "type": "range", "id": "drawer_width_mobile", "label": "Drawer width (mobile, %)", "min": 80, "max": 100, "step": 1, "default": 100 },
+				{ "type": "color", "id": "drawer_bg", "label": "Drawer background", "default": "#ffffff" },
+				{ "type": "color", "id": "drawer_text_color", "label": "Drawer text color", "default": "#0e0e0e" },
+				{ "type": "range", "id": "drawer_padding_desktop", "label": "Drawer padding (desktop, px)", "min": 16, "max": 64, "step": 2, "default": 40 },
+				{ "type": "range", "id": "drawer_padding_mobile", "label": "Drawer padding (mobile, px)", "min": 12, "max": 40, "step": 2, "default": 24 },
+				{ "type": "color", "id": "overlay_color", "label": "Overlay color", "default": "#000000" },
+				{ "type": "range", "id": "overlay_opacity", "label": "Overlay opacity (%)", "min": 5, "max": 90, "step": 5, "default": 45 },
+				{ "type": "checkbox", "id": "drawer_shadow", "label": "Enable drawer shadow", "default": true },
+				{ "type": "range", "id": "drawer_shadow_opacity", "label": "Shadow opacity (%)", "min": 0, "max": 60, "step": 5, "default": 20 },
+				{ "type": "range", "id": "animation_duration", "label": "Animation duration (ms)", "min": 150, "max": 700, "step": 10, "default": 450 },
+				{ "type": "range", "id": "heading_size_desktop", "label": "Heading size (desktop, px)", "min": 16, "max": 40, "step": 1, "default": 24 },
+				{ "type": "range", "id": "heading_size_mobile", "label": "Heading size (mobile, px)", "min": 14, "max": 32, "step": 1, "default": 20 },
+				{ "type": "range", "id": "heading_letter_spacing", "label": "Heading letter spacing (px)", "min": 0, "max": 4, "step": 0.1, "default": 1 },
+				{ "type": "range", "id": "intro_font_size", "label": "Intro text size (px)", "min": 12, "max": 20, "step": 1, "default": 14 },
+				{ "type": "color", "id": "intro_color", "label": "Intro text color", "default": "#4d4d4d" },
+				{ "type": "range", "id": "heading_gap", "label": "Gap between heading and intro (px)", "min": 4, "max": 32, "step": 1, "default": 12 },
+				{ "type": "color", "id": "close_icon_color", "label": "Close icon color", "default": "#0e0e0e" },
+				{ "type": "color", "id": "close_icon_hover_color", "label": "Close icon hover color", "default": "#4d4d4d" },
+				{ "type": "range", "id": "close_icon_size", "label": "Close icon size (px)", "min": 14, "max": 28, "step": 1, "default": 18 },
+
+				{ "type": "header", "content": "FORM STYLE" },
+				{ "type": "range", "id": "field_gap", "label": "Gap between fields (px)", "min": 8, "max": 32, "step": 1, "default": 16 },
+				{ "type": "range", "id": "input_height", "label": "Input height (px)", "min": 36, "max": 64, "step": 1, "default": 46 },
+				{ "type": "range", "id": "textarea_min_height", "label": "Textarea minimum height (px)", "min": 80, "max": 260, "step": 5, "default": 140 },
+				{ "type": "range", "id": "input_font_size", "label": "Field font size (px)", "min": 12, "max": 18, "step": 1, "default": 14 },
+				{ "type": "color", "id": "input_text_color", "label": "Field text color", "default": "#0e0e0e" },
+				{ "type": "color", "id": "input_placeholder_color", "label": "Placeholder color", "default": "#9a9a9a" },
+				{ "type": "color", "id": "input_bg", "label": "Field background", "default": "#ffffff" },
+				{ "type": "color", "id": "input_border_color", "label": "Field border color", "default": "#cccccc" },
+				{ "type": "color", "id": "input_focus_border_color", "label": "Field focus border color", "default": "#0e0e0e" },
+				{ "type": "range", "id": "input_border_width", "label": "Field border width (px)", "min": 1, "max": 3, "step": 1, "default": 1 },
+				{ "type": "range", "id": "input_border_radius", "label": "Field border radius (px)", "min": 0, "max": 20, "step": 1, "default": 0 },
+				{ "type": "range", "id": "input_padding_h", "label": "Field horizontal padding (px)", "min": 8, "max": 24, "step": 1, "default": 14 },
+				{ "type": "range", "id": "gap_button_copylink", "label": "Gap between Send button and Copy Link (px)", "min": 8, "max": 40, "step": 1, "default": 20 },
+
+				{ "type": "header", "content": "SEND BUTTON" },
+				{ "type": "color", "id": "send_button_text_color", "label": "Text color", "default": "#ffffff" },
+				{ "type": "color", "id": "send_button_bg", "label": "Background", "default": "#0e0e0e" },
+				{ "type": "color", "id": "send_button_hover_bg", "label": "Hover background", "default": "#282828" },
+				{ "type": "color", "id": "send_button_disabled_bg", "label": "Disabled background", "default": "#cccccc" },
+				{ "type": "range", "id": "send_button_radius", "label": "Border radius (px)", "min": 0, "max": 40, "step": 1, "default": 0 },
+
+				{ "type": "header", "content": "COPY LINK BOX" },
+				{ "type": "color", "id": "copylink_text_color", "label": "Text color", "default": "#0e0e0e" },
+				{ "type": "color", "id": "copylink_bg", "label": "Background", "default": "#ffffff" },
+				{ "type": "color", "id": "copylink_border_color", "label": "Border color", "default": "#cccccc" },
+				{ "type": "color", "id": "copylink_icon_color", "label": "Icon color", "default": "#0e0e0e" },
+				{ "type": "range", "id": "copylink_radius", "label": "Border radius (px)", "min": 0, "max": 20, "step": 1, "default": 0 },
+				{ "type": "range", "id": "copylink_font_size", "label": "Font size (px)", "min": 11, "max": 16, "step": 1, "default": 13 },
+
+				{ "type": "header", "content": "STATUS MESSAGES" },
+				{ "type": "color", "id": "success_bg", "label": "Success background", "default": "#eaf7ee" },
+				{ "type": "color", "id": "success_color", "label": "Success text color", "default": "#1e7a34" },
+				{ "type": "color", "id": "error_bg", "label": "Error background", "default": "#fdecec" },
+				{ "type": "color", "id": "error_color", "label": "Error text color", "default": "#c0392b" },
+
+				{ "type": "header", "content": "ADVANCED" },
+				{ "type": "text", "id": "api_endpoint", "label": "Send endpoint URL (App Proxy or serverless URL)", "info": "Required to actually deliver email, e.g. /apps/send-a-hint. Leave blank to keep the form disabled with a configuration notice." },
+				{ "type": "checkbox", "id": "enable_honeypot", "label": "Enable honeypot spam field", "default": true }
+			]
+		},
+		{
 			"type": "share",
 			"name": "t:sections.main-product.blocks.share.name",
 			"limit": 1,
@@ -589,6 +915,2352 @@ customElements.define('product-modal', ProductModal);
 				}
 			]
     },
+	{
+  "type": "short_description",
+  "name": "Short Description",
+  "settings": [
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Description"
+    },
+    {
+      "type": "range",
+      "id": "word_limit",
+      "label": "Words to Show",
+      "min": 5,
+      "max": 50,
+      "step": 1,
+      "default": 10
+    },
+    {
+      "type": "text",
+      "id": "read_more_text",
+      "label": "Read More Text",
+      "default": "Read more"
+    },
+    {
+      "type": "range",
+      "id": "font_size",
+      "label": "Font Size",
+      "min": 10,
+      "max": 40,
+      "step": 1,
+      "default": 16
+    },
+    {
+      "type": "color",
+      "id": "font_color",
+      "label": "Description Color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "read_more_color",
+      "label": "Read More Color",
+      "default": "#000000"
+    },
+    {
+      "type": "select",
+      "id": "text_decoration",
+      "label": "Read More Style",
+      "options": [
+        {
+          "value": "underline",
+          "label": "Underline"
+        },
+        {
+          "value": "none",
+          "label": "None"
+        }
+      ],
+      "default": "underline"
+    }
+  ]
+},
+
+{
+  "type": "accordion",
+  "name": "Accordion",
+  "settings": [
+
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Accordion Heading",
+      "default": "Made To Order"
+    },
+
+    {
+      "type": "richtext",
+      "id": "content",
+      "label": "Accordion Content"
+    },
+
+    {
+      "type": "range",
+      "id": "heading_size",
+      "label": "Heading Font Size",
+      "min": 10,
+      "max": 40,
+      "step": 1,
+      "default": 14
+    },
+
+    {
+      "type": "range",
+      "id": "content_size",
+      "label": "Content Font Size",
+      "min": 10,
+      "max": 30,
+      "step": 1,
+      "default": 14
+    },
+
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading Color",
+      "default": "#000000"
+    },
+
+    {
+      "type": "color",
+      "id": "content_color",
+      "label": "Content Color",
+      "default": "#333333"
+    },
+
+    {
+      "type": "color",
+      "id": "border_color",
+      "label": "Border Color",
+      "default": "#dddddd"
+    },
+
+    {
+      "type": "range",
+      "id": "border_width",
+      "label": "Border Width",
+      "min": 0,
+      "max": 5,
+      "step": 1,
+      "default": 1
+    },
+
+    {
+      "type": "range",
+      "id": "padding",
+      "label": "Top Bottom Padding",
+      "min": 5,
+      "max": 50,
+      "step": 5,
+      "default": 20
+    },
+
+    {
+      "type": "range",
+      "id": "icon_size",
+      "label": "Plus Icon Size",
+      "min": 10,
+      "max": 40,
+      "step": 1,
+      "default": 20
+    },
+
+    {
+      "type": "range",
+      "id": "letter_spacing",
+      "label": "Heading Letter Spacing",
+      "min": 0,
+      "max": 5,
+      "step": 1,
+      "default": 2
+    },
+
+    {
+      "type": "range",
+      "id": "line_height",
+      "label": "Content Line Height",
+      "min": 1,
+      "max": 3,
+      "step": 0.1,
+      "default": 1.7
+    }
+
+  ]
+},
+{
+  "type": "complimentary_engraving",
+  "name": "Complimentary engraving",
+  "limit": 1,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button text",
+      "default": "Add Complimentary Engraving"
+    },
+    {
+      "type": "text",
+      "id": "label",
+      "label": "Input label",
+      "default": "Engraving text"
+    },
+    {
+      "type": "text",
+      "id": "placeholder",
+      "label": "Placeholder",
+      "default": "Enter engraving text"
+    },
+    {
+      "type": "text",
+      "id": "submit_text",
+      "label": "Submit button text",
+      "default": "Submit"
+    },
+    {
+      "type": "text",
+      "id": "property_name",
+      "label": "Order property name",
+      "default": "Engraving"
+    },
+    {
+      "type": "text",
+      "id": "success_text",
+      "label": "Saved message",
+      "default": "Engraving saved"
+    },
+    {
+      "type": "text",
+      "id": "removed_text",
+      "label": "Removed message",
+      "default": "Engraving removed"
+    },
+    {
+      "type": "range",
+      "id": "max_characters",
+      "label": "Maximum characters",
+      "min": 5,
+      "max": 50,
+      "step": 1,
+      "default": 30
+    },
+    {
+      "type": "checkbox",
+      "id": "show_character_count",
+      "label": "Show character count",
+      "default": true
+    },
+
+    {
+      "type": "header",
+      "content": "Icon"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_icon",
+      "label": "Show icon",
+      "default": true
+    },
+    {
+      "type": "image_picker",
+      "id": "custom_icon",
+      "label": "Custom icon"
+    },
+    {
+      "type": "range",
+      "id": "icon_size",
+      "label": "Icon size",
+      "min": 10,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "icon_gap",
+      "label": "Icon spacing",
+      "min": 0,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "default": 12
+    },
+
+    {
+      "type": "header",
+      "content": "Main button"
+    },
+    {
+      "type": "range",
+      "id": "button_height",
+      "label": "Button height",
+      "min": 36,
+      "max": 80,
+      "step": 1,
+      "unit": "px",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "button_height_mobile",
+      "label": "Button height mobile",
+      "min": 36,
+      "max": 70,
+      "step": 1,
+      "unit": "px",
+      "default": 46
+    },
+    {
+      "type": "range",
+      "id": "button_font_size",
+      "label": "Font size",
+      "min": 10,
+      "max": 26,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "button_font_size_mobile",
+      "label": "Font size mobile",
+      "min": 10,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 13
+    },
+    {
+      "type": "select",
+      "id": "button_font_weight",
+      "label": "Font weight",
+      "default": "400",
+      "options": [
+        { "value": "300", "label": "Light" },
+        { "value": "400", "label": "Regular" },
+        { "value": "500", "label": "Medium" },
+        { "value": "600", "label": "Semi bold" },
+        { "value": "700", "label": "Bold" }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "letter_spacing",
+      "label": "Letter spacing",
+      "min": 0,
+      "max": 30,
+      "step": 1,
+      "unit": "%",
+      "default": 12
+    },
+    {
+      "type": "color",
+      "id": "button_background",
+      "label": "Background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "button_color",
+      "label": "Text color",
+      "default": "#111111"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_background",
+      "label": "Hover background",
+      "default": "#111111"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_color",
+      "label": "Hover text",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "border_color",
+      "label": "Border color",
+      "default": "#111111"
+    },
+    {
+      "type": "range",
+      "id": "border_width",
+      "label": "Border width",
+      "min": 0,
+      "max": 4,
+      "step": 1,
+      "unit": "px",
+      "default": 1
+    },
+    {
+      "type": "range",
+      "id": "border_radius",
+      "label": "Border radius",
+      "min": 0,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "button_padding_vertical",
+      "label": "Vertical padding",
+      "min": 0,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "button_padding_horizontal",
+      "label": "Horizontal padding",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "default": 18
+    },
+
+    {
+      "type": "header",
+      "content": "Input"
+    },
+    {
+      "type": "range",
+      "id": "input_height",
+      "label": "Input height",
+      "min": 36,
+      "max": 70,
+      "step": 1,
+      "unit": "px",
+      "default": 46
+    },
+    {
+      "type": "range",
+      "id": "input_height_mobile",
+      "label": "Input height mobile",
+      "min": 36,
+      "max": 70,
+      "step": 1,
+      "unit": "px",
+      "default": 46
+    },
+    {
+      "type": "range",
+      "id": "input_font_size",
+      "label": "Input font size",
+      "min": 10,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "input_font_size_mobile",
+      "label": "Input font size mobile",
+      "min": 10,
+      "max": 22,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "color",
+      "id": "input_background",
+      "label": "Input background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "input_color",
+      "label": "Input text",
+      "default": "#111111"
+    },
+    {
+      "type": "color",
+      "id": "placeholder_color",
+      "label": "Placeholder",
+      "default": "#777777"
+    },
+    {
+      "type": "color",
+      "id": "input_border_color",
+      "label": "Input border",
+      "default": "#bbbbbb"
+    },
+    {
+      "type": "color",
+      "id": "input_focus_color",
+      "label": "Input focus border",
+      "default": "#111111"
+    },
+    {
+      "type": "range",
+      "id": "input_border_width",
+      "label": "Input border width",
+      "min": 0,
+      "max": 4,
+      "step": 1,
+      "unit": "px",
+      "default": 1
+    },
+    {
+      "type": "range",
+      "id": "input_border_radius",
+      "label": "Input radius",
+      "min": 0,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "input_horizontal_padding",
+      "label": "Input horizontal padding",
+      "min": 5,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "default": 12
+    },
+
+    {
+      "type": "header",
+      "content": "Submit button"
+    },
+    {
+      "type": "color",
+      "id": "submit_background",
+      "label": "Background",
+      "default": "#111111"
+    },
+    {
+      "type": "color",
+      "id": "submit_color",
+      "label": "Text",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "submit_border_color",
+      "label": "Border",
+      "default": "#111111"
+    },
+    {
+      "type": "range",
+      "id": "submit_border_width",
+      "label": "Border width",
+      "min": 0,
+      "max": 4,
+      "step": 1,
+      "unit": "px",
+      "default": 1
+    },
+    {
+      "type": "range",
+      "id": "submit_border_radius",
+      "label": "Border radius",
+      "min": 0,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "submit_font_size",
+      "label": "Font size",
+      "min": 10,
+      "max": 22,
+      "step": 1,
+      "unit": "px",
+      "default": 13
+    },
+    {
+      "type": "select",
+      "id": "submit_font_weight",
+      "label": "Font weight",
+      "default": "500",
+      "options": [
+        { "value": "400", "label": "Regular" },
+        { "value": "500", "label": "Medium" },
+        { "value": "600", "label": "Semi bold" },
+        { "value": "700", "label": "Bold" }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "submit_horizontal_padding",
+      "label": "Horizontal padding",
+      "min": 8,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "default": 18
+    },
+
+    {
+      "type": "header",
+      "content": "Panel"
+    },
+    {
+      "type": "color",
+      "id": "panel_background",
+      "label": "Background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "panel_border_color",
+      "label": "Border",
+      "default": "#dddddd"
+    },
+    {
+      "type": "range",
+      "id": "panel_border_width",
+      "label": "Border width",
+      "min": 0,
+      "max": 4,
+      "step": 1,
+      "unit": "px",
+      "default": 1
+    },
+    {
+      "type": "range",
+      "id": "panel_border_radius",
+      "label": "Border radius",
+      "min": 0,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "panel_gap",
+      "label": "Space above panel",
+      "min": 0,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "panel_padding_vertical",
+      "label": "Vertical padding",
+      "min": 0,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "panel_padding_horizontal",
+      "label": "Horizontal padding",
+      "min": 0,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+
+    {
+      "type": "header",
+      "content": "Other typography"
+    },
+    {
+      "type": "color",
+      "id": "label_color",
+      "label": "Label color",
+      "default": "#111111"
+    },
+    {
+      "type": "range",
+      "id": "label_font_size",
+      "label": "Label size",
+      "min": 10,
+      "max": 22,
+      "step": 1,
+      "unit": "px",
+      "default": 13
+    },
+    {
+      "type": "select",
+      "id": "label_font_weight",
+      "label": "Label weight",
+      "default": "500",
+      "options": [
+        { "value": "400", "label": "Regular" },
+        { "value": "500", "label": "Medium" },
+        { "value": "600", "label": "Semi bold" },
+        { "value": "700", "label": "Bold" }
+      ]
+    },
+    {
+      "type": "color",
+      "id": "counter_color",
+      "label": "Counter color",
+      "default": "#777777"
+    },
+    {
+      "type": "range",
+      "id": "counter_font_size",
+      "label": "Counter size",
+      "min": 9,
+      "max": 18,
+      "step": 1,
+      "unit": "px",
+      "default": 11
+    },
+    {
+      "type": "color",
+      "id": "success_color",
+      "label": "Saved message color",
+      "default": "#2f7d32"
+    },
+    {
+      "type": "range",
+      "id": "success_font_size",
+      "label": "Saved message size",
+      "min": 9,
+      "max": 18,
+      "step": 1,
+      "unit": "px",
+      "default": 11
+    },
+
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "field_gap",
+      "label": "Input/button gap",
+      "min": 0,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "label_gap",
+      "label": "Space below label",
+      "min": 0,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "footer_gap",
+      "label": "Space above messages",
+      "min": 0,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 8
+    },
+    {
+      "type": "checkbox",
+      "id": "stack_mobile",
+      "label": "Stack input and button on mobile",
+      "default": true
+    },
+
+    {
+      "type": "header",
+      "content": "Saved engraving"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_saved_text_on_button",
+      "label": "Show saved engraving on main button",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "saved_button_prefix",
+      "label": "Saved button prefix",
+      "default": "Engraving:"
+    },
+
+    {
+      "type": "header",
+      "content": "Block spacing"
+    },
+    {
+      "type": "range",
+      "id": "space_above",
+      "label": "Space above",
+      "min": 0,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "space_below",
+      "label": "Space below",
+      "min": 0,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "default": 12
+    }
+  ]
+},
+{
+  "type": "shipping_delivery",
+  "name": "Dynamic shipping delivery",
+  "settings": [
+    {
+      "type": "header",
+      "content": "UAE"
+    },
+    {
+      "type": "text",
+      "id": "uae_heading",
+      "label": "Heading",
+      "default": "Within the UAE"
+    },
+    {
+      "type": "text",
+      "id": "uae_label",
+      "label": "Delivery label",
+      "default": "Delivery time:"
+    },
+    {
+      "type": "range",
+      "id": "uae_min_days",
+      "label": "Minimum business days",
+      "min": 1,
+      "max": 30,
+      "step": 1,
+      "default": 3
+    },
+    {
+      "type": "range",
+      "id": "uae_max_days",
+      "label": "Maximum business days",
+      "min": 1,
+      "max": 30,
+      "step": 1,
+      "default": 5
+    },
+
+    {
+      "type": "header",
+      "content": "International"
+    },
+    {
+      "type": "text",
+      "id": "international_heading",
+      "label": "Heading",
+      "default": "International Shipping"
+    },
+    {
+      "type": "text",
+      "id": "international_label",
+      "label": "Delivery label",
+      "default": "Estimated delivery time:"
+    },
+    {
+      "type": "range",
+      "id": "international_min_days",
+      "label": "Minimum business days",
+      "min": 1,
+      "max": 30,
+      "step": 1,
+      "default": 7
+    },
+    {
+      "type": "range",
+      "id": "international_max_days",
+      "label": "Maximum business days",
+      "min": 1,
+      "max": 30,
+      "step": 1,
+      "default": 10
+    },
+
+    {
+      "type": "header",
+      "content": "Business days"
+    },
+    {
+      "type": "checkbox",
+      "id": "skip_saturday",
+      "label": "Skip Saturday",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "skip_sunday",
+      "label": "Skip Sunday",
+      "default": true
+    },
+
+    {
+      "type": "header",
+      "content": "Date format"
+    },
+    {
+      "type": "select",
+      "id": "date_format",
+      "label": "Month format",
+      "default": "long",
+      "options": [
+        {
+          "value": "long",
+          "label": "Full month — August"
+        },
+        {
+          "value": "short_month",
+          "label": "Short month — Aug"
+        }
+      ]
+    },
+
+    {
+      "type": "header",
+      "content": "Heading style"
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "label": "Heading size",
+      "min": 10,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "heading_size_mobile",
+      "label": "Heading size mobile",
+      "min": 10,
+      "max": 26,
+      "step": 1,
+      "unit": "px",
+      "default": 15
+    },
+    {
+      "type": "select",
+      "id": "heading_weight",
+      "label": "Heading weight",
+      "default": "600",
+      "options": [
+        {
+          "value": "400",
+          "label": "Regular"
+        },
+        {
+          "value": "500",
+          "label": "Medium"
+        },
+        {
+          "value": "600",
+          "label": "Semi bold"
+        },
+        {
+          "value": "700",
+          "label": "Bold"
+        }
+      ]
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading color",
+      "default": "#111111"
+    },
+    {
+      "type": "range",
+      "id": "heading_bottom_space",
+      "label": "Space below heading",
+      "min": 0,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "default": 5
+    },
+
+    {
+      "type": "header",
+      "content": "Text style"
+    },
+    {
+      "type": "range",
+      "id": "text_size",
+      "label": "Text size",
+      "min": 10,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "text_size_mobile",
+      "label": "Text size mobile",
+      "min": 10,
+      "max": 22,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "select",
+      "id": "text_weight",
+      "label": "Text weight",
+      "default": "400",
+      "options": [
+        {
+          "value": "300",
+          "label": "Light"
+        },
+        {
+          "value": "400",
+          "label": "Regular"
+        },
+        {
+          "value": "500",
+          "label": "Medium"
+        },
+        {
+          "value": "600",
+          "label": "Semi bold"
+        }
+      ]
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#333333"
+    },
+    {
+      "type": "range",
+      "id": "text_gap",
+      "label": "Label / date gap",
+      "min": 0,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 4
+    },
+    {
+      "type": "range",
+      "id": "line_height",
+      "label": "Line height",
+      "min": 10,
+      "max": 25,
+      "step": 1,
+      "default": 16
+    },
+
+    {
+      "type": "header",
+      "content": "Delivery date style"
+    },
+    {
+      "type": "range",
+      "id": "date_size",
+      "label": "Date size",
+      "min": 10,
+      "max": 26,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "date_size_mobile",
+      "label": "Date size mobile",
+      "min": 10,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "select",
+      "id": "date_weight",
+      "label": "Date weight",
+      "default": "600",
+      "options": [
+        {
+          "value": "400",
+          "label": "Regular"
+        },
+        {
+          "value": "500",
+          "label": "Medium"
+        },
+        {
+          "value": "600",
+          "label": "Semi bold"
+        },
+        {
+          "value": "700",
+          "label": "Bold"
+        }
+      ]
+    },
+    {
+      "type": "color",
+      "id": "date_color",
+      "label": "Date color",
+      "default": "#111111"
+    },
+
+    {
+      "type": "header",
+      "content": "Box"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "border_color",
+      "label": "Border color",
+      "default": "#E5E5E5"
+    },
+    {
+      "type": "range",
+      "id": "border_width",
+      "label": "Border width",
+      "min": 0,
+      "max": 5,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "border_radius",
+      "label": "Border radius",
+      "min": 0,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    },
+
+    {
+      "type": "header",
+      "content": "Desktop padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_vertical",
+      "label": "Vertical padding",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_horizontal",
+      "label": "Horizontal padding",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    },
+
+    {
+      "type": "header",
+      "content": "Mobile padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_vertical_mobile",
+      "label": "Vertical padding",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_horizontal_mobile",
+      "label": "Horizontal padding",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    },
+
+    {
+      "type": "header",
+      "content": "Block spacing"
+    },
+    {
+      "type": "range",
+      "id": "space_above",
+      "label": "Space above",
+      "min": 0,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "space_below",
+      "label": "Space below",
+      "min": 0,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "default": 12
+    }
+  ]
+},
+{
+  "type": "product_promise",
+  "name": "Product promise",
+  "limit": 1,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Heading"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Our Promise"
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "min": 14,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "label": "Heading size",
+      "default": 28
+    },
+    {
+      "type": "range",
+      "id": "heading_size_mobile",
+      "min": 14,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "label": "Heading size mobile",
+      "default": 24
+    },
+    {
+      "type": "select",
+      "id": "heading_weight",
+      "label": "Heading weight",
+      "default": "400",
+      "options": [
+        { "value": "300", "label": "Light" },
+        { "value": "400", "label": "Regular" },
+        { "value": "500", "label": "Medium" },
+        { "value": "600", "label": "Semi bold" },
+        { "value": "700", "label": "Bold" }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "heading_line_height",
+      "min": 1,
+      "max": 2,
+      "step": 0.1,
+      "label": "Heading line height",
+      "default": 1.2
+    },
+    {
+      "type": "range",
+      "id": "heading_letter_spacing",
+      "min": -10,
+      "max": 20,
+      "step": 1,
+      "unit": "%",
+      "label": "Heading letter spacing",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "heading_bottom_spacing",
+      "min": 0,
+      "max": 80,
+      "step": 2,
+      "unit": "px",
+      "label": "Space below heading",
+      "default": 40
+    },
+
+    {
+      "type": "header",
+      "content": "Item 1"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_item_1",
+      "label": "Show item 1",
+      "default": true
+    },
+    {
+      "type": "select",
+      "id": "icon_1",
+      "label": "Icon",
+      "default": "shield",
+      "options": [
+        { "value": "shield", "label": "Shield" },
+        { "value": "star", "label": "Star" },
+        { "value": "truck", "label": "Truck" },
+        { "value": "store", "label": "Store" },
+        { "value": "heart", "label": "Heart" },
+        { "value": "check", "label": "Check" }
+      ]
+    },
+    {
+      "type": "image_picker",
+      "id": "custom_icon_1",
+      "label": "Custom icon"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "title_1",
+      "label": "Title",
+      "default": "YAZ & Co Authenticator"
+    },
+    {
+      "type": "richtext",
+      "id": "text_1",
+      "label": "Text",
+      "default": "<p>Every piece ships with its stone details, a unique serial number and full product information. IGI certificate included above one carat.</p>"
+    },
+    {
+      "type": "text",
+      "id": "link_label_1",
+      "label": "Link label"
+    },
+    {
+      "type": "url",
+      "id": "link_1",
+      "label": "Link"
+    },
+
+    {
+      "type": "header",
+      "content": "Item 2"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_item_2",
+      "label": "Show item 2",
+      "default": true
+    },
+    {
+      "type": "select",
+      "id": "icon_2",
+      "label": "Icon",
+      "default": "star",
+      "options": [
+        { "value": "shield", "label": "Shield" },
+        { "value": "star", "label": "Star" },
+        { "value": "truck", "label": "Truck" },
+        { "value": "store", "label": "Store" },
+        { "value": "heart", "label": "Heart" },
+        { "value": "check", "label": "Check" }
+      ]
+    },
+    {
+      "type": "image_picker",
+      "id": "custom_icon_2",
+      "label": "Custom icon"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "title_2",
+      "label": "Title",
+      "default": "Maintenance service warranty"
+    },
+    {
+      "type": "richtext",
+      "id": "text_2",
+      "label": "Text",
+      "default": "<p>Complimentary inspection, cleaning and professional servicing.</p>"
+    },
+    {
+      "type": "text",
+      "id": "link_label_2",
+      "label": "Link label",
+      "default": "See what is and isn't covered"
+    },
+    {
+      "type": "url",
+      "id": "link_2",
+      "label": "Link"
+    },
+
+    {
+      "type": "header",
+      "content": "Item 3"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_item_3",
+      "label": "Show item 3",
+      "default": true
+    },
+    {
+      "type": "select",
+      "id": "icon_3",
+      "label": "Icon",
+      "default": "truck",
+      "options": [
+        { "value": "shield", "label": "Shield" },
+        { "value": "star", "label": "Star" },
+        { "value": "truck", "label": "Truck" },
+        { "value": "store", "label": "Store" },
+        { "value": "heart", "label": "Heart" },
+        { "value": "check", "label": "Check" }
+      ]
+    },
+    {
+      "type": "image_picker",
+      "id": "custom_icon_3",
+      "label": "Custom icon"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "title_3",
+      "label": "Title",
+      "default": "Arrives gift-ready, insured and tracked"
+    },
+    {
+      "type": "richtext",
+      "id": "text_3",
+      "label": "Text",
+      "default": "<p>Presented in the signature plum box with ribbon and your Authenticator, dispatched via DHL. Add a handwritten note at checkout.</p>"
+    },
+    {
+      "type": "text",
+      "id": "link_label_3",
+      "label": "Link label"
+    },
+    {
+      "type": "url",
+      "id": "link_3",
+      "label": "Link"
+    },
+
+    {
+      "type": "header",
+      "content": "Item 4"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_item_4",
+      "label": "Show item 4",
+      "default": true
+    },
+    {
+      "type": "select",
+      "id": "icon_4",
+      "label": "Icon",
+      "default": "store",
+      "options": [
+        { "value": "shield", "label": "Shield" },
+        { "value": "star", "label": "Star" },
+        { "value": "truck", "label": "Truck" },
+        { "value": "store", "label": "Store" },
+        { "value": "heart", "label": "Heart" },
+        { "value": "check", "label": "Check" }
+      ]
+    },
+    {
+      "type": "image_picker",
+      "id": "custom_icon_4",
+      "label": "Custom icon"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "title_4",
+      "label": "Title",
+      "default": "Private boutique, by appointment"
+    },
+    {
+      "type": "richtext",
+      "id": "text_4",
+      "label": "Text",
+      "default": "<p>Try the piece, explore diamond shapes and gold colours, and confirm your size with our team in Dubai.</p>"
+    },
+    {
+      "type": "text",
+      "id": "link_label_4",
+      "label": "Link label"
+    },
+    {
+      "type": "url",
+      "id": "link_4",
+      "label": "Link"
+    },
+
+    {
+      "type": "header",
+      "content": "Item typography"
+    },
+    {
+      "type": "range",
+      "id": "title_size",
+      "min": 12,
+      "max": 34,
+      "step": 1,
+      "unit": "px",
+      "label": "Title size",
+      "default": 21
+    },
+    {
+      "type": "range",
+      "id": "title_size_mobile",
+      "min": 12,
+      "max": 28,
+      "step": 1,
+      "unit": "px",
+      "label": "Title size mobile",
+      "default": 18
+    },
+    {
+      "type": "select",
+      "id": "title_weight",
+      "label": "Title weight",
+      "default": "600",
+      "options": [
+        { "value": "400", "label": "Regular" },
+        { "value": "500", "label": "Medium" },
+        { "value": "600", "label": "Semi bold" },
+        { "value": "700", "label": "Bold" }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "title_line_height",
+      "min": 1,
+      "max": 2,
+      "step": 0.1,
+      "label": "Title line height",
+      "default": 1.3
+    },
+    {
+      "type": "range",
+      "id": "title_letter_spacing",
+      "min": -10,
+      "max": 20,
+      "step": 1,
+      "unit": "%",
+      "label": "Title letter spacing",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "title_bottom_spacing",
+      "min": 0,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "label": "Space below title",
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "text_size",
+      "min": 12,
+      "max": 28,
+      "step": 1,
+      "unit": "px",
+      "label": "Text size",
+      "default": 17
+    },
+    {
+      "type": "range",
+      "id": "text_size_mobile",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Text size mobile",
+      "default": 15
+    },
+    {
+      "type": "range",
+      "id": "text_line_height",
+      "min": 1,
+      "max": 2.5,
+      "step": 0.1,
+      "label": "Text line height",
+      "default": 1.6
+    },
+
+    {
+      "type": "header",
+      "content": "Icons"
+    },
+    {
+      "type": "range",
+      "id": "icon_size",
+      "min": 18,
+      "max": 60,
+      "step": 1,
+      "unit": "px",
+      "label": "Icon size",
+      "default": 30
+    },
+    {
+      "type": "range",
+      "id": "icon_size_mobile",
+      "min": 16,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "label": "Icon size mobile",
+      "default": 26
+    },
+    {
+      "type": "range",
+      "id": "icon_gap",
+      "min": 8,
+      "max": 60,
+      "step": 1,
+      "unit": "px",
+      "label": "Icon/content gap",
+      "default": 30
+    },
+    {
+      "type": "range",
+      "id": "icon_gap_mobile",
+      "min": 6,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "label": "Icon/content gap mobile",
+      "default": 18
+    },
+
+    {
+      "type": "header",
+      "content": "Spacing"
+    },
+    {
+      "type": "range",
+      "id": "item_gap",
+      "min": 10,
+      "max": 80,
+      "step": 2,
+      "unit": "px",
+      "label": "Space between items",
+      "default": 34
+    },
+    {
+      "type": "range",
+      "id": "item_gap_mobile",
+      "min": 10,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "label": "Space between items mobile",
+      "default": 28
+    },
+    {
+      "type": "range",
+      "id": "margin_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Margin top",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Margin bottom",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding top",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding bottom",
+      "default": 0
+    },
+
+    {
+      "type": "header",
+      "content": "Link"
+    },
+    {
+      "type": "range",
+      "id": "link_top_spacing",
+      "min": 0,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "label": "Link top spacing",
+      "default": 4
+    },
+    {
+      "type": "range",
+      "id": "link_border_width",
+      "min": 0,
+      "max": 3,
+      "step": 1,
+      "unit": "px",
+      "label": "Link underline thickness",
+      "default": 1
+    },
+    {
+      "type": "select",
+      "id": "link_border_style",
+      "label": "Link underline style",
+      "default": "solid",
+      "options": [
+        { "value": "solid", "label": "Solid" },
+        { "value": "dashed", "label": "Dashed" },
+        { "value": "dotted", "label": "Dotted" }
+      ]
+    },
+
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading color",
+      "default": "#171717"
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Title color",
+      "default": "#080808"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#5f5f5f"
+    },
+    {
+      "type": "color",
+      "id": "icon_color",
+      "label": "Icon color",
+      "default": "#67203c"
+    },
+    {
+      "type": "color",
+      "id": "link_color",
+      "label": "Link color",
+      "default": "#4f4f4f"
+    }
+  ]
+},
+{
+  "type": "trust_badges",
+  "name": "🛡 Trust Badges",
+  "limit": 2,
+  "settings": [
+    { "type": "checkbox", "id": "show_block", "label": "Show block", "default": true },
+ 
+    { "type": "header", "content": "Badge 1" },
+    { "type": "image_picker", "id": "image_1", "label": "Image (optional, overrides icon)" },
+    {
+      "type": "select",
+      "id": "icon_1",
+      "label": "Icon preset",
+      "default": "warranty",
+      "options": [
+        { "value": "warranty", "label": "🏅 Warranty" },
+        { "value": "shipping", "label": "🚚 Shipping truck" },
+        { "value": "return", "label": "📦 Return box" },
+        { "value": "secure", "label": "🛡 Secure / Shield" },
+        { "value": "support", "label": "💬 Support / Chat" },
+        { "value": "gift", "label": "🎁 Gift" },
+        { "value": "leaf", "label": "🌿 Leaf / Eco" },
+        { "value": "star", "label": "⭐ Star / Quality" },
+        { "value": "check", "label": "✓ Checkmark" },
+        { "value": "card", "label": "💳 Card / Payment" },
+        { "value": "lock", "label": "🔒 Lock / Privacy" },
+        { "value": "clock", "label": "⏰ Clock / 24-7" }
+      ]
+    },
+    { "type": "text", "id": "label_1", "label": "Label", "default": "1-Year Warranty" },
+ 
+    { "type": "header", "content": "Badge 2" },
+    { "type": "image_picker", "id": "image_2", "label": "Image (optional, overrides icon)" },
+    {
+      "type": "select",
+      "id": "icon_2",
+      "label": "Icon preset",
+      "default": "shipping",
+      "options": [
+        { "value": "warranty", "label": "🏅 Warranty" },
+        { "value": "shipping", "label": "🚚 Shipping truck" },
+        { "value": "return", "label": "📦 Return box" },
+        { "value": "secure", "label": "🛡 Secure / Shield" },
+        { "value": "support", "label": "💬 Support / Chat" },
+        { "value": "gift", "label": "🎁 Gift" },
+        { "value": "leaf", "label": "🌿 Leaf / Eco" },
+        { "value": "star", "label": "⭐ Star / Quality" },
+        { "value": "check", "label": "✓ Checkmark" },
+        { "value": "card", "label": "💳 Card / Payment" },
+        { "value": "lock", "label": "🔒 Lock / Privacy" },
+        { "value": "clock", "label": "⏰ Clock / 24-7" }
+      ]
+    },
+    { "type": "text", "id": "label_2", "label": "Label", "default": "Free Shipping" },
+ 
+    { "type": "header", "content": "Badge 3" },
+    { "type": "image_picker", "id": "image_3", "label": "Image (optional, overrides icon)" },
+    {
+      "type": "select",
+      "id": "icon_3",
+      "label": "Icon preset",
+      "default": "return",
+      "options": [
+        { "value": "warranty", "label": "🏅 Warranty" },
+        { "value": "shipping", "label": "🚚 Shipping truck" },
+        { "value": "return", "label": "📦 Return box" },
+        { "value": "secure", "label": "🛡 Secure / Shield" },
+        { "value": "support", "label": "💬 Support / Chat" },
+        { "value": "gift", "label": "🎁 Gift" },
+        { "value": "leaf", "label": "🌿 Leaf / Eco" },
+        { "value": "star", "label": "⭐ Star / Quality" },
+        { "value": "check", "label": "✓ Checkmark" },
+        { "value": "card", "label": "💳 Card / Payment" },
+        { "value": "lock", "label": "🔒 Lock / Privacy" },
+        { "value": "clock", "label": "⏰ Clock / 24-7" }
+      ]
+    },
+    { "type": "text", "id": "label_3", "label": "Label", "default": "Free Return" },
+ 
+    { "type": "header", "content": "Badge 4 (optional)" },
+    { "type": "image_picker", "id": "image_4", "label": "Image (optional)" },
+    {
+      "type": "select",
+      "id": "icon_4",
+      "label": "Icon preset",
+      "default": "secure",
+      "options": [
+        { "value": "warranty", "label": "🏅 Warranty" },
+        { "value": "shipping", "label": "🚚 Shipping truck" },
+        { "value": "return", "label": "📦 Return box" },
+        { "value": "secure", "label": "🛡 Secure / Shield" },
+        { "value": "support", "label": "💬 Support / Chat" },
+        { "value": "gift", "label": "🎁 Gift" },
+        { "value": "leaf", "label": "🌿 Leaf / Eco" },
+        { "value": "star", "label": "⭐ Star / Quality" },
+        { "value": "check", "label": "✓ Checkmark" },
+        { "value": "card", "label": "💳 Card / Payment" },
+        { "value": "lock", "label": "🔒 Lock / Privacy" },
+        { "value": "clock", "label": "⏰ Clock / 24-7" }
+      ]
+    },
+    { "type": "text", "id": "label_4", "label": "Label (leave blank to hide)", "default": "dd" },
+ 
+    { "type": "header", "content": "Badge 5 (optional)" },
+    { "type": "image_picker", "id": "image_5", "label": "Image (optional)" },
+    {
+      "type": "select",
+      "id": "icon_5",
+      "label": "Icon preset",
+      "default": "support",
+      "options": [
+        { "value": "warranty", "label": "🏅 Warranty" },
+        { "value": "shipping", "label": "🚚 Shipping truck" },
+        { "value": "return", "label": "📦 Return box" },
+        { "value": "secure", "label": "🛡 Secure / Shield" },
+        { "value": "support", "label": "💬 Support / Chat" },
+        { "value": "gift", "label": "🎁 Gift" },
+        { "value": "leaf", "label": "🌿 Leaf / Eco" },
+        { "value": "star", "label": "⭐ Star / Quality" },
+        { "value": "check", "label": "✓ Checkmark" },
+        { "value": "card", "label": "💳 Card / Payment" },
+        { "value": "lock", "label": "🔒 Lock / Privacy" },
+        { "value": "clock", "label": "⏰ Clock / 24-7" }
+      ]
+    },
+    { "type": "text", "id": "label_5", "label": "Label (leave blank to hide)", "default": "dd" },
+ 
+    { "type": "header", "content": "Badge 6 (optional)" },
+    { "type": "image_picker", "id": "image_6", "label": "Image (optional)" },
+    {
+      "type": "select",
+      "id": "icon_6",
+      "label": "Icon preset",
+      "default": "leaf",
+      "options": [
+        { "value": "warranty", "label": "🏅 Warranty" },
+        { "value": "shipping", "label": "🚚 Shipping truck" },
+        { "value": "return", "label": "📦 Return box" },
+        { "value": "secure", "label": "🛡 Secure / Shield" },
+        { "value": "support", "label": "💬 Support / Chat" },
+        { "value": "gift", "label": "🎁 Gift" },
+        { "value": "leaf", "label": "🌿 Leaf / Eco" },
+        { "value": "star", "label": "⭐ Star / Quality" },
+        { "value": "check", "label": "✓ Checkmark" },
+        { "value": "card", "label": "💳 Card / Payment" },
+        { "value": "lock", "label": "🔒 Lock / Privacy" },
+        { "value": "clock", "label": "⏰ Clock / 24-7" }
+      ]
+    },
+    { "type": "text", "id": "label_6", "label": "Label (leave blank to hide)", "default": "dd" },
+ 
+    { "type": "header", "content": "Icon Style" },
+    { "type": "color", "id": "icon_color", "label": "Icon color (SVG presets only)", "default": "#0e0e0e" },
+    { "type": "range", "id": "icon_size", "label": "Icon size (desktop)", "min": 28, "max": 80, "step": 2, "unit": "px", "default": 50 },
+    { "type": "range", "id": "icon_size_mobile", "label": "Icon size (mobile)", "min": 24, "max": 64, "step": 2, "unit": "px", "default": 42 },
+    { "type": "range", "id": "icon_stroke", "label": "Icon stroke width", "min": 1, "max": 3, "step": 1, "default": 1 },
+    { "type": "range", "id": "icon_gap", "label": "Gap icon → label (desktop)", "min": 4, "max": 24, "step": 2, "unit": "px", "default": 12 },
+    { "type": "range", "id": "icon_gap_mobile", "label": "Gap icon → label (mobile)", "min": 4, "max": 20, "step": 2, "unit": "px", "default": 8 },
+ 
+    { "type": "header", "content": "Label Style" },
+    { "type": "color", "id": "label_color", "label": "Label color", "default": "#0e0e0e" },
+    { "type": "range", "id": "label_size", "label": "Label size (desktop)", "min": 11, "max": 22, "step": 1, "unit": "px", "default": 15 },
+    { "type": "range", "id": "label_size_mobile", "label": "Label size (mobile)", "min": 10, "max": 16, "step": 1, "unit": "px", "default": 12 },
+    {
+      "type": "select",
+      "id": "label_weight",
+      "label": "Label weight",
+      "default": "400",
+      "options": [
+        { "value": "300", "label": "Light" },
+        { "value": "400", "label": "Regular" },
+        { "value": "500", "label": "Medium" },
+        { "value": "600", "label": "Semi Bold" },
+        { "value": "700", "label": "Bold" }
+      ]
+    },
+    { "type": "text", "id": "label_tracking", "label": "Letter spacing (em)", "default": "0" },
+ 
+    { "type": "header", "content": "Dividers" },
+    { "type": "color", "id": "divider_color", "label": "Divider color", "default": "#dcdcdc" },
+    { "type": "range", "id": "divider_width", "label": "Divider width", "min": 0, "max": 3, "step": 1, "unit": "px", "default": 1 },
+    { "type": "range", "id": "divider_height", "label": "Divider height %", "min": 30, "max": 100, "step": 5, "default": 70, "info": "Height of vertical line between items" },
+ 
+    { "type": "header", "content": "Borders & Spacing" },
+    { "type": "color", "id": "border_color", "label": "Top/bottom border color", "default": "#dcdcdc" },
+    { "type": "range", "id": "border_width", "label": "Top/bottom border width", "min": 0, "max": 3, "step": 1, "unit": "px", "default": 0, "info": "Set to 0 to hide" },
+    { "type": "range", "id": "pad_v", "label": "Section vertical padding (desktop)", "min": 0, "max": 60, "step": 2, "unit": "px", "default": 16 },
+    { "type": "range", "id": "pad_v_mobile", "label": "Section vertical padding (mobile)", "min": 0, "max": 40, "step": 2, "unit": "px", "default": 12 },
+    { "type": "range", "id": "item_pad_v", "label": "Item padding vertical (desktop)", "min": 0, "max": 30, "step": 2, "unit": "px", "default": 8 },
+    { "type": "range", "id": "item_pad_h", "label": "Item padding horizontal (desktop)", "min": 0, "max": 40, "step": 2, "unit": "px", "default": 12 },
+    { "type": "range", "id": "item_pad_v_mobile", "label": "Item padding vertical (mobile)", "min": 0, "max": 24, "step": 2, "unit": "px", "default": 6 },
+    { "type": "range", "id": "item_pad_h_mobile", "label": "Item padding horizontal (mobile)", "min": 0, "max": 24, "step": 2, "unit": "px", "default": 6 },
+    { "type": "range", "id": "margin_top", "label": "Margin top (desktop)", "min": 0, "max": 60, "step": 2, "unit": "px", "default": 20 },
+    { "type": "range", "id": "margin_bottom", "label": "Margin bottom (desktop)", "min": 0, "max": 60, "step": 2, "unit": "px", "default": 20 },
+    { "type": "range", "id": "margin_top_mobile", "label": "Margin top (mobile)", "min": 0, "max": 40, "step": 2, "unit": "px", "default": 16 },
+    { "type": "range", "id": "margin_bottom_mobile", "label": "Margin bottom (mobile)", "min": 0, "max": 40, "step": 2, "unit": "px", "default": 16 }
+  ]
+},
+{
+  "type": "conditional_icon_text",
+  "name": "Conditional icon + text",
+  "limit": 1,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Icon"
+    },
+    {
+      "type": "image_picker",
+      "id": "icon",
+      "label": "Icon image"
+    },
+    {
+      "type": "html",
+      "id": "svg_icon",
+      "label": "Custom SVG",
+      "info": "Optional. Used when no icon image is selected."
+    },
+    {
+      "type": "range",
+      "id": "icon_size",
+      "label": "Icon size",
+      "min": 10,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "icon_size_mobile",
+      "label": "Icon size mobile",
+      "min": 10,
+      "max": 80,
+      "step": 1,
+      "unit": "px",
+      "default": 22
+    },
+    {
+      "type": "color",
+      "id": "icon_color",
+      "label": "SVG icon color",
+      "default": "#111111"
+    },
+    {
+      "type": "select",
+      "id": "icon_fit",
+      "label": "Image fit",
+      "default": "contain",
+      "options": [
+        {
+          "value": "contain",
+          "label": "Contain"
+        },
+        {
+          "value": "cover",
+          "label": "Cover"
+        }
+      ]
+    },
+
+    {
+      "type": "header",
+      "content": "Text"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Text",
+      "default": "<p>Your icon text here</p>"
+    },
+    {
+      "type": "range",
+      "id": "text_size",
+      "label": "Text size",
+      "min": 10,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "text_size_mobile",
+      "label": "Text size mobile",
+      "min": 10,
+      "max": 26,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "select",
+      "id": "text_weight",
+      "label": "Text weight",
+      "default": "400",
+      "options": [
+        {
+          "value": "300",
+          "label": "Light"
+        },
+        {
+          "value": "400",
+          "label": "Regular"
+        },
+        {
+          "value": "500",
+          "label": "Medium"
+        },
+        {
+          "value": "600",
+          "label": "Semi bold"
+        },
+        {
+          "value": "700",
+          "label": "Bold"
+        }
+      ]
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#111111"
+    },
+    {
+      "type": "range",
+      "id": "line_height",
+      "label": "Line height",
+      "min": 10,
+      "max": 25,
+      "step": 1,
+      "default": 15
+    },
+    {
+      "type": "range",
+      "id": "letter_spacing",
+      "label": "Letter spacing",
+      "min": 0,
+      "max": 30,
+      "step": 1,
+      "unit": "%",
+      "default": 0
+    },
+
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "icon_gap",
+      "label": "Icon / text gap",
+      "min": 0,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "default": 10
+    },
+    {
+      "type": "select",
+      "id": "vertical_alignment",
+      "label": "Vertical alignment",
+      "default": "center",
+      "options": [
+        {
+          "value": "flex-start",
+          "label": "Top"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "flex-end",
+          "label": "Bottom"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "horizontal_alignment",
+      "label": "Horizontal alignment",
+      "default": "flex-start",
+      "options": [
+        {
+          "value": "flex-start",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "flex-end",
+          "label": "Right"
+        }
+      ]
+    },
+
+    {
+      "type": "header",
+      "content": "Box"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "border_color",
+      "label": "Border color",
+      "default": "#E5E5E5"
+    },
+    {
+      "type": "range",
+      "id": "border_width",
+      "label": "Border width",
+      "min": 0,
+      "max": 5,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "border_radius",
+      "label": "Border radius",
+      "min": 0,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    },
+
+    {
+      "type": "header",
+      "content": "Desktop padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_vertical",
+      "label": "Vertical padding",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_horizontal",
+      "label": "Horizontal padding",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    },
+
+    {
+      "type": "header",
+      "content": "Mobile padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_vertical_mobile",
+      "label": "Vertical padding",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_horizontal_mobile",
+      "label": "Horizontal padding",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    },
+
+    {
+      "type": "header",
+      "content": "Block spacing"
+    },
+    {
+      "type": "range",
+      "id": "space_above",
+      "label": "Space above",
+      "min": 0,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "space_below",
+      "label": "Space below",
+      "min": 0,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "default": 10
+    }
+  ]
+},
+	{
+			"type": "reviews_accordion",
+			"name": "Reviews accordion",
+			"limit": 1,
+			"settings": [
+				{
+					"id": "heading",
+					"type": "text",
+					"default": "Loved by thousands of clients",
+					"label": "Heading"
+				},
+				{ "type": "header", "content": "Review 1" },
+				{ "id": "review_1_text", "type": "textarea", "label": "Review text" },
+				{ "id": "review_1_author", "type": "text", "label": "Author name" },
+				{ "id": "review_1_location", "type": "text", "label": "Location / source" },
+				{ "type": "header", "content": "Review 2" },
+				{ "id": "review_2_text", "type": "textarea", "label": "Review text" },
+				{ "id": "review_2_author", "type": "text", "label": "Author name" },
+				{ "id": "review_2_location", "type": "text", "label": "Location / source" },
+				{ "type": "header", "content": "Review 3" },
+				{ "id": "review_3_text", "type": "textarea", "label": "Review text" },
+				{ "id": "review_3_author", "type": "text", "label": "Author name" },
+				{ "id": "review_3_location", "type": "text", "label": "Location / source" },
+				{ "type": "header", "content": "Review 4" },
+				{ "id": "review_4_text", "type": "textarea", "label": "Review text" },
+				{ "id": "review_4_author", "type": "text", "label": "Author name" },
+				{ "id": "review_4_location", "type": "text", "label": "Location / source" },
+				{ "type": "header", "content": "Review 5" },
+				{ "id": "review_5_text", "type": "textarea", "label": "Review text" },
+				{ "id": "review_5_author", "type": "text", "label": "Author name" },
+				{ "id": "review_5_location", "type": "text", "label": "Location / source" },
+				{ "type": "header", "content": "Review 6" },
+				{ "id": "review_6_text", "type": "textarea", "label": "Review text" },
+				{ "id": "review_6_author", "type": "text", "label": "Author name" },
+				{ "id": "review_6_location", "type": "text", "label": "Location / source" }
+			]
+		},
+
 		{
 			"type": "complementary",
 			"name": "t:sections.main-product.blocks.complementary.name",

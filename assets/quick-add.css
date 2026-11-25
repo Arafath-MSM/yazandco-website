@@ -30,7 +30,9 @@
 .quick-add-modal[open] {
   opacity: 1;
   visibility: visible;
-  z-index: 101;
+  /* Must sit above the cart drawer (z-index: 1000) - Quick View is opened from
+     the drawer's upsell carousel and was previously painted underneath it. */
+  z-index: 1010;
 }
 .quick-add-modal[open] .quick-add-modal__content {
   transform: translate(0);

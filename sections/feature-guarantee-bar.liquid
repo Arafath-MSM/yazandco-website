@@ -1,0 +1,329 @@
+{%- style -%}
+  /* ==========================================================================
+     1. SECTION CONTAINER & PADDINGS (DESKTOP & MOBILE)
+     ========================================================================== */
+  #feature-bar-{{ section.id }} {
+    background-color: {{ section.settings.bg_color }};
+    border-top: {{ section.settings.border_top_w }}px solid {{ section.settings.border_color }};
+    border-bottom: {{ section.settings.border_bottom_w }}px solid {{ section.settings.border_color }};
+    padding-top: {{ section.settings.pad_top_m }}px;
+    padding-bottom: {{ section.settings.pad_bottom_m }}px;
+    padding-left: {{ section.settings.pad_left_m }}px;
+    padding-right: {{ section.settings.pad_right_m }}px;
+  }
+
+  @media screen and (min-width: 990px) {
+    #feature-bar-{{ section.id }} {
+      padding-top: {{ section.settings.pad_top_d }}px;
+      padding-bottom: {{ section.settings.pad_bottom_d }}px;
+      padding-left: {{ section.settings.pad_left_d }}px;
+      padding-right: {{ section.settings.pad_right_d }}px;
+    }
+  }
+
+  .feature-bar-container-{{ section.id }} {
+    max-width: {{ section.settings.container_max_w }}px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  /* ==========================================================================
+     2. GRID LAYOUT & GAPS
+     ========================================================================== */
+  .feature-bar-grid-{{ section.id }} {
+    display: grid;
+    grid-template-columns: repeat({{ section.settings.cols_m }}, 1fr);
+    gap: {{ section.settings.gap_m }}px;
+  }
+
+  @media screen and (min-width: 990px) {
+    .feature-bar-grid-{{ section.id }} {
+      grid-template-columns: repeat({{ section.settings.cols_d }}, 1fr);
+      gap: {{ section.settings.gap_d }}px;
+    }
+  }
+
+  /* ==========================================================================
+     3. INDIVIDUAL FEATURE ITEM STYLES
+     ========================================================================== */
+  .feature-item-{{ section.id }} {
+    display: flex;
+    flex-direction: row;
+    align-items: {{ section.settings.item_align }};
+    gap: {{ section.settings.icon_gap_m }}px;
+    background-color: {{ section.settings.item_bg }};
+    padding-top: {{ section.settings.item_pad_v_m }}px;
+    padding-bottom: {{ section.settings.item_pad_v_m }}px;
+    padding-left: {{ section.settings.item_pad_h_m }}px;
+    padding-right: {{ section.settings.item_pad_h_m }}px;
+    border-radius: {{ section.settings.item_radius }}px;
+    border: {{ section.settings.item_border_w }}px solid {{ section.settings.item_border_color }};
+  }
+
+  @media screen and (min-width: 990px) {
+    .feature-item-{{ section.id }} {
+      gap: {{ section.settings.icon_gap_d }}px;
+      padding-top: {{ section.settings.item_pad_v_d }}px;
+      padding-bottom: {{ section.settings.item_pad_v_d }}px;
+      padding-left: {{ section.settings.item_pad_h_d }}px;
+      padding-right: {{ section.settings.item_pad_h_d }}px;
+    }
+  }
+
+  /* ==========================================================================
+     4. ICON STYLES
+     ========================================================================== */
+  .feature-icon-wrapper-{{ section.id }} {
+    flex-shrink: 0;
+    width: {{ section.settings.icon_size_m }}px;
+    height: {{ section.settings.icon_size_m }}px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  @media screen and (min-width: 990px) {
+    .feature-icon-wrapper-{{ section.id }} {
+      width: {{ section.settings.icon_size_d }}px;
+      height: {{ section.settings.icon_size_d }}px;
+    }
+  }
+
+  .feature-icon-wrapper-{{ section.id }} img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  .feature-icon-wrapper-{{ section.id }} svg {
+    width: 100%;
+    height: 100%;
+    stroke: {{ section.settings.icon_color }};
+    fill: none;
+  }
+
+  /* ==========================================================================
+     5. TYPOGRAPHY & CONTENT
+     ========================================================================== */
+  .feature-content-{{ section.id }} {
+    flex-grow: 1;
+    text-align: {{ section.settings.text_align_m }};
+  }
+
+  @media screen and (min-width: 990px) {
+    .feature-content-{{ section.id }} {
+      text-align: {{ section.settings.text_align_d }};
+    }
+  }
+
+  .feature-title-{{ section.id }} {
+    color: {{ section.settings.title_color }};
+    font-size: {{ section.settings.title_size_m }}px;
+    font-weight: {{ section.settings.title_weight }};
+    text-transform: {{ section.settings.title_transform }};
+    letter-spacing: {{ section.settings.title_ls }}px;
+    line-height: {{ section.settings.title_lh }};
+    margin: 0 0 {{ section.settings.title_mb }}px 0;
+  }
+
+  @media screen and (min-width: 990px) {
+    .feature-title-{{ section.id }} {
+      font-size: {{ section.settings.title_size_d }}px;
+    }
+  }
+
+  .feature-desc-{{ section.id }} {
+    color: {{ section.settings.desc_color }};
+    font-size: {{ section.settings.desc_size_m }}px;
+    font-weight: {{ section.settings.desc_weight }};
+    line-height: {{ section.settings.desc_lh }};
+    letter-spacing: {{ section.settings.desc_ls }}px;
+    margin: 0;
+  }
+
+  @media screen and (min-width: 990px) {
+    .feature-desc-{{ section.id }} {
+      font-size: {{ section.settings.desc_size_d }}px;
+    }
+  }
+{%- endstyle -%}
+
+<section class="feature-bar-section" id="feature-bar-{{ section.id }}">
+  <div class="feature-bar-container-{{ section.id }}">
+    <div class="feature-bar-grid-{{ section.id }}">
+      {%- for block in section.blocks -%}
+        <div class="feature-item-{{ section.id }}" {{ block.shopify_attributes }}>
+          
+          <!-- ICON WRAPPER -->
+          <div class="feature-icon-wrapper-{{ section.id }}">
+            {%- if block.settings.custom_svg != blank -%}
+              {{ block.settings.custom_svg }}
+            {%- elsif block.settings.icon_image != blank -%}
+              {{ block.settings.icon_image | image_url: width: 100 | image_tag: loading: 'lazy', alt: block.settings.title }}
+            {%- else -%}
+              <svg viewBox="0 0 24 24" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="M9 12l2 2 4-4"/></svg>
+            {%- endif -%}
+          </div>
+
+          <!-- TEXT CONTENT -->
+          <div class="feature-content-{{ section.id }}">
+            {%- if block.settings.title != blank -%}
+              <h4 class="feature-title-{{ section.id }}">{{ block.settings.title }}</h4>
+            {%- endif -%}
+
+            {%- if block.settings.description != blank -%}
+              <p class="feature-desc-{{ section.id }}">{{ block.settings.description }}</p>
+            {%- endif -%}
+          </div>
+
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Feature / Guarantee Bar",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "1. SECTION LAYOUT & BACKGROUND"
+    },
+    { "type": "color", "id": "bg_color", "label": "Section Background", "default": "#F5F5F5" },
+    { "type": "range", "id": "container_max_w", "min": 800, "max": 1800, "step": 20, "unit": "px", "label": "Container Max Width", "default": 1400 },
+    { "type": "color", "id": "border_color", "label": "Border Color", "default": "#E0E0E0" },
+    { "type": "range", "id": "border_top_w", "min": 0, "max": 10, "step": 1, "unit": "px", "label": "Border Top Width", "default": 0 },
+    { "type": "range", "id": "border_bottom_w", "min": 0, "max": 10, "step": 1, "unit": "px", "label": "Border Bottom Width", "default": 0 },
+
+    {
+      "type": "header",
+      "content": "2. DESKTOP SECTION PADDING"
+    },
+    { "type": "range", "id": "pad_top_d", "min": 0, "max": 120, "step": 2, "unit": "px", "label": "Padding Top (Desktop)", "default": 30 },
+    { "type": "range", "id": "pad_bottom_d", "min": 0, "max": 120, "step": 2, "unit": "px", "label": "Padding Bottom (Desktop)", "default": 30 },
+    { "type": "range", "id": "pad_left_d", "min": 0, "max": 100, "step": 2, "unit": "px", "label": "Padding Left (Desktop)", "default": 40 },
+    { "type": "range", "id": "pad_right_d", "min": 0, "max": 100, "step": 2, "unit": "px", "label": "Padding Right (Desktop)", "default": 40 },
+
+    {
+      "type": "header",
+      "content": "3. MOBILE SECTION PADDING"
+    },
+    { "type": "range", "id": "pad_top_m", "min": 0, "max": 80, "step": 2, "unit": "px", "label": "Padding Top (Mobile)", "default": 20 },
+    { "type": "range", "id": "pad_bottom_m", "min": 0, "max": 80, "step": 2, "unit": "px", "label": "Padding Bottom (Mobile)", "default": 20 },
+    { "type": "range", "id": "pad_left_m", "min": 0, "max": 50, "step": 2, "unit": "px", "label": "Padding Left (Mobile)", "default": 16 },
+    { "type": "range", "id": "pad_right_m", "min": 0, "max": 50, "step": 2, "unit": "px", "label": "Padding Right (Mobile)", "default": 16 },
+
+    {
+      "type": "header",
+      "content": "4. GRID & COLUMNS"
+    },
+    { "type": "range", "id": "cols_d", "min": 1, "max": 6, "step": 1, "label": "Columns (Desktop)", "default": 4 },
+    { "type": "range", "id": "cols_m", "min": 1, "max": 3, "step": 1, "label": "Columns (Mobile)", "default": 1 },
+    { "type": "range", "id": "gap_d", "min": 0, "max": 80, "step": 2, "unit": "px", "label": "Column Gap (Desktop)", "default": 30 },
+    { "type": "range", "id": "gap_m", "min": 0, "max": 50, "step": 2, "unit": "px", "label": "Column Gap (Mobile)", "default": 20 },
+
+    {
+      "type": "header",
+      "content": "5. ITEM CONTAINER & CARD STYLES"
+    },
+    { "type": "select", "id": "item_align", "label": "Vertical Alignment", "options": [ { "value": "flex-start", "label": "Top" }, { "value": "center", "label": "Center" }, { "value": "flex-end", "label": "Bottom" } ], "default": "flex-start" },
+    { "type": "color", "id": "item_bg", "label": "Item Card Background", "default": "transparent" },
+    { "type": "color", "id": "item_border_color", "label": "Item Border Color", "default": "#EEEEEE" },
+    { "type": "range", "id": "item_border_w", "min": 0, "max": 5, "step": 1, "unit": "px", "label": "Item Border Width", "default": 0 },
+    { "type": "range", "id": "item_radius", "min": 0, "max": 30, "step": 1, "unit": "px", "label": "Item Border Radius", "default": 0 },
+    { "type": "range", "id": "item_pad_v_d", "min": 0, "max": 40, "step": 1, "unit": "px", "label": "Item Vertical Padding (Desktop)", "default": 0 },
+    { "type": "range", "id": "item_pad_h_d", "min": 0, "max": 40, "step": 1, "unit": "px", "label": "Item Horizontal Padding (Desktop)", "default": 0 },
+    { "type": "range", "id": "item_pad_v_m", "min": 0, "max": 30, "step": 1, "unit": "px", "label": "Item Vertical Padding (Mobile)", "default": 0 },
+    { "type": "range", "id": "item_pad_h_m", "min": 0, "max": 30, "step": 1, "unit": "px", "label": "Item Horizontal Padding (Mobile)", "default": 0 },
+
+    {
+      "type": "header",
+      "content": "6. ICON SETTINGS"
+    },
+    { "type": "color", "id": "icon_color", "label": "SVG Icon Color", "default": "#3A1021" },
+    { "type": "range", "id": "icon_size_d", "min": 16, "max": 80, "step": 2, "unit": "px", "label": "Icon Size (Desktop)", "default": 28 },
+    { "type": "range", "id": "icon_size_m", "min": 14, "max": 60, "step": 2, "unit": "px", "label": "Icon Size (Mobile)", "default": 24 },
+    { "type": "range", "id": "icon_gap_d", "min": 4, "max": 40, "step": 2, "unit": "px", "label": "Gap between Icon & Text (Desktop)", "default": 14 },
+    { "type": "range", "id": "icon_gap_m", "min": 4, "max": 30, "step": 2, "unit": "px", "label": "Gap between Icon & Text (Mobile)", "default": 10 },
+
+    {
+      "type": "header",
+      "content": "7. TITLE TYPOGRAPHY"
+    },
+    { "type": "color", "id": "title_color", "label": "Title Color", "default": "#000000" },
+    { "type": "range", "id": "title_size_d", "min": 10, "max": 36, "step": 1, "unit": "px", "label": "Title Size (Desktop)", "default": 13 },
+    { "type": "range", "id": "title_size_m", "min": 10, "max": 28, "step": 1, "unit": "px", "label": "Title Size (Mobile)", "default": 12 },
+    { "type": "select", "id": "title_weight", "label": "Title Font Weight", "options": [ { "value": "300", "label": "Light" }, { "value": "400", "label": "Regular" }, { "value": "500", "label": "Medium" }, { "value": "600", "label": "SemiBold" }, { "value": "700", "label": "Bold" } ], "default": "600" },
+    { "type": "select", "id": "title_transform", "label": "Title Text Transform", "options": [ { "value": "none", "label": "None" }, { "value": "uppercase", "label": "UPPERCASE" }, { "value": "capitalize", "label": "Capitalize" } ], "default": "uppercase" },
+    { "type": "range", "id": "title_ls", "min": 0, "max": 5, "step": 0.5, "unit": "px", "label": "Title Letter Spacing", "default": 0.5 },
+    { "type": "text", "id": "title_lh", "label": "Title Line Height", "default": "1.3" },
+    { "type": "range", "id": "title_mb", "min": 0, "max": 30, "step": 1, "unit": "px", "label": "Title Margin Bottom", "default": 4 },
+
+    {
+      "type": "header",
+      "content": "8. DESCRIPTION TYPOGRAPHY"
+    },
+    { "type": "color", "id": "desc_color", "label": "Description Color", "default": "#555555" },
+    { "type": "range", "id": "desc_size_d", "min": 10, "max": 24, "step": 1, "unit": "px", "label": "Description Size (Desktop)", "default": 13 },
+    { "type": "range", "id": "desc_size_m", "min": 9, "max": 20, "step": 1, "unit": "px", "label": "Description Size (Mobile)", "default": 12 },
+    { "type": "select", "id": "desc_weight", "label": "Description Font Weight", "options": [ { "value": "300", "label": "Light" }, { "value": "400", "label": "Regular" }, { "value": "500", "label": "Medium" } ], "default": "400" },
+    { "type": "range", "id": "desc_ls", "min": 0, "max": 3, "step": 0.5, "unit": "px", "label": "Description Letter Spacing", "default": 0 },
+    { "type": "text", "id": "desc_lh", "label": "Description Line Height", "default": "1.4" },
+    { "type": "select", "id": "text_align_d", "label": "Text Alignment (Desktop)", "options": [ { "value": "left", "label": "Left" }, { "value": "center", "label": "Center" }, { "value": "right", "label": "Right" } ], "default": "left" },
+    { "type": "select", "id": "text_align_m", "label": "Text Alignment (Mobile)", "options": [ { "value": "left", "label": "Left" }, { "value": "center", "label": "Center" }, { "value": "right", "label": "Right" } ], "default": "left" }
+  ],
+  "blocks": [
+    {
+      "type": "feature",
+      "name": "Feature Item",
+      "settings": [
+        { "type": "image_picker", "id": "icon_image", "label": "Custom Icon Image" },
+        { "type": "html", "id": "custom_svg", "label": "Custom Inline SVG Code", "info": "Paste custom <svg> code here to override image." },
+        { "type": "text", "id": "title", "label": "Title", "default": "CERTIFIED & SERIALISED" },
+        { "type": "textarea", "id": "description", "label": "Description", "default": "IGI certified above 1 ct. Every piece carries its own serial number." }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Feature / Guarantee Bar",
+      "blocks": [
+        {
+          "type": "feature",
+          "settings": {
+            "title": "CERTIFIED & SERIALISED",
+            "description": "IGI certified above 1 ct. Every piece carries its own serial number.",
+            "custom_svg": "<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='1.5'><path d='M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z'/><path d='m9 12 2 2 4-4'/></svg>"
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "title": "MADE TO ORDER IN 18K GOLD",
+            "description": "Crafted by hand for you — never mass produced, never plated.",
+            "custom_svg": "<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='1.5'><path d='M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z'/><path d='m3.3 7 8.7 5 8.7-5'/><path d='M12 22V12'/></svg>"
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "title": "LAB-GROWN BY CHOICE",
+            "description": "Accessible luxury, responsible innovation, honest brilliance.",
+            "custom_svg": "<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='1.5'><path d='m7 15 5 5 5-5'/><path d='m7 9 5-5 5 5'/></svg>"
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "title": "MAINTENANCE WARRANTY",
+            "description": "Complimentary inspection, cleaning and professional servicing.",
+            "custom_svg": "<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='1.5'><polygon points='12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2'/></svg>"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

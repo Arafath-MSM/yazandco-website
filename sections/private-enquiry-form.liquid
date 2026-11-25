@@ -1,0 +1,2144 @@
+<section
+  class="private-enquiry private-enquiry--{{ section.id }}"
+  id="PrivateEnquiry-{{ section.id }}"
+>
+  <div class="private-enquiry__container">
+
+    {% if section.settings.heading != blank %}
+      <h2 class="private-enquiry__heading">
+        {{ section.settings.heading }}
+      </h2>
+    {% endif %}
+
+    {% if section.settings.description != blank %}
+      <div class="private-enquiry__description rte">
+        {{ section.settings.description }}
+      </div>
+    {% endif %}
+
+
+{%- capture enquiry_form_id -%}
+  PrivateEnquiryForm-{{ section.id }}
+{%- endcapture -%}
+
+{% form 'contact',
+  id: enquiry_form_id,
+  class: 'private-enquiry__form'
+%}
+
+      {% if form.posted_successfully? %}
+        <div
+          class="private-enquiry__success"
+          role="status"
+          tabindex="-1"
+        >
+          {{ section.settings.success_message }}
+        </div>
+      {% endif %}
+
+      {% if form.errors %}
+        <div
+          class="private-enquiry__errors"
+          role="alert"
+        >
+          {{ form.errors | default_errors }}
+        </div>
+      {% endif %}
+
+
+      <input
+        type="hidden"
+        name="contact[Enquiry type]"
+        value="{{ section.settings.enquiry_type | escape }}"
+      >
+
+
+      <div class="private-enquiry__grid">
+
+        {% if section.settings.show_name %}
+          <div class="private-enquiry__field">
+            <label
+              for="EnquiryName-{{ section.id }}"
+              class="private-enquiry__label"
+            >
+              {{ section.settings.name_label }}
+
+              {% if section.settings.name_required %}
+                <span aria-hidden="true">*</span>
+              {% endif %}
+            </label>
+
+            <input
+              id="EnquiryName-{{ section.id }}"
+              class="private-enquiry__input"
+              type="text"
+              name="contact[name]"
+              value="{% if form.name %}{{ form.name | escape }}{% elsif customer %}{{ customer.name | escape }}{% endif %}"
+              placeholder="{{ section.settings.name_placeholder | escape }}"
+              {% if section.settings.name_required %}
+                required
+              {% endif %}
+            >
+          </div>
+        {% endif %}
+
+
+        <div class="private-enquiry__field">
+          <label
+            for="EnquiryEmail-{{ section.id }}"
+            class="private-enquiry__label"
+          >
+            {{ section.settings.email_label }}
+            <span aria-hidden="true">*</span>
+          </label>
+
+          <input
+            id="EnquiryEmail-{{ section.id }}"
+            class="private-enquiry__input"
+            type="email"
+            name="contact[email]"
+            autocomplete="email"
+            autocorrect="off"
+            autocapitalize="off"
+            value="{% if form.email %}{{ form.email | escape }}{% elsif customer %}{{ customer.email | escape }}{% endif %}"
+            placeholder="{{ section.settings.email_placeholder | escape }}"
+            required
+          >
+        </div>
+
+
+        {% if section.settings.show_phone %}
+          <div class="private-enquiry__field">
+            <label
+              for="EnquiryPhone-{{ section.id }}"
+              class="private-enquiry__label"
+            >
+              {{ section.settings.phone_label }}
+            </label>
+
+            <input
+              id="EnquiryPhone-{{ section.id }}"
+              class="private-enquiry__input"
+              type="tel"
+              name="contact[phone]"
+              autocomplete="tel"
+              value="{% if form.phone %}{{ form.phone | escape }}{% elsif customer %}{{ customer.phone | escape }}{% endif %}"
+              placeholder="{{ section.settings.phone_placeholder | escape }}"
+            >
+          </div>
+        {% endif %}
+
+
+        <div class="private-enquiry__field">
+          <label
+            for="EnquiryOccasion-{{ section.id }}"
+            class="private-enquiry__label"
+          >
+            {{ section.settings.occasion_label }}
+          </label>
+
+          <select
+            id="EnquiryOccasion-{{ section.id }}"
+            class="private-enquiry__select"
+            name="contact[Occasion]"
+          >
+            {% if section.settings.occasion_placeholder != blank %}
+              <option value="">
+                {{ section.settings.occasion_placeholder }}
+              </option>
+            {% endif %}
+
+            {% assign occasion_options = section.settings.occasion_options | newline_to_br | split: '<br />' %}
+
+            {% for option in occasion_options %}
+              {% assign option_clean = option | strip %}
+
+              {% if option_clean != blank %}
+                <option value="{{ option_clean | escape }}">
+                  {{ option_clean }}
+                </option>
+              {% endif %}
+            {% endfor %}
+          </select>
+        </div>
+
+
+        <div class="private-enquiry__field">
+          <label
+            for="EnquiryBudget-{{ section.id }}"
+            class="private-enquiry__label"
+          >
+            {{ section.settings.budget_label }}
+          </label>
+
+          <select
+            id="EnquiryBudget-{{ section.id }}"
+            class="private-enquiry__select"
+            name="contact[Budget]"
+          >
+            {% if section.settings.budget_placeholder != blank %}
+              <option value="">
+                {{ section.settings.budget_placeholder }}
+              </option>
+            {% endif %}
+
+            {% assign budget_options = section.settings.budget_options | newline_to_br | split: '<br />' %}
+
+            {% for option in budget_options %}
+              {% assign option_clean = option | strip %}
+
+              {% if option_clean != blank %}
+                <option value="{{ option_clean | escape }}">
+                  {{ option_clean }}
+                </option>
+              {% endif %}
+            {% endfor %}
+          </select>
+        </div>
+
+
+        <div class="private-enquiry__field">
+          <label
+            for="EnquiryCategory-{{ section.id }}"
+            class="private-enquiry__label"
+          >
+            {{ section.settings.category_label }}
+          </label>
+
+          <select
+            id="EnquiryCategory-{{ section.id }}"
+            class="private-enquiry__select"
+            name="contact[Category]"
+          >
+            {% if section.settings.category_placeholder != blank %}
+              <option value="">
+                {{ section.settings.category_placeholder }}
+              </option>
+            {% endif %}
+
+            {% assign category_options = section.settings.category_options | newline_to_br | split: '<br />' %}
+
+            {% for option in category_options %}
+              {% assign option_clean = option | strip %}
+
+              {% if option_clean != blank %}
+                <option value="{{ option_clean | escape }}">
+                  {{ option_clean }}
+                </option>
+              {% endif %}
+            {% endfor %}
+          </select>
+        </div>
+
+
+        <div class="private-enquiry__field">
+          <label
+            for="EnquiryContactMethod-{{ section.id }}"
+            class="private-enquiry__label"
+          >
+            {{ section.settings.contact_method_label }}
+          </label>
+
+          <select
+            id="EnquiryContactMethod-{{ section.id }}"
+            class="private-enquiry__select"
+            name="contact[Preferred contact method]"
+          >
+            {% if section.settings.contact_method_placeholder != blank %}
+              <option value="">
+                {{ section.settings.contact_method_placeholder }}
+              </option>
+            {% endif %}
+
+            {% assign contact_options = section.settings.contact_method_options | newline_to_br | split: '<br />' %}
+
+            {% for option in contact_options %}
+              {% assign option_clean = option | strip %}
+
+              {% if option_clean != blank %}
+                <option value="{{ option_clean | escape }}">
+                  {{ option_clean }}
+                </option>
+              {% endif %}
+            {% endfor %}
+          </select>
+        </div>
+
+      </div>
+
+
+      {% if section.settings.show_message %}
+        <div class="private-enquiry__field private-enquiry__field--full">
+          <label
+            for="EnquiryMessage-{{ section.id }}"
+            class="private-enquiry__label"
+          >
+            {{ section.settings.message_label }}
+          </label>
+
+          <textarea
+            id="EnquiryMessage-{{ section.id }}"
+            class="private-enquiry__textarea"
+            name="contact[body]"
+            rows="{{ section.settings.message_rows }}"
+            placeholder="{{ section.settings.message_placeholder | escape }}"
+          >{{ form.body }}</textarea>
+        </div>
+      {% else %}
+        <input
+          type="hidden"
+          name="contact[body]"
+          value="{{ section.settings.hidden_message | escape }}"
+        >
+      {% endif %}
+
+
+      <button
+        type="submit"
+        class="private-enquiry__submit"
+      >
+        {{ section.settings.submit_text }}
+      </button>
+
+    {% endform %}
+
+
+    {% if section.settings.show_secondary_buttons %}
+      <div class="private-enquiry__secondary">
+
+        {% if section.settings.show_whatsapp and section.settings.whatsapp_number != blank %}
+
+          {% assign whatsapp_number = section.settings.whatsapp_number
+            | remove: '+'
+            | remove: ' '
+            | remove: '-'
+            | remove: '('
+            | remove: ')'
+          %}
+
+          <a
+            class="private-enquiry__secondary-button private-enquiry__secondary-button--whatsapp"
+            href="https://wa.me/{{ whatsapp_number }}{% if section.settings.whatsapp_message != blank %}?text={{ section.settings.whatsapp_message | url_encode }}{% endif %}"
+            target="_blank"
+            rel="noopener"
+          >
+            {% if section.settings.whatsapp_icon != blank %}
+              {{
+                section.settings.whatsapp_icon
+                | image_url: width: 80
+                | image_tag:
+                  loading: 'lazy',
+                  class: 'private-enquiry__button-icon'
+              }}
+            {% endif %}
+
+            <span>
+              {{ section.settings.whatsapp_button_text }}
+            </span>
+          </a>
+
+        {% endif %}
+
+
+        {% if section.settings.show_appointment and section.settings.appointment_link != blank %}
+
+          <a
+            class="private-enquiry__secondary-button private-enquiry__secondary-button--appointment"
+            href="{{ section.settings.appointment_link }}"
+            {% if section.settings.appointment_new_tab %}
+              target="_blank"
+              rel="noopener"
+            {% endif %}
+          >
+
+            {% if section.settings.appointment_icon != blank %}
+              {{
+                section.settings.appointment_icon
+                | image_url: width: 80
+                | image_tag:
+                  loading: 'lazy',
+                  class: 'private-enquiry__button-icon'
+              }}
+            {% endif %}
+
+            <span>
+              {{ section.settings.appointment_button_text }}
+            </span>
+          </a>
+
+        {% endif %}
+
+      </div>
+    {% endif %}
+
+  </div>
+</section>
+
+
+<style>
+  .private-enquiry--{{ section.id }} {
+    width: 100%;
+
+    padding-top:
+      {{ section.settings.section_padding_top }}px;
+
+    padding-bottom:
+      {{ section.settings.section_padding_bottom }}px;
+
+    background:
+      {{ section.settings.section_background }};
+
+    color:
+      {{ section.settings.text_color }};
+  }
+
+
+  .private-enquiry--{{ section.id }}
+  .private-enquiry__container {
+
+    width: min(
+      100% - {{ section.settings.mobile_side_space | times: 2 }}px,
+      {{ section.settings.max_width }}px
+    );
+
+    margin: 0 auto;
+
+    padding:
+      {{ section.settings.box_padding_vertical }}px
+      {{ section.settings.box_padding_horizontal }}px;
+
+    background:
+      {{ section.settings.box_background }};
+
+    border:
+      {{ section.settings.box_border_width }}px
+      solid
+      {{ section.settings.box_border_color }};
+
+    border-radius:
+      {{ section.settings.box_radius }}px;
+
+    box-sizing: border-box;
+  }
+
+
+  .private-enquiry--{{ section.id }}
+  .private-enquiry__heading {
+
+    margin:
+      0 0
+      {{ section.settings.heading_bottom_space }}px;
+
+    color:
+      {{ section.settings.heading_color }};
+
+    font-size:
+      {{ section.settings.heading_size }}px;
+
+    font-weight:
+      {{ section.settings.heading_weight }};
+
+    line-height: 1.2;
+
+    text-align:
+      {{ section.settings.text_alignment }};
+  }
+
+
+  .private-enquiry--{{ section.id }}
+  .private-enquiry__description {
+
+    max-width:
+      {{ section.settings.description_max_width }}px;
+
+    margin:
+      0 auto
+      {{ section.settings.description_bottom_space }}px;
+
+    color:
+      {{ section.settings.text_color }};
+
+    font-size:
+      {{ section.settings.description_size }}px;
+
+    line-height:
+      {{ section.settings.description_line_height | divided_by: 10.0 }};
+
+    text-align:
+      {{ section.settings.text_alignment }};
+  }
+
+
+  .private-enquiry--{{ section.id }}
+  .private-enquiry__form {
+
+    display: block;
+    width: 100%;
+  }
+
+
+  .private-enquiry--{{ section.id }}
+  .private-enquiry__grid {
+
+    display: grid;
+
+    grid-template-columns:
+      repeat({{ section.settings.desktop_columns }}, minmax(0, 1fr));
+
+    gap:
+      {{ section.settings.row_gap }}px
+      {{ section.settings.column_gap }}px;
+  }
+
+
+  .private-enquiry--{{ section.id }}
+  .private-enquiry__field {
+
+    min-width: 0;
+  }
+
+
+  .private-enquiry--{{ section.id }}
+  .private-enquiry__field--full {
+
+    margin-top:
+      {{ section.settings.row_gap }}px;
+  }
+
+
+  .private-enquiry--{{ section.id }}
+  .private-enquiry__label {
+
+    display: block;
+
+    margin:
+      0 0
+      {{ section.settings.label_bottom_space }}px;
+
+    color:
+      {{ section.settings.label_color }};
+
+    font-size:
+      {{ section.settings.label_size }}px;
+
+    font-weight:
+      {{ section.settings.label_weight }};
+
+    line-height: 1.3;
+  }
+
+
+  .private-enquiry--{{ section.id }}
+  .private-enquiry__input,
+
+  .private-enquiry--{{ section.id }}
+  .private-enquiry__select,
+
+  .private-enquiry--{{ section.id }}
+  .private-enquiry__textarea {
+
+    width: 100%;
+
+    min-height:
+      {{ section.settings.field_height }}px;
+
+    padding:
+      0
+      {{ section.settings.field_horizontal_padding }}px;
+
+    border:
+      {{ section.settings.field_border_width }}px
+      solid
+      {{ section.settings.field_border_color }};
+
+    border-radius:
+      {{ section.settings.field_radius }}px;
+
+    background:
+      {{ section.settings.field_background }};
+
+    color:
+      {{ section.settings.field_text_color }};
+
+    font: inherit;
+
+    font-size:
+      {{ section.settings.field_font_size }}px;
+
+    outline: none;
+
+    box-shadow: none;
+
+    box-sizing: border-box;
+  }
+
+
+  .private-enquiry--{{ section.id }}
+  .private-enquiry__textarea {
+
+    min-height:
+      {{ section.settings.textarea_min_height }}px;
+
+    padding-top:
+      {{ section.settings.field_vertical_padding }}px;
+
+    padding-bottom:
+      {{ section.settings.field_vertical_padding }}px;
+
+    resize:
+      {{ section.settings.textarea_resize }};
+  }
+
+
+  .private-enquiry--{{ section.id }}
+  .private-enquiry__input:focus,
+
+  .private-enquiry--{{ section.id }}
+  .private-enquiry__select:focus,
+
+  .private-enquiry--{{ section.id }}
+  .private-enquiry__textarea:focus {
+
+    border-color:
+      {{ section.settings.field_focus_border_color }};
+  }
+
+
+  .private-enquiry--{{ section.id }}
+  .private-enquiry__input::placeholder,
+
+  .private-enquiry--{{ section.id }}
+  .private-enquiry__textarea::placeholder {
+
+    color:
+      {{ section.settings.placeholder_color }};
+
+    opacity: 1;
+  }
+
+
+  .private-enquiry--{{ section.id }}
+  .private-enquiry__submit {
+
+    width:
+      {% if section.settings.submit_full_width %}
+        100%
+      {% else %}
+        auto
+      {% endif %};
+
+    min-height:
+      {{ section.settings.submit_height }}px;
+
+    margin-top:
+      {{ section.settings.submit_top_space }}px;
+
+    padding:
+      0
+      {{ section.settings.submit_horizontal_padding }}px;
+
+    border:
+      {{ section.settings.submit_border_width }}px
+      solid
+      {{ section.settings.submit_border_color }};
+
+    border-radius:
+      {{ section.settings.submit_radius }}px;
+
+    background:
+      {{ section.settings.submit_background }};
+
+    color:
+      {{ section.settings.submit_color }};
+
+    font: inherit;
+
+    font-size:
+      {{ section.settings.submit_font_size }}px;
+
+    font-weight:
+      {{ section.settings.submit_weight }};
+
+    letter-spacing:
+      {{ section.settings.submit_letter_spacing | divided_by: 100.0 }}em;
+
+    cursor: pointer;
+
+    transition:
+      background .2s ease,
+      color .2s ease,
+      border-color .2s ease;
+  }
+
+
+  .private-enquiry--{{ section.id }}
+  .private-enquiry__submit:hover {
+
+    background:
+      {{ section.settings.submit_hover_background }};
+
+    color:
+      {{ section.settings.submit_hover_color }};
+
+    border-color:
+      {{ section.settings.submit_hover_border_color }};
+  }
+
+
+  .private-enquiry--{{ section.id }}
+  .private-enquiry__secondary {
+
+    display: grid;
+
+    grid-template-columns:
+      repeat({{ section.settings.secondary_columns }}, minmax(0, 1fr));
+
+    gap:
+      {{ section.settings.secondary_gap }}px;
+
+    margin-top:
+      {{ section.settings.secondary_top_space }}px;
+  }
+
+
+  .private-enquiry--{{ section.id }}
+  .private-enquiry__secondary-button {
+
+    min-height:
+      {{ section.settings.secondary_button_height }}px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap:
+      {{ section.settings.secondary_icon_gap }}px;
+
+    padding:
+      0
+      {{ section.settings.secondary_horizontal_padding }}px;
+
+    border:
+      {{ section.settings.secondary_border_width }}px
+      solid;
+
+    border-radius:
+      {{ section.settings.secondary_radius }}px;
+
+    text-decoration: none;
+
+    font-size:
+      {{ section.settings.secondary_font_size }}px;
+
+    font-weight:
+      {{ section.settings.secondary_weight }};
+
+    transition:
+      background .2s ease,
+      color .2s ease,
+      border-color .2s ease;
+  }
+
+
+  .private-enquiry--{{ section.id }}
+  .private-enquiry__secondary-button--whatsapp {
+
+    background:
+      {{ section.settings.whatsapp_background }};
+
+    color:
+      {{ section.settings.whatsapp_color }};
+
+    border-color:
+      {{ section.settings.whatsapp_border_color }};
+  }
+
+
+  .private-enquiry--{{ section.id }}
+  .private-enquiry__secondary-button--whatsapp:hover {
+
+    background:
+      {{ section.settings.whatsapp_hover_background }};
+
+    color:
+      {{ section.settings.whatsapp_hover_color }};
+  }
+
+
+  .private-enquiry--{{ section.id }}
+  .private-enquiry__secondary-button--appointment {
+
+    background:
+      {{ section.settings.appointment_background }};
+
+    color:
+      {{ section.settings.appointment_color }};
+
+    border-color:
+      {{ section.settings.appointment_border_color }};
+  }
+
+
+  .private-enquiry--{{ section.id }}
+  .private-enquiry__secondary-button--appointment:hover {
+
+    background:
+      {{ section.settings.appointment_hover_background }};
+
+    color:
+      {{ section.settings.appointment_hover_color }};
+  }
+
+
+  .private-enquiry--{{ section.id }}
+  .private-enquiry__button-icon {
+
+    display: block;
+
+    width:
+      {{ section.settings.secondary_icon_size }}px;
+
+    height:
+      {{ section.settings.secondary_icon_size }}px;
+
+    object-fit: contain;
+  }
+
+
+  .private-enquiry--{{ section.id }}
+  .private-enquiry__success,
+
+  .private-enquiry--{{ section.id }}
+  .private-enquiry__errors {
+
+    margin-bottom:
+      {{ section.settings.message_bottom_space }}px;
+
+    padding:
+      {{ section.settings.message_padding }}px;
+
+    border-radius:
+      {{ section.settings.message_radius }}px;
+
+    font-size:
+      {{ section.settings.message_font_size }}px;
+  }
+
+
+  .private-enquiry--{{ section.id }}
+  .private-enquiry__success {
+
+    background:
+      {{ section.settings.success_background }};
+
+    color:
+      {{ section.settings.success_color }};
+  }
+
+
+  .private-enquiry--{{ section.id }}
+  .private-enquiry__errors {
+
+    background:
+      {{ section.settings.error_background }};
+
+    color:
+      {{ section.settings.error_color }};
+  }
+
+
+  @media screen and (max-width: 749px) {
+
+    .private-enquiry--{{ section.id }} {
+
+      padding-top:
+        {{ section.settings.section_padding_top_mobile }}px;
+
+      padding-bottom:
+        {{ section.settings.section_padding_bottom_mobile }}px;
+    }
+
+
+    .private-enquiry--{{ section.id }}
+    .private-enquiry__container {
+
+      padding:
+        {{ section.settings.box_padding_vertical_mobile }}px
+        {{ section.settings.box_padding_horizontal_mobile }}px;
+    }
+
+
+    .private-enquiry--{{ section.id }}
+    .private-enquiry__heading {
+
+      font-size:
+        {{ section.settings.heading_size_mobile }}px;
+    }
+
+
+    .private-enquiry--{{ section.id }}
+    .private-enquiry__description {
+
+      font-size:
+        {{ section.settings.description_size_mobile }}px;
+    }
+
+
+    .private-enquiry--{{ section.id }}
+    .private-enquiry__grid {
+
+      grid-template-columns: 1fr;
+
+      gap:
+        {{ section.settings.row_gap_mobile }}px;
+    }
+
+
+    .private-enquiry--{{ section.id }}
+    .private-enquiry__field--full {
+
+      margin-top:
+        {{ section.settings.row_gap_mobile }}px;
+    }
+
+
+    .private-enquiry--{{ section.id }}
+    .private-enquiry__input,
+
+    .private-enquiry--{{ section.id }}
+    .private-enquiry__select,
+
+    .private-enquiry--{{ section.id }}
+    .private-enquiry__textarea {
+
+      font-size:
+        {{ section.settings.field_font_size_mobile }}px;
+    }
+
+
+    .private-enquiry--{{ section.id }}
+    .private-enquiry__secondary {
+
+      grid-template-columns:
+        {% if section.settings.secondary_stack_mobile %}
+          1fr
+        {% else %}
+          repeat(2, minmax(0, 1fr))
+        {% endif %};
+
+      gap:
+        {{ section.settings.secondary_gap_mobile }}px;
+    }
+
+
+    .private-enquiry--{{ section.id }}
+    .private-enquiry__secondary-button {
+
+      font-size:
+        {{ section.settings.secondary_font_size_mobile }}px;
+    }
+
+  }
+</style>
+
+
+{% schema %}
+{
+  "name": "Private enquiry form",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Private Enquiry"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Description",
+      "default": "<p>Tell us what you are looking for and our team will be happy to assist you.</p>"
+    },
+    {
+      "type": "text",
+      "id": "enquiry_type",
+      "label": "Email enquiry type",
+      "default": "Private enquiry"
+    },
+    {
+      "type": "text",
+      "id": "success_message",
+      "label": "Success message",
+      "default": "Thank you. Your enquiry has been submitted successfully."
+    },
+
+    {
+      "type": "header",
+      "content": "Name field"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_name",
+      "label": "Show name",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "name_required",
+      "label": "Name required",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "name_label",
+      "label": "Label",
+      "default": "Name"
+    },
+    {
+      "type": "text",
+      "id": "name_placeholder",
+      "label": "Placeholder",
+      "default": "Your name"
+    },
+
+    {
+      "type": "header",
+      "content": "Email field"
+    },
+    {
+      "type": "text",
+      "id": "email_label",
+      "label": "Label",
+      "default": "Email"
+    },
+    {
+      "type": "text",
+      "id": "email_placeholder",
+      "label": "Placeholder",
+      "default": "Your email address"
+    },
+
+    {
+      "type": "header",
+      "content": "Phone field"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_phone",
+      "label": "Show phone",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "phone_label",
+      "label": "Label",
+      "default": "Phone"
+    },
+    {
+      "type": "text",
+      "id": "phone_placeholder",
+      "label": "Placeholder",
+      "default": "Your phone number"
+    },
+
+    {
+      "type": "header",
+      "content": "Occasion"
+    },
+    {
+      "type": "text",
+      "id": "occasion_label",
+      "label": "Label",
+      "default": "Occasion"
+    },
+    {
+      "type": "text",
+      "id": "occasion_placeholder",
+      "label": "Placeholder",
+      "default": "Select occasion"
+    },
+    {
+      "type": "textarea",
+      "id": "occasion_options",
+      "label": "Options",
+      "info": "One option per line.",
+      "default": "Engagement\nWedding\nAnniversary\nBirthday\nGift\nOther"
+    },
+
+    {
+      "type": "header",
+      "content": "Budget"
+    },
+    {
+      "type": "text",
+      "id": "budget_label",
+      "label": "Label",
+      "default": "Budget"
+    },
+    {
+      "type": "text",
+      "id": "budget_placeholder",
+      "label": "Placeholder",
+      "default": "Select budget"
+    },
+    {
+      "type": "textarea",
+      "id": "budget_options",
+      "label": "Options",
+      "info": "One option per line.",
+      "default": "Under AED 5,000\nAED 5,000–10,000\nAED 10,000–25,000\nAED 25,000–50,000\nAED 50,000+"
+    },
+
+    {
+      "type": "header",
+      "content": "Category"
+    },
+    {
+      "type": "text",
+      "id": "category_label",
+      "label": "Label",
+      "default": "Category"
+    },
+    {
+      "type": "text",
+      "id": "category_placeholder",
+      "label": "Placeholder",
+      "default": "Select category"
+    },
+    {
+      "type": "textarea",
+      "id": "category_options",
+      "label": "Options",
+      "info": "One option per line.",
+      "default": "Rings\nNecklaces\nBracelets\nEarrings\nBespoke piece\nOther"
+    },
+
+    {
+      "type": "header",
+      "content": "Preferred contact"
+    },
+    {
+      "type": "text",
+      "id": "contact_method_label",
+      "label": "Label",
+      "default": "Preferred contact method"
+    },
+    {
+      "type": "text",
+      "id": "contact_method_placeholder",
+      "label": "Placeholder",
+      "default": "Select contact method"
+    },
+    {
+      "type": "textarea",
+      "id": "contact_method_options",
+      "label": "Options",
+      "info": "One option per line.",
+      "default": "Email\nPhone\nWhatsApp"
+    },
+
+    {
+      "type": "header",
+      "content": "Message"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_message",
+      "label": "Show message field",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "message_label",
+      "label": "Label",
+      "default": "Message"
+    },
+    {
+      "type": "text",
+      "id": "message_placeholder",
+      "label": "Placeholder",
+      "default": "Tell us a little more about what you are looking for"
+    },
+    {
+      "type": "range",
+      "id": "message_rows",
+      "label": "Rows",
+      "min": 2,
+      "max": 10,
+      "step": 1,
+      "default": 4
+    },
+    {
+      "type": "text",
+      "id": "hidden_message",
+      "label": "Hidden message when field disabled",
+      "default": "Private enquiry submitted from website."
+    },
+
+    {
+      "type": "header",
+      "content": "Submit button"
+    },
+    {
+      "type": "text",
+      "id": "submit_text",
+      "label": "Text",
+      "default": "Submit Enquiry"
+    },
+    {
+      "type": "checkbox",
+      "id": "submit_full_width",
+      "label": "Full width",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "submit_height",
+      "label": "Height",
+      "min": 38,
+      "max": 80,
+      "step": 1,
+      "unit": "px",
+      "default": 52
+    },
+    {
+      "type": "range",
+      "id": "submit_font_size",
+      "label": "Font size",
+      "min": 10,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "select",
+      "id": "submit_weight",
+      "label": "Font weight",
+      "default": "500",
+      "options": [
+        { "value": "400", "label": "Regular" },
+        { "value": "500", "label": "Medium" },
+        { "value": "600", "label": "Semi bold" },
+        { "value": "700", "label": "Bold" }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "submit_letter_spacing",
+      "label": "Letter spacing",
+      "min": 0,
+      "max": 30,
+      "step": 1,
+      "unit": "%",
+      "default": 8
+    },
+    {
+      "type": "color",
+      "id": "submit_background",
+      "label": "Background",
+      "default": "#111111"
+    },
+    {
+      "type": "color",
+      "id": "submit_color",
+      "label": "Text color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "submit_border_color",
+      "label": "Border",
+      "default": "#111111"
+    },
+    {
+      "type": "range",
+      "id": "submit_border_width",
+      "label": "Border width",
+      "min": 0,
+      "max": 5,
+      "step": 1,
+      "unit": "px",
+      "default": 1
+    },
+    {
+      "type": "range",
+      "id": "submit_radius",
+      "label": "Radius",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "color",
+      "id": "submit_hover_background",
+      "label": "Hover background",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "submit_hover_color",
+      "label": "Hover text",
+      "default": "#111111"
+    },
+    {
+      "type": "color",
+      "id": "submit_hover_border_color",
+      "label": "Hover border",
+      "default": "#111111"
+    },
+    {
+      "type": "range",
+      "id": "submit_horizontal_padding",
+      "label": "Horizontal padding",
+      "min": 10,
+      "max": 60,
+      "step": 1,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "submit_top_space",
+      "label": "Space above",
+      "min": 0,
+      "max": 60,
+      "step": 1,
+      "unit": "px",
+      "default": 22
+    },
+
+    {
+      "type": "header",
+      "content": "WhatsApp"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_secondary_buttons",
+      "label": "Show buttons below submit",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_whatsapp",
+      "label": "Show WhatsApp",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "whatsapp_button_text",
+      "label": "Button text",
+      "default": "Chat on WhatsApp"
+    },
+    {
+      "type": "text",
+      "id": "whatsapp_number",
+      "label": "WhatsApp number",
+      "info": "Include country code. Example: +971501234567"
+    },
+    {
+      "type": "textarea",
+      "id": "whatsapp_message",
+      "label": "Pre-filled message",
+      "default": "Hello, I would like to make a private enquiry."
+    },
+    {
+      "type": "image_picker",
+      "id": "whatsapp_icon",
+      "label": "Icon"
+    },
+    {
+      "type": "color",
+      "id": "whatsapp_background",
+      "label": "Background",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "whatsapp_color",
+      "label": "Text",
+      "default": "#111111"
+    },
+    {
+      "type": "color",
+      "id": "whatsapp_border_color",
+      "label": "Border",
+      "default": "#111111"
+    },
+    {
+      "type": "color",
+      "id": "whatsapp_hover_background",
+      "label": "Hover background",
+      "default": "#F4F4F4"
+    },
+    {
+      "type": "color",
+      "id": "whatsapp_hover_color",
+      "label": "Hover text",
+      "default": "#111111"
+    },
+
+    {
+      "type": "header",
+      "content": "Private appointment"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_appointment",
+      "label": "Show appointment button",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "appointment_button_text",
+      "label": "Button text",
+      "default": "Book a Private Appointment"
+    },
+    {
+      "type": "url",
+      "id": "appointment_link",
+      "label": "Appointment booking link"
+    },
+    {
+      "type": "checkbox",
+      "id": "appointment_new_tab",
+      "label": "Open in new tab",
+      "default": false
+    },
+    {
+      "type": "image_picker",
+      "id": "appointment_icon",
+      "label": "Icon"
+    },
+    {
+      "type": "color",
+      "id": "appointment_background",
+      "label": "Background",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "appointment_color",
+      "label": "Text",
+      "default": "#111111"
+    },
+    {
+      "type": "color",
+      "id": "appointment_border_color",
+      "label": "Border",
+      "default": "#111111"
+    },
+    {
+      "type": "color",
+      "id": "appointment_hover_background",
+      "label": "Hover background",
+      "default": "#F4F4F4"
+    },
+    {
+      "type": "color",
+      "id": "appointment_hover_color",
+      "label": "Hover text",
+      "default": "#111111"
+    },
+
+    {
+      "type": "header",
+      "content": "Secondary buttons layout"
+    },
+    {
+      "type": "select",
+      "id": "secondary_columns",
+      "label": "Desktop columns",
+      "default": "2",
+      "options": [
+        { "value": "1", "label": "1" },
+        { "value": "2", "label": "2" }
+      ]
+    },
+    {
+      "type": "checkbox",
+      "id": "secondary_stack_mobile",
+      "label": "Stack on mobile",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "secondary_button_height",
+      "label": "Height",
+      "min": 38,
+      "max": 80,
+      "step": 1,
+      "unit": "px",
+      "default": 50
+    },
+    {
+      "type": "range",
+      "id": "secondary_font_size",
+      "label": "Font size",
+      "min": 10,
+      "max": 22,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "secondary_font_size_mobile",
+      "label": "Font size mobile",
+      "min": 10,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "select",
+      "id": "secondary_weight",
+      "label": "Weight",
+      "default": "500",
+      "options": [
+        { "value": "400", "label": "Regular" },
+        { "value": "500", "label": "Medium" },
+        { "value": "600", "label": "Semi bold" },
+        { "value": "700", "label": "Bold" }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "secondary_border_width",
+      "label": "Border width",
+      "min": 0,
+      "max": 5,
+      "step": 1,
+      "unit": "px",
+      "default": 1
+    },
+    {
+      "type": "range",
+      "id": "secondary_radius",
+      "label": "Radius",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "secondary_horizontal_padding",
+      "label": "Horizontal padding",
+      "min": 10,
+      "max": 60,
+      "step": 1,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "secondary_top_space",
+      "label": "Space above buttons",
+      "min": 0,
+      "max": 60,
+      "step": 1,
+      "unit": "px",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "secondary_gap",
+      "label": "Desktop gap",
+      "min": 0,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "secondary_gap_mobile",
+      "label": "Mobile gap",
+      "min": 0,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "secondary_icon_size",
+      "label": "Icon size",
+      "min": 10,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "secondary_icon_gap",
+      "label": "Icon gap",
+      "min": 0,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "default": 8
+    },
+
+    {
+      "type": "header",
+      "content": "Form fields"
+    },
+    {
+      "type": "select",
+      "id": "desktop_columns",
+      "label": "Desktop columns",
+      "default": "2",
+      "options": [
+        { "value": "1", "label": "1" },
+        { "value": "2", "label": "2" }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "field_height",
+      "label": "Field height",
+      "min": 38,
+      "max": 80,
+      "step": 1,
+      "unit": "px",
+      "default": 50
+    },
+    {
+      "type": "range",
+      "id": "field_font_size",
+      "label": "Font size",
+      "min": 10,
+      "max": 22,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "field_font_size_mobile",
+      "label": "Font size mobile",
+      "min": 10,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "color",
+      "id": "field_background",
+      "label": "Background",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "field_text_color",
+      "label": "Text color",
+      "default": "#111111"
+    },
+    {
+      "type": "color",
+      "id": "placeholder_color",
+      "label": "Placeholder",
+      "default": "#777777"
+    },
+    {
+      "type": "color",
+      "id": "field_border_color",
+      "label": "Border",
+      "default": "#CFCFCF"
+    },
+    {
+      "type": "color",
+      "id": "field_focus_border_color",
+      "label": "Focus border",
+      "default": "#111111"
+    },
+    {
+      "type": "range",
+      "id": "field_border_width",
+      "label": "Border width",
+      "min": 0,
+      "max": 5,
+      "step": 1,
+      "unit": "px",
+      "default": 1
+    },
+    {
+      "type": "range",
+      "id": "field_radius",
+      "label": "Radius",
+      "min": 0,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "field_horizontal_padding",
+      "label": "Horizontal padding",
+      "min": 5,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "field_vertical_padding",
+      "label": "Textarea vertical padding",
+      "min": 5,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "textarea_min_height",
+      "label": "Textarea minimum height",
+      "min": 80,
+      "max": 300,
+      "step": 5,
+      "unit": "px",
+      "default": 120
+    },
+    {
+      "type": "select",
+      "id": "textarea_resize",
+      "label": "Textarea resize",
+      "default": "vertical",
+      "options": [
+        { "value": "none", "label": "None" },
+        { "value": "vertical", "label": "Vertical" },
+        { "value": "both", "label": "Both" }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "row_gap",
+      "label": "Row gap",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "row_gap_mobile",
+      "label": "Row gap mobile",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "column_gap",
+      "label": "Column gap",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+
+    {
+      "type": "header",
+      "content": "Labels"
+    },
+    {
+      "type": "range",
+      "id": "label_size",
+      "label": "Font size",
+      "min": 10,
+      "max": 22,
+      "step": 1,
+      "unit": "px",
+      "default": 13
+    },
+    {
+      "type": "select",
+      "id": "label_weight",
+      "label": "Weight",
+      "default": "500",
+      "options": [
+        { "value": "400", "label": "Regular" },
+        { "value": "500", "label": "Medium" },
+        { "value": "600", "label": "Semi bold" },
+        { "value": "700", "label": "Bold" }
+      ]
+    },
+    {
+      "type": "color",
+      "id": "label_color",
+      "label": "Color",
+      "default": "#111111"
+    },
+    {
+      "type": "range",
+      "id": "label_bottom_space",
+      "label": "Space below",
+      "min": 0,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 7
+    },
+
+    {
+      "type": "header",
+      "content": "Section layout"
+    },
+    {
+      "type": "range",
+      "id": "max_width",
+      "label": "Maximum width",
+      "min": 500,
+      "max": 1600,
+      "step": 20,
+      "unit": "px",
+      "default": 900
+    },
+    {
+      "type": "range",
+      "id": "mobile_side_space",
+      "label": "Mobile side space",
+      "min": 10,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "select",
+      "id": "text_alignment",
+      "label": "Heading alignment",
+      "default": "center",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "right", "label": "Right" }
+      ]
+    },
+    {
+      "type": "color",
+      "id": "section_background",
+      "label": "Section background",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "box_background",
+      "label": "Form box background",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "box_border_color",
+      "label": "Box border",
+      "default": "#E5E5E5"
+    },
+    {
+      "type": "range",
+      "id": "box_border_width",
+      "label": "Box border width",
+      "min": 0,
+      "max": 5,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "box_radius",
+      "label": "Box radius",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "box_padding_vertical",
+      "label": "Box vertical padding",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "default": 30
+    },
+    {
+      "type": "range",
+      "id": "box_padding_horizontal",
+      "label": "Box horizontal padding",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "default": 30
+    },
+    {
+      "type": "range",
+      "id": "box_padding_vertical_mobile",
+      "label": "Box vertical padding mobile",
+      "min": 0,
+      "max": 80,
+      "step": 2,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "box_padding_horizontal_mobile",
+      "label": "Box horizontal padding mobile",
+      "min": 0,
+      "max": 50,
+      "step": 2,
+      "unit": "px",
+      "default": 0
+    },
+
+    {
+      "type": "header",
+      "content": "Heading & description"
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "label": "Heading size",
+      "min": 16,
+      "max": 60,
+      "step": 1,
+      "unit": "px",
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "heading_size_mobile",
+      "label": "Heading size mobile",
+      "min": 16,
+      "max": 44,
+      "step": 1,
+      "unit": "px",
+      "default": 26
+    },
+    {
+      "type": "select",
+      "id": "heading_weight",
+      "label": "Heading weight",
+      "default": "500",
+      "options": [
+        { "value": "400", "label": "Regular" },
+        { "value": "500", "label": "Medium" },
+        { "value": "600", "label": "Semi bold" },
+        { "value": "700", "label": "Bold" }
+      ]
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading color",
+      "default": "#111111"
+    },
+    {
+      "type": "range",
+      "id": "heading_bottom_space",
+      "label": "Space below heading",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "description_size",
+      "label": "Description size",
+      "min": 10,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 15
+    },
+    {
+      "type": "range",
+      "id": "description_size_mobile",
+      "label": "Description size mobile",
+      "min": 10,
+      "max": 22,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "description_line_height",
+      "label": "Description line height",
+      "min": 10,
+      "max": 25,
+      "step": 1,
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "description_max_width",
+      "label": "Description max width",
+      "min": 300,
+      "max": 1000,
+      "step": 20,
+      "unit": "px",
+      "default": 640
+    },
+    {
+      "type": "range",
+      "id": "description_bottom_space",
+      "label": "Space below description",
+      "min": 0,
+      "max": 60,
+      "step": 1,
+      "unit": "px",
+      "default": 28
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#555555"
+    },
+
+    {
+      "type": "header",
+      "content": "Section spacing"
+    },
+    {
+      "type": "range",
+      "id": "section_padding_top",
+      "label": "Top padding",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "section_padding_bottom",
+      "label": "Bottom padding",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "section_padding_top_mobile",
+      "label": "Top padding mobile",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "section_padding_bottom_mobile",
+      "label": "Bottom padding mobile",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 40
+    },
+
+    {
+      "type": "header",
+      "content": "Form messages"
+    },
+    {
+      "type": "range",
+      "id": "message_font_size",
+      "label": "Font size",
+      "min": 10,
+      "max": 22,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "message_padding",
+      "label": "Padding",
+      "min": 0,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "message_radius",
+      "label": "Radius",
+      "min": 0,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "message_bottom_space",
+      "label": "Space below",
+      "min": 0,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "color",
+      "id": "success_background",
+      "label": "Success background",
+      "default": "#F1F7F1"
+    },
+    {
+      "type": "color",
+      "id": "success_color",
+      "label": "Success text",
+      "default": "#245B2A"
+    },
+    {
+      "type": "color",
+      "id": "error_background",
+      "label": "Error background",
+      "default": "#FFF1F1"
+    },
+    {
+      "type": "color",
+      "id": "error_color",
+      "label": "Error text",
+      "default": "#A11A1A"
+    }
+  ],
+
+  "presets": [
+    {
+      "name": "Private enquiry form"
+    }
+  ]
+}
+{% endschema %}

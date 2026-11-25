@@ -1,0 +1,386 @@
+{%- style -%}
+  #s2i-section-{{ section.id }} {
+    background-color: {{ section.settings.bg_color }};
+    padding-top: {{ section.settings.pad_top_m }}px;
+    padding-bottom: {{ section.settings.pad_bottom_m }}px;
+    padding-left: {{ section.settings.pad_left_m }}px;
+    padding-right: {{ section.settings.pad_right_m }}px;
+    width: 100%;
+    overflow: hidden;
+  }
+
+  @media screen and (min-width: 769px) {
+    #s2i-section-{{ section.id }} {
+      padding-top: {{ section.settings.pad_top_d }}px;
+      padding-bottom: {{ section.settings.pad_bottom_d }}px;
+      padding-left: {{ section.settings.pad_left_d }}px;
+      padding-right: {{ section.settings.pad_right_d }}px;
+    }
+  }
+
+  .s2i-container-{{ section.id }} {
+    width: 100%;
+    {% if section.settings.enable_full_width %}
+      max-width: 100%;
+    {% else %}
+      max-width: {{ section.settings.max_width }}px;
+    {% endif %}
+    margin: 0 auto;
+    box-sizing: border-box;
+  }
+
+  .s2i-grid-{{ section.id }} {
+    display: flex;
+    flex-direction: {% if section.settings.mobile_order == 'media_first' %}column-reverse{% else %}column{% endif %};
+    gap: {{ section.settings.grid_gap_m }}px;
+    align-items: {{ section.settings.content_v_align }};
+  }
+
+  @media screen and (min-width: 769px) {
+    .s2i-grid-{{ section.id }} {
+      flex-direction: row;
+      gap: {{ section.settings.grid_gap_d }}px;
+    }
+  }
+
+  /* Left Content Box */
+  .s2i-content-{{ section.id }} {
+    width: 100%;
+    text-align: {{ section.settings.text_align_m }};
+    box-sizing: border-box;
+    padding-left: {{ section.settings.content_pad_left_m }}px;
+    padding-right: {{ section.settings.content_pad_right_m }}px;
+  }
+
+  @media screen and (min-width: 769px) {
+    .s2i-content-{{ section.id }} {
+      width: {{ section.settings.content_width_d }}%;
+      text-align: {{ section.settings.text_align_d }};
+      padding-left: {{ section.settings.content_pad_left_d }}px;
+      padding-right: {{ section.settings.content_pad_right_d }}px;
+    }
+  }
+
+  /* Heading Styles */
+  .s2i-title-{{ section.id }} {
+    color: {{ section.settings.title_color }};
+    font-size: {{ section.settings.title_size_m }}px;
+    font-weight: {{ section.settings.title_weight }};
+    line-height: {{ section.settings.title_lh }};
+    letter-spacing: {{ section.settings.title_ls }}px;
+    text-transform: {{ section.settings.title_transform }};
+    margin-top: 0;
+    margin-bottom: {{ section.settings.title_mb_m }}px;
+  }
+
+  @media screen and (min-width: 769px) {
+    .s2i-title-{{ section.id }} {
+      font-size: {{ section.settings.title_size_d }}px;
+      margin-bottom: {{ section.settings.title_mb_d }}px;
+    }
+  }
+
+  /* Subtext Styles */
+  .s2i-subtext-{{ section.id }} {
+    color: {{ section.settings.subtext_color }};
+    font-size: {{ section.settings.subtext_size_m }}px;
+    font-weight: {{ section.settings.subtext_weight }};
+    line-height: {{ section.settings.subtext_lh }};
+    letter-spacing: {{ section.settings.subtext_ls }}px;
+    margin-top: 0;
+    margin-bottom: {{ section.settings.subtext_mb_m }}px;
+  }
+
+  @media screen and (min-width: 769px) {
+    .s2i-subtext-{{ section.id }} {
+      font-size: {{ section.settings.subtext_size_d }}px;
+      margin-bottom: {{ section.settings.subtext_mb_d }}px;
+    }
+  }
+
+  /* CTA Links Container */
+  .s2i-cta-group-{{ section.id }} {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: {{ section.settings.cta_align_m }};
+    gap: {{ section.settings.cta_gap_m }}px;
+  }
+
+  @media screen and (min-width: 769px) {
+    .s2i-cta-group-{{ section.id }} {
+      justify-content: {{ section.settings.cta_align_d }};
+      gap: {{ section.settings.cta_gap_d }}px;
+    }
+  }
+
+  .s2i-btn-1-{{ section.id }} {
+    color: {{ section.settings.btn_1_color }};
+    font-size: {{ section.settings.btn_size_m }}px;
+    font-weight: {{ section.settings.btn_weight }};
+    letter-spacing: {{ section.settings.btn_ls }}px;
+    text-transform: {{ section.settings.btn_transform }};
+    text-decoration: none;
+    display: inline-block;
+    padding-bottom: {{ section.settings.btn_border_offset }}px;
+    border-bottom: {{ section.settings.btn_border_w }}px solid {{ section.settings.btn_1_border_color }};
+    transition: all 0.3s ease;
+  }
+
+  .s2i-btn-1-{{ section.id }}:hover {
+    color: {{ section.settings.btn_1_hover_color }};
+    border-bottom-color: {{ section.settings.btn_1_hover_color }};
+  }
+
+  .s2i-btn-2-{{ section.id }} {
+    color: {{ section.settings.btn_2_color }};
+    font-size: {{ section.settings.btn_size_m }}px;
+    font-weight: {{ section.settings.btn_weight }};
+    letter-spacing: {{ section.settings.btn_ls }}px;
+    text-transform: {{ section.settings.btn_transform }};
+    text-decoration: none;
+    display: inline-block;
+    padding-bottom: {{ section.settings.btn_border_offset }}px;
+    border-bottom: {{ section.settings.btn_border_w }}px solid {{ section.settings.btn_2_border_color }};
+    transition: all 0.3s ease;
+  }
+
+  .s2i-btn-2-{{ section.id }}:hover {
+    color: {{ section.settings.btn_2_hover_color }};
+    border-bottom-color: {{ section.settings.btn_2_hover_color }};
+  }
+
+  @media screen and (min-width: 769px) {
+    .s2i-btn-1-{{ section.id }}, .s2i-btn-2-{{ section.id }} {
+      font-size: {{ section.settings.btn_size_d }}px;
+    }
+  }
+
+  /* Right Media Box */
+  .s2i-media-wrapper-{{ section.id }} {
+    width: 100%;
+    display: flex;
+    gap: {{ section.settings.media_gap_m }}px;
+  }
+
+  @media screen and (min-width: 769px) {
+    .s2i-media-wrapper-{{ section.id }} {
+      width: calc(100% - {{ section.settings.content_width_d }}%);
+      gap: {{ section.settings.media_gap_d }}px;
+    }
+  }
+
+  .s2i-media-item-{{ section.id }} {
+    flex: 1;
+    position: relative;
+    aspect-ratio: {{ section.settings.media_aspect_m }};
+    border-radius: {{ section.settings.media_radius_m }}px;
+    overflow: hidden;
+    background-color: #f4f4f4;
+  }
+
+  @media screen and (min-width: 769px) {
+    .s2i-media-item-{{ section.id }} {
+      aspect-ratio: {{ section.settings.media_aspect_d }};
+      border-radius: {{ section.settings.media_radius_d }}px;
+    }
+  }
+
+  .s2i-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+{%- endstyle -%}
+
+<section id="s2i-section-{{ section.id }}">
+  <div class="s2i-container-{{ section.id }}">
+    <div class="s2i-grid-{{ section.id }}">
+      
+      <!-- Text Content Side -->
+      <div class="s2i-content-{{ section.id }}">
+        {%- if section.settings.title != blank -%}
+          <h2 class="s2i-title-{{ section.id }}">{{ section.settings.title }}</h2>
+        {%- endif -%}
+
+        {%- if section.settings.subtext != blank -%}
+          <div class="s2i-subtext-{{ section.id }}">{{ section.settings.subtext }}</div>
+        {%- endif -%}
+
+        {%- if section.settings.btn_1_text != blank or section.settings.btn_2_text != blank -%}
+          <div class="s2i-cta-group-{{ section.id }}">
+            {%- if section.settings.btn_1_text != blank -%}
+              <a href="{{ section.settings.btn_1_link }}" class="s2i-btn-1-{{ section.id }}">
+                {{ section.settings.btn_1_text }}
+              </a>
+            {%- endif -%}
+
+            {%- if section.settings.btn_2_text != blank -%}
+              <a href="{{ section.settings.btn_2_link }}" class="s2i-btn-2-{{ section.id }}">
+                {{ section.settings.btn_2_text }}
+              </a>
+            {%- endif -%}
+          </div>
+        {%- endif -%}
+      </div>
+
+      <!-- Double Media Side -->
+      <div class="s2i-media-wrapper-{{ section.id }}">
+        
+        <div class="s2i-media-item-{{ section.id }}">
+          {%- if section.settings.image_1 != blank -%}
+            {{ section.settings.image_1 | image_url: width: 1200 | image_tag: 
+              loading: 'lazy', 
+              class: 's2i-img', 
+              alt: section.settings.title 
+            }}
+          {%- else -%}
+            {{ 'image' | placeholder_svg_tag: 's2i-img' }}
+          {%- endif -%}
+        </div>
+
+        <div class="s2i-media-item-{{ section.id }}">
+          {%- if section.settings.image_2 != blank -%}
+            {{ section.settings.image_2 | image_url: width: 1200 | image_tag: 
+              loading: 'lazy', 
+              class: 's2i-img', 
+              alt: section.settings.title 
+            }}
+          {%- else -%}
+            {{ 'image' | placeholder_svg_tag: 's2i-img' }}
+          {%- endif -%}
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Split Editorial Banner",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "1. SECTION LAYOUT & CONTAINER"
+    },
+    { "type": "checkbox", "id": "enable_full_width", "label": "Enable Full Width Screen", "default": false },
+    { "type": "range", "id": "max_width", "min": 1000, "max": 1920, "step": 20, "unit": "px", "label": "Container Max Width", "default": 1440 },
+    { "type": "color", "id": "bg_color", "label": "Background Color", "default": "#FFFFFF" },
+    { "type": "range", "id": "content_width_d", "min": 20, "max": 60, "step": 1, "unit": "%", "label": "Text Column Width (Desktop)", "default": 40 },
+    { "type": "range", "id": "grid_gap_d", "min": 0, "max": 120, "step": 2, "unit": "px", "label": "Desktop Column Gap", "default": 60 },
+    { "type": "range", "id": "grid_gap_m", "min": 0, "max": 80, "step": 2, "unit": "px", "label": "Mobile Row Gap", "default": 32 },
+    { "type": "select", "id": "content_v_align", "label": "Vertical Alignment", "options": [ { "value": "flex-start", "label": "Top" }, { "value": "center", "label": "Center" }, { "value": "flex-end", "label": "Bottom" } ], "default": "center" },
+    { "type": "select", "id": "mobile_order", "label": "Mobile Stack Order", "options": [ { "value": "text_first", "label": "Text Top, Media Bottom" }, { "value": "media_first", "label": "Media Top, Text Bottom" } ], "default": "text_first" },
+
+    {
+      "type": "header",
+      "content": "2. SECTION PADDINGS"
+    },
+    { "type": "paragraph", "content": "Desktop Paddings" },
+    { "type": "range", "id": "pad_top_d", "min": 0, "max": 160, "step": 2, "unit": "px", "label": "Padding Top", "default": 60 },
+    { "type": "range", "id": "pad_bottom_d", "min": 0, "max": 160, "step": 2, "unit": "px", "label": "Padding Bottom", "default": 60 },
+    { "type": "range", "id": "pad_left_d", "min": 0, "max": 120, "step": 2, "unit": "px", "label": "Padding Left", "default": 40 },
+    { "type": "range", "id": "pad_right_d", "min": 0, "max": 120, "step": 2, "unit": "px", "label": "Padding Right", "default": 40 },
+
+    { "type": "paragraph", "content": "Mobile Paddings" },
+    { "type": "range", "id": "pad_top_m", "min": 0, "max": 100, "step": 2, "unit": "px", "label": "Padding Top", "default": 32 },
+    { "type": "range", "id": "pad_bottom_m", "min": 0, "max": 100, "step": 2, "unit": "px", "label": "Padding Bottom", "default": 32 },
+    { "type": "range", "id": "pad_left_m", "min": 0, "max": 60, "step": 2, "unit": "px", "label": "Padding Left", "default": 20 },
+    { "type": "range", "id": "pad_right_m", "min": 0, "max": 60, "step": 2, "unit": "px", "label": "Padding Right", "default": 20 },
+
+    {
+      "type": "header",
+      "content": "3. TEXT COLUMN INNER PADDINGS"
+    },
+    { "type": "range", "id": "content_pad_left_d", "min": 0, "max": 100, "step": 2, "unit": "px", "label": "Desktop Inner Left Padding", "default": 0 },
+    { "type": "range", "id": "content_pad_right_d", "min": 0, "max": 100, "step": 2, "unit": "px", "label": "Desktop Inner Right Padding", "default": 40 },
+    { "type": "range", "id": "content_pad_left_m", "min": 0, "max": 60, "step": 2, "unit": "px", "label": "Mobile Inner Left Padding", "default": 0 },
+    { "type": "range", "id": "content_pad_right_m", "min": 0, "max": 60, "step": 2, "unit": "px", "label": "Mobile Inner Right Padding", "default": 0 },
+
+    {
+      "type": "header",
+      "content": "4. HEADING SETTINGS"
+    },
+    { "type": "text", "id": "title", "label": "Heading Text", "default": "Made to match" },
+    { "type": "color", "id": "title_color", "label": "Heading Color", "default": "#121212" },
+    { "type": "select", "id": "text_align_d", "label": "Desktop Text Alignment", "options": [ { "value": "left", "label": "Left" }, { "value": "center", "label": "Center" }, { "value": "right", "label": "Right" } ], "default": "left" },
+    { "type": "select", "id": "text_align_m", "label": "Mobile Text Alignment", "options": [ { "value": "left", "label": "Left" }, { "value": "center", "label": "Center" }, { "value": "right", "label": "Right" } ], "default": "left" },
+    { "type": "range", "id": "title_size_d", "min": 18, "max": 80, "step": 1, "unit": "px", "label": "Desktop Heading Size", "default": 42 },
+    { "type": "range", "id": "title_size_m", "min": 16, "max": 50, "step": 1, "unit": "px", "label": "Mobile Heading Size", "default": 28 },
+    { "type": "select", "id": "title_weight", "label": "Heading Font Weight", "options": [ { "value": "300", "label": "Light" }, { "value": "400", "label": "Regular" }, { "value": "500", "label": "Medium" }, { "value": "600", "label": "SemiBold" }, { "value": "700", "label": "Bold" } ], "default": "500" },
+    { "type": "text", "id": "title_lh", "label": "Heading Line Height (e.g. 1.1 or 1.2)", "default": "1.15" },
+    { "type": "text", "id": "title_ls", "label": "Letter Spacing (px)", "default": "0" },
+    { "type": "select", "id": "title_transform", "label": "Text Transform", "options": [ { "value": "none", "label": "None" }, { "value": "capitalize", "label": "Capitalize" }, { "value": "uppercase", "label": "UPPERCASE" } ], "default": "none" },
+    { "type": "range", "id": "title_mb_d", "min": 0, "max": 60, "step": 2, "unit": "px", "label": "Desktop Bottom Margin", "default": 20 },
+    { "type": "range", "id": "title_mb_m", "min": 0, "max": 40, "step": 2, "unit": "px", "label": "Mobile Bottom Margin", "default": 14 },
+
+    {
+      "type": "header",
+      "content": "5. SUBTEXT SETTINGS"
+    },
+    { "type": "richtext", "id": "subtext", "label": "Subtext Paragraph", "default": "<p>Take a beat with soft separates and fluid layers for the days that don't need a plan.</p>" },
+    { "type": "color", "id": "subtext_color", "label": "Subtext Color", "default": "#222222" },
+    { "type": "range", "id": "subtext_size_d", "min": 12, "max": 30, "step": 1, "unit": "px", "label": "Desktop Subtext Size", "default": 16 },
+    { "type": "range", "id": "subtext_size_m", "min": 11, "max": 24, "step": 1, "unit": "px", "label": "Mobile Subtext Size", "default": 14 },
+    { "type": "select", "id": "subtext_weight", "label": "Subtext Font Weight", "options": [ { "value": "300", "label": "Light" }, { "value": "400", "label": "Regular" }, { "value": "500", "label": "Medium" } ], "default": "400" },
+    { "type": "text", "id": "subtext_lh", "label": "Subtext Line Height (e.g. 1.4 or 1.5)", "default": "1.4" },
+    { "type": "text", "id": "subtext_ls", "label": "Subtext Letter Spacing (px)", "default": "0" },
+    { "type": "range", "id": "subtext_mb_d", "min": 0, "max": 80, "step": 2, "unit": "px", "label": "Desktop Bottom Margin", "default": 36 },
+    { "type": "range", "id": "subtext_mb_m", "min": 0, "max": 50, "step": 2, "unit": "px", "label": "Mobile Bottom Margin", "default": 24 },
+
+    {
+      "type": "header",
+      "content": "6. CTA BUTTONS & LINKS SETTINGS"
+    },
+    { "type": "select", "id": "cta_align_d", "label": "Desktop CTA Alignment", "options": [ { "value": "flex-start", "label": "Left" }, { "value": "center", "label": "Center" }, { "value": "flex-end", "label": "Right" } ], "default": "flex-start" },
+    { "type": "select", "id": "cta_align_m", "label": "Mobile CTA Alignment", "options": [ { "value": "flex-start", "label": "Left" }, { "value": "center", "label": "Center" }, { "value": "flex-end", "label": "Right" } ], "default": "flex-start" },
+    { "type": "range", "id": "cta_gap_d", "min": 0, "max": 60, "step": 2, "unit": "px", "label": "Desktop Gap Between Links", "default": 28 },
+    { "type": "range", "id": "cta_gap_m", "min": 0, "max": 40, "step": 2, "unit": "px", "label": "Mobile Gap Between Links", "default": 16 },
+    
+    { "type": "paragraph", "content": "Link 1 Settings" },
+    { "type": "text", "id": "btn_1_text", "label": "Link 1 Label", "default": "SHOP MATCHING SETS" },
+    { "type": "url", "id": "btn_1_link", "label": "Link 1 URL" },
+    { "type": "color", "id": "btn_1_color", "label": "Link 1 Text Color", "default": "#000000" },
+    { "type": "color", "id": "btn_1_border_color", "label": "Link 1 Underline Color", "default": "#000000" },
+    { "type": "color", "id": "btn_1_hover_color", "label": "Link 1 Hover Color", "default": "#666666" },
+
+    { "type": "paragraph", "content": "Link 2 Settings" },
+    { "type": "text", "id": "btn_2_text", "label": "Link 2 Label", "default": "SHOP BROWN EDIT" },
+    { "type": "url", "id": "btn_2_link", "label": "Link 2 URL" },
+    { "type": "color", "id": "btn_2_color", "label": "Link 2 Text Color", "default": "#000000" },
+    { "type": "color", "id": "btn_2_border_color", "label": "Link 2 Underline Color", "default": "#000000" },
+    { "type": "color", "id": "btn_2_hover_color", "label": "Link 2 Hover Color", "default": "#666666" },
+
+    { "type": "paragraph", "content": "Link Typography & Border Style" },
+    { "type": "range", "id": "btn_size_d", "min": 10, "max": 24, "step": 1, "unit": "px", "label": "Desktop Font Size", "default": 13 },
+    { "type": "range", "id": "btn_size_m", "min": 10, "max": 20, "step": 1, "unit": "px", "label": "Mobile Font Size", "default": 12 },
+    { "type": "select", "id": "btn_weight", "label": "Font Weight", "options": [ { "value": "400", "label": "Regular" }, { "value": "500", "label": "Medium" }, { "value": "600", "label": "SemiBold" }, { "value": "700", "label": "Bold" } ], "default": "600" },
+    { "type": "text", "id": "btn_ls", "label": "Letter Spacing (px)", "default": "1" },
+    { "type": "select", "id": "btn_transform", "label": "Text Transform", "options": [ { "value": "none", "label": "None" }, { "value": "uppercase", "label": "UPPERCASE" } ], "default": "uppercase" },
+    { "type": "range", "id": "btn_border_w", "min": 0, "max": 5, "step": 1, "unit": "px", "label": "Underline Border Width", "default": 1 },
+    { "type": "range", "id": "btn_border_offset", "min": 0, "max": 12, "step": 1, "unit": "px", "label": "Underline Bottom Offset", "default": 4 },
+
+    {
+      "type": "header",
+      "content": "7. MEDIA COLUMN SETTINGS"
+    },
+    { "type": "image_picker", "id": "image_1", "label": "First Image (Left)" },
+    { "type": "image_picker", "id": "image_2", "label": "Second Image (Right)" },
+    { "type": "range", "id": "media_gap_d", "min": 0, "max": 40, "step": 2, "unit": "px", "label": "Desktop Image Gap", "default": 12 },
+    { "type": "range", "id": "media_gap_m", "min": 0, "max": 24, "step": 2, "unit": "px", "label": "Mobile Image Gap", "default": 8 },
+    { "type": "text", "id": "media_aspect_d", "label": "Desktop Aspect Ratio (e.g. 3/4, 4/5, 1/1)", "default": "3/4" },
+    { "type": "text", "id": "media_aspect_m", "label": "Mobile Aspect Ratio (e.g. 3/4, 4/5, 1/1)", "default": "3/4" },
+    { "type": "range", "id": "media_radius_d", "min": 0, "max": 40, "step": 1, "unit": "px", "label": "Desktop Border Radius", "default": 0 },
+    { "type": "range", "id": "media_radius_m", "min": 0, "max": 30, "step": 1, "unit": "px", "label": "Mobile Border Radius", "default": 0 }
+  ],
+  "presets": [
+    {
+      "name": "Split Editorial Banner"
+    }
+  ]
+}
+{% endschema %}

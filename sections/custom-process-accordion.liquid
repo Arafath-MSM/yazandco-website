@@ -1,0 +1,480 @@
+{%- style -%}
+  /* ==========================================================================
+     1. SECTION CONTAINER & RESPONSIVE PADDINGS
+     ========================================================================== */
+  #pa-section-{{ section.id }} {
+    background-color: {{ section.settings.section_bg }};
+    padding-top: {{ section.settings.pad_top_m }}px;
+    padding-bottom: {{ section.settings.pad_bottom_m }}px;
+    padding-left: {{ section.settings.pad_left_m }}px;
+    padding-right: {{ section.settings.pad_right_m }}px;
+  }
+
+  @media screen and (min-width: 769px) {
+    #pa-section-{{ section.id }} {
+      padding-top: {{ section.settings.pad_top_d }}px;
+      padding-bottom: {{ section.settings.pad_bottom_d }}px;
+      padding-left: {{ section.settings.pad_left_d }}px;
+      padding-right: {{ section.settings.pad_right_d }}px;
+    }
+  }
+
+  .pa-wrapper-{{ section.id }} {
+    max-width: {{ section.settings.container_max_w }}px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  /* ==========================================================================
+     2. GRID LAYOUT
+     ========================================================================== */
+  .pa-grid-{{ section.id }} {
+    display: flex;
+    flex-direction: column;
+    gap: {{ section.settings.gap_m }}px;
+  }
+
+  @media screen and (min-width: 769px) {
+    .pa-grid-{{ section.id }} {
+      display: grid;
+      grid-template-columns: {{ section.settings.img_col_width }}% 1fr;
+      align-items: {{ section.settings.grid_align }};
+      gap: {{ section.settings.gap_d }}px;
+    }
+    {% if section.settings.image_position == 'right' %}
+      .pa-grid-{{ section.id }} {
+        grid-template-columns: 1fr {{ section.settings.img_col_width }}%;
+      }
+      .pa-img-col-{{ section.id }} {
+        order: 2;
+      }
+      .pa-accordion-col-{{ section.id }} {
+        order: 1;
+      }
+    {% endif %}
+  }
+
+  /* ==========================================================================
+     3. IMAGE STYLING
+     ========================================================================== */
+  .pa-img-col-{{ section.id }} {
+    width: 100%;
+  }
+
+  .pa-img-wrap-{{ section.id }} {
+    width: 100%;
+    overflow: hidden;
+    border-radius: {{ section.settings.img_radius_m }}px;
+  }
+
+  .pa-img-{{ section.id }} {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: {{ section.settings.img_object_fit }};
+    max-height: {{ section.settings.img_max_h_m }}px;
+  }
+
+  @media screen and (min-width: 769px) {
+    .pa-img-wrap-{{ section.id }} {
+      border-radius: {{ section.settings.img_radius_d }}px;
+    }
+    .pa-img-{{ section.id }} {
+      max-height: {{ section.settings.img_max_h_d }}px;
+    }
+  }
+
+  /* Placeholder Image */
+  .pa-img-placeholder-{{ section.id }} {
+    background-color: #E0E0E0;
+    width: 100%;
+    min-height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: {{ section.settings.img_radius_m }}px;
+  }
+
+  /* ==========================================================================
+     4. ACCORDION / STEPS LIST STYLING
+     ========================================================================== */
+  .pa-accordion-{{ section.id }} {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .pa-item-{{ section.id }} {
+    border-bottom: {{ section.settings.border_w }}px solid {{ section.settings.border_color }};
+    padding-top: {{ section.settings.item_pad_v_m }}px;
+    padding-bottom: {{ section.settings.item_pad_v_m }}px;
+    transition: all 0.3s ease;
+  }
+
+  .pa-item-{{ section.id }}:first-child {
+    border-top: {{ section.settings.border_w_top }}px solid {{ section.settings.border_color }};
+  }
+
+  @media screen and (min-width: 769px) {
+    .pa-item-{{ section.id }} {
+      padding-top: {{ section.settings.item_pad_v_d }}px;
+      padding-bottom: {{ section.settings.item_pad_v_d }}px;
+    }
+  }
+
+  /* Step Header Button */
+  .pa-header-{{ section.id }} {
+    display: flex;
+    align-items: baseline;
+    gap: {{ section.settings.num_title_gap_m }}px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    width: 100%;
+    text-align: left;
+    padding: 0;
+  }
+
+  @media screen and (min-width: 769px) {
+    .pa-header-{{ section.id }} {
+      gap: {{ section.settings.num_title_gap_d }}px;
+    }
+  }
+
+  /* Step Number Typography */
+  .pa-num-{{ section.id }} {
+    font-size: {{ section.settings.num_size_m }}px;
+    font-weight: {{ section.settings.num_weight }};
+    color: {{ section.settings.num_color_inactive }};
+    line-height: 1.2;
+    flex-shrink: 0;
+    transition: color 0.3s ease;
+  }
+
+  /* Step Title Typography */
+  .pa-title-{{ section.id }} {
+    font-size: {{ section.settings.title_size_m }}px;
+    font-weight: {{ section.settings.title_weight }};
+    color: {{ section.settings.title_color_inactive }};
+    line-height: {{ section.settings.title_lh }};
+    margin: 0;
+    transition: color 0.3s ease;
+  }
+
+  @media screen and (min-width: 769px) {
+    .pa-num-{{ section.id }} {
+      font-size: {{ section.settings.num_size_d }}px;
+    }
+    .pa-title-{{ section.id }} {
+      font-size: {{ section.settings.title_size_d }}px;
+    }
+  }
+
+  /* Active State Colors */
+  .pa-item-{{ section.id }}.is-active .pa-num-{{ section.id }} {
+    color: {{ section.settings.num_color_active }};
+  }
+
+  .pa-item-{{ section.id }}.is-active .pa-title-{{ section.id }} {
+    color: {{ section.settings.title_color_active }};
+  }
+
+  /* Step Body / Description Text */
+  .pa-body-{{ section.id }} {
+    display: none;
+    padding-left: calc({{ section.settings.num_size_m }}px + {{ section.settings.num_title_gap_m }}px);
+    margin-top: {{ section.settings.body_mt_m }}px;
+  }
+
+  .pa-item-{{ section.id }}.is-active .pa-body-{{ section.id }} {
+    display: block;
+  }
+
+  .pa-body-text-{{ section.id }} {
+    font-size: {{ section.settings.body_size_m }}px;
+    font-weight: {{ section.settings.body_weight }};
+    color: {{ section.settings.body_color }};
+    line-height: {{ section.settings.body_lh }};
+    margin: 0;
+  }
+
+  @media screen and (min-width: 769px) {
+    .pa-body-{{ section.id }} {
+      padding-left: calc({{ section.settings.num_size_d }}px + {{ section.settings.num_title_gap_d }}px);
+      margin-top: {{ section.settings.body_mt_d }}px;
+    }
+    .pa-body-text-{{ section.id }} {
+      font-size: {{ section.settings.body_size_d }}px;
+    }
+  }
+{%- endstyle -%}
+
+<section id="pa-section-{{ section.id }}">
+  <div class="pa-wrapper-{{ section.id }}">
+    <div class="pa-grid-{{ section.id }}">
+      
+      <!-- IMAGE COLUMN -->
+      <div class="pa-img-col-{{ section.id }}">
+        {%- if section.settings.image != blank -%}
+          <div class="pa-img-wrap-{{ section.id }}">
+            <img 
+              src="{{ section.settings.image | image_url: width: 1200 }}" 
+              alt="{{ section.settings.image.alt | escape }}" 
+              class="pa-img-{{ section.id }}"
+              loading="lazy"
+              width="{{ section.settings.image.width }}"
+              height="{{ section.settings.image.height }}">
+          </div>
+        {%- else -%}
+          <div class="pa-img-placeholder-{{ section.id }}">
+            {{ 'image' | placeholder_svg_tag }}
+          </div>
+        {%- endif -%}
+      </div>
+
+      <!-- ACCORDION STEPS COLUMN -->
+      <div class="pa-accordion-col-{{ section.id }}">
+        <div class="pa-accordion-{{ section.id }}" id="accordion-{{ section.id }}">
+          {%- for block in section.blocks -%}
+            <div 
+              class="pa-item-{{ section.id }} {% if forloop.first and section.settings.open_first %}is-active{% endif %}" 
+              {{ block.shopify_attributes }}>
+              
+              <button 
+                type="button" 
+                class="pa-header-{{ section.id }}" 
+                aria-expanded="{% if forloop.first and section.settings.open_first %}true{% else %}false{% endif %}">
+                {%- if block.settings.step_num != blank -%}
+                  <span class="pa-num-{{ section.id }}">{{ block.settings.step_num }}</span>
+                {%- endif -%}
+                {%- if block.settings.step_title != blank -%}
+                  <h3 class="pa-title-{{ section.id }}">{{ block.settings.step_title }}</h3>
+                {%- endif -%}
+              </button>
+
+              {%- if block.settings.step_body != blank -%}
+                <div class="pa-body-{{ section.id }}">
+                  <p class="pa-body-text-{{ section.id }}">{{ block.settings.step_body }}</p>
+                </div>
+              {%- endif -%}
+
+            </div>
+          {%- endfor -%}
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const accordionContainer = document.getElementById('accordion-{{ section.id }}');
+    if (!accordionContainer) return;
+
+    const items = accordionContainer.querySelectorAll('.pa-item-{{ section.id }}');
+
+    items.forEach(item => {
+      const header = item.querySelector('.pa-header-{{ section.id }}');
+      header.addEventListener('click', () => {
+        const isActive = item.classList.contains('is-active');
+
+        {% if section.settings.close_others %}
+          items.forEach(i => {
+            i.classList.remove('is-active');
+            const btn = i.querySelector('.pa-header-{{ section.id }}');
+            if (btn) btn.setAttribute('aria-expanded', 'false');
+          });
+        {% endif %}
+
+        if (!isActive) {
+          item.classList.add('is-active');
+          header.setAttribute('aria-expanded', 'true');
+        } else {
+          item.classList.remove('is-active');
+          header.setAttribute('aria-expanded', 'false');
+        }
+      });
+    });
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Process Accordion Steps",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "1. SECTION CONTAINER & BACKGROUND"
+    },
+    { "type": "color", "id": "section_bg", "label": "Section Background Color", "default": "#FAFAFA" },
+    { "type": "range", "id": "container_max_w", "min": 600, "max": 1600, "step": 20, "unit": "px", "label": "Container Max Width", "default": 1200 },
+
+    {
+      "type": "header",
+      "content": "2. DESKTOP SECTION PADDINGS"
+    },
+    { "type": "range", "id": "pad_top_d", "min": 0, "max": 160, "step": 2, "unit": "px", "label": "Padding Top", "default": 80 },
+    { "type": "range", "id": "pad_bottom_d", "min": 0, "max": 160, "step": 2, "unit": "px", "label": "Padding Bottom", "default": 80 },
+    { "type": "range", "id": "pad_left_d", "min": 0, "max": 120, "step": 2, "unit": "px", "label": "Padding Left", "default": 40 },
+    { "type": "range", "id": "pad_right_d", "min": 0, "max": 120, "step": 2, "unit": "px", "label": "Padding Right", "default": 40 },
+
+    {
+      "type": "header",
+      "content": "3. MOBILE SECTION PADDINGS"
+    },
+    { "type": "range", "id": "pad_top_m", "min": 0, "max": 100, "step": 2, "unit": "px", "label": "Padding Top", "default": 40 },
+    { "type": "range", "id": "pad_bottom_m", "min": 0, "max": 100, "step": 2, "unit": "px", "label": "Padding Bottom", "default": 40 },
+    { "type": "range", "id": "pad_left_m", "min": 0, "max": 60, "step": 2, "unit": "px", "label": "Padding Left", "default": 20 },
+    { "type": "range", "id": "pad_right_m", "min": 0, "max": 60, "step": 2, "unit": "px", "label": "Padding Right", "default": 20 },
+
+    {
+      "type": "header",
+      "content": "4. LAYOUT & GRID SETTINGS"
+    },
+    { "type": "select", "id": "image_position", "label": "Image Position (Desktop)", "options": [ { "value": "left", "label": "Left" }, { "value": "right", "label": "Right" } ], "default": "left" },
+    { "type": "range", "id": "img_col_width", "min": 30, "max": 60, "step": 1, "unit": "%", "label": "Desktop Image Column Width", "default": 45 },
+    { "type": "select", "id": "grid_align", "label": "Vertical Alignment", "options": [ { "value": "flex-start", "label": "Top" }, { "value": "center", "label": "Center" }, { "value": "flex-end", "label": "Bottom" } ], "default": "center" },
+    { "type": "range", "id": "gap_d", "min": 20, "max": 120, "step": 2, "unit": "px", "label": "Desktop Column Gap", "default": 60 },
+    { "type": "range", "id": "gap_m", "min": 10, "max": 80, "step": 2, "unit": "px", "label": "Mobile Column Gap", "default": 30 },
+
+    {
+      "type": "header",
+      "content": "5. IMAGE SETTINGS"
+    },
+    { "type": "image_picker", "id": "image", "label": "Featured Image" },
+    { "type": "select", "id": "img_object_fit", "label": "Image Object Fit", "options": [ { "value": "cover", "label": "Cover" }, { "value": "contain", "label": "Contain" } ], "default": "cover" },
+    { "type": "range", "id": "img_max_h_d", "min": 300, "max": 1000, "step": 10, "unit": "px", "label": "Desktop Max Height", "default": 700 },
+    { "type": "range", "id": "img_max_h_m", "min": 200, "max": 600, "step": 10, "unit": "px", "label": "Mobile Max Height", "default": 450 },
+    { "type": "range", "id": "img_radius_d", "min": 0, "max": 40, "step": 1, "unit": "px", "label": "Desktop Image Border Radius", "default": 16 },
+    { "type": "range", "id": "img_radius_m", "min": 0, "max": 40, "step": 1, "unit": "px", "label": "Mobile Image Border Radius", "default": 12 },
+
+    {
+      "type": "header",
+      "content": "6. STEP NUMBER TYPOGRAPHY & COLORS"
+    },
+    { "type": "color", "id": "num_color_active", "label": "Active Step Number Color", "default": "#111111" },
+    { "type": "color", "id": "num_color_inactive", "label": "Inactive Step Number Color", "default": "#A0A0A0" },
+    { "type": "range", "id": "num_size_d", "min": 14, "max": 48, "step": 1, "unit": "px", "label": "Desktop Number Font Size", "default": 22 },
+    { "type": "range", "id": "num_size_m", "min": 12, "max": 36, "step": 1, "unit": "px", "label": "Mobile Number Font Size", "default": 18 },
+    { "type": "select", "id": "num_weight", "label": "Number Font Weight", "options": [ { "value": "300", "label": "Light" }, { "value": "400", "label": "Regular" }, { "value": "500", "label": "Medium" }, { "value": "600", "label": "SemiBold" }, { "value": "700", "label": "Bold" } ], "default": "400" },
+    { "type": "range", "id": "num_title_gap_d", "min": 4, "max": 40, "step": 1, "unit": "px", "label": "Desktop Gap Between Number & Title", "default": 20 },
+    { "type": "range", "id": "num_title_gap_m", "min": 4, "max": 30, "step": 1, "unit": "px", "label": "Mobile Gap Between Number & Title", "default": 12 },
+
+    {
+      "type": "header",
+      "content": "7. STEP TITLE TYPOGRAPHY & COLORS"
+    },
+    { "type": "color", "id": "title_color_active", "label": "Active Title Color", "default": "#111111" },
+    { "type": "color", "id": "title_color_inactive", "label": "Inactive Title Color", "default": "#8E8E8E" },
+    { "type": "range", "id": "title_size_d", "min": 16, "max": 48, "step": 1, "unit": "px", "label": "Desktop Title Font Size", "default": 26 },
+    { "type": "range", "id": "title_size_m", "min": 14, "max": 36, "step": 1, "unit": "px", "label": "Mobile Title Font Size", "default": 20 },
+    { "type": "select", "id": "title_weight", "label": "Title Font Weight", "options": [ { "value": "300", "label": "Light" }, { "value": "400", "label": "Regular" }, { "value": "500", "label": "Medium" }, { "value": "600", "label": "SemiBold" }, { "value": "700", "label": "Bold" } ], "default": "400" },
+    { "type": "text", "id": "title_lh", "label": "Title Line Height", "default": "1.3" },
+
+    {
+      "type": "header",
+      "content": "8. STEP BODY / DESCRIPTION TYPOGRAPHY & COLORS"
+    },
+    { "type": "color", "id": "body_color", "label": "Body Text Color", "default": "#4A4A4A" },
+    { "type": "range", "id": "body_size_d", "min": 12, "max": 24, "step": 1, "unit": "px", "label": "Desktop Body Font Size", "default": 14 },
+    { "type": "range", "id": "body_size_m", "min": 11, "max": 20, "step": 1, "unit": "px", "label": "Mobile Body Font Size", "default": 13 },
+    { "type": "select", "id": "body_weight", "label": "Body Font Weight", "options": [ { "value": "300", "label": "Light" }, { "value": "400", "label": "Regular" }, { "value": "500", "label": "Medium" } ], "default": "400" },
+    { "type": "text", "id": "body_lh", "label": "Body Line Height", "default": "1.6" },
+    { "type": "range", "id": "body_mt_d", "min": 4, "max": 30, "step": 1, "unit": "px", "label": "Desktop Top Margin", "default": 12 },
+    { "type": "range", "id": "body_mt_m", "min": 4, "max": 20, "step": 1, "unit": "px", "label": "Mobile Top Margin", "default": 8 },
+
+    {
+      "type": "header",
+      "content": "9. ACCORDION ITEM BORDERS & PADDINGS"
+    },
+    { "type": "color", "id": "border_color", "label": "Divider Line Color", "default": "#E2E2E2" },
+    { "type": "range", "id": "border_w", "min": 0, "max": 5, "step": 1, "unit": "px", "label": "Bottom Border Thickness", "default": 1 },
+    { "type": "range", "id": "border_w_top", "min": 0, "max": 5, "step": 1, "unit": "px", "label": "Top Border Thickness (First Item)", "default": 0 },
+    { "type": "range", "id": "item_pad_v_d", "min": 4, "max": 50, "step": 1, "unit": "px", "label": "Desktop Vertical Item Padding", "default": 20 },
+    { "type": "range", "id": "item_pad_v_m", "min": 4, "max": 40, "step": 1, "unit": "px", "label": "Mobile Vertical Item Padding", "default": 16 },
+
+    {
+      "type": "header",
+      "content": "10. ACCORDION BEHAVIOR"
+    },
+    { "type": "checkbox", "id": "open_first", "label": "Keep First Item Open By Default", "default": true },
+    { "type": "checkbox", "id": "close_others", "label": "Auto Close Other Items On Click", "default": true }
+  ],
+  "blocks": [
+    {
+      "type": "step",
+      "name": "Process Step",
+      "settings": [
+        { "type": "text", "id": "step_num", "label": "Step Number", "default": "01." },
+        { "type": "text", "id": "step_title", "label": "Step Title", "default": "Begin your journey" },
+        { "type": "textarea", "id": "step_body", "label": "Step Body Text", "default": "Start your custom jewelry experience by connecting with us through our website, social media, email, or by phone. Whether you prefer to meet in-person or virtually, we're here to accommodate your schedule." }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Process Accordion Steps",
+      "blocks": [
+        {
+          "type": "step",
+          "settings": {
+            "step_num": "01.",
+            "step_title": "Begin your journey",
+            "step_body": "Start your custom jewelry experience by connecting with us through our website, social media, email, or by phone. Whether you prefer to meet in-person or virtually, we're here to accommodate your schedule. Our team is committed to prompt communication, so you can expect a response within the same day."
+          }
+        },
+        {
+          "type": "step",
+          "settings": {
+            "step_num": "02.",
+            "step_title": "Personalized consultation",
+            "step_body": "We discuss your vision, design preferences, gemstone choices, and budget during our interactive direct consultation."
+          }
+        },
+        {
+          "type": "step",
+          "settings": {
+            "step_num": "03.",
+            "step_title": "Costs and timelines",
+            "step_body": "Receive a detailed transparent quotation along with projected production and delivery schedules for your custom order."
+          }
+        },
+        {
+          "type": "step",
+          "settings": {
+            "step_num": "04.",
+            "step_title": "Design review & approval",
+            "step_body": "Review 3D CAD renders and digital proofs of your custom piece before master craft execution starts."
+          }
+        },
+        {
+          "type": "step",
+          "settings": {
+            "step_num": "05.",
+            "step_title": "Expert craftsmanship",
+            "step_body": "Our master jewelers handcraft and stone-set your piece using sustainably sourced materials."
+          }
+        },
+        {
+          "type": "step",
+          "settings": {
+            "step_num": "06.",
+            "step_title": "Final reveal & delivery",
+            "step_body": "Inspect the final rendered product in-person or via high-definition video before secure insured delivery."
+          }
+        },
+        {
+          "type": "step",
+          "settings": {
+            "step_num": "07.",
+            "step_title": "Post-purchase concierge service",
+            "step_body": "Enjoy complimentary sizing adjustments, lifetime cleaning, and full warranty assistance."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -6,6 +6,7 @@
   	- use_variant: {Boolean} Renders selected or first variant price instead of overall product pricing (optional)
   	- show_badges: {Boolean} Renders 'Sale' and 'Sold Out' tags if the product matches the condition (optional)
   	- price_class: {String} Adds a price class to the price element (optional)
+  	- show_promotion: {Boolean} Enables the automatic discount display for this price (optional)
 
   	Usage:
   {% render 'price', product: product %}
@@ -45,6 +46,33 @@
   if target == product and product.compare_at_price_varies
 	assign money_compare_at_price = compare_at_price_min | append: ' - ' | append: compare_at_price_max
   endif
+
+  assign promotion_applies = false
+  if show_promotion and settings.promotion_price_enabled and product != blank and price > 0
+    assign now_timestamp = 'now' | date: '%s' | plus: 0
+    assign end_timestamp = settings.promotion_price_end | date: '%s' | plus: 0
+    assign promotion_percent = settings.promotion_price_percent
+    if end_timestamp > now_timestamp and promotion_percent > 0
+      assign promotion_applies = true
+      assign discount = price | times: promotion_percent | divided_by: 100.0 | round
+      assign promotional_price = price | minus: discount
+      assign promotional_max = promotional_price
+      if target == product and product.price_varies
+        assign max_discount = target.price_max | times: promotion_percent | divided_by: 100.0 | round
+        assign promotional_max = target.price_max | minus: max_discount
+      endif
+      if settings.currency_code_enabled
+        assign money_promotion = promotional_price | money_with_currency
+        assign money_promotion_max = promotional_max | money_with_currency
+      else
+        assign money_promotion = promotional_price | money
+        assign money_promotion_max = promotional_max | money
+      endif
+      if promotional_max > promotional_price
+        assign money_promotion = money_promotion | append: ' - ' | append: money_promotion_max
+      endif
+    endif
+  endif
 	
 -%}
 
@@ -64,6 +92,14 @@
       - div.price__sale: Displayed when a variant is a sale
       - div.price__availability: Displayed when the product is sold out
     {%- endcomment -%}
+    {%- if promotion_applies -%}
+      <div class="price__promotion">
+        <dt class="visually-hidden">{{ 'products.product.price.sale_price' | t }}</dt>
+        <dd class="price-item price-item--sale">{{ money_promotion }}</dd>
+        <dt class="visually-hidden">{{ 'products.product.price.regular_price' | t }}</dt>
+        <dd><s>{{ money_price }}</s></dd>
+      </div>
+    {%- else -%}
     <div class="price__regular">
       <dt>
         <span class="visually-hidden visually-hidden--inline">{{ 'products.product.price.regular_price' | t }}</span>
@@ -101,6 +137,7 @@
       </dd>
       
     </div>
+    {%- endif -%}
     <dl class="unit-price caption{% if product.selected_or_first_available_variant.unit_price_measurement == nil %} hidden{% endif %}">
       <dt class="visually-hidden">{{ 'products.product.price.unit_price' | t }}</dt>
       <dd

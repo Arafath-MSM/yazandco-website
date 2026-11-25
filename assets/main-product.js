@@ -19,6 +19,7 @@
 		const imagesWrapper = document.querySelector(
 			".product-media-modal__content"
 		);
+		if (!imagesWrapper) return;
 		const images = imagesWrapper.querySelectorAll(".js-image-zoom");
 
 		images.forEach((el) => {
@@ -35,9 +36,9 @@
 		const secondSection = document.querySelector('.product-section + section'); // Second section
 		const footer = document.querySelector('footer'); // Footer
 
-		// Check if the required elements exist
+		// Nothing to reveal on this page - return quietly. This runs on EVERY scroll
+		// event, so logging here flooded the console site-wide.
 		if (!stickyBar || !secondSection || !footer) {
-				console.error('Required elements not found!');
 				return;
 		}
 

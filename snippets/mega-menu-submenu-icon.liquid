@@ -1,0 +1,66 @@
+{%- comment -%}
+  Renders a small icon before a submenu link title, if the merchant configured
+  a matching "Submenu icon" on the mega_menu block for this exact link title.
+
+  Accepts:
+  - block: the mega_menu block whose settings hold the icon_trigger_1..12 / icon_image_1..12 pairs
+  - title: the link title to match against (case-insensitive, trimmed)
+
+  Renders nothing if there is no block, no match, or no image on the match.
+{%- endcomment -%}
+{%- if block -%}
+  {%- liquid
+    assign icon_key = title | strip | downcase
+    assign icon_image = null
+
+    assign trigger_key_1 = block.settings.icon_trigger_1 | strip | downcase
+    assign trigger_key_2 = block.settings.icon_trigger_2 | strip | downcase
+    assign trigger_key_3 = block.settings.icon_trigger_3 | strip | downcase
+    assign trigger_key_4 = block.settings.icon_trigger_4 | strip | downcase
+    assign trigger_key_5 = block.settings.icon_trigger_5 | strip | downcase
+    assign trigger_key_6 = block.settings.icon_trigger_6 | strip | downcase
+    assign trigger_key_7 = block.settings.icon_trigger_7 | strip | downcase
+    assign trigger_key_8 = block.settings.icon_trigger_8 | strip | downcase
+    assign trigger_key_9 = block.settings.icon_trigger_9 | strip | downcase
+    assign trigger_key_10 = block.settings.icon_trigger_10 | strip | downcase
+    assign trigger_key_11 = block.settings.icon_trigger_11 | strip | downcase
+    assign trigger_key_12 = block.settings.icon_trigger_12 | strip | downcase
+
+    if block.settings.icon_trigger_1 != blank and icon_key == trigger_key_1
+      assign icon_image = block.settings.icon_image_1
+    elsif block.settings.icon_trigger_2 != blank and icon_key == trigger_key_2
+      assign icon_image = block.settings.icon_image_2
+    elsif block.settings.icon_trigger_3 != blank and icon_key == trigger_key_3
+      assign icon_image = block.settings.icon_image_3
+    elsif block.settings.icon_trigger_4 != blank and icon_key == trigger_key_4
+      assign icon_image = block.settings.icon_image_4
+    elsif block.settings.icon_trigger_5 != blank and icon_key == trigger_key_5
+      assign icon_image = block.settings.icon_image_5
+    elsif block.settings.icon_trigger_6 != blank and icon_key == trigger_key_6
+      assign icon_image = block.settings.icon_image_6
+    elsif block.settings.icon_trigger_7 != blank and icon_key == trigger_key_7
+      assign icon_image = block.settings.icon_image_7
+    elsif block.settings.icon_trigger_8 != blank and icon_key == trigger_key_8
+      assign icon_image = block.settings.icon_image_8
+    elsif block.settings.icon_trigger_9 != blank and icon_key == trigger_key_9
+      assign icon_image = block.settings.icon_image_9
+    elsif block.settings.icon_trigger_10 != blank and icon_key == trigger_key_10
+      assign icon_image = block.settings.icon_image_10
+    elsif block.settings.icon_trigger_11 != blank and icon_key == trigger_key_11
+      assign icon_image = block.settings.icon_image_11
+    elsif block.settings.icon_trigger_12 != blank and icon_key == trigger_key_12
+      assign icon_image = block.settings.icon_image_12
+    endif
+
+    assign icon_alt = title | escape
+  -%}
+  {%- if icon_image -%}
+    <span class="mega-menu__submenu-icon">
+      {{
+        icon_image
+        | image_url: width: 80
+        | image_tag: loading: 'lazy', width: 40, height: 40, class: 'mega-menu__submenu-icon-img', alt: icon_alt
+      }}
+    </span>
+  {%- endif -%}
+{%- endif -%}

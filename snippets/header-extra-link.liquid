@@ -1,0 +1,8 @@
+{%- if section.settings.extra_link_text != blank -%}
+	<a
+		href='{{ section.settings.extra_link_url | default: "#" }}'
+		class='header__extra-link link-hover-line'
+	>
+		{{- section.settings.extra_link_text -}}
+	</a>
+{%- endif -%}

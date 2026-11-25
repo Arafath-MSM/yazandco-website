@@ -12,44 +12,46 @@
     "slideshow": {
       "type": "slideshow",
       "blocks": {
+        "slideshow-item1": {
+          "type": "slideshow-item",
+          "settings": {
+            "image": "shopify://shop_images/UAE_Map_Diamond_Pendant_on_Crimson_Silk.png",
+            "mobile_image": "shopify://shop_images/UAE_Map_Diamond_Pave_Pendant.png",
+            "overlay_opacity": 0.1,
+            "show_video": false,
+            "video_url": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
+            "description_video": "",
+            "heading": "A TIMELESS EXPRESSION OF HOME, HERITAGE, AND ELEGANCE",
+            "description": "",
+            "tab_subheading": "",
+            "tab_heading": "",
+            "button_label": "Discover DAR collection",
+            "button_link": "shopify://collections/dar-collection",
+            "button_style": "tertiary",
+            "button_label2": "",
+            "button_link2": "",
+            "button_style2": "tertiary",
+            "enable_fullscreen_link": true
+          }
+        },
         "slideshow-item": {
           "type": "slideshow-item",
           "settings": {
             "overlay_opacity": 0,
             "show_video": true,
-            "video": "shopify://files/videos/main_horizontal.MOV",
+            "video": "shopify://files/videos/main_horizontal (online-video-cutter.com).mp4",
+            "mobile_video": "shopify://files/videos/main_horizontal (online-video-cutter.com).mp4",
             "video_url": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
             "description_video": "",
-            "heading": "The Extraordinary Ordinary",
-            "description": "<p>Jewellery becoming part of people’s<br/>stories and cherished memories</p>",
+            "heading": "DIAMONDS, MADE PART OF EVERY DAY",
+            "description": "",
             "tab_subheading": "",
             "tab_heading": "",
-            "button_label": "DISCOVER OUR STORY",
-            "button_link": "shopify://pages/our-story",
+            "button_label": "Shop Collections",
+            "button_link": "shopify://collections/all",
             "button_style": "tertiary",
-            "button_label2": "SHOP NOW",
-            "button_link2": "shopify://collections/all",
-            "button_style2": "tertiary",
-            "enable_fullscreen_link": true
-          }
-        },
-        "slideshow-item1": {
-          "type": "slideshow-item",
-          "settings": {
-            "overlay_opacity": 0.1,
-            "show_video": true,
-            "mobile_video": "shopify://files/videos/couplle.MOV",
-            "video_url": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
-            "description_video": "",
-            "heading": "The Extraordinary Ordinary",
-            "description": "<p>Jewellery becoming part of people’s<br/>stories and cherished memories</p>",
-            "tab_subheading": "",
-            "tab_heading": "",
-            "button_label": "DISCOVER OUR STORY",
-            "button_link": "shopify://pages/our-story",
-            "button_style": "tertiary",
-            "button_label2": "SHOP NOW",
-            "button_link2": "shopify://collections/all",
+            "button_label2": "Explore Bridal",
+            "button_link2": "shopify://collections/bridal-collection",
             "button_style2": "tertiary",
             "enable_fullscreen_link": true
           }
@@ -78,19 +80,36 @@
         }
       },
       "block_order": [
-        "slideshow-item",
         "slideshow-item1",
+        "slideshow-item",
         "slideshow-item2"
       ],
-      "custom_css": [],
+      "custom_css": [
+        ".slideshow__info {bottom: 6.4rem;}",
+        "@media screen and (min-width: 990px) {.slideshow__info {bottom: 2.4rem; max-width: 80rem; }}"
+      ],
       "settings": {
         "header_overlay": true,
         "text_color_scheme": "",
         "layout": "layout_1",
         "aspect_ratio": "full",
-        "heading_size": "h1",
-        "tabs_size": "h3",
-        "is_autoplay": false,
+        "heading_size": "h2",
+        "tabs_size": "h2",
+        "enable_custom_heading_size": true,
+        "heading_size_desktop": 36,
+        "heading_size_mobile": 30,
+        "heading_line_height": 1.2,
+        "heading_letter_spacing": 0,
+        "enable_custom_description_size": true,
+        "description_size_desktop": 18,
+        "description_size_mobile": 16,
+        "description_line_height": 1.6,
+        "equal_button_width": true,
+        "button_width_desktop": 160,
+        "button_width_mobile": 150,
+        "button_full_width_mobile": true,
+        "button_gap": 10,
+        "is_autoplay": true,
         "is_hover_stop_autoplay": false,
         "slideshow_speed": 1,
         "slideshow_delay": 5,
@@ -99,60 +118,57 @@
         "margin_bottom": "no-indent"
       }
     },
-    "popular-products": {
-      "type": "popular-products",
-      "disabled": true,
-      "custom_css": [],
+    "rich_text_RQMf8h": {
+      "type": "rich-text",
+      "blocks": {
+        "image_9TEtja": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/RGBMono_-_YAZ_Puple.png",
+            "image_width_desktop": 15,
+            "image_width_mobile": 20,
+            "alignment": "center",
+            "aspect_ratio": "natural",
+            "image_position": "center center",
+            "image_radius": 0,
+            "margin_top_desktop": 20,
+            "margin_bottom_desktop": 20,
+            "margin_top_mobile": 16,
+            "margin_bottom_mobile": 16,
+            "image_link": "",
+            "caption": "",
+            "caption_size": 13
+          }
+        },
+        "heading_KgK7VJ": {
+          "type": "heading",
+          "settings": {
+            "heading": "Exceptional lab-grown diamonds, refined craftsmanship and personal choice. Made to be a part of your everyday life.",
+            "heading_size": "h2"
+          }
+        },
+        "text_dt7GVf": {
+          "type": "text",
+          "disabled": true,
+          "settings": {
+            "text": ""
+          }
+        }
+      },
+      "block_order": [
+        "image_9TEtja",
+        "heading_KgK7VJ",
+        "text_dt7GVf"
+      ],
+      "custom_css": [
+        ".rich-text__heading.title--section.h2 {word-spacing: 4px;}"
+      ],
+      "name": "t:sections.rich-text.presets.name",
       "settings": {
-        "subheading": "",
-        "heading": "SHOP BY CATEGORY",
-        "description": "",
-        "heading_size": "h1",
-        "product_list": [
-          "necklaces",
-          "earrings",
-          "rings-1",
-          "bracelets",
-          "ring",
-          "ring-2",
-          "ring-3"
-        ],
-        "products_to_show": 4,
-        "image_ratio": "square",
-        "image_fit": "contain",
-        "show_vendor": false,
-        "show_color_count": true,
-        "show_size_count": true,
-        "show_collection": false,
-        "show_desc": false,
-        "columns_mobile": "1",
-        "button_label": "",
-        "button_link": "",
-        "button_style": "simple",
-        "margin_top": "no-indent",
-        "margin_bottom": "m"
-      }
-    },
-    "image-with-text": {
-      "type": "image-with-text",
-      "disabled": true,
-      "settings": {
-        "aspect_ratio": "original",
-        "heading_position": "center",
-        "text_width": "medium",
-        "subheading": "",
-        "heading": "A living expression of personal radiance - a celebration ofindividuality, connection, and meaningful moments thatdefine each woman’s journey",
-        "heading_size": "h1",
-        "text": "",
-        "enable_animation": true,
-        "button_label": "",
-        "button_link": "",
-        "button_style": "simple",
-        "image_width": "small",
-        "height": "portrait",
-        "layout": "image_bottom",
-        "margin_top": "l",
-        "margin_bottom": "l"
+        "alignment": "center",
+        "width": "medium",
+        "margin_top": "s",
+        "margin_bottom": "no-indent"
       }
     },
     "categories_list_dE7AnG": {
@@ -161,8 +177,7 @@
         "collection_item_VigLAV": {
           "type": "collection_item",
           "settings": {
-            "collection": "necklaces",
-            "image": "shopify://shop_images/NECKLACE.png",
+            "collection": "everyday-radiance",
             "button_label": "Shop Collection",
             "button_link": "",
             "overlay_opacity": 0.2
@@ -171,8 +186,7 @@
         "collection_item_yQQcCp": {
           "type": "collection_item",
           "settings": {
-            "collection": "earrings",
-            "image": "shopify://shop_images/EARRINGS.png",
+            "collection": "tennis-classics",
             "button_label": "Shop Collection",
             "button_link": "",
             "overlay_opacity": 0.2
@@ -181,8 +195,7 @@
         "collection_item_AwkEXi": {
           "type": "collection_item",
           "settings": {
-            "collection": "rings",
-            "image": "shopify://shop_images/RING.png",
+            "collection": "bridal-collection",
             "button_label": "Shop Collection",
             "button_link": "",
             "overlay_opacity": 0.2
@@ -191,8 +204,7 @@
         "collection_item_TFwJPc": {
           "type": "collection_item",
           "settings": {
-            "collection": "bracelets",
-            "image": "shopify://shop_images/BRACELET.png",
+            "collection": "signature-collection",
             "button_label": "Shop Collection",
             "button_link": "",
             "overlay_opacity": 0.2
@@ -208,258 +220,297 @@
       "name": "t:sections.categories-list.presets.name",
       "settings": {
         "subheading": "",
-        "heading": "SHOP BY CATEGORY",
+        "heading": "SHOP BY COLLECTIONS",
         "heading_size": "h1",
         "button_label": "",
         "button_link": "",
         "button_style": "simple",
-        "image_ratio": "square",
+        "image_ratio": "portrait",
         "image_fit": "cover",
         "show_desc": false,
-        "collection_heading_size": "h2",
+        "collection_heading_size": "h3",
         "collections_to_show": 4,
         "columns_mobile": "2",
-        "margin_top": "m",
+        "margin_top": "s",
         "margin_bottom": "m"
       }
     },
-    "rich_text_RQMf8h": {
-      "type": "rich-text",
+    "featured_collection_tabs_r6hJMb": {
+      "type": "featured-collection-tabs",
       "blocks": {
-        "heading_KgK7VJ": {
-          "type": "heading",
+        "collection_tab_CYXbMW": {
+          "type": "collection_tab",
           "settings": {
-            "heading": "A living expression of personal radiance – a celebration of individuality, connection, and meaningful moments that define each woman’s journey",
-            "heading_size": "h1"
+            "collection": "rings",
+            "tab_label": ""
           }
         },
-        "text_dt7GVf": {
-          "type": "text",
-          "disabled": true,
+        "collection_tab_wYwCiG": {
+          "type": "collection_tab",
           "settings": {
-            "text": "<p><br/></p>"
+            "collection": "earrings",
+            "tab_label": ""
           }
         },
-        "button_4HdNP9": {
-          "type": "button",
+        "collection_tab_gGY8Jc": {
+          "type": "collection_tab",
           "settings": {
-            "button_label": "",
-            "button_link": "",
-            "button_style": "simple"
+            "collection": "necklaces",
+            "tab_label": "NECKLACES"
+          }
+        },
+        "collection_tab_MkdUiN": {
+          "type": "collection_tab",
+          "settings": {
+            "collection": "bracelets",
+            "tab_label": "BRACELETS"
           }
         }
       },
       "block_order": [
-        "heading_KgK7VJ",
-        "text_dt7GVf",
-        "button_4HdNP9"
-      ],
-      "custom_css": [],
-      "name": "t:sections.rich-text.presets.name",
-      "settings": {
-        "alignment": "center",
-        "width": "medium",
-        "margin_top": "no-indent",
-        "margin_bottom": "m"
-      }
-    },
-    "product-slider": {
-      "type": "product-slider",
-      "blocks": {
-        "product_slide": {
-          "type": "product_slide",
-          "settings": {
-            "product": "classic-tennis-bracelet",
-            "image": "shopify://shop_images/Image_May_5_2026_11_19_23_AM.png",
-            "color_scheme": "",
-            "overlay_opacity": 0.1,
-            "description": "Timeless Classics, reinvented"
-          }
-        },
-        "product_slide1": {
-          "type": "product_slide",
-          "settings": {
-            "product": "everyday-tennis-bracelet",
-            "image": "shopify://shop_images/Z2603_YAZ_18_1313_srgb_WEB.jpg",
-            "color_scheme": "",
-            "overlay_opacity": 0.1,
-            "description": ""
-          }
-        },
-        "product_slide2": {
-          "type": "product_slide",
-          "settings": {
-            "product": "luminous-tennis-bracelet",
-            "image": "shopify://shop_images/Z2603_YAZ_20_1421_srgb_WEB_1.jpg",
-            "color_scheme": "",
-            "overlay_opacity": 0.1,
-            "description": ""
-          }
-        }
-      },
-      "block_order": [
-        "product_slide",
-        "product_slide1",
-        "product_slide2"
+        "collection_tab_CYXbMW",
+        "collection_tab_wYwCiG",
+        "collection_tab_gGY8Jc",
+        "collection_tab_MkdUiN"
       ],
       "custom_css": [
-        ".section-heading__heading.h1 {font-size: 36px !important;}",
-        ".section-heading__button span {font-size: 13px !important;}",
-        ".product-slider_info {font-size: 20px !important;}",
-        ".card__title .full-unstyled-link {font-size: 20px !important;}",
-        ".card__description {font-size: 13px !important;}",
-        ".card-information .price {font-weight: 400 !important;}"
+        ".page-width {max-width: 1920px; margin: 0 auto; padding: 0 2.5rem;}",
+        ".fct__tabs {display: flex; flex-wrap: nowrap;}"
       ],
+      "name": "Featured Collection Tabs",
       "settings": {
-        "image_size": "large",
-        "subheading": "",
-        "heading": "Tennis Collection",
-        "heading_size": "h1",
-        "description": "",
-        "button_label": "DISCOVER",
-        "button_link": "shopify://collections/tennis-classics",
-        "button_style": "simple",
-        "is_autoplay": true,
-        "is_hover_stop_autoplay": true,
-        "navigation_position": "cursor",
-        "slideshow_speed": 1.1,
-        "slideshow_delay": 3,
-        "slide_effects": "slide",
-        "is_sync_slide": true,
-        "enable_main_image_link": false,
-        "enable_animation": true,
-        "image_ratio": "portrait",
+        "heading": "SHOP BY CATEGORY",
+        "heading_alignment": "center",
+        "heading_font_size_desktop": 26,
+        "heading_font_size_mobile": 26,
+        "tabs_alignment": "center",
+        "color_scheme": "",
+        "products_to_show": 12,
+        "image_ratio": "square",
         "image_fit": "cover",
         "show_vendor": false,
-        "show_color_count": false,
+        "products_per_row_desktop": "4",
+        "products_per_view_mobile": "1.2",
+        "slide_spacing": 16,
+        "show_arrows_desktop": true,
+        "show_arrows_mobile": true,
+        "margin_top": "no-indent",
+        "margin_bottom": "s"
+      }
+    },
+    "media-banner-1": {
+      "type": "media-banner",
+      "blocks": {
+        "media_slide": {
+          "type": "media_slide",
+          "settings": {
+            "color_scheme": "",
+            "image": "shopify://shop_images/Z2603_YAZ_04_317_srgb_WEB_1.jpg",
+            "overlay_opacity": 0,
+            "enable_hover": true,
+            "show_video": false,
+            "video_url": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
+            "description_video": "",
+            "subheading": "",
+            "heading": "The Art Of The Bracelet",
+            "heading_size": "h1",
+            "description": "Exceptional lab-grown diamonds, crafted to move with you and made for everyday life.",
+            "position_content": "bottom",
+            "align_content": "left",
+            "button_label": "Discover Collection",
+            "button_link": "shopify://collections/bracelets",
+            "button_style": "simple",
+            "button_label2": "",
+            "button_link2": "",
+            "button_style2": "secondary",
+            "full_link": true
+          }
+        },
+        "media_slide1": {
+          "type": "media_slide",
+          "settings": {
+            "color_scheme": "",
+            "image": "shopify://shop_images/Z2603_YAZ_14_1077_srgb_WEB.jpg",
+            "overlay_opacity": 0,
+            "enable_hover": true,
+            "show_video": false,
+            "video_url": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
+            "description_video": "",
+            "subheading": "",
+            "heading": "Complete The Look",
+            "heading_size": "h1",
+            "description": "Pair your favourites with lab-grown diamond earrings, necklaces and rings, designed to shine together.",
+            "position_content": "bottom",
+            "align_content": "left",
+            "button_label": "Discover Jewellery",
+            "button_link": "shopify://collections/rings",
+            "button_style": "simple",
+            "button_label2": "",
+            "button_link2": "",
+            "button_style2": "secondary",
+            "full_link": true
+          }
+        }
+      },
+      "block_order": [
+        "media_slide",
+        "media_slide1"
+      ],
+      "custom_css": [
+        "h2 {word-spacing: 4px;}"
+      ],
+      "settings": {
+        "header_overlay": false,
+        "sticky": "sticky-none",
+        "layout": "simple",
+        "title_link": false,
+        "gap": false,
+        "aspect_ratio": "full",
+        "aspect_ratio_mobile": "1/1",
+        "margin_top": "no-indent",
+        "margin_bottom": "m"
+      }
+    },
+    "popular_products_MtjGkc": {
+      "type": "popular-products",
+      "custom_css": [
+        ".card-information .price {font-weight: 400 !important; font-family: Sterling, serif;}",
+        ".product_color-count {font-weight: 400 !important;}",
+        "@media screen and (max-width: 575px) {.popular-products__wrapper {gap: 2rem 1rem; }}"
+      ],
+      "settings": {
+        "subheading": "",
+        "heading": "BESTSELLERS",
+        "description": "",
+        "heading_size": "h1",
+        "product_source": "list",
+        "product_list": [
+          "aura-ring",
+          "dual-muse-ring",
+          "core-light-pendant",
+          "elira-ring",
+          "emerald-majeste-necklace",
+          "essence-glow-ring"
+        ],
+        "collection": "",
+        "collection_limit": 6,
+        "products_to_show": 4,
+        "products_per_view_mobile": "1.2",
+        "slide_spacing": 16,
+        "show_arrows_desktop": true,
+        "show_arrows_mobile": true,
+        "image_ratio": "square",
+        "image_fit": "cover",
+        "show_vendor": false,
+        "show_color_count": true,
         "show_size_count": false,
         "show_collection": false,
-        "show_desc": true,
-        "margin_top": "no-indent",
-        "margin_bottom": "m"
-      }
-    },
-    "featured-product": {
-      "type": "featured-product",
-      "blocks": {
-        "title": {
-          "type": "title",
-          "settings": {
-            "heading_size": "h2"
-          }
-        },
-        "price": {
-          "type": "price",
-          "settings": {}
-        },
-        "description": {
-          "type": "description",
-          "settings": {
-            "description": "With sharp lapels and a minimalist design, it's perfect for both professional settings and sophisticated evenings."
-          }
-        },
-        "variant_picker": {
-          "type": "variant_picker",
-          "settings": {
-            "picker_type": "button",
-            "pill_group": false,
-            "show_size_guide": false,
-            "size_guide_text": "Size Guide",
-            "size_guide_header": "",
-            "size_guide_description": "",
-            "page": ""
-          }
-        },
-        "buy_buttons": {
-          "type": "buy_buttons",
-          "settings": {
-            "show_dynamic_checkout": false,
-            "show_quantity": false,
-            "notification_modal": true,
-            "modal_button_label": "Notify Me",
-            "heading": "Some heading",
-            "description": "Some description",
-            "button_label": "Button Label",
-            "button_link": "",
-            "description_2": "Some description",
-            "button_label_2": "Button Label",
-            "button_link_2": ""
-          }
-        }
-      },
-      "block_order": [
-        "title",
-        "price",
-        "description",
-        "variant_picker",
-        "buy_buttons"
-      ],
-      "disabled": true,
-      "settings": {
-        "subheading": "",
-        "heading": "Most Popular Piece",
-        "heading_size": "h1",
-        "description": "",
-        "product_item": "",
-        "desktop_alignment": "right",
-        "mobile_alignment": "before",
-        "image_ratio": "portrait",
-        "image_fit": "cover",
-        "button_label": "",
-        "button_link": "",
+        "show_desc": false,
+        "button_label": "DISCOVER ALL",
+        "button_link": "shopify://collections/rings",
         "button_style": "simple",
         "margin_top": "no-indent",
         "margin_bottom": "m"
       }
     },
-    "featured-products": {
-      "type": "featured-products",
+    "feature_guarantee_bar_pgFCmt": {
+      "type": "feature-guarantee-bar",
       "blocks": {
-        "product-slide": {
-          "type": "product-slide",
+        "feature_xhfdhb": {
+          "type": "feature",
           "settings": {
-            "heading": "An Elegant Glow",
-            "product": ""
+            "icon_image": "shopify://shop_images/security_5.png",
+            "custom_svg": "",
+            "title": "CERTIFIED & SERIALISED",
+            "description": "IGI certified above 1 ct. Every piece carries its own serial number."
           }
         },
-        "product-slide1": {
-          "type": "product-slide",
+        "feature_8EJE3K": {
+          "type": "feature",
           "settings": {
-            "heading": "Radiate confidence with timeless pieces",
-            "product": ""
+            "icon_image": "shopify://shop_images/box_7.png",
+            "custom_svg": "",
+            "title": "MADE TO ORDER IN 18K GOLD",
+            "description": "Crafted in 18K gold with refined craftsmanship and attention to every detail."
           }
         },
-        "product-slide2": {
-          "type": "product-slide",
+        "feature_FTWHAb": {
+          "type": "feature",
           "settings": {
-            "heading": "Discover the allure of understated elegance",
-            "product": ""
+            "icon_image": "shopify://shop_images/diamond_3.png",
+            "custom_svg": "",
+            "title": "EXCEPTIONAL LAB-GROWN DIAMONDS",
+            "description": "Carefully selected for exceptional quality, brilliance and beauty."
+          }
+        },
+        "feature_JLJbT6": {
+          "type": "feature",
+          "settings": {
+            "icon_image": "shopify://shop_images/mark.png",
+            "custom_svg": "",
+            "title": "COMPLIMENTARY JEWELLERY CARE",
+            "description": "Complimentary professional cleaning and inspection to keep your YAZ & Co jewellery at its best."
           }
         }
       },
       "block_order": [
-        "product-slide",
-        "product-slide1",
-        "product-slide2"
+        "feature_xhfdhb",
+        "feature_8EJE3K",
+        "feature_FTWHAb",
+        "feature_JLJbT6"
       ],
-      "disabled": true,
+      "custom_css": [
+        "{margin-top: 50px;}"
+      ],
+      "name": "Feature / Guarantee Bar",
       "settings": {
-        "color_scheme": "",
-        "big_image_ratio": "portrait",
-        "heading_size": "h3",
-        "columns": 3,
-        "slider": true,
-        "stop_autoplay": true,
-        "navigation": false,
-        "slideshow_speed": 20,
-        "hover_effect": true,
-        "animate_on_scroll": true,
-        "overlay_opacity": 0.1,
-        "image_ratio": "portrait",
-        "show_vendor": false,
-        "show_collection": false,
-        "margin_top": "no-indent",
-        "margin_bottom": "l"
+        "bg_color": "#f5f5f5",
+        "container_max_w": 1800,
+        "border_color": "#e0e0e0",
+        "border_top_w": 0,
+        "border_bottom_w": 0,
+        "pad_top_d": 30,
+        "pad_bottom_d": 30,
+        "pad_left_d": 40,
+        "pad_right_d": 40,
+        "pad_top_m": 20,
+        "pad_bottom_m": 20,
+        "pad_left_m": 16,
+        "pad_right_m": 16,
+        "cols_d": 4,
+        "cols_m": 2,
+        "gap_d": 30,
+        "gap_m": 20,
+        "item_align": "flex-start",
+        "item_bg": "rgba(0,0,0,0)",
+        "item_border_color": "#eeeeee",
+        "item_border_w": 0,
+        "item_radius": 0,
+        "item_pad_v_d": 0,
+        "item_pad_h_d": 0,
+        "item_pad_v_m": 0,
+        "item_pad_h_m": 0,
+        "icon_color": "#3a1021",
+        "icon_size_d": 28,
+        "icon_size_m": 24,
+        "icon_gap_d": 14,
+        "icon_gap_m": 10,
+        "title_color": "#000000",
+        "title_size_d": 13,
+        "title_size_m": 12,
+        "title_weight": "600",
+        "title_transform": "uppercase",
+        "title_ls": 0.5,
+        "title_lh": "1.3",
+        "title_mb": 4,
+        "desc_color": "#555555",
+        "desc_size_d": 13,
+        "desc_size_m": 12,
+        "desc_weight": "400",
+        "desc_ls": 0,
+        "desc_lh": "1.4",
+        "text_align_d": "left",
+        "text_align_m": "left"
       }
     },
     "media-banner": {
@@ -477,14 +528,14 @@
             "video_url": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
             "description_video": "",
             "subheading": "",
-            "heading": "Bridal Collection",
+            "heading": "Where Forever Begins",
             "heading_size": "h1",
-            "description": "My dear beloved,let’s start our sweet Forever",
-            "position_content": "center",
+            "description": "Bridal jewellery in exceptional lab-grown diamonds, chosen for a lifetime of moments together.",
+            "position_content": "bottom",
             "align_content": "center",
-            "button_label": "Discover",
+            "button_label": "Explore Bridal",
             "button_link": "shopify://collections/bridal-collection",
-            "button_style": "simple",
+            "button_style": "tertiary",
             "button_label2": "",
             "button_link2": "",
             "button_style2": "secondary",
@@ -498,11 +549,11 @@
       "settings": {
         "header_overlay": false,
         "sticky": "sticky-none",
-        "layout": "simple",
+        "layout": "overlay",
         "title_link": false,
         "gap": false,
-        "aspect_ratio": "full",
-        "aspect_ratio_mobile": "full",
+        "aspect_ratio": "21/9",
+        "aspect_ratio_mobile": "1/1",
         "margin_top": "no-indent",
         "margin_bottom": "m"
       }
@@ -516,9 +567,10 @@
       ],
       "settings": {
         "subheading": "",
-        "heading": "BEST SELLERS",
+        "heading": "BRIDAL",
         "description": "",
         "heading_size": "h1",
+        "product_source": "collection",
         "product_list": [
           "radiance-ring",
           "radiance-earrings",
@@ -533,7 +585,13 @@
           "majesty-bloom-ring",
           "infinite-eternity-ring"
         ],
+        "collection": "bridal-collection",
+        "collection_limit": 12,
         "products_to_show": 4,
+        "products_per_view_mobile": "1.2",
+        "slide_spacing": 16,
+        "show_arrows_desktop": true,
+        "show_arrows_mobile": true,
         "image_ratio": "square",
         "image_fit": "contain",
         "show_vendor": false,
@@ -541,89 +599,35 @@
         "show_size_count": false,
         "show_collection": false,
         "show_desc": false,
-        "columns_mobile": "2",
-        "button_label": "",
-        "button_link": "",
+        "button_label": "DISCOVER ALL",
+        "button_link": "shopify://collections/bridal-collection",
         "button_style": "simple",
         "margin_top": "no-indent",
-        "margin_bottom": "m"
+        "margin_bottom": "s"
       }
     },
-    "popular_products_y96TPy": {
-      "type": "popular-products",
-      "disabled": true,
-      "custom_css": [],
-      "settings": {
-        "subheading": "",
-        "heading": "",
-        "description": "",
-        "heading_size": "h1",
-        "product_list": [
-          "aurora-bracelet-3-5mm-1",
-          "aurora-bracelet-3-mm-2",
-          "aurora-bracelet-2-5-mm-2",
-          "aurora-bracelet-2-5-mm-3"
-        ],
-        "products_to_show": 4,
-        "image_ratio": "portrait",
-        "image_fit": "cover",
-        "show_vendor": false,
-        "show_color_count": true,
-        "show_size_count": false,
-        "show_collection": false,
-        "show_desc": false,
-        "columns_mobile": "1",
-        "button_label": "",
-        "button_link": "",
-        "button_style": "simple",
-        "margin_top": "no-indent",
-        "margin_bottom": "m"
-      }
-    },
-    "media-banner-1": {
+    "media_banner_d9znAD": {
       "type": "media-banner",
       "blocks": {
-        "media_slide": {
+        "media_slide_669cyD": {
           "type": "media_slide",
           "settings": {
-            "color_scheme": "",
+            "color_scheme": "background-2",
+            "image": "shopify://shop_images/DESKTOP_BANNER_IMG.jpg",
+            "mobile_image": "shopify://shop_images/MOBILE_BANNER_IMG.jpg",
             "overlay_opacity": 0,
             "enable_hover": true,
             "show_video": false,
             "video_url": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
             "description_video": "",
             "subheading": "",
-            "heading": "Beyond Basics",
+            "heading": "",
             "heading_size": "h1",
-            "description": "Timeless essentials with modern details—versatile, stylish, and effortlessly wearable.",
+            "description": "",
             "position_content": "bottom",
-            "align_content": "left",
-            "button_label": "Discover Collection",
-            "button_link": "",
-            "button_style": "simple",
-            "button_label2": "",
-            "button_link2": "",
-            "button_style2": "secondary",
-            "full_link": true
-          }
-        },
-        "media_slide1": {
-          "type": "media_slide",
-          "settings": {
-            "color_scheme": "",
-            "overlay_opacity": 0,
-            "enable_hover": true,
-            "show_video": false,
-            "video_url": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
-            "description_video": "",
-            "subheading": "",
-            "heading": "Thoughtful Design",
-            "heading_size": "h1",
-            "description": "Well-made, comfortable, and stylish—clothing designed with attention to every detail.",
-            "position_content": "bottom",
-            "align_content": "left",
-            "button_label": "Discover Collection",
-            "button_link": "",
+            "align_content": "center",
+            "button_label": "",
+            "button_link": "shopify://pages/concierge",
             "button_style": "simple",
             "button_label2": "",
             "button_link2": "",
@@ -633,217 +637,182 @@
         }
       },
       "block_order": [
-        "media_slide",
-        "media_slide1"
+        "media_slide_669cyD"
       ],
       "disabled": true,
       "settings": {
         "header_overlay": false,
         "sticky": "sticky-none",
-        "layout": "simple",
+        "layout": "overlay",
         "title_link": false,
         "gap": false,
-        "aspect_ratio": "full",
-        "aspect_ratio_mobile": "full",
+        "aspect_ratio": "adapt",
+        "aspect_ratio_mobile": "adapt",
         "margin_top": "no-indent",
         "margin_bottom": "m"
       }
     },
-    "slideshow1": {
-      "type": "slideshow",
+    "image_with_product_grid_UwdkkK": {
+      "type": "image-with-product-grid",
       "blocks": {
-        "slideshow-item": {
-          "type": "slideshow-item",
+        "product_c9bTN4": {
+          "type": "product",
           "settings": {
-            "overlay_opacity": 0.2,
-            "show_video": false,
-            "video_url": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
-            "description_video": "",
-            "heading": "",
-            "description": "<p>Highlight individuality with bold designs and luxurious fabrics.</p>",
-            "tab_subheading": "New Collection",
-            "tab_heading": "Summer Light",
-            "button_label": "Discover Collection",
-            "button_link": "",
-            "button_style": "tertiary",
-            "enable_fullscreen_link": true
+            "product": "althea-ring"
           }
         },
-        "slideshow-item1": {
-          "type": "slideshow-item",
+        "product_WKWAbx": {
+          "type": "product",
           "settings": {
-            "overlay_opacity": 0.2,
-            "show_video": false,
-            "video_url": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
-            "description_video": "",
-            "heading": "",
-            "description": "<p>A collection that captures the essence of city life with bold pieces.</p>",
-            "tab_subheading": "Premiere",
-            "tab_heading": "Signature Launch",
-            "button_label": "Discover Collection",
-            "button_link": "",
-            "button_style": "tertiary",
-            "enable_fullscreen_link": true
+            "product": "aura-ring"
           }
         },
-        "slideshow-item2": {
-          "type": "slideshow-item",
+        "product_CjhFdK": {
+          "type": "product",
           "settings": {
-            "overlay_opacity": 0.2,
-            "show_video": false,
-            "video_url": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
-            "description_video": "",
-            "heading": "",
-            "description": "<p>Experience comfort and style with our cozy, layered essentials.</p>",
-            "tab_subheading": "Campaign",
-            "tab_heading": "Universal Layers",
-            "button_label": "Discover Collection",
-            "button_link": "",
-            "button_style": "tertiary",
-            "enable_fullscreen_link": true
+            "product": "celeste-ring"
           }
         },
-        "slideshow-item3": {
-          "type": "slideshow-item",
+        "product_U6Axb4": {
+          "type": "product",
           "settings": {
-            "overlay_opacity": 0.2,
-            "show_video": false,
-            "video_url": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
-            "description_video": "",
-            "heading": "",
-            "description": "<p>Discover earthy hues and organic textures for a relaxed look.</p>",
-            "tab_subheading": "New Collection",
-            "tab_heading": "Natural Tones",
-            "button_label": "Discover Collection",
-            "button_link": "",
-            "button_style": "tertiary",
-            "enable_fullscreen_link": true
+            "product": "core-light-earrings"
           }
         }
       },
       "block_order": [
-        "slideshow-item",
-        "slideshow-item1",
-        "slideshow-item2",
-        "slideshow-item3"
+        "product_c9bTN4",
+        "product_WKWAbx",
+        "product_CjhFdK",
+        "product_U6Axb4"
       ],
       "disabled": true,
-      "settings": {
-        "header_overlay": true,
-        "text_color_scheme": "",
-        "layout": "layout_3",
-        "aspect_ratio": "full",
-        "heading_size": "h1",
-        "tabs_size": "h2",
-        "is_autoplay": false,
-        "is_hover_stop_autoplay": false,
-        "slideshow_speed": 1,
-        "slideshow_delay": 3,
-        "slide_effects": "slide",
-        "margin_top": "no-indent",
-        "margin_bottom": "m"
-      }
-    },
-    "featured-blog": {
-      "type": "featured-blog",
-      "disabled": true,
-      "settings": {
-        "blog": "insatgram-posts",
-        "post_limit": 4,
-        "columns_per_row": 4,
-        "post_layout": "column",
-        "subheading": "",
-        "heading": "FOLLOW US ON INSTAGRAM",
-        "heading_size": "h1",
-        "description": "",
-        "blog_button_label": "@yazandco",
-        "button_style": "simple",
-        "card_heading_size": "h2",
-        "hover_effect": true,
-        "inner_button_label": "Read More",
-        "button_color_scheme": "",
-        "overlay_opacity": 0.2,
-        "tags_position": "top",
-        "show_image": true,
-        "show_tags": false,
-        "show_date": false,
-        "show_author": false,
-        "show_excerpt": false,
-        "image_ratio": "square",
-        "margin_top": "l",
-        "margin_bottom": "m"
-      }
-    },
-    "product_slider_pcWYXx": {
-      "type": "product-slider",
-      "blocks": {
-        "product_slide_aXaMDi": {
-          "type": "product_slide",
-          "settings": {
-            "product": "essence-glow-ring",
-            "image": "shopify://shop_images/everyday_banner.jpg",
-            "color_scheme": "",
-            "overlay_opacity": 0.1,
-            "description": "Everyday radiance is not meant to be hidden"
-          }
-        },
-        "product_slide_iy9Fp7": {
-          "type": "product_slide",
-          "settings": {
-            "product": "althea-ring",
-            "image": "shopify://shop_images/Z2603_YAZ_07_563_srgb_WEB.jpg",
-            "color_scheme": "",
-            "overlay_opacity": 0.1,
-            "description": ""
-          }
-        },
-        "product_slide_JTbDVQ": {
-          "type": "product_slide",
-          "settings": {
-            "product": "celeste-ring",
-            "image": "shopify://shop_images/Z2603_YAZ_10_862.jpg",
-            "color_scheme": "",
-            "overlay_opacity": 0.1,
-            "description": ""
-          }
-        }
-      },
-      "block_order": [
-        "product_slide_aXaMDi",
-        "product_slide_iy9Fp7",
-        "product_slide_JTbDVQ"
-      ],
       "custom_css": [
-        ".product-slider__wrapper {margin-bottom: 60px;}"
+        ".card-information .price {font-weight: 400 !important; font-family: Sterling, serif;}",
+        ".product_color-count {font-weight: 400 !important;}",
+        "@media screen and (max-width: 575px) {.title--primary {margin: 0rem 0; } .popular-products__wrapper {gap: 2rem 1rem; }}"
       ],
-      "name": "t:sections.product-slider.presets.name",
+      "name": "Image with Product Grid",
       "settings": {
-        "image_size": "large",
-        "subheading": "",
-        "heading": "Everyday Radiance Collection",
-        "heading_size": "h1",
-        "description": "",
-        "button_label": "DISCOVER",
-        "button_link": "shopify://collections/everyday-radiance",
-        "button_style": "simple",
-        "is_autoplay": true,
-        "is_hover_stop_autoplay": true,
-        "navigation_position": "cursor",
-        "slideshow_speed": 1.1,
-        "slideshow_delay": 3,
-        "slide_effects": "slide",
-        "is_sync_slide": true,
-        "enable_main_image_link": false,
-        "enable_animation": true,
-        "image_ratio": "square",
-        "image_fit": "contain",
+        "heading": "Shop the Edit",
+        "heading_alignment": "left",
+        "heading_font_size_desktop": 26,
+        "heading_font_size_mobile": 26,
+        "color_scheme": "",
+        "full_width": true,
+        "image": "shopify://shop_images/ChatGPT_Image_Jul_22_2026_03_10_40_PM.png",
+        "image_link": "",
+        "layout": "image_left",
+        "mobile_image_ratio": "landscape",
+        "grid_columns_desktop": "2",
+        "grid_columns_mobile": "2",
+        "grid_gap": 16,
+        "product_image_ratio": "square",
+        "product_image_fit": "contain",
         "show_vendor": false,
         "show_color_count": true,
-        "show_size_count": false,
-        "show_collection": false,
-        "show_desc": true,
+        "show_wishlist_icon": false,
         "margin_top": "no-indent",
-        "margin_bottom": "no-indent"
+        "margin_bottom": "m"
+      }
+    },
+    "craft_auto_slider_zDQ3D9": {
+      "type": "Craft-Auto-Slider",
+      "blocks": {
+        "story_slide_fBNyW8": {
+          "type": "story_slide",
+          "settings": {
+            "title": "Your Personal Jewellery Concierge",
+            "content": "<p>A more personal way to discover the perfect piece.<br/><br/>Whether you’re choosing jewellery for everyday life, finding a meaningful gift, creating something personal, or planning your bridal look, our YAZ & Co concierge is here to guide you.</p><p><strong>Personal Styling · Gifting Guidance · Bridal Consultations · Private Appointments</strong></p>",
+            "media_type": "image",
+            "image": "shopify://shop_images/Untitled_design_85.png",
+            "video_url": "",
+            "button_label": "Discover Our Concierge",
+            "button_url": "shopify://pages/concierge"
+          }
+        },
+        "story_slide_g6fmXL": {
+          "type": "story_slide",
+          "settings": {
+            "title": "Exceptional Materials, Thoughtfully Chosen",
+            "content": "<p>Every YAZ & Co piece begins with exceptional materials, carefully selected for quality, beauty and lasting brilliance.</p><p>From exceptional lab-grown diamonds to 18K gold, every detail reflects our commitment to quality, craftsmanship and transparency.</p>",
+            "media_type": "video",
+            "video_native": "shopify://files/videos/124bd5a7251b47bcb1bcbb546cd4afb6.HD-1080p-2.5Mbps-91398240 (online-video-cutter.com).mp4",
+            "video_url": "",
+            "button_label": "DISCOVER OUR CONCIERGE",
+            "button_url": "shopify://pages/concierge"
+          }
+        }
+      },
+      "block_order": [
+        "story_slide_fBNyW8",
+        "story_slide_g6fmXL"
+      ],
+      "custom_css": [
+        "p {color: white;}",
+        "a:hover {color: white;}"
+      ],
+      "name": "Story Craft Auto-Slider",
+      "settings": {
+        "bg_color": "#4d1432",
+        "container_max_w": 1800,
+        "content_col_width_d": 45,
+        "vert_align": "center",
+        "enable_autoplay": true,
+        "autoplay_duration": 3,
+        "fade_speed": 200,
+        "pause_on_hover": true,
+        "text_align_d": "left",
+        "text_align_m": "center",
+        "desktop_swap": "media_left",
+        "mobile_swap": "media_top",
+        "gap_d": 70,
+        "gap_m": 30,
+        "pad_top_d": 45,
+        "pad_bottom_d": 50,
+        "pad_left_d": 40,
+        "pad_right_d": 40,
+        "pad_top_m": 40,
+        "pad_bottom_m": 40,
+        "pad_left_m": 20,
+        "pad_right_m": 20,
+        "heading_color": "#ffffff",
+        "heading_size_d": 36,
+        "heading_size_m": 26,
+        "heading_weight": "400",
+        "heading_lh": "1.25",
+        "heading_ls": 0,
+        "heading_mb_d": 24,
+        "heading_mb_m": 16,
+        "body_color": "#ffffff",
+        "body_size_d": 16,
+        "body_size_m": 14,
+        "body_weight": "400",
+        "body_lh": "1.6",
+        "p_gap_d": 16,
+        "p_gap_m": 12,
+        "media_height_d": 550,
+        "media_height_m": 320,
+        "media_fit": "cover",
+        "media_radius": 0,
+        "button_bg_color": "rgba(0,0,0,0)",
+        "button_text_color": "#ffffff",
+        "button_border_color": "#ffffff",
+        "button_radius": 0,
+        "button_font_size": 14,
+        "button_pad_v": 12,
+        "button_pad_h": 28,
+        "button_mt_d": 24,
+        "button_mt_m": 16,
+        "nav_align": "center",
+        "nav_bar_max_w": 120,
+        "nav_bar_h": 2,
+        "nav_gap": 12,
+        "nav_bar_radius": 2,
+        "nav_bg_color": "#f0f0f0",
+        "nav_active_color": "#000000",
+        "nav_mt_d": 40,
+        "nav_mt_m": 25
       }
     },
     "media-banner-2": {
@@ -864,7 +833,7 @@
             "heading": "Signature Collection",
             "heading_size": "h1",
             "description": "Crafted rays of light become your signature glow",
-            "position_content": "center",
+            "position_content": "bottom",
             "align_content": "center",
             "button_label": "DISCOVER",
             "button_link": "shopify://collections/signature-collection",
@@ -879,169 +848,419 @@
       "block_order": [
         "media_slide"
       ],
+      "disabled": true,
       "settings": {
         "header_overlay": false,
         "sticky": "sticky-none",
-        "layout": "simple",
+        "layout": "overlay",
         "title_link": false,
         "gap": false,
-        "aspect_ratio": "full",
-        "aspect_ratio_mobile": "full",
+        "aspect_ratio": "21/9",
+        "aspect_ratio_mobile": "1/1",
         "margin_top": "no-indent",
         "margin_bottom": "m"
       }
     },
-    "multicolumn": {
-      "type": "multicolumn",
-      "blocks": {
-        "column1": {
-          "type": "column",
-          "settings": {
-            "overlay_opacity": 0.2,
-            "subheading": "",
-            "heading": "Worldwide Style",
-            "description": "<p>Embrace a collection that seamlessly blends elegance with modern sophistication, inspired by the world's most fashionable cities.</p>",
-            "button_label": "",
-            "button_link": ""
-          }
-        },
-        "column": {
-          "type": "column",
-          "settings": {
-            "overlay_opacity": 0.2,
-            "subheading": "",
-            "heading": "Inspired by the World",
-            "description": "<p>Our collections draw inspiration from global cultures, bringing unique and eclectic styles to your wardrobe.</p>",
-            "button_label": "",
-            "button_link": ""
-          }
-        },
-        "column2": {
-          "type": "column",
-          "settings": {
-            "overlay_opacity": 0.2,
-            "subheading": "",
-            "heading": "Modern Nomad",
-            "description": "<p>Discover styles that travel effortlessly, combining comfort and versatility for every journey, from city streets to distant shores.</p>",
-            "button_label": "",
-            "button_link": ""
-          }
-        },
-        "column3": {
-          "type": "column",
-          "settings": {
-            "overlay_opacity": 0.2,
-            "subheading": "",
-            "heading": "Timeless Essentials",
-            "description": "<p>Curated pieces designed to stand the test of time, bringing you classic looks with a contemporary twist.</p>",
-            "button_label": "",
-            "button_link": ""
-          }
-        },
-        "column_QMxx6L": {
-          "type": "column",
-          "settings": {
-            "overlay_opacity": 0.2,
-            "subheading": "",
-            "heading": "Worldwide Style",
-            "description": "<p>Embrace a collection that seamlessly blends elegance with modern sophistication, inspired by the world's most fashionable cities.</p>",
-            "button_label": "",
-            "button_link": ""
-          }
-        },
-        "column_Uwr8nC": {
-          "type": "column",
-          "settings": {
-            "overlay_opacity": 0.2,
-            "subheading": "",
-            "heading": "Urban Elegance",
-            "description": "<p>Dive into a collection that captures the dynamic spirit of the city, with bold designs and refined silhouettes.</p>",
-            "button_label": "",
-            "button_link": ""
-          }
-        }
-      },
-      "block_order": [
-        "column1",
-        "column",
-        "column2",
-        "column3",
-        "column_QMxx6L",
-        "column_Uwr8nC"
+    "popular_products_w4Gaik": {
+      "type": "popular-products",
+      "custom_css": [
+        ".card-information .price {font-weight: 400 !important; font-family: Sterling, serif;}",
+        ".product_color-count {font-weight: 400 !important;}",
+        "@media screen and (max-width: 575px) {.popular-products__wrapper {gap: 2rem 1rem; }}"
       ],
-      "disabled": true,
       "settings": {
-        "color_scheme": "",
         "subheading": "",
-        "heading": "",
-        "heading_size": "h1",
+        "heading": "Signature",
         "description": "",
-        "enable_full_screen": true,
-        "swiper": true,
-        "stop_autoplay": true,
-        "navigation": true,
-        "slideshow_speed": 20,
-        "layout_type": "overlay",
-        "content_position": "img-top",
-        "always_visible_text": false,
-        "on_hover": "show_text",
-        "multicolumn_to_show": 2,
+        "heading_size": "h1",
+        "product_source": "collection",
+        "product_list": [
+          "radiance-ring",
+          "radiance-earrings",
+          "radiance-necklace",
+          "rings-1",
+          "ring-2",
+          "ring-3",
+          "ring",
+          "ring-4",
+          "aura-ring",
+          "celeste-ring",
+          "majesty-bloom-ring",
+          "infinite-eternity-ring"
+        ],
+        "collection": "signature-collection",
+        "collection_limit": 12,
+        "products_to_show": 4,
+        "products_per_view_mobile": "1.2",
+        "slide_spacing": 16,
+        "show_arrows_desktop": true,
+        "show_arrows_mobile": true,
         "image_ratio": "square",
-        "object_fit": "cover",
-        "card_heading_size": "h1",
-        "button_label": "",
+        "image_fit": "contain",
+        "show_vendor": false,
+        "show_color_count": true,
+        "show_size_count": false,
+        "show_collection": false,
+        "show_desc": false,
+        "button_label": "DISCOVER ALL",
+        "button_link": "shopify://collections/signature-collection",
         "button_style": "simple",
-        "button_link": "",
-        "margin_top": "no-indent",
-        "margin_bottom": "m"
+        "margin_top": "s",
+        "margin_bottom": "s"
       }
     },
-    "banner-with-popup": {
-      "type": "banner-with-popup",
+    "location_banner_6z6b38": {
+      "type": "Location-Banner",
+      "disabled": true,
+      "name": "Location Banner Overlay",
+      "settings": {
+        "section_bg": "rgba(0,0,0,0)",
+        "container_max_w": 1920,
+        "banner_radius": 0,
+        "banner_height_d": 560,
+        "banner_height_m": 420,
+        "pad_top_d": 0,
+        "pad_bottom_d": 0,
+        "pad_left_d": 0,
+        "pad_right_d": 0,
+        "pad_top_m": 0,
+        "pad_bottom_m": 0,
+        "pad_left_m": 0,
+        "pad_right_m": 0,
+        "image": "shopify://shop_images/unnamed_2.jpg",
+        "img_fit": "cover",
+        "img_pos": "center center",
+        "img_overlay_color": "#000000",
+        "img_overlay_opacity": 10,
+        "card_align_v_d": "flex-end",
+        "card_align_h_d": "flex-start",
+        "card_align_v_m": "flex-end",
+        "card_align_h_m": "flex-start",
+        "card_wrap_pad_top_d": 40,
+        "card_wrap_pad_bottom_d": 40,
+        "card_wrap_pad_left_d": 40,
+        "card_wrap_pad_right_d": 40,
+        "card_wrap_pad_top_m": 20,
+        "card_wrap_pad_bottom_m": 20,
+        "card_wrap_pad_left_m": 16,
+        "card_wrap_pad_right_m": 16,
+        "card_bg_color": "#2d2825",
+        "card_bg_opacity": 0.5,
+        "enable_blur": true,
+        "blur_amount": 12,
+        "card_max_w_d": 460,
+        "card_max_w_m": 360,
+        "card_radius": 0,
+        "card_border_w": 1,
+        "card_border_color": "#4a433f",
+        "card_pad_top_d": 24,
+        "card_pad_bottom_d": 24,
+        "card_pad_left_d": 24,
+        "card_pad_right_d": 24,
+        "card_pad_top_m": 18,
+        "card_pad_bottom_m": 18,
+        "card_pad_left_m": 18,
+        "card_pad_right_m": 18,
+        "title": "Yaz and Co",
+        "title_tag": "h3",
+        "title_color": "#ffffff",
+        "title_size_d": 22,
+        "title_size_m": 18,
+        "title_weight": "400",
+        "title_lh": "1.2",
+        "title_ls": 0,
+        "title_mb_d": 12,
+        "title_mb_m": 10,
+        "show_external_icon": true,
+        "title_url": "",
+        "title_icon_gap": 6,
+        "address": "Shop No-1 - Al Khirayr St - Al Nahyan - Zone 1 - Abu Dhabi - United Arab Emirates",
+        "schedule": "MON-SUN 9 AM–6 PM",
+        "body_color": "#d1cdca",
+        "body_size_d": 13,
+        "body_size_m": 12,
+        "body_weight": "300",
+        "body_lh": "1.4",
+        "body_flex_dir_d": "row",
+        "body_flex_dir_m": "column",
+        "body_gap_d": 20,
+        "body_gap_m": 10,
+        "body_mb_d": 18,
+        "body_mb_m": 14,
+        "cta_text": "Book a Consultation",
+        "cta_url": "shopify://pages/book-an-appointment",
+        "cta_color": "#ffffff",
+        "cta_hover_color": "#ffffff",
+        "cta_size_d": 14,
+        "cta_size_m": 13,
+        "cta_weight": "500",
+        "cta_lh": "1.3",
+        "show_cta_arrow": true,
+        "cta_arrow_gap": 8
+      }
+    },
+    "feature_cards_grid_a4z4gR": {
+      "type": "Feature-Cards-Grid",
       "blocks": {
-        "image": {
-          "type": "image",
+        "feature_card_y8ERzP": {
+          "type": "feature_card",
           "settings": {
-            "image": "shopify://shop_images/Luxurious_diamond_necklace_on_minimalist_backdrop.png"
+            "image": "shopify://shop_images/WhatsApp_Image_2026-09-09_at_6.23.25_PM.jpg",
+            "title": "Book a Boutique Appointment",
+            "description": "<p>Experience our exquisite collection in a private setting with personalised guidance from our diamond experts.</p>",
+            "link_text": "Book Your Visit",
+            "link_url": "shopify://pages/locations",
+            "show_arrow": true
           }
         },
-        "image1": {
-          "type": "image",
-          "disabled": true,
-          "settings": {}
+        "feature_card_LVjJj3": {
+          "type": "feature_card",
+          "settings": {
+            "image": "shopify://shop_images/WhatsApp_Image_2026-09-09_at_6.23.24_PM.jpg",
+            "title": "Book a Virtual Appointment",
+            "description": "<p>Enjoy a personalised virtual consultation from the comfort of your home with our expert advisors.</p>",
+            "link_text": "Schedule Now",
+            "link_url": "shopify://pages/book-an-appointment",
+            "show_arrow": true
+          }
         },
-        "image2": {
-          "type": "image",
+        "feature_card_DLxzRG": {
+          "type": "feature_card",
+          "settings": {
+            "image": "shopify://shop_images/WhatsApp_Image_2026-09-09_at_6.23.25_PM_1.jpg",
+            "title": "WhatsApp Concierge",
+            "description": "<p>Connect instantly with our concierge team for expert advice, product enquiries, and personalised assistance.</p>",
+            "link_text": "Chat With Us",
+            "link_url": "tel:+971568887552",
+            "show_arrow": true
+          }
+        },
+        "feature_card_wPmBrF": {
+          "type": "feature_card",
           "disabled": true,
-          "settings": {}
+          "settings": {
+            "image": "shopify://shop_images/WhatsApp_Image_2026-07-18_at_3.55.55_PM_1.jpg",
+            "title": "Aftercare",
+            "description": "<p>Explore aftercare services such as ring polishing and resizing.</p>",
+            "link_text": "View aftercare services",
+            "link_url": "shopify://pages/faq",
+            "show_arrow": true
+          }
         }
       },
       "block_order": [
-        "image",
-        "image1",
-        "image2"
+        "feature_card_y8ERzP",
+        "feature_card_LVjJj3",
+        "feature_card_DLxzRG",
+        "feature_card_wPmBrF"
       ],
+      "custom_css": [
+        "a:not([disabled]):not([aria-disabled=\"true\"]):hover {color: rgb(255 255 255); text-decoration-color: rgb(255 255 255);}"
+      ],
+      "name": "Feature Cards Grid",
       "settings": {
-        "aspect_ratio": "full",
-        "full_screen_image_mode": false,
-        "heading": "Contact us",
-        "heading_size": "h1",
-        "description": "<p></p><p>Whatsapp: <a href=\"https://wa.me/9710568887552\" target=\"_blank\" title=\"https://wa.me/9710568887552\">+971 568887552</a><br/>E-mail: <a href=\"mailto:info@yazandco.com\" title=\"mailto:info@yazandco.com\">info@yazandco.com</a><br/></p>",
-        "button_label": "",
-        "button_link": "",
-        "button_style": "simple",
-        "button_function": "link",
-        "enable_animation": true,
-        "slideshow_speed": 2,
-        "popup_heading": "The Avant-Garde Edit",
-        "popup_content_heading": "The Avant-Garde Edit",
-        "popup_content": "<p>Step into a realm of innovative style with our exclusive collection, where bold designs meet impeccable craftsmanship. This curated selection celebrates the art of fashion, merging daring silhouettes with exquisite fabrics to create looks that redefine modern elegance.</p><p>Each piece is crafted to make a statement, blending unique textures and unexpected cuts to elevate your wardrobe. Embrace the spirit of fearless fashion, designed to captivate and inspire confidence in every step you take.</p>",
-        "popup_image_size": "landscape",
-        "popup_button_label": "Shop Collection",
-        "popup_button_link": "",
-        "popup_button_style": "tertiary",
-        "margin_top": "no-indent",
-        "margin_bottom": "m"
+        "card_layout": "overlay",
+        "overlay_full_bleed": true,
+        "ov_card_clickable": true,
+        "ov_show_desc": false,
+        "ov_show_arrow": false,
+        "ov_img_height_d": 550,
+        "ov_img_height_m": 440,
+        "ov_pad_d": 46,
+        "ov_pad_m": 24,
+        "ov_text_align_d": "left",
+        "ov_text_align_m": "left",
+        "ov_scrim_color": "#000000",
+        "ov_scrim_opacity": 55,
+        "ov_scrim_height": 60,
+        "ov_title_color": "#ffffff",
+        "ov_title_size_d": 23,
+        "ov_title_size_m": 19,
+        "ov_title_weight": "300",
+        "ov_title_ls": 0,
+        "ov_title_transform": "uppercase",
+        "ov_title_mb": 14,
+        "ov_desc_color": "#ededed",
+        "ov_desc_mb": 14,
+        "ov_desc_max_w": 420,
+        "ov_link_color": "#ffffff",
+        "ov_link_hover_color": "#dddddd",
+        "ov_link_underline": true,
+        "ov_link_underline_offset": 6,
+        "bg_color": "#4d1432",
+        "container_max_w": 1800,
+        "pad_top_d": 70,
+        "pad_bottom_d": 0,
+        "pad_left_d": 40,
+        "pad_right_d": 40,
+        "pad_top_m": 35,
+        "pad_bottom_m": 35,
+        "pad_left_m": 16,
+        "pad_right_m": 16,
+        "heading": "Find Your Perfect Piece, Your Way",
+        "heading_tag": "h2",
+        "title_color": "#ffffff",
+        "title_size_d": 21,
+        "title_size_m": 19,
+        "title_weight": "400",
+        "title_lh": "1.25",
+        "title_ls": 0,
+        "title_mb_d": 12,
+        "title_mb_m": 8,
+        "subheading": "Explore our personalised diamond experience with expert guidance, whether you visit us in-store, connect virtually, or speak with our concierge team.",
+        "subtitle_color": "#ffffff",
+        "subtitle_size_d": 15,
+        "subtitle_size_m": 14,
+        "subtitle_weight": "400",
+        "subtitle_lh": "1.5",
+        "subtitle_ls": 0,
+        "header_align": "center",
+        "header_align_m": "center",
+        "header_mb_d": 40,
+        "header_mb_m": 25,
+        "cols_d": 3,
+        "cols_m": 1,
+        "gap_d": 0,
+        "gap_m": 0,
+        "card_bg": "#ffffff",
+        "card_radius": 0,
+        "card_border_w": 0,
+        "card_border_color": "#eaeaea",
+        "card_text_align": "left",
+        "card_text_align_m": "center",
+        "enable_card_hover": false,
+        "card_pad_top_d": 24,
+        "card_pad_bottom_d": 24,
+        "card_pad_left_d": 20,
+        "card_pad_right_d": 20,
+        "card_pad_top_m": 18,
+        "card_pad_bottom_m": 18,
+        "card_pad_left_m": 16,
+        "card_pad_right_m": 16,
+        "img_height_d": 320,
+        "img_height_m": 240,
+        "img_fit": "cover",
+        "img_radius": 0,
+        "enable_img_zoom": true,
+        "card_title_color": "#222222",
+        "card_title_size_d": 20,
+        "card_title_size_m": 17,
+        "card_title_weight": "400",
+        "card_title_lh": "1.3",
+        "card_title_ls": 0,
+        "card_title_mb_d": 10,
+        "card_title_mb_m": 8,
+        "card_desc_color": "#000000",
+        "card_desc_size_d": 15,
+        "card_desc_size_m": 14,
+        "card_desc_weight": "400",
+        "card_desc_lh": "1.5",
+        "card_desc_mb_d": 20,
+        "card_desc_mb_m": 16,
+        "link_color": "#ffffff",
+        "link_hover_color": "#ffffff",
+        "link_size_d": 14,
+        "link_size_m": 12,
+        "link_weight": "400",
+        "link_lh": "1.4",
+        "link_arrow_gap": 8
+      }
+    },
+    "value_props_grid_gMnLgC": {
+      "type": "value-props-grid",
+      "blocks": {
+        "value_item_nVifMp": {
+          "type": "value_item",
+          "settings": {
+            "image": "shopify://shop_images/image_70.png",
+            "custom_svg": "",
+            "title": "Secure Shipping & Returns"
+          }
+        },
+        "value_item_B7kUPp": {
+          "type": "value_item",
+          "settings": {
+            "image": "shopify://shop_images/image_71.png",
+            "custom_svg": "",
+            "title": "5-Year Warranty"
+          }
+        },
+        "value_item_xaX6XV": {
+          "type": "value_item",
+          "disabled": true,
+          "settings": {
+            "image": "shopify://shop_images/image_72.png",
+            "custom_svg": "",
+            "title": "LIFETIME DIAMOND"
+          }
+        },
+        "value_item_4bEiNB": {
+          "type": "value_item",
+          "settings": {
+            "image": "shopify://shop_images/image_73.png",
+            "custom_svg": "",
+            "title": "24/7 Customer Support"
+          }
+        },
+        "value_item_3QKic8": {
+          "type": "value_item",
+          "settings": {
+            "image": "shopify://shop_images/image_74.png",
+            "custom_svg": "",
+            "title": "Lifetime Resizing"
+          }
+        }
+      },
+      "block_order": [
+        "value_item_nVifMp",
+        "value_item_B7kUPp",
+        "value_item_xaX6XV",
+        "value_item_4bEiNB",
+        "value_item_3QKic8"
+      ],
+      "name": "Value Props Grid",
+      "settings": {
+        "heading": "We've Got You Covered",
+        "heading_align": "center",
+        "heading_color": "#ffffff",
+        "heading_size_d": 34,
+        "heading_size_m": 24,
+        "heading_weight_d": "400",
+        "heading_weight_m": "400",
+        "heading_mb_d": 40,
+        "heading_mb_m": 24,
+        "max_width": 1600,
+        "items_per_row_d": 4,
+        "items_per_row_m": 2,
+        "gap_d": 24,
+        "gap_m": 16,
+        "icon_size_d": 64,
+        "icon_size_m": 40,
+        "svg_inner_size": 55,
+        "icon_radius": 50,
+        "icon_bg": "rgba(0,0,0,0)",
+        "icon_border_color": "rgba(0,0,0,0)",
+        "icon_border_width": 1,
+        "icon_svg_color": "#2a2929",
+        "icon_shadow": "none",
+        "icon_mb_d": 16,
+        "icon_mb_m": 10,
+        "text_color": "#ffffff",
+        "text_size_d": 13,
+        "text_size_m": 11,
+        "text_weight_d": "500",
+        "text_weight_m": "500",
+        "text_transform": "none",
+        "letter_spacing": 0.5,
+        "bg_color": "#4d1432",
+        "padding_top_d": 56,
+        "padding_bottom_d": 56,
+        "padding_left_d": 32,
+        "padding_right_d": 32,
+        "padding_top_m": 40,
+        "padding_bottom_m": 40,
+        "padding_left_m": 16,
+        "padding_right_m": 16
       }
     },
     "17712299329717ac8b": {
@@ -1054,7 +1273,7 @@
             "title_color": "",
             "title_size_v2": 0,
             "alignment": "center",
-            "instafeed_margin_top": 0,
+            "instafeed_margin_top": 23,
             "instafeed_margin_bottom": 0,
             "instafeed_margin_sides": 0,
             "show_instagram_link": true,
@@ -1069,6 +1288,9 @@
       "block_order": [
         "instafeed_app_block_fNYybx"
       ],
+      "custom_css": [
+        ".instafeed-new-layout-container .instafeed-new-arrow {z-index: 1;}"
+      ],
       "settings": {
         "include_margins": true
       }
@@ -1076,23 +1298,22 @@
   },
   "order": [
     "slideshow",
-    "popular-products",
-    "image-with-text",
-    "categories_list_dE7AnG",
     "rich_text_RQMf8h",
-    "product-slider",
-    "featured-product",
-    "featured-products",
+    "categories_list_dE7AnG",
+    "featured_collection_tabs_r6hJMb",
+    "media-banner-1",
+    "popular_products_MtjGkc",
+    "feature_guarantee_bar_pgFCmt",
     "media-banner",
     "popular-products1",
-    "popular_products_y96TPy",
-    "media-banner-1",
-    "slideshow1",
-    "featured-blog",
-    "product_slider_pcWYXx",
+    "media_banner_d9znAD",
+    "image_with_product_grid_UwdkkK",
+    "craft_auto_slider_zDQ3D9",
     "media-banner-2",
-    "multicolumn",
-    "banner-with-popup",
+    "popular_products_w4Gaik",
+    "location_banner_6z6b38",
+    "feature_cards_grid_a4z4gR",
+    "value_props_grid_gMnLgC",
     "17712299329717ac8b"
   ]
 }

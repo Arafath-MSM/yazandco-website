@@ -1,0 +1,554 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "image_banner_M3XPqt": {
+      "type": "image-banner",
+      "custom_css": [
+        ".image-banner .banner {display: flex; position: relative; min-height: initial; max-height: 600px;}"
+      ],
+      "name": "t:sections.image-banner.presets.name",
+      "settings": {
+        "full_width": true,
+        "color_scheme": "",
+        "info_position": "inside",
+        "image": "shopify://shop_images/IMG_5310_JPG.jpg",
+        "image_ratio": "21/9",
+        "opacity_overlay": 0.2,
+        "heading": "Ring Size Guide",
+        "heading_size": "h1",
+        "enable_custom_heading_size": true,
+        "heading_font_size_desktop": 36,
+        "heading_font_size_mobile": 28,
+        "text_information": "",
+        "text_align": "center",
+        "text_width": "full",
+        "additional_text": "",
+        "button_label": "",
+        "button_style": "tertiary",
+        "button_link": "",
+        "button_label2": "",
+        "button_style2": "tertiary",
+        "button_link2": "",
+        "margin_top": "no-indent",
+        "margin_bottom": "no-indent"
+      }
+    },
+    "split_media_steps_R7iakA": {
+      "type": "split-media-steps",
+      "blocks": {
+        "rich_text_fan3PT": {
+          "type": "rich_text",
+          "settings": {
+            "richtext": "<p>Selecting the correct ring size helps ensure comfort, balance, and security.<br/>You can determine your ring size by:</p><ul><li>Measuring the internal diameter of a ring that already fits you comfortably</li><li>Measuring the circumference of your finger in millimetres<br/></li></ul><p>When your measurement falls between two sizes, choosing the larger size is recommended.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "rich_text_fan3PT"
+      ],
+      "name": "Split Media & Steps List",
+      "settings": {
+        "bg_color": "#ffffff",
+        "container_max_w": 1800,
+        "vert_align": "center",
+        "desktop_swap": "left",
+        "mobile_swap": "media_first",
+        "gap_d": 60,
+        "gap_m": 30,
+        "pad_top_d": 60,
+        "pad_bottom_d": 60,
+        "pad_left_d": 40,
+        "pad_right_d": 40,
+        "pad_top_m": 30,
+        "pad_bottom_m": 30,
+        "pad_left_m": 16,
+        "pad_right_m": 16,
+        "media_type": "video",
+        "media_aspect_ratio": "1 / 1",
+        "shopify_video": "shopify://files/videos/IMG_4892.MP4",
+        "video_url": "",
+        "video_autoplay": true,
+        "video_muted": true,
+        "video_loop": true,
+        "video_controls": false,
+        "media_width_d": 50,
+        "media_radius": 0,
+        "media_border_w": 0,
+        "media_border_color": "#eeeeee",
+        "title": "MEASURE YOUR FINGER",
+        "title_color": "#000000",
+        "title_size_d": 32,
+        "title_size_m": 22,
+        "title_weight": "400",
+        "title_transform": "uppercase",
+        "title_ls": 1.5,
+        "title_lh": "1.2",
+        "title_mb": 12,
+        "link_text": "Download Our Guide",
+        "link_url": "",
+        "link_color": "#000000",
+        "link_hover_color": "#666666",
+        "link_underline": true,
+        "link_size_d": 14,
+        "link_size_m": 13,
+        "link_weight": "400",
+        "link_mb": 30,
+        "richtext_color": "#333333",
+        "richtext_size_d": 18,
+        "richtext_size_m": 16,
+        "richtext_weight": "400",
+        "richtext_lh": "1.5",
+        "richtext_mb": 20,
+        "step_color": "#222222",
+        "step_num_color": "#222222",
+        "step_size_d": 18,
+        "step_size_m": 16,
+        "step_weight": "400",
+        "step_lh": "1.5",
+        "step_ls": 0,
+        "step_gap": 16,
+        "step_pad_b": 12,
+        "show_divider": true,
+        "divider_color": "#efefef",
+        "divider_w": 1,
+        "text_align_d": "left",
+        "text_align_m": "left"
+      }
+    },
+    "ring_size_chart_Ge3Biw": {
+      "type": "Ring-Size-chart",
+      "blocks": {
+        "table_row_eAAckR": {
+          "type": "table_row",
+          "settings": {
+            "col1_val": "4",
+            "col2_val": "48",
+            "col3_val": "15.3 mm",
+            "col4_val": ""
+          }
+        },
+        "table_row_GUkc76": {
+          "type": "table_row",
+          "settings": {
+            "col1_val": "5",
+            "col2_val": "49",
+            "col3_val": "15.7 mm",
+            "col4_val": ""
+          }
+        },
+        "table_row_WieT3c": {
+          "type": "table_row",
+          "settings": {
+            "col1_val": "6",
+            "col2_val": "52",
+            "col3_val": "16.5 mm",
+            "col4_val": ""
+          }
+        },
+        "table_row_RynJTG": {
+          "type": "table_row",
+          "settings": {
+            "col1_val": "7",
+            "col2_val": "54",
+            "col3_val": "17.2 mm",
+            "col4_val": ""
+          }
+        },
+        "table_row_zgbFnh": {
+          "type": "table_row",
+          "settings": {
+            "col1_val": "8",
+            "col2_val": "57",
+            "col3_val": "18.1 mm",
+            "col4_val": ""
+          }
+        },
+        "table_row_nmXKfN": {
+          "type": "table_row",
+          "settings": {
+            "col1_val": "9",
+            "col2_val": "60",
+            "col3_val": "19.0 mm",
+            "col4_val": ""
+          }
+        },
+        "table_row_dGWcTK": {
+          "type": "table_row",
+          "settings": {
+            "col1_val": "10",
+            "col2_val": "62",
+            "col3_val": "19.8 mm",
+            "col4_val": ""
+          }
+        }
+      },
+      "block_order": [
+        "table_row_eAAckR",
+        "table_row_GUkc76",
+        "table_row_WieT3c",
+        "table_row_RynJTG",
+        "table_row_zgbFnh",
+        "table_row_nmXKfN",
+        "table_row_dGWcTK"
+      ],
+      "name": "Ring Size Chart Table",
+      "settings": {
+        "bg_color": "#ffffff",
+        "container_max_w": 800,
+        "pad_top_d": 60,
+        "pad_bottom_d": 60,
+        "pad_left_d": 20,
+        "pad_right_d": 20,
+        "pad_top_m": 30,
+        "pad_bottom_m": 30,
+        "pad_left_m": 16,
+        "pad_right_m": 16,
+        "title": "RING SIZE CHART",
+        "title_color": "#000000",
+        "title_size_d": 28,
+        "title_size_m": 22,
+        "title_weight": "400",
+        "title_transform": "uppercase",
+        "title_ls": 1.5,
+        "title_lh": "1.2",
+        "title_align_d": "center",
+        "title_align_m": "center",
+        "title_mb_d": 24,
+        "title_mb_m": 16,
+        "subtext": "",
+        "subtext_color": "#333333",
+        "subtext_size_d": 14,
+        "subtext_size_m": 13,
+        "subtext_weight": "400",
+        "subtext_lh": "1.5",
+        "subtext_align_d": "left",
+        "subtext_align_m": "left",
+        "subtext_mb_d": 20,
+        "subtext_mb_m": 14,
+        "col1_title": "US Size",
+        "col2_title": "EU Size",
+        "col3_title": "Internal Diameter",
+        "col4_title": "",
+        "table_bg_color": "#ffffff",
+        "table_border_w": 1,
+        "table_border_color": "#d6d6d6",
+        "table_border_radius": 0,
+        "grid_line_w": 1,
+        "grid_line_color": "#f0f0f0",
+        "table_mb_d": 24,
+        "table_mb_m": 16,
+        "th_bg_color": "#f8f8f8",
+        "th_text_color": "#000000",
+        "th_size_d": 14,
+        "th_size_m": 12,
+        "th_weight": "600",
+        "th_transform": "uppercase",
+        "th_ls": 0.5,
+        "th_align": "center",
+        "th_pad_v_d": 14,
+        "th_pad_h_d": 16,
+        "th_pad_v_m": 10,
+        "th_pad_h_m": 10,
+        "td_text_color": "#333333",
+        "td_size_d": 14,
+        "td_size_m": 12,
+        "td_weight": "400",
+        "td_align": "center",
+        "td_pad_v_d": 12,
+        "td_pad_h_d": 16,
+        "td_pad_v_m": 10,
+        "td_pad_h_m": 10,
+        "enable_zebra": false,
+        "zebra_bg_color": "#f9f9f9",
+        "footer_text": "<p>Measurements should be taken carefully before placing an order.</p><p>Selected designs may be available in custom sizes upon request.</p>",
+        "footer_color": "#666666",
+        "footer_size_d": 16,
+        "footer_size_m": 14,
+        "footer_weight": "400",
+        "footer_lh": "1.5",
+        "footer_align_d": "center",
+        "footer_align_m": "left",
+        "footer_mt_d": 16,
+        "footer_mt_m": 12
+      }
+    },
+    "split_media_steps_4LyWnL": {
+      "type": "split-media-steps",
+      "blocks": {
+        "rich_text_37JVJw": {
+          "type": "rich_text",
+          "settings": {
+            "richtext": "<p>To determine your bracelet size:</p><ol><li>Measure your wrist at the point where you would normally wear the bracelet.</li><li>Add between 1 and 2 centimetres, depending on your preferred fit.</li></ol><p>For a closer fit, add approximately 1 cm.<br/>For a more relaxed fit, add approximately 2 cm.<br/>The final fit may vary depending on the bracelet design, width, setting, and construction.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "rich_text_37JVJw"
+      ],
+      "name": "Split Media & Steps List",
+      "settings": {
+        "bg_color": "#ffffff",
+        "container_max_w": 1800,
+        "vert_align": "center",
+        "desktop_swap": "left",
+        "mobile_swap": "media_first",
+        "gap_d": 60,
+        "gap_m": 30,
+        "pad_top_d": 60,
+        "pad_bottom_d": 60,
+        "pad_left_d": 40,
+        "pad_right_d": 40,
+        "pad_top_m": 30,
+        "pad_bottom_m": 30,
+        "pad_left_m": 16,
+        "pad_right_m": 16,
+        "media_type": "image",
+        "media_aspect_ratio": "1 / 1",
+        "image": "shopify://shop_images/page_6_image_2.png",
+        "shopify_video": "shopify://files/videos/IMG_4892.MP4",
+        "video_url": "",
+        "video_autoplay": true,
+        "video_muted": true,
+        "video_loop": true,
+        "video_controls": false,
+        "media_width_d": 50,
+        "media_radius": 0,
+        "media_border_w": 0,
+        "media_border_color": "#eeeeee",
+        "title": "Bracelet Size Guide",
+        "title_color": "#000000",
+        "title_size_d": 32,
+        "title_size_m": 22,
+        "title_weight": "400",
+        "title_transform": "uppercase",
+        "title_ls": 1.5,
+        "title_lh": "1.2",
+        "title_mb": 12,
+        "link_text": "Download Our Guide",
+        "link_url": "",
+        "link_color": "#000000",
+        "link_hover_color": "#666666",
+        "link_underline": true,
+        "link_size_d": 14,
+        "link_size_m": 13,
+        "link_weight": "400",
+        "link_mb": 30,
+        "richtext_color": "#333333",
+        "richtext_size_d": 18,
+        "richtext_size_m": 16,
+        "richtext_weight": "400",
+        "richtext_lh": "1.5",
+        "richtext_mb": 20,
+        "step_color": "#222222",
+        "step_num_color": "#222222",
+        "step_size_d": 16,
+        "step_size_m": 16,
+        "step_weight": "400",
+        "step_lh": "1.5",
+        "step_ls": 0,
+        "step_gap": 16,
+        "step_pad_b": 12,
+        "show_divider": true,
+        "divider_color": "#efefef",
+        "divider_w": 1,
+        "text_align_d": "left",
+        "text_align_m": "left"
+      }
+    },
+    "ring_size_chart_VTQkJh": {
+      "type": "Ring-Size-chart",
+      "blocks": {
+        "table_row_m3M3jX": {
+          "type": "table_row",
+          "settings": {
+            "col1_val": "S/M",
+            "col2_val": "Up to 18.5cm",
+            "col3_val": "Up to 7.2\"",
+            "col4_val": ""
+          }
+        },
+        "table_row_njnt7k": {
+          "type": "table_row",
+          "settings": {
+            "col1_val": "M/L",
+            "col2_val": "Up to 21.5cm",
+            "col3_val": "Up to 8.4\"",
+            "col4_val": ""
+          }
+        }
+      },
+      "block_order": [
+        "table_row_m3M3jX",
+        "table_row_njnt7k"
+      ],
+      "name": "Ring Size Chart Table",
+      "settings": {
+        "bg_color": "#ffffff",
+        "container_max_w": 800,
+        "pad_top_d": 60,
+        "pad_bottom_d": 60,
+        "pad_left_d": 20,
+        "pad_right_d": 20,
+        "pad_top_m": 30,
+        "pad_bottom_m": 30,
+        "pad_left_m": 16,
+        "pad_right_m": 16,
+        "title": "Bracelet Size Guide",
+        "title_color": "#000000",
+        "title_size_d": 28,
+        "title_size_m": 22,
+        "title_weight": "400",
+        "title_transform": "uppercase",
+        "title_ls": 1.5,
+        "title_lh": "1.2",
+        "title_align_d": "center",
+        "title_align_m": "center",
+        "title_mb_d": 24,
+        "title_mb_m": 16,
+        "subtext": "",
+        "subtext_color": "#333333",
+        "subtext_size_d": 14,
+        "subtext_size_m": 13,
+        "subtext_weight": "400",
+        "subtext_lh": "1.5",
+        "subtext_align_d": "left",
+        "subtext_align_m": "left",
+        "subtext_mb_d": 20,
+        "subtext_mb_m": 14,
+        "col1_title": "Size Women's",
+        "col2_title": "Wrist Size (cm)",
+        "col3_title": "Wrist Size (in)",
+        "col4_title": "",
+        "table_bg_color": "#ffffff",
+        "table_border_w": 1,
+        "table_border_color": "#d6d6d6",
+        "table_border_radius": 0,
+        "grid_line_w": 1,
+        "grid_line_color": "#f0f0f0",
+        "table_mb_d": 24,
+        "table_mb_m": 16,
+        "th_bg_color": "#f8f8f8",
+        "th_text_color": "#000000",
+        "th_size_d": 14,
+        "th_size_m": 12,
+        "th_weight": "600",
+        "th_transform": "uppercase",
+        "th_ls": 0.5,
+        "th_align": "center",
+        "th_pad_v_d": 14,
+        "th_pad_h_d": 16,
+        "th_pad_v_m": 10,
+        "th_pad_h_m": 10,
+        "td_text_color": "#333333",
+        "td_size_d": 14,
+        "td_size_m": 12,
+        "td_weight": "400",
+        "td_align": "center",
+        "td_pad_v_d": 12,
+        "td_pad_h_d": 16,
+        "td_pad_v_m": 10,
+        "td_pad_h_m": 10,
+        "enable_zebra": false,
+        "zebra_bg_color": "#f9f9f9",
+        "footer_text": "",
+        "footer_color": "#666666",
+        "footer_size_d": 13,
+        "footer_size_m": 12,
+        "footer_weight": "400",
+        "footer_lh": "1.5",
+        "footer_align_d": "center",
+        "footer_align_m": "left",
+        "footer_mt_d": 16,
+        "footer_mt_m": 12
+      }
+    },
+    "multicolumn_rKiPe4": {
+      "type": "multicolumn",
+      "blocks": {
+        "column_awV7ei": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/P-269-R-2_2.jpg",
+            "overlay_opacity": 0.2,
+            "subheading": "",
+            "heading": "18K Yellow Gold",
+            "description": "",
+            "button_label": "",
+            "button_link": ""
+          }
+        },
+        "column_haRWVH": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/P-269-W-1_2.jpg",
+            "overlay_opacity": 0.2,
+            "subheading": "",
+            "heading": "18K White Gold",
+            "description": "",
+            "button_label": "",
+            "button_link": ""
+          }
+        },
+        "column_DqMtT3": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/P-269-Y-1_2.jpg",
+            "overlay_opacity": 0.2,
+            "subheading": "",
+            "heading": "18K Rose Gold",
+            "description": "",
+            "button_label": "",
+            "button_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "column_awV7ei",
+        "column_haRWVH",
+        "column_DqMtT3"
+      ],
+      "name": "t:sections.multicolumn.name",
+      "settings": {
+        "color_scheme": "background-1",
+        "subheading": "",
+        "heading": "Metal Types",
+        "heading_size": "h1",
+        "description": "<p>All YAZ & Co jewellery is crafted in 18K gold and is available in three refined colours:</p>",
+        "enable_full_screen": true,
+        "swiper": false,
+        "stop_autoplay": true,
+        "navigation": false,
+        "slideshow_speed": 20,
+        "layout_type": "standard",
+        "content_position": "img-top",
+        "always_visible_text": false,
+        "on_hover": "show_text",
+        "multicolumn_to_show": 3,
+        "image_ratio": "square",
+        "object_fit": "cover",
+        "card_heading_size": "h2",
+        "button_label": "",
+        "button_style": "simple",
+        "button_link": "",
+        "margin_top": "no-indent",
+        "margin_bottom": "m"
+      }
+    }
+  },
+  "order": [
+    "image_banner_M3XPqt",
+    "split_media_steps_R7iakA",
+    "ring_size_chart_Ge3Biw",
+    "split_media_steps_4LyWnL",
+    "ring_size_chart_VTQkJh",
+    "multicolumn_rKiPe4"
+  ]
+}

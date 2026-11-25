@@ -9,7 +9,14 @@
  */
 {
   "current": {
+    "promotion_price_enabled": true,
+    "promotion_price_percent": 20,
+    "promotion_price_end": "2026-12-31T12:30:00+04:00",
+    "dark_mode_toggle": false,
     "type_header_font": "instrument_sans_n5",
+    "heading_h1_scale": 120,
+    "heading_h2_scale": 115,
+    "heading_h3_scale": 110,
     "type_header_letter_spacing": -0.3,
     "type_header_line_height": 1.3,
     "type_header_font_card": "instrument_sans_n5",
@@ -17,6 +24,8 @@
     "type_text_font_card": "instrument_sans_n4",
     "type_body_font": "instrument_sans_n4",
     "type_body_line_height": 1.5,
+    "body_scale": 149,
+    "body_second_scale": 149,
     "type_subtitle_font": "instrument_sans_n6",
     "type_button_font": "instrument_sans_n6",
     "type_header_menu_font": "instrument_sans_n5",
@@ -27,6 +36,8 @@
     "product_color_option_display": "count",
     "type_color_swatch": "custom",
     "swatch_type": "variant_image",
+    "trigger_swatch": "Colour",
+    "trigger_swatch_other": "Sort:00000;",
     "favicon": "shopify://shop_images/Image_Jul_20_2026_02_40_32_PM.png",
     "add_to_cart_enabled": true,
     "show_collection_card": true,
@@ -34,7 +45,23 @@
     "button_link": "shopify://collections/all",
     "cart_type": "drawer",
     "cart_color_scheme": "background-1",
-    "empty_cart_dec": "Browse our latest collection or check your saved favorites to add more items to your cart.",
+    "show_cart_note_drawer": false,
+    "cart_image_ratio": "square",
+    "empty_cart_dec": "Browse our latest collection or check your saved favourites to add more items to your cart.",
+    "notification": true,
+    "notification_product_list": [
+      "althea-ring",
+      "aura-ring",
+      "celeste-ring",
+      "bloom-diamond-earrings",
+      "celestial-heart-line-necklace",
+      "classic-tennis-bracelet",
+      "continuum-tennis-bracelet",
+      "core-light-earrings",
+      "core-light-pendant",
+      "dual-muse-ring"
+    ],
+    "show_shipping": false,
     "account_type": "drawer",
     "account_heading": "Welcome to Your Account",
     "account_description": "Manage your profile, track your orders, and enjoy a seamless shopping journey with us.",
@@ -44,34 +71,6 @@
     "sale_badge_color_scheme": "background-1",
     "content_for_index": [],
     "blocks": {
-      "16094840690063194741": {
-        "type": "shopify://apps/currency-wiki/blocks/currency-converter/019bf434-6d30-7595-b872-6c3ed97d432f",
-        "disabled": false,
-        "settings": {
-          "widget_style": "floating",
-          "position": "bottom-right",
-          "position_mobile": "bottom-right",
-          "vertical_offset": 65,
-          "bottom_offset": 20,
-          "inline_position": "in-header",
-          "color_preset": "light",
-          "accent_color": "#3B82F6",
-          "background_color": "#FFFFFF",
-          "text_color": "#1F2937",
-          "border_color": "#E5E7EB",
-          "border_radius": 12,
-          "widget_size": "medium",
-          "flag_style": "circle",
-          "show_flags": true,
-          "show_currency_code": true,
-          "original_price": "hide",
-          "enable_shadow": true,
-          "enable_animations": true,
-          "enable_glassmorphism": false,
-          "bg_opacity": 70,
-          "blur_intensity": 12
-        }
-      },
       "17370010407503379518": {
         "type": "shopify://apps/wishlist-by-square/blocks/app-embed/88ec2beb-ce43-48ed-b791-0a6554082c2b",
         "disabled": false,
@@ -92,8 +91,68 @@
         "disabled": false,
         "settings": {}
       },
+      "14060646107696862457": {
+        "type": "shopify://apps/judge-me-reviews/blocks/judgeme_core/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+        "disabled": false,
+        "settings": {}
+      },
+      "13047258039897440615": {
+        "type": "shopify://apps/judge-me-reviews/blocks/cart_drawer_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+        "disabled": true,
+        "settings": {
+          "widget_type": "review-widget"
+        }
+      },
+      "18131037017812181619": {
+        "type": "shopify://apps/mailchimp-email-sms/blocks/mailchimp_for_shopify_script/e3b67dce-fd41-4b61-b3cf-961c12344cde",
+        "disabled": false,
+        "settings": {}
+      },
+      "16094840690063194741": {
+        "type": "shopify://apps/currency-wiki/blocks/currency-converter/019bf434-6d30-7595-b872-6c3ed97d432f",
+        "disabled": false,
+        "settings": {
+          "widget_style": "floating-pill",
+          "position": "bottom-right",
+          "position_mobile": "bottom-right",
+          "vertical_offset": 90,
+          "bottom_offset": 120,
+          "inline_position": "in-header",
+          "color_preset": "light",
+          "accent_color": "#3b82f6",
+          "background_color": "#ffffff",
+          "text_color": "#1f2937",
+          "border_color": "#e5e7eb",
+          "border_radius": 12,
+          "widget_size": "small",
+          "flag_style": "circle",
+          "show_flags": true,
+          "show_currency_code": true,
+          "original_price": "hide",
+          "enable_shadow": true,
+          "enable_animations": true,
+          "enable_glassmorphism": false,
+          "bg_opacity": 55,
+          "blur_intensity": 12
+        }
+      },
+      "13768625480086291342": {
+        "type": "shopify://apps/forms/blocks/forms/8744a304-fcb1-4347-b211-bb6b4759a76a",
+        "disabled": false,
+        "settings": {}
+      },
       "2200952712151285029": {
         "type": "shopify://apps/microsoft-clarity/blocks/brandAgents_js/31c3d126-8116-4b4a-8ba1-baeda7c4aeea",
+        "disabled": true,
+        "settings": {}
+      },
+      "17270581071990108477": {
+        "type": "shopify://apps/hoppy-popups/blocks/Email_collection_Bar/0403c282-cb2c-4202-b054-d6c540cb0df9",
+        "disabled": false,
+        "settings": {}
+      },
+      "5609588643058778109": {
+        "type": "shopify://apps/insert-code-header-footer/blocks/header/019eda16-1103-71a3-881e-1c1b83f2c031",
         "disabled": false,
         "settings": {}
       }
@@ -152,6 +211,33 @@
           "colors_background_overlay": "#000000",
           "color_border": "#ded9d4"
         }
+      },
+      "scheme-3a23eecb-e260-43ed-b316-a69f6eaa6ee2": {
+        "settings": {
+          "colors_text": "#ffffff",
+          "colors_secondary_text": "#ffffff",
+          "colors_text_title": "#ffffff",
+          "colors_background_1": "#4d1432",
+          "colors_background_2": "#f5f5f5",
+          "background_gradient": "",
+          "colors_solid_button_labels": "#f9f9f9",
+          "colors_solid_button_labels_hover": "#f9f9f9",
+          "colors_solid_button_background": "#ffffff",
+          "colors_solid_button_background_hover": "#282828",
+          "colors_secondary_button_labels": "#000000",
+          "colors_secondary_button_labels_hover": "#000000",
+          "colors_outline_button_labels": "#ebebeb",
+          "colors_outline_button_labels_hover": "#eeeeee",
+          "colors_tertiary_button_labels": "#ffffff",
+          "colors_tertiary_button_labels_hover": "#2a2929",
+          "colors_tertiary_button_background": "#ffffff",
+          "colors_tertiary_button_background_hover": "#ffffff",
+          "colors_input_background": "#ffffff",
+          "colors_input_border": "#cccccc",
+          "colors_input_hover_border": "#808080",
+          "colors_background_overlay": "#000000",
+          "color_border": "#e1e1e1"
+        }
       }
     }
   },
@@ -177,7 +263,7 @@
       "swatch_type": "variant_image",
       "show_collection_card": true,
       "cart_color_scheme": "background-1",
-      "empty_cart_dec": "Browse our latest collection or check your saved favorites to add more items to your cart.",
+      "empty_cart_dec": "Browse our latest collection or check your saved favourites to add more items to your cart.",
       "account_heading": "Welcome to Your Account",
       "account_description": "Manage your profile, track your orders, and enjoy a seamless shopping journey with us.",
       "home_page_slider": false,
@@ -272,7 +358,7 @@
       "search_heading": "Collection Name",
       "cart_color_scheme": "background-1",
       "cart_image_ratio": "square",
-      "empty_cart_dec": "Browse our latest collection or check your saved favorites to add more items to your cart.",
+      "empty_cart_dec": "Browse our latest collection or check your saved favourites to add more items to your cart.",
       "empty_cart_heading": "Casual Collection",
       "account_heading": "Welcome to Your Account",
       "account_description": "Manage your profile, track your orders, and enjoy a seamless shopping journey with us.",
@@ -372,7 +458,7 @@
       "search_collection_list": [],
       "search_heading": "Collection Name",
       "cart_color_scheme": "background-1",
-      "empty_cart_dec": "Browse our latest collection or check your saved favorites to add more items to your cart.",
+      "empty_cart_dec": "Browse our latest collection or check your saved favourites to add more items to your cart.",
       "empty_cart_heading": "Sunkissed Collection",
       "account_heading": "Welcome to Your Account",
       "account_description": "Manage your profile, track your orders, and enjoy a seamless shopping journey with us.",
@@ -459,7 +545,7 @@
       "search_heading": "Collection Name",
       "cart_color_scheme": "background-1",
       "cart_image_ratio": "square",
-      "empty_cart_dec": "Browse our latest collection or check your saved favorites to add more items to your cart.",
+      "empty_cart_dec": "Browse our latest collection or check your saved favourites to add more items to your cart.",
       "notification_product_list": [],
       "account_heading": "Welcome to Your Account",
       "account_description": "Manage your profile, track your orders, and enjoy a seamless shopping journey with us.",
@@ -548,7 +634,7 @@
       "search_collection_list": [],
       "search_heading": "Collection Name",
       "cart_color_scheme": "background-1",
-      "empty_cart_dec": "Browse our latest collection or check your saved favorites to add more items to your cart.",
+      "empty_cart_dec": "Browse our latest collection or check your saved favourites to add more items to your cart.",
       "empty_cart_heading": "Storage Collection",
       "account_heading": "Welcome to Your Account",
       "account_description": "Manage your profile, track your orders, and enjoy a seamless shopping journey with us.",
@@ -618,7 +704,8 @@
       "/* ===== Center ALL Shopify Pages (Gift card, Size guide, policies etc) ===== */.template-page .rte,.template-page .page-width,.template-page .shopify-policy__container {max-width: 780px; margin-left: auto; margin-right: auto; text-align: left;}",
       " /* improve reading spacing */.template-page .rte p {line-height: 1.75; font-size: 16px;}",
       " /* center page title */.template-page .main-page-title {text-align: center; margin-bottom: 30px;}",
-      " /* MOBILE FIX */@media screen and (max-width: 768px) {.template-page .rte, .template-page .page-width, .template-page .shopify-policy__container {max-width: 92%; padding-left: 15px; padding-right: 15px; }}"
+      " /* MOBILE FIX */@media screen and (max-width: 768px) {.template-page .rte, .template-page .page-width, .template-page .shopify-policy__container {max-width: 92%; padding-left: 15px; padding-right: 15px; }}",
+      "[data-testid=\"form\"] h2 {font-size: 16px !important;}"
     ]
   }
 }

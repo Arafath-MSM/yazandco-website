@@ -1,0 +1,538 @@
+{%- style -%}
+  /* ==========================================================================
+     1. SECTION CONTAINER & DESKTOP/MOBILE PADDINGS
+     ========================================================================== */
+  #store-location-{{ section.id }} {
+    background-color: {{ section.settings.bg_color }};
+    padding-top: {{ section.settings.pad_top_m }}px;
+    padding-bottom: {{ section.settings.pad_bottom_m }}px;
+    padding-left: {{ section.settings.pad_left_m }}px;
+    padding-right: {{ section.settings.pad_right_m }}px;
+  }
+
+  @media screen and (min-width: 990px) {
+    #store-location-{{ section.id }} {
+      padding-top: {{ section.settings.pad_top_d }}px;
+      padding-bottom: {{ section.settings.pad_bottom_d }}px;
+      padding-left: {{ section.settings.pad_left_d }}px;
+      padding-right: {{ section.settings.pad_right_d }}px;
+    }
+  }
+
+  .loc-container-{{ section.id }} {
+    max-width: {{ section.settings.container_max_w }}px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  /* ==========================================================================
+     2. GRID LAYOUT & COLUMN SWAP
+     ========================================================================== */
+  .loc-grid-{{ section.id }} {
+    display: flex;
+    flex-direction: {% if section.settings.mobile_swap == 'map_first' %}column-reverse{% else %}column{% endif %};
+    gap: {{ section.settings.gap_m }}px;
+    align-items: {{ section.settings.vert_align }};
+  }
+
+  @media screen and (min-width: 990px) {
+    .loc-grid-{{ section.id }} {
+      flex-direction: {% if section.settings.desktop_swap == 'map_left' %}row-reverse{% else %}row{% endif %};
+      gap: {{ section.settings.gap_d }}px;
+    }
+  }
+
+  /* LEFT CONTENT COLUMN */
+  .loc-content-col-{{ section.id }} {
+    width: 100%;
+  }
+
+  @media screen and (min-width: 990px) {
+    .loc-content-col-{{ section.id }} {
+      width: {{ section.settings.left_col_width_d }}%;
+      flex-shrink: 0;
+    }
+  }
+
+  /* RIGHT MAP COLUMN */
+  .loc-map-col-{{ section.id }} {
+    width: 100%;
+  }
+
+  @media screen and (min-width: 990px) {
+    .loc-map-col-{{ section.id }} {
+      flex-grow: 1;
+      width: calc(100% - {{ section.settings.left_col_width_d }}% - {{ section.settings.gap_d }}px);
+    }
+  }
+
+  /* ==========================================================================
+     3. MAP WRAPPER STYLING
+     ========================================================================== */
+  .loc-map-wrapper-{{ section.id }} {
+    width: 100%;
+    height: {{ section.settings.map_height_m }}px;
+    border-radius: {{ section.settings.map_radius }}px;
+    border: {{ section.settings.map_border_w }}px solid {{ section.settings.map_border_color }};
+    overflow: hidden;
+    background-color: #f4f4f4;
+  }
+
+  @media screen and (min-width: 990px) {
+    .loc-map-wrapper-{{ section.id }} {
+      height: {{ section.settings.map_height_d }}px;
+      {% if section.settings.enable_sticky_map %}
+        position: sticky;
+        top: {{ section.settings.sticky_top_margin }}px;
+      {% endif %}
+    }
+  }
+
+  .loc-map-wrapper-{{ section.id }} iframe {
+    width: 100% !important;
+    height: 100% !important;
+    border: 0 !important;
+    display: block;
+  }
+
+  /* ==========================================================================
+     4. TYPOGRAPHY & BLOCK STYLES
+     ========================================================================== */
+  /* Main Store Title */
+  .loc-store-name-{{ section.id }} {
+    color: {{ section.settings.name_color }};
+    font-size: {{ section.settings.name_size_m }}px;
+    font-weight: {{ section.settings.name_weight }};
+    line-height: {{ section.settings.name_lh }};
+    letter-spacing: {{ section.settings.name_ls }}px;
+    margin: 0 0 {{ section.settings.name_mb_m }}px 0;
+  }
+  @media screen and (min-width: 990px) {
+    .loc-store-name-{{ section.id }} {
+      font-size: {{ section.settings.name_size_d }}px;
+      margin-bottom: {{ section.settings.name_mb_d }}px;
+    }
+  }
+
+  /* Address & Contact Info */
+  .loc-address-{{ section.id }} {
+    color: {{ section.settings.addr_color }};
+    font-size: {{ section.settings.addr_size_m }}px;
+    font-weight: {{ section.settings.addr_weight }};
+    line-height: {{ section.settings.addr_lh }};
+    margin-bottom: {{ section.settings.addr_mb_m }}px;
+  }
+  .loc-address-{{ section.id }} p {
+    margin: 0 0 4px 0;
+  }
+  .loc-address-{{ section.id }} a {
+    color: {{ section.settings.link_color }};
+    text-decoration: {% if section.settings.link_underline %}underline{% else %}none{% endif %};
+    transition: color 0.3s ease;
+  }
+  .loc-address-{{ section.id }} a:hover {
+    color: {{ section.settings.link_hover_color }};
+  }
+  @media screen and (min-width: 990px) {
+    .loc-address-{{ section.id }} {
+      font-size: {{ section.settings.addr_size_d }}px;
+      margin-bottom: {{ section.settings.addr_mb_d }}px;
+    }
+  }
+
+  /* Section Headings (Store Hours, Services, etc.) */
+  .loc-heading-{{ section.id }} {
+    color: {{ section.settings.heading_color }};
+    font-size: {{ section.settings.heading_size_m }}px;
+    font-weight: {{ section.settings.heading_weight }};
+    line-height: {{ section.settings.heading_lh }};
+    letter-spacing: {{ section.settings.heading_ls }}px;
+    margin: {{ section.settings.heading_mt_m }}px 0 {{ section.settings.heading_mb_m }}px 0;
+  }
+  @media screen and (min-width: 990px) {
+    .loc-heading-{{ section.id }} {
+      font-size: {{ section.settings.heading_size_d }}px;
+      margin-top: {{ section.settings.heading_mt_d }}px;
+      margin-bottom: {{ section.settings.heading_mb_d }}px;
+    }
+  }
+
+  /* Store Hours Table/List */
+  .loc-hours-wrapper-{{ section.id }} {
+    margin-bottom: {{ section.settings.hours_group_mb_m }}px;
+    max-width: {{ section.settings.hours_max_w }}px;
+  }
+  @media screen and (min-width: 990px) {
+    .loc-hours-wrapper-{{ section.id }} {
+      margin-bottom: {{ section.settings.hours_group_mb_d }}px;
+    }
+  }
+
+  .loc-hours-row-{{ section.id }} {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    padding-bottom: {{ section.settings.hours_pad_b }}px;
+    margin-bottom: {{ section.settings.hours_row_gap }}px;
+    border-bottom: {% if section.settings.hours_show_border %}{{ section.settings.hours_border_w }}px solid {{ section.settings.hours_border_color }}{% else %}none{% endif %};
+  }
+
+  .loc-day-{{ section.id }},
+  .loc-time-{{ section.id }} {
+    color: {{ section.settings.hours_color }};
+    font-size: {{ section.settings.hours_size_m }}px;
+    font-weight: {{ section.settings.hours_weight }};
+    line-height: {{ section.settings.hours_lh }};
+  }
+  @media screen and (min-width: 990px) {
+    .loc-day-{{ section.id }},
+    .loc-time-{{ section.id }} {
+      font-size: {{ section.settings.hours_size_d }}px;
+    }
+  }
+
+  /* Services List */
+  .loc-services-list-{{ section.id }} {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 {{ section.settings.services_group_mb_m }}px 0;
+  }
+  @media screen and (min-width: 990px) {
+    .loc-services-list-{{ section.id }} {
+      margin-bottom: {{ section.settings.services_group_mb_d }}px;
+    }
+  }
+
+  .loc-service-item-{{ section.id }} {
+    color: {{ section.settings.service_color }};
+    font-size: {{ section.settings.service_size_m }}px;
+    font-weight: {{ section.settings.service_weight }};
+    line-height: {{ section.settings.service_lh }};
+    margin-bottom: {{ section.settings.service_item_mb }}px;
+  }
+  @media screen and (min-width: 990px) {
+    .loc-service-item-{{ section.id }} {
+      font-size: {{ section.settings.service_size_d }}px;
+    }
+  }
+{%- endstyle -%}
+
+<section class="store-location-section" id="store-location-{{ section.id }}">
+  <div class="loc-container-{{ section.id }}">
+    <div class="loc-grid-{{ section.id }}">
+
+      <!-- LEFT COLUMN: CONTENT & DETAILS -->
+      <div class="loc-content-col-{{ section.id }}">
+        
+        <!-- STORE NAME -->
+        {%- if section.settings.store_name != blank -%}
+          <h2 class="loc-store-name-{{ section.id }}">{{ section.settings.store_name }}</h2>
+        {%- endif -%}
+
+        <!-- ADDRESS & CONTACT -->
+        {%- if section.settings.address_html != blank -%}
+          <div class="loc-address-{{ section.id }}">
+            {{ section.settings.address_html }}
+          </div>
+        {%- endif -%}
+
+        <!-- DYNAMIC BLOCKS (HOURS, HEADINGS, SERVICES) -->
+        {%- if section.blocks.size > 0 -%}
+          {%- for block in section.blocks -%}
+            {%- case block.type -%}
+
+              {%- when 'section_heading' -%}
+                <h3 class="loc-heading-{{ section.id }}" {{ block.shopify_attributes }}>
+                  {{ block.settings.heading_text }}
+                </h3>
+
+              {%- when 'store_hours_row' -%}
+                {%- assign prev_i = forloop.index0 | minus: 1 -%}
+                {%- assign next_i = forloop.index0 | plus: 1 -%}
+                {%- assign prev_block = section.blocks[prev_i] -%}
+                {%- assign next_block = section.blocks[next_i] -%}
+
+                {%- if forloop.first or prev_block.type != 'store_hours_row' -%}
+                  <div class="loc-hours-wrapper-{{ section.id }}">
+                {%- endif -%}
+
+                  <div class="loc-hours-row-{{ section.id }}" {{ block.shopify_attributes }}>
+                    <span class="loc-day-{{ section.id }}">{{ block.settings.day_text }}</span>
+                    <span class="loc-time-{{ section.id }}">{{ block.settings.time_text }}</span>
+                  </div>
+
+                {%- if forloop.last or next_block.type != 'store_hours_row' -%}
+                  </div>
+                {%- endif -%}
+
+              {%- when 'service_item' -%}
+                {%- assign prev_i = forloop.index0 | minus: 1 -%}
+                {%- assign next_i = forloop.index0 | plus: 1 -%}
+                {%- assign prev_block = section.blocks[prev_i] -%}
+                {%- assign next_block = section.blocks[next_i] -%}
+
+                {%- if forloop.first or prev_block.type != 'service_item' -%}
+                  <ul class="loc-services-list-{{ section.id }}">
+                {%- endif -%}
+
+                  <li class="loc-service-item-{{ section.id }}" {{ block.shopify_attributes }}>
+                    {{ block.settings.service_text }}
+                  </li>
+
+                {%- if forloop.last or next_block.type != 'service_item' -%}
+                  </ul>
+                {%- endif -%}
+
+            {%- endcase -%}
+          {%- endfor -%}
+        {%- endif -%}
+
+      </div>
+
+      <!-- RIGHT COLUMN: GOOGLE MAP EMBED -->
+      <div class="loc-map-col-{{ section.id }}">
+        <div class="loc-map-wrapper-{{ section.id }}">
+          {%- if section.settings.map_embed_code != blank -%}
+            {{ section.settings.map_embed_code }}
+          {%- else -%}
+            <iframe 
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3023.473551842821!2d-74.00282668459451!3d40.72958397933013!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c2598c8f000001%3A0x633534b8c9d2f2b3!2sSoHo%2C%20New%20York%2C%20NY!5e0!3m2!1sen!2sus!4v1620000000000!5m2!1sen!2sus" 
+              loading="lazy" 
+              allowfullscreen>
+            </iframe>
+          {%- endif -%}
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Store Location & Map",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "1. SECTION LAYOUT & BACKGROUND"
+    },
+    { "type": "color", "id": "bg_color", "label": "Background Color", "default": "#FFFFFF" },
+    { "type": "range", "id": "container_max_w", "min": 800, "max": 1800, "step": 20, "unit": "px", "label": "Container Max Width", "default": 1300 },
+    { "type": "range", "id": "left_col_width_d", "min": 0, "max": 60, "step": 1, "unit": "%", "label": "Left Content Column Width (Desktop)", "default": 45 },
+    { "type": "select", "id": "vert_align", "label": "Vertical Alignment", "options": [ { "value": "flex-start", "label": "Top" }, { "value": "center", "label": "Center" } ], "default": "flex-start" },
+
+    {
+      "type": "header",
+      "content": "2. DESKTOP & MOBILE COLUMN SWAP"
+    },
+    { "type": "select", "id": "desktop_swap", "label": "Desktop Layout", "options": [ { "value": "map_right", "label": "Content Left / Map Right" }, { "value": "map_left", "label": "Map Left / Content Right" } ], "default": "map_right" },
+    { "type": "select", "id": "mobile_swap", "label": "Mobile Layout", "options": [ { "value": "content_first", "label": "Content First (Top) / Map Second" }, { "value": "map_first", "label": "Map First (Top) / Content Second" } ], "default": "content_first" },
+    { "type": "range", "id": "gap_d", "min": 10, "max": 120, "step": 5, "unit": "px", "label": "Desktop Column Gap", "default": 60 },
+    { "type": "range", "id": "gap_m", "min": 10, "max": 80, "step": 5, "unit": "px", "label": "Mobile Column Gap", "default": 30 },
+
+    {
+      "type": "header",
+      "content": "3. DESKTOP PADDINGS"
+    },
+    { "type": "range", "id": "pad_top_d", "min": 0, "max": 150, "step": 5, "unit": "px", "label": "Padding Top", "default": 60 },
+    { "type": "range", "id": "pad_bottom_d", "min": 0, "max": 150, "step": 5, "unit": "px", "label": "Padding Bottom", "default": 60 },
+    { "type": "range", "id": "pad_left_d", "min": 0, "max": 100, "step": 5, "unit": "px", "label": "Padding Left", "default": 40 },
+    { "type": "range", "id": "pad_right_d", "min": 0, "max": 100, "step": 5, "unit": "px", "label": "Padding Right", "default": 40 },
+
+    {
+      "type": "header",
+      "content": "4. MOBILE PADDINGS"
+    },
+    { "type": "range", "id": "pad_top_m", "min": 0, "max": 100, "step": 5, "unit": "px", "label": "Padding Top", "default": 30 },
+    { "type": "range", "id": "pad_bottom_m", "min": 0, "max": 100, "step": 5, "unit": "px", "label": "Padding Bottom", "default": 30 },
+    { "type": "range", "id": "pad_left_m", "min": 0, "max": 50, "step": 2, "unit": "px", "label": "Padding Left", "default": 16 },
+    { "type": "range", "id": "pad_right_m", "min": 0, "max": 50, "step": 2, "unit": "px", "label": "Padding Right", "default": 16 },
+
+    {
+      "type": "header",
+      "content": "5. STORE NAME TYPOGRAPHY"
+    },
+    { "type": "text", "id": "store_name", "label": "Store Name Title", "default": "New York - Soho" },
+    { "type": "color", "id": "name_color", "label": "Title Color", "default": "#000000" },
+    { "type": "range", "id": "name_size_d", "min": 18, "max": 60, "step": 1, "unit": "px", "label": "Desktop Size", "default": 32 },
+    { "type": "range", "id": "name_size_m", "min": 16, "max": 40, "step": 1, "unit": "px", "label": "Mobile Size", "default": 24 },
+    { "type": "select", "id": "name_weight", "label": "Font Weight", "options": [ { "value": "300", "label": "Light" }, { "value": "400", "label": "Regular" }, { "value": "500", "label": "Medium" }, { "value": "600", "label": "SemiBold" }, { "value": "700", "label": "Bold" } ], "default": "400" },
+    { "type": "text", "id": "name_lh", "label": "Line Height", "default": "1.2" },
+    { "type": "range", "id": "name_ls", "min": 0, "max": 5, "step": 0.5, "unit": "px", "label": "Letter Spacing", "default": 0 },
+    { "type": "range", "id": "name_mb_d", "min": 0, "max": 50, "step": 2, "unit": "px", "label": "Desktop Bottom Margin", "default": 20 },
+    { "type": "range", "id": "name_mb_m", "min": 0, "max": 40, "step": 2, "unit": "px", "label": "Mobile Bottom Margin", "default": 14 },
+
+    {
+      "type": "header",
+      "content": "6. ADDRESS & CONTACT TYPOGRAPHY"
+    },
+    { "type": "richtext", "id": "address_html", "label": "Address & Phone Details", "default": "<p>435 W Broadway<br>New York, NY, 10012<br><a href=\"tel:9178911625\">(917) 891-1625</a></p>" },
+    { "type": "color", "id": "addr_color", "label": "Text Color", "default": "#222222" },
+    { "type": "color", "id": "link_color", "label": "Phone / Link Color", "default": "#000000" },
+    { "type": "color", "id": "link_hover_color", "label": "Link Hover Color", "default": "#666666" },
+    { "type": "checkbox", "id": "link_underline", "label": "Underline Phone Links", "default": true },
+    { "type": "range", "id": "addr_size_d", "min": 11, "max": 24, "step": 1, "unit": "px", "label": "Desktop Size", "default": 15 },
+    { "type": "range", "id": "addr_size_m", "min": 10, "max": 20, "step": 1, "unit": "px", "label": "Mobile Size", "default": 14 },
+    { "type": "select", "id": "addr_weight", "label": "Font Weight", "options": [ { "value": "300", "label": "Light" }, { "value": "400", "label": "Regular" }, { "value": "500", "label": "Medium" } ], "default": "400" },
+    { "type": "text", "id": "addr_lh", "label": "Line Height", "default": "1.5" },
+    { "type": "range", "id": "addr_mb_d", "min": 0, "max": 60, "step": 2, "unit": "px", "label": "Desktop Bottom Margin", "default": 30 },
+    { "type": "range", "id": "addr_mb_m", "min": 0, "max": 40, "step": 2, "unit": "px", "label": "Mobile Bottom Margin", "default": 20 },
+
+    {
+      "type": "header",
+      "content": "7. SECTION SUB-HEADINGS (Hours / Services)"
+    },
+    { "type": "color", "id": "heading_color", "label": "Heading Color", "default": "#000000" },
+    { "type": "range", "id": "heading_size_d", "min": 14, "max": 40, "step": 1, "unit": "px", "label": "Desktop Size", "default": 22 },
+    { "type": "range", "id": "heading_size_m", "min": 12, "max": 30, "step": 1, "unit": "px", "label": "Mobile Size", "default": 18 },
+    { "type": "select", "id": "heading_weight", "label": "Font Weight", "options": [ { "value": "300", "label": "Light" }, { "value": "400", "label": "Regular" }, { "value": "500", "label": "Medium" }, { "value": "600", "label": "SemiBold" } ], "default": "400" },
+    { "type": "text", "id": "heading_lh", "label": "Line Height", "default": "1.3" },
+    { "type": "range", "id": "heading_ls", "min": 0, "max": 4, "step": 0.5, "unit": "px", "label": "Letter Spacing", "default": 0 },
+    { "type": "range", "id": "heading_mt_d", "min": 0, "max": 60, "step": 2, "unit": "px", "label": "Desktop Top Margin", "default": 20 },
+    { "type": "range", "id": "heading_mt_m", "min": 0, "max": 40, "step": 2, "unit": "px", "label": "Mobile Top Margin", "default": 14 },
+    { "type": "range", "id": "heading_mb_d", "min": 0, "max": 40, "step": 2, "unit": "px", "label": "Desktop Bottom Margin", "default": 16 },
+    { "type": "range", "id": "heading_mb_m", "min": 0, "max": 30, "step": 2, "unit": "px", "label": "Mobile Bottom Margin", "default": 12 },
+
+    {
+      "type": "header",
+      "content": "8. STORE HOURS STYLING"
+    },
+    { "type": "color", "id": "hours_color", "label": "Hours Text Color", "default": "#222222" },
+    { "type": "range", "id": "hours_size_d", "min": 11, "max": 22, "step": 1, "unit": "px", "label": "Desktop Size", "default": 14 },
+    { "type": "range", "id": "hours_size_m", "min": 10, "max": 18, "step": 1, "unit": "px", "label": "Mobile Size", "default": 13 },
+    { "type": "select", "id": "hours_weight", "label": "Font Weight", "options": [ { "value": "300", "label": "Light" }, { "value": "400", "label": "Regular" }, { "value": "500", "label": "Medium" } ], "default": "400" },
+    { "type": "text", "id": "hours_lh", "label": "Line Height", "default": "1.4" },
+    { "type": "range", "id": "hours_max_w", "min": 200, "max": 600, "step": 10, "unit": "px", "label": "Hours List Max Width", "default": 360 },
+    { "type": "range", "id": "hours_row_gap", "min": 2, "max": 30, "step": 1, "unit": "px", "label": "Gap Between Days", "default": 8 },
+    { "type": "range", "id": "hours_pad_b", "min": 0, "max": 20, "step": 1, "unit": "px", "label": "Row Bottom Padding", "default": 4 },
+    { "type": "checkbox", "id": "hours_show_border", "label": "Show Divider Under Each Day", "default": false },
+    { "type": "range", "id": "hours_border_w", "min": 1, "max": 4, "step": 1, "unit": "px", "label": "Divider Thickness", "default": 1 },
+    { "type": "color", "id": "hours_border_color", "label": "Divider Color", "default": "#EEEEEE" },
+    { "type": "range", "id": "hours_group_mb_d", "min": 0, "max": 60, "step": 2, "unit": "px", "label": "Hours Group Bottom Margin (Desktop)", "default": 30 },
+    { "type": "range", "id": "hours_group_mb_m", "min": 0, "max": 40, "step": 2, "unit": "px", "label": "Hours Group Bottom Margin (Mobile)", "default": 20 },
+
+    {
+      "type": "header",
+      "content": "9. STORE SERVICES STYLING"
+    },
+    { "type": "color", "id": "service_color", "label": "Services Text Color", "default": "#222222" },
+    { "type": "range", "id": "service_size_d", "min": 11, "max": 22, "step": 1, "unit": "px", "label": "Desktop Size", "default": 14 },
+    { "type": "range", "id": "service_size_m", "min": 10, "max": 18, "step": 1, "unit": "px", "label": "Mobile Size", "default": 13 },
+    { "type": "select", "id": "service_weight", "label": "Font Weight", "options": [ { "value": "300", "label": "Light" }, { "value": "400", "label": "Regular" }, { "value": "500", "label": "Medium" } ], "default": "400" },
+    { "type": "text", "id": "service_lh", "label": "Line Height", "default": "1.4" },
+    { "type": "range", "id": "service_item_mb", "min": 2, "max": 30, "step": 1, "unit": "px", "label": "Gap Between Items", "default": 8 },
+    { "type": "range", "id": "services_group_mb_d", "min": 0, "max": 60, "step": 2, "unit": "px", "label": "Services Group Bottom Margin (Desktop)", "default": 20 },
+    { "type": "services_group_mb_m", "type": "range", "id": "services_group_mb_m", "min": 0, "max": 40, "step": 2, "unit": "px", "label": "Services Group Bottom Margin (Mobile)", "default": 16 },
+
+    {
+      "type": "header",
+      "content": "10. GOOGLE MAP SETTINGS"
+    },
+    { "type": "html", "id": "map_embed_code", "label": "Google Maps Iframe Embed Code", "info": "Paste Google Maps 'Embed a map' <iframe> snippet here." },
+    { "type": "range", "id": "map_height_d", "min": 250, "max": 900, "step": 10, "unit": "px", "label": "Map Height (Desktop)", "default": 650 },
+    { "type": "range", "id": "map_height_m", "min": 200, "max": 600, "step": 10, "unit": "px", "label": "Map Height (Mobile)", "default": 350 },
+    { "type": "checkbox", "id": "enable_sticky_map", "label": "Sticky Map on Scroll (Desktop)", "default": true },
+    { "type": "range", "id": "sticky_top_margin", "min": 0, "max": 150, "step": 5, "unit": "px", "label": "Sticky Top Distance", "default": 20 },
+    { "type": "range", "id": "map_radius", "min": 0, "max": 30, "step": 1, "unit": "px", "label": "Map Border Radius", "default": 0 },
+    { "type": "range", "id": "map_border_w", "min": 0, "max": 5, "step": 1, "unit": "px", "label": "Map Border Width", "default": 0 },
+    { "type": "color", "id": "map_border_color", "label": "Map Border Color", "default": "#EAEAEA" }
+  ],
+  "blocks": [
+    {
+      "type": "section_heading",
+      "name": "Sub-Heading Title",
+      "settings": [
+        { "type": "text", "id": "heading_text", "label": "Heading Text", "default": "Store Hours" }
+      ]
+    },
+    {
+      "type": "store_hours_row",
+      "name": "Store Hours Row",
+      "settings": [
+        { "type": "text", "id": "day_text", "label": "Day", "default": "Monday" },
+        { "type": "text", "id": "time_text", "label": "Timing", "default": "11am - 7pm" }
+      ]
+    },
+    {
+      "type": "service_item",
+      "name": "Service / Offer Item",
+      "settings": [
+        { "type": "text", "id": "service_text", "label": "Service Item Text", "default": "Fine Jewelry" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Store Location & Map",
+      "blocks": [
+        {
+          "type": "section_heading",
+          "settings": { "heading_text": "Store Hours" }
+        },
+        {
+          "type": "store_hours_row",
+          "settings": { "day_text": "Monday", "time_text": "11am - 7pm" }
+        },
+        {
+          "type": "store_hours_row",
+          "settings": { "day_text": "Tuesday", "time_text": "11am - 7pm" }
+        },
+        {
+          "type": "store_hours_row",
+          "settings": { "day_text": "Wednesday", "time_text": "11am - 7pm" }
+        },
+        {
+          "type": "store_hours_row",
+          "settings": { "day_text": "Thursday", "time_text": "11am - 7pm" }
+        },
+        {
+          "type": "store_hours_row",
+          "settings": { "day_text": "Friday", "time_text": "11am - 7pm" }
+        },
+        {
+          "type": "store_hours_row",
+          "settings": { "day_text": "Saturday", "time_text": "11am - 7pm" }
+        },
+        {
+          "type": "store_hours_row",
+          "settings": { "day_text": "Sunday", "time_text": "12pm - 6pm" }
+        },
+        {
+          "type": "section_heading",
+          "settings": { "heading_text": "Store Services & Offers" }
+        },
+        {
+          "type": "service_item",
+          "settings": { "service_text": "Fine Jewelry" }
+        },
+        {
+          "type": "service_item",
+          "settings": { "service_text": "Engagement Rings" }
+        },
+        {
+          "type": "service_item",
+          "settings": { "service_text": "Wedding Bands" }
+        },
+        {
+          "type": "service_item",
+          "settings": { "service_text": "Not in stock? Ask an associate to order it for you" }
+        },
+        {
+          "type": "service_item",
+          "settings": { "service_text": "Be connected with a Diamond Specialist" }
+        },
+        {
+          "type": "service_item",
+          "settings": { "service_text": "Jewelry Repair" }
+        },
+        {
+          "type": "service_item",
+          "settings": { "service_text": "Returns" }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

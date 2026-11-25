@@ -1,0 +1,1249 @@
+{% comment %} 
+
+
+
+
+{%- style -%}
+  /* ==========================================================================
+     1. SECTION CONTAINER & PADDINGS (DESKTOP / MOBILE)
+     ========================================================================== */
+  #feature-grid-{{ section.id }} {
+    background-color: {{ section.settings.bg_color }};
+    padding-top: {{ section.settings.pad_top_m }}px;
+    padding-bottom: {{ section.settings.pad_bottom_m }}px;
+    padding-left: {{ section.settings.pad_left_m }}px;
+    padding-right: {{ section.settings.pad_right_m }}px;
+  }
+
+  @media screen and (min-width: 990px) {
+    #feature-grid-{{ section.id }} {
+      padding-top: {{ section.settings.pad_top_d }}px;
+      padding-bottom: {{ section.settings.pad_bottom_d }}px;
+      padding-left: {{ section.settings.pad_left_d }}px;
+      padding-right: {{ section.settings.pad_right_d }}px;
+    }
+  }
+
+  .fg-container-{{ section.id }} {
+    max-width: {{ section.settings.container_max_w }}px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  /* ==========================================================================
+     2. SECTION HEADER TYPOGRAPHY & ALIGNMENT
+     ========================================================================== */
+  .fg-header-{{ section.id }} {
+    text-align: {{ section.settings.header_align_m }};
+    margin-bottom: {{ section.settings.header_mb_m }}px;
+  }
+
+  @media screen and (min-width: 990px) {
+    .fg-header-{{ section.id }} {
+      text-align: {{ section.settings.header_align }};
+      margin-bottom: {{ section.settings.header_mb_d }}px;
+    }
+  }
+
+  .fg-title-{{ section.id }} {
+    color: {{ section.settings.title_color }};
+    font-size: {{ section.settings.title_size_m }}px;
+    font-weight: {{ section.settings.title_weight }};
+    line-height: {{ section.settings.title_lh }};
+    letter-spacing: {{ section.settings.title_ls }}px;
+    margin: 0 0 {{ section.settings.title_mb_m }}px 0;
+  }
+
+  @media screen and (min-width: 990px) {
+    .fg-title-{{ section.id }} {
+      font-size: {{ section.settings.title_size_d }}px;
+      margin-bottom: {{ section.settings.title_mb_d }}px;
+    }
+  }
+
+  .fg-subtitle-{{ section.id }} {
+    color: {{ section.settings.subtitle_color }};
+    font-size: {{ section.settings.subtitle_size_m }}px;
+    font-weight: {{ section.settings.subtitle_weight }};
+    line-height: {{ section.settings.subtitle_lh }};
+    letter-spacing: {{ section.settings.subtitle_ls }}px;
+    margin: 0;
+  }
+
+  @media screen and (min-width: 990px) {
+    .fg-subtitle-{{ section.id }} {
+      font-size: {{ section.settings.subtitle_size_d }}px;
+    }
+  }
+
+  /* ==========================================================================
+     3. GRID LAYOUT & COLUMNS
+     ========================================================================== */
+  .fg-grid-{{ section.id }} {
+    display: grid;
+    grid-template-columns: repeat({{ section.settings.cols_m }}, 1fr);
+    gap: {{ section.settings.gap_m }}px;
+  }
+
+  @media screen and (min-width: 990px) {
+    .fg-grid-{{ section.id }} {
+      grid-template-columns: repeat({{ section.settings.cols_d }}, 1fr);
+      gap: {{ section.settings.gap_d }}px;
+    }
+  }
+
+  /* ==========================================================================
+     4. CARD CONTAINER & MEDIA STYLING
+     ========================================================================== */
+  .fg-card-{{ section.id }} {
+    background-color: {{ section.settings.card_bg }};
+    border-radius: {{ section.settings.card_radius }}px;
+    border: {{ section.settings.card_border_w }}px solid {{ section.settings.card_border_color }};
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  {% if section.settings.enable_card_hover %}
+    .fg-card-{{ section.id }}:hover {
+      transform: translateY(-4px);
+    }
+  {% endif %}
+
+  /* Card Image */
+  .fg-card-media-{{ section.id }} {
+    width: 100%;
+    height: {{ section.settings.img_height_m }}px;
+    overflow: hidden;
+    border-radius: {{ section.settings.img_radius }}px;
+    background-color: #f4f4f4;
+  }
+
+  @media screen and (min-width: 990px) {
+    .fg-card-media-{{ section.id }} {
+      height: {{ section.settings.img_height_d }}px;
+    }
+  }
+
+  .fg-card-media-{{ section.id }} img,
+  .fg-card-media-{{ section.id }} svg {
+    width: 100%;
+    height: 100%;
+    object-fit: {{ section.settings.img_fit }};
+    display: block;
+    transition: transform 0.5s ease;
+  }
+
+  {% if section.settings.enable_img_zoom %}
+    .fg-card-{{ section.id }}:hover .fg-card-media-{{ section.id }} img {
+      transform: scale(1.04);
+    }
+  {% endif %}
+
+  /* Card Content Padding */
+  .fg-card-content-{{ section.id }} {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    text-align: {{ section.settings.card_text_align_m }};
+    align-items: {% if section.settings.card_text_align_m == 'center' %}center{% elsif section.settings.card_text_align_m == 'right' %}flex-end{% else %}flex-start{% endif %};
+    padding-top: {{ section.settings.card_pad_top_m }}px;
+    padding-bottom: {{ section.settings.card_pad_bottom_m }}px;
+    padding-left: {{ section.settings.card_pad_left_m }}px;
+    padding-right: {{ section.settings.card_pad_right_m }}px;
+  }
+
+  @media screen and (min-width: 990px) {
+    .fg-card-content-{{ section.id }} {
+      text-align: {{ section.settings.card_text_align }};
+      align-items: {% if section.settings.card_text_align == 'center' %}center{% elsif section.settings.card_text_align == 'right' %}flex-end{% else %}flex-start{% endif %};
+      padding-top: {{ section.settings.card_pad_top_d }}px;
+      padding-bottom: {{ section.settings.card_pad_bottom_d }}px;
+      padding-left: {{ section.settings.card_pad_left_d }}px;
+      padding-right: {{ section.settings.card_pad_right_d }}px;
+    }
+  }
+
+  /* ==========================================================================
+     5. CARD TYPOGRAPHY & BUTTON STYLING
+     ========================================================================== */
+  .fg-card-title-{{ section.id }} {
+    color: {{ section.settings.card_title_color }};
+    font-size: {{ section.settings.card_title_size_m }}px;
+    font-weight: {{ section.settings.card_title_weight }};
+    line-height: {{ section.settings.card_title_lh }};
+    letter-spacing: {{ section.settings.card_title_ls }}px;
+    margin: 0 0 {{ section.settings.card_title_mb_m }}px 0;
+  }
+
+  @media screen and (min-width: 990px) {
+    .fg-card-title-{{ section.id }} {
+      font-size: {{ section.settings.card_title_size_d }}px;
+      margin-bottom: {{ section.settings.card_title_mb_d }}px;
+    }
+  }
+
+  .fg-card-desc-{{ section.id }} {
+    color: {{ section.settings.card_desc_color }};
+    font-size: {{ section.settings.card_desc_size_m }}px;
+    font-weight: {{ section.settings.card_desc_weight }};
+    line-height: {{ section.settings.card_desc_lh }};
+    margin-bottom: {{ section.settings.card_desc_mb_m }}px;
+  }
+
+  .fg-card-desc-{{ section.id }} p {
+    margin: 0;
+  }
+
+  @media screen and (min-width: 990px) {
+    .fg-card-desc-{{ section.id }} {
+      font-size: {{ section.settings.card_desc_size_d }}px;
+      margin-bottom: {{ section.settings.card_desc_mb_d }}px;
+    }
+  }
+
+  /* CTA Link & Arrow */
+  .fg-card-link-{{ section.id }} {
+    margin-top: auto;
+    display: inline-flex;
+    align-items: center;
+    gap: {{ section.settings.link_arrow_gap }}px;
+    color: {{ section.settings.link_color }};
+    font-size: {{ section.settings.link_size_m }}px;
+    font-weight: {{ section.settings.link_weight }};
+    line-height: {{ section.settings.link_lh }};
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+
+  .fg-card-link-{{ section.id }}:hover {
+    color: {{ section.settings.link_hover_color }};
+  }
+
+  .fg-card-link-{{ section.id }} svg {
+    transition: transform 0.3s ease;
+  }
+
+  .fg-card-link-{{ section.id }}:hover svg {
+    transform: translateX(4px);
+  }
+
+  @media screen and (min-width: 990px) {
+    .fg-card-link-{{ section.id }} {
+      font-size: {{ section.settings.link_size_d }}px;
+    }
+  }
+{%- endstyle -%}
+
+<section class="feature-grid-section" id="feature-grid-{{ section.id }}">
+  <div class="fg-container-{{ section.id }}">
+    
+    <!-- HEADER -->
+    {%- if section.settings.heading != blank or section.settings.subheading != blank -%}
+      <div class="fg-header-{{ section.id }}">
+        {%- if section.settings.heading != blank -%}
+          <{{ section.settings.heading_tag }} class="fg-title-{{ section.id }}">
+            {{ section.settings.heading }}
+          </{{ section.settings.heading_tag }}>
+        {%- endif -%}
+        {%- if section.settings.subheading != blank -%}
+          <div class="fg-subtitle-{{ section.id }}">
+            {{ section.settings.subheading }}
+          </div>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+
+    <!-- CARDS GRID -->
+    <div class="fg-grid-{{ section.id }}">
+      {%- for block in section.blocks -%}
+        <div class="fg-card-{{ section.id }}" {{ block.shopify_attributes }}>
+          
+          <!-- IMAGE -->
+          <div class="fg-card-media-{{ section.id }}">
+            {%- if block.settings.image != blank -%}
+              <img 
+                src="{{ block.settings.image | image_url: width: 800 }}" 
+                alt="{{ block.settings.title | escape }}" 
+                loading="lazy" 
+                width="{{ block.settings.image.width }}" 
+                height="{{ block.settings.image.height }}">
+            {%- else -%}
+              {{ 'lifestyle-1' | placeholder_svg_tag: 'placeholder-svg' }}
+            {%- endif -%}
+          </div>
+
+          <!-- CARD CONTENT -->
+          <div class="fg-card-content-{{ section.id }}">
+            {%- if block.settings.title != blank -%}
+              <h3 class="fg-card-title-{{ section.id }}">{{ block.settings.title }}</h3>
+            {%- endif -%}
+
+            {%- if block.settings.description != blank -%}
+              <div class="fg-card-desc-{{ section.id }}">
+                {{ block.settings.description }}
+              </div>
+            {%- endif -%}
+
+            {%- if block.settings.link_text != blank -%}
+              <a href="{{ block.settings.link_url | default: '#' }}" class="fg-card-link-{{ section.id }}">
+                <span>{{ block.settings.link_text }}</span>
+                {%- if block.settings.show_arrow -%}
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                    <polyline points="12 5 19 12 12 19"></polyline>
+                  </svg>
+                {%- endif -%}
+              </a>
+            {%- endif -%}
+          </div>
+
+        </div>
+      {%- endfor -%}
+    </div>
+
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Feature Cards Grid",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "1. SECTION CONTAINER & BACKGROUND"
+    },
+    { "type": "color", "id": "bg_color", "label": "Background Color", "default": "#FAF8F5" },
+    { "type": "range", "id": "container_max_w", "min": 800, "max": 1800, "step": 20, "unit": "px", "label": "Container Max Width", "default": 1380 },
+
+    {
+      "type": "header",
+      "content": "2. DESKTOP PADDINGS"
+    },
+    { "type": "range", "id": "pad_top_d", "min": 0, "max": 150, "step": 5, "unit": "px", "label": "Padding Top", "default": 70 },
+    { "type": "range", "id": "pad_bottom_d", "min": 0, "max": 150, "step": 5, "unit": "px", "label": "Padding Bottom", "default": 70 },
+    { "type": "range", "id": "pad_left_d", "min": 0, "max": 100, "step": 5, "unit": "px", "label": "Padding Left", "default": 40 },
+    { "type": "range", "id": "pad_right_d", "min": 0, "max": 100, "step": 5, "unit": "px", "label": "Padding Right", "default": 40 },
+
+    {
+      "type": "header",
+      "content": "3. MOBILE PADDINGS"
+    },
+    { "type": "range", "id": "pad_top_m", "min": 0, "max": 100, "step": 5, "unit": "px", "label": "Padding Top", "default": 35 },
+    { "type": "range", "id": "pad_bottom_m", "min": 0, "max": 100, "step": 5, "unit": "px", "label": "Padding Bottom", "default": 35 },
+    { "type": "range", "id": "pad_left_m", "min": 0, "max": 50, "step": 2, "unit": "px", "label": "Padding Left", "default": 16 },
+    { "type": "range", "id": "pad_right_m", "min": 0, "max": 50, "step": 2, "unit": "px", "label": "Padding Right", "default": 16 },
+
+    {
+      "type": "header",
+      "content": "4. SECTION HEADER SETTINGS"
+    },
+    { "type": "text", "id": "heading", "label": "Title", "default": "Begin Your Forever, Your Way" },
+    { "type": "select", "id": "heading_tag", "label": "Heading Tag", "options": [ { "value": "h1", "label": "H1" }, { "value": "h2", "label": "H2" }, { "value": "h3", "label": "H3" } ], "default": "h2" },
+    { "type": "color", "id": "title_color", "label": "Title Color", "default": "#222222" },
+    { "type": "range", "id": "title_size_d", "min": 18, "max": 60, "step": 1, "unit": "px", "label": "Title Size (Desktop)", "default": 32 },
+    { "type": "range", "id": "title_size_m", "min": 16, "max": 40, "step": 1, "unit": "px", "label": "Title Size (Mobile)", "default": 24 },
+    { "type": "select", "id": "title_weight", "label": "Title Weight", "options": [ { "value": "300", "label": "Light" }, { "value": "400", "label": "Regular" }, { "value": "500", "label": "Medium" }, { "value": "600", "label": "SemiBold" }, { "value": "700", "label": "Bold" } ], "default": "400" },
+    { "type": "text", "id": "title_lh", "label": "Title Line Height", "default": "1.25" },
+    { "type": "range", "id": "title_ls", "min": 0, "max": 5, "step": 0.5, "unit": "px", "label": "Title Letter Spacing", "default": 0 },
+    { "type": "range", "id": "title_mb_d", "min": 0, "max": 40, "step": 2, "unit": "px", "label": "Title Bottom Margin (Desktop)", "default": 12 },
+    { "type": "range", "id": "title_mb_m", "min": 0, "max": 30, "step": 2, "unit": "px", "label": "Title Bottom Margin (Mobile)", "default": 8 },
+
+    { "type": "textarea", "id": "subheading", "label": "Subheading Text", "default": "Whether in-person, online or by phone, enjoy bespoke guidance as you discover a piece to last a lifetime." },
+    { "type": "color", "id": "subtitle_color", "label": "Subheading Color", "default": "#555555" },
+    { "type": "range", "id": "subtitle_size_d", "min": 12, "max": 24, "step": 1, "unit": "px", "label": "Subheading Size (Desktop)", "default": 15 },
+    { "type": "range", "id": "subtitle_size_m", "min": 11, "max": 20, "step": 1, "unit": "px", "label": "Subheading Size (Mobile)", "default": 14 },
+    { "type": "select", "id": "subtitle_weight", "label": "Subheading Weight", "options": [ { "value": "300", "label": "Light" }, { "value": "400", "label": "Regular" }, { "value": "500", "label": "Medium" } ], "default": "400" },
+    { "type": "text", "id": "subtitle_lh", "label": "Subheading Line Height", "default": "1.5" },
+    { "type": "range", "id": "subtitle_ls", "min": 0, "max": 4, "step": 0.5, "unit": "px", "label": "Subheading Letter Spacing", "default": 0 },
+
+    { "type": "select", "id": "header_align", "label": "Header Text Alignment (Desktop)", "options": [ { "value": "left", "label": "Left" }, { "value": "center", "label": "Center" }, { "value": "right", "label": "Right" } ], "default": "left" },
+    { "type": "select", "id": "header_align_m", "label": "Header Text Alignment (Mobile)", "options": [ { "value": "left", "label": "Left" }, { "value": "center", "label": "Center" }, { "value": "right", "label": "Right" } ], "default": "center" },
+    { "type": "range", "id": "header_mb_d", "min": 10, "max": 100, "step": 5, "unit": "px", "label": "Header Bottom Margin (Desktop)", "default": 40 },
+    { "type": "range", "id": "header_mb_m", "min": 10, "max": 60, "step": 5, "unit": "px", "label": "Header Bottom Margin (Mobile)", "default": 25 },
+
+    {
+      "type": "header",
+      "content": "5. GRID COLUMNS & GAPS"
+    },
+    { "type": "range", "id": "cols_d", "min": 1, "max": 6, "step": 1, "label": "Desktop Columns", "default": 4 },
+    { "type": "range", "id": "cols_m", "min": 1, "max": 3, "step": 1, "label": "Mobile Columns", "default": 1 },
+    { "type": "range", "id": "gap_d", "min": 5, "max": 60, "step": 5, "unit": "px", "label": "Desktop Gap", "default": 20 },
+    { "type": "range", "id": "gap_m", "min": 5, "max": 40, "step": 5, "unit": "px", "label": "Mobile Gap", "default": 15 },
+
+    {
+      "type": "header",
+      "content": "6. CARD CONTAINER STYLING"
+    },
+    { "type": "color", "id": "card_bg", "label": "Card Background Color", "default": "#FFFFFF" },
+    { "type": "range", "id": "card_radius", "min": 0, "max": 40, "step": 1, "unit": "px", "label": "Card Border Radius", "default": 0 },
+    { "type": "range", "id": "card_border_w", "min": 0, "max": 5, "step": 1, "unit": "px", "label": "Card Border Width", "default": 0 },
+    { "type": "color", "id": "card_border_color", "label": "Card Border Color", "default": "#EAEAEA" },
+    { "type": "select", "id": "card_text_align", "label": "Card Content Alignment (Desktop)", "options": [ { "value": "left", "label": "Left" }, { "value": "center", "label": "Center" }, { "value": "right", "label": "Right" } ], "default": "left" },
+    { "type": "select", "id": "card_text_align_m", "label": "Card Content Alignment (Mobile)", "options": [ { "value": "left", "label": "Left" }, { "value": "center", "label": "Center" }, { "value": "right", "label": "Right" } ], "default": "center" },
+    { "type": "checkbox", "id": "enable_card_hover", "label": "Enable Lift Up Effect on Hover", "default": false },
+
+    {
+      "type": "header",
+      "content": "7. CARD CONTENT DESKTOP PADDINGS"
+    },
+    { "type": "range", "id": "card_pad_top_d", "min": 0, "max": 60, "step": 2, "unit": "px", "label": "Padding Top", "default": 24 },
+    { "type": "range", "id": "card_pad_bottom_d", "min": 0, "max": 60, "step": 2, "unit": "px", "label": "Padding Bottom", "default": 24 },
+    { "type": "range", "id": "card_pad_left_d", "min": 0, "max": 60, "step": 2, "unit": "px", "label": "Padding Left", "default": 20 },
+    { "type": "range", "id": "card_pad_right_d", "min": 0, "max": 60, "step": 2, "unit": "px", "label": "Padding Right", "default": 20 },
+
+    {
+      "type": "header",
+      "content": "8. CARD CONTENT MOBILE PADDINGS"
+    },
+    { "type": "range", "id": "card_pad_top_m", "min": 0, "max": 50, "step": 2, "unit": "px", "label": "Padding Top", "default": 18 },
+    { "type": "range", "id": "card_pad_bottom_m", "min": 0, "max": 50, "step": 2, "unit": "px", "label": "Padding Bottom", "default": 18 },
+    { "type": "range", "id": "card_pad_left_m", "min": 0, "max": 50, "step": 2, "unit": "px", "label": "Padding Left", "default": 16 },
+    { "type": "range", "id": "card_pad_right_m", "min": 0, "max": 50, "step": 2, "unit": "px", "label": "Padding Right", "default": 16 },
+
+    {
+      "type": "header",
+      "content": "9. CARD IMAGE STYLING"
+    },
+    { "type": "range", "id": "img_height_d", "min": 150, "max": 600, "step": 10, "unit": "px", "label": "Desktop Image Height", "default": 320 },
+    { "type": "range", "id": "img_height_m", "min": 120, "max": 450, "step": 10, "unit": "px", "label": "Mobile Image Height", "default": 240 },
+    { "type": "select", "id": "img_fit", "label": "Image Object Fit", "options": [ { "value": "cover", "label": "Cover" }, { "value": "contain", "label": "Contain" } ], "default": "cover" },
+    { "type": "range", "id": "img_radius", "min": 0, "max": 30, "step": 1, "unit": "px", "label": "Image Border Radius", "default": 0 },
+    { "type": "checkbox", "id": "enable_img_zoom", "label": "Enable Image Zoom on Hover", "default": true },
+
+    {
+      "type": "header",
+      "content": "10. CARD TITLE TYPOGRAPHY"
+    },
+    { "type": "color", "id": "card_title_color", "label": "Card Title Color", "default": "#222222" },
+    { "type": "range", "id": "card_title_size_d", "min": 14, "max": 36, "step": 1, "unit": "px", "label": "Desktop Size", "default": 20 },
+    { "type": "range", "id": "card_title_size_m", "min": 12, "max": 28, "step": 1, "unit": "px", "label": "Mobile Size", "default": 17 },
+    { "type": "select", "id": "card_title_weight", "label": "Font Weight", "options": [ { "value": "300", "label": "Light" }, { "value": "400", "label": "Regular" }, { "value": "500", "label": "Medium" }, { "value": "600", "label": "SemiBold" } ], "default": "400" },
+    { "type": "text", "id": "card_title_lh", "label": "Line Height", "default": "1.3" },
+    { "type": "range", "id": "card_title_ls", "min": 0, "max": 4, "step": 0.5, "unit": "px", "label": "Letter Spacing", "default": 0 },
+    { "type": "range", "id": "card_title_mb_d", "min": 0, "max": 30, "step": 2, "unit": "px", "label": "Desktop Bottom Margin", "default": 10 },
+    { "type": "range", "id": "card_title_mb_m", "min": 0, "max": 20, "step": 2, "unit": "px", "label": "Mobile Bottom Margin", "default": 8 },
+
+    {
+      "type": "header",
+      "content": "11. CARD DESCRIPTION TYPOGRAPHY"
+    },
+    { "type": "color", "id": "card_desc_color", "label": "Description Color", "default": "#555555" },
+    { "type": "range", "id": "card_desc_size_d", "min": 11, "max": 22, "step": 1, "unit": "px", "label": "Desktop Size", "default": 14 },
+    { "type": "range", "id": "card_desc_size_m", "min": 10, "max": 18, "step": 1, "unit": "px", "label": "Mobile Size", "default": 13 },
+    { "type": "select", "id": "card_desc_weight", "label": "Font Weight", "options": [ { "value": "300", "label": "Light" }, { "value": "400", "label": "Regular" }, { "value": "500", "label": "Medium" } ], "default": "400" },
+    { "type": "text", "id": "card_desc_lh", "label": "Line Height", "default": "1.5" },
+    { "type": "range", "id": "card_desc_mb_d", "min": 0, "max": 40, "step": 2, "unit": "px", "label": "Desktop Bottom Margin", "default": 20 },
+    { "type": "range", "id": "card_desc_mb_m", "min": 0, "max": 30, "step": 2, "unit": "px", "label": "Mobile Bottom Margin", "default": 16 },
+
+    {
+      "type": "header",
+      "content": "12. CARD CTA LINK STYLING"
+    },
+    { "type": "color", "id": "link_color", "label": "Link Color", "default": "#888888" },
+    { "type": "color", "id": "link_hover_color", "label": "Link Hover Color", "default": "#111111" },
+    { "type": "range", "id": "link_size_d", "min": 10, "max": 20, "step": 1, "unit": "px", "label": "Desktop Size", "default": 13 },
+    { "type": "range", "id": "link_size_m", "min": 10, "max": 18, "step": 1, "unit": "px", "label": "Mobile Size", "default": 12 },
+    { "type": "select", "id": "link_weight", "label": "Font Weight", "options": [ { "value": "300", "label": "Light" }, { "value": "400", "label": "Regular" }, { "value": "500", "label": "Medium" } ], "default": "400" },
+    { "type": "text", "id": "link_lh", "label": "Line Height", "default": "1.4" },
+    { "type": "range", "id": "link_arrow_gap", "min": 2, "max": 20, "step": 1, "unit": "px", "label": "Arrow Icon Gap", "default": 8 }
+  ],
+  "blocks": [
+    {
+      "type": "feature_card",
+      "name": "Feature Card",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Card Image" },
+        { "type": "text", "id": "title", "label": "Card Title", "default": "Visit a Showroom" },
+        {
+          "type": "richtext",
+          "id": "description",
+          "label": "Card Description",
+          "default": "<p>Discover our collection with a private consultation at one of our global boutiques.</p>"
+        },
+        { "type": "text", "id": "link_text", "label": "Link Label", "default": "See times and locations" },
+        { "type": "url", "id": "link_url", "label": "Link URL" },
+        { "type": "checkbox", "id": "show_arrow", "label": "Show Arrow Icon", "default": true }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Feature Cards Grid",
+      "blocks": [
+        {
+          "type": "feature_card",
+          "settings": {
+            "title": "Visit a Showroom",
+            "description": "<p>Discover our collection with a private consultation at one of our global boutiques.</p>",
+            "link_text": "See times and locations",
+            "show_arrow": true
+          }
+        },
+        {
+          "type": "feature_card",
+          "settings": {
+            "title": "Book a Virtual Appointment",
+            "description": "<p>Our virtual consultations bring the Cullen Experience to you.</p>",
+            "link_text": "See times",
+            "show_arrow": true
+          }
+        },
+        {
+          "type": "feature_card",
+          "settings": {
+            "title": "Book a Phone Call",
+            "description": "<p>A quick call with an expert Client Advisor to guide you through any questions or concerns.</p>",
+            "link_text": "Get in touch",
+            "show_arrow": true
+          }
+        },
+        {
+          "type": "feature_card",
+          "settings": {
+            "title": "Aftercare",
+            "description": "<p>Explore aftercare services such as ring polishing and resizing.</p>",
+            "link_text": "View aftercare services",
+            "show_arrow": true
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %} {% endcomment %}
+
+
+
+
+
+
+
+
+{%- liquid
+  assign is_overlay = false
+  if section.settings.card_layout == 'overlay'
+    assign is_overlay = true
+  endif
+-%}
+
+{%- style -%}
+  /* ==========================================================================
+     1. SECTION CONTAINER & PADDINGS (DESKTOP / MOBILE)
+     ========================================================================== */
+  #feature-grid-{{ section.id }} {
+    background-color: {{ section.settings.bg_color }};
+    padding-top: {{ section.settings.pad_top_m }}px;
+    padding-bottom: {{ section.settings.pad_bottom_m }}px;
+    padding-left: {{ section.settings.pad_left_m }}px;
+    padding-right: {{ section.settings.pad_right_m }}px;
+  }
+
+  @media screen and (min-width: 990px) {
+    #feature-grid-{{ section.id }} {
+      padding-top: {{ section.settings.pad_top_d }}px;
+      padding-bottom: {{ section.settings.pad_bottom_d }}px;
+      padding-left: {{ section.settings.pad_left_d }}px;
+      padding-right: {{ section.settings.pad_right_d }}px;
+    }
+  }
+
+  .fg-container-{{ section.id }} {
+    max-width: {{ section.settings.container_max_w }}px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  /* ==========================================================================
+     2. SECTION HEADER TYPOGRAPHY & ALIGNMENT
+     ========================================================================== */
+  .fg-header-{{ section.id }} {
+    text-align: {{ section.settings.header_align_m }};
+    margin-bottom: {{ section.settings.header_mb_m }}px;
+  }
+
+  @media screen and (min-width: 990px) {
+    .fg-header-{{ section.id }} {
+      text-align: {{ section.settings.header_align }};
+      margin-bottom: {{ section.settings.header_mb_d }}px;
+    }
+  }
+
+  .fg-title-{{ section.id }} {
+    color: {{ section.settings.title_color }};
+    font-size: {{ section.settings.title_size_m }}px;
+    font-weight: {{ section.settings.title_weight }};
+    line-height: {{ section.settings.title_lh }};
+    letter-spacing: {{ section.settings.title_ls }}px;
+    margin: 0 0 {{ section.settings.title_mb_m }}px 0;
+  }
+
+  @media screen and (min-width: 990px) {
+    .fg-title-{{ section.id }} {
+      font-size: {{ section.settings.title_size_d }}px;
+      margin-bottom: {{ section.settings.title_mb_d }}px;
+    }
+  }
+
+  .fg-subtitle-{{ section.id }} {
+    color: {{ section.settings.subtitle_color }};
+    font-size: {{ section.settings.subtitle_size_m }}px;
+    font-weight: {{ section.settings.subtitle_weight }};
+    line-height: {{ section.settings.subtitle_lh }};
+    letter-spacing: {{ section.settings.subtitle_ls }}px;
+    margin: 0;
+  }
+
+  @media screen and (min-width: 990px) {
+    .fg-subtitle-{{ section.id }} {
+      font-size: {{ section.settings.subtitle_size_d }}px;
+    }
+  }
+
+  /* ==========================================================================
+     3. GRID LAYOUT & COLUMNS
+     ========================================================================== */
+  .fg-grid-{{ section.id }} {
+    display: grid;
+    grid-template-columns: repeat({{ section.settings.cols_m }}, 1fr);
+    gap: {{ section.settings.gap_m }}px;
+  }
+
+  @media screen and (min-width: 990px) {
+    .fg-grid-{{ section.id }} {
+      grid-template-columns: repeat({{ section.settings.cols_d }}, 1fr);
+      gap: {{ section.settings.gap_d }}px;
+    }
+  }
+
+  /* Overlay layout edge-to-edge ho sake, is ke liye container ki
+     max width aur section ke side paddings ignore karne ka option */
+  {%- if is_overlay and section.settings.overlay_full_bleed -%}
+    #feature-grid-{{ section.id }} {
+      padding-left: 0;
+      padding-right: 0;
+    }
+    @media screen and (min-width: 990px) {
+      #feature-grid-{{ section.id }} {
+        padding-left: 0;
+        padding-right: 0;
+      }
+    }
+    .fg-container-{{ section.id }} { max-width: none; }
+    .fg-header-{{ section.id }} {
+      padding-left: {{ section.settings.pad_left_m }}px;
+      padding-right: {{ section.settings.pad_right_m }}px;
+    }
+    @media screen and (min-width: 990px) {
+      .fg-header-{{ section.id }} {
+        padding-left: {{ section.settings.pad_left_d }}px;
+        padding-right: {{ section.settings.pad_right_d }}px;
+      }
+    }
+  {%- endif -%}
+
+  /* ==========================================================================
+     4. CARD CONTAINER & MEDIA STYLING
+     ========================================================================== */
+  .fg-card-{{ section.id }} {
+    background-color: {{ section.settings.card_bg }};
+    border-radius: {{ section.settings.card_radius }}px;
+    border: {{ section.settings.card_border_w }}px solid {{ section.settings.card_border_color }};
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  {% if section.settings.enable_card_hover %}
+    .fg-card-{{ section.id }}:hover {
+      transform: translateY(-4px);
+    }
+  {% endif %}
+
+  /* Card Image */
+  .fg-card-media-{{ section.id }} {
+    width: 100%;
+    height: {{ section.settings.img_height_m }}px;
+    overflow: hidden;
+    border-radius: {{ section.settings.img_radius }}px;
+    background-color: #f4f4f4;
+  }
+
+  @media screen and (min-width: 990px) {
+    .fg-card-media-{{ section.id }} {
+      height: {{ section.settings.img_height_d }}px;
+    }
+  }
+
+  .fg-card-media-{{ section.id }} img,
+  .fg-card-media-{{ section.id }} svg {
+    width: 100%;
+    height: 100%;
+    object-fit: {{ section.settings.img_fit }};
+    display: block;
+    transition: transform 0.5s ease;
+  }
+
+  {% if section.settings.enable_img_zoom %}
+    .fg-card-{{ section.id }}:hover .fg-card-media-{{ section.id }} img {
+      transform: scale(1.04);
+    }
+  {% endif %}
+
+  /* Card Content Padding */
+  .fg-card-content-{{ section.id }} {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    text-align: {{ section.settings.card_text_align_m }};
+    align-items: {% if section.settings.card_text_align_m == 'center' %}center{% elsif section.settings.card_text_align_m == 'right' %}flex-end{% else %}flex-start{% endif %};
+    padding-top: {{ section.settings.card_pad_top_m }}px;
+    padding-bottom: {{ section.settings.card_pad_bottom_m }}px;
+    padding-left: {{ section.settings.card_pad_left_m }}px;
+    padding-right: {{ section.settings.card_pad_right_m }}px;
+  }
+
+  @media screen and (min-width: 990px) {
+    .fg-card-content-{{ section.id }} {
+      text-align: {{ section.settings.card_text_align }};
+      align-items: {% if section.settings.card_text_align == 'center' %}center{% elsif section.settings.card_text_align == 'right' %}flex-end{% else %}flex-start{% endif %};
+      padding-top: {{ section.settings.card_pad_top_d }}px;
+      padding-bottom: {{ section.settings.card_pad_bottom_d }}px;
+      padding-left: {{ section.settings.card_pad_left_d }}px;
+      padding-right: {{ section.settings.card_pad_right_d }}px;
+    }
+  }
+
+  /* ==========================================================================
+     4B. OVERLAY LAYOUT — text image ke UPAR
+     ========================================================================== */
+  {%- if is_overlay -%}
+    .fg-card-{{ section.id }} {
+      position: relative;
+      background-color: transparent;
+      border: 0;
+      display: block;
+    }
+
+    .fg-card-{{ section.id }} .fg-card-media-{{ section.id }} {
+      height: {{ section.settings.ov_img_height_m }}px;
+      border-radius: {{ section.settings.card_radius }}px;
+    }
+
+    @media screen and (min-width: 990px) {
+      .fg-card-{{ section.id }} .fg-card-media-{{ section.id }} {
+        height: {{ section.settings.ov_img_height_d }}px;
+      }
+    }
+
+    /* Gradient taake white text har image par padha ja sake */
+    .fg-card-{{ section.id }}::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: {{ section.settings.card_radius }}px;
+      pointer-events: none;
+      background: linear-gradient(
+        to top,
+        {{ section.settings.ov_scrim_color }} 0%,
+        rgba(0, 0, 0, 0) {{ section.settings.ov_scrim_height }}%
+      );
+      opacity: {{ section.settings.ov_scrim_opacity | divided_by: 100.0 }};
+    }
+
+    .fg-card-{{ section.id }} .fg-card-content-{{ section.id }} {
+      position: absolute;
+      inset: auto 0 0 0;
+      z-index: 2;
+      flex-grow: 0;
+      text-align: {{ section.settings.ov_text_align_m }};
+      align-items: {% if section.settings.ov_text_align_m == 'center' %}center{% elsif section.settings.ov_text_align_m == 'right' %}flex-end{% else %}flex-start{% endif %};
+      justify-content: flex-end;
+      padding: {{ section.settings.ov_pad_m }}px;
+    }
+
+    @media screen and (min-width: 990px) {
+      .fg-card-{{ section.id }} .fg-card-content-{{ section.id }} {
+        text-align: {{ section.settings.ov_text_align_d }};
+        align-items: {% if section.settings.ov_text_align_d == 'center' %}center{% elsif section.settings.ov_text_align_d == 'right' %}flex-end{% else %}flex-start{% endif %};
+        padding: {{ section.settings.ov_pad_d }}px;
+      }
+    }
+
+    .fg-card-{{ section.id }} .fg-card-title-{{ section.id }} {
+      color: {{ section.settings.ov_title_color }};
+      font-size: {{ section.settings.ov_title_size_m }}px;
+      font-weight: {{ section.settings.ov_title_weight }};
+      letter-spacing: {{ section.settings.ov_title_ls }}px;
+      text-transform: {{ section.settings.ov_title_transform }};
+      margin-bottom: {{ section.settings.ov_title_mb }}px;
+    }
+
+    @media screen and (min-width: 990px) {
+      .fg-card-{{ section.id }} .fg-card-title-{{ section.id }} {
+        font-size: {{ section.settings.ov_title_size_d }}px;
+      }
+    }
+
+    .fg-card-{{ section.id }} .fg-card-desc-{{ section.id }} {
+      color: {{ section.settings.ov_desc_color }};
+      margin-bottom: {{ section.settings.ov_desc_mb }}px;
+      max-width: {{ section.settings.ov_desc_max_w }}px;
+    }
+
+    {%- unless section.settings.ov_show_desc -%}
+      .fg-card-{{ section.id }} .fg-card-desc-{{ section.id }} { display: none; }
+    {%- endunless -%}
+
+    .fg-card-{{ section.id }} .fg-card-link-{{ section.id }} {
+      margin-top: 0;
+      color: {{ section.settings.ov_link_color }};
+      {% if section.settings.ov_link_underline %}
+        text-decoration: underline;
+        text-underline-offset: {{ section.settings.ov_link_underline_offset }}px;
+        text-decoration-thickness: 1px;
+      {% endif %}
+    }
+
+    .fg-card-{{ section.id }} .fg-card-link-{{ section.id }}:hover {
+      color: {{ section.settings.ov_link_hover_color }};
+    }
+  {%- endif -%}
+
+  /* ==========================================================================
+     5. CARD TYPOGRAPHY & BUTTON STYLING
+     ========================================================================== */
+  .fg-card-title-{{ section.id }} {
+    color: {{ section.settings.card_title_color }};
+    font-size: {{ section.settings.card_title_size_m }}px;
+    font-weight: {{ section.settings.card_title_weight }};
+    line-height: {{ section.settings.card_title_lh }};
+    letter-spacing: {{ section.settings.card_title_ls }}px;
+    margin: 0 0 {{ section.settings.card_title_mb_m }}px 0;
+  }
+
+  @media screen and (min-width: 990px) {
+    .fg-card-title-{{ section.id }} {
+      font-size: {{ section.settings.card_title_size_d }}px;
+      margin-bottom: {{ section.settings.card_title_mb_d }}px;
+    }
+  }
+
+  .fg-card-desc-{{ section.id }} {
+    color: {{ section.settings.card_desc_color }};
+    font-size: {{ section.settings.card_desc_size_m }}px;
+    font-weight: {{ section.settings.card_desc_weight }};
+    line-height: {{ section.settings.card_desc_lh }};
+    margin-bottom: {{ section.settings.card_desc_mb_m }}px;
+  }
+
+  .fg-card-desc-{{ section.id }} p {
+    margin: 0;
+  }
+
+  @media screen and (min-width: 990px) {
+    .fg-card-desc-{{ section.id }} {
+      font-size: {{ section.settings.card_desc_size_d }}px;
+      margin-bottom: {{ section.settings.card_desc_mb_d }}px;
+    }
+  }
+
+  /* CTA Link & Arrow */
+  .fg-card-link-{{ section.id }} {
+    margin-top: auto;
+    display: inline-flex;
+    align-items: center;
+    gap: {{ section.settings.link_arrow_gap }}px;
+    color: {{ section.settings.link_color }};
+    font-size: {{ section.settings.link_size_m }}px;
+    font-weight: {{ section.settings.link_weight }};
+    line-height: {{ section.settings.link_lh }};
+    text-decoration: none;
+    transition: color 0.3s ease;
+    position: relative;
+    z-index: 3;
+  }
+
+  .fg-card-link-{{ section.id }}:hover {
+    color: {{ section.settings.link_hover_color }};
+  }
+
+  .fg-card-link-{{ section.id }} svg {
+    transition: transform 0.3s ease;
+  }
+
+  .fg-card-link-{{ section.id }}:hover svg {
+    transform: translateX(4px);
+  }
+
+  @media screen and (min-width: 990px) {
+    .fg-card-link-{{ section.id }} {
+      font-size: {{ section.settings.link_size_d }}px;
+    }
+  }
+
+  /* Poora card clickable ho to */
+  .fg-card-cover-{{ section.id }} {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+  }
+{%- endstyle -%}
+
+<section class="feature-grid-section" id="feature-grid-{{ section.id }}">
+  <div class="fg-container-{{ section.id }}">
+
+    <!-- HEADER -->
+    {%- if section.settings.heading != blank or section.settings.subheading != blank -%}
+      <div class="fg-header-{{ section.id }}">
+        {%- if section.settings.heading != blank -%}
+          <{{ section.settings.heading_tag }} class="fg-title-{{ section.id }}">
+            {{ section.settings.heading }}
+          </{{ section.settings.heading_tag }}>
+        {%- endif -%}
+        {%- if section.settings.subheading != blank -%}
+          <div class="fg-subtitle-{{ section.id }}">
+            {{ section.settings.subheading }}
+          </div>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+
+    <!-- CARDS GRID -->
+    <div class="fg-grid-{{ section.id }}">
+      {%- for block in section.blocks -%}
+        <div class="fg-card-{{ section.id }}" {{ block.shopify_attributes }}>
+
+          <!-- IMAGE -->
+          <div class="fg-card-media-{{ section.id }}">
+            {%- if block.settings.image != blank -%}
+              <img
+                src="{{ block.settings.image | image_url: width: 1400 }}"
+                srcset="{{ block.settings.image | image_url: width: 600 }} 600w,
+                        {{ block.settings.image | image_url: width: 900 }} 900w,
+                        {{ block.settings.image | image_url: width: 1400 }} 1400w"
+                sizes="(min-width: 990px) {{ 100 | divided_by: section.settings.cols_d }}vw, 100vw"
+                alt="{{ block.settings.title | escape }}"
+                loading="lazy"
+                width="{{ block.settings.image.width }}"
+                height="{{ block.settings.image.height }}">
+            {%- else -%}
+              {{ 'lifestyle-1' | placeholder_svg_tag: 'placeholder-svg' }}
+            {%- endif -%}
+          </div>
+
+          {%- comment -%}
+            Overlay layout mein poora card clickable — link ke neeche
+            rehta hai, is liye "Visit" link apna kaam karta rehta hai.
+          {%- endcomment -%}
+          {%- if is_overlay and section.settings.ov_card_clickable and block.settings.link_url != blank -%}
+            <a
+              href="{{ block.settings.link_url }}"
+              class="fg-card-cover-{{ section.id }}"
+              aria-label="{{ block.settings.title | escape }}"
+            ></a>
+          {%- endif -%}
+
+          <!-- CARD CONTENT -->
+          <div class="fg-card-content-{{ section.id }}">
+            {%- if block.settings.title != blank -%}
+              <h3 class="fg-card-title-{{ section.id }}">{{ block.settings.title }}</h3>
+            {%- endif -%}
+
+            {%- if block.settings.description != blank -%}
+              <div class="fg-card-desc-{{ section.id }}">
+                {{ block.settings.description }}
+              </div>
+            {%- endif -%}
+
+            {%- if block.settings.link_text != blank -%}
+              <a href="{{ block.settings.link_url | default: '#' }}" class="fg-card-link-{{ section.id }}">
+                <span>{{ block.settings.link_text }}</span>
+                {%- if block.settings.show_arrow and is_overlay == false -%}
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                    <polyline points="12 5 19 12 12 19"></polyline>
+                  </svg>
+                {%- elsif block.settings.show_arrow and section.settings.ov_show_arrow -%}
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                    <polyline points="12 5 19 12 12 19"></polyline>
+                  </svg>
+                {%- endif -%}
+              </a>
+            {%- endif -%}
+          </div>
+
+        </div>
+      {%- endfor -%}
+    </div>
+
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Feature Cards Grid",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "0. CARD LAYOUT"
+    },
+    {
+      "type": "select",
+      "id": "card_layout",
+      "label": "Layout Style",
+      "info": "Below image = text card ke neeche. Text over image = text image ke upar overlay.",
+      "options": [
+        { "value": "below", "label": "Text below image" },
+        { "value": "overlay", "label": "Text over image" }
+      ],
+      "default": "below"
+    },
+
+    {
+      "type": "header",
+      "content": "0B. OVERLAY LAYOUT SETTINGS",
+      "info": "Sirf 'Text over image' layout par lagti hain"
+    },
+    { "type": "checkbox", "id": "overlay_full_bleed", "label": "Full width edge to edge", "default": true },
+    { "type": "checkbox", "id": "ov_card_clickable", "label": "Make whole card clickable", "default": true },
+    { "type": "checkbox", "id": "ov_show_desc", "label": "Show description", "default": false },
+    { "type": "checkbox", "id": "ov_show_arrow", "label": "Show arrow icon", "default": false },
+    { "type": "range", "id": "ov_img_height_d", "min": 300, "max": 1000, "step": 10, "unit": "px", "label": "Image Height (Desktop)", "default": 700 },
+    { "type": "range", "id": "ov_img_height_m", "min": 200, "max": 700, "step": 10, "unit": "px", "label": "Image Height (Mobile)", "default": 440 },
+    { "type": "range", "id": "ov_pad_d", "min": 10, "max": 100, "step": 2, "unit": "px", "label": "Content Padding (Desktop)", "default": 46 },
+    { "type": "range", "id": "ov_pad_m", "min": 10, "max": 60, "step": 2, "unit": "px", "label": "Content Padding (Mobile)", "default": 24 },
+    { "type": "select", "id": "ov_text_align_d", "label": "Text Alignment (Desktop)", "options": [ { "value": "left", "label": "Left" }, { "value": "center", "label": "Center" }, { "value": "right", "label": "Right" } ], "default": "left" },
+    { "type": "select", "id": "ov_text_align_m", "label": "Text Alignment (Mobile)", "options": [ { "value": "left", "label": "Left" }, { "value": "center", "label": "Center" }, { "value": "right", "label": "Right" } ], "default": "left" },
+
+    { "type": "color", "id": "ov_scrim_color", "label": "Gradient Color", "default": "#000000" },
+    { "type": "range", "id": "ov_scrim_opacity", "min": 0, "max": 100, "step": 5, "unit": "%", "label": "Gradient Strength", "default": 55 },
+    { "type": "range", "id": "ov_scrim_height", "min": 20, "max": 100, "step": 5, "unit": "%", "label": "Gradient Height", "default": 60 },
+
+    { "type": "color", "id": "ov_title_color", "label": "Title Color", "default": "#FFFFFF" },
+    { "type": "range", "id": "ov_title_size_d", "min": 16, "max": 60, "step": 1, "unit": "px", "label": "Title Size (Desktop)", "default": 32 },
+    { "type": "range", "id": "ov_title_size_m", "min": 14, "max": 40, "step": 1, "unit": "px", "label": "Title Size (Mobile)", "default": 22 },
+    { "type": "select", "id": "ov_title_weight", "label": "Title Weight", "options": [ { "value": "300", "label": "Light" }, { "value": "400", "label": "Regular" }, { "value": "500", "label": "Medium" }, { "value": "600", "label": "SemiBold" } ], "default": "300" },
+    { "type": "range", "id": "ov_title_ls", "min": 0, "max": 10, "step": 0.5, "unit": "px", "label": "Title Letter Spacing", "default": 3 },
+    { "type": "select", "id": "ov_title_transform", "label": "Title Case", "options": [ { "value": "none", "label": "As typed" }, { "value": "uppercase", "label": "UPPERCASE" }, { "value": "capitalize", "label": "Capitalize" } ], "default": "uppercase" },
+    { "type": "range", "id": "ov_title_mb", "min": 0, "max": 40, "step": 2, "unit": "px", "label": "Space Below Title", "default": 14 },
+
+    { "type": "color", "id": "ov_desc_color", "label": "Description Color", "default": "#EDEDED" },
+    { "type": "range", "id": "ov_desc_mb", "min": 0, "max": 40, "step": 2, "unit": "px", "label": "Space Below Description", "default": 14 },
+    { "type": "range", "id": "ov_desc_max_w", "min": 200, "max": 700, "step": 10, "unit": "px", "label": "Description Max Width", "default": 420 },
+
+    { "type": "color", "id": "ov_link_color", "label": "Link Color", "default": "#FFFFFF" },
+    { "type": "color", "id": "ov_link_hover_color", "label": "Link Hover Color", "default": "#DDDDDD" },
+    { "type": "checkbox", "id": "ov_link_underline", "label": "Underline Link", "default": true },
+    { "type": "range", "id": "ov_link_underline_offset", "min": 2, "max": 14, "step": 1, "unit": "px", "label": "Underline Offset", "default": 6 },
+
+    {
+      "type": "header",
+      "content": "1. SECTION CONTAINER & BACKGROUND"
+    },
+    { "type": "color", "id": "bg_color", "label": "Background Color", "default": "#FAF8F5" },
+    { "type": "range", "id": "container_max_w", "min": 800, "max": 1800, "step": 20, "unit": "px", "label": "Container Max Width", "default": 1380 },
+
+    {
+      "type": "header",
+      "content": "2. DESKTOP PADDINGS"
+    },
+    { "type": "range", "id": "pad_top_d", "min": 0, "max": 150, "step": 5, "unit": "px", "label": "Padding Top", "default": 70 },
+    { "type": "range", "id": "pad_bottom_d", "min": 0, "max": 150, "step": 5, "unit": "px", "label": "Padding Bottom", "default": 70 },
+    { "type": "range", "id": "pad_left_d", "min": 0, "max": 100, "step": 5, "unit": "px", "label": "Padding Left", "default": 40 },
+    { "type": "range", "id": "pad_right_d", "min": 0, "max": 100, "step": 5, "unit": "px", "label": "Padding Right", "default": 40 },
+
+    {
+      "type": "header",
+      "content": "3. MOBILE PADDINGS"
+    },
+    { "type": "range", "id": "pad_top_m", "min": 0, "max": 100, "step": 5, "unit": "px", "label": "Padding Top", "default": 35 },
+    { "type": "range", "id": "pad_bottom_m", "min": 0, "max": 100, "step": 5, "unit": "px", "label": "Padding Bottom", "default": 35 },
+    { "type": "range", "id": "pad_left_m", "min": 0, "max": 50, "step": 2, "unit": "px", "label": "Padding Left", "default": 16 },
+    { "type": "range", "id": "pad_right_m", "min": 0, "max": 50, "step": 2, "unit": "px", "label": "Padding Right", "default": 16 },
+
+    {
+      "type": "header",
+      "content": "4. SECTION HEADER SETTINGS"
+    },
+    { "type": "text", "id": "heading", "label": "Title", "default": "Begin Your Forever, Your Way" },
+    { "type": "select", "id": "heading_tag", "label": "Heading Tag", "options": [ { "value": "h1", "label": "H1" }, { "value": "h2", "label": "H2" }, { "value": "h3", "label": "H3" } ], "default": "h2" },
+    { "type": "color", "id": "title_color", "label": "Title Color", "default": "#222222" },
+    { "type": "range", "id": "title_size_d", "min": 18, "max": 60, "step": 1, "unit": "px", "label": "Title Size (Desktop)", "default": 32 },
+    { "type": "range", "id": "title_size_m", "min": 16, "max": 40, "step": 1, "unit": "px", "label": "Title Size (Mobile)", "default": 24 },
+    { "type": "select", "id": "title_weight", "label": "Title Weight", "options": [ { "value": "300", "label": "Light" }, { "value": "400", "label": "Regular" }, { "value": "500", "label": "Medium" }, { "value": "600", "label": "SemiBold" }, { "value": "700", "label": "Bold" } ], "default": "400" },
+    { "type": "text", "id": "title_lh", "label": "Title Line Height", "default": "1.25" },
+    { "type": "range", "id": "title_ls", "min": 0, "max": 5, "step": 0.5, "unit": "px", "label": "Title Letter Spacing", "default": 0 },
+    { "type": "range", "id": "title_mb_d", "min": 0, "max": 40, "step": 2, "unit": "px", "label": "Title Bottom Margin (Desktop)", "default": 12 },
+    { "type": "range", "id": "title_mb_m", "min": 0, "max": 30, "step": 2, "unit": "px", "label": "Title Bottom Margin (Mobile)", "default": 8 },
+
+    { "type": "textarea", "id": "subheading", "label": "Subheading Text", "default": "Whether in-person, online or by phone, enjoy bespoke guidance as you discover a piece to last a lifetime." },
+    { "type": "color", "id": "subtitle_color", "label": "Subheading Color", "default": "#555555" },
+    { "type": "range", "id": "subtitle_size_d", "min": 12, "max": 24, "step": 1, "unit": "px", "label": "Subheading Size (Desktop)", "default": 15 },
+    { "type": "range", "id": "subtitle_size_m", "min": 11, "max": 20, "step": 1, "unit": "px", "label": "Subheading Size (Mobile)", "default": 14 },
+    { "type": "select", "id": "subtitle_weight", "label": "Subheading Weight", "options": [ { "value": "300", "label": "Light" }, { "value": "400", "label": "Regular" }, { "value": "500", "label": "Medium" } ], "default": "400" },
+    { "type": "text", "id": "subtitle_lh", "label": "Subheading Line Height", "default": "1.5" },
+    { "type": "range", "id": "subtitle_ls", "min": 0, "max": 4, "step": 0.5, "unit": "px", "label": "Subheading Letter Spacing", "default": 0 },
+
+    { "type": "select", "id": "header_align", "label": "Header Text Alignment (Desktop)", "options": [ { "value": "left", "label": "Left" }, { "value": "center", "label": "Center" }, { "value": "right", "label": "Right" } ], "default": "left" },
+    { "type": "select", "id": "header_align_m", "label": "Header Text Alignment (Mobile)", "options": [ { "value": "left", "label": "Left" }, { "value": "center", "label": "Center" }, { "value": "right", "label": "Right" } ], "default": "center" },
+    { "type": "range", "id": "header_mb_d", "min": 10, "max": 100, "step": 5, "unit": "px", "label": "Header Bottom Margin (Desktop)", "default": 40 },
+    { "type": "range", "id": "header_mb_m", "min": 10, "max": 60, "step": 5, "unit": "px", "label": "Header Bottom Margin (Mobile)", "default": 25 },
+
+    {
+      "type": "header",
+      "content": "5. GRID COLUMNS & GAPS"
+    },
+    { "type": "range", "id": "cols_d", "min": 1, "max": 6, "step": 1, "label": "Desktop Columns", "default": 4 },
+    { "type": "range", "id": "cols_m", "min": 1, "max": 3, "step": 1, "label": "Mobile Columns", "default": 1 },
+    { "type": "range", "id": "gap_d", "min": 0, "max": 60, "step": 5, "unit": "px", "label": "Desktop Gap", "default": 20 },
+    { "type": "range", "id": "gap_m", "min": 0, "max": 40, "step": 5, "unit": "px", "label": "Mobile Gap", "default": 15 },
+
+    {
+      "type": "header",
+      "content": "6. CARD CONTAINER STYLING"
+    },
+    { "type": "color", "id": "card_bg", "label": "Card Background Color", "default": "#FFFFFF" },
+    { "type": "range", "id": "card_radius", "min": 0, "max": 40, "step": 1, "unit": "px", "label": "Card Border Radius", "default": 0 },
+    { "type": "range", "id": "card_border_w", "min": 0, "max": 5, "step": 1, "unit": "px", "label": "Card Border Width", "default": 0 },
+    { "type": "color", "id": "card_border_color", "label": "Card Border Color", "default": "#EAEAEA" },
+    { "type": "select", "id": "card_text_align", "label": "Card Content Alignment (Desktop)", "options": [ { "value": "left", "label": "Left" }, { "value": "center", "label": "Center" }, { "value": "right", "label": "Right" } ], "default": "left" },
+    { "type": "select", "id": "card_text_align_m", "label": "Card Content Alignment (Mobile)", "options": [ { "value": "left", "label": "Left" }, { "value": "center", "label": "Center" }, { "value": "right", "label": "Right" } ], "default": "center" },
+    { "type": "checkbox", "id": "enable_card_hover", "label": "Enable Lift Up Effect on Hover", "default": false },
+
+    {
+      "type": "header",
+      "content": "7. CARD CONTENT DESKTOP PADDINGS"
+    },
+    { "type": "range", "id": "card_pad_top_d", "min": 0, "max": 60, "step": 2, "unit": "px", "label": "Padding Top", "default": 24 },
+    { "type": "range", "id": "card_pad_bottom_d", "min": 0, "max": 60, "step": 2, "unit": "px", "label": "Padding Bottom", "default": 24 },
+    { "type": "range", "id": "card_pad_left_d", "min": 0, "max": 60, "step": 2, "unit": "px", "label": "Padding Left", "default": 20 },
+    { "type": "range", "id": "card_pad_right_d", "min": 0, "max": 60, "step": 2, "unit": "px", "label": "Padding Right", "default": 20 },
+
+    {
+      "type": "header",
+      "content": "8. CARD CONTENT MOBILE PADDINGS"
+    },
+    { "type": "range", "id": "card_pad_top_m", "min": 0, "max": 50, "step": 2, "unit": "px", "label": "Padding Top", "default": 18 },
+    { "type": "range", "id": "card_pad_bottom_m", "min": 0, "max": 50, "step": 2, "unit": "px", "label": "Padding Bottom", "default": 18 },
+    { "type": "range", "id": "card_pad_left_m", "min": 0, "max": 50, "step": 2, "unit": "px", "label": "Padding Left", "default": 16 },
+    { "type": "range", "id": "card_pad_right_m", "min": 0, "max": 50, "step": 2, "unit": "px", "label": "Padding Right", "default": 16 },
+
+    {
+      "type": "header",
+      "content": "9. CARD IMAGE STYLING"
+    },
+    { "type": "range", "id": "img_height_d", "min": 150, "max": 600, "step": 10, "unit": "px", "label": "Desktop Image Height", "default": 320 },
+    { "type": "range", "id": "img_height_m", "min": 120, "max": 450, "step": 10, "unit": "px", "label": "Mobile Image Height", "default": 240 },
+    { "type": "select", "id": "img_fit", "label": "Image Object Fit", "options": [ { "value": "cover", "label": "Cover" }, { "value": "contain", "label": "Contain" } ], "default": "cover" },
+    { "type": "range", "id": "img_radius", "min": 0, "max": 30, "step": 1, "unit": "px", "label": "Image Border Radius", "default": 0 },
+    { "type": "checkbox", "id": "enable_img_zoom", "label": "Enable Image Zoom on Hover", "default": true },
+
+    {
+      "type": "header",
+      "content": "10. CARD TITLE TYPOGRAPHY"
+    },
+    { "type": "color", "id": "card_title_color", "label": "Card Title Color", "default": "#222222" },
+    { "type": "range", "id": "card_title_size_d", "min": 14, "max": 36, "step": 1, "unit": "px", "label": "Desktop Size", "default": 20 },
+    { "type": "range", "id": "card_title_size_m", "min": 12, "max": 28, "step": 1, "unit": "px", "label": "Mobile Size", "default": 17 },
+    { "type": "select", "id": "card_title_weight", "label": "Font Weight", "options": [ { "value": "300", "label": "Light" }, { "value": "400", "label": "Regular" }, { "value": "500", "label": "Medium" }, { "value": "600", "label": "SemiBold" } ], "default": "400" },
+    { "type": "text", "id": "card_title_lh", "label": "Line Height", "default": "1.3" },
+    { "type": "range", "id": "card_title_ls", "min": 0, "max": 4, "step": 0.5, "unit": "px", "label": "Letter Spacing", "default": 0 },
+    { "type": "range", "id": "card_title_mb_d", "min": 0, "max": 30, "step": 2, "unit": "px", "label": "Desktop Bottom Margin", "default": 10 },
+    { "type": "range", "id": "card_title_mb_m", "min": 0, "max": 20, "step": 2, "unit": "px", "label": "Mobile Bottom Margin", "default": 8 },
+
+    {
+      "type": "header",
+      "content": "11. CARD DESCRIPTION TYPOGRAPHY"
+    },
+    { "type": "color", "id": "card_desc_color", "label": "Description Color", "default": "#555555" },
+    { "type": "range", "id": "card_desc_size_d", "min": 11, "max": 22, "step": 1, "unit": "px", "label": "Desktop Size", "default": 14 },
+    { "type": "range", "id": "card_desc_size_m", "min": 10, "max": 18, "step": 1, "unit": "px", "label": "Mobile Size", "default": 13 },
+    { "type": "select", "id": "card_desc_weight", "label": "Font Weight", "options": [ { "value": "300", "label": "Light" }, { "value": "400", "label": "Regular" }, { "value": "500", "label": "Medium" } ], "default": "400" },
+    { "type": "text", "id": "card_desc_lh", "label": "Line Height", "default": "1.5" },
+    { "type": "range", "id": "card_desc_mb_d", "min": 0, "max": 40, "step": 2, "unit": "px", "label": "Desktop Bottom Margin", "default": 20 },
+    { "type": "range", "id": "card_desc_mb_m", "min": 0, "max": 30, "step": 2, "unit": "px", "label": "Mobile Bottom Margin", "default": 16 },
+
+    {
+      "type": "header",
+      "content": "12. CARD CTA LINK STYLING"
+    },
+    { "type": "color", "id": "link_color", "label": "Link Color", "default": "#888888" },
+    { "type": "color", "id": "link_hover_color", "label": "Link Hover Color", "default": "#111111" },
+    { "type": "range", "id": "link_size_d", "min": 10, "max": 20, "step": 1, "unit": "px", "label": "Desktop Size", "default": 13 },
+    { "type": "range", "id": "link_size_m", "min": 10, "max": 18, "step": 1, "unit": "px", "label": "Mobile Size", "default": 12 },
+    { "type": "select", "id": "link_weight", "label": "Font Weight", "options": [ { "value": "300", "label": "Light" }, { "value": "400", "label": "Regular" }, { "value": "500", "label": "Medium" } ], "default": "400" },
+    { "type": "text", "id": "link_lh", "label": "Line Height", "default": "1.4" },
+    { "type": "range", "id": "link_arrow_gap", "min": 2, "max": 20, "step": 1, "unit": "px", "label": "Arrow Icon Gap", "default": 8 }
+  ],
+  "blocks": [
+    {
+      "type": "feature_card",
+      "name": "Feature Card",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Card Image" },
+        { "type": "text", "id": "title", "label": "Card Title", "default": "Visit a Showroom" },
+        {
+          "type": "richtext",
+          "id": "description",
+          "label": "Card Description",
+          "default": "<p>Discover our collection with a private consultation at one of our global boutiques.</p>"
+        },
+        { "type": "text", "id": "link_text", "label": "Link Label", "default": "See times and locations" },
+        { "type": "url", "id": "link_url", "label": "Link URL" },
+        { "type": "checkbox", "id": "show_arrow", "label": "Show Arrow Icon", "default": true }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Feature Cards Grid",
+      "blocks": [
+        {
+          "type": "feature_card",
+          "settings": {
+            "title": "Visit a Showroom",
+            "description": "<p>Discover our collection with a private consultation at one of our global boutiques.</p>",
+            "link_text": "See times and locations",
+            "show_arrow": true
+          }
+        },
+        {
+          "type": "feature_card",
+          "settings": {
+            "title": "Book a Virtual Appointment",
+            "description": "<p>Our virtual consultations bring the Cullen Experience to you.</p>",
+            "link_text": "See times",
+            "show_arrow": true
+          }
+        },
+        {
+          "type": "feature_card",
+          "settings": {
+            "title": "Book a Phone Call",
+            "description": "<p>A quick call with an expert Client Advisor to guide you through any questions or concerns.</p>",
+            "link_text": "Get in touch",
+            "show_arrow": true
+          }
+        },
+        {
+          "type": "feature_card",
+          "settings": {
+            "title": "Aftercare",
+            "description": "<p>Explore aftercare services such as ring polishing and resizing.</p>",
+            "link_text": "View aftercare services",
+            "show_arrow": true
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

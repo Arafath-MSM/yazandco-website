@@ -94,6 +94,23 @@
   text-align: end;
 }
 
+.price__promotion {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: flex-end;
+  gap: 0.2rem 0.6rem;
+}
+
+.price--product .price__promotion {
+  justify-content: flex-start;
+}
+
+.price__promotion dd:last-child {
+  color: inherit;
+  opacity: 0.75;
+}
+
 .unit-price {
   font-size: 1.1rem;
   letter-spacing: 0.04rem;

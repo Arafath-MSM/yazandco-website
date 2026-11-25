@@ -21,6 +21,11 @@ const createImageElement = (image, classes, sizes, productTitle) => {
 const checkSwatches = () => {
   document.querySelectorAll('.js-color-swatches-wrapper').forEach(wrapper => {
     wrapper.querySelectorAll('.js-color-swatches input').forEach(input => {
+      // checkSwatches() runs again after every product-recommendations fetch and
+      // scans the whole document, so unguarded it stacks a duplicate click
+      // handler on every swatch already on the page.
+      if (input.dataset.swatchBound === 'true') return;
+      input.dataset.swatchBound = 'true';
       input.addEventListener('click', (event) => {
         const primaryImage = wrapper.querySelector(".media--first");
         const secondaryImage = wrapper.querySelector(".media--second");

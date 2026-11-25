@@ -30,6 +30,7 @@
       "block_order": [
         "cowlendar_booking_app_section_T8pMdE"
       ],
+      "disabled": true,
       "settings": {
         "include_margins": true
       }

@@ -1,0 +1,5566 @@
+{% comment %} {% comment %} {%- comment -%}
+  "As Seen On" collage marquee (Strathberry style):
+  - Staggered images (different sizes + vertical offsets) in a slow, continuous
+    auto-scrolling track (desktop + mobile).
+  - Click an image to enlarge it and reveal its caption; marquee pauses while
+    an image is enlarged. Click again (or outside / Escape) to collapse.
+{%- endcomment -%}
+
+{% liquid
+  assign sid = section.id
+  assign speed = section.settings.scroll_speed
+  assign gap = section.settings.item_gap
+%}
+
+<div
+  id="asn-{{ sid }}"
+  class="asn color-{{ section.settings.color_scheme }}"
+  style="
+    --asn-speed: {{ speed }}s;
+    --asn-gap: {{ gap }}px;
+    --asn-base-h: {{ section.settings.image_height }}px;
+    --asn-radius: {{ section.settings.image_border_radius }}px;
+  "
+>
+  {% if section.settings.heading != blank or section.settings.subheading != blank %}
+    <div class="asn__head">
+      {% if section.settings.heading != blank %}
+        <h2 class="asn__title">{{ section.settings.heading }}</h2>
+      {% endif %}
+      {% if section.settings.subheading != blank %}
+        <p class="asn__subtitle">{{ section.settings.subheading }}</p>
+      {% endif %}
+    </div>
+  {% endif %}
+
+  <div class="asn__viewport" data-asn-viewport>
+    <div class="asn__track" data-asn-track>
+      {% for copy in (1..2) %}
+        <div class="asn__group" {% if copy == 2 %}aria-hidden="true"{% endif %}>
+          {% for block in section.blocks %}
+            <figure
+              class="asn__item asn__item--{{ block.settings.size }}"
+              style="--asn-offset: {{ block.settings.offset }}px;"
+              data-asn-item
+              tabindex="0"
+              role="button"
+              aria-label="{{ block.settings.caption | default: 'Image' | escape }}"
+              {{ block.shopify_attributes }}
+            >
+              <div class="asn__media">
+                {% if block.settings.image != blank %}
+                  {{
+                    block.settings.image
+                    | image_url: width: 900
+                    | image_tag:
+                      loading: 'lazy',
+                      widths: '300, 450, 600, 900',
+                      style: 'aspect-ratio:' | append: block.settings.image.aspect_ratio
+                  }}
+                {% else %}
+                  {{ 'image' | placeholder_svg_tag: 'asn__placeholder' }}
+                {% endif %}
+              </div>
+              {% if block.settings.caption != blank %}
+                <figcaption class="asn__caption">{{ block.settings.caption }}</figcaption>
+              {% endif %}
+            </figure>
+          {% endfor %}
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+{% style %}
+  #asn-{{ sid }} {
+    overflow: hidden;
+    padding-block: {{ section.settings.padding_top }}px {{ section.settings.padding_bottom }}px;
+  }
+
+  #asn-{{ sid }} .asn__head {
+    text-align: center;
+    padding-inline: 20px;
+    margin-bottom: 56px;
+  }
+
+  #asn-{{ sid }} .asn__title {
+    margin: 0 0 20px;
+  }
+
+  #asn-{{ sid }} .asn__subtitle {
+    margin: 0;
+    opacity: 0.85;
+  }
+
+  #asn-{{ sid }} .asn__viewport {
+    width: 100%;
+  }
+
+  #asn-{{ sid }} .asn__track {
+    display: flex;
+    width: max-content;
+    animation: asn-marquee-{{ sid }} var(--asn-speed) linear infinite;
+  }
+
+  #asn-{{ sid }} .asn__group {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--asn-gap);
+    padding-inline-end: var(--asn-gap);
+    /* offsets neeche bhi ja sakte hain, is liye thori vertical room */
+    padding-block: 70px;
+  }
+
+  @keyframes asn-marquee-{{ sid }} {
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
+  /* Expanded state ya hover par marquee rok do */
+  #asn-{{ sid }}.asn--paused .asn__track {
+    animation-play-state: paused;
+  }
+
+  {% if section.settings.pause_on_hover %}
+    @media (hover: hover) {
+      #asn-{{ sid }} .asn__viewport:hover .asn__track {
+        animation-play-state: paused;
+      }
+    }
+  {% endif %}
+
+  #asn-{{ sid }} .asn__item {
+    margin: 0;
+    flex-shrink: 0;
+    cursor: pointer;
+    transform: translateY(var(--asn-offset));
+    transition: transform 0.5s ease;
+    outline-offset: 4px;
+  }
+
+  #asn-{{ sid }} .asn__media {
+    height: var(--asn-item-h);
+    transition: height 0.5s ease;
+  }
+
+  #asn-{{ sid }} .asn__media img,
+  #asn-{{ sid }} .asn__media svg {
+    height: 100%;
+    width: auto;
+    max-width: none;
+    display: block;
+    object-fit: cover;
+    border-radius: var(--asn-radius);
+  }
+
+  #asn-{{ sid }} .asn__item--small  { --asn-item-h: calc(var(--asn-base-h) * 0.72); }
+  #asn-{{ sid }} .asn__item--medium { --asn-item-h: var(--asn-base-h); }
+  #asn-{{ sid }} .asn__item--large  { --asn-item-h: calc(var(--asn-base-h) * 1.22); }
+
+  /* Click par bara version */
+  #asn-{{ sid }} .asn__item.is-expanded { --asn-item-h: calc(var(--asn-base-h) * 1.45); }
+  #asn-{{ sid }} .asn__item.is-expanded { transform: translateY(calc(var(--asn-offset) * 0.4)); }
+
+  #asn-{{ sid }} .asn__caption {
+    text-align: center;
+    font-size: 13px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding-top: 14px;
+    opacity: 0;
+    transition: opacity 0.4s ease 0.15s;
+  }
+
+  #asn-{{ sid }} .asn__item.is-expanded .asn__caption {
+    opacity: 1;
+  }
+
+  #asn-{{ sid }} .asn__placeholder {
+    width: auto;
+    background: rgb(0 0 0 / 0.06);
+  }
+
+  @media screen and (max-width: 749px) {
+    #asn-{{ sid }} {
+      --asn-base-h: {{ section.settings.image_height | times: 0.62 | round }}px;
+      --asn-gap: {{ gap | times: 0.6 | round }}px;
+    }
+
+    #asn-{{ sid }} .asn__head {
+      margin-bottom: 32px;
+    }
+
+    #asn-{{ sid }} .asn__group {
+      padding-block: 44px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    #asn-{{ sid }} .asn__track {
+      animation: none;
+    }
+    #asn-{{ sid }} .asn__viewport {
+      overflow-x: auto;
+    }
+  }
+{% endstyle %}
+
+<script>
+  (function () {
+    var root = document.getElementById('asn-{{ sid }}');
+    if (!root || root.__asnInit) return;
+    root.__asnInit = true;
+
+    function collapseAll() {
+      root.querySelectorAll('.asn__item.is-expanded').forEach(function (el) {
+        el.classList.remove('is-expanded');
+      });
+      root.classList.remove('asn--paused');
+    }
+
+    root.addEventListener('click', function (e) {
+      var item = e.target.closest('[data-asn-item]');
+      if (!item) return;
+      var wasExpanded = item.classList.contains('is-expanded');
+      collapseAll();
+      if (!wasExpanded) {
+        item.classList.add('is-expanded');
+        root.classList.add('asn--paused');
+      }
+    });
+
+    root.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') {
+        var item = e.target.closest('[data-asn-item]');
+        if (item) {
+          e.preventDefault();
+          item.click();
+        }
+      }
+    });
+
+    document.addEventListener('click', function (e) {
+      if (!root.contains(e.target)) collapseAll();
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') collapseAll();
+    });
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "As Seen On marquee",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "As Seen On"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "See how our community is styling their favourite designs..."
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "primary"
+    },
+    {
+      "type": "range",
+      "id": "scroll_speed",
+      "label": "Scroll duration (lower = faster)",
+      "min": 20,
+      "max": 160,
+      "step": 5,
+      "unit": "s",
+      "default": 80
+    },
+    {
+      "type": "checkbox",
+      "id": "pause_on_hover",
+      "label": "Pause on hover (desktop)",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "image_height",
+      "label": "Base image height (desktop)",
+      "min": 240,
+      "max": 560,
+      "step": 10,
+      "unit": "px",
+      "default": 400
+    },
+    {
+      "type": "range",
+      "id": "item_gap",
+      "label": "Gap between images",
+      "min": 0,
+      "max": 80,
+      "step": 2,
+      "unit": "px",
+      "default": 28
+    },
+    {
+      "type": "range",
+      "id": "image_border_radius",
+      "label": "Image corner radius",
+      "min": 0,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Top padding",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 64
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Bottom padding",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 64
+    }
+  ],
+  "blocks": [
+    {
+      "type": "image",
+      "name": "Image",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "caption",
+          "label": "Caption (shows when enlarged)",
+          "info": "e.g. OLIVIA PALERMO"
+        },
+        {
+          "type": "select",
+          "id": "size",
+          "label": "Size",
+          "options": [
+            { "value": "small", "label": "Small" },
+            { "value": "medium", "label": "Medium" },
+            { "value": "large", "label": "Large" }
+          ],
+          "default": "medium"
+        },
+        {
+          "type": "range",
+          "id": "offset",
+          "label": "Vertical offset",
+          "min": -70,
+          "max": 70,
+          "step": 5,
+          "unit": "px",
+          "default": 0
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "As Seen On marquee",
+      "blocks": [
+        { "type": "image", "settings": { "size": "large", "offset": -40 } },
+        { "type": "image", "settings": { "size": "small", "offset": 30 } },
+        { "type": "image", "settings": { "size": "medium", "offset": -10 } },
+        { "type": "image", "settings": { "size": "small", "offset": 45 } },
+        { "type": "image", "settings": { "size": "large", "offset": -30 } },
+        { "type": "image", "settings": { "size": "medium", "offset": 20 } }
+      ]
+    }
+  ]
+}
+{% endschema %} {% endcomment %}
+
+
+
+{%- comment -%}
+  "As Seen On" collage marquee (Strathberry style):
+  - Staggered images (different sizes + vertical offsets) in a slow, continuous
+    auto-scrolling track (desktop + mobile).
+  - Click an image to enlarge it and reveal its caption; marquee pauses while
+    an image is enlarged. Click again (or outside / Escape) to collapse.
+{%- endcomment -%}
+
+{% comment %} {% liquid
+  assign sid = section.id
+  assign speed = section.settings.scroll_speed
+  assign gap = section.settings.item_gap
+%}
+
+<div
+  id="asn-{{ sid }}"
+  class="asn color-{{ section.settings.color_scheme }}"
+  style="
+    --asn-speed: {{ speed }}s;
+    --asn-gap: {{ gap }}px;
+    --asn-overlap: {{ section.settings.item_overlap }}px;
+    --asn-base-h: {{ section.settings.image_height }}px;
+    --asn-radius: {{ section.settings.image_border_radius }}px;
+  "
+>
+  {% if section.settings.heading != blank or section.settings.subheading != blank %}
+    <div class="asn__head">
+      {% if section.settings.heading != blank %}
+        <h2 class="asn__title">{{ section.settings.heading }}</h2>
+      {% endif %}
+      {% if section.settings.subheading != blank %}
+        <p class="asn__subtitle">{{ section.settings.subheading }}</p>
+      {% endif %}
+    </div>
+  {% endif %}
+
+  <div class="asn__viewport" data-asn-viewport>
+    <div class="asn__track" data-asn-track>
+      {% for copy in (1..2) %}
+        <div class="asn__group" {% if copy == 2 %}aria-hidden="true"{% endif %}>
+          {% for block in section.blocks %}
+            <figure
+              class="asn__item asn__item--{{ block.settings.size }}"
+              style="--asn-offset: {{ block.settings.offset }}px;"
+              data-asn-item
+              tabindex="0"
+              role="button"
+              aria-label="{{ block.settings.caption | default: 'Image' | escape }}"
+              {{ block.shopify_attributes }}
+            >
+              <div class="asn__media">
+                {% if block.settings.image != blank %}
+                  {% assign ratio_style = 'aspect-ratio: ' | append: block.settings.image.aspect_ratio %}
+                  {{
+                    block.settings.image
+                    | image_url: width: 900
+                    | image_tag:
+                      loading: 'lazy',
+                      widths: '300, 450, 600, 900',
+                      style: ratio_style
+                  }}
+                {% else %}
+                  {{ 'image' | placeholder_svg_tag: 'asn__placeholder' }}
+                {% endif %}
+              </div>
+              {% if block.settings.caption != blank %}
+                <figcaption class="asn__caption">{{ block.settings.caption }}</figcaption>
+              {% endif %}
+            </figure>
+          {% endfor %}
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+{% style %}
+  #asn-{{ sid }} {
+    overflow: hidden;
+    padding-block: {{ section.settings.padding_top }}px {{ section.settings.padding_bottom }}px;
+  }
+
+  #asn-{{ sid }} .asn__head {
+    text-align: center;
+    padding-inline: 20px;
+    margin-bottom: 56px;
+  }
+
+  #asn-{{ sid }} .asn__title {
+    margin: 0 0 20px;
+  }
+
+  #asn-{{ sid }} .asn__subtitle {
+    margin: 0;
+    opacity: 0.85;
+  }
+
+  #asn-{{ sid }} .asn__viewport {
+    width: 100%;
+  }
+
+  #asn-{{ sid }} .asn__track {
+    display: flex;
+    width: max-content;
+    animation: asn-marquee-{{ sid }} var(--asn-speed) linear infinite;
+  }
+
+  #asn-{{ sid }} .asn__group {
+    display: flex;
+    align-items: flex-start;
+    /* offsets neeche bhi ja sakte hain, is liye thori vertical room */
+    padding-block: 70px;
+  }
+
+  /* Har item ke baad spacing: gap minus overlap (negative = image ke oper image).
+     Ye margin har item par hai (last par bhi) taake loop ka seam consistent rahe. */
+  #asn-{{ sid }} .asn__item {
+    margin-inline-end: calc(var(--asn-gap) - var(--asn-overlap));
+  }
+
+  /* Collage layering: alternate images aage/peeche */
+  #asn-{{ sid }} .asn__item { position: relative; z-index: 1; }
+  #asn-{{ sid }} .asn__group .asn__item:nth-child(even) { z-index: 2; }
+  #asn-{{ sid }} .asn__item.is-expanded,
+  #asn-{{ sid }} .asn__item:hover { z-index: 3; }
+
+  @keyframes asn-marquee-{{ sid }} {
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
+  /* Expanded state ya hover par marquee rok do */
+  #asn-{{ sid }}.asn--paused .asn__track {
+    animation-play-state: paused;
+  }
+
+  {% if section.settings.pause_on_hover %}
+    @media (hover: hover) {
+      #asn-{{ sid }} .asn__viewport:hover .asn__track {
+        animation-play-state: paused;
+      }
+    }
+  {% endif %}
+
+  #asn-{{ sid }} .asn__item {
+    margin-block: 0;
+    margin-inline-start: 0;
+    flex-shrink: 0;
+    cursor: pointer;
+    transform: translateY(var(--asn-offset));
+    transition: transform 0.5s ease;
+    outline-offset: 4px;
+  }
+
+  #asn-{{ sid }} .asn__media {
+    height: var(--asn-item-h);
+    transition: height 0.5s ease;
+  }
+
+  #asn-{{ sid }} .asn__media img,
+  #asn-{{ sid }} .asn__media svg {
+    height: 100%;
+    width: auto;
+    max-width: none;
+    display: block;
+    object-fit: cover;
+    border-radius: var(--asn-radius);
+  }
+
+  #asn-{{ sid }} .asn__item--small  { --asn-item-h: calc(var(--asn-base-h) * 0.72); }
+  #asn-{{ sid }} .asn__item--medium { --asn-item-h: var(--asn-base-h); }
+  #asn-{{ sid }} .asn__item--large  { --asn-item-h: calc(var(--asn-base-h) * 1.22); }
+
+  /* Click (mobile/touch) par bara version */
+  #asn-{{ sid }} .asn__item.is-expanded { --asn-item-h: calc(var(--asn-base-h) * 1.45); }
+  #asn-{{ sid }} .asn__item.is-expanded { transform: translateY(calc(var(--asn-offset) * 0.4)); }
+
+  /* Desktop: hover par hi bari ho jaye (Strathberry style) */
+  @media (hover: hover) {
+    #asn-{{ sid }} .asn__item:hover { --asn-item-h: calc(var(--asn-base-h) * 1.45); }
+    #asn-{{ sid }} .asn__item:hover { transform: translateY(calc(var(--asn-offset) * 0.4)); }
+    #asn-{{ sid }} .asn__item:hover .asn__caption { opacity: 1; }
+  }
+
+  #asn-{{ sid }} .asn__caption {
+    text-align: center;
+    font-size: 13px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding-top: 14px;
+    opacity: 0;
+    transition: opacity 0.4s ease 0.15s;
+  }
+
+  #asn-{{ sid }} .asn__item.is-expanded .asn__caption {
+    opacity: 1;
+  }
+
+  #asn-{{ sid }} .asn__placeholder {
+    width: auto;
+    background: rgb(0 0 0 / 0.06);
+  }
+
+  @media screen and (max-width: 749px) {
+    #asn-{{ sid }} {
+      --asn-base-h: {{ section.settings.image_height | times: 0.62 | round }}px;
+      --asn-gap: {{ gap | times: 0.6 | round }}px;
+      --asn-overlap: {{ section.settings.item_overlap | times: 0.6 | round }}px;
+    }
+
+    #asn-{{ sid }} .asn__head {
+      margin-bottom: 32px;
+    }
+
+    #asn-{{ sid }} .asn__group {
+      padding-block: 44px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    #asn-{{ sid }} .asn__track {
+      animation: none;
+    }
+    #asn-{{ sid }} .asn__viewport {
+      overflow-x: auto;
+    }
+  }
+{% endstyle %}
+
+<script>
+  (function () {
+    var root = document.getElementById('asn-{{ sid }}');
+    if (!root || root.__asnInit) return;
+    root.__asnInit = true;
+
+    function collapseAll() {
+      root.querySelectorAll('.asn__item.is-expanded').forEach(function (el) {
+        el.classList.remove('is-expanded');
+      });
+      root.classList.remove('asn--paused');
+    }
+
+    root.addEventListener('click', function (e) {
+      var item = e.target.closest('[data-asn-item]');
+      if (!item) return;
+      var wasExpanded = item.classList.contains('is-expanded');
+      collapseAll();
+      if (!wasExpanded) {
+        item.classList.add('is-expanded');
+        root.classList.add('asn--paused');
+      }
+    });
+
+    root.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') {
+        var item = e.target.closest('[data-asn-item]');
+        if (item) {
+          e.preventDefault();
+          item.click();
+        }
+      }
+    });
+
+    document.addEventListener('click', function (e) {
+      if (!root.contains(e.target)) collapseAll();
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') collapseAll();
+    });
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "As Seen On marquee",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "As Seen On"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "See how our community is styling their favourite designs..."
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "primary"
+    },
+    {
+      "type": "range",
+      "id": "scroll_speed",
+      "label": "Scroll duration (lower = faster)",
+      "min": 20,
+      "max": 160,
+      "step": 5,
+      "unit": "s",
+      "default": 80
+    },
+    {
+      "type": "checkbox",
+      "id": "pause_on_hover",
+      "label": "Pause on hover (desktop)",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "image_height",
+      "label": "Base image height (desktop)",
+      "min": 240,
+      "max": 560,
+      "step": 10,
+      "unit": "px",
+      "default": 400
+    },
+    {
+      "type": "range",
+      "id": "item_gap",
+      "label": "Gap between images",
+      "min": 0,
+      "max": 80,
+      "step": 2,
+      "unit": "px",
+      "default": 28
+    },
+    {
+      "type": "range",
+      "id": "item_overlap",
+      "label": "Image overlap",
+      "info": "Gap se zyada hoga to images aik dusri ke oper aayengi (collage)",
+      "min": 0,
+      "max": 160,
+      "step": 5,
+      "unit": "px",
+      "default": 90
+    },
+    {
+      "type": "range",
+      "id": "image_border_radius",
+      "label": "Image corner radius",
+      "min": 0,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Top padding",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 64
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Bottom padding",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 64
+    }
+  ],
+  "blocks": [
+    {
+      "type": "image",
+      "name": "Image",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "caption",
+          "label": "Caption (shows when enlarged)",
+          "info": "e.g. OLIVIA PALERMO"
+        },
+        {
+          "type": "select",
+          "id": "size",
+          "label": "Size",
+          "options": [
+            { "value": "small", "label": "Small" },
+            { "value": "medium", "label": "Medium" },
+            { "value": "large", "label": "Large" }
+          ],
+          "default": "medium"
+        },
+        {
+          "type": "range",
+          "id": "offset",
+          "label": "Vertical offset",
+          "min": -100,
+          "max": 100,
+          "step": 5,
+          "unit": "px",
+          "default": 0
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "As Seen On marquee",
+      "blocks": [
+        { "type": "image", "settings": { "size": "large", "offset": -40 } },
+        { "type": "image", "settings": { "size": "small", "offset": 30 } },
+        { "type": "image", "settings": { "size": "medium", "offset": -10 } },
+        { "type": "image", "settings": { "size": "small", "offset": 45 } },
+        { "type": "image", "settings": { "size": "large", "offset": -30 } },
+        { "type": "image", "settings": { "size": "medium", "offset": 20 } }
+      ]
+    }
+  ]
+}
+{% endschema %} {% endcomment %}
+
+{% comment %} 
+{% liquid
+  assign sid = section.id
+  assign speed = section.settings.scroll_speed
+  assign gap = section.settings.item_gap
+%}
+
+<div
+  id="asn-{{ sid }}"
+  class="asn color-{{ section.settings.color_scheme }}"
+  style="
+    --asn-speed: {{ speed }}s;
+    --asn-gap: {{ gap }}px;
+    --asn-overlap: {{ section.settings.item_overlap }}px;
+    --asn-base-h: {{ section.settings.image_height }}px;
+    --asn-radius: {{ section.settings.image_border_radius }}px;
+  "
+>
+  {% if section.settings.heading != blank or section.settings.subheading != blank %}
+    <div class="asn__head">
+
+      {% if section.settings.heading != blank %}
+        <h2 class="asn__title">
+          {{ section.settings.heading }}
+        </h2>
+      {% endif %}
+
+      {% if section.settings.subheading != blank %}
+        <p class="asn__subtitle">
+          {{ section.settings.subheading }}
+        </p>
+      {% endif %}
+
+    </div>
+  {% endif %}
+
+
+  <div class="asn__viewport" data-asn-viewport>
+
+    <div class="asn__track" data-asn-track>
+
+      {% for copy in (1..4) %}
+
+        <div
+          class="asn__group"
+          data-asn-group
+          {% unless copy == 1 %}
+            aria-hidden="true"
+          {% endunless %}
+        >
+
+          {% for block in section.blocks %}
+
+            <figure
+              class="asn__item asn__item--{{ block.settings.size }}"
+              style="--asn-offset: {{ block.settings.offset }}px;"
+              data-asn-item
+
+              {% if copy == 1 %}
+                tabindex="0"
+                role="button"
+                aria-label="{{ block.settings.caption | default: 'Image' | escape }}"
+                {{ block.shopify_attributes }}
+              {% else %}
+                tabindex="-1"
+              {% endif %}
+            >
+
+              <div class="asn__media">
+
+                {% if block.settings.image != blank %}
+
+                  {% assign ratio_style = 'aspect-ratio: ' | append: block.settings.image.aspect_ratio %}
+
+                  {{
+                    block.settings.image
+                    | image_url: width: 900
+                    | image_tag:
+                      loading: 'lazy',
+                      widths: '300, 450, 600, 900',
+                      style: ratio_style
+                  }}
+
+                {% else %}
+
+                  {{ 'image' | placeholder_svg_tag: 'asn__placeholder' }}
+
+                {% endif %}
+
+              </div>
+
+
+              {% if block.settings.caption != blank %}
+
+                <figcaption class="asn__caption">
+                  {{ block.settings.caption }}
+                </figcaption>
+
+              {% endif %}
+
+            </figure>
+
+          {% endfor %}
+
+        </div>
+
+      {% endfor %}
+
+    </div>
+
+  </div>
+
+</div>
+
+
+{% style %}
+
+
+/* ===============================
+   MAIN SECTION
+================================ */
+
+#asn-{{ sid }} {
+  overflow: hidden;
+
+  padding-block:
+    {{ section.settings.padding_top }}px
+    {{ section.settings.padding_bottom }}px;
+}
+
+
+/* ===============================
+   HEADING
+================================ */
+
+#asn-{{ sid }} .asn__head {
+  text-align: center;
+
+  padding-inline: 20px;
+
+  margin-bottom: 56px;
+}
+
+
+#asn-{{ sid }} .asn__title {
+  margin: 0 0 20px;
+}
+
+
+#asn-{{ sid }} .asn__subtitle {
+  margin: 0;
+
+  opacity: 0.85;
+}
+
+
+/* ===============================
+   VIEWPORT
+================================ */
+
+#asn-{{ sid }} .asn__viewport {
+  position: relative;
+
+  width: 100%;
+
+  overflow: hidden;
+}
+
+
+/* ===============================
+   TRACK
+================================ */
+
+#asn-{{ sid }} .asn__track {
+  display: flex;
+
+  align-items: flex-start;
+
+  width: max-content;
+
+  gap: 0;
+
+  will-change: transform;
+
+  animation:
+    asn-marquee-{{ sid }}
+    var(--asn-speed)
+    linear
+    infinite;
+
+  /*
+    JS exact group width milne tak
+    animation start nahi hogi.
+  */
+  animation-play-state: paused;
+}
+
+
+#asn-{{ sid }}.asn--ready .asn__track {
+  animation-play-state: running;
+}
+
+
+/* User click se pause */
+
+#asn-{{ sid }}.asn--paused .asn__track {
+  animation-play-state: paused;
+}
+
+
+/* ===============================
+   EACH COPY / GROUP
+================================ */
+
+#asn-{{ sid }} .asn__group {
+  display: flex;
+
+  align-items: flex-start;
+
+  flex: 0 0 auto;
+
+  flex-shrink: 0;
+
+  padding-block: 70px;
+}
+
+
+/* ===============================
+   ITEMS
+================================ */
+
+#asn-{{ sid }} .asn__item {
+  position: relative;
+
+  flex: 0 0 auto;
+
+  flex-shrink: 0;
+
+  margin-block: 0;
+
+  margin-inline-start: 0;
+
+  margin-inline-end:
+    calc(
+      var(--asn-gap)
+      - var(--asn-overlap)
+    );
+
+  cursor: pointer;
+
+  transform:
+    translateY(
+      var(--asn-offset)
+    );
+
+  transition:
+    transform 0.5s ease;
+
+  outline-offset: 4px;
+
+  z-index: 1;
+}
+
+
+/* ===============================
+   LAYERING
+================================ */
+
+#asn-{{ sid }}
+.asn__group
+.asn__item:nth-child(even) {
+  z-index: 2;
+}
+
+
+#asn-{{ sid }}
+.asn__item.is-expanded,
+
+#asn-{{ sid }}
+.asn__item:hover {
+  z-index: 5;
+}
+
+
+/* ===============================
+   IMAGE HOLDER
+================================ */
+
+#asn-{{ sid }} .asn__media {
+  height:
+    var(--asn-item-h);
+
+  transition:
+    height 0.5s ease;
+}
+
+
+/* ===============================
+   IMAGE
+================================ */
+
+#asn-{{ sid }} .asn__media img,
+
+#asn-{{ sid }} .asn__media svg {
+  display: block;
+
+  width: auto;
+
+  height: 100%;
+
+  max-width: none;
+
+  object-fit: cover;
+
+  border-radius:
+    var(--asn-radius);
+}
+
+
+/* ===============================
+   IMAGE SIZES
+================================ */
+
+#asn-{{ sid }}
+.asn__item--small {
+  --asn-item-h:
+    calc(
+      var(--asn-base-h) * 0.72
+    );
+}
+
+
+#asn-{{ sid }}
+.asn__item--medium {
+  --asn-item-h:
+    var(--asn-base-h);
+}
+
+
+#asn-{{ sid }}
+.asn__item--large {
+  --asn-item-h:
+    calc(
+      var(--asn-base-h) * 1.22
+    );
+}
+
+
+/* ===============================
+   EXPANDED
+================================ */
+
+#asn-{{ sid }}
+.asn__item.is-expanded {
+  --asn-item-h:
+    calc(
+      var(--asn-base-h) * 1.45
+    );
+
+  transform:
+    translateY(
+      calc(
+        var(--asn-offset) * 0.4
+      )
+    );
+}
+
+
+/* ===============================
+   HOVER
+================================ */
+
+@media (hover: hover) {
+
+  #asn-{{ sid }}
+  .asn__item:hover {
+
+    --asn-item-h:
+      calc(
+        var(--asn-base-h) * 1.45
+      );
+
+    transform:
+      translateY(
+        calc(
+          var(--asn-offset) * 0.4
+        )
+      );
+  }
+
+
+  #asn-{{ sid }}
+  .asn__item:hover
+  .asn__caption {
+    opacity: 1;
+  }
+
+}
+
+
+/* ===============================
+   CAPTION
+================================ */
+
+#asn-{{ sid }} .asn__caption {
+  padding-top: 14px;
+
+  text-align: center;
+
+  font-size: 13px;
+
+  letter-spacing: 0.12em;
+
+  text-transform: uppercase;
+
+  opacity: 0;
+
+  transition:
+    opacity
+    0.4s
+    ease
+    0.15s;
+}
+
+
+#asn-{{ sid }}
+.asn__item.is-expanded
+.asn__caption {
+  opacity: 1;
+}
+
+
+/* ===============================
+   PLACEHOLDER
+================================ */
+
+#asn-{{ sid }} .asn__placeholder {
+  width: auto;
+
+  background:
+    rgb(0 0 0 / 0.06);
+}
+
+
+/* ===============================
+   MARQUEE ANIMATION
+================================ */
+
+@keyframes asn-marquee-{{ sid }} {
+
+  from {
+    transform:
+      translate3d(
+        0,
+        0,
+        0
+      );
+  }
+
+  to {
+    transform:
+      translate3d(
+        calc(
+          -1 * var(--asn-loop-width)
+        ),
+        0,
+        0
+      );
+  }
+
+}
+
+
+/* ===============================
+   PAUSE ON HOVER
+================================ */
+
+{% if section.settings.pause_on_hover %}
+
+@media (hover: hover) {
+
+  #asn-{{ sid }}
+  .asn__viewport:hover
+  .asn__track {
+    animation-play-state: paused;
+  }
+
+}
+
+{% endif %}
+
+
+/* ===============================
+   MOBILE
+================================ */
+
+@media screen and (max-width: 749px) {
+
+  #asn-{{ sid }} {
+
+    --asn-base-h:
+      {{ section.settings.image_height | times: 0.62 | round }}px;
+
+    --asn-gap:
+      {{ gap | times: 0.6 | round }}px;
+
+    --asn-overlap:
+      {{ section.settings.item_overlap | times: 0.6 | round }}px;
+
+  }
+
+
+  #asn-{{ sid }}
+  .asn__head {
+    margin-bottom: 32px;
+  }
+
+
+  #asn-{{ sid }}
+  .asn__group {
+    padding-block: 44px;
+  }
+
+}
+
+
+/* ===============================
+   REDUCED MOTION
+================================ */
+
+@media (prefers-reduced-motion: reduce) {
+
+  #asn-{{ sid }}
+  .asn__track {
+    animation: none;
+  }
+
+
+  #asn-{{ sid }}
+  .asn__viewport {
+    overflow-x: auto;
+  }
+
+}
+
+
+{% endstyle %}
+
+
+
+<script>
+(function () {
+
+  var root =
+    document.getElementById(
+      'asn-{{ sid }}'
+    );
+
+
+  if (!root) return;
+
+
+  if (root.__asnInit) return;
+
+
+  root.__asnInit = true;
+
+
+
+  /* ==================================
+     ELEMENTS
+  ================================== */
+
+  var track =
+    root.querySelector(
+      '[data-asn-track]'
+    );
+
+
+  var firstGroup =
+    root.querySelector(
+      '[data-asn-group]'
+    );
+
+
+  if (!track || !firstGroup) {
+    return;
+  }
+
+
+
+  /* ==================================
+     EXACT LOOP WIDTH
+  ================================== */
+
+  function setLoopWidth() {
+
+    if (!firstGroup) return;
+
+
+    var rect =
+      firstGroup
+        .getBoundingClientRect();
+
+
+    var width =
+      rect.width;
+
+
+    if (!width || width <= 0) {
+      return;
+    }
+
+
+    track.style.setProperty(
+      '--asn-loop-width',
+      width + 'px'
+    );
+
+
+    root.classList.add(
+      'asn--ready'
+    );
+
+  }
+
+
+
+  /* ==================================
+     INITIAL MEASURE
+  ================================== */
+
+  requestAnimationFrame(
+    function () {
+
+      requestAnimationFrame(
+        setLoopWidth
+      );
+
+    }
+  );
+
+
+
+  /* ==================================
+     WINDOW LOAD
+  ================================== */
+
+  window.addEventListener(
+    'load',
+    setLoopWidth
+  );
+
+
+
+  /* ==================================
+     RESIZE
+  ================================== */
+
+  var resizeTimer;
+
+
+  window.addEventListener(
+    'resize',
+    function () {
+
+      clearTimeout(
+        resizeTimer
+      );
+
+
+      resizeTimer =
+        setTimeout(
+          setLoopWidth,
+          100
+        );
+
+    }
+  );
+
+
+
+  /* ==================================
+     IMAGE LOAD
+  ================================== */
+
+  root
+    .querySelectorAll('img')
+    .forEach(
+      function (img) {
+
+        if (!img.complete) {
+
+          img.addEventListener(
+            'load',
+            setLoopWidth,
+            {
+              once: true
+            }
+          );
+
+        }
+
+      }
+    );
+
+
+
+  /* ==================================
+     FONTS
+  ================================== */
+
+  if (
+    document.fonts &&
+    document.fonts.ready
+  ) {
+
+    document.fonts.ready.then(
+      setLoopWidth
+    );
+
+  }
+
+
+
+  /* ==================================
+     RESIZE OBSERVER
+  ================================== */
+
+  if (
+    typeof ResizeObserver !==
+    'undefined'
+  ) {
+
+    var observer =
+      new ResizeObserver(
+        function () {
+
+          setLoopWidth();
+
+        }
+      );
+
+
+    observer.observe(
+      firstGroup
+    );
+
+  }
+
+
+
+  /* ==================================
+     COLLAPSE
+  ================================== */
+
+  function collapseAll() {
+
+    root
+      .querySelectorAll(
+        '.asn__item.is-expanded'
+      )
+      .forEach(
+        function (item) {
+
+          item.classList.remove(
+            'is-expanded'
+          );
+
+        }
+      );
+
+
+    root.classList.remove(
+      'asn--paused'
+    );
+
+  }
+
+
+
+  /* ==================================
+     CLICK
+  ================================== */
+
+  root.addEventListener(
+    'click',
+    function (event) {
+
+      var item =
+        event.target.closest(
+          '[data-asn-item]'
+        );
+
+
+      if (!item) return;
+
+
+      /*
+        Duplicate copies click
+        interaction nahi karengi.
+      */
+
+      var group =
+        item.closest(
+          '[data-asn-group]'
+        );
+
+
+      if (
+        group !== firstGroup
+      ) {
+        return;
+      }
+
+
+      var wasExpanded =
+        item.classList.contains(
+          'is-expanded'
+        );
+
+
+      collapseAll();
+
+
+      if (!wasExpanded) {
+
+        item.classList.add(
+          'is-expanded'
+        );
+
+
+        root.classList.add(
+          'asn--paused'
+        );
+
+      }
+
+    }
+  );
+
+
+
+  /* ==================================
+     KEYBOARD
+  ================================== */
+
+  root.addEventListener(
+    'keydown',
+    function (event) {
+
+      if (
+        event.key === 'Enter' ||
+        event.key === ' '
+      ) {
+
+        var item =
+          event.target.closest(
+            '[data-asn-item]'
+          );
+
+
+        if (!item) return;
+
+
+        event.preventDefault();
+
+
+        item.click();
+
+      }
+
+    }
+  );
+
+
+
+  /* ==================================
+     CLICK OUTSIDE
+  ================================== */
+
+  document.addEventListener(
+    'click',
+    function (event) {
+
+      if (
+        !root.contains(
+          event.target
+        )
+      ) {
+
+        collapseAll();
+
+      }
+
+    }
+  );
+
+
+
+  /* ==================================
+     ESCAPE
+  ================================== */
+
+  document.addEventListener(
+    'keydown',
+    function (event) {
+
+      if (
+        event.key === 'Escape'
+      ) {
+
+        collapseAll();
+
+      }
+
+    }
+  );
+
+
+})();
+</script>
+
+
+
+{% schema %}
+{
+  "name": "As Seen On marquee",
+  "tag": "section",
+
+  "settings": [
+
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "As Seen On"
+    },
+
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "See how our community is styling their favourite designs..."
+    },
+
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "primary"
+    },
+
+    {
+      "type": "range",
+      "id": "scroll_speed",
+      "label": "Scroll duration (lower = faster)",
+      "min": 20,
+      "max": 160,
+      "step": 5,
+      "unit": "s",
+      "default": 80
+    },
+
+    {
+      "type": "checkbox",
+      "id": "pause_on_hover",
+      "label": "Pause on hover (desktop)",
+      "default": true
+    },
+
+    {
+      "type": "range",
+      "id": "image_height",
+      "label": "Base image height (desktop)",
+      "min": 240,
+      "max": 560,
+      "step": 10,
+      "unit": "px",
+      "default": 400
+    },
+
+    {
+      "type": "range",
+      "id": "item_gap",
+      "label": "Gap between images",
+      "min": 0,
+      "max": 80,
+      "step": 2,
+      "unit": "px",
+      "default": 28
+    },
+
+    {
+      "type": "range",
+      "id": "item_overlap",
+      "label": "Image overlap",
+      "info": "Gap se zyada hoga to images aik dusri ke oper aayengi (collage)",
+      "min": 0,
+      "max": 160,
+      "step": 5,
+      "unit": "px",
+      "default": 90
+    },
+
+    {
+      "type": "range",
+      "id": "image_border_radius",
+      "label": "Image corner radius",
+      "min": 0,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    },
+
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Top padding",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 64
+    },
+
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Bottom padding",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 64
+    }
+
+  ],
+
+  "blocks": [
+
+    {
+      "type": "image",
+      "name": "Image",
+
+      "settings": [
+
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+
+        {
+          "type": "text",
+          "id": "caption",
+          "label": "Caption (shows when enlarged)",
+          "info": "e.g. OLIVIA PALERMO"
+        },
+
+        {
+          "type": "select",
+          "id": "size",
+          "label": "Size",
+
+          "options": [
+
+            {
+              "value": "small",
+              "label": "Small"
+            },
+
+            {
+              "value": "medium",
+              "label": "Medium"
+            },
+
+            {
+              "value": "large",
+              "label": "Large"
+            }
+
+          ],
+
+          "default": "medium"
+        },
+
+        {
+          "type": "range",
+          "id": "offset",
+          "label": "Vertical offset",
+          "min": -100,
+          "max": 100,
+          "step": 5,
+          "unit": "px",
+          "default": 0
+        }
+
+      ]
+    }
+
+  ],
+
+  "presets": [
+
+    {
+      "name": "As Seen On marquee",
+
+      "blocks": [
+
+        {
+          "type": "image",
+          "settings": {
+            "size": "large",
+            "offset": -40
+          }
+        },
+
+        {
+          "type": "image",
+          "settings": {
+            "size": "small",
+            "offset": 30
+          }
+        },
+
+        {
+          "type": "image",
+          "settings": {
+            "size": "medium",
+            "offset": -10
+          }
+        },
+
+        {
+          "type": "image",
+          "settings": {
+            "size": "small",
+            "offset": 45
+          }
+        },
+
+        {
+          "type": "image",
+          "settings": {
+            "size": "large",
+            "offset": -30
+          }
+        },
+
+        {
+          "type": "image",
+          "settings": {
+            "size": "medium",
+            "offset": 20
+          }
+        }
+
+      ]
+    }
+
+  ]
+}
+{% endschema %} {% endcomment %}
+
+
+
+
+
+
+{% liquid
+  assign sid = section.id
+  assign speed = section.settings.scroll_speed
+  assign gap = section.settings.item_gap
+%}
+
+<div
+  id="asn-{{ sid }}"
+  class="asn color-{{ section.settings.color_scheme }}"
+  style="
+    --asn-speed: {{ speed }}s;
+    --asn-gap: {{ gap }}px;
+    --asn-overlap: {{ section.settings.item_overlap }}px;
+    --asn-base-h: {{ section.settings.image_height }}px;
+    --asn-radius: {{ section.settings.image_border_radius }}px;
+  "
+>
+  {% if section.settings.heading != blank or section.settings.subheading != blank %}
+    <div class="asn__head">
+
+      {% if section.settings.heading != blank %}
+        <h2 class="asn__title">
+          {{ section.settings.heading }}
+        </h2>
+      {% endif %}
+
+      {% if section.settings.subheading != blank %}
+        <p class="asn__subtitle">
+          {{ section.settings.subheading }}
+        </p>
+      {% endif %}
+
+    </div>
+  {% endif %}
+
+
+  <div class="asn__viewport" data-asn-viewport>
+
+    <div class="asn__scroller" data-asn-scroller>
+
+      <div class="asn__track" data-asn-track>
+
+        {% for copy in (1..4) %}
+
+          <div
+            class="asn__group"
+            data-asn-group
+            {% unless copy == 1 %}
+              aria-hidden="true"
+            {% endunless %}
+          >
+
+            {% for block in section.blocks %}
+
+              <figure
+                class="asn__item asn__item--{{ block.settings.size }}"
+                style="--asn-offset: {{ block.settings.offset }}px;"
+                data-asn-item
+
+                {% if copy == 1 %}
+                  tabindex="0"
+                  role="button"
+                  aria-label="{{ block.settings.caption | default: 'Image' | escape }}"
+                  {{ block.shopify_attributes }}
+                {% else %}
+                  tabindex="-1"
+                {% endif %}
+              >
+
+                <div class="asn__media">
+
+                  {% if block.settings.image != blank %}
+
+                    {% assign ratio_style = 'aspect-ratio: ' | append: block.settings.image.aspect_ratio %}
+
+                    {{
+                      block.settings.image
+                      | image_url: width: 900
+                      | image_tag:
+                        loading: 'lazy',
+                        widths: '300, 450, 600, 900',
+                        style: ratio_style
+                    }}
+
+                  {% else %}
+
+                    {{ 'image' | placeholder_svg_tag: 'asn__placeholder' }}
+
+                  {% endif %}
+
+                </div>
+
+
+                {% if block.settings.caption != blank %}
+
+                  <figcaption class="asn__caption">
+                    {{ block.settings.caption }}
+                  </figcaption>
+
+                {% endif %}
+
+              </figure>
+
+            {% endfor %}
+
+          </div>
+
+        {% endfor %}
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+{% style %}
+
+
+/* ===============================
+   MAIN SECTION
+================================ */
+
+#asn-{{ sid }} {
+  overflow: hidden;
+
+  padding-block:
+    {{ section.settings.padding_top }}px
+    {{ section.settings.padding_bottom }}px;
+}
+
+
+/* ===============================
+   HEADING
+================================ */
+
+#asn-{{ sid }} .asn__head {
+  text-align: center;
+
+  padding-inline: 20px;
+
+  margin-bottom: 56px;
+}
+
+
+#asn-{{ sid }} .asn__title {
+  margin: 0 0 20px;
+}
+
+
+#asn-{{ sid }} .asn__subtitle {
+  margin: 0;
+
+  opacity: 0.85;
+}
+
+
+/* ===============================
+   VIEWPORT
+================================ */
+
+#asn-{{ sid }} .asn__viewport {
+  position: relative;
+
+  width: 100%;
+
+  overflow: hidden;
+}
+
+
+/* ===============================
+   SCROLLER
+   Page scroll ka extra shift yahan
+   lagta hai. Marquee animation
+   andar wale track par chalti hai,
+   is liye dono clash nahi karte.
+================================ */
+
+#asn-{{ sid }} .asn__scroller {
+  will-change: transform;
+}
+
+
+/* ===============================
+   TRACK
+================================ */
+
+#asn-{{ sid }} .asn__track {
+  display: flex;
+
+  align-items: flex-start;
+
+  width: max-content;
+
+  gap: 0;
+
+  will-change: transform;
+
+  animation:
+    asn-marquee-{{ sid }}
+    var(--asn-speed)
+    linear
+    infinite;
+
+  /*
+    JS exact group width milne tak
+    animation start nahi hogi.
+  */
+  animation-play-state: paused;
+}
+
+
+#asn-{{ sid }}.asn--ready .asn__track {
+  animation-play-state: running;
+}
+
+
+/* User click se pause */
+
+#asn-{{ sid }}.asn--paused .asn__track {
+  animation-play-state: paused;
+}
+
+
+/* ===============================
+   EACH COPY / GROUP
+================================ */
+
+#asn-{{ sid }} .asn__group {
+  display: flex;
+
+  align-items: flex-start;
+
+  flex: 0 0 auto;
+
+  flex-shrink: 0;
+
+  padding-block: 70px;
+}
+
+
+/* ===============================
+   ITEMS
+================================ */
+
+#asn-{{ sid }} .asn__item {
+  position: relative;
+
+  flex: 0 0 auto;
+
+  flex-shrink: 0;
+
+  margin-block: 0;
+
+  margin-inline-start: 0;
+
+  margin-inline-end:
+    calc(
+      var(--asn-gap)
+      - var(--asn-overlap)
+    );
+
+  cursor: pointer;
+
+  transform:
+    translateY(
+      var(--asn-offset)
+    );
+
+  transition:
+    transform 0.5s ease;
+
+  outline-offset: 4px;
+
+  z-index: 1;
+}
+
+
+/* ===============================
+   LAYERING
+================================ */
+
+#asn-{{ sid }}
+.asn__group
+.asn__item:nth-child(even) {
+  z-index: 2;
+}
+
+
+#asn-{{ sid }}
+.asn__item.is-expanded,
+
+#asn-{{ sid }}
+.asn__item:hover {
+  z-index: 5;
+}
+
+
+/* ===============================
+   IMAGE HOLDER
+================================ */
+
+#asn-{{ sid }} .asn__media {
+  height:
+    var(--asn-item-h);
+
+  transition:
+    height 0.5s ease;
+}
+
+
+/* ===============================
+   IMAGE
+================================ */
+
+#asn-{{ sid }} .asn__media img,
+
+#asn-{{ sid }} .asn__media svg {
+  display: block;
+
+  width: auto;
+
+  height: 100%;
+
+  max-width: none;
+
+  object-fit: cover;
+
+  border-radius:
+    var(--asn-radius);
+}
+
+
+/* ===============================
+   IMAGE SIZES
+================================ */
+
+#asn-{{ sid }}
+.asn__item--small {
+  --asn-item-h:
+    calc(
+      var(--asn-base-h) * 0.72
+    );
+}
+
+
+#asn-{{ sid }}
+.asn__item--medium {
+  --asn-item-h:
+    var(--asn-base-h);
+}
+
+
+#asn-{{ sid }}
+.asn__item--large {
+  --asn-item-h:
+    calc(
+      var(--asn-base-h) * 1.22
+    );
+}
+
+
+/* ===============================
+   EXPANDED
+================================ */
+
+#asn-{{ sid }}
+.asn__item.is-expanded {
+  --asn-item-h:
+    calc(
+      var(--asn-base-h) * 1.45
+    );
+
+  transform:
+    translateY(
+      calc(
+        var(--asn-offset) * 0.4
+      )
+    );
+}
+
+
+/* ===============================
+   HOVER
+================================ */
+
+@media (hover: hover) {
+
+  #asn-{{ sid }}
+  .asn__item:hover {
+
+    --asn-item-h:
+      calc(
+        var(--asn-base-h) * 1.45
+      );
+
+    transform:
+      translateY(
+        calc(
+          var(--asn-offset) * 0.4
+        )
+      );
+  }
+
+
+  #asn-{{ sid }}
+  .asn__item:hover
+  .asn__caption {
+    opacity: 1;
+  }
+
+}
+
+
+/* ===============================
+   CAPTION
+================================ */
+
+#asn-{{ sid }} .asn__caption {
+  padding-top: 14px;
+
+  text-align: center;
+
+  font-size: 13px;
+
+  letter-spacing: 0.12em;
+
+  text-transform: uppercase;
+
+  opacity: 0;
+
+  transition:
+    opacity
+    0.4s
+    ease
+    0.15s;
+}
+
+
+#asn-{{ sid }}
+.asn__item.is-expanded
+.asn__caption {
+  opacity: 1;
+}
+
+
+/* ===============================
+   PLACEHOLDER
+================================ */
+
+#asn-{{ sid }} .asn__placeholder {
+  width: auto;
+
+  background:
+    rgb(0 0 0 / 0.06);
+}
+
+
+/* ===============================
+   MARQUEE ANIMATION
+================================ */
+
+@keyframes asn-marquee-{{ sid }} {
+
+  from {
+    transform:
+      translate3d(
+        0,
+        0,
+        0
+      );
+  }
+
+  to {
+    transform:
+      translate3d(
+        calc(
+          -1 * var(--asn-loop-width)
+        ),
+        0,
+        0
+      );
+  }
+
+}
+
+
+/* ===============================
+   PAUSE ON HOVER
+================================ */
+
+{% if section.settings.pause_on_hover %}
+
+@media (hover: hover) {
+
+  #asn-{{ sid }}
+  .asn__viewport:hover
+  .asn__track {
+    animation-play-state: paused;
+  }
+
+}
+
+{% endif %}
+
+
+/* ===============================
+   MOBILE
+================================ */
+
+@media screen and (max-width: 749px) {
+
+  #asn-{{ sid }} {
+
+    --asn-base-h:
+      {{ section.settings.image_height | times: 0.62 | round }}px;
+
+    --asn-gap:
+      {{ gap | times: 0.6 | round }}px;
+
+    --asn-overlap:
+      {{ section.settings.item_overlap | times: 0.6 | round }}px;
+
+  }
+
+
+  #asn-{{ sid }}
+  .asn__head {
+    margin-bottom: 32px;
+  }
+
+
+  #asn-{{ sid }}
+  .asn__group {
+    padding-block: 44px;
+  }
+
+}
+
+
+/* ===============================
+   REDUCED MOTION
+================================ */
+
+@media (prefers-reduced-motion: reduce) {
+
+  #asn-{{ sid }}
+  .asn__track {
+    animation: none;
+  }
+
+
+  #asn-{{ sid }}
+  .asn__scroller {
+    transform: none !important;
+  }
+
+
+  #asn-{{ sid }}
+  .asn__viewport {
+    overflow-x: auto;
+  }
+
+}
+
+
+{% endstyle %}
+
+
+
+<script>
+(function () {
+
+  var root =
+    document.getElementById(
+      'asn-{{ sid }}'
+    );
+
+
+  if (!root) return;
+
+
+  if (root.__asnInit) return;
+
+
+  root.__asnInit = true;
+
+
+
+  /* ==================================
+     ELEMENTS
+  ================================== */
+
+  var track =
+    root.querySelector(
+      '[data-asn-track]'
+    );
+
+
+  var firstGroup =
+    root.querySelector(
+      '[data-asn-group]'
+    );
+
+
+  var scroller =
+    root.querySelector(
+      '[data-asn-scroller]'
+    );
+
+
+  if (!track || !firstGroup) {
+    return;
+  }
+
+
+
+  /* ==================================
+     SCROLL SETTINGS
+  ================================== */
+
+  var scrollEnabled =
+    {% if section.settings.enable_scroll_move %}true{% else %}false{% endif %};
+
+
+  var scrollPower =
+    {{ section.settings.scroll_power }};
+
+
+  var scrollSmooth =
+    {{ section.settings.scroll_smoothness | divided_by: 100.0 }};
+
+
+  var reduceMotion =
+    window.matchMedia(
+      '(prefers-reduced-motion: reduce)'
+    ).matches;
+
+
+  var loopWidth = 0;
+
+  var lastY = window.pageYOffset;
+
+  var targetShift = 0;
+
+  var currentShift = 0;
+
+  var rafId = null;
+
+
+
+  /* ==================================
+     EXACT LOOP WIDTH
+  ================================== */
+
+  function setLoopWidth() {
+
+    if (!firstGroup) return;
+
+
+    var rect =
+      firstGroup
+        .getBoundingClientRect();
+
+
+    var width =
+      rect.width;
+
+
+    if (!width || width <= 0) {
+      return;
+    }
+
+
+    loopWidth = width;
+
+
+    track.style.setProperty(
+      '--asn-loop-width',
+      width + 'px'
+    );
+
+
+    root.classList.add(
+      'asn--ready'
+    );
+
+  }
+
+
+
+  /* ==================================
+     INITIAL MEASURE
+  ================================== */
+
+  requestAnimationFrame(
+    function () {
+
+      requestAnimationFrame(
+        setLoopWidth
+      );
+
+    }
+  );
+
+
+
+  /* ==================================
+     WINDOW LOAD
+  ================================== */
+
+  window.addEventListener(
+    'load',
+    setLoopWidth
+  );
+
+
+
+  /* ==================================
+     RESIZE
+  ================================== */
+
+  var resizeTimer;
+
+
+  window.addEventListener(
+    'resize',
+    function () {
+
+      clearTimeout(
+        resizeTimer
+      );
+
+
+      resizeTimer =
+        setTimeout(
+          setLoopWidth,
+          100
+        );
+
+    }
+  );
+
+
+
+  /* ==================================
+     IMAGE LOAD
+  ================================== */
+
+  root
+    .querySelectorAll('img')
+    .forEach(
+      function (img) {
+
+        if (!img.complete) {
+
+          img.addEventListener(
+            'load',
+            setLoopWidth,
+            {
+              once: true
+            }
+          );
+
+        }
+
+      }
+    );
+
+
+
+  /* ==================================
+     FONTS
+  ================================== */
+
+  if (
+    document.fonts &&
+    document.fonts.ready
+  ) {
+
+    document.fonts.ready.then(
+      setLoopWidth
+    );
+
+  }
+
+
+
+  /* ==================================
+     RESIZE OBSERVER
+  ================================== */
+
+  if (
+    typeof ResizeObserver !==
+    'undefined'
+  ) {
+
+    var observer =
+      new ResizeObserver(
+        function () {
+
+          setLoopWidth();
+
+        }
+      );
+
+
+    observer.observe(
+      firstGroup
+    );
+
+  }
+
+
+
+  /* ==================================
+     COLLAPSE
+  ================================== */
+
+  function collapseAll() {
+
+    root
+      .querySelectorAll(
+        '.asn__item.is-expanded'
+      )
+      .forEach(
+        function (item) {
+
+          item.classList.remove(
+            'is-expanded'
+          );
+
+        }
+      );
+
+
+    root.classList.remove(
+      'asn--paused'
+    );
+
+  }
+
+
+
+  /* ==================================
+     CLICK
+  ================================== */
+
+  root.addEventListener(
+    'click',
+    function (event) {
+
+      var item =
+        event.target.closest(
+          '[data-asn-item]'
+        );
+
+
+      if (!item) return;
+
+
+      /*
+        Duplicate copies click
+        interaction nahi karengi.
+      */
+
+      var group =
+        item.closest(
+          '[data-asn-group]'
+        );
+
+
+      if (
+        group !== firstGroup
+      ) {
+        return;
+      }
+
+
+      var wasExpanded =
+        item.classList.contains(
+          'is-expanded'
+        );
+
+
+      collapseAll();
+
+
+      if (!wasExpanded) {
+
+        item.classList.add(
+          'is-expanded'
+        );
+
+
+        root.classList.add(
+          'asn--paused'
+        );
+
+      }
+
+    }
+  );
+
+
+
+  /* ==================================
+     KEYBOARD
+  ================================== */
+
+  root.addEventListener(
+    'keydown',
+    function (event) {
+
+      if (
+        event.key === 'Enter' ||
+        event.key === ' '
+      ) {
+
+        var item =
+          event.target.closest(
+            '[data-asn-item]'
+          );
+
+
+        if (!item) return;
+
+
+        event.preventDefault();
+
+
+        item.click();
+
+      }
+
+    }
+  );
+
+
+
+  /* ==================================
+     CLICK OUTSIDE
+  ================================== */
+
+  document.addEventListener(
+    'click',
+    function (event) {
+
+      if (
+        !root.contains(
+          event.target
+        )
+      ) {
+
+        collapseAll();
+
+      }
+
+    }
+  );
+
+
+
+  /* ==================================
+     ESCAPE
+  ================================== */
+
+  document.addEventListener(
+    'keydown',
+    function (event) {
+
+      if (
+        event.key === 'Escape'
+      ) {
+
+        collapseAll();
+
+      }
+
+    }
+  );
+
+
+
+  /* ==================================
+     SCROLL DRIVEN MOVEMENT
+
+     Page scroll ki delta targetShift
+     mein jama hoti hai, phir rAF loop
+     usko smoothly follow karta hai.
+     Shift ko loop width se modulo kiya
+     hai, is liye kitna bhi scroll karo
+     strip kabhi khatam nahi hoti.
+  ================================== */
+
+  function tick() {
+
+    currentShift +=
+      (targetShift - currentShift) *
+      scrollSmooth;
+
+
+    if (
+      Math.abs(
+        targetShift - currentShift
+      ) < 0.15
+    ) {
+
+      currentShift = targetShift;
+
+    }
+
+
+    var shift = 0;
+
+
+    if (loopWidth > 0) {
+
+      shift =
+        (
+          (currentShift % loopWidth) +
+          loopWidth
+        ) % loopWidth;
+
+    } else {
+
+      shift = currentShift;
+
+    }
+
+
+    scroller.style.transform =
+      'translate3d(' +
+      (-shift) +
+      'px, 0, 0)';
+
+
+    if (currentShift !== targetShift) {
+
+      rafId =
+        requestAnimationFrame(tick);
+
+    } else {
+
+      rafId = null;
+
+
+      /*
+        Numbers ko chhota rakhne ke liye
+        wrapped value par reset kar dete
+        hain. Visually kuch nahi badalta.
+      */
+
+      if (loopWidth > 0) {
+
+        currentShift = shift;
+
+        targetShift = shift;
+
+      }
+
+    }
+
+  }
+
+
+
+  if (
+    scrollEnabled &&
+    scroller &&
+    !reduceMotion
+  ) {
+
+    window.addEventListener(
+      'scroll',
+      function () {
+
+        var y = window.pageYOffset;
+
+        var delta = y - lastY;
+
+        lastY = y;
+
+
+        targetShift +=
+          delta * scrollPower;
+
+
+        if (!rafId) {
+
+          rafId =
+            requestAnimationFrame(tick);
+
+        }
+
+      },
+      {
+        passive: true
+      }
+    );
+
+  }
+
+
+})();
+</script>
+
+
+
+{% schema %}
+{
+  "name": "As Seen On marquee",
+  "tag": "section",
+
+  "settings": [
+
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "As Seen On"
+    },
+
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "See how our community is styling their favourite designs..."
+    },
+
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "primary"
+    },
+
+    {
+      "type": "range",
+      "id": "scroll_speed",
+      "label": "Scroll duration (lower = faster)",
+      "min": 20,
+      "max": 160,
+      "step": 5,
+      "unit": "s",
+      "default": 80
+    },
+
+    {
+      "type": "checkbox",
+      "id": "pause_on_hover",
+      "label": "Pause on hover (desktop)",
+      "default": true
+    },
+
+    {
+      "type": "header",
+      "content": "Scroll movement"
+    },
+
+    {
+      "type": "checkbox",
+      "id": "enable_scroll_move",
+      "label": "Move on page scroll",
+      "info": "Auto-scroll ke sath sath page scroll par bhi images move hongi",
+      "default": true
+    },
+
+    {
+      "type": "range",
+      "id": "scroll_power",
+      "label": "Scroll movement strength",
+      "info": "Minus value = ulti direction. 0 = sirf auto-scroll",
+      "min": -3,
+      "max": 3,
+      "step": 0.1,
+      "default": 1
+    },
+
+    {
+      "type": "range",
+      "id": "scroll_smoothness",
+      "label": "Scroll smoothing",
+      "info": "Kam value = zyada smooth aur zyada lag. Zyada value = scroll ke sath chipka hua",
+      "min": 3,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "default": 10
+    },
+
+    {
+      "type": "header",
+      "content": "Images"
+    },
+
+    {
+      "type": "range",
+      "id": "image_height",
+      "label": "Base image height (desktop)",
+      "min": 240,
+      "max": 560,
+      "step": 10,
+      "unit": "px",
+      "default": 400
+    },
+
+    {
+      "type": "range",
+      "id": "item_gap",
+      "label": "Gap between images",
+      "min": 0,
+      "max": 80,
+      "step": 2,
+      "unit": "px",
+      "default": 28
+    },
+
+    {
+      "type": "range",
+      "id": "item_overlap",
+      "label": "Image overlap",
+      "info": "Gap se zyada hoga to images aik dusri ke oper aayengi (collage)",
+      "min": 0,
+      "max": 160,
+      "step": 5,
+      "unit": "px",
+      "default": 90
+    },
+
+    {
+      "type": "range",
+      "id": "image_border_radius",
+      "label": "Image corner radius",
+      "min": 0,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    },
+
+    {
+      "type": "header",
+      "content": "Spacing"
+    },
+
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Top padding",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 64
+    },
+
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Bottom padding",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 64
+    }
+
+  ],
+
+  "blocks": [
+
+    {
+      "type": "image",
+      "name": "Image",
+
+      "settings": [
+
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+
+        {
+          "type": "text",
+          "id": "caption",
+          "label": "Caption (shows when enlarged)",
+          "info": "e.g. OLIVIA PALERMO"
+        },
+
+        {
+          "type": "select",
+          "id": "size",
+          "label": "Size",
+
+          "options": [
+
+            {
+              "value": "small",
+              "label": "Small"
+            },
+
+            {
+              "value": "medium",
+              "label": "Medium"
+            },
+
+            {
+              "value": "large",
+              "label": "Large"
+            }
+
+          ],
+
+          "default": "medium"
+        },
+
+        {
+          "type": "range",
+          "id": "offset",
+          "label": "Vertical offset",
+          "min": -100,
+          "max": 100,
+          "step": 5,
+          "unit": "px",
+          "default": 0
+        }
+
+      ]
+    }
+
+  ],
+
+  "presets": [
+
+    {
+      "name": "As Seen On marquee",
+
+      "blocks": [
+
+        {
+          "type": "image",
+          "settings": {
+            "size": "large",
+            "offset": -40
+          }
+        },
+
+        {
+          "type": "image",
+          "settings": {
+            "size": "small",
+            "offset": 30
+          }
+        },
+
+        {
+          "type": "image",
+          "settings": {
+            "size": "medium",
+            "offset": -10
+          }
+        },
+
+        {
+          "type": "image",
+          "settings": {
+            "size": "small",
+            "offset": 45
+          }
+        },
+
+        {
+          "type": "image",
+          "settings": {
+            "size": "large",
+            "offset": -30
+          }
+        },
+
+        {
+          "type": "image",
+          "settings": {
+            "size": "medium",
+            "offset": 20
+          }
+        }
+
+      ]
+    }
+
+  ]
+}
+{% endschema %} {% endcomment %}
+
+
+{% comment %} {%- comment -%}
+  "As Seen On" collage marquee (Strathberry style):
+  - Staggered images (different sizes + vertical offsets) in a slow, continuous
+    auto-scrolling track (desktop + mobile).
+  - Click an image to enlarge it and reveal its caption; marquee pauses while
+    an image is enlarged. Click again (or outside / Escape) to collapse.
+{%- endcomment -%}
+
+{% liquid
+  assign sid = section.id
+  assign speed = section.settings.scroll_speed
+  assign gap = section.settings.item_gap
+%}
+
+<div
+  id="asn-{{ sid }}"
+  class="asn color-{{ section.settings.color_scheme }}"
+  style="
+    --asn-speed: {{ speed }}s;
+    --asn-gap: {{ gap }}px;
+    --asn-base-h: {{ section.settings.image_height }}px;
+    --asn-radius: {{ section.settings.image_border_radius }}px;
+  "
+>
+  {% if section.settings.heading != blank or section.settings.subheading != blank %}
+    <div class="asn__head">
+      {% if section.settings.heading != blank %}
+        <h2 class="asn__title">{{ section.settings.heading }}</h2>
+      {% endif %}
+      {% if section.settings.subheading != blank %}
+        <p class="asn__subtitle">{{ section.settings.subheading }}</p>
+      {% endif %}
+    </div>
+  {% endif %}
+
+  <div class="asn__viewport" data-asn-viewport>
+    <div class="asn__track" data-asn-track>
+      {% for copy in (1..2) %}
+        <div class="asn__group" {% if copy == 2 %}aria-hidden="true"{% endif %}>
+          {% for block in section.blocks %}
+            <figure
+              class="asn__item asn__item--{{ block.settings.size }}"
+              style="--asn-offset: {{ block.settings.offset }}px;"
+              data-asn-item
+              tabindex="0"
+              role="button"
+              aria-label="{{ block.settings.caption | default: 'Image' | escape }}"
+              {{ block.shopify_attributes }}
+            >
+              <div class="asn__media">
+                {% if block.settings.image != blank %}
+                  {{
+                    block.settings.image
+                    | image_url: width: 900
+                    | image_tag:
+                      loading: 'lazy',
+                      widths: '300, 450, 600, 900',
+                      style: 'aspect-ratio:' | append: block.settings.image.aspect_ratio
+                  }}
+                {% else %}
+                  {{ 'image' | placeholder_svg_tag: 'asn__placeholder' }}
+                {% endif %}
+              </div>
+              {% if block.settings.caption != blank %}
+                <figcaption class="asn__caption">{{ block.settings.caption }}</figcaption>
+              {% endif %}
+            </figure>
+          {% endfor %}
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+{% style %}
+  #asn-{{ sid }} {
+    overflow: hidden;
+    padding-block: {{ section.settings.padding_top }}px {{ section.settings.padding_bottom }}px;
+  }
+
+  #asn-{{ sid }} .asn__head {
+    text-align: center;
+    padding-inline: 20px;
+    margin-bottom: 56px;
+  }
+
+  #asn-{{ sid }} .asn__title {
+    margin: 0 0 20px;
+  }
+
+  #asn-{{ sid }} .asn__subtitle {
+    margin: 0;
+    opacity: 0.85;
+  }
+
+  #asn-{{ sid }} .asn__viewport {
+    width: 100%;
+  }
+
+  #asn-{{ sid }} .asn__track {
+    display: flex;
+    width: max-content;
+    animation: asn-marquee-{{ sid }} var(--asn-speed) linear infinite;
+  }
+
+  #asn-{{ sid }} .asn__group {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--asn-gap);
+    padding-inline-end: var(--asn-gap);
+    /* offsets neeche bhi ja sakte hain, is liye thori vertical room */
+    padding-block: 70px;
+  }
+
+  @keyframes asn-marquee-{{ sid }} {
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
+  /* Expanded state ya hover par marquee rok do */
+  #asn-{{ sid }}.asn--paused .asn__track {
+    animation-play-state: paused;
+  }
+
+  {% if section.settings.pause_on_hover %}
+    @media (hover: hover) {
+      #asn-{{ sid }} .asn__viewport:hover .asn__track {
+        animation-play-state: paused;
+      }
+    }
+  {% endif %}
+
+  #asn-{{ sid }} .asn__item {
+    margin: 0;
+    flex-shrink: 0;
+    cursor: pointer;
+    transform: translateY(var(--asn-offset));
+    transition: transform 0.5s ease;
+    outline-offset: 4px;
+  }
+
+  #asn-{{ sid }} .asn__media {
+    height: var(--asn-item-h);
+    transition: height 0.5s ease;
+  }
+
+  #asn-{{ sid }} .asn__media img,
+  #asn-{{ sid }} .asn__media svg {
+    height: 100%;
+    width: auto;
+    max-width: none;
+    display: block;
+    object-fit: cover;
+    border-radius: var(--asn-radius);
+  }
+
+  #asn-{{ sid }} .asn__item--small  { --asn-item-h: calc(var(--asn-base-h) * 0.72); }
+  #asn-{{ sid }} .asn__item--medium { --asn-item-h: var(--asn-base-h); }
+  #asn-{{ sid }} .asn__item--large  { --asn-item-h: calc(var(--asn-base-h) * 1.22); }
+
+  /* Click par bara version */
+  #asn-{{ sid }} .asn__item.is-expanded { --asn-item-h: calc(var(--asn-base-h) * 1.45); }
+  #asn-{{ sid }} .asn__item.is-expanded { transform: translateY(calc(var(--asn-offset) * 0.4)); }
+
+  #asn-{{ sid }} .asn__caption {
+    text-align: center;
+    font-size: 13px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding-top: 14px;
+    opacity: 0;
+    transition: opacity 0.4s ease 0.15s;
+  }
+
+  #asn-{{ sid }} .asn__item.is-expanded .asn__caption {
+    opacity: 1;
+  }
+
+  #asn-{{ sid }} .asn__placeholder {
+    width: auto;
+    background: rgb(0 0 0 / 0.06);
+  }
+
+  @media screen and (max-width: 749px) {
+    #asn-{{ sid }} {
+      --asn-base-h: {{ section.settings.image_height | times: 0.62 | round }}px;
+      --asn-gap: {{ gap | times: 0.6 | round }}px;
+    }
+
+    #asn-{{ sid }} .asn__head {
+      margin-bottom: 32px;
+    }
+
+    #asn-{{ sid }} .asn__group {
+      padding-block: 44px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    #asn-{{ sid }} .asn__track {
+      animation: none;
+    }
+    #asn-{{ sid }} .asn__viewport {
+      overflow-x: auto;
+    }
+  }
+{% endstyle %}
+
+<script>
+  (function () {
+    var root = document.getElementById('asn-{{ sid }}');
+    if (!root || root.__asnInit) return;
+    root.__asnInit = true;
+
+    function collapseAll() {
+      root.querySelectorAll('.asn__item.is-expanded').forEach(function (el) {
+        el.classList.remove('is-expanded');
+      });
+      root.classList.remove('asn--paused');
+    }
+
+    root.addEventListener('click', function (e) {
+      var item = e.target.closest('[data-asn-item]');
+      if (!item) return;
+      var wasExpanded = item.classList.contains('is-expanded');
+      collapseAll();
+      if (!wasExpanded) {
+        item.classList.add('is-expanded');
+        root.classList.add('asn--paused');
+      }
+    });
+
+    root.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') {
+        var item = e.target.closest('[data-asn-item]');
+        if (item) {
+          e.preventDefault();
+          item.click();
+        }
+      }
+    });
+
+    document.addEventListener('click', function (e) {
+      if (!root.contains(e.target)) collapseAll();
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') collapseAll();
+    });
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "As Seen On marquee",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "As Seen On"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "See how our community is styling their favourite designs..."
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "primary"
+    },
+    {
+      "type": "range",
+      "id": "scroll_speed",
+      "label": "Scroll duration (lower = faster)",
+      "min": 20,
+      "max": 160,
+      "step": 5,
+      "unit": "s",
+      "default": 80
+    },
+    {
+      "type": "checkbox",
+      "id": "pause_on_hover",
+      "label": "Pause on hover (desktop)",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "image_height",
+      "label": "Base image height (desktop)",
+      "min": 240,
+      "max": 560,
+      "step": 10,
+      "unit": "px",
+      "default": 400
+    },
+    {
+      "type": "range",
+      "id": "item_gap",
+      "label": "Gap between images",
+      "min": 0,
+      "max": 80,
+      "step": 2,
+      "unit": "px",
+      "default": 28
+    },
+    {
+      "type": "range",
+      "id": "image_border_radius",
+      "label": "Image corner radius",
+      "min": 0,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Top padding",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 64
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Bottom padding",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 64
+    }
+  ],
+  "blocks": [
+    {
+      "type": "image",
+      "name": "Image",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "caption",
+          "label": "Caption (shows when enlarged)",
+          "info": "e.g. OLIVIA PALERMO"
+        },
+        {
+          "type": "select",
+          "id": "size",
+          "label": "Size",
+          "options": [
+            { "value": "small", "label": "Small" },
+            { "value": "medium", "label": "Medium" },
+            { "value": "large", "label": "Large" }
+          ],
+          "default": "medium"
+        },
+        {
+          "type": "range",
+          "id": "offset",
+          "label": "Vertical offset",
+          "min": -70,
+          "max": 70,
+          "step": 5,
+          "unit": "px",
+          "default": 0
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "As Seen On marquee",
+      "blocks": [
+        { "type": "image", "settings": { "size": "large", "offset": -40 } },
+        { "type": "image", "settings": { "size": "small", "offset": 30 } },
+        { "type": "image", "settings": { "size": "medium", "offset": -10 } },
+        { "type": "image", "settings": { "size": "small", "offset": 45 } },
+        { "type": "image", "settings": { "size": "large", "offset": -30 } },
+        { "type": "image", "settings": { "size": "medium", "offset": 20 } }
+      ]
+    }
+  ]
+}
+{% endschema %} {% endcomment %}
+
+
+
+{%- comment -%}
+  "As Seen On" collage marquee (Strathberry style):
+  - Staggered images (different sizes + vertical offsets) in a slow, continuous
+    auto-scrolling track (desktop + mobile).
+  - Click an image to enlarge it and reveal its caption; marquee pauses while
+    an image is enlarged. Click again (or outside / Escape) to collapse.
+{%- endcomment -%}
+
+{% comment %} {% liquid
+  assign sid = section.id
+  assign speed = section.settings.scroll_speed
+  assign gap = section.settings.item_gap
+%}
+
+<div
+  id="asn-{{ sid }}"
+  class="asn color-{{ section.settings.color_scheme }}"
+  style="
+    --asn-speed: {{ speed }}s;
+    --asn-gap: {{ gap }}px;
+    --asn-overlap: {{ section.settings.item_overlap }}px;
+    --asn-base-h: {{ section.settings.image_height }}px;
+    --asn-radius: {{ section.settings.image_border_radius }}px;
+  "
+>
+  {% if section.settings.heading != blank or section.settings.subheading != blank %}
+    <div class="asn__head">
+      {% if section.settings.heading != blank %}
+        <h2 class="asn__title">{{ section.settings.heading }}</h2>
+      {% endif %}
+      {% if section.settings.subheading != blank %}
+        <p class="asn__subtitle">{{ section.settings.subheading }}</p>
+      {% endif %}
+    </div>
+  {% endif %}
+
+  <div class="asn__viewport" data-asn-viewport>
+    <div class="asn__track" data-asn-track>
+      {% for copy in (1..2) %}
+        <div class="asn__group" {% if copy == 2 %}aria-hidden="true"{% endif %}>
+          {% for block in section.blocks %}
+            <figure
+              class="asn__item asn__item--{{ block.settings.size }}"
+              style="--asn-offset: {{ block.settings.offset }}px;"
+              data-asn-item
+              tabindex="0"
+              role="button"
+              aria-label="{{ block.settings.caption | default: 'Image' | escape }}"
+              {{ block.shopify_attributes }}
+            >
+              <div class="asn__media">
+                {% if block.settings.image != blank %}
+                  {% assign ratio_style = 'aspect-ratio: ' | append: block.settings.image.aspect_ratio %}
+                  {{
+                    block.settings.image
+                    | image_url: width: 900
+                    | image_tag:
+                      loading: 'lazy',
+                      widths: '300, 450, 600, 900',
+                      style: ratio_style
+                  }}
+                {% else %}
+                  {{ 'image' | placeholder_svg_tag: 'asn__placeholder' }}
+                {% endif %}
+              </div>
+              {% if block.settings.caption != blank %}
+                <figcaption class="asn__caption">{{ block.settings.caption }}</figcaption>
+              {% endif %}
+            </figure>
+          {% endfor %}
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+{% style %}
+  #asn-{{ sid }} {
+    overflow: hidden;
+    padding-block: {{ section.settings.padding_top }}px {{ section.settings.padding_bottom }}px;
+  }
+
+  #asn-{{ sid }} .asn__head {
+    text-align: center;
+    padding-inline: 20px;
+    margin-bottom: 56px;
+  }
+
+  #asn-{{ sid }} .asn__title {
+    margin: 0 0 20px;
+  }
+
+  #asn-{{ sid }} .asn__subtitle {
+    margin: 0;
+    opacity: 0.85;
+  }
+
+  #asn-{{ sid }} .asn__viewport {
+    width: 100%;
+  }
+
+  #asn-{{ sid }} .asn__track {
+    display: flex;
+    width: max-content;
+    animation: asn-marquee-{{ sid }} var(--asn-speed) linear infinite;
+  }
+
+  #asn-{{ sid }} .asn__group {
+    display: flex;
+    align-items: flex-start;
+    /* offsets neeche bhi ja sakte hain, is liye thori vertical room */
+    padding-block: 70px;
+  }
+
+  /* Har item ke baad spacing: gap minus overlap (negative = image ke oper image).
+     Ye margin har item par hai (last par bhi) taake loop ka seam consistent rahe. */
+  #asn-{{ sid }} .asn__item {
+    margin-inline-end: calc(var(--asn-gap) - var(--asn-overlap));
+  }
+
+  /* Collage layering: alternate images aage/peeche */
+  #asn-{{ sid }} .asn__item { position: relative; z-index: 1; }
+  #asn-{{ sid }} .asn__group .asn__item:nth-child(even) { z-index: 2; }
+  #asn-{{ sid }} .asn__item.is-expanded,
+  #asn-{{ sid }} .asn__item:hover { z-index: 3; }
+
+  @keyframes asn-marquee-{{ sid }} {
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
+  /* Expanded state ya hover par marquee rok do */
+  #asn-{{ sid }}.asn--paused .asn__track {
+    animation-play-state: paused;
+  }
+
+  {% if section.settings.pause_on_hover %}
+    @media (hover: hover) {
+      #asn-{{ sid }} .asn__viewport:hover .asn__track {
+        animation-play-state: paused;
+      }
+    }
+  {% endif %}
+
+  #asn-{{ sid }} .asn__item {
+    margin-block: 0;
+    margin-inline-start: 0;
+    flex-shrink: 0;
+    cursor: pointer;
+    transform: translateY(var(--asn-offset));
+    transition: transform 0.5s ease;
+    outline-offset: 4px;
+  }
+
+  #asn-{{ sid }} .asn__media {
+    height: var(--asn-item-h);
+    transition: height 0.5s ease;
+  }
+
+  #asn-{{ sid }} .asn__media img,
+  #asn-{{ sid }} .asn__media svg {
+    height: 100%;
+    width: auto;
+    max-width: none;
+    display: block;
+    object-fit: cover;
+    border-radius: var(--asn-radius);
+  }
+
+  #asn-{{ sid }} .asn__item--small  { --asn-item-h: calc(var(--asn-base-h) * 0.72); }
+  #asn-{{ sid }} .asn__item--medium { --asn-item-h: var(--asn-base-h); }
+  #asn-{{ sid }} .asn__item--large  { --asn-item-h: calc(var(--asn-base-h) * 1.22); }
+
+  /* Click (mobile/touch) par bara version */
+  #asn-{{ sid }} .asn__item.is-expanded { --asn-item-h: calc(var(--asn-base-h) * 1.45); }
+  #asn-{{ sid }} .asn__item.is-expanded { transform: translateY(calc(var(--asn-offset) * 0.4)); }
+
+  /* Desktop: hover par hi bari ho jaye (Strathberry style) */
+  @media (hover: hover) {
+    #asn-{{ sid }} .asn__item:hover { --asn-item-h: calc(var(--asn-base-h) * 1.45); }
+    #asn-{{ sid }} .asn__item:hover { transform: translateY(calc(var(--asn-offset) * 0.4)); }
+    #asn-{{ sid }} .asn__item:hover .asn__caption { opacity: 1; }
+  }
+
+  #asn-{{ sid }} .asn__caption {
+    text-align: center;
+    font-size: 13px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding-top: 14px;
+    opacity: 0;
+    transition: opacity 0.4s ease 0.15s;
+  }
+
+  #asn-{{ sid }} .asn__item.is-expanded .asn__caption {
+    opacity: 1;
+  }
+
+  #asn-{{ sid }} .asn__placeholder {
+    width: auto;
+    background: rgb(0 0 0 / 0.06);
+  }
+
+  @media screen and (max-width: 749px) {
+    #asn-{{ sid }} {
+      --asn-base-h: {{ section.settings.image_height | times: 0.62 | round }}px;
+      --asn-gap: {{ gap | times: 0.6 | round }}px;
+      --asn-overlap: {{ section.settings.item_overlap | times: 0.6 | round }}px;
+    }
+
+    #asn-{{ sid }} .asn__head {
+      margin-bottom: 32px;
+    }
+
+    #asn-{{ sid }} .asn__group {
+      padding-block: 44px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    #asn-{{ sid }} .asn__track {
+      animation: none;
+    }
+    #asn-{{ sid }} .asn__viewport {
+      overflow-x: auto;
+    }
+  }
+{% endstyle %}
+
+<script>
+  (function () {
+    var root = document.getElementById('asn-{{ sid }}');
+    if (!root || root.__asnInit) return;
+    root.__asnInit = true;
+
+    function collapseAll() {
+      root.querySelectorAll('.asn__item.is-expanded').forEach(function (el) {
+        el.classList.remove('is-expanded');
+      });
+      root.classList.remove('asn--paused');
+    }
+
+    root.addEventListener('click', function (e) {
+      var item = e.target.closest('[data-asn-item]');
+      if (!item) return;
+      var wasExpanded = item.classList.contains('is-expanded');
+      collapseAll();
+      if (!wasExpanded) {
+        item.classList.add('is-expanded');
+        root.classList.add('asn--paused');
+      }
+    });
+
+    root.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') {
+        var item = e.target.closest('[data-asn-item]');
+        if (item) {
+          e.preventDefault();
+          item.click();
+        }
+      }
+    });
+
+    document.addEventListener('click', function (e) {
+      if (!root.contains(e.target)) collapseAll();
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') collapseAll();
+    });
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "As Seen On marquee",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "As Seen On"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "See how our community is styling their favourite designs..."
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "primary"
+    },
+    {
+      "type": "range",
+      "id": "scroll_speed",
+      "label": "Scroll duration (lower = faster)",
+      "min": 20,
+      "max": 160,
+      "step": 5,
+      "unit": "s",
+      "default": 80
+    },
+    {
+      "type": "checkbox",
+      "id": "pause_on_hover",
+      "label": "Pause on hover (desktop)",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "image_height",
+      "label": "Base image height (desktop)",
+      "min": 240,
+      "max": 560,
+      "step": 10,
+      "unit": "px",
+      "default": 400
+    },
+    {
+      "type": "range",
+      "id": "item_gap",
+      "label": "Gap between images",
+      "min": 0,
+      "max": 80,
+      "step": 2,
+      "unit": "px",
+      "default": 28
+    },
+    {
+      "type": "range",
+      "id": "item_overlap",
+      "label": "Image overlap",
+      "info": "Gap se zyada hoga to images aik dusri ke oper aayengi (collage)",
+      "min": 0,
+      "max": 160,
+      "step": 5,
+      "unit": "px",
+      "default": 90
+    },
+    {
+      "type": "range",
+      "id": "image_border_radius",
+      "label": "Image corner radius",
+      "min": 0,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Top padding",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 64
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Bottom padding",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 64
+    }
+  ],
+  "blocks": [
+    {
+      "type": "image",
+      "name": "Image",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "caption",
+          "label": "Caption (shows when enlarged)",
+          "info": "e.g. OLIVIA PALERMO"
+        },
+        {
+          "type": "select",
+          "id": "size",
+          "label": "Size",
+          "options": [
+            { "value": "small", "label": "Small" },
+            { "value": "medium", "label": "Medium" },
+            { "value": "large", "label": "Large" }
+          ],
+          "default": "medium"
+        },
+        {
+          "type": "range",
+          "id": "offset",
+          "label": "Vertical offset",
+          "min": -100,
+          "max": 100,
+          "step": 5,
+          "unit": "px",
+          "default": 0
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "As Seen On marquee",
+      "blocks": [
+        { "type": "image", "settings": { "size": "large", "offset": -40 } },
+        { "type": "image", "settings": { "size": "small", "offset": 30 } },
+        { "type": "image", "settings": { "size": "medium", "offset": -10 } },
+        { "type": "image", "settings": { "size": "small", "offset": 45 } },
+        { "type": "image", "settings": { "size": "large", "offset": -30 } },
+        { "type": "image", "settings": { "size": "medium", "offset": 20 } }
+      ]
+    }
+  ]
+}
+{% endschema %} {% endcomment %}
+
+
+{% liquid
+  assign sid = section.id
+  assign speed = section.settings.scroll_speed
+  assign gap = section.settings.item_gap
+%}
+
+<div
+  id="asn-{{ sid }}"
+  class="asn color-{{ section.settings.color_scheme }}"
+  style="
+    --asn-speed: {{ speed }}s;
+    --asn-gap: {{ gap }}px;
+    --asn-overlap: {{ section.settings.item_overlap }}px;
+    --asn-base-h: {{ section.settings.image_height }}px;
+    --asn-radius: {{ section.settings.image_border_radius }}px;
+  "
+>
+  {% if section.settings.heading != blank or section.settings.subheading != blank %}
+    <div class="asn__head">
+
+      {% if section.settings.heading != blank %}
+        <h2 class="asn__title">
+          {{ section.settings.heading }}
+        </h2>
+      {% endif %}
+
+      {% if section.settings.subheading != blank %}
+        <p class="asn__subtitle">
+          {{ section.settings.subheading }}
+        </p>
+      {% endif %}
+
+    </div>
+  {% endif %}
+
+
+  <div class="asn__viewport" data-asn-viewport>
+
+    <div class="asn__track" data-asn-track>
+
+      {% for copy in (1..4) %}
+
+        <div
+          class="asn__group"
+          data-asn-group
+          {% unless copy == 1 %}
+            aria-hidden="true"
+          {% endunless %}
+        >
+
+          {% for block in section.blocks %}
+
+            <figure
+              class="asn__item asn__item--{{ block.settings.size }}"
+              style="--asn-offset: {{ block.settings.offset }}px;"
+              data-asn-item
+
+              {% if copy == 1 %}
+                tabindex="0"
+                role="button"
+                aria-label="{{ block.settings.caption | default: 'Image' | escape }}"
+                {{ block.shopify_attributes }}
+              {% else %}
+                tabindex="-1"
+              {% endif %}
+            >
+
+              <div class="asn__media">
+
+                {% if block.settings.image != blank %}
+
+                  {% assign ratio_style = 'aspect-ratio: ' | append: block.settings.image.aspect_ratio %}
+
+                  {{
+                    block.settings.image
+                    | image_url: width: 900
+                    | image_tag:
+                      loading: 'lazy',
+                      widths: '300, 450, 600, 900',
+                      style: ratio_style
+                  }}
+
+                {% else %}
+
+                  {{ 'image' | placeholder_svg_tag: 'asn__placeholder' }}
+
+                {% endif %}
+
+              </div>
+
+
+              {% if block.settings.caption != blank %}
+
+                <figcaption class="asn__caption">
+                  {{ block.settings.caption }}
+                </figcaption>
+
+              {% endif %}
+
+            </figure>
+
+          {% endfor %}
+
+        </div>
+
+      {% endfor %}
+
+    </div>
+
+  </div>
+
+</div>
+
+
+{% style %}
+
+
+/* ===============================
+   MAIN SECTION
+================================ */
+
+#asn-{{ sid }} {
+  overflow: hidden;
+
+  padding-block:
+    {{ section.settings.padding_top }}px
+    {{ section.settings.padding_bottom }}px;
+}
+
+
+/* ===============================
+   HEADING
+================================ */
+
+#asn-{{ sid }} .asn__head {
+  text-align: center;
+
+  padding-inline: 20px;
+
+  margin-bottom: 56px;
+}
+
+
+#asn-{{ sid }} .asn__title {
+  margin: 0 0 20px;
+}
+
+
+#asn-{{ sid }} .asn__subtitle {
+  margin: 0;
+
+  opacity: 0.85;
+}
+
+
+/* ===============================
+   VIEWPORT
+================================ */
+
+#asn-{{ sid }} .asn__viewport {
+  position: relative;
+
+  width: 100%;
+
+  overflow: hidden;
+
+  cursor: grab;
+
+  touch-action: pan-y;
+}
+
+#asn-{{ sid }} .asn__viewport.is-dragging {
+  cursor: grabbing;
+  user-select: none;
+}
+
+
+/* ===============================
+   TRACK
+   (position/transform is driven by JS so mouse-wheel and
+   drag can interrupt/scrub the auto-scroll in real time)
+================================ */
+
+#asn-{{ sid }} .asn__track {
+  display: flex;
+
+  align-items: flex-start;
+
+  width: max-content;
+
+  gap: 0;
+
+  will-change: transform;
+}
+
+
+/* ===============================
+   EACH COPY / GROUP
+================================ */
+
+#asn-{{ sid }} .asn__group {
+  display: flex;
+
+  align-items: flex-start;
+
+  flex: 0 0 auto;
+
+  flex-shrink: 0;
+
+  padding-block: 70px;
+}
+
+
+/* ===============================
+   ITEMS
+================================ */
+
+#asn-{{ sid }} .asn__item {
+  position: relative;
+
+  flex: 0 0 auto;
+
+  flex-shrink: 0;
+
+  margin-block: 0;
+
+  margin-inline-start: 0;
+
+  margin-inline-end:
+    calc(
+      var(--asn-gap)
+      - var(--asn-overlap)
+    );
+
+  cursor: pointer;
+
+  transform:
+    translateY(
+      var(--asn-offset)
+    );
+
+  transition:
+    transform 0.5s ease;
+
+  outline-offset: 4px;
+
+  z-index: 1;
+}
+
+
+/* ===============================
+   LAYERING
+================================ */
+
+#asn-{{ sid }}
+.asn__group
+.asn__item:nth-child(even) {
+  z-index: 2;
+}
+
+
+#asn-{{ sid }}
+.asn__item.is-expanded,
+
+#asn-{{ sid }}
+.asn__item:hover {
+  z-index: 5;
+}
+
+
+/* ===============================
+   IMAGE HOLDER
+================================ */
+
+#asn-{{ sid }} .asn__media {
+  height:
+    var(--asn-item-h);
+
+  transition:
+    height 0.5s ease;
+}
+
+
+/* ===============================
+   IMAGE
+================================ */
+
+#asn-{{ sid }} .asn__media img,
+
+#asn-{{ sid }} .asn__media svg {
+  display: block;
+
+  width: auto;
+
+  height: 100%;
+
+  max-width: none;
+
+  object-fit: cover;
+
+  border-radius:
+    var(--asn-radius);
+}
+
+
+/* ===============================
+   IMAGE SIZES
+================================ */
+
+#asn-{{ sid }}
+.asn__item--small {
+  --asn-item-h:
+    calc(
+      var(--asn-base-h) * 0.72
+    );
+}
+
+
+#asn-{{ sid }}
+.asn__item--medium {
+  --asn-item-h:
+    var(--asn-base-h);
+}
+
+
+#asn-{{ sid }}
+.asn__item--large {
+  --asn-item-h:
+    calc(
+      var(--asn-base-h) * 1.22
+    );
+}
+
+
+/* ===============================
+   EXPANDED
+================================ */
+
+#asn-{{ sid }}
+.asn__item.is-expanded {
+  --asn-item-h:
+    calc(
+      var(--asn-base-h) * 1.45
+    );
+
+  transform:
+    translateY(
+      calc(
+        var(--asn-offset) * 0.4
+      )
+    );
+}
+
+
+/* ===============================
+   HOVER
+================================ */
+
+@media (hover: hover) {
+
+  #asn-{{ sid }}
+  .asn__item:hover {
+
+    --asn-item-h:
+      calc(
+        var(--asn-base-h) * 1.45
+      );
+
+    transform:
+      translateY(
+        calc(
+          var(--asn-offset) * 0.4
+        )
+      );
+  }
+
+
+  #asn-{{ sid }}
+  .asn__item:hover
+  .asn__caption {
+    opacity: 1;
+  }
+
+}
+
+
+/* ===============================
+   CAPTION
+================================ */
+
+#asn-{{ sid }} .asn__caption {
+  padding-top: 14px;
+
+  text-align: center;
+
+  font-size: 13px;
+
+  letter-spacing: 0.12em;
+
+  text-transform: uppercase;
+
+  opacity: 0;
+
+  transition:
+    opacity
+    0.4s
+    ease
+    0.15s;
+}
+
+
+#asn-{{ sid }}
+.asn__item.is-expanded
+.asn__caption {
+  opacity: 1;
+}
+
+
+/* ===============================
+   PLACEHOLDER
+================================ */
+
+#asn-{{ sid }} .asn__placeholder {
+  width: auto;
+
+  background:
+    rgb(0 0 0 / 0.06);
+}
+
+
+/* ===============================
+   MARQUEE ANIMATION
+================================ */
+
+/* ===============================
+   MOBILE
+================================ */
+
+@media screen and (max-width: 749px) {
+
+  #asn-{{ sid }} {
+
+    --asn-base-h:
+      {{ section.settings.image_height | times: 0.62 | round }}px;
+
+    --asn-gap:
+      {{ gap | times: 0.6 | round }}px;
+
+    --asn-overlap:
+      {{ section.settings.item_overlap | times: 0.6 | round }}px;
+
+  }
+
+
+  #asn-{{ sid }}
+  .asn__head {
+    margin-bottom: 32px;
+  }
+
+
+  #asn-{{ sid }}
+  .asn__group {
+    padding-block: 44px;
+  }
+
+}
+
+
+/* ===============================
+   REDUCED MOTION
+================================ */
+
+@media (prefers-reduced-motion: reduce) {
+
+  #asn-{{ sid }}
+  .asn__track {
+    animation: none;
+  }
+
+
+  #asn-{{ sid }}
+  .asn__viewport {
+    overflow-x: auto;
+  }
+
+}
+
+
+{% endstyle %}
+
+
+
+<script>
+(function () {
+
+  var root =
+    document.getElementById(
+      'asn-{{ sid }}'
+    );
+
+
+  if (!root) return;
+
+
+  if (root.__asnInit) return;
+
+
+  root.__asnInit = true;
+
+
+
+  /* ==================================
+     ELEMENTS
+  ================================== */
+
+  var track =
+    root.querySelector(
+      '[data-asn-track]'
+    );
+
+
+  var firstGroup =
+    root.querySelector(
+      '[data-asn-group]'
+    );
+
+
+  var viewport =
+    root.querySelector(
+      '[data-asn-viewport]'
+    );
+
+
+  if (!track || !firstGroup || !viewport) {
+    return;
+  }
+
+
+  var reducedMotion =
+    window.matchMedia &&
+    window.matchMedia(
+      '(prefers-reduced-motion: reduce)'
+    ).matches;
+
+
+  /*
+    Manual scroll state.
+    `position` = px se kitna track left move hua hai.
+    Wheel/drag isko seedha badal dete hain, taake user
+    turant kisi bhi image tak "jump" kar sake bina
+    poora auto-scroll cycle wait kiye.
+  */
+  var position = 0;
+  var loopWidth = 0;
+  var speedSeconds = {{ speed | default: 80 }};
+  var pauseOnHover = {{ section.settings.pause_on_hover | json }};
+  var isHoverPaused = false;
+  var isDragging = false;
+  var dragStartX = 0;
+  var dragStartPosition = 0;
+  var dragMoved = 0;
+  var lastTimestamp = null;
+
+
+
+  /* ==================================
+     EXACT LOOP WIDTH
+  ================================== */
+
+  function setLoopWidth() {
+
+    if (!firstGroup) return;
+
+
+    var rect =
+      firstGroup
+        .getBoundingClientRect();
+
+
+    var width =
+      rect.width;
+
+
+    if (!width || width <= 0) {
+      return;
+    }
+
+
+    loopWidth = width;
+
+
+    root.classList.add(
+      'asn--ready'
+    );
+
+  }
+
+
+
+  /* ==================================
+     INITIAL MEASURE
+  ================================== */
+
+  requestAnimationFrame(
+    function () {
+
+      requestAnimationFrame(
+        setLoopWidth
+      );
+
+    }
+  );
+
+
+
+  /* ==================================
+     WINDOW LOAD
+  ================================== */
+
+  window.addEventListener(
+    'load',
+    setLoopWidth
+  );
+
+
+
+  /* ==================================
+     RESIZE
+  ================================== */
+
+  var resizeTimer;
+
+
+  window.addEventListener(
+    'resize',
+    function () {
+
+      clearTimeout(
+        resizeTimer
+      );
+
+
+      resizeTimer =
+        setTimeout(
+          setLoopWidth,
+          100
+        );
+
+    }
+  );
+
+
+
+  /* ==================================
+     IMAGE LOAD
+  ================================== */
+
+  root
+    .querySelectorAll('img')
+    .forEach(
+      function (img) {
+
+        if (!img.complete) {
+
+          img.addEventListener(
+            'load',
+            setLoopWidth,
+            {
+              once: true
+            }
+          );
+
+        }
+
+      }
+    );
+
+
+
+  /* ==================================
+     FONTS
+  ================================== */
+
+  if (
+    document.fonts &&
+    document.fonts.ready
+  ) {
+
+    document.fonts.ready.then(
+      setLoopWidth
+    );
+
+  }
+
+
+
+  /* ==================================
+     RESIZE OBSERVER
+  ================================== */
+
+  if (
+    typeof ResizeObserver !==
+    'undefined'
+  ) {
+
+    var observer =
+      new ResizeObserver(
+        function () {
+
+          setLoopWidth();
+
+        }
+      );
+
+
+    observer.observe(
+      firstGroup
+    );
+
+  }
+
+
+
+  /* ==================================
+     COLLAPSE
+  ================================== */
+
+  function collapseAll() {
+
+    root
+      .querySelectorAll(
+        '.asn__item.is-expanded'
+      )
+      .forEach(
+        function (item) {
+
+          item.classList.remove(
+            'is-expanded'
+          );
+
+        }
+      );
+
+
+    root.classList.remove(
+      'asn--paused'
+    );
+
+  }
+
+
+
+  /* ==================================
+     RENDER LOOP
+     JS transform update — CSS keyframes
+     ki jagah, taake wheel/drag se turant
+     interrupt/scrub ho sake.
+  ================================== */
+
+  function wrapPosition() {
+
+    if (loopWidth > 0) {
+
+      position =
+        ((position % loopWidth) + loopWidth) % loopWidth;
+
+    }
+
+  }
+
+
+  function frame(timestamp) {
+
+    if (lastTimestamp === null) {
+      lastTimestamp = timestamp;
+    }
+
+    var dt = timestamp - lastTimestamp;
+    lastTimestamp = timestamp;
+
+    var isPaused =
+      isDragging ||
+      isHoverPaused ||
+      root.classList.contains('asn--paused');
+
+    if (!isPaused && loopWidth > 0 && speedSeconds > 0) {
+
+      var pxPerMs =
+        loopWidth / (speedSeconds * 1000);
+
+      position += pxPerMs * dt;
+
+    }
+
+    wrapPosition();
+
+    track.style.transform =
+      'translate3d(' + (-position) + 'px, 0, 0)';
+
+    requestAnimationFrame(frame);
+
+  }
+
+
+  if (!reducedMotion) {
+    requestAnimationFrame(frame);
+  }
+
+
+
+  /* ==================================
+     PAUSE ON HOVER (desktop only)
+  ================================== */
+
+  if (pauseOnHover) {
+
+    var hoverCapable =
+      window.matchMedia &&
+      window.matchMedia('(hover: hover)').matches;
+
+    if (hoverCapable) {
+
+      viewport.addEventListener(
+        'mouseenter',
+        function () {
+          isHoverPaused = true;
+        }
+      );
+
+      viewport.addEventListener(
+        'mouseleave',
+        function () {
+          isHoverPaused = false;
+        }
+      );
+
+    }
+
+  }
+
+
+
+  /* ==================================
+     MOUSE WHEEL SCROLL
+     Normal vertical wheel bhi marquee ko
+     horizontally scroll kar deta hai, taake
+     user jaldi se pehli image tak pahunch sake.
+  ================================== */
+
+  if (!reducedMotion) {
+
+    viewport.addEventListener(
+      'wheel',
+      function (event) {
+
+        var delta =
+          Math.abs(event.deltaX) > Math.abs(event.deltaY)
+            ? event.deltaX
+            : event.deltaY;
+
+        if (!delta) return;
+
+        event.preventDefault();
+
+        position += delta;
+        wrapPosition();
+
+      },
+      { passive: false }
+    );
+
+  }
+
+
+
+  /* ==================================
+     DRAG TO SCROLL
+     Mouse ya touch se pakar kar kisi bhi
+     image tak seedha kheench sakte hain.
+  ================================== */
+
+  if (!reducedMotion) {
+
+    viewport.addEventListener(
+      'pointerdown',
+      function (event) {
+
+        if (event.button != null && event.button !== 0) return;
+
+        isDragging = true;
+        dragMoved = 0;
+        dragStartX = event.clientX;
+        dragStartPosition = position;
+
+        viewport.classList.add('is-dragging');
+
+        if (viewport.setPointerCapture) {
+          viewport.setPointerCapture(event.pointerId);
+        }
+
+      }
+    );
+
+    viewport.addEventListener(
+      'pointermove',
+      function (event) {
+
+        if (!isDragging) return;
+
+        var dx = event.clientX - dragStartX;
+
+        dragMoved = Math.max(dragMoved, Math.abs(dx));
+
+        position = dragStartPosition - dx;
+
+        wrapPosition();
+
+      }
+    );
+
+    function endDrag() {
+
+      if (!isDragging) return;
+
+      isDragging = false;
+
+      viewport.classList.remove('is-dragging');
+
+    }
+
+    viewport.addEventListener('pointerup', endDrag);
+    viewport.addEventListener('pointercancel', endDrag);
+    viewport.addEventListener('pointerleave', endDrag);
+
+  }
+
+
+
+  /* ==================================
+     CLICK
+  ================================== */
+
+  root.addEventListener(
+    'click',
+    function (event) {
+
+      /*
+        Drag ke baad accidental click-to-expand
+        na ho.
+      */
+      if (dragMoved > 5) {
+        dragMoved = 0;
+        return;
+      }
+
+      var item =
+        event.target.closest(
+          '[data-asn-item]'
+        );
+
+
+      if (!item) return;
+
+
+      /*
+        Duplicate copies click
+        interaction nahi karengi.
+      */
+
+      var group =
+        item.closest(
+          '[data-asn-group]'
+        );
+
+
+      if (
+        group !== firstGroup
+      ) {
+        return;
+      }
+
+
+      var wasExpanded =
+        item.classList.contains(
+          'is-expanded'
+        );
+
+
+      collapseAll();
+
+
+      if (!wasExpanded) {
+
+        item.classList.add(
+          'is-expanded'
+        );
+
+
+        root.classList.add(
+          'asn--paused'
+        );
+
+      }
+
+    }
+  );
+
+
+
+  /* ==================================
+     KEYBOARD
+  ================================== */
+
+  root.addEventListener(
+    'keydown',
+    function (event) {
+
+      if (
+        event.key === 'Enter' ||
+        event.key === ' '
+      ) {
+
+        var item =
+          event.target.closest(
+            '[data-asn-item]'
+          );
+
+
+        if (!item) return;
+
+
+        event.preventDefault();
+
+
+        item.click();
+
+      }
+
+    }
+  );
+
+
+
+  /* ==================================
+     CLICK OUTSIDE
+  ================================== */
+
+  document.addEventListener(
+    'click',
+    function (event) {
+
+      if (
+        !root.contains(
+          event.target
+        )
+      ) {
+
+        collapseAll();
+
+      }
+
+    }
+  );
+
+
+
+  /* ==================================
+     ESCAPE
+  ================================== */
+
+  document.addEventListener(
+    'keydown',
+    function (event) {
+
+      if (
+        event.key === 'Escape'
+      ) {
+
+        collapseAll();
+
+      }
+
+    }
+  );
+
+
+})();
+</script>
+
+
+
+{% schema %}
+{
+  "name": "As Seen On marquee",
+  "tag": "section",
+
+  "settings": [
+
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "As Seen On"
+    },
+
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "See how our community is styling their favourite designs..."
+    },
+
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "primary"
+    },
+
+    {
+      "type": "range",
+      "id": "scroll_speed",
+      "label": "Scroll duration (lower = faster)",
+      "min": 20,
+      "max": 160,
+      "step": 5,
+      "unit": "s",
+      "default": 80
+    },
+
+    {
+      "type": "checkbox",
+      "id": "pause_on_hover",
+      "label": "Pause on hover (desktop)",
+      "default": true
+    },
+
+    {
+      "type": "range",
+      "id": "image_height",
+      "label": "Base image height (desktop)",
+      "min": 240,
+      "max": 560,
+      "step": 10,
+      "unit": "px",
+      "default": 400
+    },
+
+    {
+      "type": "range",
+      "id": "item_gap",
+      "label": "Gap between images",
+      "min": 0,
+      "max": 80,
+      "step": 2,
+      "unit": "px",
+      "default": 28
+    },
+
+    {
+      "type": "range",
+      "id": "item_overlap",
+      "label": "Image overlap",
+      "info": "Gap se zyada hoga to images aik dusri ke oper aayengi (collage)",
+      "min": 0,
+      "max": 160,
+      "step": 5,
+      "unit": "px",
+      "default": 90
+    },
+
+    {
+      "type": "range",
+      "id": "image_border_radius",
+      "label": "Image corner radius",
+      "min": 0,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    },
+
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Top padding",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 64
+    },
+
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Bottom padding",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 64
+    }
+
+  ],
+
+  "blocks": [
+
+    {
+      "type": "image",
+      "name": "Image",
+
+      "settings": [
+
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+
+        {
+          "type": "text",
+          "id": "caption",
+          "label": "Caption (shows when enlarged)",
+          "info": "e.g. OLIVIA PALERMO"
+        },
+
+        {
+          "type": "select",
+          "id": "size",
+          "label": "Size",
+
+          "options": [
+
+            {
+              "value": "small",
+              "label": "Small"
+            },
+
+            {
+              "value": "medium",
+              "label": "Medium"
+            },
+
+            {
+              "value": "large",
+              "label": "Large"
+            }
+
+          ],
+
+          "default": "medium"
+        },
+
+        {
+          "type": "range",
+          "id": "offset",
+          "label": "Vertical offset",
+          "min": -100,
+          "max": 100,
+          "step": 5,
+          "unit": "px",
+          "default": 0
+        }
+
+      ]
+    }
+
+  ],
+
+  "presets": [
+
+    {
+      "name": "As Seen On marquee",
+
+      "blocks": [
+
+        {
+          "type": "image",
+          "settings": {
+            "size": "large",
+            "offset": -40
+          }
+        },
+
+        {
+          "type": "image",
+          "settings": {
+            "size": "small",
+            "offset": 30
+          }
+        },
+
+        {
+          "type": "image",
+          "settings": {
+            "size": "medium",
+            "offset": -10
+          }
+        },
+
+        {
+          "type": "image",
+          "settings": {
+            "size": "small",
+            "offset": 45
+          }
+        },
+
+        {
+          "type": "image",
+          "settings": {
+            "size": "large",
+            "offset": -30
+          }
+        },
+
+        {
+          "type": "image",
+          "settings": {
+            "size": "medium",
+            "offset": 20
+          }
+        }
+
+      ]
+    }
+
+  ]
+}
+{% endschema %}

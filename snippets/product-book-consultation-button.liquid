@@ -1,0 +1,39 @@
+{%- comment -%} Book a Consultation button — smooth-scrolls to the section matching block.settings.target_id. {%- endcomment -%}
+{%- liquid
+  assign target_id = block.settings.target_id | default: 'book-a-consultation'
+-%}
+<button
+  type="button"
+  class="secondary-action-button secondary-action-button--consultation"
+  data-scroll-target="{{ target_id }}"
+  data-smooth-scroll="{{ block.settings.smooth_scroll }}"
+  style="
+    --sa-font-size-desktop: {{ block.settings.font_size_desktop }}px;
+    --sa-font-size-mobile: {{ block.settings.font_size_mobile }}px;
+    --sa-font-weight: {{ block.settings.font_weight }};
+    --sa-letter-spacing: {{ block.settings.letter_spacing }}px;
+    --sa-text-transform: {{ block.settings.text_transform }};
+    --sa-text-color: {{ block.settings.text_color }};
+    --sa-bg-color: {{ block.settings.bg_color }};
+    --sa-border-color: {{ block.settings.border_color }};
+    --sa-border-width: {{ block.settings.border_width }}px;
+    --sa-border-radius: {{ block.settings.border_radius }}px;
+    --sa-hover-text-color: {{ block.settings.hover_text_color }};
+    --sa-hover-bg-color: {{ block.settings.hover_bg_color }};
+    --sa-hover-border-color: {{ block.settings.hover_border_color }};
+    --sa-padding-v: {{ block.settings.padding_v }}px;
+    --sa-padding-h: {{ block.settings.padding_h }}px;
+    --sa-min-height: {{ block.settings.min_height }}px;
+    --sa-icon-gap: {{ block.settings.icon_gap }}px;
+    --sa-scroll-offset-desktop: {{ block.settings.scroll_offset_desktop }}px;
+    --sa-scroll-offset-mobile: {{ block.settings.scroll_offset_mobile }}px;
+  "
+>
+  {%- if block.settings.show_icon and block.settings.icon_position == 'left' -%}
+    <span class="secondary-action-button__icon" aria-hidden="true">{% render 'icon-calendar' %}</span>
+  {%- endif -%}
+  <span>{{ block.settings.button_label }}</span>
+  {%- if block.settings.show_icon and block.settings.icon_position == 'right' -%}
+    <span class="secondary-action-button__icon" aria-hidden="true">{% render 'icon-calendar' %}</span>
+  {%- endif -%}
+</button>

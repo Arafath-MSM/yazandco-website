@@ -15,19 +15,22 @@
         "tab": {
           "type": "tab",
           "settings": {
-            "button_label": "Tab name"
+            "button_label": "Tab name",
+            "button_link": ""
           }
         },
         "tab1": {
           "type": "tab",
           "settings": {
-            "button_label": "Tab name"
+            "button_label": "Tab name",
+            "button_link": ""
           }
         },
         "tab2": {
           "type": "tab",
           "settings": {
-            "button_label": "Tab name"
+            "button_label": "Tab name",
+            "button_link": ""
           }
         }
       },
@@ -36,7 +39,14 @@
         "tab1",
         "tab2"
       ],
-      "settings": {}
+      "settings": {
+        "subheading": "",
+        "heading": "Services",
+        "description": "",
+        "heading_size": "h1",
+        "margin_top": "xs",
+        "margin_bottom": "xs"
+      }
     },
     "media-banner": {
       "type": "media-banner",
@@ -44,8 +54,25 @@
         "media_slide": {
           "type": "media_slide",
           "settings": {
+            "color_scheme": "",
+            "overlay_opacity": 0.1,
             "enable_hover": false,
-            "button_label": ""
+            "show_video": false,
+            "video_url": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
+            "description_video": "",
+            "subheading": "Here can be a short phrase introducing your featured content",
+            "heading": "Featured Content",
+            "heading_size": "h1",
+            "description": "Use this space to give context to the image or video, explaining what it represents and why it matters.",
+            "position_content": "bottom",
+            "align_content": "left",
+            "button_label": "",
+            "button_link": "",
+            "button_style": "simple",
+            "button_label2": "",
+            "button_link2": "",
+            "button_style2": "secondary",
+            "full_link": true
           }
         }
       },
@@ -53,12 +80,40 @@
         "media_slide"
       ],
       "settings": {
-        "header_overlay": false
+        "header_overlay": false,
+        "sticky": "sticky-none",
+        "layout": "overlay",
+        "title_link": false,
+        "gap": false,
+        "aspect_ratio": "full",
+        "aspect_ratio_mobile": "full",
+        "margin_top": "no-indent",
+        "margin_bottom": "m"
       }
     },
     "product-carousel": {
       "type": "product-carousel",
-      "settings": {}
+      "settings": {
+        "collection": "bracelets",
+        "collection_list": [],
+        "subheading": "",
+        "heading": "Collections title",
+        "text": "A quick look at our featured collections and seasonal picks.",
+        "button_label1": "Shop Now",
+        "button_link": "",
+        "button_style": "tertiary",
+        "image_ratio": "square",
+        "image_fit": "cover",
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_color_count": true,
+        "show_size_count": false,
+        "show_sku": false,
+        "show_desc": false,
+        "overlay_opacity": 0.3,
+        "margin_top": "no-indent",
+        "margin_bottom": "m"
+      }
     },
     "banner-with-popup": {
       "type": "banner-with-popup",
@@ -72,9 +127,26 @@
         "image"
       ],
       "settings": {
+        "aspect_ratio": "full",
         "full_screen_image_mode": true,
+        "heading": "Banner Title Goes Here",
+        "heading_size": "h1",
         "description": "<p>Some description for this section</p>",
-        "button_function": "popup"
+        "button_label": "View more",
+        "button_link": "",
+        "button_style": "simple",
+        "button_function": "popup",
+        "enable_animation": true,
+        "slideshow_speed": 2,
+        "popup_heading": "Here can be your popup title",
+        "popup_content_heading": "Ready to Shop?",
+        "popup_content": "<p>This section is where you can share a quick, engaging story that captures the essence of your brand or products. Whether it's about your brand’s journey, the inspiration behind a collection, or an upcoming event, it’s an opportunity to connect with your audience on a deeper level.</p><p>You can also use this space to highlight a specific collection, showcase limited-time offers, or introduce a special event. By adding context and narrative to your visuals, you’ll make them more impactful and memorable for your customers.</p>",
+        "popup_image_size": "portrait",
+        "popup_button_label": "View Details",
+        "popup_button_link": "",
+        "popup_button_style": "tertiary",
+        "margin_top": "no-indent",
+        "margin_bottom": "m"
       }
     },
     "multicolumn": {
@@ -83,29 +155,45 @@
         "column": {
           "type": "column",
           "settings": {
+            "overlay_opacity": 0.2,
+            "subheading": "",
+            "heading": "Feature Title Here",
             "description": "<p>Designed for everyday comfort with a modern edge.</p>",
-            "button_label": ""
+            "button_label": "",
+            "button_link": ""
           }
         },
         "column1": {
           "type": "column",
           "settings": {
+            "overlay_opacity": 0.2,
+            "subheading": "",
+            "heading": "Feature Title Here",
             "description": "<p>Crafted from premium materials for long-lasting quality.</p>",
-            "button_label": ""
+            "button_label": "",
+            "button_link": ""
           }
         },
         "column2": {
           "type": "column",
           "settings": {
+            "overlay_opacity": 0.2,
+            "subheading": "",
+            "heading": "Feature Title Here",
             "description": "<p>Elevate your essentials with this sleek, versatile piece.</p>",
-            "button_label": ""
+            "button_label": "",
+            "button_link": ""
           }
         },
         "column3": {
           "type": "column",
           "settings": {
+            "overlay_opacity": 0.2,
+            "subheading": "",
+            "heading": "Feature Title Here",
             "description": "<p>Engineered for performance. Built for style.</p>",
-            "button_label": ""
+            "button_label": "",
+            "button_link": ""
           }
         }
       },
@@ -116,11 +204,29 @@
         "column3"
       ],
       "settings": {
+        "color_scheme": "",
+        "subheading": "",
         "heading": "",
+        "heading_size": "h1",
+        "description": "",
+        "enable_full_screen": true,
         "swiper": true,
+        "stop_autoplay": true,
+        "navigation": false,
+        "slideshow_speed": 20,
         "layout_type": "overlay",
+        "content_position": "img-top",
+        "always_visible_text": false,
+        "on_hover": "show_text",
         "multicolumn_to_show": 2,
-        "image_ratio": "landscape"
+        "image_ratio": "landscape",
+        "object_fit": "cover",
+        "card_heading_size": "h1",
+        "button_label": "",
+        "button_style": "simple",
+        "button_link": "",
+        "margin_top": "no-indent",
+        "margin_bottom": "m"
       }
     },
     "collapsible-content": {
@@ -140,23 +246,43 @@
         },
         "accordion": {
           "type": "accordion",
-          "settings": {}
+          "settings": {
+            "default_open": false,
+            "question": "Here can be a commonly asked question about your product or service.",
+            "answer": "<p>Here can be a brief but clear response to the question, giving customers a quick answer without unnecessary details.</p>"
+          }
         },
         "accordion-1": {
           "type": "accordion",
-          "settings": {}
+          "settings": {
+            "default_open": false,
+            "question": "Here can be a commonly asked question about your product or service.",
+            "answer": "<p>Here can be a brief but clear response to the question, giving customers a quick answer without unnecessary details.</p>"
+          }
         },
         "accordion-2": {
           "type": "accordion",
-          "settings": {}
+          "settings": {
+            "default_open": false,
+            "question": "Here can be a commonly asked question about your product or service.",
+            "answer": "<p>Here can be a brief but clear response to the question, giving customers a quick answer without unnecessary details.</p>"
+          }
         },
         "accordion-3": {
           "type": "accordion",
-          "settings": {}
+          "settings": {
+            "default_open": false,
+            "question": "Here can be a commonly asked question about your product or service.",
+            "answer": "<p>Here can be a brief but clear response to the question, giving customers a quick answer without unnecessary details.</p>"
+          }
         },
         "accordion-4": {
           "type": "accordion",
-          "settings": {}
+          "settings": {
+            "default_open": false,
+            "question": "Here can be a commonly asked question about your product or service.",
+            "answer": "<p>Here can be a brief but clear response to the question, giving customers a quick answer without unnecessary details.</p>"
+          }
         }
       },
       "block_order": [
@@ -170,9 +296,16 @@
         "accordion-4"
       ],
       "settings": {
+        "aspect_ratio": "medium",
         "heading": "FAQs",
         "heading_size": "h2",
-        "button_label": ""
+        "enable_animation": true,
+        "slideshow_speed": 4,
+        "button_label": "",
+        "button_link": "",
+        "button_style": "simple",
+        "margin_top": "no-indent",
+        "margin_bottom": "m"
       }
     },
     "media-banner-2": {
@@ -181,13 +314,49 @@
         "media_slide": {
           "type": "media_slide",
           "settings": {
-            "button_label": ""
+            "color_scheme": "",
+            "overlay_opacity": 0.1,
+            "enable_hover": true,
+            "show_video": false,
+            "video_url": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
+            "description_video": "",
+            "subheading": "Here can be a short phrase introducing your featured content",
+            "heading": "Featured Content",
+            "heading_size": "h1",
+            "description": "Use this space to give context to the image or video, explaining what it represents and why it matters.",
+            "position_content": "bottom",
+            "align_content": "left",
+            "button_label": "",
+            "button_link": "",
+            "button_style": "simple",
+            "button_label2": "",
+            "button_link2": "",
+            "button_style2": "secondary",
+            "full_link": true
           }
         },
         "media_slide-2": {
           "type": "media_slide",
           "settings": {
-            "button_label": ""
+            "color_scheme": "",
+            "overlay_opacity": 0.1,
+            "enable_hover": true,
+            "show_video": false,
+            "video_url": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
+            "description_video": "",
+            "subheading": "Here can be a short phrase introducing your featured content",
+            "heading": "Featured Content",
+            "heading_size": "h1",
+            "description": "Use this space to give context to the image or video, explaining what it represents and why it matters.",
+            "position_content": "bottom",
+            "align_content": "left",
+            "button_label": "",
+            "button_link": "",
+            "button_style": "simple",
+            "button_label2": "",
+            "button_link2": "",
+            "button_style2": "secondary",
+            "full_link": true
           }
         }
       },
@@ -196,7 +365,15 @@
         "media_slide-2"
       ],
       "settings": {
-        "header_overlay": false
+        "header_overlay": false,
+        "sticky": "sticky-none",
+        "layout": "overlay",
+        "title_link": false,
+        "gap": false,
+        "aspect_ratio": "full",
+        "aspect_ratio_mobile": "full",
+        "margin_top": "no-indent",
+        "margin_bottom": "m"
       }
     }
   },

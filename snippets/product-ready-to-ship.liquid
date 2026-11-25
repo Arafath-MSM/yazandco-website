@@ -1,0 +1,126 @@
+Liquid syntax error (snippets/product-ready-to-ship line 59): Expected dotdot but found comparison in "settings.use_business_days and (weekday == '0' or weekday == '6')"{% comment %}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: |
+    {%- comment -%}
+      Ready to Ship message. Lead time source priority:
+      1. product.metafields.custom.lead_time_days
+      2. selected_or_first_available_variant.metafields.custom.lead_time_days
+      3. a product tag formatted "lead-time:NN"
+      4. block setting fallback (Theme Editor), if enabled
+      If none of these resolve, the block renders nothing rather than show an inaccurate date.
+    {%- endcomment -%}
+    {%- liquid
+      assign settings = block.settings
+      if settings.enable == false
+        assign show_block = false
+      else
+        assign show_block = true
+      endif
+    -%}
+    {%- if show_block -%}
+      {%- liquid
+        assign lead_days = 0
+        assign lead_source_found = false
+
+        if product.metafields.custom.lead_time_days != blank
+          assign lead_days = product.metafields.custom.lead_time_days | plus: 0
+          assign lead_source_found = true
+        elsif product.selected_or_first_available_variant.metafields.custom.lead_time_days != blank
+          assign lead_days = product.selected_or_first_available_variant.metafields.custom.lead_time_days | plus: 0
+          assign lead_source_found = true
+        else
+          for product_tag in product.tags
+            if product_tag contains 'lead-time:'
+              assign tag_value = product_tag | split: 'lead-time:' | last | strip
+              assign lead_days = tag_value | plus: 0
+              assign lead_source_found = true
+            endif
+          endfor
+        endif
+
+        if lead_source_found == false and settings.enable_fallback
+          assign lead_days = settings.fallback_business_days
+          assign lead_source_found = true
+        endif
+      -%}
+
+      {%- if lead_source_found and lead_days > 0 -%}
+        {%- liquid
+          assign remaining_days = lead_days
+          assign current_timestamp = 'now' | date: '%s' | plus: 0
+          assign day_seconds = 86400
+          assign added_days = 0
+          assign safety_counter = 0
+
+          for i in (1..400)
+            if added_days >= remaining_days or safety_counter > 365
+              break
+            endif
+            assign safety_counter = safety_counter | plus: 1
+            assign current_timestamp = current_timestamp | plus: day_seconds
+            assign weekday = current_timestamp | date: '%w'
+            if settings.use_business_days and (weekday == '0' or weekday == '6')
+              continue
+            endif
+            assign added_days = added_days | plus: 1
+          endfor
+
+          assign ready_date = current_timestamp | date: '%-d %b %Y'
+        -%}
+        <div
+          class="ready-to-ship"
+          style="
+            --rts-font-size-desktop: {{ settings.font_size_desktop }}px;
+            --rts-font-size-mobile: {{ settings.font_size_mobile }}px;
+            --rts-font-weight: {{ settings.font_weight }};
+            --rts-date-font-weight: {{ settings.date_font_weight }};
+            --rts-text-align: {{ settings.text_align }};
+            --rts-text-color: {{ settings.text_color }};
+            --rts-date-color: {{ settings.date_color }};
+            --rts-icon-color: {{ settings.icon_color }};
+            --rts-bg-color: {{ settings.bg_color }};
+            --rts-border-color: {{ settings.border_color }};
+            --rts-border-width: {{ settings.border_width }}px;
+            --rts-border-radius: {{ settings.border_radius }}px;
+            --rts-padding: {{ settings.padding }}px;
+            --rts-margin-top-desktop: {{ settings.margin_top_desktop }}px;
+            --rts-margin-bottom-desktop: {{ settings.margin_bottom_desktop }}px;
+            --rts-margin-top-mobile: {{ settings.margin_top_mobile }}px;
+            --rts-margin-bottom-mobile: {{ settings.margin_bottom_mobile }}px;
+          "
+          {{ block.shopify_attributes }}
+        >
+          {%- if settings.show_icon -%}
+            <span class="ready-to-ship__icon" aria-hidden="true">
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="8" cy="8" r="6.5" stroke="currentColor" stroke-width="1.1"/>
+                <path d="M8 4.5V8L10.2 9.4" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+          {%- endif -%}
+          <span class="ready-to-ship__text">
+            {{ settings.prefix_text }}
+            <span class="ready-to-ship__date">{{ ready_date }}</span>
+          </span>
+          {%- if settings.tooltip_text != blank -%}
+            <span class="ready-to-ship__tooltip" tabindex="0" aria-label="{{ settings.tooltip_text | escape }}">
+              <svg width="13" height="13" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <circle cx="8" cy="8" r="6.5" stroke="currentColor" stroke-width="1.1"/>
+                <path d="M8 7.2V11.2" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"/>
+                <circle cx="8" cy="5" r="0.9" fill="currentColor"/>
+              </svg>
+              <span class="ready-to-ship__tooltip-bubble" role="tooltip">{{ settings.tooltip_text }}</span>
+            </span>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+    {%- endif -%}
+  to: 'Liquid syntax error (snippets/product-ready-to-ship line 59): Expected dotdot
+    but found comparison in "settings.use_business_days and (weekday == ''0'' or weekday
+    == ''6'')"'
+  position: 0..169
+{% endcomment %}

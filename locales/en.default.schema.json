@@ -5568,7 +5568,7 @@
 					"default": "Your product grid title"
 				},
 				 "description": {
-					"default": "<p>Use this space to showcase handpicked products, whether they are new arrivals, customer favorites, or special offers.</p>"
+					"default": "<p>Use this space to showcase handpicked products, whether they are new arrivals, customer favourites, or special offers.</p>"
 				},
 				"button_label": {
 					"default": "Explore More"

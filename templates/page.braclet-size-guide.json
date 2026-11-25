@@ -1,0 +1,821 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "banner": {
+      "type": "image-banner",
+      "custom_css": [
+        "h2 {font-size: 35px;}",
+        ".image-banner .banner {display: flex; position: relative; min-height: initial; max-height: 200px;}",
+        ".image-banner .banner:is([class*=\"bottom\"]) .image-banner__wrapper {padding-bottom: 2rem;}"
+      ],
+      "settings": {
+        "full_width": true,
+        "color_scheme": "background-2",
+        "info_position": "inside",
+        "image": "shopify://shop_images/WhatsApp_Image_2026-09-09_at_6.23.25_PM_2.jpg",
+        "image_ratio": "21/9",
+        "opacity_overlay": 0,
+        "heading": "BRACELET SIZE",
+        "heading_size": "h1",
+        "enable_custom_heading_size": true,
+        "heading_font_size_desktop": 36,
+        "heading_font_size_mobile": 28,
+        "text_information": "",
+        "text_align": "bottom-left",
+        "text_width": "full",
+        "additional_text": "",
+        "button_label": "",
+        "button_style": "tertiary",
+        "button_link": "",
+        "button_label2": "",
+        "button_style2": "tertiary",
+        "button_link2": "",
+        "margin_top": "no-indent",
+        "margin_bottom": "no-indent"
+      }
+    },
+    "layout_settingss_wpWAXf": {
+      "type": "Layout-Settingss",
+      "blocks": {
+        "guide_link_DbpE3x": {
+          "type": "guide_link",
+          "settings": {
+            "number_prefix": "01",
+            "title": "Bracelet Size Chart",
+            "target_id": "shopify-section-template--20330440720590__split_media_steps_AEPbxE"
+          }
+        },
+        "guide_link_gM6Wyc": {
+          "type": "guide_link",
+          "settings": {
+            "number_prefix": "02",
+            "title": "How to Measure Wrist for Bracelet",
+            "target_id": "shopify-section-template--20330440720590__ring_size_chart_zeA6mL"
+          }
+        },
+        "guide_link_VD8yTc": {
+          "type": "guide_link",
+          "settings": {
+            "number_prefix": "03",
+            "title": "FAQ",
+            "target_id": "shopify-section-template--20330440720590__faq_landing_gNCrBq"
+          }
+        }
+      },
+      "block_order": [
+        "guide_link_DbpE3x",
+        "guide_link_gM6Wyc",
+        "guide_link_VD8yTc"
+      ],
+      "name": "In This Guide Navigation",
+      "settings": {
+        "bg_color": "#fbfbfb",
+        "max_width": 1200,
+        "border_color": "rgba(0,0,0,0)",
+        "border_width": 0,
+        "border_radius_desktop": 0,
+        "border_radius_mobile": 0,
+        "padding_top_desktop": 32,
+        "padding_bottom_desktop": 32,
+        "padding_left_desktop": 40,
+        "padding_right_desktop": 40,
+        "padding_top_mobile": 24,
+        "padding_bottom_mobile": 24,
+        "padding_left_mobile": 20,
+        "padding_right_mobile": 20,
+        "heading": "IN THIS GUIDE",
+        "heading_color": "#000000",
+        "heading_size_desktop": 14,
+        "heading_size_mobile": 12,
+        "heading_weight": "700",
+        "heading_transform": "uppercase",
+        "heading_line_height": 1.2,
+        "heading_letter_spacing": 1.5,
+        "line_color": "#000000",
+        "line_thickness": 1,
+        "header_line_gap": 16,
+        "header_margin_bottom_desktop": 24,
+        "header_margin_bottom_mobile": 16,
+        "gap_desktop": 48,
+        "gap_mobile": 16,
+        "mobile_layout": "column",
+        "number_color": "#000000",
+        "number_size_desktop": 14,
+        "number_size_mobile": 13,
+        "number_weight": "400",
+        "number_text_gap_desktop": 12,
+        "number_text_gap_mobile": 10,
+        "link_color": "#000000",
+        "link_hover_color": "#555555",
+        "link_size_desktop": 15,
+        "link_size_mobile": 14,
+        "link_weight": "400",
+        "link_decoration": "underline",
+        "link_hover_decoration": "underline",
+        "link_line_height": 1.3,
+        "link_letter_spacing": 0,
+        "item_padding_top_desktop": 0,
+        "item_padding_bottom_desktop": 0,
+        "item_padding_left_desktop": 0,
+        "item_padding_right_desktop": 0,
+        "item_padding_top_mobile": 0,
+        "item_padding_bottom_mobile": 0,
+        "item_padding_left_mobile": 20,
+        "item_padding_right_mobile": 0,
+        "item_border_radius_desktop": 0,
+        "item_border_radius_mobile": 0
+      }
+    },
+    "split_media_steps_AEPbxE": {
+      "type": "split-media-steps",
+      "blocks": {
+        "rich_text_Djdtmm": {
+          "type": "rich_text",
+          "settings": {
+            "richtext": "<p>To determine your bracelet size:</p><ol><li>Measure your wrist at the point where you would normally wear the bracelet.</li><li>Add between 1 and 2 centimetres, depending on your preferred fit.</li></ol><p>For a closer fit, add approximately 1 cm.<br/>For a more relaxed fit, add approximately 2 cm.<br/>The final fit may vary depending on the bracelet design, width, setting, and construction.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "rich_text_Djdtmm"
+      ],
+      "name": "Split Media & Steps List",
+      "settings": {
+        "bg_color": "#ffffff",
+        "container_max_w": 1800,
+        "vert_align": "center",
+        "desktop_swap": "left",
+        "mobile_swap": "media_first",
+        "gap_d": 60,
+        "gap_m": 30,
+        "pad_top_d": 60,
+        "pad_bottom_d": 0,
+        "pad_left_d": 40,
+        "pad_right_d": 40,
+        "pad_top_m": 30,
+        "pad_bottom_m": 30,
+        "pad_left_m": 16,
+        "pad_right_m": 16,
+        "media_type": "image",
+        "media_aspect_ratio": "1 / 1",
+        "image": "shopify://shop_images/page_6_image_2.png",
+        "shopify_video": "shopify://files/videos/2BE55698-8492-44EC-ADA2-225695BCFBC5.mp4",
+        "video_url": "",
+        "video_autoplay": true,
+        "video_muted": true,
+        "video_loop": true,
+        "video_controls": true,
+        "media_width_d": 50,
+        "media_radius": 0,
+        "media_border_w": 0,
+        "media_border_color": "#eeeeee",
+        "title": "Bracelet Size Guide",
+        "title_color": "#000000",
+        "title_size_d": 26,
+        "title_size_m": 22,
+        "title_weight": "400",
+        "title_transform": "uppercase",
+        "title_ls": 1.5,
+        "title_lh": "1.2",
+        "title_mb": 12,
+        "link_text": "Need help sizing?",
+        "link_url": "shopify://pages/concierge",
+        "link_color": "#000000",
+        "link_hover_color": "#666666",
+        "link_underline": true,
+        "link_size_d": 14,
+        "link_size_m": 13,
+        "link_weight": "400",
+        "link_mb": 30,
+        "richtext_color": "#000000",
+        "richtext_size_d": 18,
+        "richtext_size_m": 16,
+        "richtext_weight": "400",
+        "richtext_lh": "1.5",
+        "richtext_mb": 20,
+        "step_color": "#222222",
+        "step_num_color": "#222222",
+        "step_size_d": 18,
+        "step_size_m": 16,
+        "step_weight": "400",
+        "step_lh": "1.5",
+        "step_ls": 0,
+        "step_gap": 16,
+        "step_pad_b": 12,
+        "show_divider": true,
+        "divider_color": "#efefef",
+        "divider_w": 1,
+        "text_align_d": "left",
+        "text_align_m": "left"
+      }
+    },
+    "ring_size_chart_zeA6mL": {
+      "type": "Ring-Size-chart",
+      "blocks": {
+        "table_row_NrUtek": {
+          "type": "table_row",
+          "settings": {
+            "col1_val": "",
+            "col2_val": "15 cm",
+            "col3_val": "16–17 cm",
+            "col4_val": ""
+          }
+        },
+        "table_row_BXhw67": {
+          "type": "table_row",
+          "settings": {
+            "col1_val": "",
+            "col2_val": "16 cm",
+            "col3_val": "17–18 cm",
+            "col4_val": ""
+          }
+        },
+        "table_row_Hz4GzM": {
+          "type": "table_row",
+          "settings": {
+            "col1_val": "",
+            "col2_val": "17 cm",
+            "col3_val": "18–19 cm",
+            "col4_val": ""
+          }
+        },
+        "table_row_cT8Raq": {
+          "type": "table_row",
+          "settings": {
+            "col1_val": "",
+            "col2_val": "18 cm",
+            "col3_val": "19–20 cm",
+            "col4_val": ""
+          }
+        }
+      },
+      "block_order": [
+        "table_row_NrUtek",
+        "table_row_BXhw67",
+        "table_row_Hz4GzM",
+        "table_row_cT8Raq"
+      ],
+      "name": "Ring Size Chart Table",
+      "settings": {
+        "bg_color": "#ffffff",
+        "container_max_w": 800,
+        "pad_top_d": 60,
+        "pad_bottom_d": 60,
+        "pad_left_d": 20,
+        "pad_right_d": 20,
+        "pad_top_m": 30,
+        "pad_bottom_m": 30,
+        "pad_left_m": 16,
+        "pad_right_m": 16,
+        "title": "Bracelet Size Guide",
+        "title_color": "#000000",
+        "title_size_d": 26,
+        "title_size_m": 22,
+        "title_weight": "400",
+        "title_transform": "uppercase",
+        "title_ls": 1.5,
+        "title_lh": "1.2",
+        "title_align_d": "center",
+        "title_align_m": "center",
+        "title_mb_d": 24,
+        "title_mb_m": 16,
+        "subtext": "",
+        "subtext_color": "#333333",
+        "subtext_size_d": 14,
+        "subtext_size_m": 13,
+        "subtext_weight": "400",
+        "subtext_lh": "1.5",
+        "subtext_align_d": "left",
+        "subtext_align_m": "left",
+        "subtext_mb_d": 20,
+        "subtext_mb_m": 14,
+        "col1_title": "",
+        "col2_title": "Wrist Size",
+        "col3_title": "Bracelet Length",
+        "col4_title": "",
+        "table_bg_color": "#ffffff",
+        "table_border_w": 1,
+        "table_border_color": "#d6d6d6",
+        "table_border_radius": 0,
+        "grid_line_w": 1,
+        "grid_line_color": "#f0f0f0",
+        "table_mb_d": 24,
+        "table_mb_m": 16,
+        "th_bg_color": "#f8f8f8",
+        "th_text_color": "#000000",
+        "th_size_d": 14,
+        "th_size_m": 12,
+        "th_weight": "600",
+        "th_transform": "uppercase",
+        "th_ls": 0.5,
+        "th_align": "center",
+        "th_pad_v_d": 14,
+        "th_pad_h_d": 16,
+        "th_pad_v_m": 10,
+        "th_pad_h_m": 10,
+        "td_text_color": "#333333",
+        "td_size_d": 14,
+        "td_size_m": 12,
+        "td_weight": "400",
+        "td_align": "center",
+        "td_pad_v_d": 12,
+        "td_pad_h_d": 16,
+        "td_pad_v_m": 10,
+        "td_pad_h_m": 10,
+        "enable_zebra": false,
+        "zebra_bg_color": "#f9f9f9",
+        "footer_text": "",
+        "footer_color": "#666666",
+        "footer_size_d": 13,
+        "footer_size_m": 12,
+        "footer_weight": "400",
+        "footer_lh": "1.5",
+        "footer_align_d": "center",
+        "footer_align_m": "left",
+        "footer_mt_d": 16,
+        "footer_mt_m": 12
+      }
+    },
+    "interactive_guide_EM9mhU": {
+      "type": "interactive-guide",
+      "blocks": {
+        "guide_step_mahRAi": {
+          "type": "guide_step",
+          "settings": {
+            "anchor_id": "cut",
+            "nav_label": "4 Cs of Diamonds Charts",
+            "desktop_pos": "left",
+            "mobile_swap": "image_first",
+            "col_width": 50,
+            "gap_d": 50,
+            "gap_m": 20,
+            "pad_top": 10,
+            "pad_bottom": 10,
+            "image": "shopify://shop_images/ChatGPT_Image_Aug_19_2026_07_45_50_PM.png",
+            "img_radius": 0,
+            "img_border_w": 0,
+            "img_border_color": "#eeeeee",
+            "text_align_d": "flex-start",
+            "text_align_m": "flex-start",
+            "title": "4 Cs of Diamonds Charts",
+            "title_color": "#111111",
+            "title_size_d": 32,
+            "title_size_m": 24,
+            "title_weight": "500",
+            "title_mb": 14,
+            "body_text": "<p>The 4 Cs of diamonds — cut, color, clarity, and carat — are the universal standards used to understand diamond quality. Each C represents a unique characteristic that contributes to a diamond’s beauty and brilliance.</p><p>• <strong>Cut:</strong> Graded from Ideal to Poor on the IGI scale.<br/>• <strong>Color:</strong> Graded from D (colorless) to Z (light yellow or brown).<br/>• <strong>Clarity:</strong> Graded from Flawless (FL) to Included (I3).<br/>• <strong>Carat:</strong> Measured in metric carats, where one carat equals 200 milligrams.</p>",
+            "text_color": "#444444",
+            "text_size_d": 15,
+            "text_size_m": 13,
+            "text_weight": "400",
+            "text_lh": "1.6",
+            "text_mb": 10,
+            "show_callout": false,
+            "callout_text": "Good quality cut which reflects some light while maintaining weight.",
+            "callout_bg": "#1b3b36",
+            "callout_text_color": "#ffffff",
+            "callout_border_color": "#1b3b36",
+            "callout_border_w": 0,
+            "callout_radius": 2,
+            "callout_size_d": 13,
+            "callout_size_m": 12,
+            "callout_weight": "400",
+            "callout_pad_v": 16,
+            "callout_pad_h": 20,
+            "callout_mt": 16,
+            "btn_label": "",
+            "btn_link": "",
+            "btn_bg": "#ffffff",
+            "btn_text_color": "#111111",
+            "btn_border_color": "#111111",
+            "btn_bg_hover": "#111111",
+            "btn_text_hover": "#ffffff",
+            "btn_border_hover": "#111111",
+            "btn_border_w": 1,
+            "btn_radius": 0,
+            "btn_size_d": 13,
+            "btn_size_m": 12,
+            "btn_weight": "500",
+            "btn_pad_v": 12,
+            "btn_pad_h": 24,
+            "btn_mt": 14
+          }
+        },
+        "guide_step_yTqhXq": {
+          "type": "guide_step",
+          "settings": {
+            "anchor_id": "color",
+            "nav_label": "Diamond Cut",
+            "desktop_pos": "right",
+            "mobile_swap": "image_first",
+            "col_width": 50,
+            "gap_d": 50,
+            "gap_m": 20,
+            "pad_top": 10,
+            "pad_bottom": 10,
+            "image": "shopify://shop_images/ChatGPT_Image_Aug_19_2026_07_54_00_PM.png",
+            "img_radius": 0,
+            "img_border_w": 0,
+            "img_border_color": "#eeeeee",
+            "text_align_d": "flex-start",
+            "text_align_m": "flex-start",
+            "title": "Diamond Cut",
+            "title_color": "#111111",
+            "title_size_d": 32,
+            "title_size_m": 24,
+            "title_weight": "500",
+            "title_mb": 14,
+            "body_text": "<p>Cut is one of the most important factors that influences a diamond’s brilliance and sparkle. It refers to how precisely a diamond’s facets are shaped and arranged to interact with light. A well-crafted cut allows light to enter, reflect, and return through the top of the diamond, creating exceptional brightness, fire, and scintillation.</p><p>Unlike colour, clarity, and carat, which are determined during a diamond’s formation, cut quality depends on the expertise and precision of the diamond cutter. A superior cut enhances the diamond’s natural beauty, while a poorly cut diamond may lose light and appear less vibrant.</p>",
+            "text_color": "#444444",
+            "text_size_d": 15,
+            "text_size_m": 13,
+            "text_weight": "400",
+            "text_lh": "1.6",
+            "text_mb": 10,
+            "show_callout": false,
+            "callout_text": "Good quality cut which reflects some light while maintaining weight.",
+            "callout_bg": "#1b3b36",
+            "callout_text_color": "#ffffff",
+            "callout_border_color": "#1b3b36",
+            "callout_border_w": 0,
+            "callout_radius": 2,
+            "callout_size_d": 13,
+            "callout_size_m": 12,
+            "callout_weight": "400",
+            "callout_pad_v": 16,
+            "callout_pad_h": 20,
+            "callout_mt": 16,
+            "btn_label": "",
+            "btn_link": "",
+            "btn_bg": "#ffffff",
+            "btn_text_color": "#111111",
+            "btn_border_color": "#111111",
+            "btn_bg_hover": "#111111",
+            "btn_text_hover": "#ffffff",
+            "btn_border_hover": "#111111",
+            "btn_border_w": 1,
+            "btn_radius": 0,
+            "btn_size_d": 13,
+            "btn_size_m": 12,
+            "btn_weight": "500",
+            "btn_pad_v": 12,
+            "btn_pad_h": 24,
+            "btn_mt": 14
+          }
+        },
+        "guide_step_TH8Cjw": {
+          "type": "guide_step",
+          "settings": {
+            "anchor_id": "clarity",
+            "nav_label": "Diamond Color",
+            "desktop_pos": "left",
+            "mobile_swap": "image_first",
+            "col_width": 50,
+            "gap_d": 50,
+            "gap_m": 20,
+            "pad_top": 10,
+            "pad_bottom": 10,
+            "image": "shopify://shop_images/ChatGPT_Image_Aug_19_2026_08_00_54_PM.png",
+            "img_radius": 0,
+            "img_border_w": 0,
+            "img_border_color": "#eeeeee",
+            "text_align_d": "flex-start",
+            "text_align_m": "flex-start",
+            "title": "Diamond Color",
+            "title_color": "#111111",
+            "title_size_d": 32,
+            "title_size_m": 24,
+            "title_weight": "500",
+            "title_mb": 14,
+            "body_text": "<p>Diamond color refers to the absence of color in a diamond. The less color a diamond has, the rarer and more valuable it becomes. IGI grades diamond color on a scale from <strong>D (Colorless) to Z (Light Yellow or Brown)</strong>, with each grade representing a subtle difference in color appearance.</p><p>The IGI Color Grading Scale includes:</p><ul><li><strong>D – F: Colorless</strong><br/>Diamonds in this range have exceptional transparency and appear completely colorless.</li><li><strong>G – J: Near Colorless</strong><br/>These diamonds show minimal color that is difficult to notice, offering excellent value and beauty.</li><li><strong>K – M: Faint Color</strong><br/>A slight warm tone becomes more visible while maintaining attractive brilliance.</li><li><strong>N – R: Very Light Color</strong><br/>Noticeable color tones begin to appear within the diamond.</li><li><strong>S – Z: Light Color</strong><br/>Diamonds display visible yellow or brown hues.</li></ul><p>Diamond color selection depends on personal preference, diamond size, shape, and the jewellery setting. Larger diamonds and certain shapes may reveal color more easily, making the right grade an important part of choosing the perfect diamond.</p>",
+            "text_color": "#444444",
+            "text_size_d": 15,
+            "text_size_m": 13,
+            "text_weight": "400",
+            "text_lh": "1.6",
+            "text_mb": 10,
+            "show_callout": false,
+            "callout_text": "Good quality cut which reflects some light while maintaining weight.",
+            "callout_bg": "#1b3b36",
+            "callout_text_color": "#ffffff",
+            "callout_border_color": "#1b3b36",
+            "callout_border_w": 0,
+            "callout_radius": 2,
+            "callout_size_d": 13,
+            "callout_size_m": 12,
+            "callout_weight": "400",
+            "callout_pad_v": 16,
+            "callout_pad_h": 20,
+            "callout_mt": 16,
+            "btn_label": "",
+            "btn_link": "",
+            "btn_bg": "#ffffff",
+            "btn_text_color": "#111111",
+            "btn_border_color": "#111111",
+            "btn_bg_hover": "#111111",
+            "btn_text_hover": "#ffffff",
+            "btn_border_hover": "#111111",
+            "btn_border_w": 1,
+            "btn_radius": 0,
+            "btn_size_d": 13,
+            "btn_size_m": 12,
+            "btn_weight": "500",
+            "btn_pad_v": 12,
+            "btn_pad_h": 24,
+            "btn_mt": 14
+          }
+        },
+        "guide_step_rFeQ8k": {
+          "type": "guide_step",
+          "settings": {
+            "anchor_id": "clarity",
+            "nav_label": "Diamond Clarity",
+            "desktop_pos": "right",
+            "mobile_swap": "image_first",
+            "col_width": 50,
+            "gap_d": 50,
+            "gap_m": 20,
+            "pad_top": 10,
+            "pad_bottom": 10,
+            "image": "shopify://shop_images/ChatGPT_Image_Aug_19_2026_08_06_35_PM.png",
+            "img_radius": 0,
+            "img_border_w": 0,
+            "img_border_color": "#eeeeee",
+            "text_align_d": "flex-start",
+            "text_align_m": "flex-start",
+            "title": "Diamond Clarity",
+            "title_color": "#111111",
+            "title_size_d": 32,
+            "title_size_m": 24,
+            "title_weight": "500",
+            "title_mb": 14,
+            "body_text": "<p>Clarity refers to how free a diamond is from internal characteristics (<strong>inclusions</strong>) and external imperfections (<strong>blemishes</strong>). A diamond with higher clarity has fewer visible characteristics, allowing its natural beauty and brilliance to shine.</p><p>The IGI clarity scale ranges from <strong>Flawless (FL) to Included (I3)</strong>, with each grade representing the level of internal and surface features within the diamond. Most diamonds contain tiny characteristics that are not visible to the naked eye and do not affect their overall beauty.</p><p>The impact of inclusions depends on their <strong>size, number, and location</strong>. Features positioned beneath the top surface of the diamond may affect appearance more than those located near the edges. Each diamond has a unique clarity profile, making individual evaluation an important part of selecting the perfect stone.</p>",
+            "text_color": "#444444",
+            "text_size_d": 15,
+            "text_size_m": 13,
+            "text_weight": "400",
+            "text_lh": "1.6",
+            "text_mb": 10,
+            "show_callout": false,
+            "callout_text": "Good quality cut which reflects some light while maintaining weight.",
+            "callout_bg": "#1b3b36",
+            "callout_text_color": "#ffffff",
+            "callout_border_color": "#1b3b36",
+            "callout_border_w": 0,
+            "callout_radius": 2,
+            "callout_size_d": 13,
+            "callout_size_m": 12,
+            "callout_weight": "400",
+            "callout_pad_v": 16,
+            "callout_pad_h": 20,
+            "callout_mt": 16,
+            "btn_label": "",
+            "btn_link": "",
+            "btn_bg": "#ffffff",
+            "btn_text_color": "#111111",
+            "btn_border_color": "#111111",
+            "btn_bg_hover": "#111111",
+            "btn_text_hover": "#ffffff",
+            "btn_border_hover": "#111111",
+            "btn_border_w": 1,
+            "btn_radius": 0,
+            "btn_size_d": 13,
+            "btn_size_m": 12,
+            "btn_weight": "500",
+            "btn_pad_v": 12,
+            "btn_pad_h": 24,
+            "btn_mt": 14
+          }
+        }
+      },
+      "block_order": [
+        "guide_step_mahRAi",
+        "guide_step_yTqhXq",
+        "guide_step_TH8Cjw",
+        "guide_step_rFeQ8k"
+      ],
+      "disabled": true,
+      "custom_css": [
+        "img {aspect-ratio: 4/3; object-fit: cover;}"
+      ],
+      "name": "Interactive Step Guide",
+      "settings": {
+        "bg_color": "#ffffff",
+        "container_max_w": 1600,
+        "scroll_offset": 80,
+        "pad_top_d": 60,
+        "pad_bottom_d": 60,
+        "pad_left_d": 40,
+        "pad_right_d": 40,
+        "pad_top_m": 30,
+        "pad_bottom_m": 30,
+        "pad_left_m": 15,
+        "pad_right_m": 15,
+        "show_nav": true,
+        "nav_title": "In This Guide",
+        "nav_bg": "#f0f0f0",
+        "nav_border_color": "#f8f8f8",
+        "nav_border_w": 1,
+        "nav_radius": 0,
+        "nav_pad_v_d": 24,
+        "nav_pad_h_d": 30,
+        "nav_pad_v_m": 16,
+        "nav_pad_h_m": 16,
+        "nav_mb_d": 40,
+        "nav_mb_m": 25,
+        "nav_cols_d": 3,
+        "nav_cols_m": 1,
+        "nav_gap_d": 16,
+        "nav_gap_m": 12,
+        "nav_title_color": "#111111",
+        "nav_line_color": "#d6d6d6",
+        "nav_title_size_d": 14,
+        "nav_title_size_m": 12,
+        "nav_title_weight": "700",
+        "nav_title_mb": 16,
+        "nav_num_color": "#888888",
+        "nav_link_color": "#222222",
+        "nav_link_hover_color": "#a87243",
+        "nav_link_size_d": 14,
+        "nav_link_size_m": 13,
+        "nav_link_weight": "500",
+        "intro_text": "<p><strong>Expertise you can trust:</strong> Our certified team provides complete guidance to ensure industry-leading excellence and clarity.</p>",
+        "intro_color": "#333333",
+        "intro_size_d": 15,
+        "intro_size_m": 13,
+        "intro_weight": "400",
+        "intro_style": "italic",
+        "intro_align": "center",
+        "intro_lh": "1.6",
+        "intro_mb_d": 50,
+        "intro_mb_m": 30,
+        "block_gap_d": 60,
+        "block_gap_m": 40
+      }
+    },
+    "video_banner_AAWrwK": {
+      "type": "video-banner",
+      "blocks": {
+        "video_FGKKwH": {
+          "type": "video",
+          "settings": {
+            "color_scheme": "",
+            "desktop_video": "shopify://files/videos/2BE55698-8492-44EC-ADA2-225695BCFBC5 (online-video-cutter.com).mp4",
+            "autoplay_video": true,
+            "muted_video": true,
+            "loop_video": true,
+            "show_icon_play": true,
+            "show_icon_sound": true,
+            "control_buttons_position": "top",
+            "video_fit": "cover",
+            "opacity_overlay": 0.3,
+            "video_url": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
+            "description_video": "",
+            "subheading": "",
+            "heading": "",
+            "heading_size": "h1",
+            "text": "",
+            "position_content": "bottom",
+            "align_content": "left",
+            "button_label": "",
+            "button_link": "",
+            "button_style": "simple",
+            "button_label2": "",
+            "button_link2": "",
+            "button_style2": "secondary"
+          }
+        }
+      },
+      "block_order": [
+        "video_FGKKwH"
+      ],
+      "disabled": true,
+      "custom_css": [
+        "{max-width: 1000px; margin: auto;}"
+      ],
+      "name": "t:sections.video-banner.presets.name",
+      "settings": {
+        "header_overlay": false,
+        "desktop_media_ratio": "4/3",
+        "margin_top": "no-indent",
+        "margin_bottom": "no-indent"
+      }
+    },
+    "faq_landing_gNCrBq": {
+      "type": "faq-landing",
+      "blocks": {
+        "faq_TPMYfK": {
+          "type": "faq",
+          "settings": {
+            "question": "How do I find my correct bracelet size?",
+            "answer": "<p>Measure your wrist at the point where you would normally wear your bracelet. Once you have your wrist measurement, add approximately 1–2 cm depending on your preferred fit. </p>"
+          }
+        },
+        "faq_RQDCyU": {
+          "type": "faq",
+          "settings": {
+            "question": "Should my bracelet fit tightly or loosely?",
+            "answer": "<p>For a closer, more fitted look, add around 1 cm to your wrist measurement. For a more relaxed and comfortable fit, add around 2 cm. </p>"
+          }
+        },
+        "faq_VBKbdP": {
+          "type": "faq",
+          "settings": {
+            "question": "What bracelet size should I choose?",
+            "answer": "<p>YAZ & Co offers bracelet sizes based on wrist measurements. Our general sizing guide includes:</p><ul><li>S/M: Up to 18.5 cm (7.2\")<br/></li><li>M/L: Up to 21.5 cm (8.4\") </li></ul>"
+          }
+        },
+        "faq_UbX7ap": {
+          "type": "faq",
+          "settings": {
+            "question": "How do I measure my wrist correctly?",
+            "answer": "<p>Wrap a measuring tape or a strip of paper around your wrist where the bracelet will sit. Make sure it is comfortable and not too tight, then measure the length in centimetres.</p>"
+          }
+        },
+        "faq_A84bQ4": {
+          "type": "faq",
+          "settings": {
+            "question": "Does bracelet style affect the fit?",
+            "answer": "<p>Yes. The final fit can vary depending on the bracelet design, width, setting, and construction. Wider or structured bracelets may feel different compared to delicate chain styles. </p>"
+          }
+        },
+        "faq_4Trw9k": {
+          "type": "faq",
+          "settings": {
+            "question": "What if my wrist measurement is between two sizes?",
+            "answer": "<p>If you are between sizes, we recommend choosing the larger size for a more comfortable fit and ease of movement.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "faq_TPMYfK",
+        "faq_RQDCyU",
+        "faq_VBKbdP",
+        "faq_UbX7ap",
+        "faq_A84bQ4",
+        "faq_4Trw9k"
+      ],
+      "custom_css": [
+        ".faq-landing__accordionWrap {padding: 0px !important;}",
+        "h1 {font-size: 26px !important;}",
+        ".faq-acc__item {padding: 12px 0;}",
+        ".faq-acc__q {font-size: 17px; font-weight: 500;}",
+        ".faq-acc__chev {width: 9px; height: 9px;}",
+        ".faq-landing__inner {width: min(900px, calc(100% - 48px)); margin: 0 auto;}"
+      ],
+      "name": "FAQ Landing",
+      "settings": {
+        "heading": "Frequently Asked Questions",
+        "subheading": "",
+        "faq_heading": ""
+      }
+    },
+    "17759116280ca668d1": {
+      "type": "apps",
+      "blocks": {
+        "instafeed_app_block_zLYQaY": {
+          "type": "shopify://apps/instafeed/blocks/app-block/c447db20-095d-4a10-9725-b5977662c9d5",
+          "settings": {
+            "title": "FOLLOW US ON INSTAGRAM",
+            "title_color": "",
+            "title_size_v2": 0,
+            "alignment": "center",
+            "instafeed_margin_top": 0,
+            "instafeed_margin_bottom": 0,
+            "instafeed_margin_sides": 0,
+            "show_instagram_link": true,
+            "link_alignment": "center",
+            "link_color": "#000000",
+            "background_color": "",
+            "feed_id": "@yazandco",
+            "html_area": ""
+          }
+        }
+      },
+      "block_order": [
+        "instafeed_app_block_zLYQaY"
+      ],
+      "settings": {
+        "include_margins": true
+      }
+    }
+  },
+  "order": [
+    "banner",
+    "layout_settingss_wpWAXf",
+    "split_media_steps_AEPbxE",
+    "ring_size_chart_zeA6mL",
+    "interactive_guide_EM9mhU",
+    "video_banner_AAWrwK",
+    "faq_landing_gNCrBq",
+    "17759116280ca668d1"
+  ]
+}

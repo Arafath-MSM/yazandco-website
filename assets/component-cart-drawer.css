@@ -190,11 +190,14 @@
   right: 2.4rem;
 }
 .drawer__footer {
-  flex: 1;
+  /* was `flex: 1` - the footer grew to fill the drawer, which both squeezed the
+     item list and left a large blank area under the Checkout button. */
+  flex: 0 0 auto;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   padding: 2.4rem;
+  padding-bottom: calc(2.4rem + env(safe-area-inset-bottom, 0px));
   position: relative;
 }
 .drawer__footer:after {
@@ -496,43 +499,32 @@
 .cart-drawer.notification.notification-open .product-recommendations__list-card .collection-product-card .product-parameters {
   display: none;
 }
+/* The regular .cart-item__price-wrapper is visible again, so the duplicate
+   notification-only price must not also render. */
 .cart-drawer.notification.notification-open .cart-item__notification_price-wrapper {
-  display: block !important;
-  margin-top: 0.4rem;
+  display: none;
 }
 .cart-drawer.notification.notification-open .cart-item__discounted-prices {
   justify-content: flex-start;
 }
-.cart-drawer.notification.notification-open .cart-item {
-  display: none;
-}
-.cart-drawer.notification.notification-open .cart-item cart-remove-button,
-.cart-drawer.notification.notification-open .cart-item .cart-item__bottom,
-.cart-drawer.notification.notification-open .cart-item .cart-item__price-wrapper {
-  display: none;
-}
+/* "Product added to cart" mode used to hide every line except the one just
+   added, and strip its quantity stepper, remove button and price. The drawer then
+   read as a one-item cart until it was closed and reopened. The full cart is now
+   shown immediately; the row just added is only highlighted. */
 .cart-drawer.notification.notification-open .cart-item.active {
-  display: block;
   border-bottom: none;
-  padding-bottom: 0;
 }
+/* Rows are uniform now that the whole cart is shown, so the oversized
+   single-item thumbnail and its vertical centring are dropped. */
 .cart-drawer.notification.notification-open .cart-item__inner-top {
-  align-items: center;
   column-gap: 1.6rem;
-}
-.cart-drawer.notification.notification-open .cart-item__inner-top .cart-item__media {
-  width: 10rem;
 }
 .cart-drawer.notification.notification-open .drawer__heading {
   display: none;
 }
-.cart-drawer.notification.notification-open .cart-drawer__footer {
-  display: none;
-}
-.cart-drawer.notification.notification-open .drawer__footer:after {
-  border: none;
-  display: none;
-}
+/* Totals stay visible - the shopper should see the running subtotal for the
+   whole cart, not just a confirmation of the one item. */
+
 .cart-drawer.notification.notification-open .cart__ctas {
   margin-top: 0;
 }
@@ -540,9 +532,14 @@
 .cart-drawer.notification.notification-open cart-drawer-items {
   height: auto;
 }
-.cart-drawer.notification.notification-open .drawer__footer,
+.cart-drawer.notification.notification-open .drawer__footer {
+  flex: 0 0 auto;
+}
 .cart-drawer.notification.notification-open cart-drawer-items {
-  flex: none;
+  /* was `flex: none` on both, so nothing absorbed the leftover height and it
+     piled up as blank space beneath the Checkout button. */
+  flex: 1 1 auto;
+  min-height: 0;
 }
 .cart-drawer.notification.notification-open .cart-popup {
   padding-top: 2.2rem;
@@ -573,9 +570,14 @@ cart-drawer-items {
   overflow-y: auto;
   overflow-x: hidden;
   margin-right: 0.4rem;
+  /* The scrollable region: take all the height the header and footer leave.
+     min-height: 0 is required or a flex item refuses to shrink below its
+     content and the list cannot scroll. */
+  flex: 1 1 auto;
+  min-height: 0;
 }
 cart-drawer-items:not(.is-empty) {
-  height: 100%;
+  height: auto;
 }
 cart-drawer-items.is-empty + .drawer__footer {
   display: none;
@@ -591,6 +593,9 @@ cart-drawer-items::-webkit-scrollbar-thumb {
 @media screen and (max-height: 650px) {
   cart-drawer-items {
     overflow: visible;
+    /* On very short viewports the whole panel scrolls instead, so the item list
+       must size to its content rather than absorbing leftover height. */
+    flex: 0 0 auto;
   }
   cart-drawer-items:not(.is-empty) {
     height: auto;
@@ -764,4 +769,71 @@ cart-drawer-items::-webkit-scrollbar-thumb {
   flex-direction: column;
   justify-content: flex-start;
   height: auto;
+}
+
+/* ==========================================================================
+   Cart drawer - responsive + scrolling corrections
+   ========================================================================== */
+
+/* The #CartDrawer wrapper is a flex item of <cart-drawer> (display: flex).
+   With the default `min-width: auto` it could not shrink below its content's
+   min-content width (~437px), so on a 390px iPhone the whole drawer overflowed
+   ~47px past the LEFT edge of the screen and its left-hand content was cut off. */
+.drawer > .cart-drawer,
+cart-drawer > .cart-drawer {
+  /* Do NOT set width: 100% here - <cart-drawer> is justify-content: flex-end and
+     this wrapper must stay shrink-to-fit so the panel keeps hugging the right edge
+     on desktop. Clamping min/max width is enough to stop the overflow. */
+  min-width: 0;
+  max-width: 100%;
+}
+
+/* Never let the panel exceed the viewport, at any width.
+   (`max-width: 100vw` previously only existed inside the min-width:440px query.) */
+.drawer__inner {
+  max-width: 100vw;
+}
+
+/* iOS Safari: `height: 100%` resolves against the large viewport, so the bottom
+   of the drawer - including the Checkout button - sits under the browser toolbar.
+   dvh tracks the visible viewport; the 100% above stays as the fallback. */
+@supports (height: 100dvh) {
+  .drawer,
+  cart-drawer,
+  .drawer__inner {
+    height: 100dvh;
+  }
+}
+
+/* The upsell carousel now lives inside the scroll container so it scrolls with
+   the cart items instead of being pinned above the Checkout button. */
+.cart-drawer__pair-with {
+  padding: 0 2.4rem;
+}
+.cart-drawer__pair-with:empty {
+  display: none;
+}
+.cart-drawer__pair-with .cart-pair-with {
+  border-top: 0.1rem solid rgba(var(--color-foreground), 0.1);
+  padding-top: 1.6rem;
+  margin-top: 1.6rem;
+}
+
+/* Long carts must always be able to reach the last line item. */
+cart-drawer-items {
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+}
+
+/* Always present, almost always empty - it was reserving 2rem inside the scroll
+   area on every render. */
+cart-drawer #CartDrawer-CartErrors:empty {
+  display: none;
+}
+
+/* Keep the upsell carousel from forcing the drawer wider than the viewport. */
+.cart-pair-with,
+.cart-pair-with__list,
+.cart-pair-with .swiper-slide {
+  min-width: 0;
 }

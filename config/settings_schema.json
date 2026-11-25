@@ -1447,5 +1447,32 @@
 				"label": "t:settings_schema.advanced.settings.rte_type.label"
 			}
 		]
+	},
+	{
+		"name": "Automatic discount display",
+		"settings": [
+			{
+				"type": "checkbox",
+				"id": "promotion_price_enabled",
+				"label": "Show promotional prices",
+				"default": false
+			},
+			{
+				"type": "range",
+				"id": "promotion_price_percent",
+				"label": "Automatic discount percentage",
+				"min": 1,
+				"max": 100,
+				"step": 1,
+				"unit": "%",
+				"default": 20
+			},
+			{
+				"type": "text",
+				"id": "promotion_price_end",
+				"label": "Promotion end time",
+				"info": "Use ISO 8601 with the store's UTC offset, for example 2026-12-01T00:00:00+04:00."
+			}
+		]
 	}
 ]

@@ -1,0 +1,1100 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "rich-text",
+      "blocks": {
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "heading": "Our Story",
+            "heading_size": "h2"
+          }
+        }
+      },
+      "block_order": [
+        "heading"
+      ],
+      "disabled": true,
+      "settings": {
+        "alignment": "left",
+        "width": "medium",
+        "margin_top": "xs",
+        "margin_bottom": "xs"
+      }
+    },
+    "image_banner_MeTppA": {
+      "type": "image-banner",
+      "custom_css": [
+        ".image-banner .banner {display: flex; position: relative; min-height: initial; max-height: 200px;}",
+        ".image-banner .banner:is([class*=\"bottom\"]) .image-banner__wrapper {padding-bottom: 2rem;}"
+      ],
+      "name": "t:sections.image-banner.presets.name",
+      "settings": {
+        "full_width": true,
+        "color_scheme": "",
+        "info_position": "inside",
+        "image": "shopify://shop_images/WhatsApp_Image_2026-09-09_at_6.23.25_PM_2.jpg",
+        "image_ratio": "adapt",
+        "opacity_overlay": 0.2,
+        "heading": "OUR LAB-GROWN DIAMONDS",
+        "heading_size": "h1",
+        "enable_custom_heading_size": true,
+        "heading_font_size_desktop": 36,
+        "heading_font_size_mobile": 28,
+        "text_information": "<p>Real Diamonds. Mindful, Not Mined.</p>",
+        "text_align": "bottom-left",
+        "text_width": "full",
+        "additional_text": "",
+        "button_label": "",
+        "button_style": "tertiary",
+        "button_link": "",
+        "button_label2": "",
+        "button_style2": "tertiary",
+        "button_link2": "",
+        "margin_top": "no-indent",
+        "margin_bottom": "no-indent"
+      }
+    },
+    "banner": {
+      "type": "image-banner",
+      "disabled": true,
+      "settings": {
+        "full_width": true,
+        "color_scheme": "background-2",
+        "info_position": "inside",
+        "image": "shopify://shop_images/Image_May_5_2026_02_20_56_PM.png",
+        "mobile_image": "shopify://shop_images/sample_8.jpg",
+        "image_ratio": "1/1",
+        "opacity_overlay": 0,
+        "heading": "About us",
+        "heading_size": "h1",
+        "enable_custom_heading_size": false,
+        "heading_font_size_desktop": 48,
+        "heading_font_size_mobile": 28,
+        "text_information": "",
+        "text_align": "center",
+        "text_width": "full",
+        "additional_text": "",
+        "button_label": "",
+        "button_style": "tertiary",
+        "button_link": "",
+        "button_label2": "",
+        "button_style2": "tertiary",
+        "button_link2": "",
+        "margin_top": "no-indent",
+        "margin_bottom": "no-indent"
+      }
+    },
+    "steps": {
+      "type": "steps",
+      "blocks": {
+        "steps-item": {
+          "type": "steps-item",
+          "settings": {
+            "date": "2025",
+            "heading": "Here can be your story title",
+            "description": "<p>Use this space to highlight a significant milestone,</p><p>such as expansion, product launch, or industry recognition.</p>"
+          }
+        },
+        "steps-item1": {
+          "type": "steps-item",
+          "settings": {
+            "date": "2025",
+            "heading": "Here can be your story title",
+            "description": "<p>Use this space to highlight a significant milestone,</p><p>such as expansion, product launch, or industry recognition.</p>"
+          }
+        },
+        "steps-item2": {
+          "type": "steps-item",
+          "settings": {
+            "date": "2025",
+            "heading": "Here can be your story title",
+            "description": "<p>Use this space to highlight a significant milestone,</p><p>such as expansion, product launch, or industry recognition.</p>"
+          }
+        },
+        "steps-item3": {
+          "type": "steps-item",
+          "settings": {
+            "date": "2025",
+            "heading": "Here can be your story title",
+            "description": "<p>Use this space to highlight a significant milestone,</p><p>such as expansion, product launch, or industry recognition.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "steps-item",
+        "steps-item1",
+        "steps-item2",
+        "steps-item3"
+      ],
+      "disabled": true,
+      "settings": {
+        "image_ratio": "portrait",
+        "heading_size": "h2",
+        "sticky": false,
+        "margin_top": "no-indent",
+        "margin_bottom": "no-indent"
+      }
+    },
+    "image_banner_UCGLgA": {
+      "type": "image-banner",
+      "disabled": true,
+      "custom_css": [
+        ".image-banner .banner {display: flex; position: relative; min-height: initial; max-height: 700px;}"
+      ],
+      "name": "t:sections.image-banner.presets.name",
+      "settings": {
+        "full_width": true,
+        "color_scheme": "",
+        "info_position": "inside",
+        "image": "shopify://shop_images/IMG_5310_JPG.jpg",
+        "image_ratio": "21/9",
+        "opacity_overlay": 0.2,
+        "heading": "Our Lab-Grown Diamonds",
+        "heading_size": "h1",
+        "enable_custom_heading_size": true,
+        "heading_font_size_desktop": 36,
+        "heading_font_size_mobile": 28,
+        "text_information": "<p>Real Diamonds. Mindful, Not Mined.</p>",
+        "text_align": "bottom-left",
+        "text_width": "full",
+        "additional_text": "",
+        "button_label": "",
+        "button_style": "tertiary",
+        "button_link": "",
+        "button_label2": "",
+        "button_style2": "tertiary",
+        "button_link2": "",
+        "margin_top": "no-indent",
+        "margin_bottom": "no-indent"
+      }
+    },
+    "image_text_cta_9CNDJr": {
+      "type": "image-text-cta",
+      "custom_css": [
+        "img {aspect-ratio: 4/3;}"
+      ],
+      "name": "Image with Text CTA",
+      "settings": {
+        "subheading": "",
+        "heading": "What Are Lab-Grown Diamonds?",
+        "heading_size": "h1",
+        "text": "<p>Lab-grown diamonds are genuine diamonds created in a laboratory using advanced processes that replicate the natural conditions under which diamonds form deep within the Earth.</p><p>Unlike diamond simulants, lab-grown diamonds are not alternatives or imitations. They have the same crystal structure, hardness and brilliance as natural diamonds.</p><p>The difference lies only in their origin.</p>",
+        "color_scheme": "",
+        "full_width": true,
+        "button_label_1": "",
+        "button_link_1": "#",
+        "button_style_1": "secondary",
+        "button_label_2": "",
+        "button_link_2": "#",
+        "button_style_2": "primary",
+        "image": "shopify://shop_images/F84E72BF-3A76-49DD-B7CF-48780E7B0E7E.jpg",
+        "image_ratio": "landscape",
+        "layout_desktop": "image-left",
+        "layout_mobile": "image-first",
+        "margin_top": "no-indent",
+        "margin_bottom": "no-indent"
+      }
+    },
+    "image_text_cta_g3W7Qt": {
+      "type": "image-text-cta",
+      "disabled": true,
+      "custom_css": [
+        "img {aspect-ratio: 1/1;}"
+      ],
+      "name": "Image with Text CTA",
+      "settings": {
+        "subheading": "",
+        "heading": "How Are Lab-Grown Diamonds Created?",
+        "heading_size": "h1",
+        "text": "<p>Lab-grown diamonds are created by recreating the environment needed for diamond formation. A small diamond seed is placed inside a controlled chamber where carbon atoms gradually form into a diamond crystal.</p><p>There are two primary methods used today:</p><h3>Chemical Vapour Deposition (CVD)</h3><p>CVD technology grows diamonds by placing a diamond seed inside a chamber filled with carbon-rich gases. Under controlled conditions, carbon atoms attach layer by layer, creating a diamond crystal.</p><h3>High Pressure High Temperature (HPHT)</h3><p>HPHT technology recreates the extreme pressure and temperature conditions found deep inside the Earth. This process transforms carbon material into a diamond crystal.</p>",
+        "color_scheme": "",
+        "full_width": true,
+        "button_label_1": "",
+        "button_link_1": "#",
+        "button_style_1": "secondary",
+        "button_label_2": "",
+        "button_link_2": "#",
+        "button_style_2": "primary",
+        "image": "shopify://shop_images/page_1_image_2.png",
+        "image_ratio": "landscape",
+        "layout_desktop": "image-left",
+        "layout_mobile": "image-first",
+        "margin_top": "no-indent",
+        "margin_bottom": "no-indent"
+      }
+    },
+    "value_props_grid_Ty4Kfy": {
+      "type": "value-props-grid",
+      "blocks": {
+        "value_item_nETkDq": {
+          "type": "value_item",
+          "settings": {
+            "image": "shopify://shop_images/image_70.png",
+            "custom_svg": "",
+            "title": "Secure Shipping & Returns"
+          }
+        },
+        "value_item_pxddb7": {
+          "type": "value_item",
+          "settings": {
+            "image": "shopify://shop_images/image_71.png",
+            "custom_svg": "",
+            "title": "5-Year Warranty"
+          }
+        },
+        "value_item_BhxEYW": {
+          "type": "value_item",
+          "disabled": true,
+          "settings": {
+            "image": "shopify://shop_images/image_72.png",
+            "custom_svg": "",
+            "title": "LIFETIME DIAMOND"
+          }
+        },
+        "value_item_PgeB6Q": {
+          "type": "value_item",
+          "settings": {
+            "image": "shopify://shop_images/image_73.png",
+            "custom_svg": "",
+            "title": "24/7 Customer Support"
+          }
+        },
+        "value_item_tLPJTM": {
+          "type": "value_item",
+          "settings": {
+            "image": "shopify://shop_images/image_74.png",
+            "custom_svg": "",
+            "title": "Lifetime Resizing"
+          }
+        }
+      },
+      "block_order": [
+        "value_item_nETkDq",
+        "value_item_pxddb7",
+        "value_item_BhxEYW",
+        "value_item_PgeB6Q",
+        "value_item_tLPJTM"
+      ],
+      "name": "Value Props Grid",
+      "settings": {
+        "heading": "",
+        "heading_align": "center",
+        "heading_color": "#ffffff",
+        "heading_size_d": 34,
+        "heading_size_m": 24,
+        "heading_weight_d": "400",
+        "heading_weight_m": "400",
+        "heading_mb_d": 40,
+        "heading_mb_m": 24,
+        "max_width": 1600,
+        "items_per_row_d": 4,
+        "items_per_row_m": 2,
+        "gap_d": 24,
+        "gap_m": 16,
+        "icon_size_d": 64,
+        "icon_size_m": 40,
+        "svg_inner_size": 55,
+        "icon_radius": 50,
+        "icon_bg": "rgba(0,0,0,0)",
+        "icon_border_color": "rgba(0,0,0,0)",
+        "icon_border_width": 1,
+        "icon_svg_color": "#2a2929",
+        "icon_shadow": "none",
+        "icon_mb_d": 16,
+        "icon_mb_m": 10,
+        "text_color": "#ffffff",
+        "text_size_d": 13,
+        "text_size_m": 11,
+        "text_weight_d": "500",
+        "text_weight_m": "500",
+        "text_transform": "none",
+        "letter_spacing": 0.5,
+        "bg_color": "#4d1432",
+        "padding_top_d": 56,
+        "padding_bottom_d": 56,
+        "padding_left_d": 32,
+        "padding_right_d": 32,
+        "padding_top_m": 40,
+        "padding_bottom_m": 40,
+        "padding_left_m": 16,
+        "padding_right_m": 16
+      }
+    },
+    "rich_text_QEj9aw": {
+      "type": "rich-text",
+      "blocks": {
+        "subheading_t7PQfj": {
+          "type": "subheading",
+          "disabled": true,
+          "settings": {
+            "subheading": "Here can be a brief introduction"
+          }
+        },
+        "heading_KAMtUW": {
+          "type": "heading",
+          "settings": {
+            "heading": "YAZ & Co is a visionary jewelry brand redefining  luxury with meaning,  elegance,  craftsmanship, and sustainability.",
+            "heading_size": "h1"
+          }
+        },
+        "text_pNAGr6": {
+          "type": "text",
+          "disabled": true,
+          "settings": {
+            "text": "<p>Here can be a detailed paragraph that expands on the heading, providing insights, background information, or key details.</p>"
+          }
+        },
+        "button_qEXLir": {
+          "type": "button",
+          "disabled": true,
+          "settings": {
+            "button_label": "Write CTA",
+            "button_link": "",
+            "button_style": "simple"
+          }
+        }
+      },
+      "block_order": [
+        "subheading_t7PQfj",
+        "heading_KAMtUW",
+        "text_pNAGr6",
+        "button_qEXLir"
+      ],
+      "disabled": true,
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "alignment": "center",
+        "width": "medium",
+        "margin_top": "m",
+        "margin_bottom": "m"
+      }
+    },
+    "image_with_text_E4Ca86": {
+      "type": "image-with-text",
+      "disabled": true,
+      "name": "t:sections.image-with-text.presets.name",
+      "settings": {
+        "aspect_ratio": "medium",
+        "heading_position": "shrink",
+        "text_width": "medium",
+        "subheading": "",
+        "heading": "YAZ was born from the desire to create jewelry that does  more than adorn.",
+        "heading_size": "h1",
+        "text": "<p>It lives within time, becoming part of people’s<br/>stories and cherished memories. Created to bring<br/>clarity to a jewelry market crowded with noise and<br/>trends, YAZ rejects the notion that true luxury<br/>should be reserved for a select few or defined by<br/>excess. Instead, each piece is designed with<br/>restraint and responsibility, chosen thoughtfully<br/>rather than to impress through abundance.      <br/><br/><br/><br/><br/><br/></p>",
+        "enable_animation": true,
+        "button_label": "",
+        "button_link": "",
+        "button_style": "simple",
+        "image": "shopify://shop_images/F84E72BF-3A76-49DD-B7CF-48780E7B0E7E.jpg",
+        "image_width": "large",
+        "height": "square",
+        "layout": "image_right",
+        "margin_top": "no-indent",
+        "margin_bottom": "no-indent"
+      }
+    },
+    "image_with_text_Xbjq4p": {
+      "type": "image-with-text",
+      "disabled": true,
+      "name": "t:sections.image-with-text.presets.name",
+      "settings": {
+        "aspect_ratio": "medium",
+        "heading_position": "center",
+        "text_width": "small",
+        "subheading": "",
+        "heading": "The brand exists to make every woman feel seen, valued, and elevated.",
+        "heading_size": "h1",
+        "text": "<p><br/>YAZ intertwine the value of its creations with the<br/>value of those who wear them to allow each woman<br/>to see herself through a lens of confidence,<br/>strength, and radiant beauty. <br/><br/>Crafted with care to be accessible and sustainable,<br/>every piece is held to the highest standard: the<br/>name YAZ is treated as a signature and a<br/>guarantee—no piece is presented unless it truly<br/>deserves to carry it.<br/><br/><br/></p>",
+        "enable_animation": true,
+        "button_label": "",
+        "button_link": "",
+        "button_style": "simple",
+        "image": "shopify://shop_images/Z2603_YAZ_07_551_srgb_WEB.jpg",
+        "image_width": "large",
+        "height": "adapt",
+        "layout": "image_left",
+        "margin_top": "no-indent",
+        "margin_bottom": "no-indent"
+      }
+    },
+    "multicolumn_YhkQyf": {
+      "type": "multicolumn",
+      "blocks": {
+        "column_UmDabJ": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/WhatsApp_Image_2026-04-16_at_10.06.40_AM_1.jpg",
+            "overlay_opacity": 0.2,
+            "subheading": "",
+            "heading": "High Jewellery Ring",
+            "description": "",
+            "button_label": "",
+            "button_link": ""
+          }
+        },
+        "column_YzXPyc": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/WhatsApp_Image_2026-04-16_at_10.06.41_AM.jpg",
+            "overlay_opacity": 0.2,
+            "subheading": "",
+            "heading": "Signature Ring and Ananda Earrings",
+            "description": "",
+            "button_label": "",
+            "button_link": ""
+          }
+        },
+        "column_RyJWxG": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/WhatsApp_Image_2026-04-16_at_10.06.41_AM_1.jpg",
+            "overlay_opacity": 0.2,
+            "subheading": "",
+            "heading": "Engagement Rings",
+            "description": "",
+            "button_label": "",
+            "button_link": ""
+          }
+        },
+        "column_GfdiaT": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/Z2603_YAZ_15_1163_srgb_WEB.jpg",
+            "overlay_opacity": 0.2,
+            "subheading": "",
+            "heading": "Royale Eternity Ring",
+            "description": "",
+            "button_label": "",
+            "button_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "column_UmDabJ",
+        "column_YzXPyc",
+        "column_RyJWxG",
+        "column_GfdiaT"
+      ],
+      "disabled": true,
+      "name": "t:sections.multicolumn.name",
+      "settings": {
+        "color_scheme": "",
+        "subheading": "",
+        "heading": "",
+        "heading_size": "h1",
+        "description": "",
+        "enable_full_screen": false,
+        "swiper": true,
+        "stop_autoplay": true,
+        "navigation": false,
+        "slideshow_speed": 5,
+        "layout_type": "overlay",
+        "content_position": "img-top",
+        "always_visible_text": true,
+        "on_hover": "show_text",
+        "multicolumn_to_show": 3,
+        "image_ratio": "portrait",
+        "object_fit": "cover",
+        "card_heading_size": "h2",
+        "button_label": "",
+        "button_style": "simple",
+        "button_link": "",
+        "margin_top": "no-indent",
+        "margin_bottom": "s"
+      }
+    },
+    "image_text_cta_LRwnWR": {
+      "type": "image-text-cta",
+      "custom_css": [
+        "img {aspect-ratio: 4/3;}"
+      ],
+      "name": "Image with Text CTA",
+      "settings": {
+        "subheading": "",
+        "heading": "CVD vs HPHT Diamonds",
+        "heading_size": "h1",
+        "text": "<p>Both CVD and HPHT methods create real diamonds with exceptional beauty and quality. The final diamond is graded based on the same standards used for all diamonds, including cut, colour, clarity, and carat.</p><p><strong>CVD Diamonds</strong></p><ul><li>Created through a layer-by-layer growth process.<br/></li><li>Allows precise control during diamond formation.<br/></li><li>Commonly used for producing high-quality jewellery diamonds.<br/></li></ul><p><strong>HPHT Diamonds</strong></p><ul><li>Created by replicating natural diamond-growing conditions.<br/></li><li>Produces diamonds with excellent clarity and brilliance.<br/></li><li>One of the earliest methods developed for laboratory diamond creation.</li></ul>",
+        "color_scheme": "",
+        "full_width": true,
+        "button_label_1": "",
+        "button_link_1": "#",
+        "button_style_1": "secondary",
+        "button_label_2": "",
+        "button_link_2": "#",
+        "button_style_2": "primary",
+        "image": "shopify://shop_images/WhatsApp_Image_2026-05-16_at_6.18.56_PM_3.jpg",
+        "image_ratio": "landscape",
+        "layout_desktop": "image-right",
+        "layout_mobile": "image-first",
+        "margin_top": "no-indent",
+        "margin_bottom": "no-indent"
+      }
+    },
+    "image_text_cta_fhMFFc": {
+      "type": "image-text-cta",
+      "custom_css": [
+        "img {aspect-ratio: 4/3;}",
+        "h2.title--section.itc__heading.h1 {word-spacing: 4px;}"
+      ],
+      "name": "Image with Text CTA",
+      "settings": {
+        "subheading": "",
+        "heading": "Diamond Grading & Certification",
+        "heading_size": "h1",
+        "text": "<p>Lab-grown diamonds are graded using the same internationally recognised standards applied to natural diamonds.</p><p>Independent gemmological laboratories evaluate diamonds based on:</p><ul><li>Cut quality</li><li>Colour</li><li>Clarity</li><li>Carat weight</li><li>Additional characteristics</li></ul><p>Certification provides confidence that your diamond has been professionally assessed and accurately represented.<br/></p>",
+        "color_scheme": "",
+        "full_width": true,
+        "button_label_1": "",
+        "button_link_1": "#",
+        "button_style_1": "secondary",
+        "button_label_2": "",
+        "button_link_2": "#",
+        "button_style_2": "primary",
+        "image": "shopify://shop_images/ChatGPT_Image_Jul_7_2026_09_46_39_AM.png",
+        "image_ratio": "landscape",
+        "layout_desktop": "image-left",
+        "layout_mobile": "image-first",
+        "margin_top": "no-indent",
+        "margin_bottom": "no-indent"
+      }
+    },
+    "media_banner_nGcPDM": {
+      "type": "media-banner",
+      "blocks": {
+        "media_slide_F7eDUU": {
+          "type": "media_slide",
+          "settings": {
+            "color_scheme": "",
+            "image": "shopify://shop_images/WhatsApp_Image_2026-08-27_at_15.44.34.jpg",
+            "overlay_opacity": 0,
+            "enable_hover": true,
+            "show_video": false,
+            "video_url": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
+            "description_video": "",
+            "subheading": "",
+            "heading": "Where Forever Begins.",
+            "heading_size": "h1",
+            "description": "Bridal jewellery in exceptional lab-grown diamonds, chosen for a lifetime of moments together.",
+            "position_content": "bottom",
+            "align_content": "center",
+            "button_label": "Explore Bridal",
+            "button_link": "shopify://collections/bridal-collection",
+            "button_style": "tertiary",
+            "button_label2": "",
+            "button_link2": "",
+            "button_style2": "secondary",
+            "full_link": true
+          }
+        }
+      },
+      "block_order": [
+        "media_slide_F7eDUU"
+      ],
+      "custom_css": [
+        "h2 {font-size: 26px;}"
+      ],
+      "settings": {
+        "header_overlay": false,
+        "sticky": "sticky-none",
+        "layout": "overlay",
+        "title_link": false,
+        "gap": false,
+        "aspect_ratio": "21/9",
+        "aspect_ratio_mobile": "1/1",
+        "margin_top": "no-indent",
+        "margin_bottom": "no-indent"
+      }
+    },
+    "feature_cards_grid_XwiYrB": {
+      "type": "Feature-Cards-Grid",
+      "blocks": {
+        "feature_card_nFJjma": {
+          "type": "feature_card",
+          "settings": {
+            "image": "shopify://shop_images/WhatsApp_Image_2026-09-09_at_6.23.25_PM.jpg",
+            "title": "Book a Boutique Appointment",
+            "description": "<p>Experience our exquisite collection in a private setting with personalised guidance from our diamond experts.</p>",
+            "link_text": "Book Your Visit",
+            "link_url": "shopify://pages/locations",
+            "show_arrow": true
+          }
+        },
+        "feature_card_p3UEzi": {
+          "type": "feature_card",
+          "settings": {
+            "image": "shopify://shop_images/WhatsApp_Image_2026-09-09_at_6.23.24_PM.jpg",
+            "title": "Book a Virtual Appointment",
+            "description": "<p>Enjoy a personalised virtual consultation from the comfort of your home with our expert advisors.</p>",
+            "link_text": "Schedule Now",
+            "link_url": "shopify://pages/book-an-appointment",
+            "show_arrow": true
+          }
+        },
+        "feature_card_jqxC4B": {
+          "type": "feature_card",
+          "settings": {
+            "image": "shopify://shop_images/WhatsApp_Image_2026-09-09_at_6.23.25_PM_1.jpg",
+            "title": "WhatsApp Concierge",
+            "description": "<p>Connect instantly with our concierge team for expert advice, product enquiries, and personalised assistance.</p>",
+            "link_text": "Chat With Us",
+            "link_url": "tel:+971568887552",
+            "show_arrow": true
+          }
+        },
+        "feature_card_bHgmPE": {
+          "type": "feature_card",
+          "disabled": true,
+          "settings": {
+            "image": "shopify://shop_images/WhatsApp_Image_2026-07-18_at_3.55.55_PM_1.jpg",
+            "title": "Aftercare",
+            "description": "<p>Explore aftercare services such as ring polishing and resizing.</p>",
+            "link_text": "View aftercare services",
+            "link_url": "shopify://pages/faq",
+            "show_arrow": true
+          }
+        }
+      },
+      "block_order": [
+        "feature_card_nFJjma",
+        "feature_card_p3UEzi",
+        "feature_card_jqxC4B",
+        "feature_card_bHgmPE"
+      ],
+      "custom_css": [
+        "a:not([disabled]):not([aria-disabled=\"true\"]):hover {color: rgb(255 255 255); text-decoration-color: rgb(255 255 255);}"
+      ],
+      "name": "Feature Cards Grid",
+      "settings": {
+        "card_layout": "overlay",
+        "overlay_full_bleed": true,
+        "ov_card_clickable": true,
+        "ov_show_desc": false,
+        "ov_show_arrow": false,
+        "ov_img_height_d": 550,
+        "ov_img_height_m": 440,
+        "ov_pad_d": 46,
+        "ov_pad_m": 24,
+        "ov_text_align_d": "left",
+        "ov_text_align_m": "left",
+        "ov_scrim_color": "#000000",
+        "ov_scrim_opacity": 55,
+        "ov_scrim_height": 60,
+        "ov_title_color": "#ffffff",
+        "ov_title_size_d": 23,
+        "ov_title_size_m": 19,
+        "ov_title_weight": "300",
+        "ov_title_ls": 0,
+        "ov_title_transform": "uppercase",
+        "ov_title_mb": 14,
+        "ov_desc_color": "#ededed",
+        "ov_desc_mb": 14,
+        "ov_desc_max_w": 420,
+        "ov_link_color": "#ffffff",
+        "ov_link_hover_color": "#dddddd",
+        "ov_link_underline": true,
+        "ov_link_underline_offset": 6,
+        "bg_color": "#4d1432",
+        "container_max_w": 1800,
+        "pad_top_d": 0,
+        "pad_bottom_d": 0,
+        "pad_left_d": 40,
+        "pad_right_d": 40,
+        "pad_top_m": 0,
+        "pad_bottom_m": 0,
+        "pad_left_m": 16,
+        "pad_right_m": 16,
+        "heading": "",
+        "heading_tag": "h2",
+        "title_color": "#ffffff",
+        "title_size_d": 21,
+        "title_size_m": 19,
+        "title_weight": "400",
+        "title_lh": "1.25",
+        "title_ls": 0,
+        "title_mb_d": 12,
+        "title_mb_m": 8,
+        "subheading": "",
+        "subtitle_color": "#ffffff",
+        "subtitle_size_d": 15,
+        "subtitle_size_m": 14,
+        "subtitle_weight": "400",
+        "subtitle_lh": "1.5",
+        "subtitle_ls": 0,
+        "header_align": "center",
+        "header_align_m": "center",
+        "header_mb_d": 40,
+        "header_mb_m": 25,
+        "cols_d": 3,
+        "cols_m": 1,
+        "gap_d": 0,
+        "gap_m": 0,
+        "card_bg": "#ffffff",
+        "card_radius": 0,
+        "card_border_w": 0,
+        "card_border_color": "#eaeaea",
+        "card_text_align": "left",
+        "card_text_align_m": "center",
+        "enable_card_hover": false,
+        "card_pad_top_d": 0,
+        "card_pad_bottom_d": 24,
+        "card_pad_left_d": 20,
+        "card_pad_right_d": 20,
+        "card_pad_top_m": 18,
+        "card_pad_bottom_m": 18,
+        "card_pad_left_m": 16,
+        "card_pad_right_m": 16,
+        "img_height_d": 320,
+        "img_height_m": 240,
+        "img_fit": "cover",
+        "img_radius": 0,
+        "enable_img_zoom": true,
+        "card_title_color": "#222222",
+        "card_title_size_d": 20,
+        "card_title_size_m": 17,
+        "card_title_weight": "400",
+        "card_title_lh": "1.3",
+        "card_title_ls": 0,
+        "card_title_mb_d": 10,
+        "card_title_mb_m": 8,
+        "card_desc_color": "#000000",
+        "card_desc_size_d": 15,
+        "card_desc_size_m": 14,
+        "card_desc_weight": "400",
+        "card_desc_lh": "1.5",
+        "card_desc_mb_d": 20,
+        "card_desc_mb_m": 16,
+        "link_color": "#ffffff",
+        "link_hover_color": "#ffffff",
+        "link_size_d": 14,
+        "link_size_m": 12,
+        "link_weight": "400",
+        "link_lh": "1.4",
+        "link_arrow_gap": 8
+      }
+    },
+    "feature_cards_grid_M8qr7M": {
+      "type": "Feature-Cards-Grid",
+      "blocks": {
+        "feature_card_EFQJdF": {
+          "type": "feature_card",
+          "settings": {
+            "image": "shopify://shop_images/IMG_5310_JPG.jpg",
+            "title": "Book a Boutique Appointment",
+            "description": "<p>Experience our exquisite collection in a private setting with personalised guidance from our diamond experts.</p>",
+            "link_text": "Book Your Visit",
+            "link_url": "shopify://pages/locations",
+            "show_arrow": true
+          }
+        },
+        "feature_card_FyEz3J": {
+          "type": "feature_card",
+          "settings": {
+            "image": "shopify://shop_images/WhatsApp_Image_2026-08-27_at_15.44.34.jpg",
+            "title": "Book a Virtual Appointment",
+            "description": "<p>Enjoy a personalised virtual consultation from the comfort of your home with our expert advisors.</p>",
+            "link_text": "Schedule Now",
+            "link_url": "shopify://pages/book-an-appointment",
+            "show_arrow": true
+          }
+        },
+        "feature_card_t9d7tn": {
+          "type": "feature_card",
+          "settings": {
+            "image": "shopify://shop_images/Z2603_YAZ_22_1566_srgb_WEB_4.jpg",
+            "title": "WhatsApp Concierge",
+            "description": "<p>Connect instantly with our concierge team for expert advice, product enquiries, and personalised assistance.</p>",
+            "link_text": "Chat With Us",
+            "link_url": "tel:+971568887552",
+            "show_arrow": true
+          }
+        },
+        "feature_card_AyNgL7": {
+          "type": "feature_card",
+          "disabled": true,
+          "settings": {
+            "image": "shopify://shop_images/WhatsApp_Image_2026-07-18_at_3.55.55_PM_1.jpg",
+            "title": "Aftercare",
+            "description": "<p>Explore aftercare services such as ring polishing and resizing.</p>",
+            "link_text": "View aftercare services",
+            "link_url": "shopify://pages/faq",
+            "show_arrow": true
+          }
+        }
+      },
+      "block_order": [
+        "feature_card_EFQJdF",
+        "feature_card_FyEz3J",
+        "feature_card_t9d7tn",
+        "feature_card_AyNgL7"
+      ],
+      "disabled": true,
+      "name": "Feature Cards Grid",
+      "settings": {
+        "card_layout": "below",
+        "overlay_full_bleed": true,
+        "ov_card_clickable": true,
+        "ov_show_desc": false,
+        "ov_show_arrow": false,
+        "ov_img_height_d": 700,
+        "ov_img_height_m": 440,
+        "ov_pad_d": 46,
+        "ov_pad_m": 24,
+        "ov_text_align_d": "left",
+        "ov_text_align_m": "left",
+        "ov_scrim_color": "#000000",
+        "ov_scrim_opacity": 55,
+        "ov_scrim_height": 60,
+        "ov_title_color": "#ffffff",
+        "ov_title_size_d": 32,
+        "ov_title_size_m": 22,
+        "ov_title_weight": "300",
+        "ov_title_ls": 3,
+        "ov_title_transform": "uppercase",
+        "ov_title_mb": 14,
+        "ov_desc_color": "#ededed",
+        "ov_desc_mb": 14,
+        "ov_desc_max_w": 420,
+        "ov_link_color": "#ffffff",
+        "ov_link_hover_color": "#dddddd",
+        "ov_link_underline": true,
+        "ov_link_underline_offset": 6,
+        "bg_color": "#4d1432",
+        "container_max_w": 1800,
+        "pad_top_d": 70,
+        "pad_bottom_d": 70,
+        "pad_left_d": 40,
+        "pad_right_d": 40,
+        "pad_top_m": 35,
+        "pad_bottom_m": 35,
+        "pad_left_m": 16,
+        "pad_right_m": 16,
+        "heading": "Find Your Perfect Piece, Your Way",
+        "heading_tag": "h2",
+        "title_color": "#ffffff",
+        "title_size_d": 34,
+        "title_size_m": 24,
+        "title_weight": "400",
+        "title_lh": "1.25",
+        "title_ls": 0,
+        "title_mb_d": 12,
+        "title_mb_m": 8,
+        "subheading": "Explore our personalised diamond experience with expert guidance, whether you visit us in-store, connect virtually, or speak with our concierge team.",
+        "subtitle_color": "#ffffff",
+        "subtitle_size_d": 16,
+        "subtitle_size_m": 14,
+        "subtitle_weight": "400",
+        "subtitle_lh": "1.5",
+        "subtitle_ls": 0,
+        "header_align": "left",
+        "header_align_m": "center",
+        "header_mb_d": 40,
+        "header_mb_m": 25,
+        "cols_d": 3,
+        "cols_m": 1,
+        "gap_d": 20,
+        "gap_m": 15,
+        "card_bg": "#ffffff",
+        "card_radius": 0,
+        "card_border_w": 0,
+        "card_border_color": "#eaeaea",
+        "card_text_align": "left",
+        "card_text_align_m": "center",
+        "enable_card_hover": false,
+        "card_pad_top_d": 24,
+        "card_pad_bottom_d": 24,
+        "card_pad_left_d": 20,
+        "card_pad_right_d": 20,
+        "card_pad_top_m": 18,
+        "card_pad_bottom_m": 18,
+        "card_pad_left_m": 16,
+        "card_pad_right_m": 16,
+        "img_height_d": 320,
+        "img_height_m": 240,
+        "img_fit": "cover",
+        "img_radius": 0,
+        "enable_img_zoom": true,
+        "card_title_color": "#222222",
+        "card_title_size_d": 20,
+        "card_title_size_m": 17,
+        "card_title_weight": "400",
+        "card_title_lh": "1.3",
+        "card_title_ls": 0,
+        "card_title_mb_d": 10,
+        "card_title_mb_m": 8,
+        "card_desc_color": "#000000",
+        "card_desc_size_d": 15,
+        "card_desc_size_m": 14,
+        "card_desc_weight": "400",
+        "card_desc_lh": "1.5",
+        "card_desc_mb_d": 20,
+        "card_desc_mb_m": 16,
+        "link_color": "#000000",
+        "link_hover_color": "#111111",
+        "link_size_d": 14,
+        "link_size_m": 12,
+        "link_weight": "400",
+        "link_lh": "1.4",
+        "link_arrow_gap": 8
+      }
+    },
+    "image_with_text_Ljbr8P": {
+      "type": "image-with-text",
+      "disabled": true,
+      "name": "t:sections.image-with-text.presets.name",
+      "settings": {
+        "aspect_ratio": "medium",
+        "heading_position": "center",
+        "text_width": "small",
+        "subheading": "",
+        "heading": "Each piece is conceived as a vessel for self-expression,empowerment, and shared light.",
+        "heading_size": "h1",
+        "text": "<p>Inspired by the dream of owning something precious—and the memory of once feeling that<br/>such beauty was out of reach - YAZ is built on the promise to bring luxury closer to every woman<br/>who deserves it.</p>",
+        "enable_animation": true,
+        "button_label": "",
+        "button_link": "",
+        "button_style": "simple",
+        "image": "shopify://shop_images/Asset-3.jpg",
+        "image_width": "large",
+        "height": "portrait",
+        "layout": "image_right",
+        "margin_top": "no-indent",
+        "margin_bottom": "no-indent"
+      }
+    },
+    "image_with_text_3w4yYG": {
+      "type": "image-with-text",
+      "disabled": true,
+      "name": "t:sections.image-with-text.presets.name",
+      "settings": {
+        "aspect_ratio": "medium",
+        "heading_position": "center",
+        "text_width": "small",
+        "subheading": "",
+        "heading": "YAZ is a brand built on confidence.",
+        "heading_size": "h1",
+        "text": "<p>Its radiance emerges from clarity, selection, and<br/>responsibility. The light of YAZ comes from<br/>within: a brilliance rooted in decision, not display.<br/>Through thoughtful design, responsible<br/>innovation, and the artistry of human touch, YAZ<br/>reimagines jewelry as a way for women to honor<br/>their stories, elevate everyday experiences, and<br/>inspire authentic connection.</p>",
+        "enable_animation": true,
+        "button_label": "",
+        "button_link": "",
+        "button_style": "simple",
+        "image": "shopify://shop_images/Asset-2.jpg",
+        "image_width": "large",
+        "height": "portrait",
+        "layout": "image_left",
+        "margin_top": "no-indent",
+        "margin_bottom": "no-indent"
+      }
+    },
+    "rich_text_yNcN9P": {
+      "type": "rich-text",
+      "blocks": {
+        "subheading_jC6kkx": {
+          "type": "subheading",
+          "disabled": true,
+          "settings": {
+            "subheading": "Here can be a brief introduction"
+          }
+        },
+        "heading_JymkHQ": {
+          "type": "heading",
+          "settings": {
+            "heading": "With uncompromising quality, every YAZ creation is crafted to be a heirloom that can be passed down through generations.",
+            "heading_size": "h1"
+          }
+        },
+        "text_R9Nq6F": {
+          "type": "text",
+          "disabled": true,
+          "settings": {
+            "text": "<p>Here can be a detailed paragraph that expands on the heading, providing insights, background information, or key details.</p>"
+          }
+        },
+        "button_THK6zY": {
+          "type": "button",
+          "disabled": true,
+          "settings": {
+            "button_label": "Write CTA",
+            "button_link": "",
+            "button_style": "simple"
+          }
+        }
+      },
+      "block_order": [
+        "subheading_jC6kkx",
+        "heading_JymkHQ",
+        "text_R9Nq6F",
+        "button_THK6zY"
+      ],
+      "disabled": true,
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "alignment": "center",
+        "width": "medium",
+        "margin_top": "m",
+        "margin_bottom": "m"
+      }
+    },
+    "17759116280ca668d1": {
+      "type": "apps",
+      "blocks": {
+        "instafeed_app_block_zLYQaY": {
+          "type": "shopify://apps/instafeed/blocks/app-block/c447db20-095d-4a10-9725-b5977662c9d5",
+          "settings": {
+            "title": "FOLLOW US ON INSTAGRAM",
+            "title_color": "",
+            "title_size_v2": 0,
+            "alignment": "center",
+            "instafeed_margin_top": 0,
+            "instafeed_margin_bottom": 0,
+            "instafeed_margin_sides": 0,
+            "show_instagram_link": true,
+            "link_alignment": "center",
+            "link_color": "#000000",
+            "background_color": "",
+            "feed_id": "@yazandco",
+            "html_area": ""
+          }
+        }
+      },
+      "block_order": [
+        "instafeed_app_block_zLYQaY"
+      ],
+      "settings": {
+        "include_margins": true
+      }
+    }
+  },
+  "order": [
+    "main",
+    "image_banner_MeTppA",
+    "banner",
+    "steps",
+    "image_banner_UCGLgA",
+    "image_text_cta_9CNDJr",
+    "image_text_cta_g3W7Qt",
+    "value_props_grid_Ty4Kfy",
+    "rich_text_QEj9aw",
+    "image_with_text_E4Ca86",
+    "image_with_text_Xbjq4p",
+    "multicolumn_YhkQyf",
+    "image_text_cta_LRwnWR",
+    "image_text_cta_fhMFFc",
+    "media_banner_nGcPDM",
+    "feature_cards_grid_XwiYrB",
+    "feature_cards_grid_M8qr7M",
+    "image_with_text_Ljbr8P",
+    "image_with_text_3w4yYG",
+    "rich_text_yNcN9P",
+    "17759116280ca668d1"
+  ]
+}

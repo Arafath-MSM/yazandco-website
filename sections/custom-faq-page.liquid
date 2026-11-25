@@ -1,0 +1,1044 @@
+{%- style -%}
+  /* ==========================================================================
+     SECTION & CONTAINER (DYNAMIC PADDING & COLORS)
+     ========================================================================== */
+  #faq-section-{{ section.id }} {
+    background-color: {{ section.settings.bg_color }};
+    padding-top: {{ section.settings.pad_top_m }}px;
+    padding-bottom: {{ section.settings.pad_bottom_m }}px;
+    padding-left: {{ section.settings.pad_left_m }}px;
+    padding-right: {{ section.settings.pad_right_m }}px;
+  }
+
+  @media screen and (min-width: 990px) {
+    #faq-section-{{ section.id }} {
+      padding-top: {{ section.settings.pad_top_d }}px;
+      padding-bottom: {{ section.settings.pad_bottom_d }}px;
+      padding-left: {{ section.settings.pad_left_d }}px;
+      padding-right: {{ section.settings.pad_right_d }}px;
+    }
+  }
+
+  .faq-container-{{ section.id }} {
+    max-width: {{ section.settings.container_max_w }}px;
+    margin: 0 auto;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: {{ section.settings.gap_m }}px;
+  }
+
+  @media screen and (min-width: 990px) {
+    .faq-container-{{ section.id }} {
+      display: grid;
+      grid-template-columns: {{ section.settings.left_col_w }}px 1fr;
+      gap: {{ section.settings.gap_d }}px;
+      align-items: start;
+    }
+  }
+
+  /* ==========================================================================
+     LEFT SIDEBAR (STICKY NAV & MAIN TITLE)
+     ========================================================================== */
+  .faq-sidebar-{{ section.id }} {
+    position: relative;
+  }
+
+  @media screen and (min-width: 990px) {
+    .faq-sidebar-{{ section.id }} {
+      position: sticky;
+      top: {{ section.settings.sticky_top }}px;
+      z-index: 2;
+    }
+  }
+
+  .faq-main-title-{{ section.id }} {
+    color: {{ section.settings.main_title_color }};
+    font-size: {{ section.settings.main_title_size_m }}px;
+    font-weight: {{ section.settings.main_title_weight }};
+    text-transform: {{ section.settings.main_title_transform }};
+    letter-spacing: {{ section.settings.main_title_ls }}px;
+    margin: 0 0 {{ section.settings.main_title_mb }}px 0;
+    line-height: 1.1;
+  }
+
+  @media screen and (min-width: 990px) {
+    .faq-main-title-{{ section.id }} {
+      font-size: {{ section.settings.main_title_size_d }}px;
+    }
+  }
+
+  .faq-nav-list-{{ section.id }} {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: {{ section.settings.nav_gap }}px;
+  }
+
+  .faq-nav-link-{{ section.id }} {
+    color: {{ section.settings.nav_color }};
+    font-size: {{ section.settings.nav_size_m }}px;
+    font-weight: {{ section.settings.nav_weight }};
+    text-transform: {{ section.settings.nav_transform }};
+    letter-spacing: {{ section.settings.nav_ls }}px;
+    text-decoration: none;
+    transition: color 0.2s ease;
+    display: inline-block;
+  }
+
+  @media screen and (min-width: 990px) {
+    .faq-nav-link-{{ section.id }} {
+      font-size: {{ section.settings.nav_size_d }}px;
+    }
+  }
+
+  .faq-nav-link-{{ section.id }}:hover,
+  .faq-nav-link-{{ section.id }}.is-active {
+    color: {{ section.settings.nav_active_color }};
+  }
+
+  /* ==========================================================================
+     RIGHT CONTENT (CATEGORIES & ACCORDIONS)
+     ========================================================================== */
+  .faq-cat-group-{{ section.id }} {
+    margin-bottom: {{ section.settings.cat_group_mb }}px;
+    scroll-margin-top: {{ section.settings.sticky_top }}px;
+  }
+
+  .faq-cat-title-{{ section.id }} {
+    color: {{ section.settings.cat_title_color }};
+    font-size: {{ section.settings.cat_title_size_m }}px;
+    font-weight: {{ section.settings.cat_title_weight }};
+    text-transform: {{ section.settings.cat_title_transform }};
+    letter-spacing: {{ section.settings.cat_title_ls }}px;
+    margin: 0 0 {{ section.settings.cat_title_mb }}px 0;
+  }
+
+  @media screen and (min-width: 990px) {
+    .faq-cat-title-{{ section.id }} {
+      font-size: {{ section.settings.cat_title_size_d }}px;
+    }
+  }
+
+  .faq-cat-desc-{{ section.id }} {
+    color: {{ section.settings.cat_desc_color }};
+    font-size: {{ section.settings.cat_desc_size_m }}px;
+    font-weight: {{ section.settings.cat_desc_weight }};
+    line-height: {{ section.settings.cat_desc_lh }};
+    margin-bottom: {{ section.settings.cat_desc_mb }}px;
+  }
+
+  @media screen and (min-width: 990px) {
+    .faq-cat-desc-{{ section.id }} {
+      font-size: {{ section.settings.cat_desc_size_d }}px;
+    }
+  }
+
+  /* ACCORDION ITEMS */
+  .faq-accordion-item-{{ section.id }} {
+    background-color: {{ section.settings.acc_bg }};
+    border-top: {{ section.settings.acc_border_thickness }}px solid {{ section.settings.acc_border_color }};
+    border-bottom: {{ section.settings.acc_border_thickness }}px solid {{ section.settings.acc_border_color }};
+    border-radius: {{ section.settings.acc_radius }}px;
+    margin-top: -{{ section.settings.acc_border_thickness }}px;
+  }
+
+  .faq-accordion-btn-{{ section.id }} {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+    padding-top: {{ section.settings.acc_btn_pad_top }}px;
+    padding-bottom: {{ section.settings.acc_btn_pad_bottom }}px;
+    padding-left: {{ section.settings.acc_btn_pad_left }}px;
+    padding-right: {{ section.settings.acc_btn_pad_right }}px;
+    color: {{ section.settings.acc_q_color }};
+    font-size: {{ section.settings.acc_q_size_m }}px;
+    font-weight: {{ section.settings.acc_q_weight }};
+    letter-spacing: {{ section.settings.acc_q_ls }}px;
+    transition: color 0.2s ease;
+  }
+
+  @media screen and (min-width: 990px) {
+    .faq-accordion-btn-{{ section.id }} {
+      font-size: {{ section.settings.acc_q_size_d }}px;
+    }
+  }
+
+  .faq-accordion-btn-{{ section.id }}:hover {
+    color: {{ section.settings.acc_q_hover_color }};
+  }
+
+  .faq-icon-{{ section.id }} {
+    font-size: {{ section.settings.icon_size }}px;
+    color: {{ section.settings.icon_color }};
+    font-weight: 300;
+    transition: transform 0.3s ease;
+    line-height: 1;
+    margin-left: 15px;
+  }
+
+  .faq-accordion-item-{{ section.id }}.is-open .faq-icon-{{ section.id }} {
+    transform: rotate(45deg);
+  }
+
+  .faq-accordion-body-{{ section.id }} {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .faq-answer-inner-{{ section.id }} {
+    padding-top: {{ section.settings.acc_ans_pad_top }}px;
+    padding-bottom: {{ section.settings.acc_ans_pad_bottom }}px;
+    padding-left: {{ section.settings.acc_ans_pad_left }}px;
+    padding-right: {{ section.settings.acc_ans_pad_right }}px;
+    color: {{ section.settings.acc_ans_color }};
+    font-size: {{ section.settings.acc_ans_size_m }}px;
+    font-weight: {{ section.settings.acc_ans_weight }};
+    line-height: {{ section.settings.acc_ans_lh }};
+  }
+
+  @media screen and (min-width: 990px) {
+    .faq-answer-inner-{{ section.id }} {
+      font-size: {{ section.settings.acc_ans_size_d }}px;
+    }
+  }
+{%- endstyle -%}
+
+<section class="faq-section-{{ section.id }}" id="faq-section-{{ section.id }}">
+  <div class="faq-container-{{ section.id }}">
+    
+    <!-- LEFT SIDEBAR -->
+    <div class="faq-sidebar-{{ section.id }}">
+      {%- if section.settings.main_title != blank -%}
+        <h1 class="faq-main-title-{{ section.id }}">{{ section.settings.main_title }}</h1>
+      {%- endif -%}
+
+      <ul class="faq-nav-list-{{ section.id }}">
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'category' -%}
+            <li>
+              <a href="#faq-cat-{{ block.id }}" class="faq-nav-link-{{ section.id }} {% if forloop.first %}is-active{% endif %}">
+                {{ block.settings.title }}
+              </a>
+            </li>
+          {%- endif -%}
+        {%- endfor -%}
+      </ul>
+    </div>
+
+    <!-- RIGHT CONTENT -->
+    <div class="faq-content-{{ section.id }}">
+      {%- for block in section.blocks -%}
+        {%- case block.type -%}
+
+          {%- when 'category' -%}
+            <div class="faq-cat-group-{{ section.id }}" id="faq-cat-{{ block.id }}" {{ block.shopify_attributes }}>
+              {%- if block.settings.title != blank -%}
+                <h2 class="faq-cat-title-{{ section.id }}">{{ block.settings.title }}</h2>
+              {%- endif -%}
+              {%- if block.settings.description != blank -%}
+                <div class="faq-cat-desc-{{ section.id }}">
+                  {{ block.settings.description }}
+                </div>
+              {%- endif -%}
+            </div>
+
+          {%- when 'faq_item' -%}
+            <div class="faq-accordion-item-{{ section.id }}" {{ block.shopify_attributes }}>
+              <button type="button" class="faq-accordion-btn-{{ section.id }}">
+                <span>{{ block.settings.question }}</span>
+                <span class="faq-icon-{{ section.id }}">+</span>
+              </button>
+              <div class="faq-accordion-body-{{ section.id }}">
+                <div class="faq-answer-inner-{{ section.id }}">
+                  {{ block.settings.answer }}
+                </div>
+              </div>
+            </div>
+
+        {%- endcase -%}
+      {%- endfor -%}
+    </div>
+
+  </div>
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const sectionId = '{{ section.id }}';
+    const container = document.getElementById(`faq-section-${sectionId}`);
+    if (!container) return;
+
+    // Accordion Toggle
+    const accButtons = container.querySelectorAll(`.faq-accordion-btn-${sectionId}`);
+    accButtons.forEach(btn => {
+      btn.addEventListener('click', function () {
+        const item = this.parentElement;
+        const body = item.querySelector(`.faq-accordion-body-${sectionId}`);
+        
+        if (item.classList.contains('is-open')) {
+          item.classList.remove('is-open');
+          body.style.maxHeight = null;
+        } else {
+          item.classList.add('is-open');
+          body.style.maxHeight = body.scrollHeight + "px";
+        }
+      });
+    });
+
+    // Active Link Scroll Highlight
+    const navLinks = container.querySelectorAll(`.faq-nav-link-${sectionId}`);
+    navLinks.forEach(link => {
+      link.addEventListener('click', function (e) {
+        navLinks.forEach(l => l.classList.remove('is-active'));
+        this.classList.add('is-active');
+      });
+    });
+  });
+</script>
+
+{% schema %}
+{
+  "name": "FAQ Custom Page Layout",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "1. SECTION LAYOUT & BACKGROUND"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "range",
+      "id": "container_max_w",
+      "min": 800,
+      "max": 1600,
+      "step": 20,
+      "unit": "px",
+      "label": "Container Max Width",
+      "default": 1200
+    },
+    {
+      "type": "range",
+      "id": "left_col_w",
+      "min": 180,
+      "max": 450,
+      "step": 10,
+      "unit": "px",
+      "label": "Left Sidebar Width (Desktop)",
+      "default": 280
+    },
+    {
+      "type": "range",
+      "id": "gap_d",
+      "min": 20,
+      "max": 120,
+      "step": 5,
+      "unit": "px",
+      "label": "Desktop Grid Gap",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "gap_m",
+      "min": 10,
+      "max": 60,
+      "step": 5,
+      "unit": "px",
+      "label": "Mobile Grid Gap",
+      "default": 30
+    },
+    {
+      "type": "range",
+      "id": "sticky_top",
+      "min": 0,
+      "max": 150,
+      "step": 5,
+      "unit": "px",
+      "label": "Left Column Sticky Top Offset",
+      "default": 40
+    },
+    {
+      "type": "header",
+      "content": "2. SECTION PADDING (DESKTOP)"
+    },
+    {
+      "type": "range",
+      "id": "pad_top_d",
+      "min": 0,
+      "max": 120,
+      "step": 5,
+      "unit": "px",
+      "label": "Padding Top",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "pad_bottom_d",
+      "min": 0,
+      "max": 120,
+      "step": 5,
+      "unit": "px",
+      "label": "Padding Bottom",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "pad_left_d",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Padding Left",
+      "default": 30
+    },
+    {
+      "type": "range",
+      "id": "pad_right_d",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Padding Right",
+      "default": 30
+    },
+    {
+      "type": "header",
+      "content": "3. SECTION PADDING (MOBILE)"
+    },
+    {
+      "type": "range",
+      "id": "pad_top_m",
+      "min": 0,
+      "max": 80,
+      "step": 5,
+      "unit": "px",
+      "label": "Padding Top",
+      "default": 30
+    },
+    {
+      "type": "range",
+      "id": "pad_bottom_m",
+      "min": 0,
+      "max": 80,
+      "step": 5,
+      "unit": "px",
+      "label": "Padding Bottom",
+      "default": 30
+    },
+    {
+      "type": "range",
+      "id": "pad_left_m",
+      "min": 0,
+      "max": 50,
+      "step": 5,
+      "unit": "px",
+      "label": "Padding Left",
+      "default": 15
+    },
+    {
+      "type": "range",
+      "id": "pad_right_m",
+      "min": 0,
+      "max": 50,
+      "step": 5,
+      "unit": "px",
+      "label": "Padding Right",
+      "default": 15
+    },
+    {
+      "type": "header",
+      "content": "4. SIDEBAR MAIN TITLE (FAQ's)"
+    },
+    {
+      "type": "text",
+      "id": "main_title",
+      "label": "Main Sidebar Title",
+      "default": "FAQ's"
+    },
+    {
+      "type": "color",
+      "id": "main_title_color",
+      "label": "Title Color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "main_title_size_d",
+      "min": 18,
+      "max": 60,
+      "step": 1,
+      "unit": "px",
+      "label": "Desktop Font Size",
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "main_title_size_m",
+      "min": 16,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "label": "Mobile Font Size",
+      "default": 24
+    },
+    {
+      "type": "select",
+      "id": "main_title_weight",
+      "label": "Font Weight",
+      "options": [
+        { "value": "400", "label": "400 Regular" },
+        { "value": "500", "label": "500 Medium" },
+        { "value": "600", "label": "600 SemiBold" },
+        { "value": "700", "label": "700 Bold" }
+      ],
+      "default": "500"
+    },
+    {
+      "type": "select",
+      "id": "main_title_transform",
+      "label": "Text Transform",
+      "options": [
+        { "value": "none", "label": "Normal" },
+        { "value": "uppercase", "label": "UPPERCASE" }
+      ],
+      "default": "none"
+    },
+    {
+      "type": "range",
+      "id": "main_title_ls",
+      "min": 0,
+      "max": 5,
+      "step": 0.5,
+      "unit": "px",
+      "label": "Letter Spacing",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "main_title_mb",
+      "min": 5,
+      "max": 50,
+      "step": 5,
+      "unit": "px",
+      "label": "Bottom Margin",
+      "default": 25
+    },
+    {
+      "type": "header",
+      "content": "5. SIDEBAR CATEGORY LINKS"
+    },
+    {
+      "type": "color",
+      "id": "nav_color",
+      "label": "Link Color",
+      "default": "#888888"
+    },
+    {
+      "type": "color",
+      "id": "nav_active_color",
+      "label": "Active / Hover Color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "nav_size_d",
+      "min": 10,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Desktop Font Size",
+      "default": 13
+    },
+    {
+      "type": "range",
+      "id": "nav_size_m",
+      "min": 10,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Mobile Font Size",
+      "default": 12
+    },
+    {
+      "type": "select",
+      "id": "nav_weight",
+      "label": "Font Weight",
+      "options": [
+        { "value": "400", "label": "400 Regular" },
+        { "value": "500", "label": "500 Medium" },
+        { "value": "600", "label": "600 SemiBold" }
+      ],
+      "default": "500"
+    },
+    {
+      "type": "select",
+      "id": "nav_transform",
+      "label": "Text Transform",
+      "options": [
+        { "value": "none", "label": "Normal" },
+        { "value": "uppercase", "label": "UPPERCASE" }
+      ],
+      "default": "uppercase"
+    },
+    {
+      "type": "range",
+      "id": "nav_ls",
+      "min": 0,
+      "max": 4,
+      "step": 0.5,
+      "unit": "px",
+      "label": "Letter Spacing",
+      "default": 0.5
+    },
+    {
+      "type": "range",
+      "id": "nav_gap",
+      "min": 4,
+      "max": 30,
+      "step": 2,
+      "unit": "px",
+      "label": "Gap Between Links",
+      "default": 14
+    },
+    {
+      "type": "header",
+      "content": "6. CATEGORY HEADERS (RIGHT COLUMN)"
+    },
+    {
+      "type": "color",
+      "id": "cat_title_color",
+      "label": "Category Title Color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "cat_title_size_d",
+      "min": 14,
+      "max": 36,
+      "step": 1,
+      "unit": "px",
+      "label": "Desktop Font Size",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "cat_title_size_m",
+      "min": 12,
+      "max": 28,
+      "step": 1,
+      "unit": "px",
+      "label": "Mobile Font Size",
+      "default": 16
+    },
+    {
+      "type": "select",
+      "id": "cat_title_weight",
+      "label": "Font Weight",
+      "options": [
+        { "value": "400", "label": "400 Regular" },
+        { "value": "500", "label": "500 Medium" },
+        { "value": "600", "label": "600 SemiBold" }
+      ],
+      "default": "500"
+    },
+    {
+      "type": "select",
+      "id": "cat_title_transform",
+      "label": "Text Transform",
+      "options": [
+        { "value": "none", "label": "Normal" },
+        { "value": "uppercase", "label": "UPPERCASE" }
+      ],
+      "default": "uppercase"
+    },
+    {
+      "type": "range",
+      "id": "cat_title_ls",
+      "min": 0,
+      "max": 4,
+      "step": 0.5,
+      "unit": "px",
+      "label": "Letter Spacing",
+      "default": 0.5
+    },
+    {
+      "type": "range",
+      "id": "cat_title_mb",
+      "min": 4,
+      "max": 30,
+      "step": 2,
+      "unit": "px",
+      "label": "Title Bottom Margin",
+      "default": 12
+    },
+    {
+      "type": "color",
+      "id": "cat_desc_color",
+      "label": "Category Desc Color",
+      "default": "#444444"
+    },
+    {
+      "type": "range",
+      "id": "cat_desc_size_d",
+      "min": 11,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Desktop Desc Size",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "cat_desc_size_m",
+      "min": 10,
+      "max": 18,
+      "step": 1,
+      "unit": "px",
+      "label": "Mobile Desc Size",
+      "default": 13
+    },
+    {
+      "type": "select",
+      "id": "cat_desc_weight",
+      "label": "Desc Weight",
+      "options": [
+        { "value": "300", "label": "300 Light" },
+        { "value": "400", "label": "400 Regular" },
+        { "value": "500", "label": "500 Medium" }
+      ],
+      "default": "400"
+    },
+    {
+      "type": "text",
+      "id": "cat_desc_lh",
+      "label": "Desc Line Height",
+      "default": "1.6"
+    },
+    {
+      "type": "range",
+      "id": "cat_desc_mb",
+      "min": 5,
+      "max": 40,
+      "step": 5,
+      "unit": "px",
+      "label": "Desc Bottom Margin",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "cat_group_mb",
+      "min": 20,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Category Group Bottom Margin",
+      "default": 50
+    },
+    {
+      "type": "header",
+      "content": "7. ACCORDION STYLING"
+    },
+    {
+      "type": "color",
+      "id": "acc_bg",
+      "label": "Accordion Background",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "acc_border_color",
+      "label": "Border Color",
+      "default": "#EAEAEA"
+    },
+    {
+      "type": "range",
+      "id": "acc_border_thickness",
+      "min": 1,
+      "max": 4,
+      "step": 1,
+      "unit": "px",
+      "label": "Border Thickness",
+      "default": 1
+    },
+    {
+      "type": "range",
+      "id": "acc_radius",
+      "min": 0,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Border Radius",
+      "default": 0
+    },
+    {
+      "type": "color",
+      "id": "acc_q_color",
+      "label": "Question Color",
+      "default": "#1A1A1A"
+    },
+    {
+      "type": "color",
+      "id": "acc_q_hover_color",
+      "label": "Question Hover Color",
+      "default": "#666666"
+    },
+    {
+      "type": "range",
+      "id": "acc_q_size_d",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Desktop Question Size",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "acc_q_size_m",
+      "min": 11,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Mobile Question Size",
+      "default": 13
+    },
+    {
+      "type": "select",
+      "id": "acc_q_weight",
+      "label": "Question Font Weight",
+      "options": [
+        { "value": "400", "label": "400 Regular" },
+        { "value": "500", "label": "500 Medium" },
+        { "value": "600", "label": "600 SemiBold" }
+      ],
+      "default": "400"
+    },
+    {
+      "type": "range",
+      "id": "acc_q_ls",
+      "min": 0,
+      "max": 3,
+      "step": 0.5,
+      "unit": "px",
+      "label": "Question Letter Spacing",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "acc_btn_pad_top",
+      "min": 6,
+      "max": 30,
+      "step": 2,
+      "unit": "px",
+      "label": "Question Padding Top",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "acc_btn_pad_bottom",
+      "min": 6,
+      "max": 30,
+      "step": 2,
+      "unit": "px",
+      "label": "Question Padding Bottom",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "acc_btn_pad_left",
+      "min": 0,
+      "max": 30,
+      "step": 2,
+      "unit": "px",
+      "label": "Question Padding Left",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "acc_btn_pad_right",
+      "min": 0,
+      "max": 30,
+      "step": 2,
+      "unit": "px",
+      "label": "Question Padding Right",
+      "default": 0
+    },
+    {
+      "type": "color",
+      "id": "icon_color",
+      "label": "+ Icon Color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "icon_size",
+      "min": 12,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "label": "+ Icon Size",
+      "default": 18
+    },
+    {
+      "type": "color",
+      "id": "acc_ans_color",
+      "label": "Answer Color",
+      "default": "#555555"
+    },
+    {
+      "type": "range",
+      "id": "acc_ans_size_d",
+      "min": 11,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Desktop Answer Size",
+      "default": 13
+    },
+    {
+      "type": "range",
+      "id": "acc_ans_size_m",
+      "min": 10,
+      "max": 18,
+      "step": 1,
+      "unit": "px",
+      "label": "Mobile Answer Size",
+      "default": 12
+    },
+    {
+      "type": "select",
+      "id": "acc_ans_weight",
+      "label": "Answer Font Weight",
+      "options": [
+        { "value": "300", "label": "300 Light" },
+        { "value": "400", "label": "400 Regular" }
+      ],
+      "default": "400"
+    },
+    {
+      "type": "text",
+      "id": "acc_ans_lh",
+      "label": "Answer Line Height",
+      "default": "1.6"
+    },
+    {
+      "type": "range",
+      "id": "acc_ans_pad_top",
+      "min": 0,
+      "max": 20,
+      "step": 2,
+      "unit": "px",
+      "label": "Answer Padding Top",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "acc_ans_pad_bottom",
+      "min": 6,
+      "max": 30,
+      "step": 2,
+      "unit": "px",
+      "label": "Answer Padding Bottom",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "acc_ans_pad_left",
+      "min": 0,
+      "max": 30,
+      "step": 2,
+      "unit": "px",
+      "label": "Answer Padding Left",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "acc_ans_pad_right",
+      "min": 0,
+      "max": 30,
+      "step": 2,
+      "unit": "px",
+      "label": "Answer Padding Right",
+      "default": 0
+    }
+  ],
+  "blocks": [
+    {
+      "type": "category",
+      "name": "Category Block",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Category Title",
+          "default": "ORDERING"
+        },
+        {
+          "type": "richtext",
+          "id": "description",
+          "label": "Category Description / Intro Text",
+          "default": "<p>Placing an order is simple. Choose your size and colour, add to cart, and check out.</p>"
+        }
+      ]
+    },
+    {
+      "type": "faq_item",
+      "name": "FAQ Accordion Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "question",
+          "label": "Question",
+          "default": "Can I change or cancel my order once it's placed?"
+        },
+        {
+          "type": "richtext",
+          "id": "answer",
+          "label": "Answer",
+          "default": "<p>Yes, you can change or cancel your order within 2 hours of placing it by contacting our support team.</p>"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "FAQ Custom Page Layout",
+      "blocks": [
+        {
+          "type": "category",
+          "settings": { "title": "ORDERING" }
+        },
+        {
+          "type": "faq_item",
+          "settings": { "question": "Can I change or cancel my order once it's placed?" }
+        },
+        {
+          "type": "faq_item",
+          "settings": { "question": "Do I need an account to place an order?" }
+        },
+        {
+          "type": "category",
+          "settings": { "title": "RETURNS AND REFUNDS" }
+        },
+        {
+          "type": "faq_item",
+          "settings": { "question": "What's your return policy?" }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -84,7 +84,7 @@
 @media (min-width: 1100px) {
   .featured-product .no_product .product__media-info {
     margin: auto;
-    max-width: 33rem;
+    max-width: 55rem;
   }
 }
 @media (min-width: 1360px) {

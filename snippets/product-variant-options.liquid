@@ -104,8 +104,8 @@
 		<input
 			dir="ltr"
 			type="radio"
-			id="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}-{{ product.id }}"
-			name="{{ option.name }}-{{ section.id }}-{{ product.id }}"
+			id="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}-{{ product.id }}{{ variant_scope }}"
+			name="{{ option.name }}-{{ section.id }}-{{ product.id }}{{ variant_scope }}"
 			value="{{ value | escape }}"
 			{% if variant_link %}
 				data-variant-link="{{ variant_link }}"
@@ -123,7 +123,7 @@
 				class="disabled"
 			{% endif %}
 		>
-		<label for="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}-{{ product.id }}" class="color-swatch focus-inset link-hover-line secondary_text {% if notify_me %} notify_me{% endif %}" 
+		<label for="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}-{{ product.id }}{{ variant_scope }}" class="color-swatch focus-inset link-hover-line secondary_text {% if notify_me %} notify_me{% endif %}" 
 			style="--swatch-color: {{ color_value_custom | remove: '-' }}; border-radius: {{ settings.swatch_border_radius }}px"
 			title="{{- value -}}"
 		>
@@ -135,8 +135,8 @@
 			<input
 				dir="ltr"
 				type="radio"
-				id="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}"
-				name="{{ option.name }}"
+				id="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}{{ variant_scope }}"
+				name="{{ option.name }}{{ variant_scope }}"
 				value="{{ value | escape }}"
 				{% if no_form_id != true %}
 					form="{{ product_form_id }}"
@@ -169,13 +169,13 @@
 							);
 					"
 					class="variant-swatch bg_size-{{ section.settings.image_ratio }} {% if notify_me %} notify_me{% endif %}"
-					for="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}"
+					for="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}{{ variant_scope }}"
 					title="{{- value -}}"
 				>
 					<span class="visually-hidden">{{ 'products.product.variant_sold_out_or_unavailable' | t }}</span>
 				</label>
 			{%- else -%}
-				<label for="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}" class="focus-inset link-hover-line secondary_text {% if notify_me %} notify_me{% endif %}">
+				<label for="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}{{ variant_scope }}" class="focus-inset link-hover-line secondary_text{% if name_option == 'stone-size' %} stone-size-swatch{% endif %} {% if notify_me %} notify_me{% endif %}">
 					{{ value -}}
 					<span class="visually-hidden">{{ 'products.product.variant_sold_out_or_unavailable' | t }}</span>
 				</label>
@@ -185,8 +185,8 @@
 				<input
 					dir="ltr"
 					type="radio"
-					id="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}"
-					name="{{ option.name }}"
+					id="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}{{ variant_scope }}"
+					name="{{ option.name }}{{ variant_scope }}"
 					value="{{ value | escape }}"
 					{% if no_form_id != true %}
 						form="{{ product_form_id }}"
@@ -199,7 +199,7 @@
 					{% endif %}
 				>
 				<label
-					for="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}"
+					for="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}{{ variant_scope }}"
 					class="pills-variant-labels secondary_text {% if notify_me %} notify_me{% endif %}"
 				>
 					<span class="select-labels">

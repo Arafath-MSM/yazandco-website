@@ -1,0 +1,169 @@
+{%- comment -%}
+  Send a Hint drawer. Reuses the theme's existing modal-dialog / modal-opener custom elements
+  (assets/global.js) so focus trap, Escape-to-close, overlay click-to-close and focus restoration
+  all come from the same code the Size Guide / Notify Me modals already use.
+{%- endcomment -%}
+{%- liquid
+  assign settings = block.settings
+  assign variant = product.selected_or_first_available_variant
+  assign product_url = shop.url | append: product.url
+  assign subject_default = settings.subject_template | replace: '[product]', product.title
+  assign message_default = settings.message_template | replace: '[recipient]', 'Recipient' | replace: '[sender]', 'Sender' | replace: '[product]', product.title | replace: '[url]', product_url
+-%}
+<modal-dialog
+  id="SendAHint-{{ section.id }}"
+  class="product-popup-modal product-popup-modal--hint-drawer"
+  data-block-id="{{ block.id }}"
+  style="
+    --hint-width-desktop: {{ settings.drawer_width_desktop }}px;
+    --hint-width-tablet: {{ settings.drawer_width_tablet }}px;
+    --hint-width-mobile: {{ settings.drawer_width_mobile }}%;
+    --hint-bg: {{ settings.drawer_bg }};
+    --hint-text: {{ settings.drawer_text_color }};
+    --hint-padding-desktop: {{ settings.drawer_padding_desktop }}px;
+    --hint-padding-mobile: {{ settings.drawer_padding_mobile }}px;
+    --hint-overlay-color: {{ settings.overlay_color }};
+    --hint-overlay-opacity: {{ settings.overlay_opacity | divided_by: 100.0 }};
+    --hint-shadow-opacity: {% if settings.drawer_shadow %}{{ settings.drawer_shadow_opacity | divided_by: 100.0 }}{% else %}0{% endif %};
+    --hint-anim-duration: {{ settings.animation_duration }}ms;
+    --hint-heading-size-desktop: {{ settings.heading_size_desktop }}px;
+    --hint-heading-size-mobile: {{ settings.heading_size_mobile }}px;
+    --hint-heading-letter-spacing: {{ settings.heading_letter_spacing }}px;
+    --hint-intro-size: {{ settings.intro_font_size }}px;
+    --hint-intro-color: {{ settings.intro_color }};
+    --hint-heading-gap: {{ settings.heading_gap }}px;
+    --hint-close-color: {{ settings.close_icon_color }};
+    --hint-close-hover-color: {{ settings.close_icon_hover_color }};
+    --hint-close-size: {{ settings.close_icon_size }}px;
+    --hint-field-gap: {{ settings.field_gap }}px;
+    --hint-input-height: {{ settings.input_height }}px;
+    --hint-textarea-min-height: {{ settings.textarea_min_height }}px;
+    --hint-input-font-size: {{ settings.input_font_size }}px;
+    --hint-input-text: {{ settings.input_text_color }};
+    --hint-input-placeholder: {{ settings.input_placeholder_color }};
+    --hint-input-bg: {{ settings.input_bg }};
+    --hint-input-border: {{ settings.input_border_color }};
+    --hint-input-focus-border: {{ settings.input_focus_border_color }};
+    --hint-input-border-width: {{ settings.input_border_width }}px;
+    --hint-input-radius: {{ settings.input_border_radius }}px;
+    --hint-input-padding-h: {{ settings.input_padding_h }}px;
+    --hint-gap-button-copylink: {{ settings.gap_button_copylink }}px;
+    --hint-send-text: {{ settings.send_button_text_color }};
+    --hint-send-bg: {{ settings.send_button_bg }};
+    --hint-send-hover-bg: {{ settings.send_button_hover_bg }};
+    --hint-send-disabled-bg: {{ settings.send_button_disabled_bg }};
+    --hint-send-radius: {{ settings.send_button_radius }}px;
+    --hint-copylink-text: {{ settings.copylink_text_color }};
+    --hint-copylink-bg: {{ settings.copylink_bg }};
+    --hint-copylink-border: {{ settings.copylink_border_color }};
+    --hint-copylink-icon: {{ settings.copylink_icon_color }};
+    --hint-copylink-radius: {{ settings.copylink_radius }}px;
+    --hint-copylink-font-size: {{ settings.copylink_font_size }}px;
+    --hint-success-bg: {{ settings.success_bg }};
+    --hint-success-color: {{ settings.success_color }};
+    --hint-error-bg: {{ settings.error_bg }};
+    --hint-error-color: {{ settings.error_color }};
+  "
+>
+  <div
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="SendAHintHeading-{{ section.id }}"
+    class="product-popup-modal__content hint-drawer"
+    tabindex="-1"
+  >
+    <div class="product-popup-modal__top hint-drawer__top">
+      <h3 class="hint-drawer__heading" id="SendAHintHeading-{{ section.id }}">{{ settings.drawer_heading }}</h3>
+      <button
+        id="ModalClose-SendAHint-{{ section.id }}"
+        type="button"
+        class="product-popup-modal__close modal-close-button hint-drawer__close focus-inset"
+        aria-label="{{ 'accessibility.close' | t }}"
+      >
+        {% render 'icon-close' %}
+      </button>
+    </div>
+
+    {%- if settings.drawer_intro != blank -%}
+      <p class="hint-drawer__intro">{{ settings.drawer_intro }}</p>
+    {%- endif -%}
+
+    <send-a-hint-form
+      class="hint-drawer__form-wrapper"
+      data-endpoint="{{ settings.api_endpoint }}"
+      data-success-message="{{ settings.success_message | escape }}"
+      data-error-message="{{ settings.generic_error_message | escape }}"
+      data-copy-success-text="{{ settings.copy_success_text | escape }}"
+    >
+      <form class="hint-drawer__form" novalidate>
+        <div class="hint-drawer__status hint-drawer__status--success" hidden role="status">
+          <p>{{ settings.success_message }}</p>
+        </div>
+        <div class="hint-drawer__status hint-drawer__status--error" hidden role="alert"></div>
+
+        <div class="hint-drawer__field">
+          <label for="HintRecipientName-{{ section.id }}">{{ settings.label_recipient_name }}</label>
+          <input type="text" id="HintRecipientName-{{ section.id }}" name="recipient_name" autocomplete="off" required>
+        </div>
+        <div class="hint-drawer__field">
+          <label for="HintRecipientEmail-{{ section.id }}">{{ settings.label_recipient_email }}</label>
+          <input type="email" id="HintRecipientEmail-{{ section.id }}" name="recipient_email" autocomplete="off" required>
+        </div>
+        <div class="hint-drawer__field">
+          <label for="HintSenderName-{{ section.id }}">{{ settings.label_sender_name }}</label>
+          <input type="text" id="HintSenderName-{{ section.id }}" name="sender_name" autocomplete="off" required>
+        </div>
+        <div class="hint-drawer__field">
+          <label for="HintSubject-{{ section.id }}">{{ settings.label_subject }}</label>
+          <input type="text" id="HintSubject-{{ section.id }}" name="subject" value="{{ subject_default | escape }}">
+        </div>
+        <div class="hint-drawer__field">
+          <label for="HintMessage-{{ section.id }}">{{ settings.label_message }}</label>
+          <textarea id="HintMessage-{{ section.id }}" name="message" data-message-template="{{ message_default | escape }}">{{ message_default }}</textarea>
+        </div>
+
+        {%- if settings.enable_honeypot -%}
+          <div class="hint-drawer__honeypot" aria-hidden="true">
+            <label for="HintCompany-{{ section.id }}">Leave this field empty</label>
+            <input type="text" id="HintCompany-{{ section.id }}" name="company" tabindex="-1" autocomplete="off">
+          </div>
+        {%- endif -%}
+
+        <input type="hidden" name="product_title" value="{{ product.title | escape }}">
+        <input type="hidden" name="product_url" value="{{ product_url }}">
+        <input type="hidden" name="product_image" value="{{ product.featured_media | image_url: width: 800 }}">
+        <input type="hidden" name="variant_title" value="{{ variant.title | escape }}">
+        <input type="hidden" name="shop" value="{{ shop.name | escape }}">
+
+        <button type="submit" class="hint-drawer__send-button" data-send-button>
+          <span data-button-label>{{ settings.send_button_label }}</span>
+          <span class="hint-drawer__spinner" data-spinner hidden aria-hidden="true"></span>
+        </button>
+      </form>
+
+      {%- if settings.show_copy_link -%}
+        <div class="hint-drawer__copylink">
+          <p class="hint-drawer__copylink-label">{{ settings.copy_link_label }}</p>
+          <div class="hint-drawer__copylink-row">
+            <input
+              type="text"
+              class="hint-drawer__copylink-input"
+              value="{{ product_url }}"
+              readonly
+              aria-label="{{ product.title | escape }} link"
+              data-copy-link-input
+            >
+            <button
+              type="button"
+              class="hint-drawer__copylink-button"
+              aria-label="{{ settings.copy_link_button_label }}"
+              data-copy-link-button
+            >
+              {% render 'icon-share' %}
+            </button>
+          </div>
+        </div>
+      {%- endif -%}
+    </send-a-hint-form>
+  </div>
+</modal-dialog>

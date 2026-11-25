@@ -36,9 +36,24 @@ class CartItems extends HTMLElement {
 	cartUpdateUnsubscriber = undefined;
 
 	cartShipping() {
-		let progressPrev = getComputedStyle(
-			document.querySelector(".cart-shipping__progress-current")
-		).getPropertyValue("width");
+		const progressCurrent = document.querySelector(
+			".cart-shipping__progress-current"
+		);
+		const shipping = document.querySelector(".cart-shipping");
+		const messageDefault = document.querySelector(
+			".cart-shipping__message_default"
+		);
+		const messageSuccess = document.querySelector(
+			".cart-shipping__message_success"
+		);
+		// This runs from the constructor: a single missing node used to throw and
+		// stop <cart-items> / <cart-drawer-items> from upgrading at all.
+		if (!progressCurrent || !shipping || !messageDefault || !messageSuccess)
+			return;
+
+		let progressPrev = getComputedStyle(progressCurrent).getPropertyValue(
+			"width"
+		);
 		document.documentElement.style.setProperty("--progress-prev", progressPrev);
 
 		this.total = document.querySelector(".cart-shipping").dataset.total;
@@ -97,11 +112,19 @@ class CartItems extends HTMLElement {
 	}
 
 	onCartUpdate() {
+		// Only the cart PAGE refreshes itself from the main-cart-items section.
+		// <cart-drawer-items> inherits this method, and every add-to-cart publishes
+		// cartUpdate - which used to pull the cart-page markup and write it straight
+		// into the drawer, replacing the drawer's own line items (and racing with
+		// CartDrawer.renderContents, which had already rendered them correctly).
+		if (this.tagName !== "CART-ITEMS") return;
+
 		fetch(`${routes.cart_url}?section_id=main-cart-items`)
 			.then((response) => response.text())
 			.then((responseText) => {
 				const html = new DOMParser().parseFromString(responseText, "text/html");
 				const sourceQty = html.querySelector("cart-items");
+				if (!sourceQty) return;
 				this.innerHTML = sourceQty.innerHTML;
 			})
 			.catch((e) => {
@@ -233,15 +256,18 @@ class CartItems extends HTMLElement {
 					);
 
 				this.getSectionsToRender().forEach((section) => {
+					const container = document.getElementById(section.id);
+					if (!container) return;
 					const elementToReplace =
-						document
-							.getElementById(section.id)
-							.querySelector(section.selector) ||
-						document.getElementById(section.id);
-					elementToReplace.innerHTML = this.getSectionInnerHTML(
+						container.querySelector(section.selector) || container;
+					const markup = this.getSectionInnerHTML(
 						parsedState.sections[section.section],
 						section.selector
 					);
+					// A missing section key used to throw here, turning a SUCCESSFUL
+					// cart update into a visible "there was an error" message.
+					if (markup === null) return;
+					elementToReplace.innerHTML = markup;
 				});
 				const updatedValue = parsedState.items[line - 1]
 					? parsedState.items[line - 1].quantity
@@ -322,11 +348,12 @@ class CartItems extends HTMLElement {
 		if (lineItemError)
 			lineItemError.querySelector(".cart-item__error-text").innerHTML = message;
 
-		this.lineItemStatusElement.setAttribute("aria-hidden", true);
+		this.lineItemStatusElement?.setAttribute("aria-hidden", true);
 
 		const cartStatus =
 			document.getElementById("cart-live-region-text") ||
 			document.getElementById("CartDrawer-LiveRegionText");
+		if (!cartStatus) return;
 		cartStatus.setAttribute("aria-hidden", false);
 
 		setTimeout(() => {
@@ -335,16 +362,18 @@ class CartItems extends HTMLElement {
 	}
 
 	getSectionInnerHTML(html, selector) {
-		return new DOMParser()
+		if (typeof html !== "string") return null;
+		const found = new DOMParser()
 			.parseFromString(html, "text/html")
-			.querySelector(selector).innerHTML;
+			.querySelector(selector);
+		return found ? found.innerHTML : null;
 	}
 
 	enableLoading(line) {
 		const mainCartItems =
 			document.getElementById("main-cart-items") ||
 			document.getElementById("CartDrawer-CartItems");
-		mainCartItems.classList.add("cart__items--disabled");
+		mainCartItems?.classList.add("cart__items--disabled");
 
 		const cartItemElements = this.querySelectorAll(
 			`#CartItem-${line} .loading-overlay`
@@ -357,15 +386,15 @@ class CartItems extends HTMLElement {
 			overlay.classList.remove("hidden")
 		);
 
-		document.activeElement.blur();
-		this.lineItemStatusElement.setAttribute("aria-hidden", false);
+		document.activeElement?.blur();
+		this.lineItemStatusElement?.setAttribute("aria-hidden", false);
 	}
 
 	disableLoading(line) {
 		const mainCartItems =
 			document.getElementById("main-cart-items") ||
 			document.getElementById("CartDrawer-CartItems");
-		mainCartItems.classList.remove("cart__items--disabled");
+		mainCartItems?.classList.remove("cart__items--disabled");
 
 		const cartItemElements = this.querySelectorAll(
 			`#CartItem-${line} .loading-overlay`

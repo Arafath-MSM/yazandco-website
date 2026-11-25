@@ -1,0 +1,664 @@
+{% comment %}
+  Section: Shop Diamonds / Products by Shape
+  Features: Desktop Layout + Smooth Touch Horizontal Scroll on Mobile
+  Customization: 100% Dynamic Settings (Mobile & Desktop independent controls)
+{% endcomment %}
+
+<style>
+  .shop-shape-{{ section.id }} {
+    background-color: {{ section.settings.bg_color }};
+    
+    /* Desktop Spacing */
+    padding-top: {{ section.settings.padding_top_d }}px;
+    padding-bottom: {{ section.settings.padding_bottom_d }}px;
+    padding-left: {{ section.settings.padding_left_d }}px;
+    padding-right: {{ section.settings.padding_right_d }}px;
+  }
+
+  @media (max-width: 768px) {
+    .shop-shape-{{ section.id }} {
+      /* Mobile Spacing */
+      padding-top: {{ section.settings.padding_top_m }}px;
+      padding-bottom: {{ section.settings.padding_bottom_m }}px;
+      padding-left: {{ section.settings.padding_left_m }}px;
+      padding-right: {{ section.settings.padding_right_m }}px;
+    }
+  }
+
+  .shop-shape-container-{{ section.id }} {
+    max-width: {{ section.settings.max_width }}px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: {{ section.settings.layout_gap_d }}px;
+  }
+
+  @media (max-width: 768px) {
+    .shop-shape-container-{{ section.id }} {
+      flex-direction: column;
+      align-items: stretch;
+      gap: {{ section.settings.layout_gap_m }}px;
+    }
+  }
+
+  /* Left Header & Featured Image Area */
+  .shop-shape-left-{{ section.id }} {
+    flex: 0 0 {{ section.settings.featured_width_d }}%;
+    display: flex;
+    flex-direction: column;
+    align-items: {{ section.settings.heading_align_d }};
+    text-align: {{ section.settings.heading_align_d }};
+  }
+
+  @media (max-width: 768px) {
+    .shop-shape-left-{{ section.id }} {
+      flex: 1 1 100%;
+      align-items: {{ section.settings.heading_align_m }};
+      text-align: {{ section.settings.heading_align_m }};
+    }
+  }
+
+  .shop-shape-heading-{{ section.id }} {
+    color: {{ section.settings.heading_color }};
+    font-size: {{ section.settings.heading_size_d }}px;
+    font-weight: {{ section.settings.heading_weight_d }};
+    margin-top: 0;
+    margin-bottom: {{ section.settings.heading_mb_d }}px;
+    line-height: 1.2;
+  }
+
+  @media (max-width: 768px) {
+    .shop-shape-heading-{{ section.id }} {
+      font-size: {{ section.settings.heading_size_m }}px;
+      font-weight: {{ section.settings.heading_weight_m }};
+      margin-bottom: {{ section.settings.heading_mb_m }}px;
+    }
+  }
+
+  .shop-shape-featured-img-{{ section.id }} {
+    width: 100%;
+    max-width: {{ section.settings.featured_img_max_w }}px;
+    height: auto;
+    object-fit: contain;
+  }
+
+  {% if section.settings.hide_featured_mobile %}
+    @media (max-width: 768px) {
+      .shop-shape-featured-img-{{ section.id }} {
+        display: none;
+      }
+    }
+  {% endif %}
+
+  /* Shapes Grid (Desktop 2-Rows / Mobile Smooth Horizontal Scroll) */
+  .shop-shape-grid-{{ section.id }} {
+    flex: 1;
+    display: grid;
+    grid-template-columns: repeat({{ section.settings.items_per_row_d }}, 1fr);
+    gap: {{ section.settings.grid_gap_d }}px;
+  }
+
+  @media (max-width: 768px) {
+    .shop-shape-grid-{{ section.id }} {
+      display: flex;
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      scroll-behavior: smooth;
+      gap: {{ section.settings.grid_gap_m }}px;
+      padding-bottom: 10px;
+      margin-right: -{{ section.settings.padding_right_m }}px;
+      padding-right: {{ section.settings.padding_right_m }}px;
+      
+      /* Hide Scrollbar */
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+
+    .shop-shape-grid-{{ section.id }}::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  /* Single Shape Item */
+  .shop-shape-item-{{ section.id }} {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    text-decoration: none;
+    transition: transform 0.3s ease;
+  }
+
+  .shop-shape-item-{{ section.id }}:hover {
+    transform: translateY(-4px);
+  }
+
+  @media (max-width: 768px) {
+    .shop-shape-item-{{ section.id }} {
+      flex: 0 0 {{ section.settings.item_width_m }}px;
+      scroll-snap-align: start;
+    }
+  }
+
+  /* Image Box inside Item */
+  .shop-shape-img-box-{{ section.id }} {
+    width: 100%;
+    max-width: {{ section.settings.icon_size_d }}px;
+    height: {{ section.settings.icon_size_d }}px;
+    background-color: {{ section.settings.card_bg }};
+    border: {{ section.settings.card_border_width }}px solid {{ section.settings.card_border_color }};
+    border-radius: {{ section.settings.card_radius }}px;
+    padding: {{ section.settings.card_padding }}px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: {{ section.settings.item_title_mt_d }}px;
+    box-sizing: border-box;
+  }
+
+  @media (max-width: 768px) {
+    .shop-shape-img-box-{{ section.id }} {
+      max-width: {{ section.settings.icon_size_m }}px;
+      height: {{ section.settings.icon_size_m }}px;
+      margin-bottom: {{ section.settings.item_title_mt_m }}px;
+    }
+  }
+
+  .shop-shape-img-box-{{ section.id }} img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  /* Item Title Styling */
+  .shop-shape-title-{{ section.id }} {
+    color: {{ section.settings.text_color }};
+    font-size: {{ section.settings.text_size_d }}px;
+    font-weight: {{ section.settings.text_weight_d }};
+    text-transform: {{ section.settings.text_transform }};
+    letter-spacing: {{ section.settings.letter_spacing }}px;
+    margin: 0;
+    line-height: 1.3;
+  }
+
+  @media (max-width: 768px) {
+    .shop-shape-title-{{ section.id }} {
+      font-size: {{ section.settings.text_size_m }}px;
+      font-weight: {{ section.settings.text_weight_m }};
+    }
+  }
+</style>
+
+<div class="shop-shape-{{ section.id }}">
+  <div class="shop-shape-container-{{ section.id }}">
+    
+    {% comment %} Left Side: Heading & Featured Image {% endcomment %}
+    <div class="shop-shape-left-{{ section.id }}">
+      {% if section.settings.heading != blank %}
+        <h2 class="shop-shape-heading-{{ section.id }}">{{ section.settings.heading | escape }}</h2>
+      {% endif %}
+
+      {% if section.settings.featured_image != blank %}
+        <img 
+          class="shop-shape-featured-img-{{ section.id }}"
+          src="{{ section.settings.featured_image | image_url: width: 600 }}" 
+          alt="{{ section.settings.heading | escape }}"
+          loading="lazy"
+          width="300"
+          height="300"
+        >
+      {% endif %}
+    </div>
+
+    {% comment %} Right Side: Diamond Shapes Grid/Carousel {% endcomment %}
+    <div class="shop-shape-grid-{{ section.id }}">
+      {% for block in section.blocks %}
+        <a 
+          href="{{ block.settings.link | default: '#' }}" 
+          class="shop-shape-item-{{ section.id }}" 
+          {{ block.shopify_attributes }}
+        >
+          <div class="shop-shape-img-box-{{ section.id }}">
+            {% if block.settings.image != blank %}
+              <img 
+                src="{{ block.settings.image | image_url: width: 300 }}" 
+                alt="{{ block.settings.title | escape }}" 
+                loading="lazy"
+                width="120"
+                height="120"
+              >
+            {% else %}
+              {{ 'image' | placeholder_svg_tag }}
+            {% endif %}
+          </div>
+
+          {% if block.settings.title != blank %}
+            <p class="shop-shape-title-{{ section.id }}">{{ block.settings.title }}</p>
+          {% endif %}
+        </a>
+      {% endfor %}
+    </div>
+
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Shop Shapes (Scrollable)",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section Heading & Featured Media"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Section Heading",
+      "default": "Shop Diamonds by Shape"
+    },
+    {
+      "type": "select",
+      "id": "heading_align_d",
+      "label": "Heading Alignment (Desktop)",
+      "options": [
+        { "value": "flex-start", "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "flex-end", "label": "Right" }
+      ],
+      "default": "flex-start"
+    },
+    {
+      "type": "select",
+      "id": "heading_align_m",
+      "label": "Heading Alignment (Mobile)",
+      "options": [
+        { "value": "flex-start", "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "flex-end", "label": "Right" }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading Color",
+      "default": "#222222"
+    },
+    {
+      "type": "range",
+      "id": "heading_size_d",
+      "min": 18, "max": 60, "step": 1, "unit": "px",
+      "label": "Heading Font Size (Desktop)",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "heading_size_m",
+      "min": 16, "max": 40, "step": 1, "unit": "px",
+      "label": "Heading Font Size (Mobile)",
+      "default": 24
+    },
+    {
+      "type": "select",
+      "id": "heading_weight_d",
+      "label": "Heading Font Weight (Desktop)",
+      "options": [
+        { "value": "300", "label": "Light" },
+        { "value": "400", "label": "Normal" },
+        { "value": "500", "label": "Medium" },
+        { "value": "600", "label": "Semi Bold" },
+        { "value": "700", "label": "Bold" }
+      ],
+      "default": "400"
+    },
+    {
+      "type": "select",
+      "id": "heading_weight_m",
+      "label": "Heading Font Weight (Mobile)",
+      "options": [
+        { "value": "300", "label": "Light" },
+        { "value": "400", "label": "Normal" },
+        { "value": "500", "label": "Medium" },
+        { "value": "600", "label": "Semi Bold" },
+        { "value": "700", "label": "Bold" }
+      ],
+      "default": "400"
+    },
+    {
+      "type": "range",
+      "id": "heading_mb_d",
+      "min": 0, "max": 60, "step": 2, "unit": "px",
+      "label": "Heading Margin Bottom (Desktop)",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "heading_mb_m",
+      "min": 0, "max": 40, "step": 2, "unit": "px",
+      "label": "Heading Margin Bottom (Mobile)",
+      "default": 16
+    },
+    {
+      "type": "image_picker",
+      "id": "featured_image",
+      "label": "Featured Left Image (Ring)"
+    },
+    {
+      "type": "range",
+      "id": "featured_img_max_w",
+      "min": 100, "max": 400, "step": 10, "unit": "px",
+      "label": "Featured Image Max Width",
+      "default": 240
+    },
+    {
+      "type": "checkbox",
+      "id": "hide_featured_mobile",
+      "label": "Hide Featured Image on Mobile",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Layout Structure Settings"
+    },
+    {
+      "type": "range",
+      "id": "max_width",
+      "min": 800, "max": 1600, "step": 20, "unit": "px",
+      "label": "Container Max Width",
+      "default": 1300
+    },
+    {
+      "type": "range",
+      "id": "featured_width_d",
+      "min": 20, "max": 40, "step": 1, "unit": "%",
+      "label": "Left Column Width (Desktop)",
+      "default": 28
+    },
+    {
+      "type": "range",
+      "id": "items_per_row_d",
+      "min": 3, "max": 6, "step": 1,
+      "label": "Items Per Row (Desktop Grid)",
+      "default": 5
+    },
+    {
+      "type": "range",
+      "id": "item_width_m",
+      "min": 70, "max": 160, "step": 5, "unit": "px",
+      "label": "Item Card Width (Mobile Horizontal Scroll)",
+      "default": 90
+    },
+    {
+      "type": "range",
+      "id": "layout_gap_d",
+      "min": 20, "max": 100, "step": 5, "unit": "px",
+      "label": "Left/Right Section Gap (Desktop)",
+      "default": 50
+    },
+    {
+      "type": "range",
+      "id": "layout_gap_m",
+      "min": 10, "max": 50, "step": 2, "unit": "px",
+      "label": "Section Gap (Mobile)",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "grid_gap_d",
+      "min": 10, "max": 50, "step": 2, "unit": "px",
+      "label": "Shape Items Gap (Desktop)",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "grid_gap_m",
+      "min": 8, "max": 30, "step": 2, "unit": "px",
+      "label": "Shape Items Gap (Mobile)",
+      "default": 16
+    },
+    {
+      "type": "header",
+      "content": "Shape Item Card & Image Settings"
+    },
+    {
+      "type": "range",
+      "id": "icon_size_d",
+      "min": 50, "max": 150, "step": 2, "unit": "px",
+      "label": "Shape Icon Box Size (Desktop)",
+      "default": 90
+    },
+    {
+      "type": "range",
+      "id": "icon_size_m",
+      "min": 40, "max": 120, "step": 5, "unit": "px",
+      "label": "Shape Icon Box Size (Mobile)",
+      "default": 75
+    },
+    {
+      "type": "color",
+      "id": "card_bg",
+      "label": "Card Background Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "card_border_color",
+      "label": "Card Border Color",
+      "default": "transparent"
+    },
+    {
+      "type": "range",
+      "id": "card_border_width",
+      "min": 0, "max": 5, "step": 1, "unit": "px",
+      "label": "Card Border Width",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "card_radius",
+      "min": 0, "max": 50, "step": 1, "unit": "px",
+      "label": "Card Border Radius",
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "card_padding",
+      "min": 0, "max": 30, "step": 2, "unit": "px",
+      "label": "Card Inner Padding",
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "item_title_mt_d",
+      "min": 0, "max": 30, "step": 1, "unit": "px",
+      "label": "Space Below Image Box (Desktop)",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "item_title_mt_m",
+      "min": 0, "max": 20, "step": 1, "unit": "px",
+      "label": "Space Below Image Box (Mobile)",
+      "default": 8
+    },
+    {
+      "type": "header",
+      "content": "Shape Item Typography"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Title Color",
+      "default": "#333333"
+    },
+    {
+      "type": "range",
+      "id": "text_size_d",
+      "min": 10, "max": 22, "step": 1, "unit": "px",
+      "label": "Title Font Size (Desktop)",
+      "default": 13
+    },
+    {
+      "type": "range",
+      "id": "text_size_m",
+      "min": 9, "max": 18, "step": 1, "unit": "px",
+      "label": "Title Font Size (Mobile)",
+      "default": 11
+    },
+    {
+      "type": "select",
+      "id": "text_weight_d",
+      "label": "Title Font Weight (Desktop)",
+      "options": [
+        { "value": "300", "label": "Light" },
+        { "value": "400", "label": "Normal" },
+        { "value": "500", "label": "Medium" },
+        { "value": "600", "label": "Semi Bold" },
+        { "value": "700", "label": "Bold" }
+      ],
+      "default": "400"
+    },
+    {
+      "type": "select",
+      "id": "text_weight_m",
+      "label": "Title Font Weight (Mobile)",
+      "options": [
+        { "value": "300", "label": "Light" },
+        { "value": "400", "label": "Normal" },
+        { "value": "500", "label": "Medium" },
+        { "value": "600", "label": "Semi Bold" },
+        { "value": "700", "label": "Bold" }
+      ],
+      "default": "400"
+    },
+    {
+      "type": "select",
+      "id": "text_transform",
+      "label": "Text Transform",
+      "options": [
+        { "value": "none", "label": "Normal Case" },
+        { "value": "uppercase", "label": "UPPERCASE" },
+        { "value": "capitalize", "label": "Capitalize" }
+      ],
+      "default": "capitalize"
+    },
+    {
+      "type": "range",
+      "id": "letter_spacing",
+      "min": 0, "max": 3, "step": 0.5, "unit": "px",
+      "label": "Letter Spacing",
+      "default": 0
+    },
+    {
+      "type": "header",
+      "content": "Section Background & Spacing"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Section Background Color",
+      "default": "#F9F9F9"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_d",
+      "min": 0, "max": 120, "step": 2, "unit": "px",
+      "label": "Padding Top (Desktop)",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_d",
+      "min": 0, "max": 120, "step": 2, "unit": "px",
+      "label": "Padding Bottom (Desktop)",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "padding_left_d",
+      "min": 0, "max": 100, "step": 2, "unit": "px",
+      "label": "Padding Left (Desktop)",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_right_d",
+      "min": 0, "max": 100, "step": 2, "unit": "px",
+      "label": "Padding Right (Desktop)",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_top_m",
+      "min": 0, "max": 80, "step": 2, "unit": "px",
+      "label": "Padding Top (Mobile)",
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_m",
+      "min": 0, "max": 80, "step": 2, "unit": "px",
+      "label": "Padding Bottom (Mobile)",
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "padding_left_m",
+      "min": 0, "max": 50, "step": 2, "unit": "px",
+      "label": "Padding Left (Mobile)",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "padding_right_m",
+      "min": 0, "max": 50, "step": 2, "unit": "px",
+      "label": "Padding Right (Mobile)",
+      "default": 20
+    }
+  ],
+  "blocks": [
+    {
+      "type": "shape_item",
+      "name": "Shape Item",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Shape PNG Image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Shape Label",
+          "default": "Oval"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Shape Collection Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Shop Shapes (Scrollable)",
+      "blocks": [
+        { "type": "shape_item", "settings": { "title": "Oval" } },
+        { "type": "shape_item", "settings": { "title": "Round" } },
+        { "type": "shape_item", "settings": { "title": "Emerald" } },
+        { "type": "shape_item", "settings": { "title": "Marquise" } },
+        { "type": "shape_item", "settings": { "title": "Radiant" } },
+        { "type": "shape_item", "settings": { "title": "Pear" } },
+        { "type": "shape_item", "settings": { "title": "Elongated Cushion" } },
+        { "type": "shape_item", "settings": { "title": "Cushion" } },
+        { "type": "shape_item", "settings": { "title": "Princess" } },
+        { "type": "shape_item", "settings": { "title": "Asscher" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

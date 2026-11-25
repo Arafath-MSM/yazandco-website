@@ -2,9 +2,13 @@
 	assign open_menu_on_hover = false
 	assign enable_dropdown_menu = false
 	assign media_size = 'landscape'
+	assign matched_mega_block = null
 
 	for block in blocks
 		assign mega_menu_trigger = block.settings.mega_menu_trigger | handle | strip
+		if link.handle == mega_menu_trigger
+			assign matched_mega_block = block
+		endif
 		if link.handle == mega_menu_trigger and block.settings.enable_dropdown_menu == true
 				assign enable_dropdown_menu = true
 		endif
@@ -96,8 +100,31 @@
 											aria-current="page"
 											{% endif %}
 										>
+											{% render 'mega-menu-submenu-icon', block: matched_mega_block, title: childlink.title %}
 											{{ childlink.title | escape }}
 										</a>
+										{%- elsif matched_mega_block.settings.flat_submenu == true -%}
+										<div class="menu-drawer__submenu-flat">
+											<span class="menu-drawer__flat-heading h3">
+												{{ childlink.title | escape }}
+											</span>
+											<ul class="menu-drawer__menu list-menu menu-drawer__flat-list" role="list">
+												{%- for grandchildlink in childlink.links -%}
+												<li>
+													<a
+														href="{{ grandchildlink.url }}"
+														class="menu-drawer__menu-item h3 link--text list-menu__item focus-inset{% if grandchildlink.current %} menu-drawer__menu-item--active{% endif %}"
+														{% if grandchildlink.current %}
+															aria-current="page"
+														{% endif %}
+													>
+														{% render 'mega-menu-submenu-icon', block: matched_mega_block, title: grandchildlink.title %}
+														{{ grandchildlink.title | escape }}
+													</a>
+												</li>
+												{%- endfor -%}
+											</ul>
+										</div>
 										{%- else -%}
 										<details>
 											<summary class="menu-drawer__menu-item link--text list-menu__item focus-inset h3">
@@ -129,6 +156,7 @@
 															aria-current="page"
 														{% endif %}
 													>
+														{% render 'mega-menu-submenu-icon', block: matched_mega_block, title: grandchildlink.title %}
 														{{ grandchildlink.title | escape }}
 													</a>
 												</li>
@@ -410,6 +438,7 @@
 																		aria-current="page"
 																	{% endif %}
 																>
+																	{% render 'mega-menu-submenu-icon', block: matched_mega_block, title: childlink.title %}
 																	<span>{{ childlink.title | escape }}</span>
 																</a>
 															</li>
@@ -629,6 +658,7 @@
 										{% endif %}
 										class="burger-menu__item burger-menu__link link-hover-line body-xl h3"
 									>
+										{% render 'mega-menu-submenu-icon', block: matched_mega_block, title: item.title %}
 										<span>{{ item.title }}</span>
 									</a>
 								{%- endif -%}
@@ -639,8 +669,40 @@
 				{% endif %}
 				{% for block in blocks %}
 					{% assign mega_menu_trigger = block.settings.mega_menu_trigger | handle | strip %}
+					{% if link.handle == mega_menu_trigger and block.settings.enable_auto_images == true %}
+						{%- liquid
+							assign auto_image_ratio = block.settings.block_image_ratio
+							assign auto_shown = 0
+						-%}
+						<div id="burger-menu-images-block__{{ link.handle }}" class="burger-menu__list burger-menu__list-second burger-menu__list-images-wrapper mega-menu__list-images-auto {% if enable_dropdown_menu == true %}burger-menu__list-images-horizontal{% endif %}">
+							{% for item in link.links %}
+								{% if auto_shown < 4 %}
+									{% if item.links != blank %}
+										{% for childlink in item.links %}
+											{% if auto_shown < 4 %}
+												{% capture auto_card %}{% render 'mega-menu-auto-image', title: childlink.title, link_url: childlink.url, image_ratio: auto_image_ratio %}{% endcapture %}
+												{% unless auto_card == blank %}
+													{{ auto_card }}
+													{% assign auto_shown = auto_shown | plus: 1 %}
+												{% endunless %}
+											{% endif %}
+										{% endfor %}
+									{% else %}
+										{% capture auto_card %}{% render 'mega-menu-auto-image', title: item.title, link_url: item.url, image_ratio: auto_image_ratio %}{% endcapture %}
+										{% unless auto_card == blank %}
+											{{ auto_card }}
+											{% assign auto_shown = auto_shown | plus: 1 %}
+										{% endunless %}
+									{% endif %}
+								{% endif %}
+							{% endfor %}
+						</div>
+					{% endif %}
+				{% endfor %}
+				{% for block in blocks %}
+					{% assign mega_menu_trigger = block.settings.mega_menu_trigger | handle | strip %}
 					{% assign show_block = false %}
-					{% if link.handle == mega_menu_trigger %}
+					{% if link.handle == mega_menu_trigger and block.settings.enable_auto_images != true %}
 						{% if block.settings.first_product != blank or block.settings.first_collection != blank or block.settings.second_product != blank or block.settings.second_collection != blank %}
 							{%liquid
 								assign show_block = true

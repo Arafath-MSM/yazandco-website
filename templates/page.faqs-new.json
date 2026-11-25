@@ -1,0 +1,1043 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "faq-landing",
+      "blocks": {
+        "faq_Hn9zAF": {
+          "type": "faq",
+          "settings": {
+            "question": "How can I schedule a Yaz & Co. diamond ring consultation?",
+            "answer": "<p>If you are interested in discovering the world of YAZ &<br/>Co. diamonds, we invite you to schedule a private consultation with our team. A<br/>YAZ & Co. specialist will guide you through our collections, answer your<br/>questions, and assist you in selecting a piece that reflects your story and<br/>style.</p><p>Private consultations are available online or by appointment<br/>in Abu Dhabi. To request your consultation, please contact us through our<br/>official channels or appointment request page.</p>"
+          }
+        },
+        "faq_RWnqW6": {
+          "type": "faq",
+          "settings": {
+            "question": "How do I care for my diamond jewelry?",
+            "answer": "<p>Daily wear, natural oils, and environmental exposure may<br/>affect the brilliance of fine jewelry over time. To preserve the beauty of your<br/>YAZ & Co. piece, we recommend gentle regular care and thoughtful storage.</p><p>Clean your jewelry using a soft cloth and a non-abrasive<br/>jewelry cleaner suitable for fine jewelry. When not being worn, pieces should<br/>be stored individually in their original YAZ & Co. packaging to help<br/>protect their finish and brilliance.</p><p>For additional maintenance or inspection services, the YAZ<br/>& Co. team may assist upon request and evaluation.</p>"
+          }
+        },
+        "faq_cngbL4": {
+          "type": "faq",
+          "settings": {
+            "question": "What is the YAZ & Co. Authenticator & Warranty?",
+            "answer": "<p>Each YAZ & Co. piece is accompanied by an official YAZ<br/>& Co. Authenticator containing the stone’s details and a unique serial<br/>number. Selected pieces may also be accompanied by an IGI certificate upon<br/>request for an additional fee.</p><p>All YAZ & Co. creations are covered by a one-year<br/>warranty against manufacturing defects. The warranty does not cover accidental<br/>damage, misuse, normal wear, loss of stones, or repairs carried out by third<br/>parties.</p><p>The YAZ & Co. Authenticator and Warranty are designed to<br/>offer assurance, transparency, and confidence with every creation.</p>"
+          }
+        },
+        "faq_hGHFxk": {
+          "type": "faq",
+          "settings": {
+            "question": "When buying a diamond engagement ring, how do I determine a budget?",
+            "answer": "<p>Choosing an engagement ring is a personal decision shaped by<br/>your preferences, lifestyle, and the meaning behind the piece. At YAZ &<br/>Co., we believe luxury should feel thoughtful and personal rather than defined<br/>by excess.</p><p>When determining your budget, consider the design, diamond<br/>shape, carat weight, craftsmanship, and overall balance of the piece. Our team<br/>is available to guide you through the process and help you select a ring that<br/>reflects both your vision and your story.</p>"
+          }
+        },
+        "tile_UiQbCL": {
+          "type": "tile",
+          "settings": {
+            "image": "shopify://shop_images/FINAL.png",
+            "title": "Delivery & Returns",
+            "link": "shopify://pages/faq-shipping-returns"
+          }
+        },
+        "tile_nkPpUz": {
+          "type": "tile",
+          "settings": {
+            "image": "shopify://shop_images/ChatGPT_Image_May_9_2026_08_40_51_AM.png",
+            "title": "Orders & Payments",
+            "link": "shopify://pages/faq-love-engagement"
+          }
+        },
+        "tile_JxgyJ7": {
+          "type": "tile",
+          "settings": {
+            "image": "shopify://shop_images/ChatGPT_Image_May_9_2026_08_33_55_AM.png",
+            "title": "Care",
+            "link": "shopify://pages/faq-care"
+          }
+        },
+        "tile_TRxDJP": {
+          "type": "tile",
+          "settings": {
+            "image": "shopify://shop_images/ChatGPT_Image_May_9_2026_08_39_49_AM.png",
+            "title": "Repair",
+            "link": "shopify://pages/faq-care-repair"
+          }
+        },
+        "tile_FYD6pX": {
+          "type": "tile",
+          "settings": {
+            "image": "shopify://shop_images/ChatGPT_Image_May_9_2026_08_51_38_AM.png",
+            "title": "Customization",
+            "link": "shopify://pages/faq-shopping"
+          }
+        },
+        "tile_TLr7Gb": {
+          "type": "tile",
+          "settings": {
+            "image": "shopify://shop_images/ChatGPT_Image_May_9_2026_08_48_03_AM.png",
+            "title": "Diamond",
+            "link": "shopify://pages/faq-diamond"
+          }
+        },
+        "tile_97JUDA": {
+          "type": "tile",
+          "settings": {
+            "image": "shopify://shop_images/ChatGPT_Image_May_9_2026_08_49_24_AM.png",
+            "title": "Authenticity",
+            "link": "shopify://pages/faq-engraving"
+          }
+        },
+        "tile_TM3wjy": {
+          "type": "tile",
+          "settings": {
+            "image": "shopify://shop_images/ChatGPT_Image_May_9_2026_08_46_31_AM.png",
+            "title": "Packaging  &  Gifts",
+            "link": "shopify://pages/faq-store"
+          }
+        },
+        "tile_DBNDJ3": {
+          "type": "tile",
+          "settings": {
+            "image": "shopify://shop_images/ChatGPT_Image_May_9_2026_08_55_26_AM.png",
+            "title": "International Orders",
+            "link": "shopify://pages/faq-store"
+          }
+        },
+        "tile_GQ6AF4": {
+          "type": "tile",
+          "settings": {
+            "image": "shopify://shop_images/ChatGPT_Image_May_9_2026_08_34_01_AM.png",
+            "title": "General",
+            "link": "shopify://pages/faq-customs-taxes"
+          }
+        }
+      },
+      "block_order": [
+        "faq_Hn9zAF",
+        "faq_RWnqW6",
+        "faq_cngbL4",
+        "faq_hGHFxk",
+        "tile_UiQbCL",
+        "tile_nkPpUz",
+        "tile_JxgyJ7",
+        "tile_TRxDJP",
+        "tile_FYD6pX",
+        "tile_TLr7Gb",
+        "tile_97JUDA",
+        "tile_TM3wjy",
+        "tile_DBNDJ3",
+        "tile_GQ6AF4"
+      ],
+      "disabled": true,
+      "settings": {
+        "heading": "FAQ",
+        "subheading": "How can we assist you?\nThere’s no question too small or request too big for our client advisors. From choosing an engagement ring or gift to providing in-store or virtual appointments, we’re always at your service.",
+        "faq_heading": "Frequently Asked Questions"
+      }
+    },
+    "custom_faq_page_XrEVgH": {
+      "type": "custom-faq-page",
+      "blocks": {
+        "category_D7Aqfr": {
+          "type": "category",
+          "settings": {
+            "title": "",
+            "description": ""
+          }
+        },
+        "faq_item_APiqPM": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Does YAZ & Co offer complimentary jewellery cleaning?",
+            "answer": "<p>&nbsp;Yes. YAZ & Co offers complimentary professional cleaning and inspection for YAZ & Co jewellery. Additional repairs, polishing or restorative work may incur a charge depending on the service required.</p>"
+          }
+        },
+        "faq_item_47ETMA": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Does YAZ & Co offer complimentary ring resizing?",
+            "answer": "<p>Yes. YAZ & Co offers complimentary resizing for eligible rings, subject to the design, setting and resizing requirements. Certain designs, including eternity styles or significant size adjustments, may not be eligible. Additional resizing services may incur a charge.</p>"
+          }
+        },
+        "faq_item_WB69PQ": {
+          "type": "faq_item",
+          "settings": {
+            "question": "What warranty does YAZ & Co offer?",
+            "answer": "<p>YAZ & Co offers a 5-year warranty covering eligible manufacturing defects. The warranty does not cover normal wear and tear, accidental damage, loss or damage resulting from improper care or unauthorised repairs or alterations.</p>"
+          }
+        },
+        "faq_item_agVC9M": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Will I receive an igi certificate with my diamond?",
+            "answer": "<p>Yes. YAZ & Co diamonds above 1 carat are IGI certified and include their corresponding certification. Every YAZ & Co piece also carries its own serial number.</p>"
+          }
+        },
+        "faq_item_QHjDcr": {
+          "type": "faq_item",
+          "settings": {
+            "question": "What jewellery care services does YAZ & Co offer?",
+            "answer": "<p>YAZ & Co offers professional jewellery cleaning, inspection, polishing, repair and resizing services. Complimentary cleaning and inspection are available for YAZ & Co jewellery, while additional services may be subject to assessment and applicable charges.</p>"
+          }
+        },
+        "faq_item_9f9tpy": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Who is responsible for my order during shipping?",
+            "answer": "<p>YAZ & Co remains responsible for your order until delivery is confirmed by the courier. Once delivery has been confirmed, responsibility transfers to the customer in accordance with our Terms & Conditions.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "category_D7Aqfr",
+        "faq_item_APiqPM",
+        "faq_item_47ETMA",
+        "faq_item_WB69PQ",
+        "faq_item_agVC9M",
+        "faq_item_QHjDcr",
+        "faq_item_9f9tpy"
+      ],
+      "custom_css": [
+        "h2 {margin-top: 30px;}"
+      ],
+      "name": "FAQ Custom Page Layout",
+      "settings": {
+        "bg_color": "#ffffff",
+        "container_max_w": 1200,
+        "left_col_w": 280,
+        "gap_d": 60,
+        "gap_m": 30,
+        "sticky_top": 105,
+        "pad_top_d": 60,
+        "pad_bottom_d": 60,
+        "pad_left_d": 30,
+        "pad_right_d": 30,
+        "pad_top_m": 30,
+        "pad_bottom_m": 30,
+        "pad_left_m": 15,
+        "pad_right_m": 15,
+        "main_title": "FAQs",
+        "main_title_color": "#000000",
+        "main_title_size_d": 32,
+        "main_title_size_m": 24,
+        "main_title_weight": "500",
+        "main_title_transform": "none",
+        "main_title_ls": 0,
+        "main_title_mb": 25,
+        "nav_color": "#bcbcbc",
+        "nav_active_color": "#000000",
+        "nav_size_d": 16,
+        "nav_size_m": 15,
+        "nav_weight": "500",
+        "nav_transform": "uppercase",
+        "nav_ls": 0.5,
+        "nav_gap": 14,
+        "cat_title_color": "#000000",
+        "cat_title_size_d": 22,
+        "cat_title_size_m": 19,
+        "cat_title_weight": "500",
+        "cat_title_transform": "uppercase",
+        "cat_title_ls": 0.5,
+        "cat_title_mb": 16,
+        "cat_desc_color": "#444444",
+        "cat_desc_size_d": 16,
+        "cat_desc_size_m": 15,
+        "cat_desc_weight": "500",
+        "cat_desc_lh": "1.6",
+        "cat_desc_mb": 20,
+        "cat_group_mb": 25,
+        "acc_bg": "#ffffff",
+        "acc_border_color": "#bcbcbc",
+        "acc_border_thickness": 1,
+        "acc_radius": 0,
+        "acc_q_color": "#1a1a1a",
+        "acc_q_hover_color": "#666666",
+        "acc_q_size_d": 16,
+        "acc_q_size_m": 14,
+        "acc_q_weight": "400",
+        "acc_q_ls": 0,
+        "acc_btn_pad_top": 16,
+        "acc_btn_pad_bottom": 16,
+        "acc_btn_pad_left": 0,
+        "acc_btn_pad_right": 0,
+        "icon_color": "#000000",
+        "icon_size": 21,
+        "acc_ans_color": "#555555",
+        "acc_ans_size_d": 16,
+        "acc_ans_size_m": 16,
+        "acc_ans_weight": "400",
+        "acc_ans_lh": "1.6",
+        "acc_ans_pad_top": 0,
+        "acc_ans_pad_bottom": 16,
+        "acc_ans_pad_left": 0,
+        "acc_ans_pad_right": 0
+      }
+    },
+    "custom_faq_page_b7UJLM": {
+      "type": "custom-faq-page",
+      "blocks": {
+        "category_6HGjD4": {
+          "type": "category",
+          "settings": {
+            "title": "Delivery & Returns",
+            "description": ""
+          }
+        },
+        "faq_item_VRPfEL": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Are YAZ & Co products insured when shipped?",
+            "answer": "<p>YAZ & Co remains responsible for orders until the package is confirmed as delivered to the customer. If an issue occurs during shipment, our team may coordinate with the courier provider to review the case. Once delivery has been confirmed by the courier, responsibility transfers to the customer in accordance with our Terms & Conditions.</p><p>For assistance, please contact the YAZ & Co team through our official communication channels.</p>"
+          }
+        },
+        "faq_item_BaJMyM": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Can I return a personalised or custom-made item?",
+            "answer": "<p>Custom-made, personalised, engraved, or made-to-order items are non-refundable, non-exchangeable, and non-cancellable once the final design and specifications have been approved by the customer.</p><p>For further assistance, please contact the YAZ & Co team.</p>"
+          }
+        },
+        "faq_item_fMrgng": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Can I ship my order outside of the UAE?",
+            "answer": "<p>Yes. YAZ & Co offers international shipping to selected countries in accordance with applicable regulations.</p><p>Please note that customs duties, taxes, clearance fees, and import requirements are the responsibility of the customer. YAZ & Co is not responsible for customs delays or shipment restrictions imposed by foreign authorities.</p>"
+          }
+        },
+        "faq_item_DFWEcX": {
+          "type": "faq_item",
+          "settings": {
+            "question": "How can I make returns or exchanges without a receipt?",
+            "answer": "<p>YAZ & Co does not accept returns or exchanges without valid proof of purchase, including the original invoice or receipt.</p><p>All approved returns must be accompanied by the original packaging, certificates, and documentation where applicable.</p>"
+          }
+        },
+        "faq_item_WcJmYU": {
+          "type": "faq_item",
+          "settings": {
+            "question": "How can I return or exchange merchandise purchased online?",
+            "answer": "<p>Returns may only be accepted in cases of proven manufacturing defects or if the delivered item does not match the agreed specifications.</p><p>Any issue must be reported within 48 hours of receiving the order. Items must remain unused, unworn, and in original condition with all accompanying documentation.</p><p>Once the request is reviewed and approved, our team will provide further return instructions. Refunds, where applicable, are issued through the original payment method within the applicable processing period.</p><p>Please note that shipping fees are non-refundable.</p>"
+          }
+        },
+        "faq_item_cJXnCY": {
+          "type": "faq_item",
+          "settings": {
+            "question": "How do I know if my return has been received?",
+            "answer": "<p>Once the returned item has been received and inspected by the YAZ & Co team, a confirmation update will be provided to the customer regarding approval status and refund eligibility, if applicable.</p>"
+          }
+        },
+        "faq_item_UpQrYc": {
+          "type": "faq_item",
+          "settings": {
+            "question": "How do I track my online order?",
+            "answer": "<p>Once your order has been dispatched, tracking details will be shared through the contact information provided during purchase.</p><p>Customers may also contact YAZ & Co for shipment updates and delivery assistance.</p>"
+          }
+        },
+        "faq_item_dTN3eF": {
+          "type": "faq_item",
+          "settings": {
+            "question": "How long does it take for my refund to be issued?",
+            "answer": "<p>Approved refunds are processed through the original payment method within approximately 15–20 business days after the returned item has been received and inspected.</p><p>Processing timelines may vary depending on the payment provider or banking institution.</p>"
+          }
+        },
+        "faq_item_CnLkaB": {
+          "type": "faq_item",
+          "settings": {
+            "question": "What are the delivery times and shipping rates?",
+            "answer": "<p><strong>Within the UAE</strong></p><ul><li>Estimated delivery: 3–5 business days after dispatch</li><li>Shipping fee: <strong> AED 30</strong></li></ul><p><strong>International Shipping</strong></p><ul><li>Estimated delivery: 7–10 business days after dispatch</li><li>Shipping fee: <strong>AED 200</strong></li></ul><p>Orders are prepared within 15–20 business days from payment confirmation. Delivery timelines are estimates and may vary depending on courier operations, customs procedures, or circumstances beyond the Company’s control.</p>"
+          }
+        },
+        "faq_item_tpMDtp": {
+          "type": "faq_item",
+          "settings": {
+            "question": "How can I return or exchange an online exclusive item?",
+            "answer": "<p>Online purchases follow the same YAZ & Co return policy and are subject to approval based on the conditions outlined in our Terms & Conditions.</p><p>Returns may only be considered for:</p><ul><li>Proven manufacturing defects</li><li>Incorrect items delivered</li><li>Items not matching agreed specifications</li></ul><p>Products must be returned unused, in original condition, and accompanied by the original invoice, packaging, and certificates where applicable.</p><p>Custom-made, engraved, or personalized items are not eligible for return or exchange.</p>"
+          }
+        },
+        "faq_item_DXajri": {
+          "type": "faq_item",
+          "settings": {
+            "question": "How do I request a tax refund as a tourist?",
+            "answer": "<p>Tax refund eligibility is subject to UAE regulations and approved tax refund procedures. Customers may contact the relevant authorized tax refund provider for further guidance and requirements.</p>"
+          }
+        },
+        "category_zjJhHT": {
+          "type": "category",
+          "settings": {
+            "title": "Orders & Payments",
+            "description": ""
+          }
+        },
+        "faq_item_EXa9rT": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Can you buy YAZ & Co jewelry in UAE?",
+            "answer": "<p>Yes, you can purchase YAZ & Co jewellery in the United Arab Emirates through the official YAZ & Co website and authorized sales channels.</p>"
+          }
+        },
+        "faq_item_cdW6WA": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Can you insure YAZ & Co jewelry?",
+            "answer": "<p>Fine jewellery is often insured. While YAZ & Co does not provide insurance services, customers may use their purchase invoice, authenticator card, or applicable certification documents for insurance purposes. Additional documentation may be provided upon request, subject to approval.</p>"
+          }
+        },
+        "faq_item_GccGTn": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Does YAZ & Co have jewelry for children?",
+            "answer": "<p>While YAZ & Co jewellery is primarily designed for adults and everyday fine jewellery wear, selected pieces may also be suitable for gifting purposes.</p>"
+          }
+        },
+        "faq_item_hbJfNy": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Does YAZ & Co have a ring size conversion chart?",
+            "answer": "<p>Yes. YAZ & Co provides a ring size guide and conversion chart to assist customers in selecting the correct size before purchase.</p>"
+          }
+        },
+        "faq_item_8RRJJW": {
+          "type": "faq_item",
+          "settings": {
+            "question": "How do I order on YAZ & Co?",
+            "answer": "<p>Customers may place orders directly through the official YAZ & Co website by selecting their preferred items and completing checkout using an approved payment method. Orders are confirmed once full payment has been successfully received and verified.</p>"
+          }
+        },
+        "faq_item_KPHXJr": {
+          "type": "faq_item",
+          "settings": {
+            "question": "How is my YAZ & Co item packaged?",
+            "answer": "<p>Each YAZ & Co piece arrives in a signature YAZ & Co presentation box and is carefully packed to ensure safe delivery. Orders may also include a branded shopping bag, authenticator card, and protective packaging.</p>"
+          }
+        },
+        "faq_item_CCgxRi": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Is it safe to order on YAZ & Co?",
+            "answer": "<p>Yes. Payments on the YAZ & Co website are processed through secure encrypted payment systems and approved third-party payment providers to help protect customer information and transactions.</p>"
+          }
+        },
+        "faq_item_pcTeDq": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Is the packaging of my YAZ & Co online purchase discreet?",
+            "answer": "<p>Orders are securely packed for safe delivery. Outer packaging may vary depending on courier and shipping requirements.</p>"
+          }
+        },
+        "faq_item_DeazX4": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Is there VAT charged online, and can I claim it back?",
+            "answer": "<p>VAT is charged in accordance with UAE laws and regulations. Tax refund eligibility, where applicable, is subject to UAE government regulations and approved tax refund procedures.</p>"
+          }
+        },
+        "faq_item_KcUcrp": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Is the YAZ & Co Box available for purchase?",
+            "answer": "<p>The YAZ & Co presentation box is provided exclusively with the purchase of YAZ & Co jewellery and is not sold separately.</p>"
+          }
+        },
+        "faq_item_4BxiFP": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Discover New Ways to Shop",
+            "answer": "<p>Customers may contact YAZ & Co for private consultations, online assistance, product inquiries, and personalized support. Appointments may also be arranged for private visits subject to availability and confirmation.</p>"
+          }
+        },
+        "faq_item_JQYhkr": {
+          "type": "faq_item",
+          "settings": {
+            "question": "What is Mastercard® SecureCode™?",
+            "answer": "<p>Mastercard® SecureCode™ is a security service provided by Mastercard and participating card issuers to help protect online purchases from unauthorized use. Customers may be required to complete additional identity verification during checkout.</p>"
+          }
+        },
+        "faq_item_HYdDpx": {
+          "type": "faq_item",
+          "settings": {
+            "question": "What is Verified by Visa?",
+            "answer": "<p>Verified by Visa is a security feature designed to help protect Visa cardholders during online transactions. Additional verification may be requested by the card issuer during payment processing.</p>"
+          }
+        },
+        "faq_item_Cnadxf": {
+          "type": "faq_item",
+          "settings": {
+            "question": "What payment methods does YAZ & Co accept?",
+            "answer": "<p>YAZ & Co accepts approved payment methods available at checkout, which may include:</p><ul><li>Apple Pay</li><li>Google Pay</li><li>Visa</li><li>Mastercard</li></ul><p>Available payment methods may vary depending on location and platform.</p>"
+          }
+        },
+        "faq_item_WYgKfH": {
+          "type": "faq_item",
+          "settings": {
+            "question": "What is YAZ & Co doing with my information to comply with privacy and data protection regulations?",
+            "answer": "<p>YAZ & Co is committed to protecting customer privacy and handling personal information responsibly. Customer data is used solely for order processing, communication, and related services in accordance with our Privacy Policy. Personal information is not sold or rented to third parties.</p>"
+          }
+        },
+        "category_P3pK8L": {
+          "type": "category",
+          "settings": {
+            "title": "Care",
+            "description": ""
+          }
+        },
+        "faq_item_7A46Cf": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Can my YAZ &Co jewelry get wet?",
+            "answer": "<p>While YAZ & Co diamond jewellery can tolerate occasional exposure to water, we recommend removing your jewellery before activities that may affect its brilliance, finish, or longevity.</p><p>This includes:</p><ul><li>Showering, bathing, or swimming</li><li>Using perfumes, lotions, or cosmetics</li><li>Exercising or contact sports</li><li>Household cleaning or outdoor work</li><li>Exposure to chlorine, salt water, or harsh chemicals</li></ul>"
+          }
+        },
+        "faq_item_NXH4xN": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Does gold tarnish?",
+            "answer": "<p>18k gold jewellery may naturally develop minor scratches or changes in surface appearance over time due to daily wear. To preserve the brilliance and finish of your YAZ & Co diamond jewellery, avoid exposure to chemicals, bleach, perfumes, cleaning products, and excessive moisture.</p><p>When not being worn, store your jewellery safely in its original YAZ & Co box or protective pouch.</p>"
+          }
+        },
+        "faq_item_BCVicM": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Does YAZ & Co offer a jewellery cleaning service? Can I get my YAZ & Co jewellery cleaned?",
+            "answer": "<p>Selected cleaning and maintenance services may be available upon evaluation by YAZ & Co. Service availability depends on the jewellery condition and design.</p><p>Customers may contact YAZ & Co customer service regarding jewellery care and servicing requests.</p>"
+          }
+        },
+        "faq_item_Lz3hjY": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Does YAZ & Co offer free jewellery cleaning services?",
+            "answer": "<p>Basic cleaning services may be provided for selected YAZ & Co diamond jewellery pieces at the discretion of the company. Additional polishing, repair, resizing, or maintenance services may involve service charges depending on the required work.</p>"
+          }
+        },
+        "faq_item_jrNmJD": {
+          "type": "faq_item",
+          "settings": {
+            "question": "How do I care for my diamond jewellery?",
+            "answer": "<p>To preserve the brilliance of your diamond jewellery, avoid direct contact with chemicals, perfumes, cosmetics, lotions, and abrasive surfaces. Jewellery should be cleaned gently using a soft cloth and stored separately to avoid scratches or damage.</p><p>We recommend periodic professional inspection and maintenance for jewellery worn frequently.</p>"
+          }
+        },
+        "faq_item_WQxtfK": {
+          "type": "faq_item",
+          "settings": {
+            "question": "How should I clean my diamond ring?",
+            "answer": "<p>Diamond jewellery may be cleaned gently using lukewarm water, mild soap, and a soft brush or cloth. Avoid abrasive cleaning products or harsh chemicals. Ensure the jewellery is fully dried before storage.</p>"
+          }
+        },
+        "faq_item_GT9KXg": {
+          "type": "faq_item",
+          "settings": {
+            "question": "How should I store & organize my jewellery?",
+            "answer": "<p>Diamond jewellery should be stored separately to avoid scratches, tangling, or damage between pieces. We recommend using protective boxes, pouches, or compartments and keeping jewellery away from moisture, heat, direct sunlight, and chemicals.</p><p>When travelling, jewellery should be securely packed and protected individually. Valuable pieces should remain with the owner whenever possible.</p>"
+          }
+        },
+        "faq_item_gFz9Xb": {
+          "type": "faq_item",
+          "settings": {
+            "question": "How do I care for my gemstone jewellery?",
+            "answer": "<p>YAZ & Co jewellery is crafted using lab-grown diamonds and fine materials that require careful handling to preserve their brilliance and condition. Avoid impact against hard surfaces, exposure to chemicals, perfumes, cosmetics, ultrasonic cleaning, and extreme temperatures.</p>"
+          }
+        },
+        "faq_item_paU8UX": {
+          "type": "faq_item",
+          "settings": {
+            "question": "How to polish gold and diamond jewellery?",
+            "answer": "<p>Gold jewellery polishing should only be performed by qualified professionals to avoid unnecessary metal wear or surface damage.</p>"
+          }
+        },
+        "faq_item_DKTkXJ": {
+          "type": "faq_item",
+          "settings": {
+            "question": "How to remove scratches from gold jewellery?",
+            "answer": "<p>Minor scratches naturally develop over time through regular wear. Professional polishing may help reduce the appearance of scratches; however, excessive polishing is not recommended as it gradually removes metal from the jewellery surface.</p>"
+          }
+        },
+        "faq_item_tY9cAi": {
+          "type": "faq_item",
+          "settings": {
+            "question": "What cleaning and care services does YAZ & Co offer?",
+            "answer": "<p>YAZ & Co may provide selected after-sales care and maintenance services depending on the jewellery type and condition, including:</p><ul><li>Jewellery cleaning</li><li>Polishing</li><li>Repair services</li><li>Ring resizing</li><li>Jewellery inspection</li><li>Maintenance evaluations</li></ul><p>All services remain subject to inspection, approval, and applicable service charges where required.</p>"
+          }
+        },
+        "faq_item_rmtBjB": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Where can I get my YAZ & Co jewellery cleaned?",
+            "answer": "<p>Customers may contact YAZ & Co customer service regarding jewellery cleaning, maintenance, or repair requests. Service availability depends on the condition and design of the piece.</p>"
+          }
+        },
+        "category_Lm46R4": {
+          "type": "category",
+          "settings": {
+            "title": "Repair",
+            "description": ""
+          }
+        },
+        "faq_item_PLBpXP": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Where can I get my YAZ & Co jewellery cleaned?",
+            "answer": "<p>Customers may contact YAZ & Co customer service regarding jewellery cleaning, maintenance, or repair requests. Service availability depends on the condition and design of the piece.</p>"
+          }
+        },
+        "faq_item_etyirR": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Can I replace a lost earring back?",
+            "answer": "<p>Replacement earring backs may be available for selected YAZ & Co diamond jewellery styles, subject to availability and assessment.</p>"
+          }
+        },
+        "faq_item_iQq9aD": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Can my necklace be lengthened or shortened?",
+            "answer": "<p>Selected YAZ & Co diamond necklaces and bracelets may be eligible for length adjustments depending on the design and construction of the piece. Additional charges and service timelines may apply.</p>"
+          }
+        },
+        "faq_item_7LUhHe": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Can I resize my YAZ & Co jewellery?",
+            "answer": "<p>Resizing services may be available for selected YAZ & Co diamond rings and jewellery styles. Availability depends on the design, setting, and structure of the piece. </p><p>Please note that resized or altered jewellery may not be eligible for return or exchange.</p>"
+          }
+        },
+        "faq_item_VXriwR": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Does YAZ & Co offer merchandise appraisals?",
+            "answer": "<p>YAZ & Co does not provide official appraisal services. However, selected documentation related to purchased jewellery may be provided upon request where applicable.</p>"
+          }
+        },
+        "faq_item_JRVJQg": {
+          "type": "faq_item",
+          "settings": {
+            "question": "How can I get an item repaired?",
+            "answer": "<p>Customers may contact YAZ & Co regarding repair or servicing requests for eligible diamond jewellery pieces. All repair requests are subject to inspection and approval.</p><p>Repair timelines and charges may vary depending on the required service and jewellery condition.</p>"
+          }
+        },
+        "faq_item_t4xBfj": {
+          "type": "faq_item",
+          "settings": {
+            "question": "How do I know the status of my repair?",
+            "answer": "<p>Customers may contact YAZ & Co customer service for updates regarding jewellery servicing or repair status.</p>"
+          }
+        },
+        "faq_item_j6MEyV": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Can I replace missing pieces from my jewellery set?",
+            "answer": "<p>Replacement of selected jewellery components or matching pieces may be possible depending on product availability and design continuity. Availability cannot be guaranteed.</p>"
+          }
+        },
+        "faq_item_hgnTLa": {
+          "type": "faq_item",
+          "settings": {
+            "question": "How long does it take to get my jewellery repaired?",
+            "answer": "<p>Repair timelines vary depending on the jewellery type, required service, and assessment results. Customers will be informed regarding estimated completion timelines after inspection.</p>"
+          }
+        },
+        "faq_item_CfTEny": {
+          "type": "faq_item",
+          "settings": {
+            "question": "How much does it cost to repair my YAZ & Co jewellery?",
+            "answer": "<p>Repair pricing depends on the jewellery design, condition, materials, and required servicing. All repair requests are subject to evaluation before pricing confirmation.</p>"
+          }
+        },
+        "faq_item_jCwHLA": {
+          "type": "faq_item",
+          "settings": {
+            "question": "The chain of my jewellery broke. Can I have it repaired?",
+            "answer": "<p>Selected chain and clasp repair services may be available depending on the jewellery design and condition. Service availability and pricing are determined after inspection.</p>"
+          }
+        },
+        "faq_item_d8HTKU": {
+          "type": "faq_item",
+          "settings": {
+            "question": "What is the YAZ & Co Repair Policy?",
+            "answer": "<p>Repair and servicing requests are subject to inspection, approval, and applicable service charges. Repair timelines vary depending on the jewellery type and required work.</p><p>YAZ & Co reserves the right to determine whether a jewellery item is eligible for repair, restoration, resizing, or replacement services.</p>"
+          }
+        },
+        "category_rDdXGt": {
+          "type": "category",
+          "settings": {
+            "title": "Customization",
+            "description": ""
+          }
+        },
+        "faq_item_EVjHrM": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Do you offer custom-made jewellery?",
+            "answer": "<p>Yes. Custom-made or made-to-order jewellery may be created based on approved designs and specifications.</p>"
+          }
+        },
+        "faq_item_namTFk": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Can I modify my custom order after approval?",
+            "answer": "<p>No. Once the final design and specifications are approved, the order cannot be modified.</p>"
+          }
+        },
+        "faq_item_nFfJhP": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Can I cancel my custom order?",
+            "answer": "<p>Custom-made or made-to-order items cannot be cancelled once confirmed.</p>"
+          }
+        },
+        "faq_item_9rdhKi": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Can I return or exchange a custom item?",
+            "answer": "<p>No. Custom-made or made-to-order items are non-refundable and non-exchangeable.</p>"
+          }
+        },
+        "faq_item_fwk8yK": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Who is responsible after approving the design?",
+            "answer": "<p>The customer bears full responsibility once the final design and specifications are approved.</p>"
+          }
+        },
+        "category_W3BixN": {
+          "type": "category",
+          "settings": {
+            "title": "diamond",
+            "description": ""
+          }
+        },
+        "faq_item_NgpMEP": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Am I able to choose whether or not my YAZ & Co diamond originates from a specific country?",
+            "answer": "<p>YAZ & Co is committed to responsible sourcing practices for all diamond jewellery. While origin selection may not be available for every piece, additional information regarding diamond sourcing may be provided for selected items upon request.</p>"
+          }
+        },
+        "faq_item_hzraNU": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Does YAZ & Co offer traceability of their diamonds?",
+            "answer": "<p>Selected YAZ & Co diamonds may include sourcing and certification information depending on the supplier and product category. Availability of traceability details may vary by jewellery piece.</p>"
+          }
+        },
+        "faq_item_nHBpEN": {
+          "type": "faq_item",
+          "settings": {
+            "question": "How can I learn more about the provenance of my YAZ & Co diamond?",
+            "answer": "<p>Customers may contact YAZ & Co customer service for additional information regarding diamond sourcing, certification, and available provenance details related to their purchased jewellery.</p>"
+          }
+        },
+        "faq_item_9ExjrP": {
+          "type": "faq_item",
+          "settings": {
+            "question": "How can I schedule a diamond ring consultation?",
+            "answer": "<p>YAZ & Co offers diamond jewellery consultation services for customers seeking assistance with engagement rings, wedding bands, or fine diamond jewellery selections. Consultation availability may vary depending on scheduling and service requests.</p>"
+          }
+        },
+        "faq_item_9CjhWi": {
+          "type": "faq_item",
+          "settings": {
+            "question": "How does YAZ& Co define responsibly sourced diamonds?",
+            "answer": "<p>YAZ & Co works with suppliers who follow internationally recognized ethical sourcing standards and responsible diamond trading practices.</p>"
+          }
+        },
+        "faq_item_R8dAcw": {
+          "type": "faq_item",
+          "settings": {
+            "question": "How do I know the provenance of my individually registered diamond?",
+            "answer": "<p>Selected certified diamonds may include documentation or grading reports containing details regarding diamond characteristics and available sourcing information.</p>"
+          }
+        },
+        "faq_item_tpJNp3": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Is YAZ & Co discontinuing sourcing diamonds from specific countries?",
+            "answer": "<p>YAZ & Co reserves the right to review and update sourcing partnerships and procurement practices in accordance with international regulations, ethical sourcing standards, and internal compliance requirements.</p>"
+          }
+        },
+        "faq_item_tHWYaW": {
+          "type": "faq_item",
+          "settings": {
+            "question": "What is diamond provenance?",
+            "answer": "<p>Diamond provenance refers to the sourcing background and origin information associated with a diamond, including available details regarding where the stone was mined, processed, or certified.</p>"
+          }
+        },
+        "faq_item_F7UBgG": {
+          "type": "faq_item",
+          "settings": {
+            "question": "What is YAZ & Co doing to protect the environment?",
+            "answer": "<p>YAZ & Co supports responsible sourcing practices and works with suppliers committed to ethical business conduct, environmental awareness, and industry compliance standards.</p>"
+          }
+        },
+        "faq_item_wFhAeY": {
+          "type": "faq_item",
+          "settings": {
+            "question": "What should I consider when purchasing diamonds?",
+            "answer": "<p>When purchasing diamond jewellery, customers may consider factors such as cut, clarity, colour, carat weight, craftsmanship, certification, and overall design preference.</p>"
+          }
+        },
+        "faq_item_9FjiB9": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Which “C” is the most important?",
+            "answer": "<p>The 4Cs — cut, clarity, colour, and carat weight — are internationally recognized standards used to evaluate diamond quality.</p><p>While all factors are important, diamond cut plays a significant role in determining brilliance, sparkle, and overall visual appearance.</p>"
+          }
+        },
+        "faq_item_GQeUTH": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Will I get a certificate with my engagement ring?",
+            "answer": "<p>Selected YAZ & Co engagement rings and certified diamond jewellery may include a diamond grading or certification document issued by an independent gemological laboratory, depending on the centre stone specifications and product category.</p>"
+          }
+        },
+        "category_ViLYNJ": {
+          "type": "category",
+          "settings": {
+            "title": "authenticity",
+            "description": ""
+          }
+        },
+        "faq_item_WfKFaN": {
+          "type": "faq_item",
+          "settings": {
+            "question": "How can I verify authenticity?",
+            "answer": "<p>Each piece includes an official YAZ & Co authenticator and quality inspection.</p>"
+          }
+        },
+        "faq_item_6MUJyA": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Are your designs protected?",
+            "answer": "<p>All designs and brand elements are protected under intellectual property laws.</p>"
+          }
+        },
+        "category_rE3Yck": {
+          "type": "category",
+          "settings": {
+            "title": "International Orders",
+            "description": ""
+          }
+        },
+        "faq_item_c78MtF": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Will I pay customs duties?",
+            "answer": "<p>Customers are responsible for customs duties, taxes, and import requirements.</p>"
+          }
+        },
+        "faq_item_dQdxHH": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Who is responsible for international shipping risks?",
+            "answer": "<p>Responsibility transfers once the shipment is handed to the courier.</p>"
+          }
+        },
+        "category_xc7jqn": {
+          "type": "category",
+          "settings": {
+            "title": "General",
+            "description": ""
+          }
+        },
+        "faq_item_qgQRA7": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Is jewellery an investment?",
+            "answer": "<p>Jewellery is sold for personal use only. No future value or resale is guaranteed.</p>"
+          }
+        },
+        "faq_item_zpEJhn": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Do you offer buyback?",
+            "answer": "<p>YAZ & Co does not offer buyback or resale services.</p>"
+          }
+        },
+        "faq_item_PxLTPr": {
+          "type": "faq_item",
+          "settings": {
+            "question": "How is my personal data used?",
+            "answer": "<p>Customer data is used only for order processing and communication.</p>"
+          }
+        },
+        "faq_item_afpV48": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Can your policies change?",
+            "answer": "<p>Yes. Terms & Conditions may be updated at any time.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "category_6HGjD4",
+        "faq_item_VRPfEL",
+        "faq_item_BaJMyM",
+        "faq_item_fMrgng",
+        "faq_item_DFWEcX",
+        "faq_item_WcJmYU",
+        "faq_item_cJXnCY",
+        "faq_item_UpQrYc",
+        "faq_item_dTN3eF",
+        "faq_item_CnLkaB",
+        "faq_item_tpMDtp",
+        "faq_item_DXajri",
+        "category_zjJhHT",
+        "faq_item_EXa9rT",
+        "faq_item_cdW6WA",
+        "faq_item_GccGTn",
+        "faq_item_hbJfNy",
+        "faq_item_8RRJJW",
+        "faq_item_KPHXJr",
+        "faq_item_CCgxRi",
+        "faq_item_pcTeDq",
+        "faq_item_DeazX4",
+        "faq_item_KcUcrp",
+        "faq_item_4BxiFP",
+        "faq_item_JQYhkr",
+        "faq_item_HYdDpx",
+        "faq_item_Cnadxf",
+        "faq_item_WYgKfH",
+        "category_P3pK8L",
+        "faq_item_7A46Cf",
+        "faq_item_NXH4xN",
+        "faq_item_BCVicM",
+        "faq_item_Lz3hjY",
+        "faq_item_jrNmJD",
+        "faq_item_WQxtfK",
+        "faq_item_GT9KXg",
+        "faq_item_gFz9Xb",
+        "faq_item_paU8UX",
+        "faq_item_DKTkXJ",
+        "faq_item_tY9cAi",
+        "faq_item_rmtBjB",
+        "category_Lm46R4",
+        "faq_item_PLBpXP",
+        "faq_item_etyirR",
+        "faq_item_iQq9aD",
+        "faq_item_7LUhHe",
+        "faq_item_VXriwR",
+        "faq_item_JRVJQg",
+        "faq_item_t4xBfj",
+        "faq_item_j6MEyV",
+        "faq_item_hgnTLa",
+        "faq_item_CfTEny",
+        "faq_item_jCwHLA",
+        "faq_item_d8HTKU",
+        "category_rDdXGt",
+        "faq_item_EVjHrM",
+        "faq_item_namTFk",
+        "faq_item_nFfJhP",
+        "faq_item_9rdhKi",
+        "faq_item_fwk8yK",
+        "category_W3BixN",
+        "faq_item_NgpMEP",
+        "faq_item_hzraNU",
+        "faq_item_nHBpEN",
+        "faq_item_9ExjrP",
+        "faq_item_9CjhWi",
+        "faq_item_R8dAcw",
+        "faq_item_tpJNp3",
+        "faq_item_tHWYaW",
+        "faq_item_F7UBgG",
+        "faq_item_wFhAeY",
+        "faq_item_9FjiB9",
+        "faq_item_GQeUTH",
+        "category_ViLYNJ",
+        "faq_item_WfKFaN",
+        "faq_item_6MUJyA",
+        "category_rE3Yck",
+        "faq_item_c78MtF",
+        "faq_item_dQdxHH",
+        "category_xc7jqn",
+        "faq_item_qgQRA7",
+        "faq_item_zpEJhn",
+        "faq_item_PxLTPr",
+        "faq_item_afpV48"
+      ],
+      "disabled": true,
+      "name": "FAQ Custom Page Layout",
+      "settings": {
+        "bg_color": "#ffffff",
+        "container_max_w": 1200,
+        "left_col_w": 280,
+        "gap_d": 60,
+        "gap_m": 30,
+        "sticky_top": 105,
+        "pad_top_d": 60,
+        "pad_bottom_d": 60,
+        "pad_left_d": 30,
+        "pad_right_d": 30,
+        "pad_top_m": 30,
+        "pad_bottom_m": 30,
+        "pad_left_m": 15,
+        "pad_right_m": 15,
+        "main_title": "FAQ's",
+        "main_title_color": "#000000",
+        "main_title_size_d": 32,
+        "main_title_size_m": 24,
+        "main_title_weight": "500",
+        "main_title_transform": "none",
+        "main_title_ls": 0,
+        "main_title_mb": 25,
+        "nav_color": "#bcbcbc",
+        "nav_active_color": "#000000",
+        "nav_size_d": 16,
+        "nav_size_m": 15,
+        "nav_weight": "500",
+        "nav_transform": "uppercase",
+        "nav_ls": 0.5,
+        "nav_gap": 14,
+        "cat_title_color": "#000000",
+        "cat_title_size_d": 22,
+        "cat_title_size_m": 19,
+        "cat_title_weight": "500",
+        "cat_title_transform": "uppercase",
+        "cat_title_ls": 0.5,
+        "cat_title_mb": 16,
+        "cat_desc_color": "#444444",
+        "cat_desc_size_d": 16,
+        "cat_desc_size_m": 15,
+        "cat_desc_weight": "500",
+        "cat_desc_lh": "1.6",
+        "cat_desc_mb": 20,
+        "cat_group_mb": 25,
+        "acc_bg": "#ffffff",
+        "acc_border_color": "#bcbcbc",
+        "acc_border_thickness": 1,
+        "acc_radius": 0,
+        "acc_q_color": "#1a1a1a",
+        "acc_q_hover_color": "#666666",
+        "acc_q_size_d": 18,
+        "acc_q_size_m": 17,
+        "acc_q_weight": "400",
+        "acc_q_ls": 0,
+        "acc_btn_pad_top": 16,
+        "acc_btn_pad_bottom": 16,
+        "acc_btn_pad_left": 0,
+        "acc_btn_pad_right": 0,
+        "icon_color": "#000000",
+        "icon_size": 21,
+        "acc_ans_color": "#555555",
+        "acc_ans_size_d": 16,
+        "acc_ans_size_m": 16,
+        "acc_ans_weight": "400",
+        "acc_ans_lh": "1.6",
+        "acc_ans_pad_top": 0,
+        "acc_ans_pad_bottom": 16,
+        "acc_ans_pad_left": 0,
+        "acc_ans_pad_right": 0
+      }
+    }
+  },
+  "order": [
+    "main",
+    "custom_faq_page_XrEVgH",
+    "custom_faq_page_b7UJLM"
+  ]
+}

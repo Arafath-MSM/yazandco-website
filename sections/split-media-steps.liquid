@@ -1,0 +1,466 @@
+{%- assign media_class = 'split-media-element-' | append: section.id -%}
+
+{%- style -%}
+  /* ==========================================================================
+     1. MAIN SECTION & PADDINGS (DESKTOP & MOBILE)
+     ========================================================================== */
+  #split-media-{{ section.id }} {
+    background-color: {{ section.settings.bg_color }};
+    padding-top: {{ section.settings.pad_top_m }}px;
+    padding-bottom: {{ section.settings.pad_bottom_m }}px;
+    padding-left: {{ section.settings.pad_left_m }}px;
+    padding-right: {{ section.settings.pad_right_m }}px;
+  }
+
+  @media screen and (min-width: 990px) {
+    #split-media-{{ section.id }} {
+      padding-top: {{ section.settings.pad_top_d }}px;
+      padding-bottom: {{ section.settings.pad_bottom_d }}px;
+      padding-left: {{ section.settings.pad_left_d }}px;
+      padding-right: {{ section.settings.pad_right_d }}px;
+    }
+  }
+
+  .split-container-{{ section.id }} {
+    max-width: {{ section.settings.container_max_w }}px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  /* ==========================================================================
+     2. FLEXBOX LAYOUT & COLUMN SWAP
+     ========================================================================== */
+  .split-grid-{{ section.id }} {
+    display: flex;
+    flex-direction: {% if section.settings.mobile_swap == 'text_first' %}column-reverse{% else %}column{% endif %};
+    gap: {{ section.settings.gap_m }}px;
+    align-items: {{ section.settings.vert_align }};
+  }
+
+  @media screen and (min-width: 990px) {
+    .split-grid-{{ section.id }} {
+      flex-direction: {% if section.settings.desktop_swap == 'right' %}row-reverse{% else %}row{% endif %};
+      gap: {{ section.settings.gap_d }}px;
+    }
+  }
+
+  /* ==========================================================================
+     3. MEDIA COLUMN & ASPECT RATIO (SQUARE / AUTO / CUSTOM)
+     ========================================================================== */
+  .split-media-col-{{ section.id }} {
+    width: 100%;
+  }
+
+  @media screen and (min-width: 990px) {
+    .split-media-col-{{ section.id }} {
+      width: {{ section.settings.media_width_d }}%;
+      flex-shrink: 0;
+    }
+  }
+
+  .split-media-wrapper-{{ section.id }} {
+    width: 100%;
+    aspect-ratio: {{ section.settings.media_aspect_ratio }};
+    overflow: hidden;
+    border-radius: {{ section.settings.media_radius }}px;
+    border: {{ section.settings.media_border_w }}px solid {{ section.settings.media_border_color }};
+  }
+
+  .{{ media_class }} {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+  }
+
+  /* ==========================================================================
+     4. CONTENT COLUMN & TYPOGRAPHY
+     ========================================================================== */
+  .split-content-col-{{ section.id }} {
+    width: 100%;
+    text-align: {{ section.settings.text_align_m }};
+  }
+
+  @media screen and (min-width: 990px) {
+    .split-content-col-{{ section.id }} {
+      flex-grow: 1;
+      width: calc(100% - {{ section.settings.media_width_d }}% - {{ section.settings.gap_d }}px);
+      text-align: {{ section.settings.text_align_d }};
+    }
+  }
+
+  /* TITLE STYLES */
+  .split-title-{{ section.id }} {
+    color: {{ section.settings.title_color }};
+    font-size: {{ section.settings.title_size_m }}px;
+    font-weight: {{ section.settings.title_weight }};
+    text-transform: {{ section.settings.title_transform }};
+    letter-spacing: {{ section.settings.title_ls }}px;
+    line-height: {{ section.settings.title_lh }};
+    margin: 0 0 {{ section.settings.title_mb }}px 0;
+  }
+
+  @media screen and (min-width: 990px) {
+    .split-title-{{ section.id }} {
+      font-size: {{ section.settings.title_size_d }}px;
+    }
+  }
+
+  /* LINK STYLES */
+  .split-link-{{ section.id }} {
+    display: inline-block;
+    color: {{ section.settings.link_color }};
+    font-size: {{ section.settings.link_size_m }}px;
+    font-weight: {{ section.settings.link_weight }};
+    text-decoration: {% if section.settings.link_underline %}underline{% else %}none{% endif %};
+    margin-bottom: {{ section.settings.link_mb }}px;
+    transition: color 0.3s ease;
+  }
+
+  @media screen and (min-width: 990px) {
+    .split-link-{{ section.id }} {
+      font-size: {{ section.settings.link_size_d }}px;
+    }
+  }
+
+  .split-link-{{ section.id }}:hover {
+    color: {{ section.settings.link_hover_color }};
+  }
+
+  /* RICH TEXT BLOCK STYLES */
+  .split-richtext-{{ section.id }} {
+    margin-bottom: {{ section.settings.richtext_mb }}px;
+  }
+
+  .split-richtext-{{ section.id }} p,
+  .split-richtext-{{ section.id }} div {
+    color: {{ section.settings.richtext_color }};
+    font-size: {{ section.settings.richtext_size_m }}px;
+    font-weight: {{ section.settings.richtext_weight }};
+    line-height: {{ section.settings.richtext_lh }};
+    margin: 0 0 10px 0;
+  }
+
+  @media screen and (min-width: 990px) {
+    .split-richtext-{{ section.id }} p,
+    .split-richtext-{{ section.id }} div {
+      font-size: {{ section.settings.richtext_size_d }}px;
+    }
+  }
+
+  /* ==========================================================================
+     5. STEP / LIST ITEMS & DIVIDERS
+     ========================================================================== */
+  .split-steps-list-{{ section.id }} {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: {{ section.settings.step_gap }}px;
+  }
+
+  .split-step-item-{{ section.id }} {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding-bottom: {{ section.settings.step_pad_b }}px;
+    border-bottom: {% if section.settings.show_divider %}{{ section.settings.divider_w }}px solid {{ section.settings.divider_color }}{% else %}none{% endif %};
+  }
+
+  .step-num-{{ section.id }} {
+    color: {{ section.settings.step_num_color }};
+    font-size: {{ section.settings.step_size_m }}px;
+    font-weight: {{ section.settings.step_weight }};
+    flex-shrink: 0;
+  }
+
+  .step-text-{{ section.id }} {
+    color: {{ section.settings.step_color }};
+    font-size: {{ section.settings.step_size_m }}px;
+    font-weight: {{ section.settings.step_weight }};
+    line-height: {{ section.settings.step_lh }};
+    letter-spacing: {{ section.settings.step_ls }}px;
+  }
+
+  @media screen and (min-width: 990px) {
+    .step-num-{{ section.id }},
+    .step-text-{{ section.id }} {
+      font-size: {{ section.settings.step_size_d }}px;
+    }
+  }
+{%- endstyle -%}
+
+<section class="split-media-section" id="split-media-{{ section.id }}">
+  <div class="split-container-{{ section.id }}">
+    <div class="split-grid-{{ section.id }}">
+      
+      <!-- MEDIA COLUMN (IMAGE OR VIDEO WITH SQUARE/ASPECT-RATIO) -->
+      <div class="split-media-col-{{ section.id }}">
+        <div class="split-media-wrapper-{{ section.id }}">
+          {%- if section.settings.media_type == 'video' -%}
+            {%- if section.settings.shopify_video != blank -%}
+              {{ section.settings.shopify_video | video_tag: autoplay: section.settings.video_autoplay, loop: section.settings.video_loop, controls: section.settings.video_controls, muted: section.settings.video_muted, class: media_class }}
+            {%- elsif section.settings.video_url != blank -%}
+              <video 
+                src="{{ section.settings.video_url }}" 
+                {% if section.settings.video_autoplay %}autoplay muted{% endif %} 
+                {% if section.settings.video_loop %}loop{% endif %} 
+                {% if section.settings.video_controls %}controls{% endif %} 
+                class="{{ media_class }}">
+              </video>
+            {%- endif -%}
+          {%- else -%}
+            {%- if section.settings.image != blank -%}
+              {{ section.settings.image | image_url: width: 1400 | image_tag: loading: 'lazy', class: media_class, alt: section.settings.title }}
+            {%- else -%}
+              {{ 'image' | placeholder_svg_tag: media_class }}
+            {%- endif -%}
+          {%- endif -%}
+        </div>
+      </div>
+
+      <!-- CONTENT COLUMN -->
+      <div class="split-content-col-{{ section.id }}">
+        {%- if section.settings.title != blank -%}
+          <h2 class="split-title-{{ section.id }}">{{ section.settings.title }}</h2>
+        {%- endif -%}
+
+        {%- if section.settings.link_text != blank -%}
+          <a href="{{ section.settings.link_url | default: '#' }}" class="split-link-{{ section.id }}">
+            {{ section.settings.link_text }}
+          </a>
+        {%- endif -%}
+
+        <!-- DYNAMIC BLOCKS (RICH TEXT & STEP ITEMS) -->
+        {%- if section.blocks.size > 0 -%}
+          <div class="split-blocks-wrapper-{{ section.id }}">
+            {%- for block in section.blocks -%}
+              {%- case block.type -%}
+                
+                {%- when 'rich_text' -%}
+                  <div class="split-richtext-{{ section.id }}" {{ block.shopify_attributes }}>
+                    {{ block.settings.richtext }}
+                  </div>
+
+                {%- when 'step_item' -%}
+                  {%- assign prev_i = forloop.index0 | minus: 1 -%}
+                  {%- assign next_i = forloop.index0 | plus: 1 -%}
+                  {%- assign prev_block = section.blocks[prev_i] -%}
+                  {%- assign next_block = section.blocks[next_i] -%}
+
+                  {%- if forloop.first or prev_block.type != 'step_item' -%}
+                    <ol class="split-steps-list-{{ section.id }}">
+                  {%- endif -%}
+
+                    <li class="split-step-item-{{ section.id }}" {{ block.shopify_attributes }}>
+                      {%- if block.settings.show_number -%}
+                        <span class="step-num-{{ section.id }}">{{ block.settings.custom_num | default: forloop.index | append: '.' }}</span>
+                      {%- endif -%}
+                      <span class="step-text-{{ section.id }}">{{ block.settings.text }}</span>
+                    </li>
+
+                  {%- if forloop.last or next_block.type != 'step_item' -%}
+                    </ol>
+                  {%- endif -%}
+
+              {%- endcase -%}
+            {%- endfor -%}
+          </div>
+        {%- endif -%}
+      </div>
+
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Split Media & Steps List",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "1. SECTION LAYOUT"
+    },
+    { "type": "color", "id": "bg_color", "label": "Section Background", "default": "#FFFFFF" },
+    { "type": "range", "id": "container_max_w", "min": 800, "max": 1800, "step": 20, "unit": "px", "label": "Container Max Width", "default": 1300 },
+    { "type": "select", "id": "vert_align", "label": "Vertical Alignment", "options": [ { "value": "flex-start", "label": "Top" }, { "value": "center", "label": "Center" }, { "value": "flex-end", "label": "Bottom" } ], "default": "center" },
+
+    {
+      "type": "header",
+      "content": "2. DESKTOP & MOBILE "
+    },
+    { "type": "select", "id": "desktop_swap", "label": "Desktop Layout", "options": [ { "value": "left", "label": "Media Left / Text Right" }, { "value": "right", "label": "Media Right / Text Left" } ], "default": "left" },
+    { "type": "select", "id": "mobile_swap", "label": "Mobile Layout", "options": [ { "value": "media_first", "label": "Media First (Top) / Text Second" }, { "value": "text_first", "label": "Text First (Top) / Media Second" } ], "default": "media_first" },
+    { "type": "range", "id": "gap_d", "min": 10, "max": 120, "step": 5, "unit": "px", "label": "Grid Gap (Desktop)", "default": 60 },
+    { "type": "range", "id": "gap_m", "min": 10, "max": 80, "step": 5, "unit": "px", "label": "Grid Gap (Mobile)", "default": 30 },
+
+    {
+      "type": "header",
+      "content": "3. DESKTOP PADDINGS"
+    },
+    { "type": "range", "id": "pad_top_d", "min": 0, "max": 150, "step": 5, "unit": "px", "label": "Padding Top", "default": 60 },
+    { "type": "range", "id": "pad_bottom_d", "min": 0, "max": 150, "step": 5, "unit": "px", "label": "Padding Bottom", "default": 60 },
+    { "type": "range", "id": "pad_left_d", "min": 0, "max": 100, "step": 5, "unit": "px", "label": "Padding Left", "default": 40 },
+    { "type": "range", "id": "pad_right_d", "min": 0, "max": 100, "step": 5, "unit": "px", "label": "Padding Right", "default": 40 },
+
+    {
+      "type": "header",
+      "content": "4. MOBILE PADDINGS"
+    },
+    { "type": "range", "id": "pad_top_m", "min": 0, "max": 100, "step": 5, "unit": "px", "label": "Padding Top", "default": 30 },
+    { "type": "range", "id": "pad_bottom_m", "min": 0, "max": 100, "step": 5, "unit": "px", "label": "Padding Bottom", "default": 30 },
+    { "type": "range", "id": "pad_left_m", "min": 0, "max": 50, "step": 2, "unit": "px", "label": "Padding Left", "default": 16 },
+    { "type": "range", "id": "pad_right_m", "min": 0, "max": 50, "step": 2, "unit": "px", "label": "Padding Right", "default": 16 },
+
+    {
+      "type": "header",
+      "content": "5. MEDIA SETTINGS (IMAGE / VIDEO"
+    },
+    { "type": "select", "id": "media_type", "label": "Media Type", "options": [ { "value": "image", "label": "Image" }, { "value": "video", "label": "Video" } ], "default": "image" },
+    { 
+      "type": "select", 
+      "id": "media_aspect_ratio", 
+      "label": "Media Aspect Ratio / Shape", 
+      "options": [ 
+        { "value": "auto", "label": "Natural / Auto" }, 
+        { "value": "1 / 1", "label": "Square (1:1)" }, 
+        { "value": "4 / 3", "label": "Standard (4:3)" }, 
+        { "value": "16 / 9", "label": "Widescreen (16:9)" } 
+      ], 
+      "default": "1 / 1" 
+    },
+    { "type": "image_picker", "id": "image", "label": "Select Image" },
+    { "type": "video", "id": "shopify_video", "label": "Select Shopify Video" },
+    { "type": "url", "id": "video_url", "label": "External MP4 Video URL" },
+    { "type": "checkbox", "id": "video_autoplay", "label": "Autoplay Video", "default": true },
+    { "type": "checkbox", "id": "video_muted", "label": "Mute Video (Required for Autoplay)", "default": true },
+    { "type": "checkbox", "id": "video_loop", "label": "Loop Video", "default": true },
+    { "type": "checkbox", "id": "video_controls", "label": "Show Controls", "default": false },
+    { "type": "range", "id": "media_width_d", "min": 30, "max": 70, "step": 5, "unit": "%", "label": "Media Column Width (Desktop)", "default": 50 },
+    { "type": "range", "id": "media_radius", "min": 0, "max": 40, "step": 1, "unit": "px", "label": "Media Border Radius", "default": 0 },
+    { "type": "range", "id": "media_border_w", "min": 0, "max": 10, "step": 1, "unit": "px", "label": "Media Border Width", "default": 0 },
+    { "type": "color", "id": "media_border_color", "label": "Media Border Color", "default": "#EEEEEE" },
+
+    {
+      "type": "header",
+      "content": "6. HEADING SETTINGS"
+    },
+    { "type": "text", "id": "title", "label": "Heading Title", "default": "MEASURE YOUR FINGER" },
+    { "type": "color", "id": "title_color", "label": "Title Color", "default": "#000000" },
+    { "type": "range", "id": "title_size_d", "min": 16, "max": 60, "step": 1, "unit": "px", "label": "Title Size (Desktop)", "default": 32 },
+    { "type": "range", "id": "title_size_m", "min": 14, "max": 40, "step": 1, "unit": "px", "label": "Title Size (Mobile)", "default": 22 },
+    { "type": "select", "id": "title_weight", "label": "Title Font Weight", "options": [ { "value": "300", "label": "Light" }, { "value": "400", "label": "Regular" }, { "value": "500", "label": "Medium" }, { "value": "600", "label": "SemiBold" }, { "value": "700", "label": "Bold" } ], "default": "400" },
+    { "type": "select", "id": "title_transform", "label": "Text Transform", "options": [ { "value": "none", "label": "None" }, { "value": "uppercase", "label": "UPPERCASE" }, { "value": "capitalize", "label": "Capitalize" } ], "default": "uppercase" },
+    { "type": "range", "id": "title_ls", "min": 0, "max": 5, "step": 0.5, "unit": "px", "label": "Title Letter Spacing", "default": 1.5 },
+    { "type": "text", "id": "title_lh", "label": "Title Line Height", "default": "1.2" },
+    { "type": "range", "id": "title_mb", "min": 0, "max": 40, "step": 2, "unit": "px", "label": "Title Margin Bottom", "default": 12 },
+
+    {
+      "type": "header",
+      "content": "7. LINK / SUBTITLE SETTINGS"
+    },
+    { "type": "text", "id": "link_text", "label": "Link Text", "default": "Download Our Guide" },
+    { "type": "url", "id": "link_url", "label": "Link URL" },
+    { "type": "color", "id": "link_color", "label": "Link Color", "default": "#000000" },
+    { "type": "color", "id": "link_hover_color", "label": "Link Hover Color", "default": "#666666" },
+    { "type": "checkbox", "id": "link_underline", "label": "Underline Link", "default": true },
+    { "type": "range", "id": "link_size_d", "min": 10, "max": 24, "step": 1, "unit": "px", "label": "Link Size (Desktop)", "default": 14 },
+    { "type": "range", "id": "link_size_m", "min": 10, "max": 20, "step": 1, "unit": "px", "label": "Link Size (Mobile)", "default": 13 },
+    { "type": "select", "id": "link_weight", "label": "Link Font Weight", "options": [ { "value": "300", "label": "Light" }, { "value": "400", "label": "Regular" }, { "value": "500", "label": "Medium" }, { "value": "600", "label": "SemiBold" } ], "default": "400" },
+    { "type": "range", "id": "link_mb", "min": 0, "max": 60, "step": 2, "unit": "px", "label": "Link Bottom Margin", "default": 20 },
+
+    {
+      "type": "header",
+      "content": "8. RICH TEXT GLOBAL STYLES"
+    },
+    { "type": "color", "id": "richtext_color", "label": "Rich Text Color", "default": "#333333" },
+    { "type": "range", "id": "richtext_size_d", "min": 11, "max": 26, "step": 1, "unit": "px", "label": "Rich Text Size (Desktop)", "default": 15 },
+    { "type": "range", "id": "richtext_size_m", "min": 10, "max": 22, "step": 1, "unit": "px", "label": "Rich Text Size (Mobile)", "default": 13 },
+    { "type": "select", "id": "richtext_weight", "label": "Rich Text Font Weight", "options": [ { "value": "300", "label": "Light" }, { "value": "400", "label": "Regular" }, { "value": "500", "label": "Medium" } ], "default": "400" },
+    { "type": "text", "id": "richtext_lh", "label": "Rich Text Line Height", "default": "1.5" },
+    { "type": "range", "id": "richtext_mb", "min": 0, "max": 50, "step": 2, "unit": "px", "label": "Rich Text Bottom Margin", "default": 20 },
+
+    {
+      "type": "header",
+      "content": "9. STEP LIST STYLES & DIVIDERS"
+    },
+    { "type": "color", "id": "step_color", "label": "Step Text Color", "default": "#222222" },
+    { "type": "color", "id": "step_num_color", "label": "Step Number Color", "default": "#222222" },
+    { "type": "range", "id": "step_size_d", "min": 11, "max": 24, "step": 1, "unit": "px", "label": "Step Size (Desktop)", "default": 14 },
+    { "type": "range", "id": "step_size_m", "min": 10, "max": 20, "step": 1, "unit": "px", "label": "Step Size (Mobile)", "default": 13 },
+    { "type": "select", "id": "step_weight", "label": "Step Font Weight", "options": [ { "value": "300", "label": "Light" }, { "value": "400", "label": "Regular" }, { "value": "500", "label": "Medium" }, { "value": "600", "label": "SemiBold" } ], "default": "400" },
+    { "type": "text", "id": "step_lh", "label": "Step Line Height", "default": "1.5" },
+    { "type": "range", "id": "step_ls", "min": 0, "max": 3, "step": 0.5, "unit": "px", "label": "Step Letter Spacing", "default": 0 },
+    { "type": "range", "id": "step_gap", "min": 5, "max": 40, "step": 1, "unit": "px", "label": "Gap Between Steps", "default": 16 },
+    { "type": "range", "id": "step_pad_b", "min": 0, "max": 30, "step": 1, "unit": "px", "label": "Step Bottom Padding", "default": 12 },
+
+    { "type": "checkbox", "id": "show_divider", "label": "Enable Divider Line Under Steps", "default": true },
+    { "type": "color", "id": "divider_color", "label": "Divider Color", "default": "#EFEFEF" },
+    { "type": "range", "id": "divider_w", "min": 1, "max": 5, "step": 1, "unit": "px", "label": "Divider Thickness", "default": 1 },
+
+    {
+      "type": "header",
+      "content": "10. TEXT ALIGNMENT"
+    },
+    { "type": "select", "id": "text_align_d", "label": "Text Alignment (Desktop)", "options": [ { "value": "left", "label": "Left" }, { "value": "center", "label": "Center" }, { "value": "right", "label": "Right" } ], "default": "left" },
+    { "type": "select", "id": "text_align_m", "label": "Text Alignment (Mobile)", "options": [ { "value": "left", "label": "Left" }, { "value": "center", "label": "Center" }, { "value": "right", "label": "Right" } ], "default": "left" }
+  ],
+  "blocks": [
+    {
+      "type": "rich_text",
+      "name": "Rich Text Paragraph",
+      "settings": [
+        { "type": "richtext", "id": "richtext", "label": "Paragraph Content", "default": "<p>Add additional details, sizing guidelines, or descriptive text here.</p>" }
+      ]
+    },
+    {
+      "type": "step_item",
+      "name": "Step Item",
+      "settings": [
+        { "type": "checkbox", "id": "show_number", "label": "Show Number", "default": true },
+        { "type": "text", "id": "custom_num", "label": "Custom Prefix/Number", "info": "Leave blank for automatic numbering (1., 2., etc.)" },
+        { "type": "textarea", "id": "text", "label": "Step Description", "default": "Measure the lines marked A and B to confirm your page is the right size." }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Split Media & Steps List",
+      "blocks": [
+        {
+          "type": "rich_text",
+          "settings": {
+            "richtext": "<p>Follow these simple instructions to ensure exact sizing for your order.</p>"
+          }
+        },
+        {
+          "type": "step_item",
+          "settings": {
+            "text": "Measure the lines marked A and B to confirm your page is the right size."
+          }
+        },
+        {
+          "type": "step_item",
+          "settings": {
+            "text": "Cut around the ring sizer's serrated lines and the slit at the top."
+          }
+        },
+        {
+          "type": "step_item",
+          "settings": {
+            "text": "Push the opposite end of your sizer through the slit and place on your finger."
+          }
+        },
+        {
+          "type": "step_item",
+          "settings": {
+            "text": "Check the line and make a note of your letter, then match up with our table."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

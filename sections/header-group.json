@@ -14,14 +14,35 @@
     "countdown-timer-bar": {
       "type": "countdown-timer-bar",
       "blocks": {
+        "announcement_yxRG7g": {
+          "type": "announcement",
+          "settings": {
+            "text": "Once a Year. 20% Off. White Friday Sale Is Now Live.&nbsp;",
+            "link_label": "",
+            "link": "",
+            "background_color": "#4D1432",
+            "text_color": "#FFFFFF"
+          }
+        },
+        "announcement_welcome": {
+          "type": "announcement",
+          "disabled": true,
+          "settings": {
+            "text": "RECEIVE AED 200 OFF YOUR FIRST PURCHASE WITH CODE WELCOME10",
+            "link_label": "",
+            "link": "",
+            "background_color": "#4d1432",
+            "text_color": "#ffffff"
+          }
+        },
         "announcement_jewellery": {
           "type": "announcement",
           "settings": {
-            "text": "Jewellery that lives with you",
-            "link_label": "Shop now",
+            "text": "Jewellery That Lives With You",
+            "link_label": "Shop Now",
             "link": "shopify://collections/all",
-            "background_color": "#ffffff",
-            "text_color": "#000000"
+            "background_color": "#4d1432",
+            "text_color": "#ffffff"
           }
         },
         "announcement_tabby": {
@@ -30,30 +51,43 @@
             "text": "SPARKLE NOW, PAY LATER WITH TABBY",
             "link_label": "",
             "link": "",
-            "background_color": "#d8d3b8",
-            "text_color": "#000000"
+            "background_color": "#4d1432",
+            "text_color": "#ffffff"
           }
         },
-        "announcement_welcome": {
+        "announcement_ety79G": {
           "type": "announcement",
           "settings": {
-            "text": "RECEIVE 10% OFF YOUR FIRST PURCHASE WITH CODE WELCOME10",
+            "text": "<a href=\"/pages/our-story\" title=\"Our story\">Crafted in the UAE, For Your Life</a>",
             "link_label": "",
             "link": "",
-            "background_color": "#fffdf0",
-            "text_color": "#000000"
+            "background_color": "#4d1432",
+            "text_color": "#ffffff"
+          }
+        },
+        "announcement_XGXCK9": {
+          "type": "announcement",
+          "settings": {
+            "text": "<a href=\"/pages/book-appoinment2\" title=\"book-appoinment2\">Secure Your One-On-One Consultation</a>",
+            "link_label": "",
+            "link": "",
+            "background_color": "#4d1432",
+            "text_color": "#ffffff"
           }
         }
       },
       "block_order": [
+        "announcement_yxRG7g",
+        "announcement_welcome",
         "announcement_jewellery",
         "announcement_tabby",
-        "announcement_welcome"
+        "announcement_ety79G",
+        "announcement_XGXCK9"
       ],
       "settings": {
         "height": 40,
         "height_mobile": 40,
-        "color_scheme": "",
+        "color_scheme": "scheme-3a23eecb-e260-43ed-b316-a69f6eaa6ee2",
         "rotation_speed": 5,
         "promo_text": "Jewellery that lives with you",
         "enable_mock_timer": false,
@@ -71,19 +105,190 @@
     },
     "header": {
       "type": "header",
+      "blocks": {
+        "mega_menu_agNdgn": {
+          "type": "mega_menu",
+          "settings": {
+            "mega_menu_trigger": "LEARN",
+            "enable_dropdown_menu": true,
+            "enable_dropdown_submenu": false,
+            "flat_submenu": false,
+            "open_dropdown_menu": "on_hover",
+            "block_image_ratio": "portrait",
+            "icon_trigger_1": "",
+            "icon_trigger_2": "",
+            "icon_trigger_3": "",
+            "icon_trigger_4": "",
+            "icon_trigger_5": "",
+            "icon_trigger_6": "",
+            "icon_trigger_7": "",
+            "icon_trigger_8": "",
+            "icon_trigger_9": "",
+            "icon_trigger_10": "",
+            "icon_trigger_11": "",
+            "icon_trigger_12": "",
+            "enable_auto_images": false,
+            "first_product": "celeste-ring",
+            "first_collection": "",
+            "second_product": "core-light-earrings",
+            "second_collection": "",
+            "small_menu": "",
+            "mega_menu_description": "",
+            "mega_menu_button_label": "",
+            "mega_menu_button_link": "",
+            "mega_menu_button_style": "tertiary",
+            "mega_menu_promo_1_trigger": "",
+            "heading_1": "",
+            "button_link_1": "",
+            "mega_menu_promo_2_trigger": "",
+            "heading_2": "Use this for a product section",
+            "button_link_2": "",
+            "mega_menu_promo_3_trigger": "",
+            "heading_3": "This is where a key link goes",
+            "button_link_3": "",
+            "mega_menu_promo_4_trigger": "",
+            "heading_4": "Here can be a main category",
+            "button_link_4": "",
+            "mega_menu_promo_5_trigger": "",
+            "heading_5": "Use this for a product section",
+            "button_link_5": ""
+          }
+        },
+        "mega_menu_tjtAHn": {
+          "type": "mega_menu",
+          "settings": {
+            "mega_menu_trigger": "Collections",
+            "enable_dropdown_menu": true,
+            "enable_dropdown_submenu": true,
+            "flat_submenu": true,
+            "open_dropdown_menu": "on_hover",
+            "block_image_ratio": "square",
+            "icon_trigger_1": "Oval",
+            "icon_image_1": "shopify://shop_images/oval.png",
+            "icon_trigger_2": "Pear",
+            "icon_image_2": "shopify://shop_images/Pear.png",
+            "icon_trigger_3": "Asscher",
+            "icon_image_3": "shopify://shop_images/Asscher.png",
+            "icon_trigger_4": "Cushion",
+            "icon_image_4": "shopify://shop_images/Cushion.png",
+            "icon_trigger_5": "Emerald",
+            "icon_image_5": "shopify://shop_images/Marquise.png",
+            "icon_trigger_6": "Marquise",
+            "icon_image_6": "shopify://shop_images/Pear.png",
+            "icon_trigger_7": "Elongated Cushion",
+            "icon_image_7": "shopify://shop_images/Elongated_Cushion.png",
+            "icon_trigger_8": "Princess",
+            "icon_image_8": "shopify://shop_images/Radiant.png",
+            "icon_trigger_9": "Radiant",
+            "icon_image_9": "shopify://shop_images/Round.png",
+            "icon_trigger_10": "Round",
+            "icon_image_10": "shopify://shop_images/Round.png",
+            "icon_trigger_11": "",
+            "icon_trigger_12": "",
+            "enable_auto_images": false,
+            "first_product": "althea-ring",
+            "first_collection": "",
+            "second_product": "aura-ring",
+            "second_collection": "",
+            "small_menu": "main-menu",
+            "mega_menu_description": "",
+            "mega_menu_button_label": "",
+            "mega_menu_button_link": "",
+            "mega_menu_button_style": "tertiary",
+            "mega_menu_promo_1_trigger": "",
+            "heading_1": "Here can be a main category",
+            "image_1": "shopify://shop_images/IMG_9541_2.jpg",
+            "button_link_1": "#",
+            "mega_menu_promo_2_trigger": "",
+            "heading_2": "Use this for a product section",
+            "image_2": "shopify://shop_images/IMG_6310.jpg",
+            "button_link_2": "#",
+            "mega_menu_promo_3_trigger": "",
+            "heading_3": "This is where a key link goes",
+            "image_3": "shopify://shop_images/IMG_4982.heic",
+            "button_link_3": "#",
+            "mega_menu_promo_4_trigger": "",
+            "heading_4": "Here can be a main category",
+            "image_4": "shopify://shop_images/WhatsApp_Image_2026-07-18_at_3.55.55_PM_1.jpg",
+            "button_link_4": "#",
+            "mega_menu_promo_5_trigger": "",
+            "heading_5": "Use this for a product section",
+            "button_link_5": ""
+          }
+        },
+        "mega_menu_RDHHNP": {
+          "type": "mega_menu",
+          "settings": {
+            "mega_menu_trigger": "JEWELLERY",
+            "enable_dropdown_menu": true,
+            "enable_dropdown_submenu": false,
+            "flat_submenu": false,
+            "open_dropdown_menu": "on_hover",
+            "block_image_ratio": "square",
+            "icon_trigger_1": "",
+            "icon_trigger_2": "",
+            "icon_trigger_3": "",
+            "icon_trigger_4": "",
+            "icon_trigger_5": "",
+            "icon_trigger_6": "",
+            "icon_trigger_7": "",
+            "icon_trigger_8": "",
+            "icon_trigger_9": "",
+            "icon_trigger_10": "",
+            "icon_trigger_11": "",
+            "icon_trigger_12": "",
+            "enable_auto_images": false,
+            "first_product": "elira-ring",
+            "first_collection": "",
+            "second_product": "elira-ring",
+            "second_collection": "",
+            "small_menu": "main-menu",
+            "mega_menu_description": "",
+            "mega_menu_button_label": "",
+            "mega_menu_button_link": "",
+            "mega_menu_button_style": "tertiary",
+            "mega_menu_promo_1_trigger": "",
+            "heading_1": "",
+            "button_link_1": "",
+            "mega_menu_promo_2_trigger": "",
+            "heading_2": "Use this for a product section",
+            "button_link_2": "",
+            "mega_menu_promo_3_trigger": "",
+            "heading_3": "This is where a key link goes",
+            "button_link_3": "",
+            "mega_menu_promo_4_trigger": "",
+            "heading_4": "Here can be a main category",
+            "button_link_4": "",
+            "mega_menu_promo_5_trigger": "",
+            "heading_5": "Use this for a product section",
+            "button_link_5": ""
+          }
+        }
+      },
+      "block_order": [
+        "mega_menu_agNdgn",
+        "mega_menu_tjtAHn",
+        "mega_menu_RDHHNP"
+      ],
+      "custom_css": [
+        "a.header__extra-link.link-hover-line {font-family: \"Brandon\";}"
+      ],
       "settings": {
         "enable_border": false,
         "header_type": "center-logo",
         "logo": "shopify://shop_images/RGBLogo_-_YAZ_Purple.png",
         "logo_2": "shopify://shop_images/RGBLogo_-_White.png",
         "logo_width": 120,
-        "menu": "main-menu",
+        "menu": "main-menu-copy-copy",
+        "mobile_menu": "main-menu-copy-copy-copy-mobile",
         "sticky_header_type": "always",
         "header_animation_type": "fade",
         "enable_country_selector": false,
         "enable_language_selector": true,
         "enable_search": true,
         "scheme_position": "right",
+        "extra_link_text": "BOOK A CONSULTATION",
+        "extra_link_url": "shopify://pages/book-an-appointment",
         "dm_button_type": "icon",
         "search_button_type": "icon",
         "search_mobile_button_type": "icon",
@@ -96,6 +301,7 @@
     },
     "1775213798c4c1d71b": {
       "type": "apps",
+      "disabled": true,
       "settings": {
         "include_margins": true
       }

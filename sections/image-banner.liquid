@@ -89,8 +89,21 @@
   	}
 {% endstyle %}
 
-<section class="image-banner image-banner--{{ section.settings.info_position }} color-{{ section.settings.color_scheme }} background {% if section.settings.full_width %}{% else %}container{% endif %}">
-	{% if section.settings.info_position == "outside" %}
+{%- if section.settings.enable_custom_heading_size -%}
+  {% style %}
+    .image-banner--{{ section.id }} h2.image-banner__heading {
+      font-size: {{ section.settings.heading_font_size_mobile }}px;
+    }
+
+    @media screen and (min-width: 990px) {
+      .image-banner--{{ section.id }} h2.image-banner__heading {
+        font-size: {{ section.settings.heading_font_size_desktop }}px;
+      }
+    }
+  {% endstyle %}
+{%- endif -%}
+
+<section class="image-banner image-banner--{{ section.id }} image-banner--{{ section.settings.info_position }} color-{{ section.settings.color_scheme }} background {% if section.settings.full_width %}{% else %}container{% endif %}">	{% if section.settings.info_position == "outside" %}
 		{%- if section.settings.full_width -%}<div class="container container-banner-wrapper">{%- endif -%}
 			<div class="image-banner__wrapper image-banner__wrapper--{{ section.settings.text_width }}">
 				{%- if section.settings.heading != blank -%}
@@ -389,6 +402,32 @@
 			"label": "t:sections.all.heading_size.label"
 		},
     {
+  "type": "checkbox",
+  "id": "enable_custom_heading_size",
+  "default": false,
+  "label": "Enable custom heading font size"
+},
+{
+  "type": "range",
+  "id": "heading_font_size_desktop",
+  "min": 16,
+  "max": 100,
+  "step": 1,
+  "unit": "px",
+  "default": 48,
+  "label": "Heading font size (desktop)"
+},
+{
+  "type": "range",
+  "id": "heading_font_size_mobile",
+  "min": 12,
+  "max": 60,
+  "step": 1,
+  "unit": "px",
+  "default": 28,
+  "label": "Heading font size (mobile)"
+},
+    {
       "type": "richtext",
       "id": "text_information",
       "default": "t:sections.image-banner.settings.text_information.default",
@@ -438,6 +477,7 @@
       "default": "center",
       "label": "t:sections.image-banner.settings.text_align.label"
     },
+  
     {
       "type": "select",
       "id": "text_width",

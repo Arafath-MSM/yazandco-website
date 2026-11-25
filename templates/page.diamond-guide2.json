@@ -1,0 +1,466 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "banner": {
+      "type": "image-banner",
+      "custom_css": [
+        "h2 {font-size: 35px;}",
+        ".image-banner .banner {display: flex; position: relative; min-height: initial; max-height: 200px;}",
+        ".image-banner .banner:is([class*=\"bottom\"]) .image-banner__wrapper {padding-bottom: 2rem;}"
+      ],
+      "settings": {
+        "full_width": true,
+        "color_scheme": "background-2",
+        "info_position": "inside",
+        "image": "shopify://shop_images/WhatsApp_Image_2026-09-09_at_6.23.25_PM_2.jpg",
+        "image_ratio": "21/9",
+        "opacity_overlay": 0,
+        "heading": "DIAMOND GUIDE",
+        "heading_size": "h1",
+        "enable_custom_heading_size": true,
+        "heading_font_size_desktop": 36,
+        "heading_font_size_mobile": 28,
+        "text_information": "",
+        "text_align": "bottom-left",
+        "text_width": "full",
+        "additional_text": "",
+        "button_label": "",
+        "button_style": "tertiary",
+        "button_link": "",
+        "button_label2": "",
+        "button_style2": "tertiary",
+        "button_link2": "",
+        "margin_top": "no-indent",
+        "margin_bottom": "no-indent"
+      }
+    },
+    "interactive_guide_EM9mhU": {
+      "type": "interactive-guide",
+      "blocks": {
+        "guide_step_mahRAi": {
+          "type": "guide_step",
+          "settings": {
+            "anchor_id": "cut",
+            "nav_label": "4 Cs of Diamonds Charts",
+            "desktop_pos": "left",
+            "mobile_swap": "image_first",
+            "col_width": 50,
+            "gap_d": 50,
+            "gap_m": 20,
+            "pad_top": 10,
+            "pad_bottom": 10,
+            "image": "shopify://shop_images/ChatGPT_Image_Aug_19_2026_07_45_50_PM.png",
+            "img_radius": 0,
+            "img_border_w": 0,
+            "img_border_color": "#eeeeee",
+            "text_align_d": "flex-start",
+            "text_align_m": "flex-start",
+            "title": "4 Cs of Diamonds Charts",
+            "title_color": "#111111",
+            "title_size_d": 26,
+            "title_size_m": 22,
+            "title_weight": "500",
+            "title_mb": 14,
+            "body_text": "<p>The 4 Cs of diamonds (cut, colour, clarity and carat) are the universal standards used to understand diamond quality. Each C represents a unique characteristic that contributes to a diamond’s beauty and brilliance.</p><p><strong>Cut:</strong> Graded from Ideal to Poor on the IGI scale.<br/><strong>Colour:</strong> Graded from D (colourless) to Z (light yellow or brown).<br/><strong>Clarity:</strong> Graded from Flawless (FL) to Included (I3).<br/><strong>Carat:</strong> Measured in metric carats, where one carat equals 200 milligrams.</p>",
+            "text_color": "#444444",
+            "text_size_d": 15,
+            "text_size_m": 13,
+            "text_weight": "400",
+            "text_lh": "1.6",
+            "text_mb": 10,
+            "show_callout": false,
+            "callout_text": "Good quality cut which reflects some light while maintaining weight.",
+            "callout_bg": "#1b3b36",
+            "callout_text_color": "#ffffff",
+            "callout_border_color": "#1b3b36",
+            "callout_border_w": 0,
+            "callout_radius": 2,
+            "callout_size_d": 13,
+            "callout_size_m": 12,
+            "callout_weight": "400",
+            "callout_pad_v": 16,
+            "callout_pad_h": 20,
+            "callout_mt": 16,
+            "btn_label": "",
+            "btn_link": "",
+            "btn_bg": "#ffffff",
+            "btn_text_color": "#111111",
+            "btn_border_color": "#111111",
+            "btn_bg_hover": "#111111",
+            "btn_text_hover": "#ffffff",
+            "btn_border_hover": "#111111",
+            "btn_border_w": 1,
+            "btn_radius": 0,
+            "btn_size_d": 13,
+            "btn_size_m": 12,
+            "btn_weight": "500",
+            "btn_pad_v": 12,
+            "btn_pad_h": 24,
+            "btn_mt": 14
+          }
+        },
+        "guide_step_yTqhXq": {
+          "type": "guide_step",
+          "settings": {
+            "anchor_id": "color",
+            "nav_label": "Diamond Cut",
+            "desktop_pos": "right",
+            "mobile_swap": "image_first",
+            "col_width": 50,
+            "gap_d": 50,
+            "gap_m": 20,
+            "pad_top": 10,
+            "pad_bottom": 10,
+            "image": "shopify://shop_images/ChatGPT_Image_Aug_19_2026_07_54_00_PM.png",
+            "img_radius": 0,
+            "img_border_w": 0,
+            "img_border_color": "#eeeeee",
+            "text_align_d": "flex-start",
+            "text_align_m": "flex-start",
+            "title": "Diamond Cut",
+            "title_color": "#111111",
+            "title_size_d": 26,
+            "title_size_m": 22,
+            "title_weight": "500",
+            "title_mb": 14,
+            "body_text": "<p>Cut is one of the most important factors that influences a diamond’s brilliance and sparkle. It refers to how precisely a diamond’s facets are shaped and arranged to interact with light. A well-crafted cut allows light to enter, reflect, and return through the top of the diamond, creating exceptional brightness, fire, and scintillation.</p><p>Unlike colour, clarity, and carat, which are determined during a diamond’s formation, cut quality depends on the expertise and precision of the diamond cutter. A superior cut enhances the diamond’s natural beauty, while a poorly cut diamond may lose light and appear less vibrant.</p>",
+            "text_color": "#444444",
+            "text_size_d": 15,
+            "text_size_m": 13,
+            "text_weight": "400",
+            "text_lh": "1.6",
+            "text_mb": 10,
+            "show_callout": false,
+            "callout_text": "Good quality cut which reflects some light while maintaining weight.",
+            "callout_bg": "#1b3b36",
+            "callout_text_color": "#ffffff",
+            "callout_border_color": "#1b3b36",
+            "callout_border_w": 0,
+            "callout_radius": 2,
+            "callout_size_d": 13,
+            "callout_size_m": 12,
+            "callout_weight": "400",
+            "callout_pad_v": 16,
+            "callout_pad_h": 20,
+            "callout_mt": 16,
+            "btn_label": "",
+            "btn_link": "",
+            "btn_bg": "#ffffff",
+            "btn_text_color": "#111111",
+            "btn_border_color": "#111111",
+            "btn_bg_hover": "#111111",
+            "btn_text_hover": "#ffffff",
+            "btn_border_hover": "#111111",
+            "btn_border_w": 1,
+            "btn_radius": 0,
+            "btn_size_d": 13,
+            "btn_size_m": 12,
+            "btn_weight": "500",
+            "btn_pad_v": 12,
+            "btn_pad_h": 24,
+            "btn_mt": 14
+          }
+        },
+        "guide_step_TH8Cjw": {
+          "type": "guide_step",
+          "settings": {
+            "anchor_id": "clarity",
+            "nav_label": "Diamond Colour",
+            "desktop_pos": "left",
+            "mobile_swap": "image_first",
+            "col_width": 50,
+            "gap_d": 50,
+            "gap_m": 20,
+            "pad_top": 10,
+            "pad_bottom": 10,
+            "image": "shopify://shop_images/ChatGPT_Image_Aug_19_2026_08_00_54_PM.png",
+            "img_radius": 0,
+            "img_border_w": 0,
+            "img_border_color": "#eeeeee",
+            "text_align_d": "flex-start",
+            "text_align_m": "flex-start",
+            "title": "Diamond Colour",
+            "title_color": "#111111",
+            "title_size_d": 26,
+            "title_size_m": 22,
+            "title_weight": "500",
+            "title_mb": 14,
+            "body_text": "<p>Diamond colour refers to the absence of colour in a diamond. The less colour a diamond has, the rarer and more valuable it becomes. IGI grades diamond colour on a scale from <strong>D (Colourless) to Z (Light Yellow or Brown)</strong>, with each grade representing a subtle difference in colour appearance.</p><p>The IGI Colour Grading Scale includes:</p><ul><li><strong>D – F: Colourless</strong><br/>Diamonds in this range have exceptional transparency and appear completely colourless.</li><li><strong>G – J: Near Colourless</strong><br/>These diamonds show minimal colour that is difficult to notice, offering excellent value and beauty.</li><li><strong>K – M: Faint Colour</strong><br/>A slight warm tone becomes more visible while maintaining attractive brilliance.</li><li><strong>N – R: Very Light Colour</strong><br/>Noticeable colour tones begin to appear within the diamond.</li><li><strong>S – Z: Light Colour</strong><br/>Diamonds display visible yellow or brown hues.</li></ul><p>Diamond colour selection depends on personal preference, diamond size, shape, and the jewellery setting. Larger diamonds and certain shapes may reveal colour more easily, making the right grade an important part of choosing the perfect diamond.</p>",
+            "text_color": "#444444",
+            "text_size_d": 15,
+            "text_size_m": 13,
+            "text_weight": "400",
+            "text_lh": "1.6",
+            "text_mb": 10,
+            "show_callout": false,
+            "callout_text": "Good quality cut which reflects some light while maintaining weight.",
+            "callout_bg": "#1b3b36",
+            "callout_text_color": "#ffffff",
+            "callout_border_color": "#1b3b36",
+            "callout_border_w": 0,
+            "callout_radius": 2,
+            "callout_size_d": 13,
+            "callout_size_m": 12,
+            "callout_weight": "400",
+            "callout_pad_v": 16,
+            "callout_pad_h": 20,
+            "callout_mt": 16,
+            "btn_label": "",
+            "btn_link": "",
+            "btn_bg": "#ffffff",
+            "btn_text_color": "#111111",
+            "btn_border_color": "#111111",
+            "btn_bg_hover": "#111111",
+            "btn_text_hover": "#ffffff",
+            "btn_border_hover": "#111111",
+            "btn_border_w": 1,
+            "btn_radius": 0,
+            "btn_size_d": 13,
+            "btn_size_m": 12,
+            "btn_weight": "500",
+            "btn_pad_v": 12,
+            "btn_pad_h": 24,
+            "btn_mt": 14
+          }
+        },
+        "guide_step_rFeQ8k": {
+          "type": "guide_step",
+          "settings": {
+            "anchor_id": "clarity",
+            "nav_label": "Diamond Clarity",
+            "desktop_pos": "right",
+            "mobile_swap": "image_first",
+            "col_width": 50,
+            "gap_d": 50,
+            "gap_m": 20,
+            "pad_top": 10,
+            "pad_bottom": 10,
+            "image": "shopify://shop_images/ChatGPT_Image_Sep_21_2026_05_17_13_PM.png",
+            "img_radius": 0,
+            "img_border_w": 0,
+            "img_border_color": "#eeeeee",
+            "text_align_d": "flex-start",
+            "text_align_m": "flex-start",
+            "title": "Diamond Clarity",
+            "title_color": "#111111",
+            "title_size_d": 26,
+            "title_size_m": 22,
+            "title_weight": "500",
+            "title_mb": 14,
+            "body_text": "<p>Clarity refers to how free a diamond is from internal characteristics (<strong>inclusions</strong>) and external imperfections (<strong>blemishes</strong>). A diamond with higher clarity has fewer visible characteristics, allowing its natural beauty and brilliance to shine.</p><p>The IGI clarity scale ranges from <strong>Flawless (FL) to Included (I3)</strong>, with each grade representing the level of internal and surface features within the diamond. Most diamonds contain tiny characteristics that are not visible to the naked eye and do not affect their overall beauty.</p><p>The impact of inclusions depends on their <strong>size, number, and location</strong>. Features positioned beneath the top surface of the diamond may affect appearance more than those located near the edges. Each diamond has a unique clarity profile, making individual evaluation an important part of selecting the perfect stone.</p>",
+            "text_color": "#444444",
+            "text_size_d": 15,
+            "text_size_m": 13,
+            "text_weight": "400",
+            "text_lh": "1.6",
+            "text_mb": 10,
+            "show_callout": false,
+            "callout_text": "Good quality cut which reflects some light while maintaining weight.",
+            "callout_bg": "#1b3b36",
+            "callout_text_color": "#ffffff",
+            "callout_border_color": "#1b3b36",
+            "callout_border_w": 0,
+            "callout_radius": 2,
+            "callout_size_d": 13,
+            "callout_size_m": 12,
+            "callout_weight": "400",
+            "callout_pad_v": 16,
+            "callout_pad_h": 20,
+            "callout_mt": 16,
+            "btn_label": "",
+            "btn_link": "",
+            "btn_bg": "#ffffff",
+            "btn_text_color": "#111111",
+            "btn_border_color": "#111111",
+            "btn_bg_hover": "#111111",
+            "btn_text_hover": "#ffffff",
+            "btn_border_hover": "#111111",
+            "btn_border_w": 1,
+            "btn_radius": 0,
+            "btn_size_d": 13,
+            "btn_size_m": 12,
+            "btn_weight": "500",
+            "btn_pad_v": 12,
+            "btn_pad_h": 24,
+            "btn_mt": 14
+          }
+        }
+      },
+      "block_order": [
+        "guide_step_mahRAi",
+        "guide_step_yTqhXq",
+        "guide_step_TH8Cjw",
+        "guide_step_rFeQ8k"
+      ],
+      "custom_css": [
+        "img {aspect-ratio: 4/3; object-fit: cover;}"
+      ],
+      "name": "Interactive Step Guide",
+      "settings": {
+        "bg_color": "#ffffff",
+        "container_max_w": 1600,
+        "scroll_offset": 80,
+        "pad_top_d": 60,
+        "pad_bottom_d": 60,
+        "pad_left_d": 40,
+        "pad_right_d": 40,
+        "pad_top_m": 30,
+        "pad_bottom_m": 30,
+        "pad_left_m": 15,
+        "pad_right_m": 15,
+        "show_nav": true,
+        "nav_title": "In This Guide",
+        "nav_bg": "#f0f0f0",
+        "nav_border_color": "#f8f8f8",
+        "nav_border_w": 1,
+        "nav_radius": 0,
+        "nav_pad_v_d": 24,
+        "nav_pad_h_d": 30,
+        "nav_pad_v_m": 16,
+        "nav_pad_h_m": 16,
+        "nav_mb_d": 40,
+        "nav_mb_m": 25,
+        "nav_cols_d": 3,
+        "nav_cols_m": 1,
+        "nav_gap_d": 16,
+        "nav_gap_m": 12,
+        "nav_title_color": "#111111",
+        "nav_line_color": "#d6d6d6",
+        "nav_title_size_d": 14,
+        "nav_title_size_m": 12,
+        "nav_title_weight": "700",
+        "nav_title_mb": 16,
+        "nav_num_color": "#888888",
+        "nav_link_color": "#222222",
+        "nav_link_hover_color": "#a87243",
+        "nav_link_size_d": 14,
+        "nav_link_size_m": 13,
+        "nav_link_weight": "500",
+        "intro_text": "<p><strong>Expertise you can trust:</strong> Our certified team provides complete guidance to ensure industry-leading excellence and clarity.</p>",
+        "intro_color": "#333333",
+        "intro_size_d": 15,
+        "intro_size_m": 13,
+        "intro_weight": "400",
+        "intro_style": "italic",
+        "intro_align": "center",
+        "intro_lh": "1.6",
+        "intro_mb_d": 50,
+        "intro_mb_m": 30,
+        "block_gap_d": 60,
+        "block_gap_m": 40
+      }
+    },
+    "faq_landing_gNCrBq": {
+      "type": "faq-landing",
+      "blocks": {
+        "faq_TPMYfK": {
+          "type": "faq",
+          "settings": {
+            "question": "What type of diamonds does YAZ & Co use?",
+            "answer": "<p>YAZ & Co works exclusively with lab-grown diamonds created in controlled environments using advanced technology.</p>"
+          }
+        },
+        "faq_RQDCyU": {
+          "type": "faq",
+          "settings": {
+            "question": "Are lab-grown diamonds the same as natural diamonds?",
+            "answer": "<p>Lab-grown diamonds possess the same physical and chemical properties as natural diamonds. Their lab-grown origin is clearly disclosed before purchase.</p>"
+          }
+        },
+        "faq_VBKbdP": {
+          "type": "faq",
+          "settings": {
+            "question": "How does YAZ & Co select its diamonds?",
+            "answer": "<p>Every diamond is individually assessed and selected according to YAZ & Co’s standards for clarity, proportion, consistency, brilliance, and light performance.</p>"
+          }
+        },
+        "faq_UbX7ap": {
+          "type": "faq",
+          "settings": {
+            "question": "What are the 4Cs of a diamond?",
+            "answer": "<p>The 4Cs are Cut, Clarity, Colour, and Carat. These characteristics help describe the individual qualities of a diamond.</p>"
+          }
+        },
+        "faq_A84bQ4": {
+          "type": "faq",
+          "settings": {
+            "question": "What clarity grades does YAZ & Co use?",
+            "answer": "<p>YAZ & Co primarily selects diamonds within the VS to VVS clarity range. Inclusions in these high clarity grades are generally not visible to the naked eye.</p>"
+          }
+        },
+        "faq_4Trw9k": {
+          "type": "faq",
+          "settings": {
+            "question": "What cut does YAZ & Co select?",
+            "answer": "<p>YAZ & Co selects diamonds with an Excellent Cut to support optimal brilliance, proportion, and balance.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "faq_TPMYfK",
+        "faq_RQDCyU",
+        "faq_VBKbdP",
+        "faq_UbX7ap",
+        "faq_A84bQ4",
+        "faq_4Trw9k"
+      ],
+      "custom_css": [
+        ".faq-landing__accordionWrap {padding: 0px !important;}",
+        "h1 {font-size: 26px !important;}",
+        ".faq-acc__item {padding: 12px 0;}",
+        ".faq-acc__q {font-size: 17px; font-weight: 500;}",
+        ".faq-acc__chev {width: 9px; height: 9px;}",
+        ".faq-landing__inner {width: min(900px, calc(100% - 48px)); margin: 0 auto;}"
+      ],
+      "name": "FAQ Landing",
+      "settings": {
+        "heading": "Frequently Asked Questions",
+        "subheading": "",
+        "faq_heading": ""
+      }
+    },
+    "17759116280ca668d1": {
+      "type": "apps",
+      "blocks": {
+        "instafeed_app_block_zLYQaY": {
+          "type": "shopify://apps/instafeed/blocks/app-block/c447db20-095d-4a10-9725-b5977662c9d5",
+          "settings": {
+            "title": "FOLLOW US ON INSTAGRAM",
+            "title_color": "",
+            "title_size_v2": 0,
+            "alignment": "center",
+            "instafeed_margin_top": 0,
+            "instafeed_margin_bottom": 0,
+            "instafeed_margin_sides": 0,
+            "show_instagram_link": true,
+            "link_alignment": "center",
+            "link_color": "#000000",
+            "background_color": "",
+            "feed_id": "@yazandco",
+            "html_area": ""
+          }
+        }
+      },
+      "block_order": [
+        "instafeed_app_block_zLYQaY"
+      ],
+      "settings": {
+        "include_margins": true
+      }
+    }
+  },
+  "order": [
+    "banner",
+    "interactive_guide_EM9mhU",
+    "faq_landing_gNCrBq",
+    "17759116280ca668d1"
+  ]
+}

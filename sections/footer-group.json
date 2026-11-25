@@ -18,24 +18,24 @@
           "type": "link_list",
           "settings": {
             "subheading": "CUSTOMER SERVICES",
-            "menu": "footer",
-            "default_open": true
+            "menu": "footer-quick-links-copyneew",
+            "default_open": false
           }
         },
         "footer-2": {
           "type": "link_list",
           "settings": {
-            "subheading": "OUR COMPANY",
+            "subheading": "POLICY",
             "menu": "footer-company",
-            "default_open": true
+            "default_open": false
           }
         },
         "footer-3": {
           "type": "link_list",
           "settings": {
             "subheading": "HELP",
-            "menu": "footer-contact",
-            "default_open": true
+            "menu": "footer-contact-copy",
+            "default_open": false
           }
         },
         "footer-4": {
@@ -64,10 +64,14 @@
         "footer-4",
         "footer-5"
       ],
+      "custom_css": [
+        "h2.footer-block__heading.subtitle {font-size: 1.3rem;}",
+        "h3.newsletter__title.h3.title--section.title--section-m-none {word-spacing: 3px;}"
+      ],
       "settings": {
-        "color_scheme": "background-1",
+        "color_scheme": "scheme-3a23eecb-e260-43ed-b316-a69f6eaa6ee2",
         "show_border": true,
-        "logo": "shopify://shop_images/RGBMono_-_YAZ_Puple.png",
+        "logo": "shopify://shop_images/RGBMono_-_White_margins.png",
         "logo_2": "shopify://shop_images/RGBMono_-_White_margins.png",
         "logo_width": 80,
         "logo_layout": "left",
@@ -75,8 +79,8 @@
         "language_button_type": "icon",
         "region_button_type": "icon",
         "enable_subscribe": true,
-        "subscribe_heading": "JOIN OUR NEWSLETTER",
-        "subscribe_text": "Be the first to know about new designs, events,store openings and much more.",
+        "subscribe_heading": "Join the World of  YAZ & Co",
+        "subscribe_text": "Discover new collections before anyone else, receive private previews, curated styling notes, and invitations to exclusive YAZ & Co events.",
         "enable_country_selector": true,
         "enable_language_selector": true,
         "payment_enable": true,

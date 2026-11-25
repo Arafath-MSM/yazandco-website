@@ -1,0 +1,1223 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "image_banner_qCa8zY": {
+      "type": "image-banner",
+      "disabled": true,
+      "custom_css": [],
+      "name": "t:sections.image-banner.presets.name",
+      "settings": {
+        "full_width": true,
+        "color_scheme": "",
+        "info_position": "inside",
+        "image": "shopify://shop_images/IMG_5310_JPG.jpg",
+        "image_ratio": "21/9",
+        "opacity_overlay": 0.2,
+        "heading": "Appointment",
+        "heading_size": "h1",
+        "enable_custom_heading_size": true,
+        "heading_font_size_desktop": 36,
+        "heading_font_size_mobile": 28,
+        "text_information": "",
+        "text_align": "center",
+        "text_width": "full",
+        "additional_text": "",
+        "button_label": "",
+        "button_style": "tertiary",
+        "button_link": "",
+        "button_label2": "",
+        "button_style2": "tertiary",
+        "button_link2": "",
+        "margin_top": "no-indent",
+        "margin_bottom": "no-indent"
+      }
+    },
+    "feature_cards_grid_e7jimd": {
+      "type": "Feature-Cards-Grid",
+      "blocks": {
+        "feature_card_pF7rGM": {
+          "type": "feature_card",
+          "settings": {
+            "image": "shopify://shop_images/WhatsApp_Image_2026-09-09_at_6.23.25_PM.jpg",
+            "title": "Book a Boutique Appointment",
+            "description": "<p>Experience our exquisite collection in a private setting with personalised guidance from our diamond experts.</p>",
+            "link_text": "Book Your Visit",
+            "link_url": "shopify://pages/locations",
+            "show_arrow": true
+          }
+        },
+        "feature_card_dYUV7x": {
+          "type": "feature_card",
+          "settings": {
+            "image": "shopify://shop_images/WhatsApp_Image_2026-09-09_at_6.23.24_PM.jpg",
+            "title": "Book a Virtual Appointment",
+            "description": "<p>Enjoy a personalised virtual consultation from the comfort of your home with our expert advisors.</p>",
+            "link_text": "Schedule Now",
+            "link_url": "shopify://pages/book-an-appointment",
+            "show_arrow": true
+          }
+        },
+        "feature_card_NMfhFa": {
+          "type": "feature_card",
+          "settings": {
+            "image": "shopify://shop_images/WhatsApp_Image_2026-09-09_at_6.23.25_PM_1.jpg",
+            "title": "WhatsApp Concierge",
+            "description": "<p>Connect instantly with our concierge team for expert advice, product enquiries, and personalised assistance.</p>",
+            "link_text": "Chat With Us",
+            "link_url": "tel:+971568887552",
+            "show_arrow": true
+          }
+        },
+        "feature_card_9MqxgC": {
+          "type": "feature_card",
+          "disabled": true,
+          "settings": {
+            "image": "shopify://shop_images/WhatsApp_Image_2026-07-18_at_3.55.55_PM_1.jpg",
+            "title": "Aftercare",
+            "description": "<p>Explore aftercare services such as ring polishing and resizing.</p>",
+            "link_text": "View aftercare services",
+            "link_url": "shopify://pages/faq",
+            "show_arrow": true
+          }
+        }
+      },
+      "block_order": [
+        "feature_card_pF7rGM",
+        "feature_card_dYUV7x",
+        "feature_card_NMfhFa",
+        "feature_card_9MqxgC"
+      ],
+      "disabled": true,
+      "custom_css": [
+        "a:not([disabled]):not([aria-disabled=\"true\"]):hover {color: rgb(255 255 255); text-decoration-color: rgb(255 255 255);}"
+      ],
+      "name": "Feature Cards Grid",
+      "settings": {
+        "card_layout": "overlay",
+        "overlay_full_bleed": true,
+        "ov_card_clickable": true,
+        "ov_show_desc": false,
+        "ov_show_arrow": false,
+        "ov_img_height_d": 550,
+        "ov_img_height_m": 440,
+        "ov_pad_d": 46,
+        "ov_pad_m": 24,
+        "ov_text_align_d": "left",
+        "ov_text_align_m": "left",
+        "ov_scrim_color": "#000000",
+        "ov_scrim_opacity": 55,
+        "ov_scrim_height": 60,
+        "ov_title_color": "#ffffff",
+        "ov_title_size_d": 23,
+        "ov_title_size_m": 19,
+        "ov_title_weight": "300",
+        "ov_title_ls": 0,
+        "ov_title_transform": "uppercase",
+        "ov_title_mb": 14,
+        "ov_desc_color": "#ededed",
+        "ov_desc_mb": 14,
+        "ov_desc_max_w": 420,
+        "ov_link_color": "#ffffff",
+        "ov_link_hover_color": "#dddddd",
+        "ov_link_underline": true,
+        "ov_link_underline_offset": 6,
+        "bg_color": "#ffffff",
+        "container_max_w": 1800,
+        "pad_top_d": 70,
+        "pad_bottom_d": 0,
+        "pad_left_d": 40,
+        "pad_right_d": 40,
+        "pad_top_m": 35,
+        "pad_bottom_m": 35,
+        "pad_left_m": 16,
+        "pad_right_m": 16,
+        "heading": "Find Your Perfect Piece, Your Way",
+        "heading_tag": "h2",
+        "title_color": "#000000",
+        "title_size_d": 22,
+        "title_size_m": 18,
+        "title_weight": "400",
+        "title_lh": "1.25",
+        "title_ls": 0,
+        "title_mb_d": 12,
+        "title_mb_m": 8,
+        "subheading": "Explore our personalised diamond experience with expert guidance, whether you visit us in-store, connect virtually, or speak with our concierge team.",
+        "subtitle_color": "#000000",
+        "subtitle_size_d": 15,
+        "subtitle_size_m": 14,
+        "subtitle_weight": "400",
+        "subtitle_lh": "1.5",
+        "subtitle_ls": 0,
+        "header_align": "center",
+        "header_align_m": "center",
+        "header_mb_d": 40,
+        "header_mb_m": 25,
+        "cols_d": 3,
+        "cols_m": 1,
+        "gap_d": 0,
+        "gap_m": 0,
+        "card_bg": "#ffffff",
+        "card_radius": 0,
+        "card_border_w": 0,
+        "card_border_color": "#eaeaea",
+        "card_text_align": "left",
+        "card_text_align_m": "center",
+        "enable_card_hover": false,
+        "card_pad_top_d": 24,
+        "card_pad_bottom_d": 24,
+        "card_pad_left_d": 20,
+        "card_pad_right_d": 20,
+        "card_pad_top_m": 18,
+        "card_pad_bottom_m": 18,
+        "card_pad_left_m": 16,
+        "card_pad_right_m": 16,
+        "img_height_d": 320,
+        "img_height_m": 240,
+        "img_fit": "cover",
+        "img_radius": 0,
+        "enable_img_zoom": true,
+        "card_title_color": "#222222",
+        "card_title_size_d": 20,
+        "card_title_size_m": 17,
+        "card_title_weight": "400",
+        "card_title_lh": "1.3",
+        "card_title_ls": 0,
+        "card_title_mb_d": 10,
+        "card_title_mb_m": 8,
+        "card_desc_color": "#000000",
+        "card_desc_size_d": 15,
+        "card_desc_size_m": 14,
+        "card_desc_weight": "400",
+        "card_desc_lh": "1.5",
+        "card_desc_mb_d": 20,
+        "card_desc_mb_m": 16,
+        "link_color": "#ffffff",
+        "link_hover_color": "#ffffff",
+        "link_size_d": 14,
+        "link_size_m": 12,
+        "link_weight": "400",
+        "link_lh": "1.4",
+        "link_arrow_gap": 8
+      }
+    },
+    "image_banner_Qac7cX": {
+      "type": "image-banner",
+      "custom_css": [
+        ".image-banner .banner {display: flex; position: relative; min-height: initial; max-height: 200px;}",
+        ".image-banner .banner:is([class*=\"bottom\"]) .image-banner__wrapper {padding-bottom: 2rem;}"
+      ],
+      "name": "t:sections.image-banner.presets.name",
+      "settings": {
+        "full_width": true,
+        "color_scheme": "",
+        "info_position": "inside",
+        "image": "shopify://shop_images/WhatsApp_Image_2026-09-09_at_6.23.25_PM_2.jpg",
+        "image_ratio": "adapt",
+        "opacity_overlay": 0.2,
+        "heading": "BOOK A CONSULTATION",
+        "heading_size": "h1",
+        "enable_custom_heading_size": true,
+        "heading_font_size_desktop": 36,
+        "heading_font_size_mobile": 28,
+        "text_information": "<p>Find your dream piece, at your pace.</p>",
+        "text_align": "bottom-left",
+        "text_width": "full",
+        "additional_text": "",
+        "button_label": "",
+        "button_style": "tertiary",
+        "button_link": "",
+        "button_label2": "",
+        "button_style2": "tertiary",
+        "button_link2": "",
+        "margin_top": "no-indent",
+        "margin_bottom": "no-indent"
+      }
+    },
+    "location_cards_grid_JPkkih": {
+      "type": "Location-Cards-Grid",
+      "blocks": {
+        "location_4eUKGT": {
+          "type": "location",
+          "settings": {
+            "image": "shopify://shop_images/WhatsApp_Image_2026-09-09_at_6.23.25_PM.jpg",
+            "title": "Book a Boutique Appointment",
+            "link_text": "Book Your Visit",
+            "link": "#shopify-block-AcjBSeVl6Rzh1MG04W__cowlendar_booking_app_section_TXUFi6"
+          }
+        },
+        "location_pfbV9a": {
+          "type": "location",
+          "settings": {
+            "image": "shopify://shop_images/WhatsApp_Image_2026-09-09_at_6.23.24_PM.jpg",
+            "title": "Book a Virtual Appointment",
+            "link_text": "Schedule Now",
+            "link": "https://wa.me/+971568887552"
+          }
+        },
+        "location_CnyDWP": {
+          "type": "location",
+          "settings": {
+            "image": "shopify://shop_images/WhatsApp_Image_2026-09-09_at_6.23.25_PM_1.jpg",
+            "title": "WhatsApp Concierge",
+            "link_text": "Chat With Us",
+            "link": "https://wa.me/+971568887552"
+          }
+        },
+        "location_rQL3Kr": {
+          "type": "location",
+          "settings": {
+            "image": "shopify://shop_images/Untitled_design_85.png",
+            "title": "Lab Grown Education",
+            "link_text": "Education",
+            "link": "https://yazandco.com/pages/lab-grown-education"
+          }
+        }
+      },
+      "block_order": [
+        "location_4eUKGT",
+        "location_pfbV9a",
+        "location_CnyDWP",
+        "location_rQL3Kr"
+      ],
+      "name": "Location Cards Grid",
+      "settings": {
+        "mobile_card_width": 75,
+        "hide_scrollbar_mobile": true,
+        "scroll_padding_bottom": 10,
+        "cols_desktop": 4,
+        "gap_desktop": 24,
+        "gap_mobile": 16,
+        "main_title": "",
+        "main_title_color": "#2b2523",
+        "main_title_size_desktop": 32,
+        "main_title_size_mobile": 24,
+        "main_title_weight": "400",
+        "main_title_lh": "1.2",
+        "main_title_ls": 0,
+        "main_title_transform": "none",
+        "main_title_align_desktop": "left",
+        "main_title_align_mobile": "left",
+        "main_title_mb_desktop": 32,
+        "main_title_mb_mobile": 20,
+        "card_bg": "rgba(0,0,0,0)",
+        "card_radius_desktop": 0,
+        "card_radius_mobile": 0,
+        "card_border_width": 0,
+        "card_border_color": "#e5e7eb",
+        "image_aspect_ratio_desktop": "1/1",
+        "image_aspect_ratio_mobile": "1/1",
+        "image_fit": "cover",
+        "image_position": "center",
+        "hover_scale": "1.03",
+        "content_align_desktop": "left",
+        "content_align_mobile": "left",
+        "content_gap_desktop": 6,
+        "content_gap_mobile": 4,
+        "card_pt_desktop": 16,
+        "card_pb_desktop": 0,
+        "card_pl_desktop": 0,
+        "card_pr_desktop": 0,
+        "card_pt_mobile": 12,
+        "card_pb_mobile": 0,
+        "card_pl_mobile": 0,
+        "card_pr_mobile": 0,
+        "title_color": "#000000",
+        "title_size_desktop": 16,
+        "title_size_mobile": 14,
+        "title_weight": "400",
+        "title_lh": "1.3",
+        "title_ls": 0,
+        "title_transform": "none",
+        "link_color": "#000000",
+        "link_hover_color": "#000000",
+        "link_size_desktop": 14,
+        "link_size_mobile": 13,
+        "link_weight": "400",
+        "link_lh": "1.3",
+        "link_ls": 0,
+        "link_transform": "none",
+        "link_decoration": "underline",
+        "max_width": 1800,
+        "bg_color": "#ffffff",
+        "padding_top_desktop": 60,
+        "padding_bottom_desktop": 0,
+        "padding_left_desktop": 40,
+        "padding_right_desktop": 40,
+        "padding_top_mobile": 30,
+        "padding_bottom_mobile": 30,
+        "padding_left_mobile": 16,
+        "padding_right_mobile": 16
+      }
+    },
+    "testimonials_slider_k4KipG": {
+      "type": "testimonials-slider",
+      "blocks": {
+        "testimonial_Yfb6pz": {
+          "type": "testimonial",
+          "settings": {
+            "rating": 5,
+            "quote": "<p>The experience with YAZ & Co was truly exceptional. The jewellery is beautifully crafted, elegant, and even more stunning in person. The attention to detail and quality exceeded my expectations.</p>",
+            "author": "Sarah",
+            "location": "UAE"
+          }
+        },
+        "testimonial_zEyUHr": {
+          "type": "testimonial",
+          "settings": {
+            "rating": 5,
+            "quote": "<p>From selecting the perfect piece to the final delivery, the entire process was seamless. The team was incredibly helpful, knowledgeable, and made finding something special feel effortless.</p>",
+            "author": "Emily Roberts",
+            "location": "UAE"
+          }
+        },
+        "testimonial_pYaicH": {
+          "type": "testimonial",
+          "settings": {
+            "rating": 5,
+            "quote": "<p>My YAZ & Co piece is absolutely beautiful. The craftsmanship, design, and timeless elegance make it something I will treasure for years to come. A wonderful experience from start to finish.</p>",
+            "author": "Daniel",
+            "location": "UAE"
+          }
+        },
+        "testimonial_aNWGj7": {
+          "type": "testimonial",
+          "settings": {
+            "rating": 5,
+            "quote": "<p>Absolutely in love with my YAZ & Co jewellery. The piece is elegant, beautifully designed, and feels incredibly special to wear. The team provided such a personalised experience and helped me find something truly perfect.</p>",
+            "author": "Olivia",
+            "location": "Queensland"
+          }
+        }
+      },
+      "block_order": [
+        "testimonial_Yfb6pz",
+        "testimonial_zEyUHr",
+        "testimonial_pYaicH",
+        "testimonial_aNWGj7"
+      ],
+      "name": "Testimonials Slider",
+      "settings": {
+        "media_position": "left",
+        "media_width_d": 60,
+        "media_width_m": 38,
+        "stack_on_mobile": true,
+        "media_ratio": 180,
+        "media_ratio_m": 110,
+        "media_fit": "cover",
+        "media_align": "flex-start",
+        "media_gap_d": 24,
+        "media_gap_m": 16,
+        "media_radius": 0,
+        "media_radius_m": 0,
+        "media_bg": "#efebe5",
+        "show_image_placeholder": false,
+        "heading": "Client Testimonials",
+        "heading_color": "#333333",
+        "heading_size_d": 26,
+        "heading_size_m": 22,
+        "heading_weight_d": "400",
+        "heading_weight_m": "400",
+        "heading_transform": "capitalize",
+        "heading_letter_spacing": 0,
+        "link_text": "",
+        "link_url": "",
+        "link_color": "#222222",
+        "link_size_d": 14,
+        "link_size_m": 12,
+        "link_weight_d": "400",
+        "link_weight_m": "400",
+        "header_mb_d": 32,
+        "header_mb_m": 20,
+        "header_direction_m": "row",
+        "header_align_m": "flex-start",
+        "columns_d": 3,
+        "card_width_m": 85,
+        "gap_d": 24,
+        "gap_m": 16,
+        "card_bg": "#f8f8f8",
+        "card_border_color": "rgba(0,0,0,0)",
+        "card_border_width": 0,
+        "card_radius": 0,
+        "card_shadow": "none",
+        "card_padding_top_d": 20,
+        "card_padding_bottom_d": 20,
+        "card_padding_left_d": 20,
+        "card_padding_right_d": 20,
+        "card_padding_top_m": 24,
+        "card_padding_bottom_m": 24,
+        "card_padding_left_m": 20,
+        "card_padding_right_m": 20,
+        "star_color": "#000000",
+        "star_size_d": 17,
+        "star_size_m": 16,
+        "stars_mb_d": 20,
+        "stars_mb_m": 16,
+        "quote_color": "#333333",
+        "quote_size_d": 16,
+        "quote_size_m": 15,
+        "quote_weight_d": "400",
+        "quote_weight_m": "400",
+        "quote_line_height": "1.5",
+        "quote_mb_d": 28,
+        "quote_mb_m": 20,
+        "author_color": "#000000",
+        "author_size_d": 15,
+        "author_size_m": 13,
+        "author_weight_d": "600",
+        "author_weight_m": "600",
+        "location_color": "#666666",
+        "location_size_d": 14,
+        "location_size_m": 11,
+        "location_weight_d": "400",
+        "location_weight_m": "400",
+        "location_mt": 4,
+        "footer_mt_d": 32,
+        "footer_mt_m": 24,
+        "show_dots": false,
+        "dot_size": 6,
+        "dot_color": "#cccccc",
+        "dot_active_color": "#000000",
+        "show_arrows": true,
+        "arrow_size": 32,
+        "arrow_gap": 12,
+        "arrow_radius": 50,
+        "arrow_bg": "#f8f8f8",
+        "arrow_color": "#333333",
+        "arrow_border_color": "rgba(0,0,0,0)",
+        "arrow_border_width": 0,
+        "arrow_bg_hover": "#efefef",
+        "arrow_color_hover": "#000000",
+        "bg_color": "#ffffff",
+        "max_width": 1600,
+        "padding_top_d": 64,
+        "padding_bottom_d": 44,
+        "padding_left_d": 40,
+        "padding_right_d": 40,
+        "padding_top_m": 40,
+        "padding_bottom_m": 40,
+        "padding_left_m": 20,
+        "padding_right_m": 20
+      }
+    },
+    "location_cards_grid_QNVPq7": {
+      "type": "Location-Cards-Grid",
+      "blocks": {
+        "location_WtrmYC": {
+          "type": "location",
+          "settings": {
+            "image": "shopify://shop_images/page_5_image_1.png",
+            "title": "CONCIERGE",
+            "link_text": "View",
+            "link": "shopify://pages/concierge"
+          }
+        },
+        "location_dexcxk": {
+          "type": "location",
+          "settings": {
+            "image": "shopify://shop_images/page_7_image_1.png",
+            "title": "Warranty",
+            "link_text": "View",
+            "link": "shopify://pages/warranty"
+          }
+        },
+        "location_aJPYzt": {
+          "type": "location",
+          "settings": {
+            "image": "shopify://shop_images/page_3_image_3.png",
+            "title": "FAQs",
+            "link_text": "View",
+            "link": "shopify://pages/faq"
+          }
+        }
+      },
+      "block_order": [
+        "location_WtrmYC",
+        "location_dexcxk",
+        "location_aJPYzt"
+      ],
+      "name": "Location Cards Grid",
+      "settings": {
+        "mobile_card_width": 75,
+        "hide_scrollbar_mobile": true,
+        "scroll_padding_bottom": 10,
+        "cols_desktop": 3,
+        "gap_desktop": 24,
+        "gap_mobile": 16,
+        "main_title": "",
+        "main_title_color": "#000000",
+        "main_title_size_desktop": 32,
+        "main_title_size_mobile": 24,
+        "main_title_weight": "400",
+        "main_title_lh": "1.2",
+        "main_title_ls": 0,
+        "main_title_transform": "none",
+        "main_title_align_desktop": "left",
+        "main_title_align_mobile": "left",
+        "main_title_mb_desktop": 32,
+        "main_title_mb_mobile": 20,
+        "card_bg": "rgba(0,0,0,0)",
+        "card_radius_desktop": 0,
+        "card_radius_mobile": 0,
+        "card_border_width": 0,
+        "card_border_color": "#e5e7eb",
+        "image_aspect_ratio_desktop": "1/1",
+        "image_aspect_ratio_mobile": "1/1",
+        "image_fit": "cover",
+        "image_position": "center",
+        "hover_scale": "1.03",
+        "content_align_desktop": "left",
+        "content_align_mobile": "left",
+        "content_gap_desktop": 6,
+        "content_gap_mobile": 4,
+        "card_pt_desktop": 16,
+        "card_pb_desktop": 0,
+        "card_pl_desktop": 0,
+        "card_pr_desktop": 0,
+        "card_pt_mobile": 12,
+        "card_pb_mobile": 0,
+        "card_pl_mobile": 0,
+        "card_pr_mobile": 0,
+        "title_color": "#000000",
+        "title_size_desktop": 16,
+        "title_size_mobile": 14,
+        "title_weight": "400",
+        "title_lh": "1.3",
+        "title_ls": 0,
+        "title_transform": "none",
+        "link_color": "#000000",
+        "link_hover_color": "#000000",
+        "link_size_desktop": 14,
+        "link_size_mobile": 13,
+        "link_weight": "400",
+        "link_lh": "1.3",
+        "link_ls": 0,
+        "link_transform": "none",
+        "link_decoration": "underline",
+        "max_width": 1800,
+        "bg_color": "#ffffff",
+        "padding_top_desktop": 0,
+        "padding_bottom_desktop": 60,
+        "padding_left_desktop": 40,
+        "padding_right_desktop": 40,
+        "padding_top_mobile": 30,
+        "padding_bottom_mobile": 30,
+        "padding_left_mobile": 16,
+        "padding_right_mobile": 16
+      }
+    },
+    "craft_auto_slider_chP8En": {
+      "type": "Craft-Auto-Slider",
+      "blocks": {
+        "story_slide_wJ66V3": {
+          "type": "story_slide",
+          "settings": {
+            "title": "Your Story, Our Craft",
+            "content": "<p>Superior craftsmanship, thoughtful customisation, and premium, eco-conscious materials are the foundation of every Cullen ring. The rest is shaped by you.</p><p>We're here to collaborate — guiding you through each step to ensure your custom ring reflects everything you envisioned. But the journey doesn't end at the final polish.</p><p>We offer lifetime servicing, repairs, and ongoing aftercare, so your ring holds its meaning for decades to come.</p>",
+            "media_type": "image",
+            "image": "shopify://shop_images/Untitled_design_85.png",
+            "video_url": "",
+            "button_label": "",
+            "button_url": ""
+          }
+        },
+        "story_slide_dQeG3i": {
+          "type": "story_slide",
+          "settings": {
+            "title": "Ethically Sourced Materials",
+            "content": "<p>Every gemstone and precious metal we select meets strict ethical standards. Our commitment to sustainability ensures beauty without compromise.</p><p>From lab-grown diamonds to recycled gold, we prioritize transparency in every piece we create.</p>",
+            "media_type": "video",
+            "video_native": "shopify://files/videos/124bd5a7251b47bcb1bcbb546cd4afb6.HD-1080p-2.5Mbps-91398240 (online-video-cutter.com).mp4",
+            "video_url": "",
+            "button_label": "",
+            "button_url": ""
+          }
+        },
+        "story_slide_XCPnPB": {
+          "type": "story_slide",
+          "settings": {
+            "title": "Bespoke Design Experience",
+            "content": "<p>Work directly with our master jewelers to bring your unique vision to life. From initial sketch to finished masterpiece, every detail is custom built for you.</p>",
+            "media_type": "image",
+            "image": "shopify://shop_images/Z2603_YAZ_04_317_srgb_WEB_1.jpg",
+            "video_url": "",
+            "button_label": "",
+            "button_url": ""
+          }
+        },
+        "story_slide_qychAc": {
+          "type": "story_slide",
+          "settings": {
+            "title": "Your Story, Our Craft",
+            "content": "<p>Superior craftsmanship, thoughtful customisation, and premium, eco-conscious materials are the foundation of every ring. The rest is shaped by you.</p><p>We're here to collaborate — guiding you through each step to ensure your custom ring reflects everything you envisioned.</p><p>We offer lifetime servicing, repairs, and ongoing aftercare, so your ring holds its meaning for decades to come.</p>",
+            "media_type": "image",
+            "video_url": "",
+            "button_label": "",
+            "button_url": ""
+          }
+        }
+      },
+      "block_order": [
+        "story_slide_wJ66V3",
+        "story_slide_dQeG3i",
+        "story_slide_XCPnPB",
+        "story_slide_qychAc"
+      ],
+      "disabled": true,
+      "name": "Story Craft Auto-Slider",
+      "settings": {
+        "bg_color": "#f8f8f8",
+        "container_max_w": 1800,
+        "content_col_width_d": 45,
+        "vert_align": "center",
+        "enable_autoplay": true,
+        "autoplay_duration": 10,
+        "fade_speed": 500,
+        "pause_on_hover": true,
+        "text_align_d": "left",
+        "text_align_m": "center",
+        "desktop_swap": "media_right",
+        "mobile_swap": "content_top",
+        "gap_d": 70,
+        "gap_m": 30,
+        "pad_top_d": 80,
+        "pad_bottom_d": 80,
+        "pad_left_d": 40,
+        "pad_right_d": 40,
+        "pad_top_m": 40,
+        "pad_bottom_m": 40,
+        "pad_left_m": 20,
+        "pad_right_m": 20,
+        "heading_color": "#222222",
+        "heading_size_d": 36,
+        "heading_size_m": 26,
+        "heading_weight": "400",
+        "heading_lh": "1.25",
+        "heading_ls": 0,
+        "heading_mb_d": 24,
+        "heading_mb_m": 16,
+        "body_color": "#444444",
+        "body_size_d": 16,
+        "body_size_m": 14,
+        "body_weight": "400",
+        "body_lh": "1.6",
+        "p_gap_d": 16,
+        "p_gap_m": 12,
+        "media_height_d": 550,
+        "media_height_m": 320,
+        "media_fit": "cover",
+        "media_radius": 0,
+        "button_bg_color": "#222222",
+        "button_text_color": "#ffffff",
+        "button_border_color": "#222222",
+        "button_radius": 0,
+        "button_font_size": 14,
+        "button_pad_v": 12,
+        "button_pad_h": 28,
+        "button_mt_d": 24,
+        "button_mt_m": 16,
+        "nav_align": "center",
+        "nav_bar_max_w": 120,
+        "nav_bar_h": 2,
+        "nav_gap": 12,
+        "nav_bar_radius": 2,
+        "nav_bg_color": "#f0f0f0",
+        "nav_active_color": "#000000",
+        "nav_mt_d": 40,
+        "nav_mt_m": 25
+      }
+    },
+    "feature_cards_grid_HT6hJd": {
+      "type": "Feature-Cards-Grid",
+      "blocks": {
+        "feature_card_TR8BPL": {
+          "type": "feature_card",
+          "settings": {
+            "image": "shopify://shop_images/IMG_1377.jpg",
+            "title": "Visit a Showroom",
+            "description": "<p>Discover our collection with a private consultation at one of our global boutiques.</p>",
+            "link_text": "See times and locations",
+            "link_url": "shopify://pages/locations",
+            "show_arrow": true
+          }
+        },
+        "feature_card_VReEDh": {
+          "type": "feature_card",
+          "settings": {
+            "image": "shopify://shop_images/IMG_9836.jpg",
+            "title": "Book a Virtual Appointment",
+            "description": "<p>Our virtual consultations bring the Cullen Experience to you.</p>",
+            "link_text": "See times",
+            "link_url": "#shopify-section-template--20282629914830__custom_liquid_eDkYwq",
+            "show_arrow": true
+          }
+        },
+        "feature_card_XfyTfm": {
+          "type": "feature_card",
+          "settings": {
+            "image": "shopify://shop_images/IMG_2982.jpg",
+            "title": "Book a Phone Call",
+            "description": "<p>A quick call with an expert Client Advisor to guide you through any questions or concerns.</p>",
+            "link_text": "Get in touch",
+            "link_url": "tel:+971568887552",
+            "show_arrow": true
+          }
+        },
+        "feature_card_WT3PUW": {
+          "type": "feature_card",
+          "settings": {
+            "image": "shopify://shop_images/WhatsApp_Image_2026-07-18_at_3.55.55_PM_1.jpg",
+            "title": "Aftercare",
+            "description": "<p>Explore aftercare services such as ring polishing and resizing.</p>",
+            "link_text": "View aftercare services",
+            "link_url": "shopify://pages/faq",
+            "show_arrow": true
+          }
+        }
+      },
+      "block_order": [
+        "feature_card_TR8BPL",
+        "feature_card_VReEDh",
+        "feature_card_XfyTfm",
+        "feature_card_WT3PUW"
+      ],
+      "disabled": true,
+      "name": "Feature Cards Grid",
+      "settings": {
+        "card_layout": "below",
+        "overlay_full_bleed": true,
+        "ov_card_clickable": true,
+        "ov_show_desc": false,
+        "ov_show_arrow": false,
+        "ov_img_height_d": 700,
+        "ov_img_height_m": 440,
+        "ov_pad_d": 46,
+        "ov_pad_m": 24,
+        "ov_text_align_d": "left",
+        "ov_text_align_m": "left",
+        "ov_scrim_color": "#000000",
+        "ov_scrim_opacity": 55,
+        "ov_scrim_height": 60,
+        "ov_title_color": "#ffffff",
+        "ov_title_size_d": 32,
+        "ov_title_size_m": 22,
+        "ov_title_weight": "300",
+        "ov_title_ls": 3,
+        "ov_title_transform": "uppercase",
+        "ov_title_mb": 14,
+        "ov_desc_color": "#ededed",
+        "ov_desc_mb": 14,
+        "ov_desc_max_w": 420,
+        "ov_link_color": "#ffffff",
+        "ov_link_hover_color": "#dddddd",
+        "ov_link_underline": true,
+        "ov_link_underline_offset": 6,
+        "bg_color": "#4d1432",
+        "container_max_w": 1800,
+        "pad_top_d": 70,
+        "pad_bottom_d": 70,
+        "pad_left_d": 40,
+        "pad_right_d": 40,
+        "pad_top_m": 35,
+        "pad_bottom_m": 35,
+        "pad_left_m": 16,
+        "pad_right_m": 16,
+        "heading": "Begin Your Forever, Your Way",
+        "heading_tag": "h2",
+        "title_color": "#ffffff",
+        "title_size_d": 34,
+        "title_size_m": 24,
+        "title_weight": "400",
+        "title_lh": "1.25",
+        "title_ls": 0,
+        "title_mb_d": 12,
+        "title_mb_m": 8,
+        "subheading": "Whether in-person, online or by phone, enjoy bespoke guidance as you discover a piece to last a lifetime.",
+        "subtitle_color": "#ffffff",
+        "subtitle_size_d": 16,
+        "subtitle_size_m": 14,
+        "subtitle_weight": "400",
+        "subtitle_lh": "1.5",
+        "subtitle_ls": 0,
+        "header_align": "left",
+        "header_align_m": "center",
+        "header_mb_d": 40,
+        "header_mb_m": 25,
+        "cols_d": 4,
+        "cols_m": 1,
+        "gap_d": 20,
+        "gap_m": 15,
+        "card_bg": "#ffffff",
+        "card_radius": 0,
+        "card_border_w": 0,
+        "card_border_color": "#eaeaea",
+        "card_text_align": "left",
+        "card_text_align_m": "center",
+        "enable_card_hover": false,
+        "card_pad_top_d": 24,
+        "card_pad_bottom_d": 24,
+        "card_pad_left_d": 20,
+        "card_pad_right_d": 20,
+        "card_pad_top_m": 18,
+        "card_pad_bottom_m": 18,
+        "card_pad_left_m": 16,
+        "card_pad_right_m": 16,
+        "img_height_d": 320,
+        "img_height_m": 240,
+        "img_fit": "cover",
+        "img_radius": 0,
+        "enable_img_zoom": true,
+        "card_title_color": "#222222",
+        "card_title_size_d": 20,
+        "card_title_size_m": 17,
+        "card_title_weight": "400",
+        "card_title_lh": "1.3",
+        "card_title_ls": 0,
+        "card_title_mb_d": 10,
+        "card_title_mb_m": 8,
+        "card_desc_color": "#000000",
+        "card_desc_size_d": 15,
+        "card_desc_size_m": 14,
+        "card_desc_weight": "400",
+        "card_desc_lh": "1.5",
+        "card_desc_mb_d": 20,
+        "card_desc_mb_m": 16,
+        "link_color": "#000000",
+        "link_hover_color": "#111111",
+        "link_size_d": 14,
+        "link_size_m": 12,
+        "link_weight": "400",
+        "link_lh": "1.4",
+        "link_arrow_gap": 8
+      }
+    },
+    "feature_cards_grid_7Am9KN": {
+      "type": "Feature-Cards-Grid",
+      "blocks": {
+        "feature_card_3fg6Pr": {
+          "type": "feature_card",
+          "settings": {
+            "image": "shopify://shop_images/IMG_5310_JPG.jpg",
+            "title": "Book a Boutique Appointment",
+            "description": "<p>Experience our exquisite collection in a private setting with personalised guidance from our diamond experts.</p>",
+            "link_text": "Book Your Visit",
+            "link_url": "shopify://pages/locations",
+            "show_arrow": true
+          }
+        },
+        "feature_card_Wr9gr3": {
+          "type": "feature_card",
+          "settings": {
+            "image": "shopify://shop_images/WhatsApp_Image_2026-08-27_at_15.44.34.jpg",
+            "title": "Book a Virtual Appointment",
+            "description": "<p>Enjoy a personalised virtual consultation from the comfort of your home with our expert advisors.</p>",
+            "link_text": "Schedule Now",
+            "link_url": "shopify://pages/book-an-appointment",
+            "show_arrow": true
+          }
+        },
+        "feature_card_bFynpb": {
+          "type": "feature_card",
+          "settings": {
+            "image": "shopify://shop_images/Z2603_YAZ_22_1566_srgb_WEB_4.jpg",
+            "title": "WhatsApp Concierge",
+            "description": "<p>Connect instantly with our concierge team for expert advice, product enquiries, and personalised assistance.</p>",
+            "link_text": "Chat With Us",
+            "link_url": "tel:+971568887552",
+            "show_arrow": true
+          }
+        },
+        "feature_card_KErnxF": {
+          "type": "feature_card",
+          "disabled": true,
+          "settings": {
+            "image": "shopify://shop_images/WhatsApp_Image_2026-07-18_at_3.55.55_PM_1.jpg",
+            "title": "Aftercare",
+            "description": "<p>Explore aftercare services such as ring polishing and resizing.</p>",
+            "link_text": "View aftercare services",
+            "link_url": "shopify://pages/faq",
+            "show_arrow": true
+          }
+        }
+      },
+      "block_order": [
+        "feature_card_3fg6Pr",
+        "feature_card_Wr9gr3",
+        "feature_card_bFynpb",
+        "feature_card_KErnxF"
+      ],
+      "disabled": true,
+      "name": "Feature Cards Grid",
+      "settings": {
+        "card_layout": "below",
+        "overlay_full_bleed": true,
+        "ov_card_clickable": true,
+        "ov_show_desc": false,
+        "ov_show_arrow": false,
+        "ov_img_height_d": 700,
+        "ov_img_height_m": 440,
+        "ov_pad_d": 46,
+        "ov_pad_m": 24,
+        "ov_text_align_d": "left",
+        "ov_text_align_m": "left",
+        "ov_scrim_color": "#000000",
+        "ov_scrim_opacity": 55,
+        "ov_scrim_height": 60,
+        "ov_title_color": "#ffffff",
+        "ov_title_size_d": 32,
+        "ov_title_size_m": 22,
+        "ov_title_weight": "300",
+        "ov_title_ls": 3,
+        "ov_title_transform": "uppercase",
+        "ov_title_mb": 14,
+        "ov_desc_color": "#ededed",
+        "ov_desc_mb": 14,
+        "ov_desc_max_w": 420,
+        "ov_link_color": "#ffffff",
+        "ov_link_hover_color": "#dddddd",
+        "ov_link_underline": true,
+        "ov_link_underline_offset": 6,
+        "bg_color": "#4d1432",
+        "container_max_w": 1800,
+        "pad_top_d": 70,
+        "pad_bottom_d": 70,
+        "pad_left_d": 40,
+        "pad_right_d": 40,
+        "pad_top_m": 35,
+        "pad_bottom_m": 35,
+        "pad_left_m": 16,
+        "pad_right_m": 16,
+        "heading": "Find Your Perfect Piece, Your Way",
+        "heading_tag": "h2",
+        "title_color": "#ffffff",
+        "title_size_d": 34,
+        "title_size_m": 24,
+        "title_weight": "400",
+        "title_lh": "1.25",
+        "title_ls": 0,
+        "title_mb_d": 12,
+        "title_mb_m": 8,
+        "subheading": "Explore our personalised diamond experience with expert guidance, whether you visit us in-store, connect virtually, or speak with our concierge team.",
+        "subtitle_color": "#ffffff",
+        "subtitle_size_d": 16,
+        "subtitle_size_m": 14,
+        "subtitle_weight": "400",
+        "subtitle_lh": "1.5",
+        "subtitle_ls": 0,
+        "header_align": "left",
+        "header_align_m": "center",
+        "header_mb_d": 40,
+        "header_mb_m": 25,
+        "cols_d": 3,
+        "cols_m": 1,
+        "gap_d": 20,
+        "gap_m": 15,
+        "card_bg": "#ffffff",
+        "card_radius": 0,
+        "card_border_w": 0,
+        "card_border_color": "#eaeaea",
+        "card_text_align": "left",
+        "card_text_align_m": "center",
+        "enable_card_hover": false,
+        "card_pad_top_d": 24,
+        "card_pad_bottom_d": 24,
+        "card_pad_left_d": 20,
+        "card_pad_right_d": 20,
+        "card_pad_top_m": 18,
+        "card_pad_bottom_m": 18,
+        "card_pad_left_m": 16,
+        "card_pad_right_m": 16,
+        "img_height_d": 320,
+        "img_height_m": 240,
+        "img_fit": "cover",
+        "img_radius": 0,
+        "enable_img_zoom": true,
+        "card_title_color": "#222222",
+        "card_title_size_d": 20,
+        "card_title_size_m": 17,
+        "card_title_weight": "400",
+        "card_title_lh": "1.3",
+        "card_title_ls": 0,
+        "card_title_mb_d": 10,
+        "card_title_mb_m": 8,
+        "card_desc_color": "#000000",
+        "card_desc_size_d": 15,
+        "card_desc_size_m": 14,
+        "card_desc_weight": "400",
+        "card_desc_lh": "1.5",
+        "card_desc_mb_d": 20,
+        "card_desc_mb_m": 16,
+        "link_color": "#000000",
+        "link_hover_color": "#111111",
+        "link_size_d": 14,
+        "link_size_m": 12,
+        "link_weight": "400",
+        "link_lh": "1.4",
+        "link_arrow_gap": 8
+      }
+    },
+    "custom_liquid_eDkYwq": {
+      "type": "custom-liquid",
+      "disabled": true,
+      "name": "t:sections.custom-liquid.presets.name",
+      "settings": {
+        "custom_liquid": "<iframe src=\"https://app.acuityscheduling.com/schedule.php?owner=40120954&owner=40120954&appointmentType=97004671\" width=\"100%\" height=\"800\" frameBorder=\"0\" allow=\"payment\"></iframe>\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<script src=\"https://embed.acuityscheduling.com/js/embed.js\" type=\"text/javascript\"></script>"
+      }
+    },
+    "1787311747b8055047": {
+      "type": "apps",
+      "blocks": {
+        "cowlendar_booking_app_section_TXUFi6": {
+          "type": "shopify://apps/cowlendar-booking/blocks/app-section/6d8b8f6a-9b3c-42b8-b2e6-a758c38d45bf",
+          "settings": {
+            "section_title": "My services list",
+            "section_number": "services-list-1"
+          }
+        }
+      },
+      "block_order": [
+        "cowlendar_booking_app_section_TXUFi6"
+      ],
+      "settings": {
+        "include_margins": true
+      }
+    },
+    "faq_landing_gNCrBq": {
+      "type": "faq-landing",
+      "blocks": {
+        "faq_TPMYfK": {
+          "type": "faq",
+          "settings": {
+            "question": "How should I care for my YAZ & Co jewellery?",
+            "answer": "<p>Keep your jewellery away from perfumes, cosmetics, lotions, harsh chemicals, and prolonged contact with water. Remove your jewellery before swimming, showering, sleeping, or exercising. Gently clean each piece with a soft, clean cloth and store it separately in a soft pouch or jewellery box.</p>"
+          }
+        },
+        "faq_RQDCyU": {
+          "type": "faq",
+          "settings": {
+            "question": "Does YAZ & Co jewellery come with a warranty?",
+            "answer": "<p>Yes. YAZ & Co jewellery is covered against verified manufacturing defects in materials and workmanship for the applicable warranty period stated at the time of purchase. All warranty claims are subject to inspection and approval by YAZ & Co.</p>"
+          }
+        },
+        "faq_VBKbdP": {
+          "type": "faq",
+          "settings": {
+            "question": "What is not covered under the warranty?",
+            "answer": "<p>The warranty does not cover normal wear and tear, scratches, accidental damage, improper handling, loss or theft, exposure to water or chemicals, or damage caused by not following our Jewellery Care recommendations. Jewellery repaired, resized, altered, or modified by an unauthorised third party may also not be covered.</p>"
+          }
+        },
+        "faq_UbX7ap": {
+          "type": "faq",
+          "settings": {
+            "question": "How do I make a warranty claim?",
+            "answer": "<p>Please contact YAZ & Co with your order details or proof of purchase, clear photographs of the jewellery, and a brief description of the issue. Our team will assess your request and advise you on the next steps.</p>"
+          }
+        },
+        "faq_A84bQ4": {
+          "type": "faq",
+          "settings": {
+            "question": "Do you offer custom-made jewellery?",
+            "answer": "<p>Yes. YAZ & Co offers selected custom-made and made-to-order jewellery services. The design and specifications will be reviewed with you and must be approved before production proceeds.</p>"
+          }
+        },
+        "faq_4Trw9k": {
+          "type": "faq",
+          "settings": {
+            "question": "Can I cancel or return a custom-made piece?",
+            "answer": "<p>Custom-made and made-to-order pieces are non-refundable, non-exchangeable, and non-cancellable once the final design and specifications have been approved, subject to any rights you may have under applicable consumer law.</p>"
+          }
+        },
+        "faq_nBnDDp": {
+          "type": "faq",
+          "settings": {
+            "question": "When is payment required for custom jewellery?",
+            "answer": "<p>Full payment must be received and confirmed before the completed custom or made-to-order item is released or shipped.</p>"
+          }
+        },
+        "faq_CJV7j8": {
+          "type": "faq",
+          "settings": {
+            "question": "Can I change an approved custom design?",
+            "answer": "<p>Once the final design and specifications have been approved, they are considered confirmed. If you request changes afterwards, please contact YAZ & Co as soon as possible. Changes may not be possible once production has begun and may result in additional costs or production time.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "faq_TPMYfK",
+        "faq_RQDCyU",
+        "faq_VBKbdP",
+        "faq_UbX7ap",
+        "faq_A84bQ4",
+        "faq_4Trw9k",
+        "faq_nBnDDp",
+        "faq_CJV7j8"
+      ],
+      "disabled": true,
+      "custom_css": [
+        ".faq-landing__accordionWrap {padding: 0px !important;}",
+        "h1 {font-size: 30px !important;}",
+        ".faq-acc__item {padding: 12px 0;}",
+        ".faq-acc__q {font-size: 18px; font-weight: 500;}",
+        ".faq-acc__chev {width: 9px; height: 9px;}",
+        ".faq-landing__inner {width: min(900px, calc(100% - 48px)); margin: 0 auto;}"
+      ],
+      "name": "FAQ Landing",
+      "settings": {
+        "heading": "Frequently Asked Questions",
+        "subheading": "",
+        "faq_heading": ""
+      }
+    },
+    "17759116280ca668d1": {
+      "type": "apps",
+      "blocks": {
+        "instafeed_app_block_zLYQaY": {
+          "type": "shopify://apps/instafeed/blocks/app-block/c447db20-095d-4a10-9725-b5977662c9d5",
+          "settings": {
+            "title": "FOLLOW US ON INSTAGRAM",
+            "title_color": "",
+            "title_size_v2": 0,
+            "alignment": "center",
+            "instafeed_margin_top": 0,
+            "instafeed_margin_bottom": 0,
+            "instafeed_margin_sides": 0,
+            "show_instagram_link": true,
+            "link_alignment": "center",
+            "link_color": "#000000",
+            "background_color": "",
+            "feed_id": "@yazandco",
+            "html_area": ""
+          }
+        }
+      },
+      "block_order": [
+        "instafeed_app_block_zLYQaY"
+      ],
+      "settings": {
+        "include_margins": true
+      }
+    }
+  },
+  "order": [
+    "image_banner_qCa8zY",
+    "feature_cards_grid_e7jimd",
+    "image_banner_Qac7cX",
+    "location_cards_grid_JPkkih",
+    "testimonials_slider_k4KipG",
+    "location_cards_grid_QNVPq7",
+    "craft_auto_slider_chP8En",
+    "feature_cards_grid_HT6hJd",
+    "feature_cards_grid_7Am9KN",
+    "custom_liquid_eDkYwq",
+    "1787311747b8055047",
+    "faq_landing_gNCrBq",
+    "17759116280ca668d1"
+  ]
+}

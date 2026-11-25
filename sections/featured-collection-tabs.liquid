@@ -1,0 +1,1386 @@
+{% comment %} {% comment %}
+  Featured Collection Tabs
+  Self-contained OS 2.0 section: tab navigation over multiple collections,
+  each rendering its products in a Swiper-powered slider using the theme's
+  existing product-card snippet and arrow icons.
+{% endcomment %}
+
+{{ 'component-card.css' | asset_url | stylesheet_tag }}
+{{ 'component-price.css' | asset_url | stylesheet_tag }}
+{{ 'component-badge.css' | asset_url | stylesheet_tag }}
+{{ 'swiper-bundle.min.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  {% render 'section-margin' %}
+
+  #shopify-section-{{ section.id }} {
+    --fct-per-row-desktop: {{ section.settings.products_per_row_desktop }};
+    --fct-per-view-mobile: {{ section.settings.products_per_view_mobile }};
+    --fct-slide-gap: {{ section.settings.slide_spacing }}px;
+  }
+{%- endstyle -%}
+
+<script src="{{ 'swiper-bundle.min.js' | asset_url }}" defer="defer"></script>
+
+<div class="fct color-{{ section.settings.color_scheme }} section-{{ section.id }}-padding">
+  <div class="fct__container page-width">
+    {%- if section.settings.heading != blank -%}
+      <div class="title-wrapper title--section-mt-none">
+        <h2 class="title title--primary fct__heading">{{ section.settings.heading }}</h2>
+      </div>
+    {%- endif -%}
+
+    {%- if section.blocks.size > 0 -%}
+      <div
+        class="fct__tabs"
+        role="tablist"
+        aria-label="{{ section.settings.heading | default: 'Featured Collection Tabs' | escape }}"
+      >
+        {%- for block in section.blocks -%}
+          {%- assign block_collection = block.settings.collection -%}
+          <button
+            type="button"
+            id="fct-tab-{{ section.id }}-{{ forloop.index0 }}"
+            class="fct__tab{% if forloop.first %} fct__tab--active{% endif %}"
+            role="tab"
+            aria-selected="{{ forloop.first }}"
+            aria-controls="fct-panel-{{ section.id }}-{{ forloop.index0 }}"
+            tabindex="{% if forloop.first %}0{% else %}-1{% endif %}"
+            data-fct-tab
+            data-index="{{ forloop.index0 }}"
+            {{ block.shopify_attributes }}
+          >
+            {{ block.settings.tab_label | default: block_collection.title | default: 'Collection' | escape }}
+          </button>
+        {%- endfor -%}
+      </div>
+
+      <div class="fct__panels">
+        {%- for block in section.blocks -%}
+          {%- assign block_collection = block.settings.collection -%}
+          <div
+            id="fct-panel-{{ section.id }}-{{ forloop.index0 }}"
+            class="fct__panel{% if forloop.first %} fct__panel--active{% endif %}"
+            role="tabpanel"
+            aria-labelledby="fct-tab-{{ section.id }}-{{ forloop.index0 }}"
+            data-fct-panel
+            data-index="{{ forloop.index0 }}"
+            {% unless forloop.first %}hidden{% endunless %}
+          >
+            {%- if block_collection != blank and block_collection.products.size > 0 -%}
+              <div class="fct__slider-wrapper">
+                <div class="fct__slider swiper" data-fct-swiper>
+                  <div class="fct__slider-track swiper-wrapper">
+                    {%- for product in block_collection.products limit: section.settings.products_to_show -%}
+                      <div class="fct__slide swiper-slide">
+                        {%- render 'product-card',
+                          product_card_product: product,
+                          media_size: 'square',
+                          show_vendor: section.settings.show_vendor,
+                          section_id: section.id,
+                          add_id: forloop.index
+                        -%}
+                      </div>
+                    {%- endfor -%}
+                  </div>
+                </div>
+
+                {%- if section.settings.show_arrows -%}
+                  <button
+                    type="button"
+                    class="fct__nav fct__nav--prev"
+                    aria-label="{{ 'general.slider.previous_slide' | t | default: 'Previous slide' }}"
+                    data-fct-prev
+                  >
+                    {%- render 'icon-caret-left' -%}
+                  </button>
+                  <button
+                    type="button"
+                    class="fct__nav fct__nav--next"
+                    aria-label="{{ 'general.slider.next_slide' | t | default: 'Next slide' }}"
+                    data-fct-next
+                  >
+                    {%- render 'icon-caret-right' -%}
+                  </button>
+                {%- endif -%}
+              </div>
+            {%- else -%}
+              <p class="fct__empty">{{ 'sections.collection_template.empty' | t | default: 'No products found in this collection.' }}</p>
+            {%- endif -%}
+          </div>
+        {%- endfor -%}
+      </div>
+    {%- else -%}
+      <p class="fct__empty">{{ 'sections.featured_collection.no_collections' | t | default: 'Add a collection block to get started.' }}</p>
+    {%- endif -%}
+  </div>
+</div>
+
+{%- style -%}
+  .fct {
+    position: relative;
+  }
+
+  .fct__heading {
+    text-align: center;
+  }
+
+  .fct__tabs {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 1.2rem 2.4rem;
+    margin-bottom: 3rem;
+    border-bottom: 0.1rem solid rgba(var(--color-border), var(--alpha-border, 1));
+    padding-bottom: 0;
+  }
+
+  .fct__tab {
+    appearance: none;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-family: var(--font-heading-family);
+    font-size: 1.4rem;
+    letter-spacing: 0.05rem;
+    text-transform: uppercase;
+    color: rgb(var(--color-foreground));
+    opacity: 0.55;
+    padding: 0 0 1.4rem;
+    position: relative;
+    transition: opacity var(--duration-short) ease;
+  }
+
+  .fct__tab::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -0.1rem;
+    height: 0.2rem;
+    background: rgb(var(--color-foreground));
+    transform: scaleX(0);
+    transform-origin: center;
+    transition: transform var(--duration-short) ease;
+  }
+
+  .fct__tab:hover {
+    opacity: 0.85;
+  }
+
+  .fct__tab:focus-visible {
+    outline: 0.2rem solid rgb(var(--color-foreground));
+    outline-offset: 0.2rem;
+  }
+
+  .fct__tab--active {
+    opacity: 1;
+  }
+
+  .fct__tab--active::after {
+    transform: scaleX(1);
+  }
+
+  .fct__panel {
+    display: none;
+  }
+
+  .fct__panel--active {
+    display: block;
+  }
+
+  .fct__slider-wrapper {
+    position: relative;
+  }
+
+  .fct__slider {
+    overflow: hidden;
+  }
+
+  .fct__slide {
+    height: auto;
+  }
+
+  .fct__empty {
+    text-align: center;
+    opacity: 0.7;
+    padding: 4rem 0;
+  }
+
+  /* Mobile: partial-peek slider driven by the products-per-view setting */
+  #shopify-section-{{ section.id }} .fct__slider-track {
+    gap: var(--fct-slide-gap, 16px);
+  }
+
+  #shopify-section-{{ section.id }} .fct__slide {
+    width: calc((100% - (var(--fct-slide-gap, 16px) * (var(--fct-per-view-mobile, 1.2) - 1))) / var(--fct-per-view-mobile, 1.2));
+  }
+
+  @media screen and (min-width: 750px) {
+    #shopify-section-{{ section.id }} .fct__slide {
+      width: calc((100% - (var(--fct-slide-gap, 16px) * (var(--fct-per-row-desktop, 4) - 1))) / var(--fct-per-row-desktop, 4));
+    }
+  }
+
+  .fct__nav {
+    position: absolute;
+    top: 40%;
+    transform: translateY(-50%);
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 3.6rem;
+    height: 3.6rem;
+    border-radius: 50%;
+    border: 0.1rem solid rgba(var(--color-foreground), 0.15);
+    background: rgb(var(--color-background));
+    color: rgb(var(--color-foreground));
+    cursor: pointer;
+    transition: opacity var(--duration-short) ease, visibility var(--duration-short) ease;
+  }
+
+  .fct__nav:hover {
+    background: rgb(var(--color-button));
+    color: rgb(var(--color-button-text));
+  }
+
+  .fct__nav--prev {
+    left: 0.4rem;
+  }
+
+  .fct__nav--next {
+    right: 0.4rem;
+  }
+
+  .fct__nav[disabled],
+  .fct__nav.swiper-button-disabled,
+  .fct__nav.swiper-button-lock {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+
+  @media screen and (min-width: 750px) {
+    .fct__nav {
+      width: 4.4rem;
+      height: 4.4rem;
+    }
+
+    .fct__nav--prev {
+      left: -1.6rem;
+    }
+
+    .fct__nav--next {
+      right: -1.6rem;
+    }
+
+    .fct__tabs {
+      gap: 1.6rem 4rem;
+    }
+
+    .fct__tab {
+      font-size: 1.5rem;
+    }
+  }
+{%- endstyle -%}
+
+<script>
+  (function () {
+    'use strict';
+
+    function initFeaturedCollectionTabs(root) {
+      if (root.dataset.fctInitialized) return;
+      root.dataset.fctInitialized = 'true';
+
+      var tabs = Array.prototype.slice.call(root.querySelectorAll('[data-fct-tab]'));
+      var panels = Array.prototype.slice.call(root.querySelectorAll('[data-fct-panel]'));
+      var sliders = {};
+
+      function initSlider(panel) {
+        var index = panel.dataset.index;
+        if (sliders[index] || typeof Swiper === 'undefined') return;
+
+        var sliderEl = panel.querySelector('[data-fct-swiper]');
+        if (!sliderEl) return;
+
+        var prevEl = panel.querySelector('[data-fct-prev]');
+        var nextEl = panel.querySelector('[data-fct-next]');
+
+        sliders[index] = new Swiper(sliderEl, {
+          slidesPerView: 'auto',
+          spaceBetween: 0,
+          watchOverflow: true,
+          grabCursor: true,
+          a11y: {
+            enabled: true
+          },
+          keyboard: {
+            enabled: true,
+            onlyInViewport: true
+          },
+          navigation: prevEl && nextEl ? {
+            prevEl: prevEl,
+            nextEl: nextEl,
+            disabledClass: 'swiper-button-disabled',
+            lockClass: 'swiper-button-lock'
+          } : false
+        });
+      }
+
+      function activateTab(index) {
+        tabs.forEach(function (tab) {
+          var isActive = tab.dataset.index === index;
+          tab.classList.toggle('fct__tab--active', isActive);
+          tab.setAttribute('aria-selected', isActive ? 'true' : 'false');
+          tab.setAttribute('tabindex', isActive ? '0' : '-1');
+        });
+
+        panels.forEach(function (panel) {
+          var isActive = panel.dataset.index === index;
+          panel.classList.toggle('fct__panel--active', isActive);
+          if (isActive) {
+            panel.removeAttribute('hidden');
+            initSlider(panel);
+            if (sliders[index]) sliders[index].update();
+          } else {
+            panel.setAttribute('hidden', '');
+          }
+        });
+      }
+
+      tabs.forEach(function (tab, i) {
+        tab.addEventListener('click', function () {
+          activateTab(tab.dataset.index);
+        });
+
+        tab.addEventListener('keydown', function (event) {
+          var targetIndex = null;
+          if (event.key === 'ArrowRight') {
+            targetIndex = (i + 1) % tabs.length;
+          } else if (event.key === 'ArrowLeft') {
+            targetIndex = (i - 1 + tabs.length) % tabs.length;
+          } else if (event.key === 'Home') {
+            targetIndex = 0;
+          } else if (event.key === 'End') {
+            targetIndex = tabs.length - 1;
+          }
+
+          if (targetIndex !== null) {
+            event.preventDefault();
+            var targetTab = tabs[targetIndex];
+            targetTab.focus();
+            activateTab(targetTab.dataset.index);
+          }
+        });
+      });
+
+      var activePanel = root.querySelector('.fct__panel--active');
+      if (activePanel) initSlider(activePanel);
+
+      if (Shopify && Shopify.designMode) {
+        document.addEventListener('shopify:section:load', function (event) {
+          if (event.target.contains(root)) {
+            root.dataset.fctInitialized = '';
+            sliders = {};
+            initFeaturedCollectionTabs(root);
+          }
+        });
+      }
+    }
+
+    function initAll() {
+      document.querySelectorAll('.fct').forEach(initFeaturedCollectionTabs);
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initAll);
+    } else {
+      initAll();
+    }
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Featured Collection Tabs",
+  "tag": "section",
+  "class": "featured-collection-tabs-section spaced-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Shop by Collection"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "background-1"
+    },
+    {
+      "type": "header",
+      "content": "Products"
+    },
+    {
+      "type": "range",
+      "id": "products_to_show",
+      "label": "Maximum products per collection",
+      "min": 4,
+      "max": 20,
+      "step": 1,
+      "default": 12
+    },
+    {
+      "type": "checkbox",
+      "id": "show_vendor",
+      "label": "Show vendor",
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": "Slider layout"
+    },
+    {
+      "type": "select",
+      "id": "products_per_row_desktop",
+      "label": "Products per row (desktop)",
+      "options": [
+        {
+          "value": "4",
+          "label": "4"
+        },
+        {
+          "value": "5",
+          "label": "5"
+        }
+      ],
+      "default": "4"
+    },
+    {
+      "type": "select",
+      "id": "products_per_view_mobile",
+      "label": "Products per view (mobile)",
+      "options": [
+        {
+          "value": "1",
+          "label": "1"
+        },
+        {
+          "value": "1.2",
+          "label": "1.2"
+        },
+        {
+          "value": "1.5",
+          "label": "1.5"
+        }
+      ],
+      "default": "1.2"
+    },
+    {
+      "type": "range",
+      "id": "slide_spacing",
+      "label": "Spacing between products (px)",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "default": 16
+    },
+    {
+      "type": "checkbox",
+      "id": "show_arrows",
+      "label": "Show navigation arrows (desktop)",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Section spacing"
+    },
+    {
+      "type": "select",
+      "id": "margin_top",
+      "options": [
+        {
+          "value": "no-indent",
+          "label": "t:sections.all.section-margin.options__1.label"
+        },
+        {
+          "value": "xs",
+          "label": "t:sections.all.section-margin.options__2.label"
+        },
+        {
+          "value": "s",
+          "label": "t:sections.all.section-margin.options__3.label"
+        },
+        {
+          "value": "m",
+          "label": "t:sections.all.section-margin.options__4.label"
+        },
+        {
+          "value": "l",
+          "label": "t:sections.all.section-margin.options__5.label"
+        },
+        {
+          "value": "xl",
+          "label": "t:sections.all.section-margin.options__6.label"
+        }
+      ],
+      "default": "m",
+      "label": "t:sections.all.section-margin.margin_top.label"
+    },
+    {
+      "type": "select",
+      "id": "margin_bottom",
+      "options": [
+        {
+          "value": "no-indent",
+          "label": "t:sections.all.section-margin.options__1.label"
+        },
+        {
+          "value": "xs",
+          "label": "t:sections.all.section-margin.options__2.label"
+        },
+        {
+          "value": "s",
+          "label": "t:sections.all.section-margin.options__3.label"
+        },
+        {
+          "value": "m",
+          "label": "t:sections.all.section-margin.options__4.label"
+        },
+        {
+          "value": "l",
+          "label": "t:sections.all.section-margin.options__5.label"
+        },
+        {
+          "value": "xl",
+          "label": "t:sections.all.section-margin.options__6.label"
+        }
+      ],
+      "default": "m",
+      "label": "t:sections.all.section-margin.margin_bottom.label"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "collection_tab",
+      "name": "Collection Tab",
+      "settings": [
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Collection"
+        },
+        {
+          "type": "text",
+          "id": "tab_label",
+          "label": "Tab label",
+          "info": "Defaults to the collection title when left blank."
+        }
+      ]
+    }
+  ],
+  "max_blocks": 5,
+  "presets": [
+    {
+      "name": "Featured Collection Tabs",
+      "blocks": [
+        {
+          "type": "collection_tab"
+        },
+        {
+          "type": "collection_tab"
+        },
+        {
+          "type": "collection_tab"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %} {% endcomment %}
+
+
+
+{% comment %}
+  Featured Collection Tabs
+  Self-contained OS 2.0 section: tab navigation over multiple collections,
+  each rendering its products in a Swiper-powered slider using the theme's
+  existing product-card snippet and arrow icons.
+{% endcomment %}
+
+<link
+	rel="preload"
+	href="{{ 'component-card.css' | asset_url }}"
+	as="style"
+	onload="this.onload=null;this.rel='stylesheet'"
+>
+<link
+	rel="preload"
+	href="{{ 'component-price.css' | asset_url }}"
+	as="style"
+	onload="this.onload=null;this.rel='stylesheet'"
+>
+<link
+	rel="preload"
+	href="{{ 'component-badge.css' | asset_url }}"
+	as="style"
+	onload="this.onload=null;this.rel='stylesheet'"
+>
+<link
+	rel="preload"
+	href="{{ 'swiper-bundle.min.css' | asset_url }}"
+	as="style"
+	onload="this.onload=null;this.rel='stylesheet'"
+>
+
+<noscript>{{ 'component-card.css' | asset_url | stylesheet_tag }}</noscript>
+<noscript>{{ 'component-price.css' | asset_url | stylesheet_tag }}</noscript>
+<noscript>{{ 'component-badge.css' | asset_url | stylesheet_tag }}</noscript>
+<noscript>{{ 'swiper-bundle.min.css' | asset_url | stylesheet_tag }}</noscript>
+
+{%- style -%}
+  {% render 'section-margin' %}
+
+  #shopify-section-{{ section.id }} {
+    --fct-per-row-desktop: {{ section.settings.products_per_row_desktop }};
+    --fct-per-view-mobile: {{ section.settings.products_per_view_mobile }};
+    --fct-slide-gap: {{ section.settings.slide_spacing }}px;
+    --fct-heading-font-size: {{ section.settings.heading_font_size_mobile }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    #shopify-section-{{ section.id }} {
+      --fct-heading-font-size: {{ section.settings.heading_font_size_desktop }}px;
+    }
+  }
+
+  .fct {
+    position: relative;
+  }
+
+  .fct__heading {
+    font-size: var(--fct-heading-font-size);
+  }
+
+  .fct__heading--left {
+    text-align: left;
+  }
+
+  .fct__heading--center {
+    text-align: center;
+  }
+
+  .fct__heading--right {
+    text-align: right;
+  }
+
+  .fct__tabs {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1.2rem 2.4rem;
+    margin-bottom: 3rem;
+    border-bottom: 0.1rem solid rgba(var(--color-border), var(--alpha-border, 1));
+    padding-bottom: 0;
+  }
+
+  .fct__tabs--left {
+    justify-content: flex-start;
+  }
+
+  .fct__tabs--center {
+    justify-content: center;
+  }
+
+  .fct__tabs--right {
+    justify-content: flex-end;
+  }
+
+  .fct__tab {
+    appearance: none;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-family: var(--font-heading-family);
+    font-size: 1.4rem;
+    letter-spacing: 0.05rem;
+    text-transform: uppercase;
+    color: rgb(var(--color-foreground));
+    opacity: 0.55;
+    padding: 0 0 1.4rem;
+    position: relative;
+    transition: opacity var(--duration-short) ease;
+  }
+
+  .fct__tab::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -0.1rem;
+    height: 0.2rem;
+    background: rgb(var(--color-foreground));
+    transform: scaleX(0);
+    transform-origin: center;
+    transition: transform var(--duration-short) ease;
+  }
+
+  .fct__tab:hover {
+    opacity: 0.85;
+  }
+
+  .fct__tab:focus-visible {
+    outline: 0.2rem solid rgb(var(--color-foreground));
+    outline-offset: 0.2rem;
+  }
+
+  .fct__tab--active {
+    opacity: 1;
+  }
+
+  .fct__tab--active::after {
+    transform: scaleX(1);
+  }
+
+  .fct__panel {
+    display: none;
+  }
+
+  .fct__panel--active {
+    display: block;
+  }
+
+  .fct__slider-wrapper {
+    position: relative;
+  }
+
+  .fct__slider {
+    overflow: hidden;
+  }
+
+  .fct__slider-track {
+    display: flex;
+    flex-wrap: nowrap;
+  }
+
+  .fct__slide {
+    height: auto;
+    flex-shrink: 0;
+  }
+
+  .fct__slide img,
+  .fct__slide svg {
+    max-width: 100%;
+  }
+
+  .fct__empty {
+    text-align: center;
+    opacity: 0.7;
+    padding: 4rem 0;
+  }
+
+  /* Mobile: partial-peek slider driven by the products-per-view setting */
+  #shopify-section-{{ section.id }} .fct__slider-track {
+    gap: var(--fct-slide-gap, 16px);
+  }
+
+  #shopify-section-{{ section.id }} .fct__slide {
+    width: calc((100% - (var(--fct-slide-gap, 16px) * (var(--fct-per-view-mobile, 1.2) - 1))) / var(--fct-per-view-mobile, 1.2));
+  }
+
+  @media screen and (min-width: 750px) {
+    #shopify-section-{{ section.id }} .fct__slide {
+      width: calc((100% - (var(--fct-slide-gap, 16px) * (var(--fct-per-row-desktop, 4) - 1))) / var(--fct-per-row-desktop, 4));
+    }
+  }
+
+  .fct__nav {
+    position: absolute;
+    top: 40%;
+    transform: translateY(-50%);
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 3.6rem;
+    height: 3.6rem;
+    border-radius: 50%;
+    border: 0.1rem solid rgba(var(--color-foreground), 0.15);
+    background: rgb(var(--color-background));
+    color: rgb(var(--color-foreground));
+    cursor: pointer;
+    transition: opacity var(--duration-short) ease, visibility var(--duration-short) ease;
+  }
+
+  .fct__nav:hover {
+    background: rgb(var(--color-button));
+    color: rgb(var(--color-button-text));
+  }
+
+  .fct__nav--prev {
+    left: 0.4rem;
+  }
+
+  .fct__nav--next {
+    right: 0.4rem;
+  }
+
+  .fct__nav[disabled],
+  .fct__nav.swiper-button-disabled,
+  .fct__nav.swiper-button-lock {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+
+  @media screen and (max-width: 749px) {
+    .fct--hide-arrows-mobile .fct__nav {
+      display: none;
+    }
+  }
+
+  @media screen and (min-width: 750px) {
+    .fct--hide-arrows-desktop .fct__nav {
+      display: none;
+    }
+
+    .fct__nav {
+      width: 4.4rem;
+      height: 4.4rem;
+    }
+
+    .fct__nav--prev {
+      left: -1.6rem;
+    }
+
+    .fct__nav--next {
+      right: -1.6rem;
+    }
+
+    .fct__tabs {
+      gap: 1.6rem 4rem;
+    }
+
+    .fct__tab {
+      font-size: 1.5rem;
+    }
+  }
+{%- endstyle -%}
+
+<script src="{{ 'swiper-bundle.min.js' | asset_url }}" defer="defer"></script>
+
+<div class="fct color-{{ section.settings.color_scheme }} section-{{ section.id }}-padding{% unless section.settings.show_arrows_desktop %} fct--hide-arrows-desktop{% endunless %}{% unless section.settings.show_arrows_mobile %} fct--hide-arrows-mobile{% endunless %}">
+  <div class="fct__container page-width">
+    {%- if section.settings.heading != blank -%}
+      <div class="title-wrapper title--section-mt-none">
+        <h2 class="title title--primary fct__heading fct__heading--{{ section.settings.heading_alignment }}">{{ section.settings.heading }}</h2>
+      </div>
+    {%- endif -%}
+
+    {%- if section.blocks.size > 0 -%}
+      <div
+        class="fct__tabs fct__tabs--{{ section.settings.tabs_alignment }}"
+        role="tablist"
+        aria-label="{{ section.settings.heading | default: 'Featured Collection Tabs' | escape }}"
+      >
+        {%- for block in section.blocks -%}
+          {%- assign block_collection = block.settings.collection -%}
+          <button
+            type="button"
+            id="fct-tab-{{ section.id }}-{{ forloop.index0 }}"
+            class="fct__tab{% if forloop.first %} fct__tab--active{% endif %}"
+            role="tab"
+            aria-selected="{{ forloop.first }}"
+            aria-controls="fct-panel-{{ section.id }}-{{ forloop.index0 }}"
+            tabindex="{% if forloop.first %}0{% else %}-1{% endif %}"
+            data-fct-tab
+            data-index="{{ forloop.index0 }}"
+            {{ block.shopify_attributes }}
+          >
+            {{ block.settings.tab_label | default: block_collection.title | default: 'Collection' | escape }}
+          </button>
+        {%- endfor -%}
+      </div>
+
+      <div class="fct__panels">
+        {%- for block in section.blocks -%}
+          {%- assign block_collection = block.settings.collection -%}
+          <div
+            id="fct-panel-{{ section.id }}-{{ forloop.index0 }}"
+            class="fct__panel{% if forloop.first %} fct__panel--active{% endif %}"
+            role="tabpanel"
+            aria-labelledby="fct-tab-{{ section.id }}-{{ forloop.index0 }}"
+            data-fct-panel
+            data-index="{{ forloop.index0 }}"
+            {% unless forloop.first %}hidden{% endunless %}
+          >
+            {%- if block_collection != blank and block_collection.products.size > 0 -%}
+              <div class="fct__slider-wrapper">
+                <div class="fct__slider swiper" data-fct-swiper>
+                  <div class="fct__slider-track swiper-wrapper">
+                    {%- for product in block_collection.products limit: section.settings.products_to_show -%}
+                      <div class="fct__slide swiper-slide">
+                        {%- render 'product-card',
+                          product_card_product: product,
+                          media_size: section.settings.image_ratio,
+                          media_fit: section.settings.image_fit,
+                          show_vendor: section.settings.show_vendor,
+                          section_id: section.id,
+                          add_id: forloop.index
+                        -%}
+                      </div>
+                    {%- endfor -%}
+                  </div>
+                </div>
+
+                {%- if section.settings.show_arrows_desktop or section.settings.show_arrows_mobile -%}
+                  <button
+                    type="button"
+                    class="fct__nav fct__nav--prev"
+                    aria-label="{{ 'general.slider.previous_slide' | t | default: 'Previous slide' }}"
+                    data-fct-prev
+                  >
+                    {%- render 'icon-caret-left' -%}
+                  </button>
+                  <button
+                    type="button"
+                    class="fct__nav fct__nav--next"
+                    aria-label="{{ 'general.slider.next_slide' | t | default: 'Next slide' }}"
+                    data-fct-next
+                  >
+                    {%- render 'icon-caret-right' -%}
+                  </button>
+                {%- endif -%}
+              </div>
+            {%- else -%}
+              <p class="fct__empty">{{ 'sections.collection_template.empty' | t | default: 'No products found in this collection.' }}</p>
+            {%- endif -%}
+          </div>
+        {%- endfor -%}
+      </div>
+    {%- else -%}
+      <p class="fct__empty">{{ 'sections.featured_collection.no_collections' | t | default: 'Add a collection block to get started.' }}</p>
+    {%- endif -%}
+  </div>
+</div>
+
+<script>
+  (function () {
+    'use strict';
+
+    function initFeaturedCollectionTabs(root) {
+      if (root.dataset.fctInitialized) return;
+      root.dataset.fctInitialized = 'true';
+
+      var tabs = Array.prototype.slice.call(root.querySelectorAll('[data-fct-tab]'));
+      var panels = Array.prototype.slice.call(root.querySelectorAll('[data-fct-panel]'));
+      var sliders = {};
+
+      function initSlider(panel) {
+        var index = panel.dataset.index;
+        if (sliders[index] || typeof Swiper === 'undefined') return;
+
+        var sliderEl = panel.querySelector('[data-fct-swiper]');
+        if (!sliderEl) return;
+
+        var prevEl = panel.querySelector('[data-fct-prev]');
+        var nextEl = panel.querySelector('[data-fct-next]');
+
+        sliders[index] = new Swiper(sliderEl, {
+          slidesPerView: 'auto',
+          spaceBetween: 0,
+          watchOverflow: true,
+          grabCursor: true,
+          a11y: {
+            enabled: true
+          },
+          keyboard: {
+            enabled: true,
+            onlyInViewport: true
+          },
+          navigation: prevEl && nextEl ? {
+            prevEl: prevEl,
+            nextEl: nextEl,
+            disabledClass: 'swiper-button-disabled',
+            lockClass: 'swiper-button-lock'
+          } : false
+        });
+      }
+
+      function activateTab(index) {
+        tabs.forEach(function (tab) {
+          var isActive = tab.dataset.index === index;
+          tab.classList.toggle('fct__tab--active', isActive);
+          tab.setAttribute('aria-selected', isActive ? 'true' : 'false');
+          tab.setAttribute('tabindex', isActive ? '0' : '-1');
+        });
+
+        panels.forEach(function (panel) {
+          var isActive = panel.dataset.index === index;
+          panel.classList.toggle('fct__panel--active', isActive);
+          if (isActive) {
+            panel.removeAttribute('hidden');
+            initSlider(panel);
+            if (sliders[index]) sliders[index].update();
+          } else {
+            panel.setAttribute('hidden', '');
+          }
+        });
+      }
+
+      tabs.forEach(function (tab, i) {
+        tab.addEventListener('click', function () {
+          activateTab(tab.dataset.index);
+        });
+
+        tab.addEventListener('keydown', function (event) {
+          var targetIndex = null;
+          if (event.key === 'ArrowRight') {
+            targetIndex = (i + 1) % tabs.length;
+          } else if (event.key === 'ArrowLeft') {
+            targetIndex = (i - 1 + tabs.length) % tabs.length;
+          } else if (event.key === 'Home') {
+            targetIndex = 0;
+          } else if (event.key === 'End') {
+            targetIndex = tabs.length - 1;
+          }
+
+          if (targetIndex !== null) {
+            event.preventDefault();
+            var targetTab = tabs[targetIndex];
+            targetTab.focus();
+            activateTab(targetTab.dataset.index);
+          }
+        });
+      });
+
+      var activePanel = root.querySelector('.fct__panel--active');
+      if (activePanel) initSlider(activePanel);
+
+      if (Shopify && Shopify.designMode) {
+        document.addEventListener('shopify:section:load', function (event) {
+          if (event.target.contains(root)) {
+            root.dataset.fctInitialized = '';
+            sliders = {};
+            initFeaturedCollectionTabs(root);
+          }
+        });
+      }
+    }
+
+    function initAll() {
+      document.querySelectorAll('.fct').forEach(initFeaturedCollectionTabs);
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initAll);
+    } else {
+      initAll();
+    }
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Featured Collection Tabs",
+  "tag": "section",
+  "class": "featured-collection-tabs-section spaced-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Shop by Collection"
+    },
+    {
+      "type": "select",
+      "id": "heading_alignment",
+      "label": "Heading alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "range",
+      "id": "heading_font_size_desktop",
+      "label": "Heading font size (desktop)",
+      "min": 20,
+      "max": 64,
+      "step": 1,
+      "unit": "px",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "heading_font_size_mobile",
+      "label": "Heading font size (mobile)",
+      "min": 16,
+      "max": 48,
+      "step": 1,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "select",
+      "id": "tabs_alignment",
+      "label": "Tabs alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "background-1"
+    },
+    {
+      "type": "header",
+      "content": "Products"
+    },
+    {
+      "type": "range",
+      "id": "products_to_show",
+      "label": "Maximum products per collection",
+      "min": 4,
+      "max": 20,
+      "step": 1,
+      "default": 12
+    },
+    {
+      "type": "select",
+      "id": "image_ratio",
+      "label": "t:sections.main-collection-product-grid.settings.image_ratio.label",
+      "options": [
+        {
+          "value": "landscape",
+          "label": "t:sections.main-collection-product-grid.settings.image_ratio.options__1.label"
+        },
+        {
+          "value": "portrait",
+          "label": "t:sections.main-collection-product-grid.settings.image_ratio.options__2.label"
+        },
+        {
+          "value": "square",
+          "label": "t:sections.main-collection-product-grid.settings.image_ratio.options__3.label"
+        }
+      ],
+      "default": "square"
+    },
+    {
+      "type": "select",
+      "id": "image_fit",
+      "label": "t:sections.all.card.image_fit.label",
+      "options": [
+        {
+          "value": "contain",
+          "label": "t:sections.all.card.image_fit.options__1.label"
+        },
+        {
+          "value": "cover",
+          "label": "t:sections.all.card.image_fit.options__2.label"
+        }
+      ],
+      "default": "cover"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_vendor",
+      "label": "Show vendor",
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": "Slider layout"
+    },
+    {
+      "type": "select",
+      "id": "products_per_row_desktop",
+      "label": "Products per row (desktop)",
+      "options": [
+        {
+          "value": "4",
+          "label": "4"
+        },
+        {
+          "value": "5",
+          "label": "5"
+        }
+      ],
+      "default": "4"
+    },
+    {
+      "type": "select",
+      "id": "products_per_view_mobile",
+      "label": "Products per view (mobile)",
+      "options": [
+        {
+          "value": "1",
+          "label": "1"
+        },
+        {
+          "value": "1.2",
+          "label": "1.2"
+        },
+        {
+          "value": "1.5",
+          "label": "1.5"
+        }
+      ],
+      "default": "1.2"
+    },
+    {
+      "type": "range",
+      "id": "slide_spacing",
+      "label": "Spacing between products (px)",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "default": 16
+    },
+    {
+      "type": "checkbox",
+      "id": "show_arrows_desktop",
+      "label": "Show navigation arrows (desktop)",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_arrows_mobile",
+      "label": "Show navigation arrows (mobile)",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Section spacing"
+    },
+    {
+      "type": "select",
+      "id": "margin_top",
+      "options": [
+        {
+          "value": "no-indent",
+          "label": "t:sections.all.section-margin.options__1.label"
+        },
+        {
+          "value": "xs",
+          "label": "t:sections.all.section-margin.options__2.label"
+        },
+        {
+          "value": "s",
+          "label": "t:sections.all.section-margin.options__3.label"
+        },
+        {
+          "value": "m",
+          "label": "t:sections.all.section-margin.options__4.label"
+        },
+        {
+          "value": "l",
+          "label": "t:sections.all.section-margin.options__5.label"
+        },
+        {
+          "value": "xl",
+          "label": "t:sections.all.section-margin.options__6.label"
+        }
+      ],
+      "default": "m",
+      "label": "t:sections.all.section-margin.margin_top.label"
+    },
+    {
+      "type": "select",
+      "id": "margin_bottom",
+      "options": [
+        {
+          "value": "no-indent",
+          "label": "t:sections.all.section-margin.options__1.label"
+        },
+        {
+          "value": "xs",
+          "label": "t:sections.all.section-margin.options__2.label"
+        },
+        {
+          "value": "s",
+          "label": "t:sections.all.section-margin.options__3.label"
+        },
+        {
+          "value": "m",
+          "label": "t:sections.all.section-margin.options__4.label"
+        },
+        {
+          "value": "l",
+          "label": "t:sections.all.section-margin.options__5.label"
+        },
+        {
+          "value": "xl",
+          "label": "t:sections.all.section-margin.options__6.label"
+        }
+      ],
+      "default": "m",
+      "label": "t:sections.all.section-margin.margin_bottom.label"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "collection_tab",
+      "name": "Collection Tab",
+      "settings": [
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Collection"
+        },
+        {
+          "type": "text",
+          "id": "tab_label",
+          "label": "Tab label",
+          "info": "Defaults to the collection title when left blank."
+        }
+      ]
+    }
+  ],
+  "max_blocks": 5,
+  "presets": [
+    {
+      "name": "Featured Collection Tabs",
+      "blocks": [
+        {
+          "type": "collection_tab"
+        },
+        {
+          "type": "collection_tab"
+        },
+        {
+          "type": "collection_tab"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

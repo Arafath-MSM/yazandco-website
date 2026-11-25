@@ -19,14 +19,18 @@
             "blog_show_excerpt": true,
             "blog_show_author": true,
             "blog_show_date": true,
-            "image_height": "large"
+            "image_height": "medium"
           }
         },
         "content": {
           "type": "content",
           "settings": {
             "blog_show_author": true,
+            "blog_show_tags": true,
             "blog_show_date": true,
+            "show_share": true,
+            "show_social_icons": false,
+            "share_label": "Share",
             "show_share_facebook": true,
             "show_share_twitter": true,
             "show_share_pinterest": true,
@@ -38,9 +42,14 @@
         "title",
         "content"
       ],
+      "custom_css": [
+        "@media (min-width: 769px){.article-template__hero-wrapper img {position: absolute; top: 0; right: 0; bottom: 0; left: 0; width: 76%; height: 70%; object-fit: cover; border-radius: var(--border-radius-media); margin: auto;} }"
+      ],
       "settings": {
         "header_variant": "row",
-        "margin_top": "m"
+        "previous_next_links": true,
+        "margin_top": "m",
+        "margin_bottom": "m"
       }
     }
   },

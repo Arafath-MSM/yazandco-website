@@ -1,3 +1,7 @@
+
+
+
+
 {{ 'component-loading-overlay.css' | asset_url | stylesheet_tag }}
 {% if settings.show_shipping %}
 	{{ 'component-cart-shipping.css' | asset_url | stylesheet_tag }}
@@ -18,14 +22,168 @@
 {{ 'component-predictive-search.css' | asset_url | stylesheet_tag }}
 
 
-{% comment %}{% if section.settings.header_type == 'center-logo-burger' %}{% endcomment %}
+{% comment %}{% if section.settings.header_type == 'center-logo-burger' %}{% endcomment %}									
 	{{ 'component-desktop-burger-menu.css' | asset_url | stylesheet_tag }}
-	<script src="{{ 'burger-menu.js' | asset_url }}" defer="defer"></script>
+	<script src="{{ 'burger-menu.js' | asset_url }}" defer="defer"></script>																																																																																																																																																																													
 {% comment %}{% endif %}{% endcomment %}
 
 <script src="{{ 'header.js' | asset_url }}" defer="defer"></script>
 
+
+
 <style>
+	.product-form__submit {
+    min-height: 4.5rem;
+    background: black !important;
+}
+.product-form__buttons {
+    background: white !important;
+}
+.product-form__buttons-row {
+    
+    background: white !important;
+}
+
+	h1.ajax-collection-hero__title {
+    text-transform: uppercase !important;
+}
+
+[data-testid="form"] h2 {
+  font-size: 16px !important;
+}
+._formContainer_1q1d2_30 h2 {
+  font-size: 16px !important;
+}
+
+@media (min-width: 769px) {
+  #form-container-ref section[role="dialog"][data-sizing="form-wrapper"] {
+    --col-size: 420px !important;
+    transform: translateY(-30px) !important;
+  }
+}
+	@media screen and (max-width: 768px) {
+    ._grid_1q1d2_148._left_1q1d2_195, ._grid_1q1d2_148._right_1q1d2_204 {
+        grid-template:         "image" 260px        "content" min-content / 1fr !important;
+        max-width: 336px !important;
+    }
+}
+@media screen and (max-width: 768px) {
+    ._grid_1q1d2_148._left_1q1d2_195, ._grid_1q1d2_148._right_1q1d2_204 {
+        grid-template-columns: 1fr;
+        grid-template-rows: 285px min-content !important;
+        max-width: 320px !important;
+        grid-template-areas:         'image'        'content';
+    }
+}
+
+	span.price-item.price-item--regular {
+    font-family: 'Brandon';
+    font-weight: 600 !important;
+}
+span.visually-hidden.visually-hidden--inline {
+    font-weight: 600 !important;
+
+}
+.card-information__top .price__regular{
+    font-weight: 600 !important;
+
+}
+
+	@media (min-width: 990px) {
+    .product-popup-modal__content.size_guide_modal {
+        max-width: 140.4rem !important;
+        height: 73.2rem !important;
+    }
+}
+
+	.quick-add-modal__content-wrapper .product__secondary-actions.product-secondary-actions--desktop-side_by_side.product-secondary-actions--mobile-side_by_side {
+    display: none;
+}
+
+	.facets-modal__content-wrapper .facets__item {
+    position: relative;
+    display: flex;
+    align-items: center;
+    background: #f7f7f7;
+    padding: 5px 13px;
+}
+
+	.complementary-products .collection-product-card .product-parameters, .complementary-products .collection-product-card .card__information-top {
+    display: block !important;
+}
+a.whatsapp-float {
+    z-index: 10;
+}
+	.complementary-products__container .swiper-slide.collection-product-card.product-recommendations__product.quickview--hover {
+    width: 180px !important;
+}
+
+.complementary-products__container .Vtl-WishlistButton__WishlistIconButton{
+display:none !important;
+}
+
+	a.cart__link.button.button--simple.button--arrow.focus-inset {
+    display: none;
+}
+
+.cart-item__col.cart-item__price-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.sticky-atc.is-visible{
+border-top:1px solid gray;
+}
+	.sticky-atc__inner{
+	
+	background:white;
+	
+	}
+.secondary-action-button:hover{
+color:white !important;
+}
+.secondary-action-button{
+	text-decoration:none;
+}
+.custom-note-field { background: white; }
+
+	span.subtitle.facets__summary-title {
+    font-size: 1.3rem;
+}
+
+
+.cwiki-checkout-notice.cwiki-notice-info {
+	display:none;
+}
+.product__buy_buttons{
+background:black !important;
+
+}
+.product__buy_buttons span{
+color:white !important;
+}
+	.product-pagination {
+    display: none;
+}
+@media screen and (max-width: 575px) {
+    .product-recommendations__list--2-mobile .collection-product-card .price .price__regular {
+    font-weight: 300;
+    font-size: 10px;
+}
+}
+	
+
+	.swiper-pagination.swiper-pagination-clickable.swiper-pagination-bullets.swiper-pagination-horizontal {
+    display: none;
+}
+
+@media (min-width: 576px) {
+    .product__buy_buttons {
+        margin: 4rem 0;
+        margin-bottom: 0;
+    }
+}
 	header-drawer {
 		justify-self: start;
 	}
@@ -366,6 +524,12 @@
 			"info": "t:sections.header.settings.menu.info"
 		},
 		{
+			"type": "link_list",
+			"id": "mobile_menu",
+			"label": "Mobile menu",
+			"info": "Optional. Choose a separate menu to show only on mobile (menu drawer). Leave blank to use the same menu as desktop."
+		},
+		{
 			"type": "select",
 			"id": "sticky_header_type",
 			"options": [
@@ -438,6 +602,21 @@
 			],
 			"default": "right",
 			"label": "t:sections.header.settings.scheme_position.label"
+		},
+		{
+			"type": "header",
+			"content": "Extra header link (desktop)"
+		},
+		{
+			"type": "text",
+			"id": "extra_link_text",
+			"label": "Link text",
+			"info": "Shown next to the icons on desktop only. Leave blank to hide."
+		},
+		{
+			"type": "url",
+			"id": "extra_link_url",
+			"label": "Link URL"
 		},
 		{
 			"type": "select",
@@ -823,6 +1002,14 @@
 					"visible_if": "{{ block.settings.enable_dropdown_menu }}"
 				},
 				{
+					"type": "checkbox",
+					"id": "flat_submenu",
+					"default": false,
+					"label": "Show submenu categories always expanded (no click needed)",
+					"info": "Like the reference design: category headings (e.g. \"Browse by Style\") show their links directly underneath, always visible, instead of needing a click to expand.",
+					"visible_if": "{{ block.settings.enable_dropdown_menu and block.settings.enable_dropdown_submenu }}"
+				},
+				{
 					"type": "select",
 					"id": "open_dropdown_menu",
 					"options": [
@@ -859,6 +1046,145 @@
 					],
 					"default": "portrait",
 					"label": "t:sections.header.settings.image_ratio.label"
+				},
+				{
+					"type": "header",
+					"content": "Submenu icons"
+				},
+				{
+					"type": "paragraph",
+					"content": "Add a small icon next to a submenu link (any level) by typing its exact title below and uploading an icon. Case-insensitive, extra spaces ignored. Leave a trigger blank to skip that slot."
+				},
+				{
+					"type": "text",
+					"id": "icon_trigger_1",
+					"label": "Submenu link title 1"
+				},
+				{
+					"type": "image_picker",
+					"id": "icon_image_1",
+					"label": "Icon 1"
+				},
+				{
+					"type": "text",
+					"id": "icon_trigger_2",
+					"label": "Submenu link title 2"
+				},
+				{
+					"type": "image_picker",
+					"id": "icon_image_2",
+					"label": "Icon 2"
+				},
+				{
+					"type": "text",
+					"id": "icon_trigger_3",
+					"label": "Submenu link title 3"
+				},
+				{
+					"type": "image_picker",
+					"id": "icon_image_3",
+					"label": "Icon 3"
+				},
+				{
+					"type": "text",
+					"id": "icon_trigger_4",
+					"label": "Submenu link title 4"
+				},
+				{
+					"type": "image_picker",
+					"id": "icon_image_4",
+					"label": "Icon 4"
+				},
+				{
+					"type": "text",
+					"id": "icon_trigger_5",
+					"label": "Submenu link title 5"
+				},
+				{
+					"type": "image_picker",
+					"id": "icon_image_5",
+					"label": "Icon 5"
+				},
+				{
+					"type": "text",
+					"id": "icon_trigger_6",
+					"label": "Submenu link title 6"
+				},
+				{
+					"type": "image_picker",
+					"id": "icon_image_6",
+					"label": "Icon 6"
+				},
+				{
+					"type": "text",
+					"id": "icon_trigger_7",
+					"label": "Submenu link title 7"
+				},
+				{
+					"type": "image_picker",
+					"id": "icon_image_7",
+					"label": "Icon 7"
+				},
+				{
+					"type": "text",
+					"id": "icon_trigger_8",
+					"label": "Submenu link title 8"
+				},
+				{
+					"type": "image_picker",
+					"id": "icon_image_8",
+					"label": "Icon 8"
+				},
+				{
+					"type": "text",
+					"id": "icon_trigger_9",
+					"label": "Submenu link title 9"
+				},
+				{
+					"type": "image_picker",
+					"id": "icon_image_9",
+					"label": "Icon 9"
+				},
+				{
+					"type": "text",
+					"id": "icon_trigger_10",
+					"label": "Submenu link title 10"
+				},
+				{
+					"type": "image_picker",
+					"id": "icon_image_10",
+					"label": "Icon 10"
+				},
+				{
+					"type": "text",
+					"id": "icon_trigger_11",
+					"label": "Submenu link title 11"
+				},
+				{
+					"type": "image_picker",
+					"id": "icon_image_11",
+					"label": "Icon 11"
+				},
+				{
+					"type": "text",
+					"id": "icon_trigger_12",
+					"label": "Submenu link title 12"
+				},
+				{
+					"type": "image_picker",
+					"id": "icon_image_12",
+					"label": "Icon 12"
+				},
+				{
+					"type": "header",
+					"content": "Automatic images"
+				},
+				{
+					"type": "checkbox",
+					"id": "enable_auto_images",
+					"default": false,
+					"label": "Automatically match collection images by ALT text",
+					"info": "When enabled, this overrides the First block/Second block pickers below. Shows up to 4 image cards on the right, one per submenu link under this menu. For each submenu link, the theme looks for a collection whose image ALT text matches the link's title exactly (case-insensitive, extra spaces ignored). If none is found, the collection's featured image is used as a fallback; if no collection matches at all, that card is hidden."
 				},
 				{
 					"type": "header",

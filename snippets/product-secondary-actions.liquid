@@ -1,0 +1,56 @@
+{%- comment -%}
+  Renders the "Book a Consultation" and "Send a Hint" buttons as a single row,
+  plus the Send a Hint drawer markup. Either block may be absent/disabled.
+{%- endcomment -%}
+{%- liquid
+  assign consult_enabled = false
+  if consult_block and consult_block.settings.enable
+    assign consult_enabled = true
+  endif
+
+  assign hint_enabled = false
+  if hint_block and hint_block.settings.enable
+    assign hint_enabled = true
+  endif
+-%}
+
+{%- if consult_enabled or hint_enabled -%}
+  {%- liquid
+    assign sync_style = true
+    if consult_block and consult_block.settings.sync_secondary_button_style == false
+      assign sync_style = false
+    endif
+
+    assign row_layout_desktop = 'side_by_side'
+    assign row_layout_mobile = 'side_by_side'
+    assign row_gap = 12
+    if consult_block
+      assign row_layout_desktop = consult_block.settings.row_layout_desktop
+      assign row_layout_mobile = consult_block.settings.row_layout_mobile
+      assign row_gap = consult_block.settings.row_gap
+    endif
+  -%}
+  <div
+    class="product__secondary-actions product-secondary-actions--desktop-{{ row_layout_desktop }} product-secondary-actions--mobile-{{ row_layout_mobile }}"
+    style="--secondary-actions-gap: {{ row_gap }}px;"
+    {% if consult_block %}{{ consult_block.shopify_attributes }}{% endif %}
+  >
+    {%- if consult_enabled -%}
+      {% render 'product-book-consultation-button', block: consult_block %}
+    {%- endif -%}
+
+    {%- if hint_enabled -%}
+      {% render 'product-send-a-hint-button',
+        product: product,
+        section: section,
+        block: hint_block,
+        consult_block: consult_block,
+        sync_style: sync_style
+      %}
+    {%- endif -%}
+  </div>
+
+  {%- if hint_enabled -%}
+    {% render 'product-send-a-hint-drawer', product: product, section: section, block: hint_block %}
+  {%- endif -%}
+{%- endif -%}

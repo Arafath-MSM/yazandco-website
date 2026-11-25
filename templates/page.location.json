@@ -1,0 +1,374 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "image_banner_M3XPqt": {
+      "type": "image-banner",
+      "custom_css": [
+        ".image-banner .banner {display: flex; position: relative; min-height: initial; max-height: 200px;}",
+        ".image-banner .banner:is([class*=\"bottom\"]) .image-banner__wrapper {padding-bottom: 2rem;}"
+      ],
+      "name": "t:sections.image-banner.presets.name",
+      "settings": {
+        "full_width": true,
+        "color_scheme": "",
+        "info_position": "inside",
+        "image": "shopify://shop_images/WhatsApp_Image_2026-09-09_at_6.23.25_PM_2.jpg",
+        "image_ratio": "adapt",
+        "opacity_overlay": 0.2,
+        "heading": "ABU DHABI",
+        "heading_size": "h1",
+        "enable_custom_heading_size": true,
+        "heading_font_size_desktop": 36,
+        "heading_font_size_mobile": 28,
+        "text_information": "<p>Secure your consultation.</p>",
+        "text_align": "bottom-left",
+        "text_width": "full",
+        "additional_text": "",
+        "button_label": "",
+        "button_style": "tertiary",
+        "button_link": "",
+        "button_label2": "",
+        "button_style2": "tertiary",
+        "button_link2": "",
+        "margin_top": "no-indent",
+        "margin_bottom": "no-indent"
+      }
+    },
+    "rich_text_xmJWai": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_crpP3h": {
+          "type": "heading",
+          "settings": {
+            "heading": "YAZ & Co Private Boutique",
+            "heading_size": "h2"
+          }
+        },
+        "text_iwHtWV": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Shop No-1 - Al Khirayr St - Al Nahyan - Zone 1 - Abu Dhabi - United Arab Emirates<br/>+971568887552</p><p>Monday - Sunday<br/>9:00 AM – 10:00 PM</p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading_crpP3h",
+        "text_iwHtWV"
+      ],
+      "custom_css": [
+        ".rich-text__text p {line-height: 35px;}"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "alignment": "center",
+        "width": "medium",
+        "margin_top": "xs",
+        "margin_bottom": "s"
+      }
+    },
+    "store_location_kwJdmx": {
+      "type": "Store-Location",
+      "name": "Store Location & Map",
+      "settings": {
+        "bg_color": "#ffffff",
+        "container_max_w": 800,
+        "left_col_width_d": 0,
+        "vert_align": "flex-start",
+        "desktop_swap": "map_right",
+        "mobile_swap": "content_first",
+        "gap_d": 10,
+        "gap_m": 30,
+        "pad_top_d": 0,
+        "pad_bottom_d": 45,
+        "pad_left_d": 40,
+        "pad_right_d": 40,
+        "pad_top_m": 0,
+        "pad_bottom_m": 30,
+        "pad_left_m": 16,
+        "pad_right_m": 16,
+        "store_name": "",
+        "name_color": "#000000",
+        "name_size_d": 36,
+        "name_size_m": 26,
+        "name_weight": "400",
+        "name_lh": "1.2",
+        "name_ls": 0,
+        "name_mb_d": 20,
+        "name_mb_m": 14,
+        "address_html": "",
+        "addr_color": "#222222",
+        "link_color": "#000000",
+        "link_hover_color": "#666666",
+        "link_underline": true,
+        "addr_size_d": 16,
+        "addr_size_m": 14,
+        "addr_weight": "400",
+        "addr_lh": "1.5",
+        "addr_mb_d": 30,
+        "addr_mb_m": 20,
+        "heading_color": "#000000",
+        "heading_size_d": 22,
+        "heading_size_m": 18,
+        "heading_weight": "400",
+        "heading_lh": "1.3",
+        "heading_ls": 0,
+        "heading_mt_d": 20,
+        "heading_mt_m": 14,
+        "heading_mb_d": 16,
+        "heading_mb_m": 12,
+        "hours_color": "#222222",
+        "hours_size_d": 16,
+        "hours_size_m": 14,
+        "hours_weight": "400",
+        "hours_lh": "1.4",
+        "hours_max_w": 360,
+        "hours_row_gap": 8,
+        "hours_pad_b": 4,
+        "hours_show_border": false,
+        "hours_border_w": 1,
+        "hours_border_color": "#eeeeee",
+        "hours_group_mb_d": 30,
+        "hours_group_mb_m": 20,
+        "service_color": "#222222",
+        "service_size_d": 16,
+        "service_size_m": 14,
+        "service_weight": "400",
+        "service_lh": "1.4",
+        "service_item_mb": 8,
+        "services_group_mb_d": 20,
+        "services_group_mb_m": 16,
+        "map_embed_code": "<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3962.851193060594!2d54.3906182!3d24.456841!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5e690af6e2f989%3A0x2ffc3bbecc7f8c77!2sYaz%20and%20Co!5e1!3m2!1sen!2s!4v1786521454612!5m2!1sen!2s\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"strict-origin-when-cross-origin\"></iframe>",
+        "map_height_d": 650,
+        "map_height_m": 350,
+        "enable_sticky_map": true,
+        "sticky_top_margin": 20,
+        "map_radius": 0,
+        "map_border_w": 0,
+        "map_border_color": "#eaeaea"
+      }
+    },
+    "store_location_V8xHQV": {
+      "type": "Store-Location",
+      "blocks": {
+        "section_heading_rwKBqr": {
+          "type": "section_heading",
+          "settings": {
+            "heading_text": "Store Hours"
+          }
+        },
+        "store_hours_row_GGKRag": {
+          "type": "store_hours_row",
+          "settings": {
+            "day_text": "Monday",
+            "time_text": "9 AM–6 PM"
+          }
+        },
+        "store_hours_row_dtH8T6": {
+          "type": "store_hours_row",
+          "settings": {
+            "day_text": "Tuesday",
+            "time_text": "9 AM–6 PM"
+          }
+        },
+        "store_hours_row_N7dMeM": {
+          "type": "store_hours_row",
+          "settings": {
+            "day_text": "Wednesday",
+            "time_text": "9 AM–6 PM"
+          }
+        },
+        "store_hours_row_hPRMYX": {
+          "type": "store_hours_row",
+          "settings": {
+            "day_text": "Thursday",
+            "time_text": "9 AM–6 PM"
+          }
+        },
+        "store_hours_row_HiRNwg": {
+          "type": "store_hours_row",
+          "settings": {
+            "day_text": "Friday",
+            "time_text": "9 AM–6 PM"
+          }
+        },
+        "store_hours_row_pQWLGC": {
+          "type": "store_hours_row",
+          "settings": {
+            "day_text": "Saturday",
+            "time_text": "9 AM–6 PM"
+          }
+        },
+        "store_hours_row_HBi7eq": {
+          "type": "store_hours_row",
+          "settings": {
+            "day_text": "Sunday",
+            "time_text": "9 AM–6 PM"
+          }
+        },
+        "section_heading_GiYeWg": {
+          "type": "section_heading",
+          "settings": {
+            "heading_text": "Store Services & Offers"
+          }
+        },
+        "service_item_VFRH6J": {
+          "type": "service_item",
+          "settings": {
+            "service_text": "Fine Jewelry"
+          }
+        },
+        "service_item_iPqmUF": {
+          "type": "service_item",
+          "settings": {
+            "service_text": "Engagement Rings"
+          }
+        },
+        "service_item_TQfnwc": {
+          "type": "service_item",
+          "settings": {
+            "service_text": "Wedding Bands"
+          }
+        },
+        "service_item_tnyLLC": {
+          "type": "service_item",
+          "settings": {
+            "service_text": "Not in stock? Ask an associate to order it for you"
+          }
+        },
+        "service_item_UxXteD": {
+          "type": "service_item",
+          "settings": {
+            "service_text": "Be connected with a Diamond Specialist"
+          }
+        },
+        "service_item_Wc6Yz8": {
+          "type": "service_item",
+          "settings": {
+            "service_text": "Jewelry Repair"
+          }
+        }
+      },
+      "block_order": [
+        "section_heading_rwKBqr",
+        "store_hours_row_GGKRag",
+        "store_hours_row_dtH8T6",
+        "store_hours_row_N7dMeM",
+        "store_hours_row_hPRMYX",
+        "store_hours_row_HiRNwg",
+        "store_hours_row_pQWLGC",
+        "store_hours_row_HBi7eq",
+        "section_heading_GiYeWg",
+        "service_item_VFRH6J",
+        "service_item_iPqmUF",
+        "service_item_TQfnwc",
+        "service_item_tnyLLC",
+        "service_item_UxXteD",
+        "service_item_Wc6Yz8"
+      ],
+      "disabled": true,
+      "name": "Store Location & Map",
+      "settings": {
+        "bg_color": "#ffffff",
+        "container_max_w": 1800,
+        "left_col_width_d": 45,
+        "vert_align": "flex-start",
+        "desktop_swap": "map_right",
+        "mobile_swap": "content_first",
+        "gap_d": 60,
+        "gap_m": 30,
+        "pad_top_d": 60,
+        "pad_bottom_d": 60,
+        "pad_left_d": 40,
+        "pad_right_d": 40,
+        "pad_top_m": 30,
+        "pad_bottom_m": 30,
+        "pad_left_m": 16,
+        "pad_right_m": 16,
+        "store_name": "Yaz and Co",
+        "name_color": "#000000",
+        "name_size_d": 36,
+        "name_size_m": 26,
+        "name_weight": "400",
+        "name_lh": "1.2",
+        "name_ls": 0,
+        "name_mb_d": 20,
+        "name_mb_m": 14,
+        "address_html": "<p>Shop No-1 - Al Khirayr St - Al Nahyan - Zone 1 - Abu Dhabi - United Arab Emirates<br/>+971568887552</p>",
+        "addr_color": "#222222",
+        "link_color": "#000000",
+        "link_hover_color": "#666666",
+        "link_underline": true,
+        "addr_size_d": 16,
+        "addr_size_m": 14,
+        "addr_weight": "400",
+        "addr_lh": "1.5",
+        "addr_mb_d": 30,
+        "addr_mb_m": 20,
+        "heading_color": "#000000",
+        "heading_size_d": 22,
+        "heading_size_m": 18,
+        "heading_weight": "400",
+        "heading_lh": "1.3",
+        "heading_ls": 0,
+        "heading_mt_d": 20,
+        "heading_mt_m": 14,
+        "heading_mb_d": 16,
+        "heading_mb_m": 12,
+        "hours_color": "#222222",
+        "hours_size_d": 16,
+        "hours_size_m": 14,
+        "hours_weight": "400",
+        "hours_lh": "1.4",
+        "hours_max_w": 360,
+        "hours_row_gap": 8,
+        "hours_pad_b": 4,
+        "hours_show_border": false,
+        "hours_border_w": 1,
+        "hours_border_color": "#eeeeee",
+        "hours_group_mb_d": 30,
+        "hours_group_mb_m": 20,
+        "service_color": "#222222",
+        "service_size_d": 16,
+        "service_size_m": 14,
+        "service_weight": "400",
+        "service_lh": "1.4",
+        "service_item_mb": 8,
+        "services_group_mb_d": 20,
+        "services_group_mb_m": 16,
+        "map_embed_code": "<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3962.851193060594!2d54.3906182!3d24.456841!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5e690af6e2f989%3A0x2ffc3bbecc7f8c77!2sYaz%20and%20Co!5e1!3m2!1sen!2s!4v1786521454612!5m2!1sen!2s\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"strict-origin-when-cross-origin\"></iframe>",
+        "map_height_d": 650,
+        "map_height_m": 350,
+        "enable_sticky_map": true,
+        "sticky_top_margin": 20,
+        "map_radius": 0,
+        "map_border_w": 0,
+        "map_border_color": "#eaeaea"
+      }
+    },
+    "custom_liquid_4Jkddc": {
+      "type": "custom-liquid",
+      "custom_css": [
+        "{margin: 30px;}"
+      ],
+      "name": "t:sections.custom-liquid.presets.name",
+      "settings": {
+        "custom_liquid": "<div data-cowlendar-inline=\"6aa51848de7fe4e0119059b4-43390620696782\"></div>"
+      }
+    }
+  },
+  "order": [
+    "image_banner_M3XPqt",
+    "rich_text_xmJWai",
+    "store_location_kwJdmx",
+    "store_location_V8xHQV",
+    "custom_liquid_4Jkddc"
+  ]
+}

@@ -1,0 +1,81 @@
+{%- comment -%}
+  Renders one auto-matched mega menu image card, or nothing if no match is found.
+
+  Accepts:
+  - title: the menu/submenu link title to match against a collection image's ALT text
+  - link_url: fallback URL for the card (used if the matched collection has no url, shouldn't normally happen)
+  - image_ratio: 'landscape' | 'portrait' | 'square'
+
+  Matching:
+  1. Look for a collection whose image ALT text equals `title`, trimmed and case-insensitive.
+  2. If none, fall back to a collection whose title equals `title`, trimmed and case-insensitive,
+     using that collection's featured image.
+  3. If still no match, this snippet renders nothing and the caller should not count it as shown.
+{%- endcomment -%}
+{%- liquid
+  assign auto_menu_key = title | strip | downcase
+  assign auto_matched_collection = null
+  assign auto_matched_image = null
+
+  for auto_collection in collections
+    if auto_collection.image
+      assign auto_alt_key = auto_collection.image.alt | strip | downcase
+      if auto_alt_key == auto_menu_key and auto_alt_key != ''
+        assign auto_matched_collection = auto_collection
+        assign auto_matched_image = auto_collection.image
+        break
+      endif
+    endif
+  endfor
+
+  unless auto_matched_image
+    for auto_collection in collections
+      if auto_collection.image and auto_collection.title != blank
+        assign auto_title_key = auto_collection.title | strip | downcase
+        if auto_title_key == auto_menu_key
+          assign auto_matched_collection = auto_collection
+          assign auto_matched_image = auto_collection.image
+          break
+        endif
+      endif
+    endfor
+  endunless
+
+  assign auto_image_alt = auto_matched_image.alt | default: auto_matched_collection.title
+-%}
+{%- if auto_matched_image -%}
+  <div class="burger-menu__list-image-wrapper mega-menu__auto-image-card">
+    <div class="burger-menu__horizontal-image" tabindex="-1">
+      <div
+        class="media"
+        {%- if image_ratio == 'landscape' -%}
+          style="padding-bottom: 70%;"
+        {%- elsif image_ratio == 'portrait' -%}
+          style="padding-bottom: 125%;"
+        {%- else -%}
+          style="padding-bottom: 100%;"
+        {%- endif -%}
+      >
+        {{
+          auto_matched_image
+          | image_url: width: auto_matched_image.width
+          | image_tag:
+            loading: 'lazy',
+            class: 'media--item',
+            widths: '180, 260, 550, 750, 1100',
+            sizes: '100vw',
+            alt: auto_image_alt
+        }}
+      </div>
+    </div>
+    <h3 class="burger-menu__image-title">
+      <a
+        class="full-unstyled-link"
+        href="{{ auto_matched_collection.url | default: link_url | default: '#' }}"
+        title="{{ auto_matched_collection.title | escape }}"
+      >
+        {{ auto_matched_collection.title | escape }}
+      </a>
+    </h3>
+  </div>
+{%- endif -%}

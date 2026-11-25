@@ -1,0 +1,539 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "image_banner_qCa8zY": {
+      "type": "image-banner",
+      "custom_css": [
+        ".image-banner .banner {display: flex; position: relative; min-height: initial; max-height: 400px;}"
+      ],
+      "name": "t:sections.image-banner.presets.name",
+      "settings": {
+        "full_width": true,
+        "color_scheme": "",
+        "info_position": "inside",
+        "image": "shopify://shop_images/IMG-20260909-WA0070.jpg",
+        "image_ratio": "adapt",
+        "opacity_overlay": 0,
+        "heading": "BRIDAL",
+        "heading_size": "h1",
+        "enable_custom_heading_size": true,
+        "heading_font_size_desktop": 36,
+        "heading_font_size_mobile": 28,
+        "text_information": "<p>Your personal bridal jewellery journey begins here.</p>",
+        "text_align": "center",
+        "text_width": "full",
+        "additional_text": "",
+        "button_label": "",
+        "button_style": "tertiary",
+        "button_link": "",
+        "button_label2": "",
+        "button_style2": "tertiary",
+        "button_link2": "",
+        "margin_top": "no-indent",
+        "margin_bottom": "no-indent"
+      }
+    },
+    "multicolumn_Y4UYdL": {
+      "type": "multicolumn",
+      "blocks": {
+        "column_ddVDnE": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/519A0124.jpg",
+            "overlay_opacity": 0.2,
+            "subheading": "",
+            "heading": "Engagement Rings",
+            "description": "<p>Discover iconic diamond rings crafted to celebrate your forever.</p>",
+            "button_label": "Learn More",
+            "button_link": "shopify://collections/engagement-rings"
+          }
+        },
+        "column_B7GXVj": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/page_6_image_2.png",
+            "overlay_opacity": 0.2,
+            "subheading": "",
+            "heading": "Wedding Bracelets",
+            "description": "<p>Diamond bracelets designed to complete your wedding look.</p>",
+            "button_label": "Learn More",
+            "button_link": "shopify://collections/bracelets"
+          }
+        },
+        "column_3Cc3Bi": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/Z2603_YAZ_01_042_srgb_WEB_1.jpg",
+            "overlay_opacity": 0.2,
+            "subheading": "",
+            "heading": "Bridal Jewellery",
+            "description": "<p>Complete your bridal look with timeless diamond creations.</p>",
+            "button_label": "Learn More",
+            "button_link": "shopify://collections/bridal-collection"
+          }
+        },
+        "column_C6eH9K": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/page_5_image_2.png",
+            "overlay_opacity": 0.2,
+            "subheading": "",
+            "heading": "Anniversary Pieces",
+            "description": "<p>Celebrate every milestone with meaningful jewellery.</p>",
+            "button_label": "Learn More",
+            "button_link": "shopify://collections/anniversary-pieces"
+          }
+        }
+      },
+      "block_order": [
+        "column_ddVDnE",
+        "column_B7GXVj",
+        "column_3Cc3Bi",
+        "column_C6eH9K"
+      ],
+      "name": "t:sections.multicolumn.name",
+      "settings": {
+        "color_scheme": "background-1",
+        "subheading": "",
+        "heading": "Find Your Perfect Bridal Piece",
+        "heading_size": "h1",
+        "description": "<p>Explore timeless jewellery designed for every chapter of your love story.</p>",
+        "enable_full_screen": false,
+        "swiper": false,
+        "stop_autoplay": true,
+        "navigation": false,
+        "slideshow_speed": 20,
+        "layout_type": "standard",
+        "content_position": "img-top",
+        "always_visible_text": false,
+        "on_hover": "show_text",
+        "multicolumn_to_show": 4,
+        "image_ratio": "square",
+        "object_fit": "cover",
+        "card_heading_size": "h1",
+        "button_label": "",
+        "button_style": "simple",
+        "button_link": "",
+        "margin_top": "xs",
+        "margin_bottom": "xs"
+      }
+    },
+    "craft_auto_slider_UcRRnR": {
+      "type": "Craft-Auto-Slider",
+      "blocks": {
+        "story_slide_PPwjjg": {
+          "type": "story_slide",
+          "settings": {
+            "title": "Diamond Education",
+            "content": "<p>Discover the essential knowledge behind selecting the perfect diamond. Learn about the 4Cs – Cut, Colour, Clarity and Carat – and understand how each element influences a diamond's beauty, brilliance and value. Our diamond education guide helps you make a confident choice by explaining diamond quality, certification and the details that make every stone unique.</p>",
+            "media_type": "image",
+            "image": "shopify://shop_images/WhatsApp_Image_2026-05-16_at_5.46.35_PM_5_1_0e89eaad-9a38-4ce9-9943-b4d001b1741b.jpg",
+            "video_url": "",
+            "button_label": "Diamond Guide",
+            "button_url": "shopify://pages/diamond-guide"
+          }
+        },
+        "story_slide_6gKfBw": {
+          "type": "story_slide",
+          "settings": {
+            "title": "Ring-Setting Guidance",
+            "content": "<p>The perfect setting enhances the beauty and character of your diamond. Explore different ring styles, from timeless solitaire and elegant halo settings to modern pavé, three-stone, vintage, and bezel designs. Our ring-setting guide helps you understand how each style highlights the diamond and choose a setting that reflects your personal story and style.</p>",
+            "media_type": "video",
+            "video_native": "shopify://files/videos/5b695d502aea4a4295774e56c902bab2.mp4",
+            "video_url": "",
+            "button_label": "Ring Guide",
+            "button_url": "shopify://pages/size-guide"
+          }
+        }
+      },
+      "block_order": [
+        "story_slide_PPwjjg",
+        "story_slide_6gKfBw"
+      ],
+      "custom_css": [
+        "p {color: white;}"
+      ],
+      "name": "Story Craft Auto-Slider",
+      "settings": {
+        "bg_color": "#4d1432",
+        "container_max_w": 1800,
+        "content_col_width_d": 45,
+        "vert_align": "center",
+        "enable_autoplay": true,
+        "autoplay_duration": 3,
+        "fade_speed": 500,
+        "pause_on_hover": false,
+        "text_align_d": "left",
+        "text_align_m": "center",
+        "desktop_swap": "media_left",
+        "mobile_swap": "media_top",
+        "gap_d": 70,
+        "gap_m": 30,
+        "pad_top_d": 80,
+        "pad_bottom_d": 80,
+        "pad_left_d": 30,
+        "pad_right_d": 30,
+        "pad_top_m": 40,
+        "pad_bottom_m": 40,
+        "pad_left_m": 20,
+        "pad_right_m": 20,
+        "heading_color": "#ffffff",
+        "heading_size_d": 26,
+        "heading_size_m": 22,
+        "heading_weight": "400",
+        "heading_lh": "1.25",
+        "heading_ls": 0,
+        "heading_mb_d": 24,
+        "heading_mb_m": 16,
+        "body_color": "#ffffff",
+        "body_size_d": 16,
+        "body_size_m": 14,
+        "body_weight": "400",
+        "body_lh": "1.6",
+        "p_gap_d": 16,
+        "p_gap_m": 12,
+        "media_height_d": 550,
+        "media_height_m": 320,
+        "media_fit": "cover",
+        "media_radius": 0,
+        "button_bg_color": "#ffffff",
+        "button_text_color": "#000000",
+        "button_border_color": "#222222",
+        "button_radius": 0,
+        "button_font_size": 14,
+        "button_pad_v": 12,
+        "button_pad_h": 28,
+        "button_mt_d": 24,
+        "button_mt_m": 16,
+        "nav_align": "center",
+        "nav_bar_max_w": 120,
+        "nav_bar_h": 2,
+        "nav_gap": 12,
+        "nav_bar_radius": 2,
+        "nav_bg_color": "#f0f0f0",
+        "nav_active_color": "#000000",
+        "nav_mt_d": 40,
+        "nav_mt_m": 25
+      }
+    },
+    "popular_products_arNzxG": {
+      "type": "popular-products",
+      "custom_css": [
+        ".card-information .price {font-weight: 400 !important; font-family: Sterling, serif;}",
+        ".product_color-count {font-weight: 400 !important;}",
+        "@media screen and (max-width: 575px) {.popular-products__wrapper {gap: 2rem 1rem; }}"
+      ],
+      "settings": {
+        "subheading": "",
+        "heading": "BRIDAL",
+        "description": "",
+        "heading_size": "h1",
+        "product_source": "collection",
+        "product_list": [
+          "radiance-ring",
+          "radiance-earrings",
+          "radiance-necklace",
+          "rings-1",
+          "ring-2",
+          "ring-3",
+          "ring",
+          "ring-4",
+          "aura-ring",
+          "celeste-ring",
+          "majesty-bloom-ring",
+          "infinite-eternity-ring"
+        ],
+        "collection": "bridal-collection",
+        "collection_limit": 12,
+        "products_to_show": 4,
+        "products_per_view_mobile": "1.2",
+        "slide_spacing": 16,
+        "show_arrows_desktop": true,
+        "show_arrows_mobile": true,
+        "image_ratio": "square",
+        "image_fit": "contain",
+        "show_vendor": false,
+        "show_color_count": true,
+        "show_size_count": false,
+        "show_collection": false,
+        "show_desc": false,
+        "button_label": "DISCOVER ALL",
+        "button_link": "shopify://collections/bridal-collection",
+        "button_style": "simple",
+        "margin_top": "s",
+        "margin_bottom": "s"
+      }
+    },
+    "split_editorial_banner_J3zgQD": {
+      "type": "split-editorial-banner",
+      "name": "Split Editorial Banner",
+      "settings": {
+        "enable_full_width": false,
+        "max_width": 1440,
+        "bg_color": "#ffffff",
+        "content_width_d": 40,
+        "grid_gap_d": 60,
+        "grid_gap_m": 32,
+        "content_v_align": "center",
+        "mobile_order": "text_first",
+        "pad_top_d": 60,
+        "pad_bottom_d": 60,
+        "pad_left_d": 40,
+        "pad_right_d": 40,
+        "pad_top_m": 32,
+        "pad_bottom_m": 32,
+        "pad_left_m": 20,
+        "pad_right_m": 20,
+        "content_pad_left_d": 0,
+        "content_pad_right_d": 40,
+        "content_pad_left_m": 0,
+        "content_pad_right_m": 0,
+        "title": "Find Your Ring Consultation",
+        "title_color": "#121212",
+        "text_align_d": "left",
+        "text_align_m": "left",
+        "title_size_d": 26,
+        "title_size_m": 22,
+        "title_weight": "500",
+        "title_lh": "1.15",
+        "title_ls": "0",
+        "title_transform": "none",
+        "title_mb_d": 20,
+        "title_mb_m": 14,
+        "subtext": "<p>Finding the perfect ring is a personal journey, and our experts are here to guide you at every step. From selecting the right diamond and understanding different ring styles to choosing a design that matches your story and preferences, our personalised consultation helps you discover a ring that feels truly yours.</p><p>Book a private consultation with our bridal specialists and receive expert guidance tailored to your style, budget, and vision.</p>",
+        "subtext_color": "#222222",
+        "subtext_size_d": 16,
+        "subtext_size_m": 14,
+        "subtext_weight": "400",
+        "subtext_lh": "1.4",
+        "subtext_ls": "0",
+        "subtext_mb_d": 36,
+        "subtext_mb_m": 24,
+        "cta_align_d": "flex-start",
+        "cta_align_m": "flex-start",
+        "cta_gap_d": 28,
+        "cta_gap_m": 16,
+        "btn_1_text": "Find Your Ring",
+        "btn_1_link": "shopify://pages/size-guide",
+        "btn_1_color": "#000000",
+        "btn_1_border_color": "#000000",
+        "btn_1_hover_color": "#666666",
+        "btn_2_text": "Book a Consultation",
+        "btn_2_link": "shopify://pages/book-an-appointment",
+        "btn_2_color": "#000000",
+        "btn_2_border_color": "#000000",
+        "btn_2_hover_color": "#666666",
+        "btn_size_d": 13,
+        "btn_size_m": 12,
+        "btn_weight": "600",
+        "btn_ls": "1",
+        "btn_transform": "uppercase",
+        "btn_border_w": 1,
+        "btn_border_offset": 4,
+        "image_1": "shopify://shop_images/ChatGPT_Image_Jun_24_2026_03_15_01_PM_1.png",
+        "image_2": "shopify://shop_images/ChatGPT_Image_Jun_28_2026_11_18_20_AM.png",
+        "media_gap_d": 12,
+        "media_gap_m": 8,
+        "media_aspect_d": "3/4",
+        "media_aspect_m": "3/4",
+        "media_radius_d": 0,
+        "media_radius_m": 0
+      }
+    },
+    "review_testimonial_slider_qAB9Fj": {
+      "type": "review-testimonial-slider",
+      "blocks": {
+        "review_card_jQhfJC": {
+          "type": "review_card",
+          "settings": {
+            "image": "shopify://shop_images/WhatsApp_Image_2026-10-30_at_4.13.43_PM.jpg",
+            "author_name": "Mariam Al Mansoori",
+            "star_rating": 5,
+            "quote": "🤍 ما شاء الله وايد حبيت طلبي، الجودة روعة والقطعة طلعت أحلى عن الصور"
+          }
+        },
+        "review_card_LCddR4": {
+          "type": "review_card",
+          "settings": {
+            "image": "shopify://shop_images/Media_27_1.jpg",
+            "author_name": "Aisha Al Nuaimi",
+            "star_rating": 5,
+            "quote": "😍 الصراحة القطعة نفس الصور بالضبط، خامتها وايد حلوة وشكلها راقي"
+          }
+        },
+        "review_card_9bKcTq": {
+          "type": "review_card",
+          "settings": {
+            "image": "shopify://shop_images/WhatsApp_Image_2026-10-30_at_4.13.42_PM.jpg",
+            "author_name": "Noora Al Thani",
+            "star_rating": 5,
+            "quote": "Such a lovely shopping experience. The quality and finishing are beautiful."
+          }
+        },
+        "review_card_qcj3VY": {
+          "type": "review_card",
+          "settings": {
+            "image": "shopify://shop_images/f6812f03-ca4f-4133-a7ad-21c0123f3ee3.jpg",
+            "author_name": "Fatima Al Suwaidi",
+            "star_rating": 5,
+            "quote": "Loved the design and finishing. Everything was exactly what I expected."
+          }
+        },
+        "review_card_TywWt9": {
+          "type": "review_card",
+          "settings": {
+            "image": "shopify://shop_images/WhatsApp_Image_2026-10-30_at_4.15.21_PM.jpg",
+            "author_name": "Maitha Al Hammadi",
+            "star_rating": 5,
+            "quote": "ما شاء الله الجودة وايد حلوة، والقطعة شكلها راقي والتفاصيل مرتبة، عيبتني وايد."
+          }
+        },
+        "review_card_zJhbYm": {
+          "type": "review_card",
+          "settings": {
+            "image": "shopify://shop_images/WhatsApp_Image_2026-10-30_at_4.13.42_PM_1.jpg",
+            "author_name": "Dana Al Sabah",
+            "star_rating": 5,
+            "quote": "My order arrived beautifully packed. Very pleased with the quality and overall experience."
+          }
+        },
+        "review_card_9PQegx": {
+          "type": "review_card",
+          "settings": {
+            "image": "shopify://shop_images/WhatsApp_Image_2026-10-08_at_1.25.46_PM.jpg",
+            "author_name": "Amna Al Marri",
+            "star_rating": 5,
+            "quote": "ما شاء الله القطعة وايد حلوة، نفس اللي كنت أدور عليه وتستاهل كل درهم"
+          }
+        },
+        "review_card_ERLVwQ": {
+          "type": "review_card",
+          "settings": {
+            "image": "shopify://shop_images/WhatsApp_Image_2026-10-06_at_10.11.25_AM.jpg",
+            "author_name": "Reem Al Harbi",
+            "star_rating": 5,
+            "quote": "The quality is excellent and the design is even prettier in person. So happy with it!"
+          }
+        },
+        "review_card_ApjUay": {
+          "type": "review_card",
+          "settings": {
+            "image": "shopify://shop_images/IMG_1457.jpg",
+            "author_name": "Meera Al Qasimi",
+            "star_rating": 5,
+            "quote": "The details are lovely and the product feels premium. Really happy with my choice!"
+          }
+        }
+      },
+      "block_order": [
+        "review_card_jQhfJC",
+        "review_card_LCddR4",
+        "review_card_9bKcTq",
+        "review_card_qcj3VY",
+        "review_card_TywWt9",
+        "review_card_zJhbYm",
+        "review_card_9PQegx",
+        "review_card_ERLVwQ",
+        "review_card_ApjUay"
+      ],
+      "name": "Review Slider",
+      "settings": {
+        "heading": "Love Stories From Our Brides",
+        "heading_align": "center",
+        "heading_color": "#111111",
+        "heading_size_d": 26,
+        "heading_size_m": 22,
+        "heading_weight_d": "500",
+        "heading_weight_m": "500",
+        "heading_mb_d": 28,
+        "heading_mb_m": 18,
+        "card_width_d": 450,
+        "card_width_m": 260,
+        "card_gap_d": 20,
+        "card_gap_m": 14,
+        "card_bg": "#ffffff",
+        "card_radius": 0,
+        "card_padding_tb": 0,
+        "card_padding_lr": 0,
+        "img_aspect_ratio": "1 / 1",
+        "img_radius": 0,
+        "name_color": "#111111",
+        "name_size_d": 20,
+        "name_size_m": 17,
+        "name_weight_d": "500",
+        "name_weight_m": "500",
+        "star_color": "#2a2929",
+        "star_size_d": 18,
+        "star_size_m": 15,
+        "quote_color": "#222222",
+        "quote_size_d": 15,
+        "quote_size_m": 13,
+        "quote_weight_d": "400",
+        "quote_weight_m": "400",
+        "show_arrows": true,
+        "show_arrows_mobile": true,
+        "arrow_bg": "#ffffff",
+        "arrow_bg_hover": "#000000",
+        "arrow_color": "#111111",
+        "arrow_color_hover": "#ffffff",
+        "arrow_size": 40,
+        "arrow_radius": 50,
+        "bg_color": "#ffffff",
+        "padding_top_d": 50,
+        "padding_bottom_d": 50,
+        "padding_left_d": 30,
+        "padding_right_d": 30,
+        "padding_top_m": 30,
+        "padding_bottom_m": 30,
+        "padding_left_m": 16,
+        "padding_right_m": 16
+      }
+    },
+    "17759116280ca668d1": {
+      "type": "apps",
+      "blocks": {
+        "instafeed_app_block_zLYQaY": {
+          "type": "shopify://apps/instafeed/blocks/app-block/c447db20-095d-4a10-9725-b5977662c9d5",
+          "settings": {
+            "title": "FOLLOW US ON INSTAGRAM",
+            "title_color": "",
+            "title_size_v2": 0,
+            "alignment": "center",
+            "instafeed_margin_top": 0,
+            "instafeed_margin_bottom": 0,
+            "instafeed_margin_sides": 0,
+            "show_instagram_link": true,
+            "link_alignment": "center",
+            "link_color": "#000000",
+            "background_color": "",
+            "feed_id": "@yazandco",
+            "html_area": ""
+          }
+        }
+      },
+      "block_order": [
+        "instafeed_app_block_zLYQaY"
+      ],
+      "settings": {
+        "include_margins": true
+      }
+    }
+  },
+  "order": [
+    "image_banner_qCa8zY",
+    "multicolumn_Y4UYdL",
+    "craft_auto_slider_UcRRnR",
+    "popular_products_arNzxG",
+    "split_editorial_banner_J3zgQD",
+    "review_testimonial_slider_qAB9Fj",
+    "17759116280ca668d1"
+  ]
+}

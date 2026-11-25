@@ -78,7 +78,7 @@
       "item_added": "Cart",
       "empty_cart": "Your Shopping Cart is Empty",
       "button_label": "Explore Collections",
-      "item_added_notification": "Product Added to Cart Correctly"
+      "item_added_notification": "Added to your cart"
     },
     "share": {
       "copy_to_clipboard": "Copy link",
@@ -259,7 +259,7 @@
       "from": "From",
       "filter_and_sort": "Filter and sort",
       "filter_by_label": "Filter:",
-      "filter_button": "Filter",
+      "filter_button": "Filter/Sort",
       "items": "Items",
       "hide_filters": "Hide filters",
       "show_filters": "Show filters",

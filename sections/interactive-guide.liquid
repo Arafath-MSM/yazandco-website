@@ -1,0 +1,646 @@
+{%- style -%}
+  /* ==========================================================================
+     1. MAIN SECTION & CONTAINER STYLES (DESKTOP & MOBILE PADDINGS)
+     ========================================================================== */
+  #interactive-guide-{{ section.id }} {
+    background-color: {{ section.settings.bg_color }};
+    padding-top: {{ section.settings.pad_top_m }}px;
+    padding-bottom: {{ section.settings.pad_bottom_m }}px;
+    padding-left: {{ section.settings.pad_left_m }}px;
+    padding-right: {{ section.settings.pad_right_m }}px;
+  }
+
+  @media screen and (min-width: 990px) {
+    #interactive-guide-{{ section.id }} {
+      padding-top: {{ section.settings.pad_top_d }}px;
+      padding-bottom: {{ section.settings.pad_bottom_d }}px;
+      padding-left: {{ section.settings.pad_left_d }}px;
+      padding-right: {{ section.settings.pad_right_d }}px;
+    }
+  }
+
+  .guide-container-{{ section.id }} {
+    max-width: {{ section.settings.container_max_w }}px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  /* ==========================================================================
+     2. "IN THIS GUIDE" NAV BAR STYLES
+     ========================================================================== */
+  .guide-nav-box-{{ section.id }} {
+    background-color: {{ section.settings.nav_bg }};
+    border: {{ section.settings.nav_border_w }}px solid {{ section.settings.nav_border_color }};
+    border-radius: {{ section.settings.nav_radius }}px;
+    padding-top: {{ section.settings.nav_pad_v_m }}px;
+    padding-bottom: {{ section.settings.nav_pad_v_m }}px;
+    padding-left: {{ section.settings.nav_pad_h_m }}px;
+    padding-right: {{ section.settings.nav_pad_h_m }}px;
+    margin-bottom: {{ section.settings.nav_mb_m }}px;
+  }
+
+  @media screen and (min-width: 990px) {
+    .guide-nav-box-{{ section.id }} {
+      padding-top: {{ section.settings.nav_pad_v_d }}px;
+      padding-bottom: {{ section.settings.nav_pad_v_d }}px;
+      padding-left: {{ section.settings.nav_pad_h_d }}px;
+      padding-right: {{ section.settings.nav_pad_h_d }}px;
+      margin-bottom: {{ section.settings.nav_mb_d }}px;
+    }
+  }
+
+  .guide-nav-header-{{ section.id }} {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: {{ section.settings.nav_title_mb }}px;
+  }
+
+  .guide-nav-title-{{ section.id }} {
+    color: {{ section.settings.nav_title_color }};
+    font-size: {{ section.settings.nav_title_size_m }}px;
+    font-weight: {{ section.settings.nav_title_weight }};
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin: 0;
+    white-space: nowrap;
+  }
+
+  @media screen and (min-width: 990px) {
+    .guide-nav-title-{{ section.id }} {
+      font-size: {{ section.settings.nav_title_size_d }}px;
+    }
+  }
+
+  .guide-nav-line-{{ section.id }} {
+    height: 1px;
+    width: 100%;
+    background-color: {{ section.settings.nav_line_color }};
+  }
+
+  .guide-nav-grid-{{ section.id }} {
+    display: grid;
+    grid-template-columns: repeat({{ section.settings.nav_cols_m }}, 1fr);
+    gap: {{ section.settings.nav_gap_m }}px;
+  }
+
+  @media screen and (min-width: 990px) {
+    .guide-nav-grid-{{ section.id }} {
+      grid-template-columns: repeat({{ section.settings.nav_cols_d }}, 1fr);
+      gap: {{ section.settings.nav_gap_d }}px;
+    }
+  }
+
+  .guide-nav-link-{{ section.id }} {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    text-decoration: none;
+    color: {{ section.settings.nav_link_color }};
+    font-size: {{ section.settings.nav_link_size_m }}px;
+    font-weight: {{ section.settings.nav_link_weight }};
+    transition: all 0.3s ease;
+    cursor: pointer;
+    line-height: 1.3;
+  }
+
+  @media screen and (min-width: 990px) {
+    .guide-nav-link-{{ section.id }} {
+      font-size: {{ section.settings.nav_link_size_d }}px;
+    }
+  }
+
+  .guide-nav-link-{{ section.id }}:hover {
+    color: {{ section.settings.nav_link_hover_color }};
+  }
+
+  .guide-nav-num-{{ section.id }} {
+    color: {{ section.settings.nav_num_color }};
+    font-weight: 600;
+  }
+
+  /* ==========================================================================
+     3. INTRO SUBTITLE STATEMENT
+     ========================================================================== */
+  .guide-intro-text-{{ section.id }} {
+    color: {{ section.settings.intro_color }};
+    font-size: {{ section.settings.intro_size_m }}px;
+    font-weight: {{ section.settings.intro_weight }};
+    text-align: {{ section.settings.intro_align }};
+    margin-bottom: {{ section.settings.intro_mb_m }}px;
+    line-height: {{ section.settings.intro_lh }};
+    font-style: {{ section.settings.intro_style }};
+  }
+
+  @media screen and (min-width: 990px) {
+    .guide-intro-text-{{ section.id }} {
+      font-size: {{ section.settings.intro_size_d }}px;
+      margin-bottom: {{ section.settings.intro_mb_d }}px;
+    }
+  }
+
+  /* ==========================================================================
+     4. ALTERNATING BLOCKS (DESKTOP & MOBILE SWAP VIA FLEXBOX)
+     ========================================================================== */
+  .guide-blocks-wrapper-{{ section.id }} {
+    display: flex;
+    flex-direction: column;
+    gap: {{ section.settings.block_gap_m }}px;
+  }
+
+  @media screen and (min-width: 990px) {
+    .guide-blocks-wrapper-{{ section.id }} {
+      gap: {{ section.settings.block_gap_d }}px;
+    }
+  }
+
+  {% for block in section.blocks %}
+    #guide-block-{{ block.id }} {
+      scroll-margin-top: {{ section.settings.scroll_offset }}px;
+      padding-top: {{ block.settings.pad_top }}px;
+      padding-bottom: {{ block.settings.pad_bottom }}px;
+    }
+
+    /* FLEX LAYOUT FOR PERFECT SWAPPING */
+    .block-grid-{{ block.id }} {
+      display: flex;
+      flex-direction: {% if block.settings.mobile_swap == 'text_first' %}column-reverse{% else %}column{% endif %};
+      gap: {{ block.settings.gap_m }}px;
+      align-items: center;
+    }
+
+    @media screen and (min-width: 990px) {
+      .block-grid-{{ block.id }} {
+        flex-direction: {% if block.settings.desktop_pos == 'right' %}row-reverse{% else %}row{% endif %};
+        gap: {{ block.settings.gap_d }}px;
+      }
+    }
+
+    .block-media-{{ block.id }} {
+      width: 100%;
+    }
+
+    @media screen and (min-width: 990px) {
+      .block-media-{{ block.id }} {
+        width: {{ block.settings.col_width }}%;
+        flex-shrink: 0;
+      }
+    }
+
+    .block-media-{{ block.id }} img,
+    .block-media-{{ block.id }} svg {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: {{ block.settings.img_radius }}px;
+      border: {{ block.settings.img_border_w }}px solid {{ block.settings.img_border_color }};
+    }
+
+    .block-content-{{ block.id }} {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: {{ block.settings.text_align_m }};
+      text-align: {{ block.settings.text_align_m }};
+    }
+
+    @media screen and (min-width: 990px) {
+      .block-content-{{ block.id }} {
+        flex-grow: 1;
+        width: calc(100% - {{ block.settings.col_width }}% - {{ block.settings.gap_d }}px);
+        align-items: {{ block.settings.text_align_d }};
+        text-align: {{ block.settings.text_align_d }};
+      }
+    }
+
+    .block-title-{{ block.id }} {
+      color: {{ block.settings.title_color }};
+      font-size: {{ block.settings.title_size_m }}px;
+      font-weight: {{ block.settings.title_weight }};
+      margin: 0 0 {{ block.settings.title_mb }}px 0;
+      line-height: 1.2;
+    }
+
+    @media screen and (min-width: 990px) {
+      .block-title-{{ block.id }} {
+        font-size: {{ block.settings.title_size_d }}px;
+      }
+    }
+
+    .block-text-{{ block.id }} {
+      color: {{ block.settings.text_color }};
+      font-size: {{ block.settings.text_size_m }}px;
+      font-weight: {{ block.settings.text_weight }};
+      line-height: {{ block.settings.text_lh }};
+      margin: 0 0 {{ block.settings.text_mb }}px 0;
+    }
+
+    @media screen and (min-width: 990px) {
+      .block-text-{{ block.id }} {
+        font-size: {{ block.settings.text_size_d }}px;
+      }
+    }
+
+    .block-text-{{ block.id }} ul {
+      padding-left: 20px;
+      margin: 10px 0;
+    }
+
+    .block-text-{{ block.id }} li {
+      margin-bottom: 6px;
+    }
+
+    /* BUTTON STYLES */
+    .block-btn-{{ block.id }} {
+      display: inline-block;
+      background-color: {{ block.settings.btn_bg }};
+      color: {{ block.settings.btn_text_color }};
+      font-size: {{ block.settings.btn_size_m }}px;
+      font-weight: {{ block.settings.btn_weight }};
+      padding-top: {{ block.settings.btn_pad_v }}px;
+      padding-bottom: {{ block.settings.btn_pad_v }}px;
+      padding-left: {{ block.settings.btn_pad_h }}px;
+      padding-right: {{ block.settings.btn_pad_h }}px;
+      border-radius: {{ block.settings.btn_radius }}px;
+      border: {{ block.settings.btn_border_w }}px solid {{ block.settings.btn_border_color }};
+      text-decoration: none;
+      transition: all 0.3s ease;
+      margin-top: {{ block.settings.btn_mt }}px;
+    }
+
+    @media screen and (min-width: 990px) {
+      .block-btn-{{ block.id }} {
+        font-size: {{ block.settings.btn_size_d }}px;
+      }
+    }
+
+    .block-btn-{{ block.id }}:hover {
+      background-color: {{ block.settings.btn_bg_hover }};
+      color: {{ block.settings.btn_text_hover }};
+      border-color: {{ block.settings.btn_border_hover }};
+    }
+
+    /* CALLOUT BOX STYLES */
+    .block-callout-{{ block.id }} {
+      background-color: {{ block.settings.callout_bg }};
+      color: {{ block.settings.callout_text_color }};
+      font-size: {{ block.settings.callout_size_m }}px;
+      font-weight: {{ block.settings.callout_weight }};
+      padding-top: {{ block.settings.callout_pad_v }}px;
+      padding-bottom: {{ block.settings.callout_pad_v }}px;
+      padding-left: {{ block.settings.callout_pad_h }}px;
+      padding-right: {{ block.settings.callout_pad_h }}px;
+      border-radius: {{ block.settings.callout_radius }}px;
+      border: {{ block.settings.callout_border_w }}px solid {{ block.settings.callout_border_color }};
+      margin-top: {{ block.settings.callout_mt }}px;
+      width: 100%;
+      text-align: center;
+      line-height: 1.4;
+    }
+
+    @media screen and (min-width: 990px) {
+      .block-callout-{{ block.id }} {
+        font-size: {{ block.settings.callout_size_d }}px;
+      }
+    }
+  {% endfor %}
+{%- endstyle -%}
+
+<section class="interactive-guide-section" id="interactive-guide-{{ section.id }}">
+  <div class="guide-container-{{ section.id }}">
+
+    <!-- 1. TOP "IN THIS GUIDE" NAVIGATION BOX -->
+    {%- if section.settings.show_nav and section.blocks.size > 0 -%}
+      <div class="guide-nav-box-{{ section.id }}">
+        {%- if section.settings.nav_title != blank -%}
+          <div class="guide-nav-header-{{ section.id }}">
+            <h3 class="guide-nav-title-{{ section.id }}">{{ section.settings.nav_title }}</h3>
+            <div class="guide-nav-line-{{ section.id }}"></div>
+          </div>
+        {%- endif -%}
+
+        <div class="guide-nav-grid-{{ section.id }}">
+          {%- for block in section.blocks -%}
+            {%- assign anchor_id = block.settings.anchor_id | default: block.id -%}
+            <a href="#guide-block-{{ anchor_id }}" class="guide-nav-link-{{ section.id }} js-guide-scroll-link">
+              <span class="guide-nav-num-{{ section.id }}">
+                {%- if forloop.index < 10 -%}0{%- endif -%}{{ forloop.index }}
+              </span>
+              <span>{{ block.settings.nav_label | default: block.settings.title }}</span>
+            </a>
+          {%- endfor -%}
+        </div>
+      </div>
+    {%- endif -%}
+
+    <!-- 2. INTRO SUBTITLE TEXT -->
+    {%- if section.settings.intro_text != blank -%}
+      <div class="guide-intro-text-{{ section.id }}">
+        {{ section.settings.intro_text }}
+      </div>
+    {%- endif -%}
+
+    <!-- 3. ALTERNATING BLOCKS LIST -->
+    <div class="guide-blocks-wrapper-{{ section.id }}">
+      {%- for block in section.blocks -%}
+        {%- assign anchor_id = block.settings.anchor_id | default: block.id -%}
+        
+        <div class="guide-block-item" id="guide-block-{{ anchor_id }}" {{ block.shopify_attributes }}>
+          <div class="block-grid-{{ block.id }}">
+            
+            <!-- MEDIA COLUMN -->
+            <div class="block-media-{{ block.id }}">
+              {%- if block.settings.image != blank -%}
+                {%- capture img_class -%}guide-img-{{ block.id }}{%- endcapture -%}
+                {{ block.settings.image | image_url: width: 1200 | image_tag: class: img_class, loading: 'lazy', alt: block.settings.title }}
+              {%- else -%}
+                {{ 'image' | placeholder_svg_tag }}
+              {%- endif -%}
+            </div>
+
+            <!-- CONTENT COLUMN -->
+            <div class="block-content-{{ block.id }}">
+              {%- if block.settings.title != blank -%}
+                <h2 class="block-title-{{ block.id }}">{{ block.settings.title }}</h2>
+              {%- endif -%}
+
+              {%- if block.settings.body_text != blank -%}
+                <div class="block-text-{{ block.id }}">
+                  {{ block.settings.body_text }}
+                </div>
+              {%- endif -%}
+
+              <!-- CALLOUT BOX (OPTIONAL) -->
+              {%- if block.settings.show_callout and block.settings.callout_text != blank -%}
+                <div class="block-callout-{{ block.id }}">
+                  {{ block.settings.callout_text }}
+                </div>
+              {%- endif -%}
+
+              <!-- BUTTON (OPTIONAL) -->
+              {%- if block.settings.btn_label != blank -%}
+                <a href="{{ block.settings.btn_link }}" class="block-btn-{{ block.id }}">
+                  {{ block.settings.btn_label }}
+                </a>
+              {%- endif -%}
+            </div>
+
+          </div>
+        </div>
+      {%- endfor -%}
+    </div>
+
+  </div>
+</section>
+
+<!-- SMOOTH SCROLL JS -->
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const scrollLinks = document.querySelectorAll("#interactive-guide-{{ section.id }} .js-guide-scroll-link");
+    
+    scrollLinks.forEach(link => {
+      link.addEventListener("click", function (e) {
+        e.preventDefault();
+        const targetId = this.getAttribute("href");
+        const targetElement = document.querySelector(targetId);
+        
+        if (targetElement) {
+          const offset = {{ section.settings.scroll_offset }};
+          const elementPosition = targetElement.getBoundingClientRect().top;
+          const offsetPosition = elementPosition + window.pageYOffset - offset;
+
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: "smooth"
+          });
+        }
+      });
+    });
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Interactive Step Guide",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "1. SECTION LAYOUT & BACKGROUND"
+    },
+    { "type": "color", "id": "bg_color", "label": "Background Color", "default": "#FFFFFF" },
+    { "type": "range", "id": "container_max_w", "min": 800, "max": 1600, "step": 20, "unit": "px", "label": "Container Max Width", "default": 1200 },
+    { "type": "range", "id": "scroll_offset", "min": 0, "max": 200, "step": 5, "unit": "px", "label": "Smooth Scroll Top Offset (Header Height)", "default": 80 },
+
+    {
+      "type": "header",
+      "content": "2. DESKTOP PADDINGS"
+    },
+    { "type": "range", "id": "pad_top_d", "min": 0, "max": 120, "step": 5, "unit": "px", "label": "Padding Top", "default": 60 },
+    { "type": "range", "id": "pad_bottom_d", "min": 0, "max": 120, "step": 5, "unit": "px", "label": "Padding Bottom", "default": 60 },
+    { "type": "range", "id": "pad_left_d", "min": 0, "max": 100, "step": 5, "unit": "px", "label": "Padding Left", "default": 20 },
+    { "type": "range", "id": "pad_right_d", "min": 0, "max": 100, "step": 5, "unit": "px", "label": "Padding Right", "default": 20 },
+
+    {
+      "type": "header",
+      "content": "3. MOBILE PADDINGS"
+    },
+    { "type": "range", "id": "pad_top_m", "min": 0, "max": 80, "step": 5, "unit": "px", "label": "Padding Top", "default": 30 },
+    { "type": "range", "id": "pad_bottom_m", "min": 0, "max": 80, "step": 5, "unit": "px", "label": "Padding Bottom", "default": 30 },
+    { "type": "range", "id": "pad_left_m", "min": 0, "max": 50, "step": 5, "unit": "px", "label": "Padding Left", "default": 15 },
+    { "type": "range", "id": "pad_right_m", "min": 0, "max": 50, "step": 5, "unit": "px", "label": "Padding Right", "default": 15 },
+
+    {
+      "type": "header",
+      "content": "4. 'IN THIS GUIDE' NAV SETTINGS"
+    },
+    { "type": "checkbox", "id": "show_nav", "label": "Show 'In This Guide' Nav Box", "default": true },
+    { "type": "text", "id": "nav_title", "label": "Nav Box Header", "default": "In This Guide" },
+    { "type": "color", "id": "nav_bg", "label": "Nav Box Background", "default": "#FAF7F5" },
+    { "type": "color", "id": "nav_border_color", "label": "Nav Border Color", "default": "#EFEAE6" },
+    { "type": "range", "id": "nav_border_w", "min": 0, "max": 5, "step": 1, "unit": "px", "label": "Nav Border Width", "default": 1 },
+    { "type": "range", "id": "nav_radius", "min": 0, "max": 30, "step": 1, "unit": "px", "label": "Nav Border Radius", "default": 8 },
+
+    { "type": "range", "id": "nav_pad_v_d", "min": 10, "max": 60, "step": 2, "unit": "px", "label": "Nav Vertical Padding (Desktop)", "default": 24 },
+    { "type": "range", "id": "nav_pad_h_d", "min": 10, "max": 60, "step": 2, "unit": "px", "label": "Nav Horizontal Padding (Desktop)", "default": 30 },
+    { "type": "range", "id": "nav_pad_v_m", "min": 10, "max": 40, "step": 2, "unit": "px", "label": "Nav Vertical Padding (Mobile)", "default": 16 },
+    { "type": "range", "id": "nav_pad_h_m", "min": 10, "max": 40, "step": 2, "unit": "px", "label": "Nav Horizontal Padding (Mobile)", "default": 16 },
+    { "type": "range", "id": "nav_mb_d", "min": 10, "max": 80, "step": 5, "unit": "px", "label": "Nav Bottom Margin (Desktop)", "default": 40 },
+    { "type": "range", "id": "nav_mb_m", "min": 10, "max": 50, "step": 5, "unit": "px", "label": "Nav Bottom Margin (Mobile)", "default": 25 },
+
+    { "type": "range", "id": "nav_cols_d", "min": 1, "max": 6, "step": 1, "label": "Nav Columns (Desktop)", "default": 3 },
+    { "type": "range", "id": "nav_cols_m", "min": 1, "max": 3, "step": 1, "label": "Nav Columns (Mobile)", "default": 1 },
+    { "type": "range", "id": "nav_gap_d", "min": 5, "max": 40, "step": 1, "unit": "px", "label": "Nav Grid Gap (Desktop)", "default": 16 },
+    { "type": "range", "id": "nav_gap_m", "min": 5, "max": 30, "step": 1, "unit": "px", "label": "Nav Grid Gap (Mobile)", "default": 12 },
+
+    { "type": "color", "id": "nav_title_color", "label": "Nav Title Color", "default": "#111111" },
+    { "type": "color", "id": "nav_line_color", "label": "Nav Header Divider Line", "default": "#D1C7BD" },
+    { "type": "range", "id": "nav_title_size_d", "min": 12, "max": 24, "step": 1, "unit": "px", "label": "Nav Title Size (Desktop)", "default": 14 },
+    { "type": "range", "id": "nav_title_size_m", "min": 10, "max": 20, "step": 1, "unit": "px", "label": "Nav Title Size (Mobile)", "default": 12 },
+    { "type": "select", "id": "nav_title_weight", "label": "Nav Title Weight", "options": [ { "value": "400", "label": "Regular" }, { "value": "600", "label": "SemiBold" }, { "value": "700", "label": "Bold" } ], "default": "700" },
+    { "type": "range", "id": "nav_title_mb", "min": 5, "max": 30, "step": 1, "unit": "px", "label": "Nav Header Margin Bottom", "default": 16 },
+
+    { "type": "color", "id": "nav_num_color", "label": "Nav Number Color", "default": "#888888" },
+    { "type": "color", "id": "nav_link_color", "label": "Nav Link Text Color", "default": "#222222" },
+    { "type": "color", "id": "nav_link_hover_color", "label": "Nav Link Hover Color", "default": "#A87243" },
+    { "type": "range", "id": "nav_link_size_d", "min": 11, "max": 20, "step": 1, "unit": "px", "label": "Nav Link Size (Desktop)", "default": 14 },
+    { "type": "range", "id": "nav_link_size_m", "min": 10, "max": 18, "step": 1, "unit": "px", "label": "Nav Link Size (Mobile)", "default": 13 },
+    { "type": "select", "id": "nav_link_weight", "label": "Nav Link Weight", "options": [ { "value": "400", "label": "Regular" }, { "value": "500", "label": "Medium" }, { "value": "600", "label": "SemiBold" } ], "default": "500" },
+
+    {
+      "type": "header",
+      "content": "5. INTRO TEXT STATEMENT"
+    },
+    { "type": "richtext", "id": "intro_text", "label": "Intro Statement", "default": "<p><b>Expertise you can trust:</b> Our certified team provides complete guidance to ensure industry-leading excellence and clarity.</p>" },
+    { "type": "color", "id": "intro_color", "label": "Intro Color", "default": "#333333" },
+    { "type": "range", "id": "intro_size_d", "min": 12, "max": 24, "step": 1, "unit": "px", "label": "Intro Size (Desktop)", "default": 15 },
+    { "type": "range", "id": "intro_size_m", "min": 11, "max": 20, "step": 1, "unit": "px", "label": "Intro Size (Mobile)", "default": 13 },
+    { "type": "select", "id": "intro_weight", "label": "Intro Weight", "options": [ { "value": "300", "label": "Light" }, { "value": "400", "label": "Regular" }, { "value": "500", "label": "Medium" } ], "default": "400" },
+    { "type": "select", "id": "intro_style", "label": "Intro Style", "options": [ { "value": "normal", "label": "Normal" }, { "value": "italic", "label": "Italic" } ], "default": "italic" },
+    { "type": "select", "id": "intro_align", "label": "Intro Alignment", "options": [ { "value": "left", "label": "Left" }, { "value": "center", "label": "Center" }, { "value": "right", "label": "Right" } ], "default": "center" },
+    { "type": "text", "id": "intro_lh", "label": "Intro Line Height", "default": "1.6" },
+    { "type": "range", "id": "intro_mb_d", "min": 10, "max": 80, "step": 5, "unit": "px", "label": "Intro Bottom Margin (Desktop)", "default": 50 },
+    { "type": "range", "id": "intro_mb_m", "min": 10, "max": 50, "step": 5, "unit": "px", "label": "Intro Bottom Margin (Mobile)", "default": 30 },
+
+    {
+      "type": "header",
+      "content": "6. GENERAL BLOCKS GAP"
+    },
+    { "type": "range", "id": "block_gap_d", "min": 0, "max": 120, "step": 5, "unit": "px", "label": "Gap Between Blocks (Desktop)", "default": 60 },
+    { "type": "range", "id": "block_gap_m", "min": 5, "max": 80, "step": 5, "unit": "px", "label": "Gap Between Blocks (Mobile)", "default": 40 }
+  ],
+  "blocks": [
+    {
+      "type": "guide_step",
+      "name": "Guide Block Step",
+      "settings": [
+        {
+          "type": "header",
+          "content": "ANCHOR & NAVIGATION"
+        },
+        { "type": "text", "id": "anchor_id", "label": "Anchor ID (Unique Slug)", "info": "e.g. cut, color, clarity. Leave empty for auto ID." },
+        { "type": "text", "id": "nav_label", "label": "Top Nav Label", "default": "Diamond Cut", "info": "Label shown in 'IN THIS GUIDE' top box." },
+
+        {
+          "type": "header",
+          "content": "LAYOUT & COLUMN SWAP"
+        },
+        { "type": "select", "id": "desktop_pos", "label": "Image Position (Desktop)", "options": [ { "value": "left", "label": "Left Image / Right Text" }, { "value": "right", "label": "Right Image / Left Text" } ], "default": "left" },
+        { "type": "select", "id": "mobile_swap", "label": "Mobile Column Order", "options": [ { "value": "image_first", "label": "Image First (Top) / Text Second" }, { "value": "text_first", "label": "Text First (Top) / Image Second" } ], "default": "image_first" },
+        { "type": "range", "id": "col_width", "min": 30, "max": 70, "step": 5, "unit": "%", "label": "Image Column Width (Desktop)", "default": 50 },
+        { "type": "range", "id": "gap_d", "min": 10, "max": 100, "step": 5, "unit": "px", "label": "Grid Gap (Desktop)", "default": 50 },
+        { "type": "range", "id": "gap_m", "min": 10, "max": 60, "step": 5, "unit": "px", "label": "Grid Gap (Mobile)", "default": 20 },
+        { "type": "range", "id": "pad_top", "min": 0, "max": 80, "step": 5, "unit": "px", "label": "Block Padding Top", "default": 10 },
+        { "type": "range", "id": "pad_bottom", "min": 0, "max": 80, "step": 5, "unit": "px", "label": "Block Padding Bottom", "default": 10 },
+
+        {
+          "type": "header",
+          "content": "MEDIA SETTINGS"
+        },
+        { "type": "image_picker", "id": "image", "label": "Block Image" },
+        { "type": "range", "id": "img_radius", "min": 0, "max": 30, "step": 1, "unit": "px", "label": "Image Border Radius", "default": 4 },
+        { "type": "range", "id": "img_border_w", "min": 0, "max": 5, "step": 1, "unit": "px", "label": "Image Border Width", "default": 0 },
+        { "type": "color", "id": "img_border_color", "label": "Image Border Color", "default": "#EEEEEE" },
+
+        {
+          "type": "header",
+          "content": "CONTENT & TYPOGRAPHY"
+        },
+        { "type": "select", "id": "text_align_d", "label": "Text Alignment (Desktop)", "options": [ { "value": "flex-start", "label": "Left" }, { "value": "center", "label": "Center" }, { "value": "flex-end", "label": "Right" } ], "default": "flex-start" },
+        { "type": "select", "id": "text_align_m", "label": "Text Alignment (Mobile)", "options": [ { "value": "flex-start", "label": "Left" }, { "value": "center", "label": "Center" }, { "value": "flex-end", "label": "Right" } ], "default": "flex-start" },
+
+        { "type": "text", "id": "title", "label": "Heading Title", "default": "Diamond Cut" },
+        { "type": "color", "id": "title_color", "label": "Title Color", "default": "#111111" },
+        { "type": "range", "id": "title_size_d", "min": 18, "max": 50, "step": 1, "unit": "px", "label": "Title Size (Desktop)", "default": 32 },
+        { "type": "range", "id": "title_size_m", "min": 16, "max": 36, "step": 1, "unit": "px", "label": "Title Size (Mobile)", "default": 24 },
+        { "type": "select", "id": "title_weight", "label": "Title Weight", "options": [ { "value": "400", "label": "Regular" }, { "value": "500", "label": "Medium" }, { "value": "600", "label": "SemiBold" }, { "value": "700", "label": "Bold" } ], "default": "500" },
+        { "type": "range", "id": "title_mb", "min": 0, "max": 30, "step": 2, "unit": "px", "label": "Title Bottom Margin", "default": 14 },
+
+        { "type": "richtext", "id": "body_text", "label": "Body Description", "default": "<p>Cut determines how effectively a diamond's facets interact with light. A masterfully cut diamond reflects optimal brilliance and fire.</p><ul><li><b>Cut:</b> Graded from Excellent to Poor.</li><li><b>Color:</b> Graded from D to Z scale.</li></ul>" },
+        { "type": "color", "id": "text_color", "label": "Text Color", "default": "#444444" },
+        { "type": "range", "id": "text_size_d", "min": 11, "max": 22, "step": 1, "unit": "px", "label": "Text Size (Desktop)", "default": 15 },
+        { "type": "range", "id": "text_size_m", "min": 10, "max": 18, "step": 1, "unit": "px", "label": "Text Size (Mobile)", "default": 13 },
+        { "type": "select", "id": "text_weight", "label": "Text Weight", "options": [ { "value": "300", "label": "Light" }, { "value": "400", "label": "Regular" }, { "value": "500", "label": "Medium" } ], "default": "400" },
+        { "type": "text", "id": "text_lh", "label": "Text Line Height", "default": "1.6" },
+        { "type": "range", "id": "text_mb", "min": 0, "max": 30, "step": 2, "unit": "px", "label": "Text Bottom Margin", "default": 10 },
+
+        {
+          "type": "header",
+          "content": "CALLOUT BOX (HIGHLIGHT)"
+        },
+        { "type": "checkbox", "id": "show_callout", "label": "Enable Callout Box", "default": false },
+        { "type": "textarea", "id": "callout_text", "label": "Callout Text", "default": "Good quality cut which reflects some light while maintaining weight." },
+        { "type": "color", "id": "callout_bg", "label": "Callout Background", "default": "#1B3B36" },
+        { "type": "color", "id": "callout_text_color", "label": "Callout Text Color", "default": "#FFFFFF" },
+        { "type": "color", "id": "callout_border_color", "label": "Callout Border Color", "default": "#1B3B36" },
+        { "type": "range", "id": "callout_border_w", "min": 0, "max": 5, "step": 1, "unit": "px", "label": "Callout Border Width", "default": 0 },
+        { "type": "range", "id": "callout_radius", "min": 0, "max": 20, "step": 1, "unit": "px", "label": "Callout Border Radius", "default": 2 },
+        { "type": "range", "id": "callout_size_d", "min": 11, "max": 20, "step": 1, "unit": "px", "label": "Callout Font Size (Desktop)", "default": 13 },
+        { "type": "range", "id": "callout_size_m", "min": 10, "max": 18, "step": 1, "unit": "px", "label": "Callout Font Size (Mobile)", "default": 12 },
+        { "type": "select", "id": "callout_weight", "label": "Callout Font Weight", "options": [ { "value": "400", "label": "Regular" }, { "value": "500", "label": "Medium" }, { "value": "600", "label": "SemiBold" } ], "default": "400" },
+        { "type": "range", "id": "callout_pad_v", "min": 5, "max": 40, "step": 1, "unit": "px", "label": "Callout Vertical Padding", "default": 16 },
+        { "type": "range", "id": "callout_pad_h", "min": 5, "max": 40, "step": 1, "unit": "px", "label": "Callout Horizontal Padding", "default": 20 },
+        { "type": "range", "id": "callout_mt", "min": 0, "max": 40, "step": 2, "unit": "px", "label": "Callout Margin Top", "default": 14 },
+
+        {
+          "type": "header",
+          "content": "BUTTON SETTINGS"
+        },
+        { "type": "text", "id": "btn_label", "label": "Button Label", "default": "Diamond Cut Guide" },
+        { "type": "url", "id": "btn_link", "label": "Button Link" },
+        { "type": "color", "id": "btn_bg", "label": "Button Background", "default": "#FFFFFF" },
+        { "type": "color", "id": "btn_text_color", "label": "Button Text Color", "default": "#111111" },
+        { "type": "color", "id": "btn_border_color", "label": "Button Border Color", "default": "#111111" },
+        { "type": "color", "id": "btn_bg_hover", "label": "Button Hover Background", "default": "#111111" },
+        { "type": "color", "id": "btn_text_hover", "label": "Button Hover Text Color", "default": "#FFFFFF" },
+        { "type": "color", "id": "btn_border_hover", "label": "Button Hover Border Color", "default": "#111111" },
+        { "type": "range", "id": "btn_border_w", "min": 0, "max": 5, "step": 1, "unit": "px", "label": "Button Border Width", "default": 1 },
+        { "type": "range", "id": "btn_radius", "min": 0, "max": 40, "step": 1, "unit": "px", "label": "Button Border Radius", "default": 0 },
+        { "type": "range", "id": "btn_size_d", "min": 11, "max": 20, "step": 1, "unit": "px", "label": "Button Font Size (Desktop)", "default": 13 },
+        { "type": "range", "id": "btn_size_m", "min": 10, "max": 18, "step": 1, "unit": "px", "label": "Button Font Size (Mobile)", "default": 12 },
+        { "type": "select", "id": "btn_weight", "label": "Button Font Weight", "options": [ { "value": "400", "label": "Regular" }, { "value": "500", "label": "Medium" }, { "value": "600", "label": "SemiBold" }, { "value": "700", "label": "Bold" } ], "default": "500" },
+        { "type": "range", "id": "btn_pad_v", "min": 5, "max": 30, "step": 1, "unit": "px", "label": "Button Vertical Padding", "default": 12 },
+        { "type": "range", "id": "btn_pad_h", "min": 10, "max": 50, "step": 2, "unit": "px", "label": "Button Horizontal Padding", "default": 24 },
+        { "type": "range", "id": "btn_mt", "min": 0, "max": 40, "step": 2, "unit": "px", "label": "Button Margin Top", "default": 14 }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Interactive Step Guide",
+      "blocks": [
+        {
+          "type": "guide_step",
+          "settings": {
+            "title": "Diamond Cut",
+            "nav_label": "Diamond Cut",
+            "anchor_id": "cut",
+            "desktop_pos": "left",
+            "mobile_swap": "image_first"
+          }
+        },
+        {
+          "type": "guide_step",
+          "settings": {
+            "title": "Diamond Color",
+            "nav_label": "Diamond Color",
+            "anchor_id": "color",
+            "desktop_pos": "right",
+            "mobile_swap": "image_first"
+          }
+        },
+        {
+          "type": "guide_step",
+          "settings": {
+            "title": "Diamond Clarity",
+            "nav_label": "Diamond Clarity",
+            "anchor_id": "clarity",
+            "desktop_pos": "left",
+            "mobile_swap": "image_first"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

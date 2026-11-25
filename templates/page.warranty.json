@@ -1,0 +1,419 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "image_banner_qCa8zY": {
+      "type": "image-banner",
+      "custom_css": [
+        ".image-banner .banner {display: flex; position: relative; min-height: initial; max-height: 200px;}",
+        ".image-banner .banner:is([class*=\"bottom\"]) .image-banner__wrapper {padding-bottom: 2rem;}"
+      ],
+      "name": "t:sections.image-banner.presets.name",
+      "settings": {
+        "full_width": true,
+        "color_scheme": "",
+        "info_position": "inside",
+        "image": "shopify://shop_images/WhatsApp_Image_2026-09-09_at_6.23.25_PM_2.jpg",
+        "image_ratio": "21/9",
+        "opacity_overlay": 0.2,
+        "heading": "WARRANTY & JEWELLERY CARE",
+        "heading_size": "h1",
+        "enable_custom_heading_size": true,
+        "heading_font_size_desktop": 36,
+        "heading_font_size_mobile": 28,
+        "text_information": "",
+        "text_align": "bottom-left",
+        "text_width": "full",
+        "additional_text": "",
+        "button_label": "",
+        "button_style": "tertiary",
+        "button_link": "",
+        "button_label2": "",
+        "button_style2": "tertiary",
+        "button_link2": "",
+        "margin_top": "no-indent",
+        "margin_bottom": "no-indent"
+      }
+    },
+    "interactive_guide_EM9mhU": {
+      "type": "interactive-guide",
+      "blocks": {
+        "guide_step_mahRAi": {
+          "type": "guide_step",
+          "settings": {
+            "anchor_id": "cut",
+            "nav_label": "JEWELLERY Care",
+            "desktop_pos": "left",
+            "mobile_swap": "image_first",
+            "col_width": 50,
+            "gap_d": 50,
+            "gap_m": 20,
+            "pad_top": 10,
+            "pad_bottom": 10,
+            "image": "shopify://shop_images/page_3_image_3.png",
+            "img_radius": 0,
+            "img_border_w": 0,
+            "img_border_color": "#eeeeee",
+            "text_align_d": "flex-start",
+            "text_align_m": "flex-start",
+            "title": "Jewellery Care",
+            "title_color": "#111111",
+            "title_size_d": 26,
+            "title_size_m": 22,
+            "title_weight": "500",
+            "title_mb": 14,
+            "body_text": "<p>Keep your jewellery away from perfumes, cosmetics, lotions, household cleaners, and harsh chemicals. Remove your jewellery before swimming, showering, exercising, sleeping, or prolonged contact with water.</p><p>Gently clean your jewellery using a soft, clean cloth to maintain its shine. When not being worn, store each piece separately in a soft pouch or jewellery box to help prevent scratches, tangling, and accidental damage.</p><p>Always handle fine jewellery with care and avoid excessive pressure, pulling, bending, or contact with hard surfaces.</p>",
+            "text_color": "#000000",
+            "text_size_d": 16,
+            "text_size_m": 14,
+            "text_weight": "400",
+            "text_lh": "1.6",
+            "text_mb": 10,
+            "show_callout": false,
+            "callout_text": "Good quality cut which reflects some light while maintaining weight.",
+            "callout_bg": "#1b3b36",
+            "callout_text_color": "#ffffff",
+            "callout_border_color": "#1b3b36",
+            "callout_border_w": 0,
+            "callout_radius": 2,
+            "callout_size_d": 13,
+            "callout_size_m": 12,
+            "callout_weight": "400",
+            "callout_pad_v": 16,
+            "callout_pad_h": 20,
+            "callout_mt": 16,
+            "btn_label": "",
+            "btn_link": "",
+            "btn_bg": "#ffffff",
+            "btn_text_color": "#111111",
+            "btn_border_color": "#111111",
+            "btn_bg_hover": "#111111",
+            "btn_text_hover": "#ffffff",
+            "btn_border_hover": "#111111",
+            "btn_border_w": 1,
+            "btn_radius": 0,
+            "btn_size_d": 13,
+            "btn_size_m": 12,
+            "btn_weight": "500",
+            "btn_pad_v": 12,
+            "btn_pad_h": 24,
+            "btn_mt": 14
+          }
+        },
+        "guide_step_yTqhXq": {
+          "type": "guide_step",
+          "settings": {
+            "anchor_id": "color",
+            "nav_label": "Understanding the 4Cs",
+            "desktop_pos": "right",
+            "mobile_swap": "image_first",
+            "col_width": 50,
+            "gap_d": 50,
+            "gap_m": 20,
+            "pad_top": 10,
+            "pad_bottom": 10,
+            "image": "shopify://shop_images/F17C6DDC-7618-4DE3-96B0-5D809FA70B9C.jpg",
+            "img_radius": 0,
+            "img_border_w": 0,
+            "img_border_color": "#eeeeee",
+            "text_align_d": "flex-start",
+            "text_align_m": "flex-start",
+            "title": "Warranty",
+            "title_color": "#111111",
+            "title_size_d": 26,
+            "title_size_m": 22,
+            "title_weight": "500",
+            "title_mb": 14,
+            "body_text": "<p>YAZ & Co jewellery is covered by a 5-year warranty against verified manufacturing defects in materials and workmanship, valid from the date of purchase.</p><p>Our warranty may cover manufacturing-related faults involving the construction, setting, clasps, prongs, or other components of the jewellery. All warranty claims are subject to inspection and approval by YAZ & Co.</p><p>If a manufacturing defect is confirmed, YAZ & Co will determine the appropriate resolution, which may include repair or replacement.</p>",
+            "text_color": "#000000",
+            "text_size_d": 16,
+            "text_size_m": 14,
+            "text_weight": "400",
+            "text_lh": "1.6",
+            "text_mb": 10,
+            "show_callout": false,
+            "callout_text": "Good quality cut which reflects some light while maintaining weight.",
+            "callout_bg": "#1b3b36",
+            "callout_text_color": "#ffffff",
+            "callout_border_color": "#1b3b36",
+            "callout_border_w": 0,
+            "callout_radius": 2,
+            "callout_size_d": 13,
+            "callout_size_m": 12,
+            "callout_weight": "400",
+            "callout_pad_v": 16,
+            "callout_pad_h": 20,
+            "callout_mt": 16,
+            "btn_label": "",
+            "btn_link": "",
+            "btn_bg": "#ffffff",
+            "btn_text_color": "#111111",
+            "btn_border_color": "#111111",
+            "btn_bg_hover": "#111111",
+            "btn_text_hover": "#ffffff",
+            "btn_border_hover": "#111111",
+            "btn_border_w": 1,
+            "btn_radius": 0,
+            "btn_size_d": 13,
+            "btn_size_m": 12,
+            "btn_weight": "500",
+            "btn_pad_v": 12,
+            "btn_pad_h": 24,
+            "btn_mt": 14
+          }
+        },
+        "guide_step_TH8Cjw": {
+          "type": "guide_step",
+          "settings": {
+            "anchor_id": "clarity",
+            "nav_label": "Colour & Carat",
+            "desktop_pos": "left",
+            "mobile_swap": "image_first",
+            "col_width": 50,
+            "gap_d": 50,
+            "gap_m": 20,
+            "pad_top": 10,
+            "pad_bottom": 10,
+            "image": "shopify://shop_images/page_3_image_4.png",
+            "img_radius": 0,
+            "img_border_w": 0,
+            "img_border_color": "#eeeeee",
+            "text_align_d": "flex-start",
+            "text_align_m": "flex-start",
+            "title": "Warranty Exclusions & Claims",
+            "title_color": "#111111",
+            "title_size_d": 26,
+            "title_size_m": 22,
+            "title_weight": "500",
+            "title_mb": 14,
+            "body_text": "<p>Our warranty does not cover normal wear and tear, scratches, accidental damage, improper handling, loss or theft, exposure to water, perfumes, cosmetics or chemicals, or damage resulting from failure to follow our Jewellery Care recommendations.</p><p>The warranty may also become void if the jewellery has been resized, repaired, altered, or modified by a third party without prior approval from YAZ & Co.</p><p>To request a warranty assessment, please contact YAZ & Co with your order details or proof of purchase, clear photographs of the jewellery, and a brief description of the issue. Our team will review your request and advise you on the next steps.</p>",
+            "text_color": "#000000",
+            "text_size_d": 16,
+            "text_size_m": 14,
+            "text_weight": "400",
+            "text_lh": "1.6",
+            "text_mb": 10,
+            "show_callout": false,
+            "callout_text": "Good quality cut which reflects some light while maintaining weight.",
+            "callout_bg": "#1b3b36",
+            "callout_text_color": "#ffffff",
+            "callout_border_color": "#1b3b36",
+            "callout_border_w": 0,
+            "callout_radius": 2,
+            "callout_size_d": 13,
+            "callout_size_m": 12,
+            "callout_weight": "400",
+            "callout_pad_v": 16,
+            "callout_pad_h": 20,
+            "callout_mt": 16,
+            "btn_label": "",
+            "btn_link": "",
+            "btn_bg": "#ffffff",
+            "btn_text_color": "#111111",
+            "btn_border_color": "#111111",
+            "btn_bg_hover": "#111111",
+            "btn_text_hover": "#ffffff",
+            "btn_border_hover": "#111111",
+            "btn_border_w": 1,
+            "btn_radius": 0,
+            "btn_size_d": 13,
+            "btn_size_m": 12,
+            "btn_weight": "500",
+            "btn_pad_v": 12,
+            "btn_pad_h": 24,
+            "btn_mt": 14
+          }
+        }
+      },
+      "block_order": [
+        "guide_step_mahRAi",
+        "guide_step_yTqhXq",
+        "guide_step_TH8Cjw"
+      ],
+      "custom_css": [
+        "img {aspect-ratio: 4/3; object-fit: cover;}"
+      ],
+      "name": "Interactive Step Guide",
+      "settings": {
+        "bg_color": "#ffffff",
+        "container_max_w": 1600,
+        "scroll_offset": 80,
+        "pad_top_d": 60,
+        "pad_bottom_d": 60,
+        "pad_left_d": 40,
+        "pad_right_d": 40,
+        "pad_top_m": 30,
+        "pad_bottom_m": 30,
+        "pad_left_m": 15,
+        "pad_right_m": 15,
+        "show_nav": false,
+        "nav_title": "In This Guide",
+        "nav_bg": "#faf7f5",
+        "nav_border_color": "#efeae6",
+        "nav_border_w": 1,
+        "nav_radius": 0,
+        "nav_pad_v_d": 24,
+        "nav_pad_h_d": 30,
+        "nav_pad_v_m": 16,
+        "nav_pad_h_m": 16,
+        "nav_mb_d": 40,
+        "nav_mb_m": 25,
+        "nav_cols_d": 3,
+        "nav_cols_m": 1,
+        "nav_gap_d": 16,
+        "nav_gap_m": 12,
+        "nav_title_color": "#111111",
+        "nav_line_color": "#d1c7bd",
+        "nav_title_size_d": 14,
+        "nav_title_size_m": 12,
+        "nav_title_weight": "700",
+        "nav_title_mb": 16,
+        "nav_num_color": "#888888",
+        "nav_link_color": "#222222",
+        "nav_link_hover_color": "#a87243",
+        "nav_link_size_d": 14,
+        "nav_link_size_m": 13,
+        "nav_link_weight": "500",
+        "intro_text": "",
+        "intro_color": "#333333",
+        "intro_size_d": 15,
+        "intro_size_m": 13,
+        "intro_weight": "400",
+        "intro_style": "italic",
+        "intro_align": "center",
+        "intro_lh": "1.6",
+        "intro_mb_d": 50,
+        "intro_mb_m": 30,
+        "block_gap_d": 0,
+        "block_gap_m": 15
+      }
+    },
+    "faq_landing_gNCrBq": {
+      "type": "faq-landing",
+      "blocks": {
+        "faq_TPMYfK": {
+          "type": "faq",
+          "settings": {
+            "question": "How should I care for my YAZ & Co jewellery?",
+            "answer": "<p>Keep your jewellery away from perfumes, cosmetics, lotions, harsh chemicals, and prolonged contact with water. Remove your jewellery before swimming, showering, sleeping, or exercising. Gently clean each piece with a soft, clean cloth and store it separately in a soft pouch or jewellery box.</p>"
+          }
+        },
+        "faq_RQDCyU": {
+          "type": "faq",
+          "settings": {
+            "question": "Does YAZ & Co jewellery come with a warranty?",
+            "answer": "<p>Yes. YAZ & Co jewellery is covered by a 5-year warranty against verified manufacturing defects in materials and workmanship. All warranty claims are subject to inspection and approval by YAZ & Co.</p>"
+          }
+        },
+        "faq_VBKbdP": {
+          "type": "faq",
+          "settings": {
+            "question": "What is not covered under the warranty?",
+            "answer": "<p>The warranty does not cover normal wear and tear, scratches, accidental damage, improper handling, loss or theft, exposure to water or chemicals, or damage caused by not following our Jewellery Care recommendations. Jewellery repaired, resized, altered, or modified by an unauthorised third party may also not be covered.</p>"
+          }
+        },
+        "faq_UbX7ap": {
+          "type": "faq",
+          "settings": {
+            "question": "How do I make a warranty claim?",
+            "answer": "<p>Please contact YAZ & Co with your order details or proof of purchase, clear photographs of the jewellery, and a brief description of the issue. Our team will assess your request and advise you on the next steps.</p>"
+          }
+        },
+        "faq_A84bQ4": {
+          "type": "faq",
+          "settings": {
+            "question": "Do you offer custom-made jewellery?",
+            "answer": "<p>Yes. YAZ & Co offers selected custom-made and made-to-order jewellery services. The design and specifications will be reviewed with you and must be approved before production proceeds.</p>"
+          }
+        },
+        "faq_4Trw9k": {
+          "type": "faq",
+          "settings": {
+            "question": "Can I cancel or return a custom-made piece?",
+            "answer": "<p>Custom-made and made-to-order pieces are non-refundable, non-exchangeable, and non-cancellable once the final design and specifications have been approved, subject to any rights you may have under applicable consumer law.</p>"
+          }
+        },
+        "faq_nBnDDp": {
+          "type": "faq",
+          "settings": {
+            "question": "When is payment required for custom jewellery?",
+            "answer": "<p>Full payment must be received and confirmed before the completed custom or made-to-order item is released or shipped.</p>"
+          }
+        },
+        "faq_CJV7j8": {
+          "type": "faq",
+          "settings": {
+            "question": "Can I change an approved custom design?",
+            "answer": "<p>Once the final design and specifications have been approved, they are considered confirmed. If you request changes afterwards, please contact YAZ & Co as soon as possible. Changes may not be possible once production has begun and may result in additional costs or production time.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "faq_TPMYfK",
+        "faq_RQDCyU",
+        "faq_VBKbdP",
+        "faq_UbX7ap",
+        "faq_A84bQ4",
+        "faq_4Trw9k",
+        "faq_nBnDDp",
+        "faq_CJV7j8"
+      ],
+      "custom_css": [
+        ".faq-landing__accordionWrap {padding: 0px !important;}",
+        "h1 {font-size: 26px !important;}",
+        ".faq-acc__item {padding: 12px 0;}",
+        ".faq-acc__q {font-size: 18px; font-weight: 500;}",
+        ".faq-acc__chev {width: 9px; height: 9px;}",
+        ".faq-landing__inner {width: min(900px, calc(100% - 48px)); margin: 0 auto;}"
+      ],
+      "name": "FAQ Landing",
+      "settings": {
+        "heading": "Frequently Asked Questions",
+        "subheading": "",
+        "faq_heading": ""
+      }
+    },
+    "17759116280ca668d1": {
+      "type": "apps",
+      "blocks": {
+        "instafeed_app_block_zLYQaY": {
+          "type": "shopify://apps/instafeed/blocks/app-block/c447db20-095d-4a10-9725-b5977662c9d5",
+          "settings": {
+            "title": "FOLLOW US ON INSTAGRAM",
+            "title_color": "",
+            "title_size_v2": 0,
+            "alignment": "center",
+            "instafeed_margin_top": 0,
+            "instafeed_margin_bottom": 0,
+            "instafeed_margin_sides": 0,
+            "show_instagram_link": true,
+            "link_alignment": "center",
+            "link_color": "#000000",
+            "background_color": "",
+            "feed_id": "@yazandco",
+            "html_area": ""
+          }
+        }
+      },
+      "block_order": [
+        "instafeed_app_block_zLYQaY"
+      ],
+      "settings": {
+        "include_margins": true
+      }
+    }
+  },
+  "order": [
+    "image_banner_qCa8zY",
+    "interactive_guide_EM9mhU",
+    "faq_landing_gNCrBq",
+    "17759116280ca668d1"
+  ]
+}

@@ -1,0 +1,376 @@
+{%- style -%}
+  /* ==========================================================================
+     1. MAIN SECTION & CONTAINER PADDINGS (DESKTOP & MOBILE)
+     ========================================================================== */
+  #size-chart-{{ section.id }} {
+    background-color: {{ section.settings.bg_color }};
+    padding-top: {{ section.settings.pad_top_m }}px;
+    padding-bottom: {{ section.settings.pad_bottom_m }}px;
+    padding-left: {{ section.settings.pad_left_m }}px;
+    padding-right: {{ section.settings.pad_right_m }}px;
+  }
+
+  @media screen and (min-width: 769px) {
+    #size-chart-{{ section.id }} {
+      padding-top: {{ section.settings.pad_top_d }}px;
+      padding-bottom: {{ section.settings.pad_bottom_d }}px;
+      padding-left: {{ section.settings.pad_left_d }}px;
+      padding-right: {{ section.settings.pad_right_d }}px;
+    }
+  }
+
+  .size-chart-container-{{ section.id }} {
+    max-width: {{ section.settings.container_max_w }}px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  /* ==========================================================================
+     2. HEADING & SUBTEXT TYPOGRAPHY
+     ========================================================================== */
+  .size-chart-title-{{ section.id }} {
+    color: {{ section.settings.title_color }};
+    font-size: {{ section.settings.title_size_m }}px;
+    font-weight: {{ section.settings.title_weight }};
+    text-transform: {{ section.settings.title_transform }};
+    letter-spacing: {{ section.settings.title_ls }}px;
+    line-height: {{ section.settings.title_lh }};
+    text-align: {{ section.settings.title_align_m }};
+    margin: 0 0 {{ section.settings.title_mb_m }}px 0;
+  }
+
+  @media screen and (min-width: 769px) {
+    .size-chart-title-{{ section.id }} {
+      font-size: {{ section.settings.title_size_d }}px;
+      text-align: {{ section.settings.title_align_d }};
+      margin-bottom: {{ section.settings.title_mb_d }}px;
+    }
+  }
+
+  .size-chart-subtext-{{ section.id }} {
+    color: {{ section.settings.subtext_color }};
+    font-size: {{ section.settings.subtext_size_m }}px;
+    font-weight: {{ section.settings.subtext_weight }};
+    line-height: {{ section.settings.subtext_lh }};
+    text-align: {{ section.settings.subtext_align_m }};
+    margin-bottom: {{ section.settings.subtext_mb_m }}px;
+  }
+
+  .size-chart-subtext-{{ section.id }} p {
+    margin: 0 0 8px 0;
+  }
+
+  @media screen and (min-width: 769px) {
+    .size-chart-subtext-{{ section.id }} {
+      font-size: {{ section.settings.subtext_size_d }}px;
+      text-align: {{ section.settings.subtext_align_d }};
+      margin-bottom: {{ section.settings.subtext_mb_d }}px;
+    }
+  }
+
+  /* ==========================================================================
+     3. TABLE CONTAINER & GRID STYLING
+     ========================================================================== */
+  .size-chart-table-wrapper-{{ section.id }} {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    border-radius: {{ section.settings.table_border_radius }}px;
+    border: {{ section.settings.table_border_w }}px solid {{ section.settings.table_border_color }};
+    margin-bottom: {{ section.settings.table_mb_m }}px;
+  }
+
+  @media screen and (min-width: 769px) {
+    .size-chart-table-wrapper-{{ section.id }} {
+      margin-bottom: {{ section.settings.table_mb_d }}px;
+    }
+  }
+
+  .size-chart-table-{{ section.id }} {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: {{ section.settings.table_bg_color }};
+  }
+
+  /* HEADER STYLES */
+  .size-chart-table-{{ section.id }} th {
+    background-color: {{ section.settings.th_bg_color }};
+    color: {{ section.settings.th_text_color }};
+    font-size: {{ section.settings.th_size_m }}px;
+    font-weight: {{ section.settings.th_weight }};
+    text-transform: {{ section.settings.th_transform }};
+    letter-spacing: {{ section.settings.th_ls }}px;
+    text-align: {{ section.settings.th_align }};
+    padding: {{ section.settings.th_pad_v_m }}px {{ section.settings.th_pad_h_m }}px;
+    border: {{ section.settings.grid_line_w }}px solid {{ section.settings.grid_line_color }};
+  }
+
+  @media screen and (min-width: 769px) {
+    .size-chart-table-{{ section.id }} th {
+      font-size: {{ section.settings.th_size_d }}px;
+      padding: {{ section.settings.th_pad_v_d }}px {{ section.settings.th_pad_h_d }}px;
+    }
+  }
+
+  /* BODY CELL STYLES */
+  .size-chart-table-{{ section.id }} td {
+    color: {{ section.settings.td_text_color }};
+    font-size: {{ section.settings.td_size_m }}px;
+    font-weight: {{ section.settings.td_weight }};
+    text-align: {{ section.settings.td_align }};
+    padding: {{ section.settings.td_pad_v_m }}px {{ section.settings.td_pad_h_m }}px;
+    border: {{ section.settings.grid_line_w }}px solid {{ section.settings.grid_line_color }};
+  }
+
+  @media screen and (min-width: 769px) {
+    .size-chart-table-{{ section.id }} td {
+      font-size: {{ section.settings.td_size_d }}px;
+      padding: {{ section.settings.td_pad_v_d }}px {{ section.settings.td_pad_h_d }}px;
+    }
+  }
+
+  {% if section.settings.enable_zebra %}
+    .size-chart-table-{{ section.id }} tbody tr:nth-child(even) {
+      background-color: {{ section.settings.zebra_bg_color }};
+    }
+  {% endif %}
+
+  /* ==========================================================================
+     4. FOOTER NOTE TYPOGRAPHY
+     ========================================================================== */
+  .size-chart-footer-{{ section.id }} {
+    color: {{ section.settings.footer_color }};
+    font-size: {{ section.settings.footer_size_m }}px;
+    font-weight: {{ section.settings.footer_weight }};
+    line-height: {{ section.settings.footer_lh }};
+    text-align: {{ section.settings.footer_align_m }};
+    margin-top: {{ section.settings.footer_mt_m }}px;
+  }
+
+  .size-chart-footer-{{ section.id }} p {
+    margin: 0 0 6px 0;
+  }
+
+  @media screen and (min-width: 769px) {
+    .size-chart-footer-{{ section.id }} {
+      font-size: {{ section.settings.footer_size_d }}px;
+      text-align: {{ section.settings.footer_align_d }};
+      margin-top: {{ section.settings.footer_mt_d }}px;
+    }
+  }
+{%- endstyle -%}
+
+<section class="size-chart-section" id="size-chart-{{ section.id }}">
+  <div class="size-chart-container-{{ section.id }}">
+
+    <!-- SECTION TITLE -->
+    {%- if section.settings.title != blank -%}
+      <h2 class="size-chart-title-{{ section.id }}">{{ section.settings.title }}</h2>
+    {%- endif -%}
+
+    <!-- PRE-TABLE SUBTEXT / INSTRUCTIONS -->
+    {%- if section.settings.subtext != blank -%}
+      <div class="size-chart-subtext-{{ section.id }}">
+        {{ section.settings.subtext }}
+      </div>
+    {%- endif -%}
+
+    <!-- RING SIZE TABLE -->
+    <div class="size-chart-table-wrapper-{{ section.id }}">
+      <table class="size-chart-table-{{ section.id }}">
+        <thead>
+          <tr>
+            {%- if section.settings.col1_title != blank -%}<th>{{ section.settings.col1_title }}</th>{%- endif -%}
+            {%- if section.settings.col2_title != blank -%}<th>{{ section.settings.col2_title }}</th>{%- endif -%}
+            {%- if section.settings.col3_title != blank -%}<th>{{ section.settings.col3_title }}</th>{%- endif -%}
+            {%- if section.settings.col4_title != blank -%}<th>{{ section.settings.col4_title }}</th>{%- endif -%}
+          </tr>
+        </thead>
+        <tbody>
+          {%- for block in section.blocks -%}
+            <tr {{ block.shopify_attributes }}>
+              {%- if section.settings.col1_title != blank -%}<td>{{ block.settings.col1_val }}</td>{%- endif -%}
+              {%- if section.settings.col2_title != blank -%}<td>{{ block.settings.col2_val }}</td>{%- endif -%}
+              {%- if section.settings.col3_title != blank -%}<td>{{ block.settings.col3_val }}</td>{%- endif -%}
+              {%- if section.settings.col4_title != blank -%}<td>{{ block.settings.col4_val }}</td>{%- endif -%}
+            </tr>
+          {%- endfor -%}
+        </tbody>
+      </table>
+    </div>
+
+    <!-- POST-TABLE FOOTER NOTES -->
+    {%- if section.settings.footer_text != blank -%}
+      <div class="size-chart-footer-{{ section.id }}">
+        {{ section.settings.footer_text }}
+      </div>
+    {%- endif -%}
+
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Ring Size Chart Table",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "1. SECTION LAYOUT & BACKGROUND"
+    },
+    { "type": "color", "id": "bg_color", "label": "Background Color", "default": "#FFFFFF" },
+    { "type": "range", "id": "container_max_w", "min": 400, "max": 1400, "step": 20, "unit": "px", "label": "Container Max Width", "default": 800 },
+
+    {
+      "type": "header",
+      "content": "2. DESKTOP PADDINGS"
+    },
+    { "type": "range", "id": "pad_top_d", "min": 0, "max": 150, "step": 5, "unit": "px", "label": "Padding Top", "default": 60 },
+    { "type": "range", "id": "pad_bottom_d", "min": 0, "max": 150, "step": 5, "unit": "px", "label": "Padding Bottom", "default": 60 },
+    { "type": "range", "id": "pad_left_d", "min": 0, "max": 100, "step": 5, "unit": "px", "label": "Padding Left", "default": 20 },
+    { "type": "range", "id": "pad_right_d", "min": 0, "max": 100, "step": 5, "unit": "px", "label": "Padding Right", "default": 20 },
+
+    {
+      "type": "header",
+      "content": "3. MOBILE PADDINGS"
+    },
+    { "type": "range", "id": "pad_top_m", "min": 0, "max": 100, "step": 5, "unit": "px", "label": "Padding Top", "default": 30 },
+    { "type": "range", "id": "pad_bottom_m", "min": 0, "max": 100, "step": 5, "unit": "px", "label": "Padding Bottom", "default": 30 },
+    { "type": "range", "id": "pad_left_m", "min": 0, "max": 50, "step": 2, "unit": "px", "label": "Padding Left", "default": 16 },
+    { "type": "range", "id": "pad_right_m", "min": 0, "max": 50, "step": 2, "unit": "px", "label": "Padding Right", "default": 16 },
+
+    {
+      "type": "header",
+      "content": "4. HEADING SETTINGS"
+    },
+    { "type": "text", "id": "title", "label": "Title", "default": "RING SIZE CHART" },
+    { "type": "color", "id": "title_color", "label": "Title Color", "default": "#000000" },
+    { "type": "range", "id": "title_size_d", "min": 16, "max": 60, "step": 1, "unit": "px", "label": "Desktop Size", "default": 28 },
+    { "type": "range", "id": "title_size_m", "min": 14, "max": 40, "step": 1, "unit": "px", "label": "Mobile Size", "default": 22 },
+    { "type": "select", "id": "title_weight", "label": "Font Weight", "options": [ { "value": "300", "label": "Light" }, { "value": "400", "label": "Regular" }, { "value": "500", "label": "Medium" }, { "value": "600", "label": "SemiBold" }, { "value": "700", "label": "Bold" } ], "default": "400" },
+    { "type": "select", "id": "title_transform", "label": "Text Transform", "options": [ { "value": "none", "label": "None" }, { "value": "uppercase", "label": "UPPERCASE" }, { "value": "capitalize", "label": "Capitalize" } ], "default": "uppercase" },
+    { "type": "range", "id": "title_ls", "min": 0, "max": 5, "step": 0.5, "unit": "px", "label": "Letter Spacing", "default": 1.5 },
+    { "type": "text", "id": "title_lh", "label": "Line Height", "default": "1.2" },
+    { "type": "select", "id": "title_align_d", "label": "Desktop Alignment", "options": [ { "value": "left", "label": "Left" }, { "value": "center", "label": "Center" }, { "value": "right", "label": "Right" } ], "default": "center" },
+    { "type": "select", "id": "title_align_m", "label": "Mobile Alignment", "options": [ { "value": "left", "label": "Left" }, { "value": "center", "label": "Center" }, { "value": "right", "label": "Right" } ], "default": "center" },
+    { "type": "range", "id": "title_mb_d", "min": 0, "max": 60, "step": 2, "unit": "px", "label": "Desktop Bottom Margin", "default": 24 },
+    { "type": "range", "id": "title_mb_m", "min": 0, "max": 40, "step": 2, "unit": "px", "label": "Mobile Bottom Margin", "default": 16 },
+
+    {
+      "type": "header",
+      "content": "5. PRE-TABLE INSTRUCTIONS / SUBTEXT"
+    },
+    { "type": "richtext", "id": "subtext", "label": "Subtext Content" },
+    { "type": "color", "id": "subtext_color", "label": "Subtext Color", "default": "#333333" },
+    { "type": "range", "id": "subtext_size_d", "min": 11, "max": 24, "step": 1, "unit": "px", "label": "Desktop Size", "default": 14 },
+    { "type": "range", "id": "subtext_size_m", "min": 10, "max": 20, "step": 1, "unit": "px", "label": "Mobile Size", "default": 13 },
+    { "type": "select", "id": "subtext_weight", "label": "Font Weight", "options": [ { "value": "300", "label": "Light" }, { "value": "400", "label": "Regular" }, { "value": "500", "label": "Medium" } ], "default": "400" },
+    { "type": "text", "id": "subtext_lh", "label": "Line Height", "default": "1.5" },
+    { "type": "select", "id": "subtext_align_d", "label": "Desktop Alignment", "options": [ { "value": "left", "label": "Left" }, { "value": "center", "label": "Center" }, { "value": "right", "label": "Right" } ], "default": "left" },
+    { "type": "select", "id": "subtext_align_m", "label": "Mobile Alignment", "options": [ { "value": "left", "label": "Left" }, { "value": "center", "label": "Center" }, { "value": "right", "label": "Right" } ], "default": "left" },
+    { "type": "range", "id": "subtext_mb_d", "min": 0, "max": 50, "step": 2, "unit": "px", "label": "Desktop Bottom Margin", "default": 20 },
+    { "type": "range", "id": "subtext_mb_m", "min": 0, "max": 40, "step": 2, "unit": "px", "label": "Mobile Bottom Margin", "default": 14 },
+
+    {
+      "type": "header",
+      "content": "6. TABLE COLUMNS HEADERS"
+    },
+    { "type": "text", "id": "col1_title", "label": "Column 1 Header", "default": "US Size" },
+    { "type": "text", "id": "col2_title", "label": "Column 2 Header", "default": "EU Size" },
+    { "type": "text", "id": "col3_title", "label": "Column 3 Header", "default": "Internal Diameter" },
+    { "type": "text", "id": "col4_title", "label": "Column 4 Header (Optional)" },
+
+    {
+      "type": "header",
+      "content": "7. TABLE CONTAINER & BORDER SETTINGS"
+    },
+    { "type": "color", "id": "table_bg_color", "label": "Table Background Color", "default": "#FFFFFF" },
+    { "type": "range", "id": "table_border_w", "min": 0, "max": 5, "step": 1, "unit": "px", "label": "Outer Border Width", "default": 1 },
+    { "type": "color", "id": "table_border_color", "label": "Outer Border Color", "default": "#EAEAEA" },
+    { "type": "range", "id": "table_border_radius", "min": 0, "max": 20, "step": 1, "unit": "px", "label": "Table Border Radius", "default": 0 },
+    { "type": "range", "id": "grid_line_w", "min": 0, "max": 3, "step": 1, "unit": "px", "label": "Inner Grid Line Width", "default": 1 },
+    { "type": "color", "id": "grid_line_color", "label": "Inner Grid Line Color", "default": "#EAEAEA" },
+    { "type": "range", "id": "table_mb_d", "min": 0, "max": 60, "step": 2, "unit": "px", "label": "Table Bottom Margin (Desktop)", "default": 24 },
+    { "type": "range", "id": "table_mb_m", "min": 0, "max": 40, "step": 2, "unit": "px", "label": "Table Bottom Margin (Mobile)", "default": 16 },
+
+    {
+      "type": "header",
+      "content": "8. TABLE HEADER CELLS (TH) STYLING"
+    },
+    { "type": "color", "id": "th_bg_color", "label": "Header Background Color", "default": "#FAFAFA" },
+    { "type": "color", "id": "th_text_color", "label": "Header Text Color", "default": "#000000" },
+    { "type": "range", "id": "th_size_d", "min": 10, "max": 22, "step": 1, "unit": "px", "label": "Desktop Size", "default": 14 },
+    { "type": "range", "id": "th_size_m", "min": 10, "max": 18, "step": 1, "unit": "px", "label": "Mobile Size", "default": 12 },
+    { "type": "select", "id": "th_weight", "label": "Font Weight", "options": [ { "value": "400", "label": "Regular" }, { "value": "500", "label": "Medium" }, { "value": "600", "label": "SemiBold" }, { "value": "700", "label": "Bold" } ], "default": "600" },
+    { "type": "select", "id": "th_transform", "label": "Text Transform", "options": [ { "value": "none", "label": "None" }, { "value": "uppercase", "label": "UPPERCASE" } ], "default": "uppercase" },
+    { "type": "range", "id": "th_ls", "min": 0, "max": 3, "step": 0.5, "unit": "px", "label": "Letter Spacing", "default": 0.5 },
+    { "type": "select", "id": "th_align", "label": "Header Text Alignment", "options": [ { "value": "left", "label": "Left" }, { "value": "center", "label": "Center" }, { "value": "right", "label": "Right" } ], "default": "center" },
+    { "type": "range", "id": "th_pad_v_d", "min": 4, "max": 30, "step": 1, "unit": "px", "label": "Vertical Padding (Desktop)", "default": 14 },
+    { "type": "range", "id": "th_pad_h_d", "min": 4, "max": 30, "step": 1, "unit": "px", "label": "Horizontal Padding (Desktop)", "default": 16 },
+    { "type": "range", "id": "th_pad_v_m", "min": 4, "max": 20, "step": 1, "unit": "px", "label": "Vertical Padding (Mobile)", "default": 10 },
+    { "type": "range", "id": "th_pad_h_m", "min": 4, "max": 20, "step": 1, "unit": "px", "label": "Horizontal Padding (Mobile)", "default": 10 },
+
+    {
+      "type": "header",
+      "content": "9. TABLE BODY CELLS (TD) STYLING"
+    },
+    { "type": "color", "id": "td_text_color", "label": "Body Text Color", "default": "#333333" },
+    { "type": "range", "id": "td_size_d", "min": 10, "max": 22, "step": 1, "unit": "px", "label": "Desktop Size", "default": 14 },
+    { "type": "range", "id": "td_size_m", "min": 10, "max": 18, "step": 1, "unit": "px", "label": "Mobile Size", "default": 12 },
+    { "type": "select", "id": "td_weight", "label": "Font Weight", "options": [ { "value": "300", "label": "Light" }, { "value": "400", "label": "Regular" }, { "value": "500", "label": "Medium" }, { "value": "600", "label": "SemiBold" } ], "default": "400" },
+    { "type": "select", "id": "td_align", "label": "Body Text Alignment", "options": [ { "value": "left", "label": "Left" }, { "value": "center", "label": "Center" }, { "value": "right", "label": "Right" } ], "default": "center" },
+    { "type": "range", "id": "td_pad_v_d", "min": 4, "max": 30, "step": 1, "unit": "px", "label": "Vertical Padding (Desktop)", "default": 12 },
+    { "type": "range", "id": "td_pad_h_d", "min": 4, "max": 30, "step": 1, "unit": "px", "label": "Horizontal Padding (Desktop)", "default": 16 },
+    { "type": "range", "id": "td_pad_v_m", "min": 4, "max": 20, "step": 1, "unit": "px", "label": "Vertical Padding (Mobile)", "default": 10 },
+    { "type": "range", "id": "td_pad_h_m", "min": 4, "max": 20, "step": 1, "unit": "px", "label": "Horizontal Padding (Mobile)", "default": 10 },
+    { "type": "checkbox", "id": "enable_zebra", "label": "Enable Alternating Row Color", "default": false },
+    { "type": "color", "id": "zebra_bg_color", "label": "Alternating Row Background Color", "default": "#F9F9F9" },
+
+    {
+      "type": "header",
+      "content": "10. POST-TABLE FOOTER NOTES"
+    },
+    { 
+      "type": "richtext", 
+      "id": "footer_text", 
+      "label": "Footer Content", 
+      "default": "<p>Measurements should be taken carefully before placing an order.</p><p>Selected designs may be available in custom sizes upon request.</p>" 
+    },
+    { "type": "color", "id": "footer_color", "label": "Footer Color", "default": "#666666" },
+    { "type": "range", "id": "footer_size_d", "min": 10, "max": 22, "step": 1, "unit": "px", "label": "Desktop Size", "default": 13 },
+    { "type": "range", "id": "footer_size_m", "min": 10, "max": 18, "step": 1, "unit": "px", "label": "Mobile Size", "default": 12 },
+    { "type": "select", "id": "footer_weight", "label": "Font Weight", "options": [ { "value": "300", "label": "Light" }, { "value": "400", "label": "Regular" }, { "value": "500", "label": "Medium" } ], "default": "400" },
+    { "type": "text", "id": "footer_lh", "label": "Line Height", "default": "1.5" },
+    { "type": "select", "id": "footer_align_d", "label": "Desktop Alignment", "options": [ { "value": "left", "label": "Left" }, { "value": "center", "label": "Center" }, { "value": "right", "label": "Right" } ], "default": "left" },
+    { "type": "select", "id": "footer_align_m", "label": "Mobile Alignment", "options": [ { "value": "left", "label": "Left" }, { "value": "center", "label": "Center" }, { "value": "right", "label": "Right" } ], "default": "left" },
+    { "type": "range", "id": "footer_mt_d", "min": 0, "max": 50, "step": 2, "unit": "px", "label": "Desktop Top Margin", "default": 16 },
+    { "type": "range", "id": "footer_mt_m", "min": 0, "max": 40, "step": 2, "unit": "px", "label": "Mobile Top Margin", "default": 12 }
+  ],
+  "blocks": [
+    {
+      "type": "table_row",
+      "name": "Table Row",
+      "settings": [
+        { "type": "text", "id": "col1_val", "label": "Column 1 Value (US Size)" },
+        { "type": "text", "id": "col2_val", "label": "Column 2 Value (EU Size)" },
+        { "type": "text", "id": "col3_val", "label": "Column 3 Value (Internal Diameter)" },
+        { "type": "text", "id": "col4_val", "label": "Column 4 Value (Optional)" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Ring Size Chart Table",
+      "blocks": [
+        { "type": "table_row", "settings": { "col1_val": "4", "col2_val": "48", "col3_val": "15.3 mm" } },
+        { "type": "table_row", "settings": { "col1_val": "5", "col2_val": "49", "col3_val": "15.7 mm" } },
+        { "type": "table_row", "settings": { "col1_val": "6", "col2_val": "52", "col3_val": "16.5 mm" } },
+        { "type": "table_row", "settings": { "col1_val": "7", "col2_val": "54", "col3_val": "17.2 mm" } },
+        { "type": "table_row", "settings": { "col1_val": "8", "col2_val": "57", "col3_val": "18.1 mm" } },
+        { "type": "table_row", "settings": { "col1_val": "9", "col2_val": "60", "col3_val": "19.0 mm" } },
+        { "type": "table_row", "settings": { "col1_val": "10", "col2_val": "62", "col3_val": "19.8 mm" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

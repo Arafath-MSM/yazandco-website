@@ -1,0 +1,75 @@
+{% comment %}
+  Renders one collection card for the "List collections" section.
+
+  Accepts:
+  - collection: {Object} Collection object (required)
+  - section: {Object} Section object (required, used for settings)
+
+  Usage:
+  {% render 'collections-grid-card', collection: collection, section: section %}
+{% endcomment %}
+
+<li class="collections-grid__item collections-grid__item--{{ collection.id }} background{% if section.settings.image_ratio == 'portrait' %} collections-grid__card--portrait{% endif %}">
+  {% liquid
+    case section.settings.image
+      when 'product_hover'
+        assign image_first = collection.products[0].media[1]
+        assign image_second = collection.products[0].media[0]
+        assign image_third = collection.featured_image
+      when 'product'
+        assign image_first = collection.products[0].media[0]
+        assign image_second = collection.featured_image
+        assign image_third = collection.products[0].media[1]
+      when 'collection'
+        assign image_first = collection.featured_image
+        assign image_second = collection.products[0].media[1]
+        assign image_third = collection.products[0].media[0]
+    endcase
+
+    if image_first != blank
+      assign collection_product_image = image_first
+    elsif image_second != blank
+      assign collection_product_image = image_second
+    else
+      assign collection_product_image = image_third
+    endif
+  %}
+
+  <a href="{{ collection.url | default: '#' }}" class="collections-grid__link_overlay" aria-label="{{ collection.title }}">
+    <span class="visibility-hidden">{{ collection.title }}</span>
+
+    <div class="collections-grid__image collections-grid__image--{{ section.settings.image_fit }} collections-grid__image--{{ section.settings.image_ratio }}">
+      {%- if section.settings.button_label != blank -%}
+        <div class="button button--simple focus-inset" aria-label="{{ section.settings.button_label | escape }}">
+          <span>{{ section.settings.button_label | escape }}</span>
+        </div>
+      {% endif %}
+
+      <span class="collections-grid__overlay" style="--opacity-hover: {{ section.settings.overlay_opacity }}"></span>
+
+      {%- if collection_product_image != blank -%}
+        {%- capture sizes -%}
+          (min-width: 1360px) calc(100vw / {{ section.settings.collections_to_show }} - 128px)
+          (min-width: 990px) {% if section.settings.collections_to_show == 4 %}calc(100vw / 3 - 40px){% else %}calc(100vw / {{ section.settings.collections_to_show }} - 40px){% endif %},
+          (min-width: 750px) {% if section.settings.collections_to_show >= 3 %}calc(100vw / 2 - 40px){% else %}calc(100vw / {{ section.settings.collections_to_show }} - 40px){% endif %},
+          calc(100vw - 40px)
+        {%- endcapture -%}
+
+        {{
+          collection_product_image
+          | image_url: width: collection_product_image.width
+          | image_tag: loading: 'lazy', sizes: sizes, widths: '360, 550, 750, 900, 1100, 1420, 1700, 1920'
+        }}
+      {% endif %}
+    </div>
+
+    <div class="collections-grid__information container">
+      <h2 class="collections-grid__title {{ section.settings.collection_heading_size }}">
+        <span>{{- collection.title -}}</span>
+      </h2>
+      {% if collection.description != blank and section.settings.show_description %}
+        <p class="collections-grid__desc">{{ collection.description | strip_html | truncatewords: 80, '...' }}</p>
+      {% endif %}
+    </div>
+  </a>
+</li>
